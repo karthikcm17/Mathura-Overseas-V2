@@ -1,0 +1,199 @@
+/* ==========================================================================
+   Find Your University — page-specific layout
+   ========================================================================== */
+
+.fyu-hero {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-deep) 100%);
+  padding-block: var(--sp-6);
+  color: var(--color-text-inverse);
+}
+
+.fyu-hero__lead {
+  color: var(--color-text-inverse-muted);
+  max-width: 60ch;
+  margin-top: var(--sp-2);
+}
+
+/* ---- Tool tabs ---- */
+.fyu-tabs {
+  display: flex;
+  gap: var(--sp-2);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--sp-5);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.fyu-tabs::-webkit-scrollbar { display: none; }
+
+.fyu-tab {
+  flex-shrink: 0;
+  padding: 0.9rem 1.3rem;
+  font-weight: 700;
+  font-size: var(--fs-small);
+  color: var(--color-text-muted);
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.fyu-tab--active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-accent);
+}
+
+.fyu-tab__soon {
+  font-size: 0.6rem;
+  background: var(--color-secondary-light);
+  color: var(--color-primary);
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+  margin-left: 0.4rem;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+.fyu-panel[hidden] { display: none; }
+
+/* ---- Eligibility layout: form + result side by side on desktop ---- */
+.elig-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-5);
+}
+
+@media (min-width: 900px) {
+  .elig-layout { grid-template-columns: 1fr 1fr; align-items: start; }
+}
+
+.elig-form-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+  box-shadow: 0 8px 24px rgba(18, 24, 40, 0.06);
+}
+
+.elig-form-card h2 { font-size: 1.2rem; }
+.elig-form-card__lead { font-size: var(--fs-small); color: var(--color-text-muted); margin-top: 0.3rem; }
+
+.elig-field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-3);
+  margin-top: var(--sp-4);
+}
+
+@media (max-width: 480px) { .elig-field-grid { grid-template-columns: 1fr; } }
+
+.elig-field { display: flex; flex-direction: column; gap: 0.4rem; }
+.elig-field--full { grid-column: 1 / -1; }
+
+.elig-field label {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.elig-field__hint { font-size: var(--fs-label); color: var(--color-text-muted); font-weight: 400; }
+
+.elig-field input,
+.elig-field select {
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+.elig-field input:focus,
+.elig-field select:focus {
+  outline: none;
+  border-color: var(--color-secondary);
+}
+
+.elig-submit {
+  width: 100%;
+  justify-content: center;
+  margin-top: var(--sp-4);
+}
+
+/* ---- Result panel ---- */
+.elig-result-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+  box-shadow: 0 8px 24px rgba(18, 24, 40, 0.06);
+  position: sticky;
+  top: calc(var(--sp-5) + 70px);
+}
+
+.elig-result-card__placeholder {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--fs-small);
+  padding-block: var(--sp-6);
+}
+
+.elig-result-card__placeholder svg { color: var(--color-border); margin-bottom: var(--sp-2); }
+
+.elig-verdict {
+  border-radius: var(--radius-md);
+  padding: var(--sp-3);
+  font-weight: 700;
+  font-size: var(--fs-small);
+  margin-bottom: var(--sp-4);
+}
+
+.elig-verdict--pass { background: var(--color-secondary-light); color: var(--color-primary); }
+.elig-verdict--fail { background: #FEECEC; color: var(--color-accent-hover); }
+.elig-verdict--warn { background: var(--color-bg); color: var(--color-text-muted); }
+
+.elig-check {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.elig-check__row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+}
+
+.elig-check__icon {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.elig-check__row--pass .elig-check__icon { background: var(--color-secondary-light); color: var(--color-primary); }
+.elig-check__row--fail .elig-check__icon { background: #FEECEC; color: var(--color-accent); }
+
+.elig-check__label { display: block; font-weight: 700; font-size: var(--fs-small); color: var(--color-text); }
+.elig-check__detail { display: block; font-size: var(--fs-label); color: var(--color-text-muted); margin-top: 0.1rem; }
+
+.elig-result-cta {
+  margin-top: var(--sp-4);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+}
+
+/* ---- Coming soon placeholder ---- */
+.fyu-soon {
+  text-align: center;
+  padding-block: var(--sp-7);
+  color: var(--color-text-muted);
+}
+
+.fyu-soon svg { color: var(--color-border); margin-bottom: var(--sp-3); }
+.fyu-soon h3 { font-size: 1.2rem; margin-bottom: var(--sp-1); }

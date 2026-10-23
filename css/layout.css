@@ -1,0 +1,32 @@
+/* layout.css — containers, sections, image slots (mobile-first) */
+.container { width: 100%; max-width: var(--content-width); margin-inline: auto; padding-inline: var(--gutter); }
+.section { padding-block: var(--section-y); }
+.section--tight { padding-block: var(--sp-6); }
+.section--wash { background: var(--color-wash); --perf-bg: var(--color-wash); }
+.section--grad { background: var(--grad-wash); }
+.section--dark { position: relative; color: var(--color-text-inverse); background: var(--grad-night); }
+.section--dark h2, .section--dark h3 { color: var(--color-text-inverse); }
+.section--dark .section-head p { color: var(--color-text-inverse-muted); }
+
+/* Decorative patterns (pure CSS, no images). Put the class on a section; content sits above via .container. */
+.has-dots, .has-grid { position: relative; isolation: isolate; }
+.has-dots::before, .has-grid::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.has-dots::before { background: radial-gradient(rgba(30,58,138,.14) 1.2px, transparent 1.7px) 0 0 / 22px 22px; -webkit-mask-image: linear-gradient(180deg, #000, transparent 85%); mask-image: linear-gradient(180deg, #000, transparent 85%); }
+.has-grid::before { background-image: linear-gradient(rgba(30,58,138,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(30,58,138,.07) 1px, transparent 1px); background-size: 38px 38px; -webkit-mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent); mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent); }
+.section--dark.has-grid::before { background-image: linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px); }
+.stack > * + * { margin-top: var(--sp-4); }
+body { padding-bottom: calc(var(--bottom-nav-h) + var(--safe-bottom)); }
+
+/* Image slot: every photo on the site sits in one. Aspect ratio is fixed so
+   the layout never jumps. If the file is missing, JS adds .is-empty and the
+   slot shows the exact file name + size you need to supply. */
+.img-slot { position: relative; overflow: hidden; border-radius: var(--radius-lg); background: linear-gradient(135deg, var(--color-primary-deep), var(--color-blue)); aspect-ratio: var(--ratio, 3 / 2); }
+.img-slot img { width: 100%; height: 100%; object-fit: cover; }
+.img-slot.is-empty img { display: none; }
+.img-slot.is-empty::after { content: "IMAGE\A" attr(data-spec); white-space: pre; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; padding: var(--sp-4); font-size: var(--fs-xs); font-weight: 700; line-height: 1.6; letter-spacing: .03em; color: rgba(255,255,255,.75); border: 1.5px dashed rgba(255,255,255,.35); border-radius: inherit; }
+.ratio-1x1 { --ratio: 1 / 1; } .ratio-4x3 { --ratio: 4 / 3; } .ratio-3x2 { --ratio: 3 / 2; } .ratio-4x5 { --ratio: 4 / 5; } .ratio-16x9 { --ratio: 16 / 9; } .ratio-3x4 { --ratio: 3 / 4; }
+
+/* Swipe row: horizontal scroll-snap on mobile (feels native), grid on desktop (see responsive.css) */
+.snap-row { display: flex; gap: var(--sp-3); overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); margin-inline: calc(-1 * var(--gutter)); padding: var(--sp-1) var(--gutter) var(--sp-3); scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.snap-row::-webkit-scrollbar { display: none; }
+.snap-row > * { flex: 0 0 78%; scroll-snap-align: start; }

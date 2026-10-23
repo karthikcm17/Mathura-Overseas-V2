@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Explore Destinations | MBBS Abroad | Mathura Overseas</title>
+<meta name="description" content="Explore every MBBS-abroad destination Mathura Overseas works with. Filter by budget, distance or climate, check travel details and compare side by side.">
+<meta name="theme-color" content="#1E3A8A">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Explore Destinations | MBBS Abroad | Mathura Overseas">
+<meta property="og:description" content="Explore every MBBS-abroad destination Mathura Overseas works with. Filter by budget, distance or climate and compare side by side.">
+<meta property="og:image" content="assets/images/og/home.jpg">
+<link rel="icon" href="assets/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/typography.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/forms.css">
+<link rel="stylesheet" href="css/navigation.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/pages/destinations.css">
+</head>
+<body>
+
+<!-- Icons: one inline block per page, so nothing external can break. To add an icon, add a <symbol> here and use it with
+     <svg class="icon"><use href="#i-name"></use></svg> -->
+<svg class="svg-sprite" aria-hidden="true" focusable="false"><defs><linearGradient id="mo-grad" x1="0" y1="0" x2="1" y2="1"><stop class="grad-a" offset="0"/><stop class="grad-b" offset="1"/></linearGradient></defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></symbol>
+<symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11.5a7 7 0 1 0-14 0C5 14.5 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+<symbol id="i-news" viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5z"/><path d="M9 9h6M9 13h6M9 17h4"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></symbol>
+<symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.78-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.48 0 1.46 1.06 2.87 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35ZM12.04 2a9.9 9.9 0 0 0-8.4 15.1L2 22l5-1.6A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3 .95.97-2.9-.2-.3A8.2 8.2 0 1 1 12.04 20.1Z"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.25"/><path d="M12 8v5M12 16.5h.01"/></symbol>
+<symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M12 2 3 6v6c0 5 4 8 9 10 5-2 9-5 9-10V6l-9-4Z"/><path d="m8.5 12 2.3 2.3L16 9"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></symbol>
+<symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 5.6a5.2 5.2 0 0 0-7.4 0L12 7l-1.4-1.4a5.2 5.2 0 0 0-7.4 7.4L12 21.8l8.8-8.8a5.2 5.2 0 0 0 0-7.4Z"/></symbol>
+<symbol id="i-check-square" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></symbol>
+<symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="13" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="18" cy="9" r="2.6"/><path d="M15.8 13a5.2 5.2 0 0 1 5.7 5.2"/></symbol>
+<symbol id="i-cap" viewBox="0 0 24 24"><path d="M12 4 2 9l10 5 10-5-10-5Z"/><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12h.01"/></symbol>
+<symbol id="i-building" viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6M10 11h4"/></symbol>
+<symbol id="i-passport" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M9 17h6"/></symbol>
+<symbol id="i-plane" viewBox="0 0 24 24"><path d="m3 11 18-8-8 18-2-8-8-2Z"/></symbol>
+<symbol id="i-message" viewBox="0 0 24 24"><path d="M4 4.5h13a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H10l-4.2 3.2a.6.6 0 0 1-.96-.48V15.5H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Z"/><path d="M8 9.5h.01M12 9.5h.01M16 9.5h.01"/></symbol>
+<symbol id="i-facebook" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M13.5 21v-8.1h2.72l.41-3.16h-3.13V7.73c0-.91.25-1.53 1.56-1.53h1.67V3.38C15.98 3.26 15 3.17 13.87 3.17c-2.36 0-3.97 1.44-3.97 4.08v2.65H7.17v3.16h2.73V21h3.6Z"/></symbol>
+<symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><path d="M17 7h.01"/></symbol>
+<symbol id="i-youtube" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M21.6 7.6a2.75 2.75 0 0 0-1.94-1.95C18 5.2 12 5.2 12 5.2s-6 0-7.66.45A2.75 2.75 0 0 0 2.4 7.6 28.9 28.9 0 0 0 2 12a28.9 28.9 0 0 0 .4 4.4 2.75 2.75 0 0 0 1.94 1.95C6 18.8 12 18.8 12 18.8s6 0 7.66-.45a2.75 2.75 0 0 0 1.94-1.95c.27-1.45.4-2.93.4-4.4a28.9 28.9 0 0 0-.4-4.4ZM10 15.02V8.98L15.27 12 10 15.02Z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5L20 6"/></symbol>
+<symbol id="i-quote" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M4 17.5c0-4.1 1.2-7.4 4.9-9.9l1 1.5C7.7 10.6 7.3 12 7.2 13.5H10V19H4v-1.5Zm10 0c0-4.1 1.2-7.4 4.9-9.9l1 1.5c-2.2 1.5-2.6 2.9-2.7 4.4H20V19h-6v-1.5Z"/></symbol>
+<symbol id="i-globe-art" viewBox="0 0 400 400"><circle cx="200" cy="200" r="190"/><ellipse cx="200" cy="200" rx="190" ry="28"/><ellipse cx="200" cy="105" rx="165" ry="25"/><ellipse cx="200" cy="295" rx="165" ry="25"/><ellipse cx="200" cy="36" rx="95" ry="14"/><ellipse cx="200" cy="364" rx="95" ry="14"/><ellipse cx="200" cy="200" rx="95" ry="190"/><ellipse cx="200" cy="200" rx="165" ry="190"/><path d="M200 10v380"/></symbol>
+<symbol id="i-airplane" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0 0 11.5 2 1.5 1.5 0 0 0 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+</svg>
+
+<!-- ============ ANNOUNCEMENT BAR — identical on every page (no close button). Edit the 3 messages here and copy to all pages. ============ -->
+<div class="announce">
+  <div class="container announce__inner">
+    <span class="announce__icon"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg></span>
+    <div class="announce__track">
+      <span class="announce__item is-active">TN MBBS Government Quota Round 1 results are out &mdash; check your college now</span>
+      <span class="announce__item">MCC AIQ Round 1 counselling is live &mdash; talk to a counsellor today</span>
+      <span class="announce__item">Admissions open for 2026&ndash;27 &mdash; limited seats across all destinations</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HEADER — identical on every page; only aria-current changes ============ -->
+<header class="app-header">
+  <div class="container app-header__inner">
+    <a href="index.html" class="logo" aria-label="Mathura Overseas home">
+      <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true"><rect class="logo__badge" width="40" height="40" rx="12"/><g class="logo__cap"><path d="M20 9 7 15.5 20 22l13-6.5L20 9Z"/><path d="M12 19.2V24c0 2.2 3.6 4 8 4s8-1.8 8-4v-4.8L20 24.4l-8-5.2Z" opacity=".92"/></g><g class="logo__tassel"><path class="logo__tassel-cord" d="M33 16v7"/><circle class="logo__tassel-end" cx="33" cy="25" r="1.9"/></g></svg>
+      <span class="logo__text">MATHURA<span>OVERSEAS</span></span>
+    </a>
+    <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg></button>
+    <nav class="site-nav" aria-label="Primary">
+      <button type="button" class="site-nav__close" aria-label="Close menu"><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
+      <a href="destinations.html" aria-current="page"><span class="site-nav__ico"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><span class="site-nav__label">Countries</span></a>
+      <a href="find-your-university.html"><span class="site-nav__ico"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg></span><span class="site-nav__label">Find university</span></a>
+      <a href="neet-2026-updates.html"><span class="site-nav__ico"><svg class="icon" aria-hidden="true"><use href="#i-news"></use></svg></span><span class="site-nav__label">Updates</span></a>
+      <a href="student-guide.html"><span class="site-nav__ico"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg></span><span class="site-nav__label">Guide</span></a>
+      <a href="about-us.html"><span class="site-nav__ico"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span><span class="site-nav__label">About</span></a>
+      <a href="apply.html" class="btn btn--primary btn--sm">Get Free Counselling</a>
+    </nav>
+  </div>
+  <div class="nav-scrim"></div>
+</header>
+
+
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="dest-hero">
+    <svg class="dest-hero__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+    <div class="container dest-hero__inner">
+      <nav class="dest-crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><span>Countries</span></nav>
+      <span class="dest-pill"><span class="dest-pill__dot"></span>Compare before you decide</span>
+      <h1>Find where you <em>belong</em></h1>
+      <p class="dest-hero__lead">Every destination we work with, side by side. Filter by what matters to you, check travel details, and build your own comparison &mdash; no forms needed.</p>
+      <div class="dest-chips" role="group" aria-label="Filter destinations">
+        <button type="button" class="dest-chip is-active" data-sort="all" aria-pressed="true">All</button>
+        <button type="button" class="dest-chip" data-sort="value" aria-pressed="false">Best value</button>
+        <button type="button" class="dest-chip" data-sort="near" aria-pressed="false">Closest to India</button>
+        <button type="button" class="dest-chip" data-sort="warm" aria-pressed="false">Warm climate</button>
+        <button type="button" class="dest-chip" data-sort="fast" aria-pressed="false">Fastest to start</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESTINATION CARDS -->
+  <section class="section dest-list">
+    <div class="container">
+      <p class="dest-hint"><svg class="icon" aria-hidden="true"><use href="#i-check-square"></use></svg>Tap <strong>Compare</strong> on 2 or 3 cards to see them side by side.</p>
+      <div class="dest-grid" id="destGrid">
+
+        <article class="card dest-card dest-tile" data-tags="value near warm fast" data-name="Vietnam" data-fee="&#8377;2L&ndash;4.6L / yr" data-duration="6 yrs" data-climate="Tropical" data-flight="~7 hrs">
+          <div class="img-slot ratio-3x2" data-spec="vietnam.jpg · 1200×800 px"><span class="tag tag--abs">Closest to India</span><img src="assets/images/destinations/vietnam.jpg" width="1200" height="800" alt="Hanoi skyline at sunset" loading="lazy"><button type="button" class="dest-compare" aria-pressed="false" aria-label="Compare Vietnam">Compare</button></div>
+          <div class="dest-card__body"><h3>Vietnam</h3><p>Around a 4-hour flight, English-medium teaching</p>
+            <div class="dest-card__foot"><span class="dest-card__fee">&#8377;2L&ndash;4.6L / yr</span><a href="mbbs-in-vietnam.html" class="dest-card__go">Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></div></div>
+        </article>
+
+        <article class="card dest-card dest-tile" data-tags="value" data-name="Kyrgyzstan" data-fee="$3,500&ndash;4,500 / yr" data-duration="6 yrs" data-climate="Cold winters" data-flight="~9&ndash;10 hrs">
+          <div class="img-slot ratio-3x2" data-spec="kyrgyzstan.jpg · 1200×800 px"><span class="tag tag--abs">Most affordable</span><img src="assets/images/destinations/kyrgyzstan.jpg" width="1200" height="800" alt="Mountains and a city in Kyrgyzstan" loading="lazy"><button type="button" class="dest-compare" aria-pressed="false" aria-label="Compare Kyrgyzstan">Compare</button></div>
+          <div class="dest-card__body"><h3>Kyrgyzstan</h3><p>Budget-friendly and very safe for students</p>
+            <div class="dest-card__foot"><span class="dest-card__fee">$3,500&ndash;4,500 / yr</span><a href="mbbs-in-kyrgyzstan.html" class="dest-card__go">Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></div></div>
+        </article>
+
+        <article class="card dest-card dest-tile" data-tags="warm fast" data-name="Philippines" data-fee="&#8377;18L&ndash;35L total" data-duration="5.5&ndash;6.5 yrs" data-climate="Tropical" data-flight="~8 hrs">
+          <div class="img-slot ratio-3x2" data-spec="philippines.jpg · 1200×800 px"><span class="tag tag--abs">Best value</span><img src="assets/images/destinations/philippines.jpg" width="1200" height="800" alt="Philippine city with a heritage church" loading="lazy"><button type="button" class="dest-compare" aria-pressed="false" aria-label="Compare Philippines">Compare</button></div>
+          <div class="dest-card__body"><h3>Philippines</h3><p>US-style curriculum, full clinical exposure</p>
+            <div class="dest-card__foot"><span class="dest-card__fee">&#8377;18L&ndash;35L total</span><a href="mbbs-in-philippines.html" class="dest-card__go">Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></div></div>
+        </article>
+
+        <article class="card dest-card dest-tile" data-tags="value near" data-name="Uzbekistan" data-fee="&#8377;15L&ndash;25L total" data-duration="6 yrs" data-climate="Moderate" data-flight="~8 hrs">
+          <div class="img-slot ratio-3x2" data-spec="uzbekistan.jpg · 1200×800 px"><span class="tag tag--abs">Modern campuses</span><img src="assets/images/destinations/uzbekistan.jpg" width="1200" height="800" alt="Blue-tiled madrasa in Samarkand" loading="lazy"><button type="button" class="dest-compare" aria-pressed="false" aria-label="Compare Uzbekistan">Compare</button></div>
+          <div class="dest-card__body"><h3>Uzbekistan</h3><p>Silk Road cities with strong Indian communities</p>
+            <div class="dest-card__foot"><span class="dest-card__fee">&#8377;15L&ndash;25L total</span><a href="mbbs-in-uzbekistan.html" class="dest-card__go">Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></div></div>
+        </article>
+
+        <article class="card dest-card dest-tile" data-tags="near fast" data-name="Kazakhstan" data-fee="$4,000&ndash;5,500 / yr" data-duration="6 yrs" data-climate="Moderate" data-flight="~9 hrs">
+          <div class="img-slot ratio-3x2" data-spec="kazakhstan.jpg · 1200×800 px"><span class="tag tag--abs">Quick visa process</span><img src="assets/images/destinations/kazakhstan.jpg" width="1200" height="800" alt="Almaty city with mountains behind" loading="lazy"><button type="button" class="dest-compare" aria-pressed="false" aria-label="Compare Kazakhstan">Compare</button></div>
+          <div class="dest-card__body"><h3>Kazakhstan</h3><p>Quick visa processing, familiar culture</p>
+            <div class="dest-card__foot"><span class="dest-card__fee">$4,000&ndash;5,500 / yr</span><a href="mbbs-in-kazakhstan.html" class="dest-card__go">Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></div></div>
+        </article>
+
+        <article class="card dest-card dest-tile" data-tags="fast" data-name="Russia" data-fee="$3,000&ndash;6,000 / yr" data-duration="6 yrs" data-climate="Cold" data-flight="~12&ndash;15 hrs">
+          <div class="img-slot ratio-3x2" data-spec="russia.jpg · 1200×800 px"><span class="tag tag--abs">No entrance exam</span><img src="assets/images/destinations/russia.jpg" width="1200" height="800" alt="Moscow skyline" loading="lazy"><button type="button" class="dest-compare" aria-pressed="false" aria-label="Compare Russia">Compare</button></div>
+          <div class="dest-card__body"><h3>Russia</h3><p>No entrance exam, degree valid worldwide</p>
+            <div class="dest-card__foot"><span class="dest-card__fee">$3,000&ndash;6,000 / yr</span><a href="mbbs-in-russia.html" class="dest-card__go">Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></div></div>
+        </article>
+
+        <article class="card dest-card dest-tile" data-tags="" data-name="Georgia" data-fee="$5,000&ndash;8,000 / yr" data-duration="6 yrs" data-climate="Temperate" data-flight="~10 hrs">
+          <div class="img-slot ratio-3x2" data-spec="georgia.jpg · 1200×800 px"><span class="tag tag--abs">European standard</span><img src="assets/images/destinations/georgia.jpg" width="1200" height="800" alt="Tbilisi old town" loading="lazy"><button type="button" class="dest-compare" aria-pressed="false" aria-label="Compare Georgia">Compare</button></div>
+          <div class="dest-card__body"><h3>Georgia</h3><p>European standard, ultra-modern infrastructure</p>
+            <div class="dest-card__foot"><span class="dest-card__fee">$5,000&ndash;8,000 / yr</span><a href="mbbs-in-georgia.html" class="dest-card__go">Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></div></div>
+        </article>
+
+        <article class="card dest-card dest-tile" data-tags="warm" data-name="Timor-Leste" data-fee="$35,000&ndash;40,000 total" data-duration="5.5 yrs" data-climate="Tropical" data-flight="~20&ndash;24 hrs">
+          <div class="img-slot ratio-3x2" data-spec="timor-leste.jpg · 1200×800 px"><span class="tag tag--abs">Indian curriculum</span><img src="assets/images/destinations/timor-leste.jpg" width="1200" height="800" alt="Dili waterfront" loading="lazy"><button type="button" class="dest-compare" aria-pressed="false" aria-label="Compare Timor-Leste">Compare</button></div>
+          <div class="dest-card__body"><h3>Timor-Leste</h3><p>Indian-aligned syllabus, taught in English</p>
+            <div class="dest-card__foot"><span class="dest-card__fee">$35,000&ndash;40,000 total</span><a href="mbbs-in-timor-uct-timor.html" class="dest-card__go">Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></div></div>
+        </article>
+
+        <article class="card dest-card dest-tile" data-tags="" data-name="Central America" data-fee="Varies by university" data-duration="Varies" data-climate="Tropical" data-flight="Ask a counsellor">
+          <div class="img-slot ratio-3x2" data-spec="central-america.jpg · 1200×800 px"><span class="tag tag--abs">US-style curriculum</span><img src="assets/images/destinations/central-america.jpg" width="1200" height="800" alt="Coastline in Belize" loading="lazy"><button type="button" class="dest-compare" aria-pressed="false" aria-label="Compare Central America">Compare</button></div>
+          <div class="dest-card__body"><h3>Central America</h3><p>Belize, Nicaragua and more, far less competition</p>
+            <div class="dest-card__foot"><span class="dest-card__fee">Varies by university</span><a href="mbbs-in-central-america.html" class="dest-card__go">Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></div></div>
+        </article>
+
+      </div>
+      <p class="dest-empty" id="destEmpty" hidden>No destinations match this filter yet. Try another one.</p>
+    </div>
+  </section>
+
+  <!-- TRAVEL EXPLORER (lives only on this page): pick one country, its details appear in one animated card -->
+  <section class="section section--wash has-dots">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><h2>Getting there from Chennai</h2><p>Pick a country to see its flight time and the basics you&rsquo;ll want to know.</p></div>
+      <div class="route-picker" id="routePicker" role="group" aria-label="Choose a destination">
+        <button type="button" class="route-chip is-active" data-dest="vietnam" aria-pressed="true">Vietnam</button>
+        <button type="button" class="route-chip" data-dest="philippines" aria-pressed="false">Philippines</button>
+        <button type="button" class="route-chip" data-dest="uzbekistan" aria-pressed="false">Uzbekistan</button>
+        <button type="button" class="route-chip" data-dest="kazakhstan" aria-pressed="false">Kazakhstan</button>
+        <button type="button" class="route-chip" data-dest="kyrgyzstan" aria-pressed="false">Kyrgyzstan</button>
+        <button type="button" class="route-chip" data-dest="georgia" aria-pressed="false">Georgia</button>
+        <button type="button" class="route-chip" data-dest="russia" aria-pressed="false">Russia</button>
+        <button type="button" class="route-chip" data-dest="timor" aria-pressed="false">Timor-Leste</button>
+      </div>
+      <div class="route-card" id="routeCard" aria-live="polite">
+        <div class="route-card__trip">
+          <svg class="route-card__map" viewBox="0 0 400 130" aria-hidden="true">
+            <path class="route-card__base" d="M24,108 C110,6 290,6 376,92"/>
+            <path class="route-card__draw" id="routeDraw" pathLength="1" d="M24,108 C110,6 290,6 376,92"/>
+            <circle class="route-card__dot" cx="24" cy="108" r="6"/>
+            <circle class="route-card__dot route-card__dot--end" cx="376" cy="92" r="6"/>
+            <g class="route-card__plane" id="routePlane" opacity="0"><g transform="rotate(90)"><use href="#i-airplane" x="-13" y="-13" width="26" height="26"></use></g>
+              <animateMotion id="routeMotion" dur="1.4s" begin="indefinite" fill="freeze" rotate="auto" calcMode="spline" keyTimes="0;1" keySplines=".4 0 .2 1" path="M24,108 C110,6 290,6 376,92"/></g>
+          </svg>
+          <div class="route-card__ends"><span>Chennai</span><span id="routeName">Vietnam</span></div>
+          <p class="route-card__label">Flight time</p>
+          <p class="route-card__time" id="routeTime">~7 hrs <small>1-stop</small></p>
+        </div>
+        <div class="route-card__tiles" id="routeTiles">
+          <div class="route-tile"><span class="icon-badge icon-badge--sm icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></span><div><span class="route-tile__label">Capital</span><span class="route-tile__value" data-f="capital">Hanoi</span></div></div>
+          <div class="route-tile"><span class="icon-badge icon-badge--sm icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg></span><div><span class="route-tile__label">Language</span><span class="route-tile__value" data-f="lang">Vietnamese</span></div></div>
+          <div class="route-tile"><span class="icon-badge icon-badge--sm icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span><div><span class="route-tile__label">Climate</span><span class="route-tile__value" data-f="climate">Tropical</span></div></div>
+          <div class="route-tile"><span class="icon-badge icon-badge--sm icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"></use></svg></span><div><span class="route-tile__label">Exchange rate</span><span class="route-tile__value" data-f="rate">1 INR &asymp; 275.6 VND</span></div></div>
+        </div>
+      </div>
+      <p class="travel-note">Flight times are typical routes from Chennai; exchange rates are indicative, as of Sep 2026. Ask a counsellor for Central America routing.</p>
+    </div>
+  </section>
+
+  <!-- HELP ME CHOOSE: photo + points + CTA. IMAGE: destinations-help.webp 1400 x 1050 px (4:3) -->
+  <section class="section">
+    <div class="container">
+      <div class="dest-help reveal">
+        <div class="img-slot ratio-4x3 dest-help__photo" data-spec="destinations-help.webp · 1400×1050 px">
+          <img src="assets/images/destinations/destinations-help.webp" width="1400" height="1050" alt="A counsellor comparing universities with a student and her parents" loading="lazy">
+        </div>
+        <div class="dest-help__text">
+          <h2>Not sure which country fits?</h2>
+          <p>Tell us your NEET score and budget &mdash; we&rsquo;ll narrow it down with you, honestly and for free.</p>
+          <ul class="dest-help__list">
+            <li><span class="icon-badge icon-badge--sm icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span>No donation or capitation, anywhere</li>
+            <li><span class="icon-badge icon-badge--sm icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></span>Every university vetted before we list it</li>
+            <li><span class="icon-badge icon-badge--sm icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span>One counsellor from first call to campus</li>
+          </ul>
+          <div class="btn-row">
+            <a href="apply.html" class="btn btn--primary">Get free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+            <a href="find-your-university.html" class="btn btn--outline">Check eligibility</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Compare tray + panel -->
+<div class="compare-tray" id="compareTray">
+  <span class="compare-tray__count" id="trayCount">0 selected</span>
+  <button type="button" class="btn btn--ondark btn--sm" id="trayCompareBtn">Compare <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
+  <button type="button" class="compare-tray__clear" id="trayClear" aria-label="Clear selection"><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
+</div>
+<div class="compare-panel" id="comparePanel" role="dialog" aria-modal="true" aria-label="Your comparison">
+  <div class="compare-panel__sheet">
+    <button type="button" class="compare-panel__close" id="comparePanelClose" aria-label="Close comparison"><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
+    <h3>Your comparison</h3>
+    <div class="compare-panel__scroll"><table class="mini-table" id="compareTable"></table></div>
+  </div>
+</div>
+
+
+<!-- ============ FOOTER — identical on every page ============ -->
+<footer class="site-footer">
+  <svg class="site-footer__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+  <div class="container">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <a href="index.html" class="logo" aria-label="Mathura Overseas home"><svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true"><rect class="logo__badge" width="40" height="40" rx="12"/><g class="logo__cap"><path d="M20 9 7 15.5 20 22l13-6.5L20 9Z"/><path d="M12 19.2V24c0 2.2 3.6 4 8 4s8-1.8 8-4v-4.8L20 24.4l-8-5.2Z" opacity=".92"/></g><g class="logo__tassel"><path class="logo__tassel-cord" d="M33 16v7"/><circle class="logo__tassel-end" cx="33" cy="25" r="1.9"/></g></svg><span class="logo__text">MATHURA<span>OVERSEAS</span></span></a>
+        <p class="site-footer__tagline">Your gateway to a global medical career.</p>
+        <p class="site-footer__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Based in Tiruchirappalli, Tamil Nadu</p>
+      </div>
+      <div class="site-footer__col site-footer__col--countries">
+        <h4>Countries</h4>
+        <div class="site-footer__links site-footer__links--2">
+          <a href="mbbs-in-philippines.html">Philippines</a><a href="mbbs-in-timor-uct-timor.html">Timor-Leste</a><a href="mbbs-in-uzbekistan.html">Uzbekistan</a><a href="mbbs-in-vietnam.html">Vietnam</a><a href="mbbs-in-russia.html">Russia</a><a href="mbbs-in-georgia.html">Georgia</a><a href="mbbs-in-kazakhstan.html">Kazakhstan</a><a href="mbbs-in-kyrgyzstan.html">Kyrgyzstan</a><a href="mbbs-in-central-america.html">Central America</a>
+        </div>
+      </div>
+      <div class="site-footer__col site-footer__col--explore">
+        <h4>Explore</h4>
+        <div class="site-footer__links">
+          <a href="find-your-university.html">Find university</a><a href="neet-2026-updates.html">Updates</a><a href="student-guide.html">Student guide</a><a href="about-us.html">About us</a>
+        </div>
+      </div>
+      <div class="site-footer__col site-footer__contact">
+        <h4>Talk to us</h4>
+        <a class="contact-row" href="tel:+919360859919"><svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg><span class="contact-row__text"><b>Call us</b><span>+91 93608 59919</span></span><svg class="icon contact-row__chev" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+        <a class="contact-row contact-row--wa" href="https://wa.me/919360859919" target="_blank" rel="noopener"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg><span class="contact-row__text"><b>WhatsApp</b><span>Chat with a counsellor</span></span><svg class="icon contact-row__chev" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+        <a class="contact-row" href="mailto:mathuraoverseas@gmail.com"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg><span class="contact-row__text"><b>Email</b><span>mathuraoverseas@gmail.com</span></span><svg class="icon contact-row__chev" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+        <div class="site-footer__social">
+          <a href="#" aria-label="Facebook"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-facebook"></use></svg></a>
+          <a href="#" aria-label="Instagram"><svg class="icon" aria-hidden="true"><use href="#i-instagram"></use></svg></a>
+          <a href="#" aria-label="YouTube"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-youtube"></use></svg></a>
+          <a href="https://wa.me/919360859919" aria-label="WhatsApp"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="site-footer__bottom"><span>&copy; 2026 Mathura Overseas</span><a href="privacy-policy.html">Privacy policy</a></div>
+  </div>
+</footer>
+
+<!-- ============ BOTTOM TAB BAR — identical on every page; 5 items; hides on scroll down ============ -->
+<nav class="bottom-nav" aria-label="Mobile primary">
+  <div class="bottom-nav__inner">
+      <a href="index.html" class="bottom-nav__item"><svg class="icon" aria-hidden="true"><use href="#i-home"></use></svg>Home</a>
+      <a href="find-your-university.html" class="bottom-nav__item"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>Find</a>
+      <a href="neet-2026-updates.html" class="bottom-nav__item"><svg class="icon" aria-hidden="true"><use href="#i-news"></use></svg>Updates</a>
+      <a href="student-guide.html" class="bottom-nav__item"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg>Guide</a>
+      <a href="https://wa.me/919360859919?text=Hi%2C%20I%20want%20to%20know%20about%20MBBS%20Abroad%20via%20Mathura%20Overseas" class="bottom-nav__item bottom-nav__item--whatsapp" target="_blank" rel="noopener"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>WhatsApp</a>
+  </div>
+</nav>
+
+<!-- Desktop-only floating WhatsApp -->
+<a href="https://wa.me/919360859919?text=Hi%2C%20I%20want%20to%20know%20about%20MBBS%20Abroad%20via%20Mathura%20Overseas" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg></a>
+
+<script src="js/main.js"></script>
+<script src="js/navigation.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/pages/destinations.js"></script>
+</body>
+</html>

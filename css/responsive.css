@@ -1,0 +1,51 @@
+/* ==========================================================================
+   responsive.css — everything above is mobile-first; this upgrades shared
+   pieces for tablet (768+) and desktop (1024+). Page-specific upgrades live
+   in that page's own css/pages/*.css.
+   ========================================================================== */
+@media (min-width: 768px) {
+  :root { --gutter: 2rem; --section-y: 3.5rem; }
+  .snap-row { display: grid; grid-template-columns: repeat(2, 1fr); overflow: visible; margin-inline: 0; padding-inline: 0; }
+  .snap-row > * { flex: initial; }
+}
+
+@media (min-width: 1024px) {
+  body { padding-bottom: 0; }
+  .bottom-nav, .nav-toggle, .nav-scrim, .site-nav__close { display: none; }
+  /* Pin announcement bar + header together on desktop */
+  .announce { position: sticky; top: 0; z-index: calc(var(--z-header) + 1); }
+  .app-header, .app-header.is-hidden { top: var(--announce-h); }
+  .app-header__inner { height: var(--header-h-lg); }
+  /* ---- Footer: one compact row of plain link columns ---- */
+  .site-footer { padding-block: var(--sp-6) var(--sp-4); }
+  .site-footer__grid { grid-template-columns: 1.15fr 1.5fr .8fr 1.1fr; grid-template-areas: "brand countries explore contact"; gap: var(--sp-6); }
+  .site-footer__tagline { margin-top: var(--sp-2); font-size: var(--fs-xs); }
+  .site-footer h4 { letter-spacing: .08em; }
+  .site-footer__links { grid-template-columns: 1fr; }
+  .site-footer__links--2 { grid-template-columns: repeat(2, 1fr); column-gap: var(--sp-4); }
+  .site-footer__links a { white-space: normal; }
+  .site-footer__links a:hover, .contact-row:hover { color: #fff; }
+  .contact-row { display: block; padding: .22rem 0; border: 0 !important; color: inherit; }
+  .contact-row > .icon, .contact-row__text b, .contact-row__chev, .contact-row--wa { display: none; }
+  .contact-row__text { display: block; }
+  .contact-row__text span { font-size: var(--fs-xs); color: inherit; }
+  .site-footer__social { margin-top: var(--sp-3); }
+  .site-footer__social a { width: 36px; height: 36px; }
+  .site-footer__social .icon { width: 16px; height: 16px; }
+  .site-footer__bottom { border-top: 0; padding-top: var(--sp-4); }
+  .site-footer__bottom a { color: inherit; }
+  .site-footer__globe { width: 520px; height: 520px; right: -140px; bottom: -240px; }
+  .site-nav { position: static; z-index: auto; width: auto; flex-direction: row; align-items: center; gap: var(--sp-6); padding: 0; background: none; border-radius: 0; box-shadow: none; transform: none; visibility: visible; overflow: visible; }
+  .site-nav a:not(.btn) { padding: .4rem 0; border: 0; font-size: var(--fs-sm); font-weight: 600; }
+  .site-nav__ico { display: none; }
+  .site-nav__label { flex: initial; }
+  .site-nav a:not(.btn)::after { display: none; }
+  .site-nav a:not(.btn):hover { color: var(--color-primary); }
+  .site-nav a[aria-current="page"] { box-shadow: 0 2px 0 var(--color-active); padding-left: 0; color: var(--color-primary); }
+  .site-nav .btn { margin-top: 0; min-height: 42px; }
+  .snap-row--4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .whatsapp-float { display: flex; }
+}

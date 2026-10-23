@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find Your University | Eligibility Checker | Mathura Overseas</title>
+<meta name="description" content="Check your MBBS-abroad eligibility instantly using your NEET score, year, community and PCB percentage. Compare universities and estimate costs, all in one place.">
+<link rel="icon" href="assets/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/colors.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages/find-university.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="index.html" class="site-header__logo">
+      <svg class="site-header__mark" viewBox="0 0 32 32" width="32" height="32" aria-hidden="true">
+        <defs>
+          <linearGradient id="capGradient2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="var(--color-primary-alt)"/>
+            <stop offset="100%" stop-color="var(--color-primary)"/>
+          </linearGradient>
+        </defs>
+        <circle cx="16" cy="16" r="15.5" fill="var(--color-secondary-light)"/>
+        <path d="M16 8 5.5 13l10.5 5 10.5-5L16 8Z" fill="url(#capGradient2)"/>
+        <path d="M10 15.6v4.2c0 1.7 2.7 3 6 3s6-1.3 6-3v-4.2" fill="none" stroke="var(--color-primary)" stroke-width="1.5" stroke-linecap="round"/>
+        <g class="mark-tassel">
+          <path class="mark-swoosh" d="M25.5 14v6.2" stroke="var(--color-accent)" stroke-width="1.7" stroke-linecap="round"/>
+          <circle cx="25.5" cy="21" r="1.4" fill="var(--color-accent)"/>
+        </g>
+      </svg>
+      <span class="site-header__logo-title">
+        <span class="site-header__logo-title--primary">MATHURA</span><span class="site-header__logo-title--accent">OVERSEAS</span>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="destinations.html">Countries</a>
+      <a href="find-your-university.html" aria-current="page">Find university</a>
+      <a href="neet-2026-updates.html">Updates</a>
+      <a href="student-guide.html">Guide</a>
+      <a href="about-us.html">About</a>
+      <a href="apply.html" class="btn btn--primary header-cta">Get Free Counselling</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Open menu">&#9776;</button>
+  </div>
+</header>
+
+<main>
+
+  <section class="fyu-hero">
+    <div class="container">
+      <h1>Find your university</h1>
+      <p class="fyu-hero__lead">Check your eligibility, estimate your total cost, and compare destinations side by side &mdash; no forms, no waiting on a counsellor to get started.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="fyu-tabs" role="tablist">
+        <span class="fyu-tab fyu-tab--active" data-fyu-tab="eligibility">Eligibility Checker</span>
+        <span class="fyu-tab" data-fyu-tab="cost">Cost Calculator <span class="fyu-tab__soon">Coming soon</span></span>
+        <span class="fyu-tab" data-fyu-tab="compare">Compare Universities <span class="fyu-tab__soon">Coming soon</span></span>
+      </div>
+
+      <!-- Eligibility Checker -->
+      <div id="fyu-panel-eligibility" class="fyu-panel">
+        <div class="elig-layout">
+
+          <div class="elig-form-card">
+            <h2>Check your eligibility</h2>
+            <p class="elig-form-card__lead">Enter your NEET details below for an instant, criterion-by-criterion result.</p>
+
+            <form id="eligibilityForm">
+              <div class="elig-field-grid">
+
+                <div class="elig-field">
+                  <label for="inNeetScore">NEET score</label>
+                  <input type="number" id="inNeetScore" min="0" max="720" placeholder="e.g. 250" required>
+                </div>
+
+                <div class="elig-field">
+                  <label for="inPassedYear">NEET passed year</label>
+                  <select id="inPassedYear" required>
+                    <option value="2026">2026</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                  </select>
+                </div>
+
+                <div class="elig-field">
+                  <label for="inCommunity">Community</label>
+                  <select id="inCommunity" required>
+                    <option value="general">General</option>
+                    <option value="other">OBC</option>
+                    <option value="other">SC / ST</option>
+                  </select>
+                </div>
+
+                <div class="elig-field">
+                  <label for="inPcbPercent">Class 12 PCB percentage</label>
+                  <input type="number" id="inPcbPercent" min="0" max="100" step="0.1" placeholder="e.g. 62" required>
+                </div>
+
+                <div class="elig-field elig-field--full">
+                  <label for="inAge">Age <span class="elig-field__hint">(by 31 Dec of your intended admission year)</span></label>
+                  <input type="number" id="inAge" min="14" max="30" placeholder="e.g. 18" required>
+                </div>
+
+              </div>
+
+              <button type="submit" class="btn btn--primary elig-submit">Check My Eligibility</button>
+            </form>
+          </div>
+
+          <div class="elig-result-card">
+            <div id="eligibilityPlaceholder" class="elig-result-card__placeholder">
+              <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.6" style="margin-inline:auto;"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              <p>Fill in the form and your result will appear here.</p>
+            </div>
+            <div id="eligibilityResult" hidden>
+              <div id="eligibilityVerdict" class="elig-verdict"></div>
+              <ul id="eligibilityChecklist" class="elig-check"></ul>
+              <div class="elig-result-cta">
+                <p style="font-size: var(--fs-small); color: var(--color-text-muted); margin-bottom: var(--sp-2);">Want a university-by-university match instead of a baseline check?</p>
+                <a href="apply.html" class="btn btn--primary">Talk to a counsellor</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Cost Calculator (placeholder) -->
+      <div id="fyu-panel-cost" class="fyu-panel" hidden>
+        <div class="fyu-soon">
+          <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.6" style="margin-inline:auto;"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <h3>Cost Calculator &mdash; coming soon</h3>
+          <p>An itemised breakdown of tuition, hostel, food and travel for every destination is on its way.</p>
+        </div>
+      </div>
+
+      <!-- Compare Universities (placeholder) -->
+      <div id="fyu-panel-compare" class="fyu-panel" hidden>
+        <div class="fyu-soon">
+          <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.6" style="margin-inline:auto;"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
+          <h3>Compare Universities &mdash; coming soon</h3>
+          <p>Set fees, duration, hostel and clinical exposure side by side across individual universities.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section style="padding-block: var(--sp-6); background: var(--color-primary);">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--sp-3);">
+      <h3 style="color: var(--color-text-inverse); font-size: 1.4rem;">Not sure where to start?</h3>
+      <a href="apply.html" class="btn btn--primary">Get free counselling</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer-simple">
+  <div class="container">
+    <div class="footer-simple__top">
+      <div class="footer-simple__brand">
+        <span class="site-header__logo-title site-header__logo-title--inverse">MATHURA OVERSEAS</span>
+        <p class="footer-simple__tagline">Your gateway to a global medical career.</p>
+        <p class="footer-simple__contact">
+          <a href="tel:+919360859919">+91 93608 59919</a><br>
+          <a href="mailto:mathuraoverseas@gmail.com">mathuraoverseas@gmail.com</a>
+        </p>
+      </div>
+      <div class="footer-simple__links">
+        <div>
+          <a href="mbbs-in-philippines.html">Philippines</a>
+          <a href="mbbs-in-uzbekistan.html">Uzbekistan</a>
+          <a href="mbbs-in-russia.html">Russia</a>
+          <a href="mbbs-in-georgia.html">Georgia</a>
+        </div>
+        <div>
+          <a href="mbbs-in-kazakhstan.html">Kazakhstan</a>
+          <a href="mbbs-in-kyrgyzstan.html">Kyrgyzstan</a>
+          <a href="mbbs-in-vietnam.html">Vietnam</a>
+          <a href="mbbs-in-central-america.html">Central America</a>
+        </div>
+      </div>
+      <div class="footer-simple__social">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8.1h2.72l.41-3.16h-3.13V7.73c0-.91.25-1.53 1.56-1.53h1.67V3.38C15.98 3.26 15 3.17 13.87 3.17c-2.36 0-3.97 1.44-3.97 4.08v2.65H7.17v3.16h2.73V21h3.6Z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r=".6" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M21.6 7.6a2.75 2.75 0 0 0-1.94-1.95C18 5.2 12 5.2 12 5.2s-6 0-7.66.45A2.75 2.75 0 0 0 2.4 7.6 28.9 28.9 0 0 0 2 12a28.9 28.9 0 0 0 .4 4.4 2.75 2.75 0 0 0 1.94 1.95C6 18.8 12 18.8 12 18.8s6 0 7.66-.45a2.75 2.75 0 0 0 1.94-1.95c.27-1.45.4-2.93.4-4.4a28.9 28.9 0 0 0-.4-4.4ZM10 15.02V8.98L15.27 12 10 15.02Z"/></svg></a>
+        <a href="https://wa.me/919360859919" aria-label="WhatsApp"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.78-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.48 0 1.46 1.06 2.87 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35Z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-simple__bottom">
+      <span>&copy; 2026 Mathura Overseas. All rights reserved.</span>
+      <span><a href="privacy-policy.html">Privacy policy</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- Mobile bottom icon navigation -->
+<nav class="bottom-nav" aria-label="Mobile primary">
+  <div class="bottom-nav__inner">
+    <a href="index.html" class="bottom-nav__item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>
+      Home
+    </a>
+    <a href="destinations.html" class="bottom-nav__item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.5 7-11.5a7 7 0 1 0-14 0C5 14.5 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+      Countries
+    </a>
+    <a href="find-your-university.html" class="bottom-nav__item" aria-current="page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      Find
+    </a>
+    <a href="neet-2026-updates.html" class="bottom-nav__item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h11l3 3v13H5z"/><path d="M9 9h6M9 13h6M9 17h4"/></svg>
+      Updates
+    </a>
+    <a href="student-guide.html" class="bottom-nav__item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
+      Guide
+    </a>
+    <a href="https://wa.me/919360859919?text=Hi%2C%20I%20want%20to%20know%20about%20MBBS%20Abroad%20via%20Mathura%20Overseas"
+       class="bottom-nav__item bottom-nav__item--whatsapp" target="_blank" rel="noopener">
+      <span class="bottom-nav__icon-wrap">
+        <span class="bottom-nav__whatsapp-badge">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="#FFFFFF" aria-hidden="true">
+            <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.78-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.48 0 1.46 1.06 2.87 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35Z"/>
+          </svg>
+        </span>
+        <span class="bottom-nav__pulse bottom-nav__pulse--a"></span>
+      </span>
+      WhatsApp
+    </a>
+  </div>
+</nav>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/find-university.js"></script>
+</body>
+</html>

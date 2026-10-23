@@ -1,0 +1,78 @@
+/* ==========================================================================
+   variables.css — the ONLY file with literal colors / sizes. Re-theme here.
+   Rule: navy + blue gradients are the brand. Teal = active nav item only.
+   The extra hues (--icon-*) are for icon badges ONLY — nowhere else.
+   ========================================================================== */
+:root {
+  color-scheme: light only;
+
+  /* Brand */
+  --color-primary:        #1E3A8A;
+  --color-primary-deep:   #172E6E;
+  --color-primary-ink:    #0B1F4D;
+  --color-blue:           #2B4FB5;
+  --color-blue-light:     #3A63D1;
+  --color-blue-pale:      #B8CCFF;
+  --color-wash:           #EEF2FC;
+  --color-wash-deep:      #E1E9FA;
+  --color-night:          #0C1D4E;
+  --color-active:         #14B8A6;   /* active nav item only */
+
+  /* Neutrals */
+  --color-bg:             #F8F7F3;
+  --color-surface:        #FFFFFF;
+  --color-text:           #17212B;
+  --color-text-muted:     #5B6670;
+  --color-text-inverse:   #FFFFFF;
+  --color-text-inverse-muted: #C9D6F5;
+  --color-border:         #E3E1DA;
+  --color-whatsapp:       #25D366;
+
+  /* Icon badges only: [light, base] pairs */
+  --icon-teal-a: #2DD4BF;   --icon-teal-b: #0EA5A7;
+  --icon-blue-a: #60A5FA;   --icon-blue-b: #3882F6;
+  --icon-orange-a: #FBBF24; --icon-orange-b: #F59E0B;
+  --icon-purple-a: #A78BFA; --icon-purple-b: #8B5CF6;
+  --icon-pink-a: #FB7185;   --icon-pink-b: #F43F5E;
+  --icon-navy-a: #3B5CC4;   --icon-navy-b: #1E3A8A;
+
+  /* Gradients */
+  --grad-hero: linear-gradient(135deg, var(--color-primary) 0%, var(--color-blue) 55%, var(--color-blue-light) 100%);
+  --grad-band: linear-gradient(110deg, var(--color-primary) 0%, var(--color-blue) 60%, var(--color-blue-light) 120%);
+  --grad-wash: linear-gradient(180deg, var(--color-surface) 0%, var(--color-wash) 100%);
+  --grad-night: linear-gradient(155deg, var(--color-night) 0%, var(--color-primary-deep) 55%, var(--color-primary) 130%);
+
+  /* Type */
+  --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --fs-xs: .75rem;  --fs-sm: .875rem;  --fs-base: 1rem;  --fs-lead: 1.0625rem;
+  --fs-h3: 1.125rem; --fs-h2: clamp(1.4rem, 1.15rem + 1.2vw, 2.1rem); --fs-h1: clamp(1.9rem, 1.4rem + 2.4vw, 3.2rem);
+  --lh-body: 1.6;
+
+  /* Spacing (4px base) */
+  --sp-1: .25rem; --sp-2: .5rem; --sp-3: .75rem; --sp-4: 1rem; --sp-5: 1.5rem;
+  --sp-6: 2rem; --sp-7: 3rem; --sp-8: 4.5rem;
+
+  /* Shape + depth */
+  --radius-sm: 10px; --radius-md: 14px; --radius-lg: 20px; --radius-xl: 28px;
+  --shadow-sm: 0 1px 2px rgba(11,31,77,.08), 0 4px 10px rgba(30,58,138,.07);
+  --shadow-md: 0 8px 22px rgba(30,58,138,.10);
+  --shadow-lg: 0 16px 34px rgba(30,58,138,.16);
+
+  /* Layout */
+  --content-width: 1180px;
+  --gutter: 1.25rem;
+  --header-h: 60px;
+  --header-h-lg: 72px;
+  --section-y: 2.5rem;
+  --announce-h: 36px;
+  --bottom-nav-h: 56px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+  /* Motion */
+  --ease: cubic-bezier(.4, 0, .2, 1);
+  --speed: 180ms;
+
+  /* Layers */
+  --z-header: 100; --z-bottom-nav: 150; --z-overlay: 200; --z-menu: 210; --z-widget: 180;
+}

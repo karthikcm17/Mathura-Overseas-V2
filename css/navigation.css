@@ -1,0 +1,69 @@
+/* ==========================================================================
+   navigation.css — announcement bar, app header, slide-in menu, bottom tab bar.
+   Mobile = app: compact top bar + 5-tab bottom bar; BOTH slide away on scroll
+   down and return on scroll up. Desktop = classic top nav, announcement bar +
+   header stay pinned (see responsive.css). Active nav item = the ONLY teal.
+   ========================================================================== */
+
+/* ---- Announcement bar (same on every page; no close button) ---- */
+.announce { background: var(--color-primary-deep); color: var(--color-text-inverse); font-size: var(--fs-xs); }
+.announce__inner { display: flex; align-items: center; gap: var(--sp-2); min-height: var(--announce-h); }
+.announce__icon { color: var(--color-blue-pale); display: flex; }
+.announce__icon .icon { width: 14px; height: 14px; }
+.announce__track { position: relative; flex: 1; height: 1.2rem; overflow: hidden; }
+.announce__item { position: absolute; inset: 0; display: flex; align-items: center; opacity: 0; transform: translateY(8px); transition: opacity .5s var(--ease), transform .5s var(--ease); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.announce__item.is-active { opacity: 1; transform: translateY(0); }
+
+/* ---- App header ---- */
+.app-header { position: sticky; top: 0; z-index: var(--z-header); background: var(--color-surface); border-bottom: 1px solid var(--color-border); padding-top: var(--safe-top); transition: top .28s var(--ease); }
+/* Hide by moving `top`, NOT transform: a transform would make the header the containing block for the fixed menu panel and stretch the page sideways. */
+.app-header.is-hidden { top: calc(-1 * (var(--header-h) + var(--safe-top) + 4px)); }
+.app-header__inner { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4); height: var(--header-h); }
+.logo { display: flex; align-items: center; gap: .5rem; }
+.logo__mark { width: 40px; height: 40px; flex-shrink: 0; overflow: visible; }
+.logo__badge { fill: url(#mo-grad); }
+.logo__cap { fill: #fff; transform-box: fill-box; transform-origin: 50% 80%; animation: cap-drop .8s var(--ease) both, cap-toss 8s 1.6s ease-in-out infinite; }
+.logo__tassel-cord { fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; }
+.logo__tassel { transform-box: fill-box; transform-origin: 50% 0; animation: tassel-swing 3.2s ease-in-out infinite; }
+.logo__tassel-end { fill: #fff; }
+.logo:hover .logo__cap { animation-duration: .8s, 1.2s; }
+.logo__text { font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; white-space: nowrap; color: var(--color-primary); }
+.logo__text span { color: var(--color-blue-light); margin-left: .28em; font-weight: 700; }
+.nav-toggle { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; color: var(--color-primary); }
+.nav-toggle:active { background: var(--color-wash); }
+.nav-toggle .icon { width: 24px; height: 24px; }
+
+/* ---- Slide-in menu (mobile / tablet) ---- */
+.nav-scrim { position: fixed; inset: 0; z-index: var(--z-overlay); background: rgba(11,31,77,.5); opacity: 0; visibility: hidden; transition: opacity .25s var(--ease), visibility .25s; }
+.nav-scrim.is-open { opacity: 1; visibility: visible; }
+.site-nav { position: fixed; top: 0; right: 0; bottom: 0; z-index: var(--z-menu); width: min(86vw, 340px); display: flex; flex-direction: column; gap: var(--sp-1); padding: calc(var(--sp-8) + var(--safe-top)) var(--sp-5) calc(var(--sp-5) + var(--safe-bottom)); background: var(--color-surface); border-radius: var(--radius-xl) 0 0 var(--radius-xl); box-shadow: -12px 0 40px rgba(11,31,77,.22); transform: translateX(105%); visibility: hidden; transition: transform .3s var(--ease), visibility .3s; overflow-y: auto; }
+.site-nav.is-open { transform: translateX(0); visibility: visible; }
+.site-nav__close { position: absolute; top: calc(var(--sp-3) + var(--safe-top)); right: var(--sp-3); width: 44px; height: 44px; display: grid; place-items: center; color: var(--color-primary); }
+.site-nav a:not(.btn) { display: flex; align-items: center; justify-content: space-between; padding: var(--sp-4) 0; border-bottom: 1px solid var(--color-border); font-size: 1.05rem; font-weight: 700; color: var(--color-text); }
+.site-nav a:not(.btn)::after { content: ""; width: 8px; height: 8px; border-right: 2px solid var(--color-border); border-bottom: 2px solid var(--color-border); transform: rotate(-45deg); }
+.site-nav a[aria-current="page"] { color: var(--color-primary); box-shadow: inset 3px 0 0 var(--color-active); padding-left: var(--sp-3); }
+.site-nav .btn { margin-top: var(--sp-5); }
+body.nav-open { overflow: hidden; }
+body.nav-open .app-header { z-index: var(--z-menu); }
+
+/* ---- Bottom tab bar (mobile app navigation, 5 items; slides away on scroll down) ---- */
+.bottom-nav { position: fixed; left: 0; right: 0; bottom: 0; z-index: var(--z-bottom-nav); background: var(--color-surface); border-top: 1px solid var(--color-border); box-shadow: 0 -6px 20px rgba(11,31,77,.08); padding-bottom: var(--safe-bottom); transition: transform .28s var(--ease); }
+.bottom-nav.is-hidden { transform: translateY(calc(100% + 8px)); }
+.bottom-nav__inner { display: flex; height: var(--bottom-nav-h); }
+.bottom-nav__item { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .1rem; font-size: .6rem; font-weight: 700; color: var(--color-text-muted); transition: color var(--speed) var(--ease); }
+.bottom-nav__item .icon { width: 20px; height: 20px; transition: transform var(--speed) var(--ease); }
+.bottom-nav__item:active .icon { transform: scale(.88); }
+.bottom-nav__item[aria-current="page"] { color: var(--color-primary); }
+.bottom-nav__item[aria-current="page"]::before { content: ""; position: absolute; top: 0; left: 50%; width: 28px; height: 3px; margin-left: -14px; border-radius: 0 0 3px 3px; background: var(--color-active); }
+.bottom-nav__item--whatsapp { color: var(--color-whatsapp); }
+
+/* WhatsApp tab: soft pulsing ring + a little wiggle every few seconds */
+.bottom-nav__item--whatsapp::after { content: ""; position: absolute; top: 6px; left: 50%; width: 28px; height: 28px; margin-left: -14px; border-radius: 50%; background: rgba(37,211,102,.45); animation: wa-ring 2.6s ease-out infinite; }
+.bottom-nav__item--whatsapp .icon { position: relative; z-index: 1; transform-origin: 50% 85%; animation: wa-wiggle 6s ease-in-out infinite; }
+
+/* Menu rows: icon tile + label + chevron (mobile menu only) */
+.site-nav a:not(.btn) { gap: var(--sp-3); }
+.site-nav__ico { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; flex-shrink: 0; background: var(--color-wash); color: var(--color-primary); }
+.site-nav__ico .icon { width: 19px; height: 19px; }
+.site-nav__label { flex: 1; }
+.site-nav a[aria-current="page"] .site-nav__ico { background: var(--color-primary); color: #fff; }

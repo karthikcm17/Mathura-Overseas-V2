@@ -1,0 +1,7 @@
+/* forms.css — shared form controls (used by apply / find-university / chat) */
+.field { display: flex; flex-direction: column; gap: .4rem; }
+.field label { font-size: var(--fs-sm); font-weight: 600; }
+.field__hint { font-size: var(--fs-xs); font-weight: 400; color: var(--color-text-muted); }
+.field input, .field select, .field textarea { width: 100%; min-height: 48px; padding: .7rem .9rem; border: 1.5px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-surface); font-size: 16px; /* 16px stops iOS zoom-on-focus */ transition: border-color var(--speed) var(--ease), box-shadow var(--speed) var(--ease); }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(30,58,138,.14); }
+.field-grid { display: grid; gap: var(--sp-4); grid-template-columns: 1fr; }

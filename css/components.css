@@ -1,0 +1,75 @@
+/* ==========================================================================
+   components.css — reusable pieces used on 2+ pages (mobile-first).
+   Buttons = "Style 1 — Solid" (flat navy, white text, tiny shadow, 10px).
+   Extra hues exist ONLY on .icon-badge. Teal exists ONLY on the active nav item.
+   ========================================================================== */
+
+/* ---- Icons (inline sprite block at the top of every page body) ---- */
+.icon { width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.icon--fill { fill: currentColor; stroke: none; }
+.globe-art { fill: none; stroke: currentColor; stroke-width: 1; }
+.grad-a { stop-color: var(--color-blue-light); }
+.grad-b { stop-color: var(--color-primary); }
+
+/* ---- Buttons ---- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; min-height: 48px; padding: 0 1.5rem; border: 1.5px solid transparent; border-radius: var(--radius-sm); font-size: var(--fs-sm); font-weight: 700; line-height: 1; white-space: nowrap; transition: background var(--speed) var(--ease), color var(--speed) var(--ease), border-color var(--speed) var(--ease), box-shadow var(--speed) var(--ease), transform var(--speed) var(--ease); }
+.btn .icon { width: 16px; height: 16px; stroke-width: 2.6; transition: transform var(--speed) var(--ease); }
+.btn:hover .icon { transform: translateX(3px); }
+.btn:active { transform: scale(.98); }
+.btn--primary { background: var(--color-primary); color: var(--color-text-inverse); box-shadow: 0 1px 2px rgba(11,31,77,.25), 0 4px 10px rgba(30,58,138,.18); }
+.btn--primary:hover { background: var(--color-primary-deep); box-shadow: 0 2px 4px rgba(11,31,77,.25), 0 8px 18px rgba(30,58,138,.28); }
+.btn--ondark { background: var(--color-surface); color: var(--color-primary); box-shadow: 0 4px 12px rgba(7,18,52,.22); }
+.btn--ondark:hover { background: var(--color-wash); }
+.btn--outline { background: transparent; color: var(--color-primary); border-color: var(--color-primary); }
+.btn--outline:hover { background: var(--color-wash); }
+.btn--outline-light { background: rgba(255,255,255,.08); color: var(--color-text-inverse); border-color: rgba(255,255,255,.65); }
+.btn--outline-light:hover { background: rgba(255,255,255,.18); border-color: #fff; }
+.btn--sm { min-height: 40px; padding: 0 1.1rem; font-size: var(--fs-xs); }
+.btn--block { width: 100%; }
+.btn--link { min-height: 0; padding: .3rem 0; border: 0; border-radius: 0; background: none; color: var(--color-primary); box-shadow: none; justify-content: flex-start; }
+.btn--link:hover { background: none; }
+.btn--link:active { transform: none; }
+.btn-row { display: flex; flex-wrap: wrap; gap: var(--sp-3); }
+
+/* ---- Icon badge: the ONLY place the extra hues appear ---- */
+.icon-badge { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; color: #fff; background: linear-gradient(135deg, var(--a), var(--b)); }
+.icon-badge .icon { width: 21px; height: 21px; }
+.icon-badge--sm { width: 36px; height: 36px; }
+.icon-badge--sm .icon { width: 17px; height: 17px; }
+.icon-badge--teal   { --a: var(--icon-teal-a);   --b: var(--icon-teal-b); }
+.icon-badge--blue   { --a: var(--icon-blue-a);   --b: var(--icon-blue-b); }
+.icon-badge--orange { --a: var(--icon-orange-a); --b: var(--icon-orange-b); }
+.icon-badge--purple { --a: var(--icon-purple-a); --b: var(--icon-purple-b); }
+.icon-badge--pink   { --a: var(--icon-pink-a);   --b: var(--icon-pink-b); }
+.icon-badge--navy   { --a: var(--icon-navy-a);   --b: var(--icon-navy-b); }
+
+/* ---- Cards ---- */
+.card { position: relative; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
+.card--link { display: flex; flex-direction: column; transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease); }
+.card--link:active { transform: scale(.98); }
+
+/* ---- Tag (sits on images) ---- */
+.tag { display: inline-block; padding: .3rem .7rem; border-radius: 999px; background: rgba(255,255,255,.96); color: var(--color-primary); font-size: .65rem; font-weight: 800; letter-spacing: .01em; box-shadow: var(--shadow-sm); }
+.tag--abs { position: absolute; top: var(--sp-3); left: var(--sp-3); z-index: 2; }
+
+/* ---- Stat ---- */
+.stat__num { font-size: 1.7rem; font-weight: 800; color: var(--color-primary); line-height: 1; font-variant-numeric: tabular-nums; }
+.stat__label { font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: .3rem; }
+
+/* ---- Destination card (simple + neat; detailed travel info lives on the Countries page) ---- */
+.dest-card { overflow: hidden; }
+.dest-card .img-slot { border-radius: 0; --ratio: 3 / 2; }
+.dest-card__body { display: flex; flex-direction: column; gap: .2rem; flex: 1; padding: var(--sp-4); }
+.dest-card__body h3 { font-size: 1.05rem; }
+.dest-card__body p { font-size: var(--fs-xs); color: var(--color-text-muted); line-height: 1.45; }
+.dest-card__foot { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); margin-top: auto; padding-top: var(--sp-3); border-top: 1px solid var(--color-border); font-size: var(--fs-xs); font-weight: 700; }
+.dest-card__body p + .dest-card__foot { margin-top: var(--sp-3); }
+.dest-card__fee { color: var(--color-text-muted); font-weight: 600; }
+.dest-card__go { display: inline-flex; align-items: center; gap: .3rem; color: var(--color-primary); }
+.dest-card__go .icon { width: 14px; height: 14px; stroke-width: 2.6; transition: transform var(--speed) var(--ease); }
+.dest-card:hover .dest-card__go .icon { transform: translateX(4px); }
+
+/* ---- Floating WhatsApp (desktop only; mobile uses the bottom tab bar) ---- */
+.whatsapp-float { display: none; position: fixed; right: var(--sp-4); bottom: var(--sp-4); z-index: var(--z-widget); width: 54px; height: 54px; border-radius: 50%; background: var(--color-whatsapp); color: #fff; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(0,0,0,.22); }
+.whatsapp-float { animation: wa-pulse 2.6s ease-out infinite; }
+.whatsapp-float .icon { width: 28px; height: 28px; transform-origin: 50% 85%; animation: wa-wiggle 6s ease-in-out infinite; }

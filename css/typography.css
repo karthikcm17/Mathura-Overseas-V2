@@ -1,0 +1,14 @@
+/* typography.css — Plus Jakarta Sans site-wide (loaded from Google Fonts in each page <head>) */
+body { font-family: var(--font); font-size: var(--fs-base); line-height: var(--lh-body); color: var(--color-text); background: var(--color-bg); }
+h1, h2, h3, h4 { font-weight: 800; letter-spacing: -.015em; line-height: 1.18; color: var(--color-primary); }
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); font-weight: 700; letter-spacing: -.01em; }
+p { max-width: 65ch; }
+.lead { font-size: var(--fs-lead); color: var(--color-text-muted); }
+.text-muted { color: var(--color-text-muted); }
+.text-center { text-align: center; }
+.section-head { margin-bottom: var(--sp-5); }
+.section-head p { color: var(--color-text-muted); font-size: var(--fs-sm); margin-top: var(--sp-1); }
+.section-head--center { text-align: center; }
+.section-head--center p { margin-inline: auto; }
