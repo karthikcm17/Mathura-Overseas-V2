@@ -103,14 +103,9 @@
 
 <main id="main">
 
-  <!-- ============ HERO — full-bleed photo under a navy gradient. IMAGE 1: about-hero.webp 1920 x 1100 px ============ -->
+  <!-- ============ HERO — same look as the home hero (dark sky, globe, flight arc), photo-free ============ -->
   <section class="about-hero">
-    <div class="about-hero__bg">
-      <div class="img-slot" data-spec="about-hero.webp · 1920×1100 px">
-        <img src="assets/images/about/about-hero.webp" width="1920" height="1100" alt="A Mathura Overseas counsellor guiding a student and her parents" loading="eager">
-      </div>
-    </div>
-    <div class="about-hero__shade"></div>
+    <svg class="about-hero__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
     <svg class="about-hero__arc" viewBox="0 0 600 300" aria-hidden="true">
       <path class="about-hero__arc-path" d="M0,275 C190,275 380,225 600,28"/>
       <g class="about-hero__plane" opacity="0"><g transform="rotate(90)"><use href="#i-airplane" x="-13" y="-13" width="26" height="26"></use></g>
@@ -118,10 +113,9 @@
         <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.08;.88;1" dur="9s" repeatCount="indefinite"/></g>
     </svg>
     <div class="container about-hero__inner">
-      <nav class="about-crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><span>About us</span></nav>
-      <span class="about-pill"><span class="about-pill__dot"></span>A decade of honest guidance</span>
-      <h1>Why <em>Mathura Overseas</em></h1>
-      <p class="about-hero__lead">For over 10 years, we&rsquo;ve helped Indian students find a genuine, NMC-compliant path into medicine abroad &mdash; without donation seats, without guesswork, and without disappearing once the admission letter arrives.</p>
+      <span class="pill"><span class="pill__dot"></span>About Mathura Overseas</span>
+      <h1>Honest guidance for every <em>future doctor</em></h1>
+      <p class="about-hero__lead">For over a decade, we&rsquo;ve helped Indian students find a genuine, NMC-compliant path into medicine abroad &mdash; without donation seats, without guesswork, and without disappearing once the admission letter arrives.</p>
       <div class="btn-row">
         <a href="apply.html" class="btn btn--ondark">Get free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
         <a href="#stories" class="btn btn--outline-light">Read student stories</a>
@@ -129,19 +123,7 @@
     </div>
   </section>
 
-  <!-- ============ HIGHLIGHT STRIP — floats over the hero's bottom edge ============ -->
-  <div class="about-stats">
-    <div class="container">
-      <div class="card about-stats__card">
-        <div class="about-stats__item"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div><div class="about-stats__num" data-count="10" data-suffix="+">10+</div><div class="about-stats__label">Years of guidance</div></div></div>
-        <div class="about-stats__item"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span><div><div class="about-stats__num" data-count="200" data-suffix="+">200+</div><div class="about-stats__label">Students placed</div></div></div>
-        <div class="about-stats__item"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"></use></svg></span><div><div class="about-stats__num about-stats__num--text">Practising doctors</div><div class="about-stats__label">Alumni in India &amp; abroad</div></div></div>
-        <div class="about-stats__item"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><div><div class="about-stats__num about-stats__num--text">Tiruchirappalli</div><div class="about-stats__label">A team you can meet</div></div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============ OUR STORY — photo fades into the page, no frame. IMAGE 2: our-story.webp 1400 x 1600 px ============ -->
+  <!-- ============ OUR STORY. IMAGE 1: our-story.webp 1400 x 1600 px (photo fades into the page, no frame) ============ -->
   <section class="about-story">
     <div class="about-story__media">
       <div class="img-slot" data-spec="our-story.webp · 1400×1600 px">
@@ -149,99 +131,89 @@
       </div>
     </div>
     <div class="about-story__text reveal">
-      <span class="about-eyebrow">Our story</span>
+      <span class="eyebrow">Our story</span>
       <h2>Built on one simple idea &mdash; <em>do right by the student</em></h2>
       <p>Mathura Overseas started because too many capable students were losing a real shot at a medical career simply because an Indian government seat wasn&rsquo;t within reach that year &mdash; and too many &ldquo;abroad MBBS&rdquo; options were vague on fees, vague on recognition, and nowhere to be found once the first instalment was paid.</p>
       <p>So we built our practice the other way around: we only work with universities we can vouch for, we quote the full fee structure upfront, and our team &mdash; based right here in Tiruchirappalli, Tamil Nadu &mdash; stays reachable throughout the years a student is actually abroad.</p>
-      <p>That approach has taken more than 200 students from a NEET scorecard to a medical degree abroad. A good number are now practising doctors &mdash; some back in India after completing their licensing requirements, others continuing their careers overseas.</p>
+      <p>That approach has taken students from a NEET scorecard to a medical degree abroad, and many are now practising doctors &mdash; some back in India after completing their licensing requirements, others continuing their careers overseas.</p>
     </div>
   </section>
 
-  <!-- ============ WHAT MAKES US DIFFERENT ============ -->
+  <!-- ============ WHAT MAKES US DIFFERENT (four things that are only about us) ============ -->
   <section class="section section--wash has-dots">
     <div class="container">
-      <div class="section-head section-head--center reveal"><h2>What actually makes us different</h2><p>Not slogans &mdash; the specific things that change your experience as a student or a parent.</p></div>
+      <div class="section-head section-head--center reveal"><span class="eyebrow">Why families choose us</span><h2>What actually makes us different</h2><p>Not slogans &mdash; the specific things that change your experience as a student or a parent.</p></div>
       <div class="about-features" data-stagger>
-          <article class="card about-feature reveal">
-            <span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg></span>
-            <h3>Transparent fees, no donation</h3>
-            <p>The fee structure you see is the fee structure you pay &mdash; no &ldquo;adjustment&rdquo; seats, no hidden management-quota mark-ups.</p>
-          </article>
-          <article class="card about-feature reveal">
-            <span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-passport"></use></svg></span>
-            <h3>Complete visa &amp; travel support</h3>
-            <p>From visa documentation to airport pickup and hostel settling-in, we handle the logistics so the student can focus on classes.</p>
-          </article>
-          <article class="card about-feature reveal">
-            <span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg></span>
-            <h3>Support beyond admission</h3>
-            <p>We stay in touch through every academic year &mdash; for university queries, document renewals, or a parent who just wants an update.</p>
-          </article>
-          <article class="card about-feature reveal">
-            <span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg></span>
-            <h3>A local team you can meet</h3>
-            <p>Based in Tiruchirappalli, Tamil Nadu &mdash; sit across the table with us instead of chasing a call centre in another city.</p>
-          </article>
-          <article class="card about-feature reveal">
-            <span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></span>
-            <h3>A decade of university relationships</h3>
-            <p>Direct, long-standing relationships with partner universities mean fewer surprises and faster answers when something needs sorting out.</p>
-          </article>
-          <article class="card about-feature reveal">
-            <span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg></span>
-            <h3>Counselling, not a sales pitch</h3>
-            <p>We want every family deciding with complete information &mdash; including when MBBS abroad is not the right fit.</p>
-          </article>
+        <article class="about-feature reveal">
+          <span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg></span>
+          <div><h3>A local team you can meet</h3><p>Based in Tiruchirappalli, Tamil Nadu &mdash; sit across the table with us instead of chasing a call centre in another city.</p></div>
+        </article>
+        <article class="about-feature reveal">
+          <span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></span>
+          <div><h3>A decade of university relationships</h3><p>Direct, long-standing relationships with partner universities mean fewer surprises and faster answers when something needs sorting out.</p></div>
+        </article>
+        <article class="about-feature reveal">
+          <span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg></span>
+          <div><h3>Fees you can see in writing</h3><p>The fee structure you are shown is the one you plan for &mdash; no &ldquo;adjustment&rdquo; seats and no hidden management-quota mark-ups.</p></div>
+        </article>
+        <article class="about-feature reveal">
+          <span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg></span>
+          <div><h3>Counselling, not a sales pitch</h3><p>We want every family deciding with complete information &mdash; including when MBBS abroad is not the right fit.</p></div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ============ MISSION — typographic dark band ============ -->
+  <!-- ============ MISSION — photo behind navy (same pattern as the home trust banner). IMAGE 2: mission.webp 1600 x 900 px ============ -->
   <section class="about-mission">
-    <svg class="about-mission__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
-    <div class="container about-mission__grid reveal">
-      <div>
-        <svg class="icon about-mission__mark" aria-hidden="true"><use href="#i-quote"></use></svg>
-        <span class="about-eyebrow about-eyebrow--light">Our mission</span>
-        <h2>Every student deserves an honest shot at medicine</h2>
+    <div class="about-mission__bg">
+      <div class="img-slot" data-spec="mission.webp · 1600×900 px">
+        <img src="assets/images/about/mission.webp" width="1600" height="900" alt="A medical student studying on a university campus" loading="lazy">
       </div>
-      <p>A NEET score that falls short of a government seat isn&rsquo;t the end of a medical career &mdash; it&rsquo;s a fork in the road. Our mission is to make sure that fork leads somewhere real: a recognised degree, a fair fee, and a support system that&rsquo;s still there in year four, not just at admission.</p>
+    </div>
+    <div class="about-mission__shade"></div>
+    <div class="container">
+      <div class="about-mission__inner reveal">
+        <span class="eyebrow eyebrow--light">Our mission</span>
+        <h2>Every student deserves an honest shot at medicine</h2>
+        <p>A NEET score that falls short of a government seat isn&rsquo;t the end of a medical career &mdash; it&rsquo;s a fork in the road. Our mission is to make sure that fork leads somewhere real: a recognised degree, a fair fee, and a support system that&rsquo;s still there in year four, not just at admission.</p>
+      </div>
     </div>
   </section>
 
   <!-- ============ OUR JOURNEY ============ -->
   <section class="section has-grid">
     <div class="container">
-      <div class="section-head section-head--center reveal"><h2>Over a decade, one student at a time</h2><p>Growth we measure in placed students and finished degrees, not just in numbers on a homepage.</p></div>
+      <div class="section-head section-head--center reveal"><span class="eyebrow">Our journey</span><h2>One student at a time</h2><p>Growth we measure in students placed and degrees finished, not in numbers on a homepage.</p></div>
       <ol class="about-timeline" data-stagger>
         <li class="about-timeline__step reveal">
-          <span class="about-timeline__node">1</span>
-          <div><h3>The early years</h3><p>We started with a handful of students and a small set of universities we had personally verified &mdash; growth was slow by design, never at the cost of due diligence.</p></div>
+          <span class="about-timeline__node"><svg class="icon" aria-hidden="true"><use href="#i-target"></use></svg></span>
+          <div class="about-timeline__text"><small>Phase 1</small><h3>The early years</h3><p>A handful of students and a small set of universities we had personally verified &mdash; growth was slow by design, never at the cost of due diligence.</p></div>
         </li>
         <li class="about-timeline__step reveal">
-          <span class="about-timeline__node">2</span>
-          <div><h3>Building the network</h3><p>We expanded to partner universities abroad, always prioritising NMC compliance over the size of the commission.</p></div>
+          <span class="about-timeline__node"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></span>
+          <div class="about-timeline__text"><small>Phase 2</small><h3>Building the network</h3><p>We expanded to partner universities abroad, always prioritising NMC compliance over the size of the commission.</p></div>
         </li>
         <li class="about-timeline__step reveal">
-          <span class="about-timeline__node">3</span>
-          <div><h3>200+ students later</h3><p>Many of those students have since graduated and gone on to licensing exams and residencies.</p></div>
+          <span class="about-timeline__node"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span>
+          <div class="about-timeline__text"><small>Phase 3</small><h3>Graduates in practice</h3><p>Many of the students we placed have since graduated and gone on to licensing exams and residencies.</p></div>
         </li>
-        <li class="about-timeline__step reveal">
-          <span class="about-timeline__node">4</span>
-          <div><h3>Today</h3><p>A full-time team, daily NEET &amp; counselling updates on this site, and a steady stream of alumni now practising as doctors in India and abroad.</p></div>
+        <li class="about-timeline__step is-now reveal">
+          <span class="about-timeline__node"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span>
+          <div class="about-timeline__text"><small>Today</small><h3>A full-time team</h3><p>Daily NEET &amp; counselling updates on this site, and alumni now practising as doctors in India and abroad.</p></div>
         </li>
       </ol>
     </div>
   </section>
 
-  <!-- ============ STANDARDS ============ -->
+  <!-- ============ OUR STANDARDS (the home page's "How we work" card links here) ============ -->
   <section class="section" id="how-we-vet">
     <div class="container">
       <div class="about-vet reveal">
         <svg class="about-vet__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
         <div class="about-vet__intro">
-          <span class="about-eyebrow about-eyebrow--light">Our standards</span>
-          <h2>What we look for in every university</h2>
+          <span class="eyebrow eyebrow--light">Our standards</span>
+          <h2>What we check before we recommend a university</h2>
           <p>Each one is checked against these points before it is ever shown to a student &mdash; not after enrolment.</p>
         </div>
         <ol class="about-vet__list">
@@ -255,10 +227,10 @@
     </div>
   </section>
 
-  <!-- ============ SUCCESS STORIES — featured story + swipe row ============ -->
+  <!-- ============ SUCCESS STORIES (home links here with #stories) ============ -->
   <section class="section section--wash" id="stories">
     <div class="container">
-      <div class="section-head section-head--center reveal"><h2>Success stories</h2><p>Students who turned a NEET scorecard into a medical degree abroad.</p></div>
+      <div class="section-head section-head--center reveal"><span class="eyebrow">Student stories</span><h2>Real stories. Real dreams.</h2><p>Students who turned a NEET scorecard into a medical degree abroad.</p></div>
       <div class="snap-row about-reviews">
         <figure class="card about-review about-review--feature">
           <svg class="icon about-review__mark" aria-hidden="true"><use href="#i-quote"></use></svg>
@@ -294,14 +266,14 @@
     </div>
   </section>
 
-  <!-- ============ CLOSING CTA ============ -->
+  <!-- ============ CLOSING CTA (identical to home) ============ -->
   <section class="section">
     <div class="container">
-      <div class="about-cta reveal">
-        <svg class="about-cta__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
-        <div><h2>Ready to see if this is the right path for you?</h2><p>Talk to our team &mdash; free, no obligation, and no pressure to decide on the call.</p></div>
+      <div class="cta reveal">
+        <svg class="cta__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+        <div><h2>Ready to start your medical journey?</h2><p>Talk to a counsellor today &mdash; free, no obligation.</p></div>
         <div class="btn-row">
-          <a href="apply.html" class="btn btn--ondark">Book free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <a href="apply.html" class="btn btn--ondark">Get free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
           <a href="tel:+919360859919" class="btn btn--outline-light"><svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg> +91 93608 59919</a>
         </div>
       </div>
@@ -353,6 +325,7 @@
 <nav class="bottom-nav" aria-label="Mobile primary">
   <div class="bottom-nav__inner">
       <a href="index.html" class="bottom-nav__item"><svg class="icon" aria-hidden="true"><use href="#i-home"></use></svg>Home</a>
+      <a href="destinations.html" class="bottom-nav__item"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Countries</a>
       <a href="find-your-university.html" class="bottom-nav__item"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>Find</a>
       <a href="neet-2026-updates.html" class="bottom-nav__item"><svg class="icon" aria-hidden="true"><use href="#i-news"></use></svg>Updates</a>
       <a href="student-guide.html" class="bottom-nav__item"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg>Guide</a>
