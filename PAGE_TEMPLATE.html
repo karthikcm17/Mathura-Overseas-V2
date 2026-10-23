@@ -104,8 +104,8 @@
 <!-- HOW TO USE THIS TEMPLATE (delete this comment in the real page)
   1. Save a copy as e.g. destinations.html.
   2. Change <title>, the description and og: tags in <head>.
-  3. Mark the active page: add aria-current="page" to its link in the HEADER nav and in the BOTTOM TAB BAR
-     (Countries has no tab, so only the header link).
+  3. Mark the active page: add aria-current="page" to its link in the HEADER nav and in the BOTTOM TAB BAR.
+     The tab bar has 6 tabs: Home, Countries, Find, Updates, Guide, WhatsApp. (About has no tab, so only the header link.)
   4. Put the page content inside the main element below. Everything else (announcement bar, header, footer,
      tab bar, icons, scripts) stays EXACTLY as it is so every page looks and behaves the same.
   5. Page-only styling goes in css/pages/<page>.css; page-only behaviour in js/pages/<page>.js.
@@ -116,7 +116,7 @@
   <!-- PAGE CONTENT GOES HERE -->
   <section class="section">
     <div class="container">
-      <div class="section-head"><h1>Page heading</h1><p>Short intro line.</p></div>
+      <div class="section-head"><span class="eyebrow">Label</span><h1>Page heading</h1><p>Short intro line.</p></div>
     </div>
   </section>
 
@@ -161,10 +161,11 @@
   </div>
 </footer>
 
-<!-- ============ BOTTOM TAB BAR — identical on every page; 5 items; hides on scroll down ============ -->
+<!-- ============ BOTTOM TAB BAR — identical on every page; 6 items; hides on scroll down ============ -->
 <nav class="bottom-nav" aria-label="Mobile primary">
   <div class="bottom-nav__inner">
       <a href="index.html" class="bottom-nav__item"><svg class="icon" aria-hidden="true"><use href="#i-home"></use></svg>Home</a>
+      <a href="destinations.html" class="bottom-nav__item"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Countries</a>
       <a href="find-your-university.html" class="bottom-nav__item"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>Find</a>
       <a href="neet-2026-updates.html" class="bottom-nav__item"><svg class="icon" aria-hidden="true"><use href="#i-news"></use></svg>Updates</a>
       <a href="student-guide.html" class="bottom-nav__item"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg>Guide</a>
