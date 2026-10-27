@@ -186,7 +186,7 @@
       if (state === t) { ui(); return; }
       var d = t > state ? 1 : -1;
       turn(leaves[d > 0 ? state : state - 1]);
-      state += d; paint(); ui();
+      state += d; paint(); ui(); setTimeout(verify, 950);
       if (state !== t) timer = setTimeout(step, 140);
     })();
   }
@@ -300,6 +300,15 @@
   var ft; function refitSoon() { clearTimeout(ft); ft = setTimeout(refit, 60); }
   if (document.fonts) { document.fonts.ready.then(refitSoon); if (document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', refitSoon); }
   window.addEventListener('load', refitSoon);
+  // safety net for real phones: re-check the pages on screen shortly after load and after every turn, and fit again if anything spills
+  function verify() {
+    visible().forEach(function (i) {
+      var pg = i >= 0 && i < N && pages[i] ? pgOf(pages[i]) : null;
+      if (pg && !fits(pg)) { fitted[i] = false; ensureFit(i); }
+    });
+  }
+  setTimeout(verify, 1200); setTimeout(verify, 3500);
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) setTimeout(verify, 200); });
   // keep the reader exactly as tall as what is visible (mobile browser toolbars come and go)
   window.addEventListener('resize', setAppH); window.addEventListener('orientationchange', function () { setTimeout(setAppH, 250); });
   if (window.visualViewport) window.visualViewport.addEventListener('resize', setAppH);

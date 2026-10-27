@@ -284,3 +284,7 @@ html:not(.js) .sg-stage, html:not(.js) .sg-hud { display: none; }
   .sg-leaf, .sg-book { transition-duration: .01s; }
   .sg-leaf.is-turning .sg-face::after, .pg-open { animation: none; }
 }
+
+/* phones: never let the browser enlarge text on its own (Android Chrome / iOS "text size" boosting), and keep form fields at 16px so iOS does not zoom in */
+html.js, html.js body.sg-reader, .sg-book { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+.sg-modal input { font-size: 16px; }
