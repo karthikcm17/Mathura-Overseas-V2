@@ -301,10 +301,13 @@
   if (document.fonts) { document.fonts.ready.then(refitSoon); if (document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', refitSoon); }
   window.addEventListener('load', refitSoon);
   // safety net for real phones: re-check the pages on screen shortly after load and after every turn, and fit again if anything spills
+  function scrollState(pg) { pg.classList.toggle('can-scroll', pg.scrollHeight > pg.clientHeight + 2); pg.classList.toggle('at-end', pg.scrollTop + pg.clientHeight >= pg.scrollHeight - 4); }
+  pages.forEach(function (p) { var g = pgOf(p); if (g) g.addEventListener('scroll', function () { scrollState(g); }, { passive: true }); });
   function verify() {
     visible().forEach(function (i) {
       var pg = i >= 0 && i < N && pages[i] ? pgOf(pages[i]) : null;
       if (pg && !fits(pg)) { fitted[i] = false; ensureFit(i); }
+      if (pg) scrollState(pg);
     });
   }
   setTimeout(verify, 1200); setTimeout(verify, 3500);

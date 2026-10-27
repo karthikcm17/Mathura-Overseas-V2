@@ -88,7 +88,7 @@ html.js body.sg-reader main { position: relative; flex: 1; min-height: 0; displa
 .sg-page--dark, .sg-page--cover { color: var(--color-text-inverse); }
 
 /* ================= PAGE CONTENT (all sizes in em) ================= */
-.pg { height: 100%; display: flex; flex-direction: column; gap: calc(.85em + var(--gapx, 0px)); padding: 2.6em 1.5em 2.7em; overflow: hidden; line-height: 1.5; container-type: inline-size; }
+.pg { height: 100%; display: flex; flex-direction: column; gap: calc(.85em + var(--gapx, 0px)); padding: 2.6em 1.5em 2.7em; overflow: hidden auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; scrollbar-width: none; line-height: 1.5; container-type: inline-size; }
 .pg.is-tight .pg-opt { display: none; }
 .pg > * { flex-shrink: 0; }
 .pg h3 + *, .pg-head + .pg-lede { margin-top: calc(var(--gapx, 0px) * -1); }   /* a heading stays attached to its content */
@@ -288,3 +288,8 @@ html:not(.js) .sg-stage, html:not(.js) .sg-hud { display: none; }
 /* phones: never let the browser enlarge text on its own (Android Chrome / iOS "text size" boosting), and keep form fields at 16px so iOS does not zoom in */
 html.js, html.js body.sg-reader, .sg-book { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .sg-modal input { font-size: 16px; }
+
+/* safety net: if a real phone ever renders a page taller than the screen, the page scrolls instead of cutting text off */
+.pg::-webkit-scrollbar { display: none; }
+.pg.can-scroll { -webkit-mask-image: linear-gradient(#000 calc(100% - 2.4em), transparent); mask-image: linear-gradient(#000 calc(100% - 2.4em), transparent); }
+.pg.can-scroll.at-end { -webkit-mask-image: none; mask-image: none; }
