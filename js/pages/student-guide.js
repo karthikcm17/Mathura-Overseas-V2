@@ -1,47 +1,97 @@
-// student-guide.js — builds the page-turn book from the <article class="sg-page"> blocks and handles the PDF download gate.
+// student-guide.js — turns every <article class="sg-page"> in #sgSource into a page of a 3D page-turn book,
+// sizes the book to the screen (no page scrolling), fits each page's text to its page, and runs the PDF download gate.
 document.addEventListener('DOMContentLoaded', function () {
 
   // ---- SETTINGS (edit here) ----
   var PDF = 'assets/downloads/mathura-overseas-mbbs-handbook-2026-27.pdf';
-  // Paste your Google Apps Script web-app URL here (same one the apply form / home tool uses) to save leads to your sheet.
-  // While empty, the PDF still downloads but the details are NOT saved anywhere.
+  var WHATSAPP_NUMBER = '919360859919';
+  // Same idea as tools.js: paste your Google Apps Script web-app URL to save downloads as leads in your sheet.
+  // While it is empty, the PDF still downloads and the thank-you box offers a one-tap "send my details on WhatsApp".
   var LEAD_ENDPOINT = '';
   var STORE_KEY = 'mo_guide_unlocked';
+  var RATIO = 0.72;            // page width / height on desktop spreads
+  var MIN_FONT = 10.5;         // smallest text size (px) a page may shrink to before it is allowed to scroll inside
 
-  var book = document.getElementById('sgBook'), src = document.getElementById('sgSource');
-  if (!book || !src) return;
+  var book = document.getElementById('sgBook'), stage = document.getElementById('sgStage'), src = document.getElementById('sgSource');
+  if (!book || !stage || !src) return;
+  document.body.classList.add('sg-reader');
+
   var pages = [].slice.call(src.querySelectorAll('.sg-page')), N = pages.length;
-  var mq = window.matchMedia('(min-width: 900px)');
   var label = document.getElementById('sgLabel'), bar = document.getElementById('sgBar');
-  var leaves = [], state = 0, spread = mq.matches, timer;
+  var btnPrev = document.getElementById('sgPrev'), btnNext = document.getElementById('sgNext');
+  var leaves = [], state = 0, spread = false, timer = null, faces = [];
 
-  function face(p, side, i) {
+  // ---------- build ----------
+  function makeFace(p, side, i) {
     var f = document.createElement('div');
-    f.className = 'sg-face sg-face--' + side + (i === 0 ? ' sg-face--cover' : '');
+    f.className = 'sg-face sg-face--' + side + (p.classList.contains('sg-page--cover') ? ' sg-face--cover' : '') + (p.classList.contains('sg-page--dark') ? ' sg-face--dark' : '');
     f.appendChild(p);
-    if (i > 0) { var s = document.createElement('span'); s.className = 'sg-folio'; s.textContent = i; f.appendChild(s); }
+    if (!p.classList.contains('sg-page--cover') && !p.classList.contains('sg-page--dark')) {
+      var run = document.createElement('div'); run.className = 'sg-run';
+      run.innerHTML = '<span>MBBS Abroad Handbook</span><span></span>';
+      run.lastChild.textContent = (p.getAttribute('data-run') || '') + '  \u00B7  ' + i;
+      f.appendChild(run);
+    }
+    faces[i] = f;
     return f;
   }
-  function board(side) { var b = document.createElement('div'); b.className = 'sg-board sg-board--' + side; return b; }
-  function maxState() { return spread ? leaves.length : N - 1; }
-  function clamp(v) { return Math.max(0, Math.min(maxState(), v)); }
 
   function build(idx) {
     pages.forEach(function (p) { src.appendChild(p); });
-    book.innerHTML = ''; leaves = []; spread = mq.matches;
-    if (spread) { book.appendChild(board('left')); book.appendChild(board('right')); }
-    var step = spread ? 2 : 1, count = Math.ceil(N / step);
-    state = Math.min(spread ? Math.ceil(idx / 2) : idx, spread ? count : N - 1);
+    book.innerHTML = ''; leaves = []; faces = [];
+    book.classList.toggle('is-spread', spread);
+    if (spread) { ['left', 'right'].forEach(function (s) { var b = document.createElement('div'); b.className = 'sg-board sg-board--' + s; book.appendChild(b); }); }
+    var step = spread ? 2 : 1;
+    state = spread ? Math.min(Math.ceil(idx / 2), Math.ceil(N / 2)) : Math.min(idx, N - 1);
     for (var i = 0, k = 0; i < N; i += step, k++) {
       var leaf = document.createElement('div');
-      leaf.className = 'sg-leaf' + (i === 0 ? ' sg-leaf--cover' : '') + (k < state ? ' is-flipped' : '');
-      leaf.appendChild(face(pages[i], 'right', i));
-      if (spread && pages[i + 1]) { var b = face(pages[i + 1], 'left', i + 1); b.classList.add('sg-face--back'); leaf.appendChild(b); }
+      leaf.className = 'sg-leaf' + (i === 0 ? ' sg-leaf--cover' : '');
+      leaf.appendChild(makeFace(pages[i], 'right', i));
+      if (spread && pages[i + 1]) leaf.appendChild(makeFace(pages[i + 1], 'left', i + 1));
       book.appendChild(leaf); leaves.push(leaf);
     }
     paint(); ui();
+    requestAnimationFrame(fitAll);
   }
 
+  // ---------- sizing: the book fills the stage, nothing scrolls ----------
+  function size() {
+    var w = stage.clientWidth, h = stage.clientHeight;
+    var aw = w - 24, ah = h - 12;
+    var wantSpread = w >= 880 && w / h >= 1.2;
+    var pw, ph;
+    if (wantSpread) { ph = Math.min(ah, 780); pw = Math.min(ph * RATIO, (aw - 24) / 2); ph = Math.min(ph, pw / RATIO + 40); }
+    else { pw = Math.min(aw, 520); ph = ah; if (pw / ph > 0.9) pw = Math.floor(ph * 0.9); }
+    book.style.setProperty('--pw', Math.floor(pw) + 'px');
+    book.style.setProperty('--ph', Math.floor(ph) + 'px');
+    return wantSpread;
+  }
+
+  // ---------- fit each page's text to its page ----------
+  function fit(p) {
+    var pg = p.querySelector('.pg'); if (!pg) return;
+    var w = p.clientWidth; if (!w) return;
+    var hi = Math.max(12.5, Math.min(16.5, w / 23));
+    function ok(px) { p.style.setProperty('--fs', px + 'px'); return pg.scrollHeight <= pg.clientHeight + 1; }
+    // largest font size (between MIN_FONT and hi) at which the whole page content fits; null if even the smallest does not
+    function solve() {
+      if (ok(hi)) return hi;
+      var lo = MIN_FONT; if (!ok(lo)) return null;
+      var top = hi;
+      for (var n = 0; n < 7; n++) { var mid = (lo + top) / 2; if (ok(mid)) lo = mid; else top = mid; }
+      return lo;
+    }
+    pg.classList.remove('is-scroll', 'is-tight');
+    var fs = solve();
+    // still too small to read comfortably: drop the optional lines (contents sub-titles, chapter intro) and try again
+    if ((fs === null || fs < 12) && pg.querySelector('.pg-toc small, .pg-hero p')) { pg.classList.add('is-tight'); fs = solve(); }
+    if (fs === null) { ok(MIN_FONT); pg.classList.add('is-scroll'); } else ok(fs);
+  }
+  function fitAll() { pages.forEach(fit); }
+
+  // ---------- turning ----------
+  function maxState() { return spread ? leaves.length : N - 1; }
+  function clamp(v) { return Math.max(0, Math.min(maxState(), v)); }
   function paint() {
     leaves.forEach(function (leaf, i) {
       var flipped = i < state;
@@ -53,16 +103,21 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   function turn(leaf) {
     leaf.classList.add('is-turning'); leaf.style.zIndex = 500;
-    setTimeout(function () { leaf.classList.remove('is-turning'); paint(); }, 1000);
+    setTimeout(function () { leaf.classList.remove('is-turning'); paint(); }, 900);
+  }
+  function visible() {
+    if (!spread) return [state];
+    return [state > 0 ? 2 * state - 1 : -1, state < leaves.length ? 2 * state : -1];
   }
   function ui() {
-    var vis = spread ? [state > 0 ? 2 * state - 1 : -1, state < leaves.length ? 2 * state : -1] : [state];
-    pages.forEach(function (p, i) { p.parentNode.inert = vis.indexOf(i) < 0; });
+    var vis = visible();
+    faces.forEach(function (f, i) { if (f) f.inert = vis.indexOf(i) < 0; });
     var right = spread ? (state < leaves.length ? 2 * state : N - 1) : state;
     var left = spread && state > 0 ? 2 * state - 1 : right;
     var cur = spread && state > 0 && state < leaves.length ? left + '–' + right : right;
-    label.textContent = right === 0 ? 'Cover' : pages[right].getAttribute('data-title') + ' · p. ' + cur;
+    label.textContent = right === 0 ? 'Cover' : (pages[right].getAttribute('data-title') || '') + ' · p. ' + cur;
     bar.style.transform = 'scaleX(' + (right / (N - 1)) + ')';
+    btnPrev.disabled = state === 0; btnNext.disabled = state === maxState();
   }
   function go(t) {
     t = clamp(t); clearTimeout(timer);
@@ -71,26 +126,23 @@ document.addEventListener('DOMContentLoaded', function () {
       var d = t > state ? 1 : -1;
       turn(leaves[d > 0 ? state : state - 1]);
       state += d; paint(); ui();
-      if (state !== t) timer = setTimeout(step, 130);
+      if (state !== t) timer = setTimeout(step, 140);
     })();
   }
   function pageIndex(id) { for (var i = 0; i < N; i++) if (pages[i].id === id) return i; return -1; }
-  function goTo(id) {
-    var i = pageIndex(id); if (i < 0) return;
-    go(spread ? Math.ceil(i / 2) : i);
-    book.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
+  function goTo(id) { var i = pageIndex(id); if (i >= 0) go(spread ? Math.ceil(i / 2) : i); }
+  function current() { return spread ? Math.min(2 * state, N - 1) : state; }
 
-  // ---- Download gate ----
+  // ---------- download gate ----------
   var modal = document.getElementById('sgModal'), formView = document.getElementById('sgFormView'),
-      doneView = document.getElementById('sgDoneView'), err = document.getElementById('sgError');
+      doneView = document.getElementById('sgDoneView'), err = document.getElementById('sgError'), lastFocus = null;
   function startDownload() { var a = document.createElement('a'); a.href = PDF; a.download = ''; document.body.appendChild(a); a.click(); a.remove(); }
   function unlocked() { try { return localStorage.getItem(STORE_KEY) === '1'; } catch (e) { return false; } }
   function openModal() {
-    formView.hidden = false; doneView.hidden = true; err.hidden = true; modal.hidden = false;
-    document.body.classList.add('sg-lock'); document.getElementById('sgName').focus();
+    lastFocus = document.activeElement; formView.hidden = false; doneView.hidden = true; err.hidden = true; modal.hidden = false;
+    setTimeout(function () { document.getElementById('sgName').focus(); }, 30);
   }
-  function closeModal() { modal.hidden = true; document.body.classList.remove('sg-lock'); }
+  function closeModal() { modal.hidden = true; if (lastFocus && lastFocus.focus) lastFocus.focus(); }
   function download() { if (unlocked()) startDownload(); else openModal(); }
 
   document.getElementById('sgForm').addEventListener('submit', function (e) {
@@ -101,15 +153,25 @@ document.addEventListener('DOMContentLoaded', function () {
       err.textContent = !name || !city ? 'Please fill in your name and city.' : 'Please enter a valid 10-digit mobile number.';
       err.hidden = false; return;
     }
+    var wa = document.getElementById('sgWaSend');
     if (LEAD_ENDPOINT) {
       fetch(LEAD_ENDPOINT, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify({ name: name, phone: mobile, city: city, source: 'student-guide-pdf', page: location.pathname, time: new Date().toISOString() }) }).catch(function () {});
+      wa.hidden = true;
+    } else {
+      wa.href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent('Hi Mathura Overseas, I downloaded the MBBS Abroad Handbook. My name is ' + name + ' from ' + city + '. Please call me on ' + mobile + '.');
+      wa.hidden = false;
     }
     try { localStorage.setItem(STORE_KEY, '1'); } catch (x) {}
     startDownload(); formView.hidden = true; doneView.hidden = false;
   });
 
-  // ---- Events ----
+  // ---------- pre-admission checklist counter ----------
+  var ticks = [].slice.call(document.querySelectorAll('.pg-tick input')), tickOut = document.getElementById('sgTickCount');
+  function countTicks() { if (tickOut) tickOut.textContent = ticks.filter(function (t) { return t.checked; }).length; }
+  ticks.forEach(function (t) { t.addEventListener('change', countTicks); });
+
+  // ---------- events ----------
   document.addEventListener('click', function (e) {
     var t = e.target.closest('[data-sg],[data-goto]');
     if (t && t.dataset.goto) { e.preventDefault(); goTo(t.dataset.goto); return; }
@@ -117,7 +179,6 @@ document.addEventListener('DOMContentLoaded', function () {
       var a = t.dataset.sg;
       if (a === 'next') go(state + 1);
       else if (a === 'prev') go(state - 1);
-      else if (a === 'open') { go(state === 0 ? 1 : state); book.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
       else if (a === 'download') download();
       else if (a === 'close') closeModal();
       return;
@@ -128,17 +189,32 @@ document.addEventListener('DOMContentLoaded', function () {
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && !modal.hidden) { closeModal(); return; }
     if (!modal.hidden || /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) return;
-    if (e.key === 'ArrowRight') go(state + 1);
-    if (e.key === 'ArrowLeft') go(state - 1);
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') go(state + 1);
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') go(state - 1);
+    if (e.key === 'Home') go(0);
   });
   var sx = 0, sy = 0;
-  book.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
-  book.addEventListener('touchend', function (e) {
+  stage.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+  stage.addEventListener('touchend', function (e) {
     var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
-    if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.4) go(state + (dx < 0 ? 1 : -1));
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.4) go(state + (dx < 0 ? 1 : -1));
   }, { passive: true });
-  var onMode = function () { build(spread ? Math.min(2 * state, N - 1) : state); };
-  if (mq.addEventListener) mq.addEventListener('change', onMode); else mq.addListener(onMode);
 
+  // re-size when the window changes (rotation, resizing); keep the reader on the same page
+  var rt = null;
+  function relayout() {
+    var idx = current(), was = spread;
+    spread = size();
+    if (spread !== was) build(idx); else fitAll();
+  }
+  if ('ResizeObserver' in window) new ResizeObserver(function () { clearTimeout(rt); rt = setTimeout(relayout, 120); }).observe(stage);
+  else window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(relayout, 120); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
+
+  spread = size();
   build(0);
+  // deep links: student-guide.html#ch5 opens the book at that page (also when the #part of the address changes later)
+  window.addEventListener('hashchange', function () { if (location.hash) goTo(location.hash.slice(1)); });
+  // initial deep link
+  if (location.hash) { var di = pageIndex(location.hash.slice(1)); if (di > 0) { state = spread ? Math.ceil(di / 2) : di; paint(); ui(); } }
 });

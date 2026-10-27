@@ -9,58 +9,58 @@ var TRAVEL = {
   vietnam: {
     name: 'Vietnam', page: 'mbbs-in-vietnam.html',
     t: [7, null], n: 7, stop: '1 stop', tz: '1h 30m ahead', capital: 'Hanoi', lang: 'Vietnamese', climate: 'Tropical',
-    currency: 'Vietnamese dong', rate: '1 INR ≈ 275.6 VND',
+    fare: 'From \u20B912,679 one-way', currency: 'Vietnamese dong', rate: '1 INR ≈ 275.6 VND',
     why: [['shield-check', 'Modern, safe cities'], ['map-pin', 'Hanoi: lakes, an old quarter and famous street food'], ['plane', 'One of the shorter flights from South India']],
-    know: 'English availability varies by campus — ask us which ones teach fully in English.'
+    know: 'Usually connects via Singapore or Bangkok. English availability varies by campus \u2014 ask us which teach it.'
   },
   philippines: {
     name: 'Philippines', page: 'mbbs-in-philippines.html',
-    t: [8, null], n: 8, stop: '1 stop', tz: '2h 30m ahead', capital: 'Manila', lang: 'Filipino & English', climate: 'Tropical',
-    currency: 'Philippine peso', rate: '1 INR ≈ 0.66 PHP',
+    t: [10, null], n: 10, stop: '1 stop', tz: '2h 30m ahead', capital: 'Manila', lang: 'Filipino & English', climate: 'Tropical',
+    fare: 'From \u20B913,434 one-way', currency: 'Philippine peso', rate: '1 INR ≈ 0.66 PHP',
     why: [['cap', 'American-style curriculum, taught in English'], ['users', 'A large Indian student community'], ['heart', 'Strong clinical exposure']],
-    know: 'English is widely spoken, so day-to-day life is easy from the first week.'
+    know: 'Fastest options connect via Kuala Lumpur; English is widely spoken, so day-to-day life is easy.'
   },
   uzbekistan: {
     name: 'Uzbekistan', page: 'mbbs-in-uzbekistan.html',
     t: [8, null], n: 8, stop: '1 stop', tz: '30m behind', capital: 'Tashkent', lang: 'Uzbek', climate: 'Continental',
-    currency: 'Uzbek som', rate: '1 INR ≈ 124.5 UZS',
+    fare: 'From \u20B920,073 one-way', currency: 'Uzbek som', rate: '1 INR ≈ 124.5 UZS',
     why: [['map-pin', 'Silk Road cities like Tashkent and Samarkand'], ['building', 'Modern campuses'], ['users', 'Established Indian student communities']],
-    know: 'NMC advises extra caution here, so always verify the campus before you pay anything.'
+    know: 'Usually connects via Delhi or Sharjah. NMC advises extra caution here, so verify the campus before you pay.'
   },
   kazakhstan: {
     name: 'Kazakhstan', page: 'mbbs-in-kazakhstan.html',
     t: [9, null], n: 9, stop: 'lands in Almaty', tz: '30m behind', capital: 'Astana', lang: 'Kazakh & Russian', climate: 'Continental',
-    currency: 'Kazakh tenge', rate: '1 INR ≈ 4.83 KZT',
+    fare: 'From \u20B928,502 one-way', currency: 'Kazakh tenge', rate: '1 INR ≈ 4.83 KZT',
     why: [['map-pin', 'Almaty sits right beneath snow-capped mountains'], ['building', 'Astana is a planned, modern capital'], ['globe', 'Kazakh and Russian are both widely spoken']],
-    know: 'Flights from India usually land in Almaty; Astana is a further domestic hop.'
+    know: 'Usually connects via Delhi or Dubai and lands in Almaty; Astana is a further domestic hop.'
   },
   kyrgyzstan: {
     name: 'Kyrgyzstan', page: 'mbbs-in-kyrgyzstan.html',
     t: [9, 10], n: 9.5, stop: '1 stop', tz: '30m ahead', capital: 'Bishkek', lang: 'Kyrgyz & Russian', climate: 'Cold winters',
-    currency: 'Kyrgyz som', rate: '1 INR ≈ 1.0 KGS',
+    fare: 'From \u20B934,725 one-way', currency: 'Kyrgyz som', rate: '1 INR ≈ 1.0 KGS',
     why: [['briefcase', 'Among the most affordable options'], ['map-pin', 'Bishkek sits at the foot of the Ala-Too mountains'], ['globe', 'Russian is widely used alongside Kyrgyz']],
-    know: 'Winters are properly cold — plan your wardrobe before you fly.'
+    know: 'Winters are properly cold, so plan your wardrobe. Ask us for the best connecting route.'
   },
   georgia: {
     name: 'Georgia', page: 'mbbs-in-georgia.html',
     t: [10, null], n: 10, stop: '1 stop', tz: '1h 30m behind', capital: 'Tbilisi', lang: 'Georgian', climate: 'Temperate',
-    currency: 'Georgian lari', rate: '1 INR ≈ 0.0273 GEL',
+    fare: 'From \u20B927,271 one-way', currency: 'Georgian lari', rate: '1 INR ≈ 0.0273 GEL',
     why: [['map-pin', 'Tbilisi: an old town, sulphur baths and wine culture'], ['globe', 'Where Europe meets Asia'], ['sun', 'A mild, temperate climate']],
-    know: 'Fees and course details are shared by a counsellor — ask us for the current figures.'
+    know: 'Usually connects via Dubai, Doha or Sharjah. Ask us for current fees and course details.'
   },
   russia: {
     name: 'Russia', page: 'mbbs-in-russia.html',
     t: [12, 15], n: 13.5, stop: '1 stop', tz: '2h 30m behind', capital: 'Moscow', lang: 'Russian', climate: 'Cold',
-    currency: 'Russian rouble', rate: '1 INR ≈ 0.90 RUB',
+    fare: 'About \u20B961,667 return', currency: 'Russian rouble', rate: '1 INR ≈ 0.90 RUB',
     why: [['building', 'Government universities with 60+ years of Indian students'], ['map-pin', 'Moscow is Russia’s capital and largest city'], ['target', 'Long, cold winters — a real change from home']],
-    know: 'Moscow time is 2h 30m behind India; some cities are further behind.'
+    know: 'No direct flights; the fastest options take about 11h 45m. Moscow time is 2h 30m behind India.'
   },
   timor: {
     name: 'Timor-Leste', page: 'mbbs-in-timor-uct-timor.html',
     t: [20, 24], n: 22, stop: 'via Singapore', tz: '3h 30m ahead', capital: 'Dili', lang: 'Tetum & Portuguese', climate: 'Tropical',
-    currency: 'US dollar', rate: '1 INR ≈ 0.0114 USD',
+    fare: 'From \u20B935,561 one-way', currency: 'US dollar', rate: '1 INR ≈ 0.0114 USD',
     why: [['cap', 'Indian-aligned syllabus, taught in English'], ['sun', 'A tropical island setting'], ['target', 'An emerging option — extra due diligence needed']],
-    know: 'The US dollar is the local currency, so plan your budget in dollars.'
+    know: 'Usually connects via Singapore or Kuala Lumpur. The US dollar is the local currency, so budget in dollars.'
   },
   'central-america': {
     name: 'Central America', page: 'mbbs-in-central-america.html', explore: false,
