@@ -222,7 +222,7 @@
     setTimeout(function () { document.getElementById('sgName').focus(); }, 30);
   }
   function closeModal() { modal.hidden = true; if (lastFocus && lastFocus.focus) lastFocus.focus(); }
-  function download() { if (unlocked()) startDownload(); else openModal(); }
+  function download() { openModal(); }   // every download asks for details first, so every download becomes a lead
 
   document.getElementById('sgForm').addEventListener('submit', function (e) {
     e.preventDefault();
