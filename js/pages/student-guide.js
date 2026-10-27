@@ -1,4 +1,4 @@
-/* BUILD 20261027-4 */
+/* BUILD 20261027-5 */
 // student-guide.js — turns every <article class="sg-page"> in #sgSource into a page of a 3D page-turn book,
 // sizes the book to the screen (no page scrolling), keeps ONE text size across the whole book, and runs the PDF download gate.
 // This script is loaded first on the page and starts straight away (it does not wait for the shared site scripts).
@@ -327,7 +327,7 @@
         'app-h ' + document.documentElement.style.getPropertyValue('--app-h'), 'body ' + r(document.body), 'main ' + r(main),
         'stage ' + r(stage), 'book ' + r(book), 'pg ' + (pgs ? pgs.clientHeight + '/' + pgs.scrollHeight : '-'),
         'safe-bottom ' + getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'),
-        'font ' + (document.fonts && document.fonts.check('16px "Plus Jakarta Sans"')), 'build 20261027-4'].join('\n');
+        'font ' + (document.fonts && document.fonts.check('16px "Plus Jakarta Sans"')), 'build 20261027-5'].join('\n');
       setTimeout(paintDbg, 700);
     })();
   }
