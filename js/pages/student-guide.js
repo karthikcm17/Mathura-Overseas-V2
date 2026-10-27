@@ -1,4 +1,4 @@
-/* BUILD 20261027-3 */
+/* BUILD 20261027-4 */
 // student-guide.js — turns every <article class="sg-page"> in #sgSource into a page of a 3D page-turn book,
 // sizes the book to the screen (no page scrolling), keeps ONE text size across the whole book, and runs the PDF download gate.
 // This script is loaded first on the page and starts straight away (it does not wait for the shared site scripts).
@@ -313,6 +313,24 @@
   }
   setTimeout(verify, 1200); setTimeout(verify, 3500);
   document.addEventListener('visibilitychange', function () { if (!document.hidden) setTimeout(verify, 200); });
+
+  // ---------- diagnostics: open the page with ?debug at the end of the address to see what this browser reports ----------
+  if (/[?&]debug\b/.test(location.search)) {
+    var dbg = document.createElement('pre'); dbg.className = 'sg-debug'; document.body.appendChild(dbg);
+    var probe = document.getElementById('sgProbe');
+    (function paintDbg() {
+      var r = function (el) { if (!el) return '-'; var b = el.getBoundingClientRect(); return Math.round(b.top) + '→' + Math.round(b.bottom); };
+      var pgs = pgOf(pages[current()] || pages[0]);
+      dbg.textContent = ['inner ' + innerWidth + 'x' + innerHeight, 'client ' + document.documentElement.clientHeight,
+        'visual ' + (window.visualViewport ? Math.round(window.visualViewport.height) + '+' + Math.round(window.visualViewport.offsetTop) : '-'),
+        'svh ' + (probe ? probe.offsetHeight : '-'), 'screen ' + screen.width + 'x' + screen.height + ' dpr ' + devicePixelRatio,
+        'app-h ' + document.documentElement.style.getPropertyValue('--app-h'), 'body ' + r(document.body), 'main ' + r(main),
+        'stage ' + r(stage), 'book ' + r(book), 'pg ' + (pgs ? pgs.clientHeight + '/' + pgs.scrollHeight : '-'),
+        'safe-bottom ' + getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'),
+        'font ' + (document.fonts && document.fonts.check('16px "Plus Jakarta Sans"')), 'build 20261027-4'].join('\n');
+      setTimeout(paintDbg, 700);
+    })();
+  }
   // keep the reader exactly as tall as what is visible (mobile browser toolbars come and go)
   window.addEventListener('resize', setAppH); window.addEventListener('orientationchange', function () { setTimeout(setAppH, 250); });
   if (window.visualViewport) window.visualViewport.addEventListener('resize', setAppH);
