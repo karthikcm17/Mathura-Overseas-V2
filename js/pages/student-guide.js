@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', function () {
   document.body.classList.add('sg-reader');
 
   var pages = [].slice.call(src.querySelectorAll('.sg-page')), N = pages.length;
-  var label = document.getElementById('sgLabel'), bar = document.getElementById('sgBar');
+  var label = document.getElementById('sgLabel'), ring = document.getElementById('sgRing'), numEl = document.getElementById('sgNum'), ofEl = document.getElementById('sgOf');
   var btnPrev = document.getElementById('sgPrev'), btnNext = document.getElementById('sgNext');
-  var leaves = [], state = 0, spread = false, timer = null, faces = [];
+  var leaves = [], state = 0, spread = false, timer = null, faces = [], fitted = [], dims = '';
 
   // ---------- build ----------
   function makeFace(p, side, i) {
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function build(idx) {
     pages.forEach(function (p) { src.appendChild(p); });
-    book.innerHTML = ''; leaves = []; faces = [];
+    book.innerHTML = ''; leaves = []; faces = []; fitted = [];
     book.classList.toggle('is-spread', spread);
     if (spread) { ['left', 'right'].forEach(function (s) { var b = document.createElement('div'); b.className = 'sg-board sg-board--' + s; book.appendChild(b); }); }
     var step = spread ? 2 : 1;
@@ -51,19 +51,20 @@ document.addEventListener('DOMContentLoaded', function () {
       book.appendChild(leaf); leaves.push(leaf);
     }
     paint(); ui();
-    requestAnimationFrame(fitAll);
+    idle(fitRest);   // the other pages are sized while the browser is idle, so the first page appears fast
   }
 
   // ---------- sizing: the book fills the stage, nothing scrolls ----------
   function size() {
-    var w = stage.clientWidth, h = stage.clientHeight;
-    var aw = w - (w < 640 ? 16 : 32), ah = h - 8;
+    var cs = getComputedStyle(stage), w = stage.clientWidth, h = stage.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+    var aw = w - (w < 640 ? 16 : 32), ah = h - 4;
     var wantSpread = w >= 880 && w / h >= 1.2;
     var pw, ph;
     if (wantSpread) { ph = Math.min(ah, 860); pw = Math.min(ph * RATIO, (aw - 24) / 2); ph = Math.min(ph, pw / RATIO + 40); }
     else { pw = Math.min(aw, 600); ph = ah; if (pw / ph > 0.9) pw = Math.floor(ph * 0.9); }
     book.style.setProperty('--pw', Math.floor(pw) + 'px');
     book.style.setProperty('--ph', Math.floor(ph) + 'px');
+    dims = wantSpread + ':' + Math.floor(pw) + 'x' + Math.floor(ph);
     return wantSpread;
   }
 
@@ -87,7 +88,18 @@ document.addEventListener('DOMContentLoaded', function () {
     if ((fs === null || fs < 13) && pg.querySelector('.pg-opt')) { pg.classList.add('is-tight'); fs = solve(); }
     if (fs === null) { ok(MIN_FONT); pg.classList.add('is-scroll'); } else ok(fs);
   }
-  function fitAll() { pages.forEach(fit); }
+  function idle(f) { if (window.requestIdleCallback) requestIdleCallback(f, { timeout: 900 }); else setTimeout(f, 80); }
+  // size a page's text only when it is needed (on screen), the rest later while idle
+  function ensureFit(i) { if (pages[i] && !fitted[i]) { fit(pages[i]); fitted[i] = true; } }
+  function fitVisible() { visible().forEach(function (i) { if (i >= 0 && i < N) ensureFit(i); }); }
+  function fitRest(deadline) {
+    for (var i = 0; i < N; i++) {
+      if (fitted[i]) continue;
+      ensureFit(i);
+      if (deadline && deadline.timeRemaining && deadline.timeRemaining() < 3) { idle(fitRest); return; }
+    }
+  }
+  function refit() { fitted = []; fitVisible(); idle(fitRest); }
 
   // ---------- turning ----------
   function maxState() { return spread ? leaves.length : N - 1; }
@@ -96,6 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
     leaves.forEach(function (leaf, i) {
       var flipped = i < state;
       leaf.classList.toggle('is-flipped', flipped);
+      leaf.classList.toggle('is-far', Math.abs(i - state) > 2);   // pages far from the reader are not rendered at all
       if (!leaf.classList.contains('is-turning')) leaf.style.zIndex = flipped ? 100 + i : leaves.length - i + 1;
     });
     book.classList.toggle('is-open', state > 0);
@@ -115,9 +128,13 @@ document.addEventListener('DOMContentLoaded', function () {
     var right = spread ? (state < leaves.length ? 2 * state : N - 1) : state;
     var left = spread && state > 0 ? 2 * state - 1 : right;
     var cur = spread && state > 0 && state < leaves.length ? left + '–' + right : right;
-    label.textContent = right === 0 ? 'Cover' : (pages[right].getAttribute('data-title') || '') + ' · p. ' + cur;
-    bar.style.transform = 'scaleX(' + (right / (N - 1)) + ')';
+    label.textContent = right === 0 ? 'MBBS Abroad Handbook' : (pages[right].getAttribute('data-title') || '');
+    numEl.textContent = right === 0 ? 'Cover' : cur; numEl.toggleAttribute('data-long', right === 0 || String(cur).length > 2);
+    ofEl.textContent = right === 0 ? '' : 'of ' + (N - 1);
+    ring.style.strokeDashoffset = 100 - (right / (N - 1)) * 100;
     btnPrev.disabled = state === 0; btnNext.disabled = state === maxState();
+    btnNext.classList.toggle('is-hint', right === 0);
+    fitVisible();
   }
   function go(t) {
     t = clamp(t); clearTimeout(timer);
@@ -209,13 +226,16 @@ document.addEventListener('DOMContentLoaded', function () {
   // re-size when the window changes (rotation, resizing); keep the reader on the same page
   var rt = null;
   function relayout() {
-    var idx = current(), was = spread;
+    var idx = current(), was = spread, before = dims;
     spread = size();
-    if (spread !== was) build(idx); else fitAll();
+    if (spread !== was) build(idx); else if (dims !== before) refit();
   }
   if ('ResizeObserver' in window) new ResizeObserver(function () { clearTimeout(rt); rt = setTimeout(relayout, 120); }).observe(stage);
   else window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(relayout, 120); });
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(refit);
+  // keep the reader exactly as tall as what is visible (mobile browser toolbars come and go)
+  window.addEventListener('resize', setAppH); window.addEventListener('orientationchange', function () { setTimeout(setAppH, 250); });
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', setAppH);
 
   spread = size();
   build(0);

@@ -9,7 +9,7 @@
    ========================================================================== */
 
 /* ================= READER SHELL (locks the page, hides the site chrome) ================= */
-html.js body.sg-reader { display: flex; flex-direction: column; height: 100vh; height: 100dvh; overflow: hidden; overflow: clip; padding-bottom: 0; }
+html.js body.sg-reader { position: fixed; inset: 0; display: flex; flex-direction: column; height: 100vh; height: 100dvh; height: var(--app-h, 100dvh); overflow: hidden; overflow: clip; padding-bottom: 0; }
 html.js body.sg-reader .announce,
 html.js body.sg-reader .app-header,
 html.js body.sg-reader .bottom-nav,
@@ -30,14 +30,26 @@ html.js body.sg-reader main { position: relative; flex: 1; min-height: 0; displa
 .sg-hud__brand { flex: 1; min-width: 0; display: flex; align-items: center; gap: .6rem; color: var(--color-text-inverse); }
 .sg-hud__brand svg { width: 30px; height: 30px; flex-shrink: 0; overflow: visible; }
 .sg-hud__brand span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--fs-sm); font-weight: 800; letter-spacing: .01em; }
-.sg-hud__brand small { display: none; margin-left: .45rem; font-size: var(--fs-xs); font-weight: 600; color: var(--color-text-inverse-muted); }
 
-.sg-dock { position: relative; z-index: 4; display: flex; justify-content: center; padding: var(--sp-2) var(--sp-3) calc(var(--sp-3) + var(--safe-bottom)); }
-.sg-dock__pill { display: flex; align-items: center; gap: var(--sp-2); width: 100%; max-width: 440px; padding: 6px; border-radius: 999px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); }
-.sg-status { flex: 1; min-width: 0; padding: 0 var(--sp-1); }
-.sg-status__label { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: center; font-size: var(--fs-xs); font-weight: 700; color: var(--color-text-inverse); }
-.sg-progress { display: block; height: 4px; margin-top: 6px; border-radius: 4px; overflow: hidden; background: rgba(255,255,255,.2); }
-.sg-progress span { display: block; height: 100%; border-radius: 4px; background: #fff; transform-origin: left; transform: scaleX(0); transition: transform .6s var(--ease); }
+/* bottom dock: two round arrows with a page dial between them (the dial is also the Contents button) */
+.sg-dock { position: relative; z-index: 4; display: flex; align-items: center; justify-content: center; gap: 18px; padding: 4px var(--sp-3) calc(var(--sp-3) + var(--safe-bottom)); }
+.sg-arrow { width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.3); color: var(--color-text-inverse); transition: transform var(--speed) var(--ease), background var(--speed) var(--ease), opacity var(--speed) var(--ease); }
+.sg-arrow .icon { width: 26px; height: 26px; stroke-width: 2.6; }
+.sg-arrow:active { transform: scale(.92); }
+.sg-arrow--next { background: var(--color-surface); color: var(--color-primary); border-color: transparent; box-shadow: 0 8px 22px rgba(5,14,44,.45); }
+.sg-arrow[disabled] { opacity: .3; pointer-events: none; box-shadow: none; }
+.sg-arrow--next.is-hint { animation: sg-pulse 1.8s ease-out infinite; }
+@keyframes sg-pulse { 0% { box-shadow: 0 0 0 0 rgba(255,255,255,.55); } 80%, 100% { box-shadow: 0 0 0 16px rgba(255,255,255,0); } }
+.sg-ring { position: relative; width: 66px; height: 66px; border-radius: 50%; display: grid; place-items: center; background: var(--color-primary-ink); box-shadow: 0 8px 22px rgba(5,14,44,.5); color: var(--color-text-inverse); transition: transform var(--speed) var(--ease); }
+.sg-ring:active { transform: scale(.94); }
+.sg-ring svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+.sg-ring circle { fill: none; stroke-width: 4; }
+.sg-ring__track { stroke: rgba(255,255,255,.18); }
+.sg-ring__bar { stroke: #fff; stroke-linecap: round; stroke-dasharray: 100; stroke-dashoffset: 100; transition: stroke-dashoffset .6s var(--ease); }
+.sg-ring__txt { position: relative; display: grid; justify-items: center; line-height: 1; }
+.sg-ring__txt b { font-size: 1.15rem; font-weight: 800; }
+.sg-ring__txt b[data-long] { font-size: .72rem; }
+.sg-ring__txt i { margin-top: 3px; font-style: normal; font-size: .55rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--color-blue-pale); }
 
 .sg-tool { flex-shrink: 0; min-width: 44px; height: 44px; padding: 0 .85rem; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; gap: .45rem; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); color: var(--color-text-inverse); font-size: var(--fs-xs); font-weight: 700; transition: background var(--speed) var(--ease), opacity var(--speed) var(--ease); }
 .sg-tool .icon { width: 18px; height: 18px; stroke-width: 2.4; }
@@ -45,14 +57,18 @@ html.js body.sg-reader main { position: relative; flex: 1; min-height: 0; displa
 .sg-tool[disabled] { opacity: .35; pointer-events: none; }
 .sg-tool--solid { background: var(--color-surface); color: var(--color-primary); border-color: transparent; }
 .sg-tool--solid:hover { background: var(--color-wash); }
-.sg-tool--round { padding: 0; width: 44px; }
-.sg-dock .sg-tool--round { background: rgba(255,255,255,.14); }
 .sg-tool--text span { display: none; }
 
 /* ================= THE BOOK ================= */
+/* shown instantly while the script builds the book */
+.sg-book:empty { width: min(100%, 440px); height: 100%; border-radius: var(--radius-xl); display: grid; place-items: center; background: linear-gradient(100deg, rgba(255,255,255,.06) 30%, rgba(255,255,255,.17) 50%, rgba(255,255,255,.06) 70%) 0 0 / 220% 100%; animation: sg-shimmer 1.3s linear infinite; }
+.sg-book:empty::after { content: "Opening the handbook\2026"; font-size: var(--fs-sm); font-weight: 700; color: var(--color-text-inverse-muted); }
+@keyframes sg-shimmer { to { background-position: -220% 0; } }
 .sg-book { --pw: 340px; --ph: 520px; position: relative; width: var(--pw); height: var(--ph); perspective: 2600px; transition: transform .8s var(--ease); }
 .sg-board { display: none; }
-.sg-leaf { position: absolute; inset: 0; transform-origin: left center; transform-style: preserve-3d; transition: transform .85s cubic-bezier(.645,.045,.355,1), opacity .25s linear .6s; will-change: transform; }
+.sg-leaf { position: absolute; inset: 0; transform-origin: left center; transform-style: preserve-3d; transition: transform .85s cubic-bezier(.645,.045,.355,1), opacity .25s linear .6s; }
+.sg-leaf.is-turning { will-change: transform; }
+.sg-leaf.is-far { visibility: hidden; }
 .sg-leaf.is-flipped { transform: rotateY(-100deg); opacity: 0; pointer-events: none; }
 .sg-face { position: absolute; inset: 0; overflow: hidden; background: linear-gradient(180deg, var(--color-surface) 62%, var(--color-wash) 175%); backface-visibility: hidden; -webkit-backface-visibility: hidden; box-shadow: 0 18px 44px rgba(5,14,44,.5); }
 .sg-face--right { border-radius: 4px var(--radius-xl) var(--radius-xl) 4px; }
@@ -238,19 +254,30 @@ html:not(.js) .sg-stage, html:not(.js) .sg-hud, html:not(.js) .sg-dock { display
 @media (min-width: 640px) {
   .sg-tool--text span { display: inline; }
   .sg-tool--text { padding: 0 1.1rem; }
-  .sg-hud__brand small { display: inline; }
 }
 @media (min-width: 768px) {
-  .sg-hud { padding-inline: var(--sp-5); }
-  .sg-stage { padding-inline: var(--sp-4); }
+  .sg-hud { padding-inline: var(--sp-5); padding-block: var(--sp-2); }
+  .sg-stage { padding: 0 var(--sp-4) var(--sp-3); }
+  .sg-dock { padding-bottom: var(--sp-3); }
+}
+/* wide screens: the arrows + dial move up into the top bar (centred), so the book gets the full height */
+@media (min-width: 900px) and (min-aspect-ratio: 6/5) {
+  .sg-hud { min-height: 68px; }
+  .sg-dock { position: absolute; top: 7px; left: 50%; transform: translateX(-50%); padding: 0; gap: 12px; }
+  .sg-arrow { width: 46px; height: 46px; }
+  .sg-arrow .icon { width: 22px; height: 22px; }
+  .sg-ring { width: 56px; height: 56px; }
+  .sg-ring__txt b { font-size: 1rem; }
+  .sg-ring__txt b[data-long] { font-size: .66rem; }
+  .sg-ring__txt i { font-size: .5rem; margin-top: 2px; }
 }
 /* two-page spread (JS adds .is-spread when the stage is wide enough) */
 .sg-book.is-spread { width: calc(var(--pw) * 2); transform: translateX(calc(var(--pw) / -2)); }
 .sg-book.is-spread.is-open { transform: none; }
 .sg-book.is-spread.is-end { transform: translateX(calc(var(--pw) / 2)); }
-.sg-book.is-spread .sg-board { display: block; position: absolute; top: -10px; bottom: -10px; width: 50%; z-index: 0; background: var(--color-primary-deep); box-shadow: 0 30px 60px rgba(5,14,44,.55); transition: opacity .6s var(--ease); }
-.sg-book.is-spread .sg-board--left { left: -10px; border-radius: var(--radius-xl) 0 0 var(--radius-xl); opacity: 0; }
-.sg-book.is-spread .sg-board--right { right: -10px; border-radius: 0 var(--radius-xl) var(--radius-xl) 0; }
+.sg-book.is-spread .sg-board { display: block; position: absolute; top: 0; bottom: 0; width: 50%; z-index: 0; background: transparent; box-shadow: 0 26px 60px rgba(5,14,44,.55); transition: opacity .6s var(--ease); }
+.sg-book.is-spread .sg-board--left { left: 0; border-radius: var(--radius-xl) 0 0 var(--radius-xl); opacity: 0; }
+.sg-book.is-spread .sg-board--right { right: 0; border-radius: 0 var(--radius-xl) var(--radius-xl) 0; }
 .sg-book.is-spread.is-open .sg-board--left { opacity: 1; }
 .sg-book.is-spread.is-end .sg-board--right { opacity: 0; }
 .sg-book.is-spread .sg-leaf { inset: 0 auto 0 50%; width: 50%; }

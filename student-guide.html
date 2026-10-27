@@ -27,7 +27,9 @@
 <link rel="stylesheet" href="css/animations.css">
 <link rel="stylesheet" href="css/responsive.css">
 <link rel="stylesheet" href="css/pages/student-guide.css">
-<script>document.documentElement.classList.add('js');</script>
+<script>document.documentElement.classList.add('js');
+// real visible height (Chrome/Safari toolbars included) so the bottom controls are never hidden
+function setAppH(){document.documentElement.style.setProperty('--app-h',window.innerHeight+'px');}setAppH();</script>
 </head>
 <body class="sg-reader">
 
@@ -109,28 +111,28 @@
 <main id="main">
   <svg class="sg-globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
 
-  <!-- Top bar: back to the site, the handbook name, Contents and the PDF download.
+  <!-- Top bar: back to the site, what you are reading, and the PDF download.
        (The site header, announcement bar and bottom tab bar are hidden on this page only — see student-guide.css.) -->
   <div class="sg-hud">
     <a href="index.html" class="sg-tool sg-tool--text" aria-label="Back to the Mathura Overseas website"><svg class="icon" aria-hidden="true"><use href="#i-chevron-left"></use></svg><span>Site</span></a>
     <div class="sg-hud__brand">
       <svg viewBox="0 0 40 40" aria-hidden="true"><rect class="logo__badge" width="40" height="40" rx="12"/><g class="logo__cap"><path d="M20 9 7 15.5 20 22l13-6.5L20 9Z"/><path d="M12 19.2V24c0 2.2 3.6 4 8 4s8-1.8 8-4v-4.8L20 24.4l-8-5.2Z" opacity=".92"/></g></svg>
-      <span>MBBS Abroad Handbook<small>2026&ndash;27</small></span>
+      <span id="sgLabel">MBBS Abroad Handbook</span>
     </div>
-    <button type="button" class="sg-tool sg-tool--text" data-goto="contents" aria-label="Contents"><svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg><span>Contents</span></button>
     <button type="button" class="sg-tool sg-tool--text sg-tool--solid" data-sg="download" aria-label="Download PDF"><svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg><span>PDF</span></button>
   </div>
 
   <!-- The book is built here by js/pages/student-guide.js from the pages listed further down -->
   <div class="sg-stage" id="sgStage"><div class="sg-book" id="sgBook" aria-label="MBBS Abroad Handbook"></div></div>
 
-  <!-- Bottom dock: previous / where you are / next -->
+  <!-- Bottom dock: previous ‹  [ page dial: tap for Contents ]  › next -->
   <div class="sg-dock">
-    <div class="sg-dock__pill">
-      <button type="button" class="sg-tool sg-tool--round" id="sgPrev" data-sg="prev" aria-label="Previous page"><svg class="icon" aria-hidden="true"><use href="#i-chevron-left"></use></svg></button>
-      <div class="sg-status"><span class="sg-status__label" id="sgLabel">Cover</span><span class="sg-progress"><span id="sgBar"></span></span></div>
-      <button type="button" class="sg-tool sg-tool--round" id="sgNext" data-sg="next" aria-label="Next page"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></button>
-    </div>
+    <button type="button" class="sg-arrow" id="sgPrev" data-sg="prev" aria-label="Previous page"><svg class="icon" aria-hidden="true"><use href="#i-chevron-left"></use></svg></button>
+    <button type="button" class="sg-ring" data-goto="contents" aria-label="Contents" title="Contents">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><circle class="sg-ring__track" cx="32" cy="32" r="28" pathLength="100"/><circle class="sg-ring__bar" id="sgRing" cx="32" cy="32" r="28" pathLength="100"/></svg>
+      <span class="sg-ring__txt"><b id="sgNum">Cover</b><i id="sgOf"></i></span>
+    </button>
+    <button type="button" class="sg-arrow sg-arrow--next is-hint" id="sgNext" data-sg="next" aria-label="Next page"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></button>
   </div>
 
   <!-- ===== BOOK CONTENT =====
