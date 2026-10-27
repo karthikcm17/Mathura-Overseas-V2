@@ -296,7 +296,10 @@
   }
   if ('ResizeObserver' in window) new ResizeObserver(function () { clearTimeout(rt); rt = setTimeout(relayout, 120); }).observe(stage);
   else window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(relayout, 120); });
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(refit);
+  // the web font arrives after the first fit and is wider than the fallback, so fit again whenever a font finishes loading
+  var ft; function refitSoon() { clearTimeout(ft); ft = setTimeout(refit, 60); }
+  if (document.fonts) { document.fonts.ready.then(refitSoon); if (document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', refitSoon); }
+  window.addEventListener('load', refitSoon);
   // keep the reader exactly as tall as what is visible (mobile browser toolbars come and go)
   window.addEventListener('resize', setAppH); window.addEventListener('orientationchange', function () { setTimeout(setAppH, 250); });
   if (window.visualViewport) window.visualViewport.addEventListener('resize', setAppH);
