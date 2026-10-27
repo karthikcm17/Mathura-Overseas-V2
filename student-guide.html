@@ -31,7 +31,18 @@
 <link rel="stylesheet" href="css/pages/student-guide.css">
 <script>document.documentElement.classList.add('js');
 // real visible height (Chrome/Safari toolbars included) so the bottom controls are never hidden
-function setAppH(){document.documentElement.style.setProperty('--app-h',window.innerHeight+'px');}setAppH();</script>
+function setAppH(){
+  // Browsers disagree about how tall the screen really is (toolbars, Android navigation bar). Take the smallest honest
+  // answer, including the "small viewport" unit, so the book can never end up underneath a bar.
+  var d=document.documentElement,v=[window.innerHeight,d.clientHeight];
+  if(window.visualViewport)v.push(Math.round(window.visualViewport.height+window.visualViewport.offsetTop));
+  var pr=document.getElementById('sgProbe');
+  if(!pr&&document.body){pr=document.createElement('div');pr.id='sgProbe';pr.setAttribute('aria-hidden','true');pr.className='sg-probe';document.body.appendChild(pr);}
+  if(pr&&pr.offsetHeight)v.push(pr.offsetHeight);
+  v=v.filter(function(x){return x>200;});
+  d.style.setProperty('--app-h',Math.min.apply(null,v)+'px');
+}setAppH();
+document.addEventListener('DOMContentLoaded',function(){setAppH();setTimeout(setAppH,300);});</script>
 </head>
 <body class="sg-reader">
 
