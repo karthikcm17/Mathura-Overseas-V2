@@ -1,3 +1,4 @@
+/* BUILD 20261027-3 */
 // student-guide.js — turns every <article class="sg-page"> in #sgSource into a page of a 3D page-turn book,
 // sizes the book to the screen (no page scrolling), keeps ONE text size across the whole book, and runs the PDF download gate.
 // This script is loaded first on the page and starts straight away (it does not wait for the shared site scripts).
