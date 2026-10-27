@@ -109,21 +109,35 @@
 <main id="main">
   <svg class="sg-globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
 
+  <!-- Top bar: back to the site, the handbook name, Contents and the PDF download.
+       (The site header, announcement bar and bottom tab bar are hidden on this page only — see student-guide.css.) -->
+  <div class="sg-hud">
+    <a href="index.html" class="sg-tool sg-tool--text" aria-label="Back to the Mathura Overseas website"><svg class="icon" aria-hidden="true"><use href="#i-chevron-left"></use></svg><span>Site</span></a>
+    <div class="sg-hud__brand">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect class="logo__badge" width="40" height="40" rx="12"/><g class="logo__cap"><path d="M20 9 7 15.5 20 22l13-6.5L20 9Z"/><path d="M12 19.2V24c0 2.2 3.6 4 8 4s8-1.8 8-4v-4.8L20 24.4l-8-5.2Z" opacity=".92"/></g></svg>
+      <span>MBBS Abroad Handbook<small>2026&ndash;27</small></span>
+    </div>
+    <button type="button" class="sg-tool sg-tool--text" data-goto="contents" aria-label="Contents"><svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg><span>Contents</span></button>
+    <button type="button" class="sg-tool sg-tool--text sg-tool--solid" data-sg="download" aria-label="Download PDF"><svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg><span>PDF</span></button>
+  </div>
+
   <!-- The book is built here by js/pages/student-guide.js from the pages listed further down -->
   <div class="sg-stage" id="sgStage"><div class="sg-book" id="sgBook" aria-label="MBBS Abroad Handbook"></div></div>
 
-  <div class="sg-toolbar">
-    <button type="button" class="sg-tool sg-tool--text" data-goto="contents" aria-label="Contents"><svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg><span>Contents</span></button>
-    <button type="button" class="sg-tool" id="sgPrev" data-sg="prev" aria-label="Previous page"><svg class="icon" aria-hidden="true"><use href="#i-chevron-left"></use></svg></button>
-    <div class="sg-status"><span class="sg-status__label" id="sgLabel">Cover</span><span class="sg-progress"><span id="sgBar"></span></span></div>
-    <button type="button" class="sg-tool" id="sgNext" data-sg="next" aria-label="Next page"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></button>
-    <button type="button" class="sg-tool sg-tool--text sg-tool--solid" data-sg="download" aria-label="Download PDF"><svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg><span>PDF</span></button>
+  <!-- Bottom dock: previous / where you are / next -->
+  <div class="sg-dock">
+    <div class="sg-dock__pill">
+      <button type="button" class="sg-tool sg-tool--round" id="sgPrev" data-sg="prev" aria-label="Previous page"><svg class="icon" aria-hidden="true"><use href="#i-chevron-left"></use></svg></button>
+      <div class="sg-status"><span class="sg-status__label" id="sgLabel">Cover</span><span class="sg-progress"><span id="sgBar"></span></span></div>
+      <button type="button" class="sg-tool sg-tool--round" id="sgNext" data-sg="next" aria-label="Next page"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg></button>
+    </div>
   </div>
 
   <!-- ===== BOOK CONTENT =====
        Each <article class="sg-page"> is ONE page of the book. Edit the text freely: the page shrinks its text to fit automatically.
        Rules: keep the cover first and the dark closing page last, and keep the TOTAL number of pages EVEN (add or remove pages in pairs).
-       data-title = label under the book · data-run = small heading at the top of the page · id = link target for the Contents page. -->
+       data-title = label under the book · data-run = small heading at the top of the page · id = link target for the Contents page.
+       Anything inside class="pg-opt" is dropped automatically if a page gets too crowded. -->
   <div class="sg-source" id="sgSource">
 
     <!-- 0 · COVER -->
@@ -135,729 +149,214 @@
         </div>
         <svg class="globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
         <div>
-          <span class="pg-pill"><i></i>2026&ndash;27 Edition &middot; Student &amp; Parent Guide</span>
-          <h1>The MBBS Abroad <em>Handbook</em></h1>
+          <span class="pg-pill"><i></i>2026&ndash;27 &middot; Quick-read edition</span>
+          <h1>MBBS Abroad <em>Handbook</em></h1>
           <div class="pg-cover__line"></div>
-          <p>From Class 12 to a licensed doctor in India &mdash; NEET-UG, counselling, NMC rules, FMGE &amp; NExT, country-by-country choices, universities, costs and the admission journey. Updated with what changed in 2026.</p>
+          <p>The essentials for students and parents: NEET, NMC rules, FMGE, country choices, costs and the admission journey. The full handbook is a free PDF.</p>
         </div>
-        <div class="pg-chips" aria-label="Destinations covered">
-          <span>Philippines</span><span>Russia</span><span>Uzbekistan</span><span>Kyrgyzstan</span><span>Kazakhstan</span><span>Georgia</span><span>Vietnam</span><span>Timor-Leste</span><span>Central America &amp; Caribbean</span>
-        </div>
-        <div class="pg-cover__foot"><span>Information as of October 2026</span><span class="pg-open">Tap to open <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></div>
+        <div class="pg-cover__foot"><span>Information as of October 2026</span><span class="pg-open">Open <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></div>
       </div>
     </article>
 
     <!-- 1 · CONTENTS -->
     <article class="sg-page" id="contents" data-title="Contents" data-run="Contents">
       <div class="pg">
-        <p class="pg-kicker">Inside this handbook</p>
-        <h2>Contents</h2>
-        <ol class="pg-toc">
-          <li><a href="#ch1" data-goto="ch1"><b>01</b><span>Your Roadmap After Class 12<small>Board exams to registration in India</small></span><em>p.2</em></a></li>
-          <li><a href="#ch2" data-goto="ch2"><b>02</b><span>NEET-UG: The Gateway Exam<small>Eligibility and 2026 cut-offs</small></span><em>p.4</em></a></li>
-          <li><a href="#ch3" data-goto="ch3"><b>03</b><span>Counselling &mdash; India &amp; Abroad<small>MCC, state rounds, two tracks</small></span><em>p.6</em></a></li>
-          <li><a href="#ch4" data-goto="ch4"><b>04</b><span>The NMC Rulebook (FMGL 2021)<small>Conditions your degree must meet</small></span><em>p.8</em></a></li>
-          <li><a href="#ch5" data-goto="ch5"><b>05</b><span>FMGE Today, NExT Tomorrow<small>Licensing exam and pass rates</small></span><em>p.11</em></a></li>
-          <li><a href="#ch6" data-goto="ch6"><b>06</b><span>Myth vs. Fact<small>What families hear, and the truth</small></span><em>p.13</em></a></li>
-          <li><a href="#ch7" data-goto="ch7"><b>07</b><span>Destination Guide<small>Country by country</small></span><em>p.16</em></a></li>
-          <li><a href="#ch8" data-goto="ch8"><b>08</b><span>Compare &amp; Choose<small>Side by side, plus 10 questions</small></span><em>p.35</em></a></li>
-          <li><a href="#ch9" data-goto="ch9"><b>09</b><span>Admission, Visa &amp; Documents<small>The step-by-step journey</small></span><em>p.38</em></a></li>
-          <li><a href="#ch10" data-goto="ch10"><b>10</b><span>Life Abroad &amp; Costly Mistakes<small>Living costs, safety, checklist</small></span><em>p.41</em></a></li>
-          <li><a href="#ch11" data-goto="ch11"><b>11</b><span>Why Mathura Overseas<small>How we support you</small></span><em>p.44</em></a></li>
-        </ol>
-        <p class="pg-small"><strong>Please read:</strong> general educational guidance. Fees and rules change &mdash; facts marked &ldquo;as of&rdquo; were checked in 2026. Confirm the latest NMC / NBEMS / NTA notices and the university&rsquo;s fee letter before you pay.</p>
-      </div>
-    </article>
-
-    <!-- 2 · CH1 ROADMAP -->
-    <article class="sg-page" id="ch1" data-title="1 · Roadmap after Class 12" data-run="Your roadmap">
-      <div class="pg">
-        <header class="pg-hero" data-num="01">
-          <p class="pg-kicker">Chapter 01</p>
-          <h2>Your Roadmap After Class 12</h2>
-          <p>An MBBS abroad is not a shortcut &mdash; it is a 7-to-8-year path with clear checkpoints. Here is the whole road, so nothing surprises you.</p>
+        <header class="pg-head">
+          <span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg></span>
+          <div><p class="pg-kicker">Inside</p><h2>Contents</h2></div>
         </header>
-        <ol class="pg-steps">
-          <li><b>Class 12 with PCB + English <span class="pg-tag">INDIA</span></b><span>Physics, Chemistry, Biology/Biotechnology and English, with the minimum qualifying marks. Age 17 by 31 December of the admission year.</span></li>
-          <li><b>Qualify NEET-UG <span class="pg-tag">INDIA</span></b><span>Mandatory if you ever want to practise in India &mdash; even with a foreign degree.</span></li>
-          <li><b>Try Indian counselling first <span class="pg-tag">INDIA</span></b><span>MCC and state rounds. Abroad is a parallel plan, not a replacement.</span></li>
-          <li><b>Choose an NMC-compliant university <span class="pg-tag pg-tag--abroad">ABROAD</span></b><span>Verify course length, English medium, internship and local licence eligibility.</span></li>
-          <li><b>Study 54+ months and a 12-month internship <span class="pg-tag pg-tag--abroad">ABROAD</span></b><span>Same institution, same country, in person. Start FMGE preparation in year one.</span></li>
-          <li><b>Pass FMGE (NExT when it arrives) <span class="pg-tag">INDIA</span></b><span>The screening test for foreign medical graduates, held by NBEMS.</span></li>
-          <li><b>12-month CRMI internship in India <span class="pg-tag">INDIA</span></b><span>Then permanent registration &mdash; you are a doctor in India.</span></li>
+        <ol class="pg-tiles">
+          <li><a href="#ch1" data-goto="ch1"><b>01</b><span>Roadmap after Class 12</span><em>2</em></a></li>
+          <li><a href="#ch2" data-goto="ch2"><b>02</b><span>NEET-UG</span><em>3</em></a></li>
+          <li><a href="#ch3" data-goto="ch3"><b>03</b><span>Counselling</span><em>4</em></a></li>
+          <li><a href="#ch4" data-goto="ch4"><b>04</b><span>NMC rulebook</span><em>5</em></a></li>
+          <li><a href="#ch5" data-goto="ch5"><b>05</b><span>FMGE &amp; NExT</span><em>6</em></a></li>
+          <li><a href="#ch6" data-goto="ch6"><b>06</b><span>Myth vs. fact</span><em>7</em></a></li>
+          <li><a href="#ch7" data-goto="ch7"><b>07</b><span>Countries at a glance</span><em>8</em></a></li>
+          <li><a href="#ch8" data-goto="ch8"><b>08</b><span>Choose your fit</span><em>9</em></a></li>
+          <li><a href="#ch9" data-goto="ch9"><b>09</b><span>Ask before you pay</span><em>10</em></a></li>
+          <li><a href="#ch10" data-goto="ch10"><b>10</b><span>Admission journey</span><em>11</em></a></li>
+          <li><a href="#ch11" data-goto="ch11"><b>11</b><span>Timeline &amp; documents</span><em>12</em></a></li>
+          <li><a href="#ch12" data-goto="ch12"><b>12</b><span>Life abroad</span><em>13</em></a></li>
+          <li><a href="#ch13" data-goto="ch13"><b>13</b><span>Your checklist</span><em>14</em></a></li>
+        </ol>
+        <p class="pg-small pg-opt"><strong>Please read:</strong> general guidance only. Facts marked &ldquo;as of&rdquo; were checked in 2026. Confirm the latest NMC, NBEMS and NTA notices and your university&rsquo;s fee letter before you pay.</p>
+      </div>
+    </article>
+
+    <!-- 2 · ROADMAP -->
+    <article class="sg-page" id="ch1" data-title="1 · Roadmap after Class 12" data-run="Roadmap">
+      <div class="pg">
+        <header class="pg-head">
+          <span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg></span>
+          <div><p class="pg-kicker">Chapter 01</p><h2>Your roadmap after Class 12</h2></div>
+        </header>
+        <p class="pg-lede pg-opt">MBBS abroad is a 7-to-8-year path with clear checkpoints. Here is the whole road.</p>
+        <ol class="pg-steps pg-steps--path">
+          <li><b>Class 12 with PCB + English <span class="pg-tag">INDIA</span></b><span class="pg-opt">Age 17 by 31 December of the admission year.</span></li>
+          <li><b>Qualify NEET-UG <span class="pg-tag">INDIA</span></b><span class="pg-opt">Mandatory to practise in India, even with a foreign degree.</span></li>
+          <li><b>Try Indian counselling first <span class="pg-tag">INDIA</span></b><span class="pg-opt">Abroad is a parallel plan, not a replacement.</span></li>
+          <li><b>Choose an NMC-compliant university <span class="pg-tag pg-tag--abroad">ABROAD</span></b><span class="pg-opt">Check course length, English medium, internship and licence.</span></li>
+          <li><b>Study 54+ months, then a 12-month internship <span class="pg-tag pg-tag--abroad">ABROAD</span></b><span class="pg-opt">Same institution, same country, in person.</span></li>
+          <li><b>Pass FMGE (NExT when it arrives) <span class="pg-tag">INDIA</span></b><span class="pg-opt">The NBEMS screening test for foreign graduates.</span></li>
+          <li><b>12-month CRMI internship in India <span class="pg-tag">INDIA</span></b><span class="pg-opt">Then permanent registration &mdash; you are a doctor in India.</span></li>
         </ol>
       </div>
     </article>
 
-    <!-- 3 · CH1 FIT -->
-    <article class="sg-page" id="ch1b" data-title="1 · Is it right for you?" data-run="Your roadmap">
-      <div class="pg">
-        <div class="pg-stats">
-          <div class="pg-stat"><b>54 mo</b><span>Minimum course length abroad</span></div>
-          <div class="pg-stat"><b>12 + 12</b><span>Months of internship: abroad, then India</span></div>
-        </div>
-        <h3>Is MBBS abroad right for you?</h3>
-        <p>Tick honestly. If most of these are true, you are a good fit:</p>
-        <ul class="pg-check">
-          <li>I have qualified (or will sit) NEET-UG.</li>
-          <li>I am ready to live away from home for 6+ years.</li>
-          <li>I will adapt to a new culture and pick up the local language for patients.</li>
-          <li>I will study for FMGE steadily from year one &mdash; not in the final months.</li>
-          <li>My family has budgeted the <em>total</em> cost &mdash; tuition, hostel, food, travel, insurance.</li>
-          <li>I will choose by compliance and clinical exposure, not by the lowest fee.</li>
-        </ul>
-        <div class="pg-note pg-note--dark"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><p><strong>Remember the time limit:</strong> NMC&rsquo;s 18 March 2026 notice says the internship must be completed within <strong>ten years</strong> of joining the foreign institution. Plan for no long breaks.</p></div>
-        <p class="pg-quote">&ldquo;Choosing the right university matters far more than choosing the lowest tuition fee.&rdquo;</p>
-      </div>
-    </article>
-
-    <!-- 4 · CH2 NEET -->
+    <!-- 3 · NEET -->
     <article class="sg-page" id="ch2" data-title="2 · NEET-UG" data-run="NEET-UG">
       <div class="pg">
-        <header class="pg-hero" data-num="02">
-          <p class="pg-kicker">Chapter 02</p>
-          <h2>NEET-UG: The Gateway Exam</h2>
-          <p>One exam opens both doors &mdash; Indian medical seats and a foreign degree that is valid back home.</p>
+        <header class="pg-head">
+          <span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg></span>
+          <div><p class="pg-kicker">Chapter 02</p><h2>NEET-UG: the gateway exam</h2></div>
         </header>
-        <p>NEET-UG is conducted by the National Testing Agency (NTA). Qualifying it is <strong>mandatory</strong> for an Indian student who studies medicine abroad and wants to register to practise in India. A foreign university may admit you without it &mdash; but that degree will not lead to an Indian licence.</p>
-        <h3>2026: the year NEET was held twice <span class="pg-asof">As of Oct 2026</span></h3>
-        <div class="pg-stats pg-stats--4">
-          <div class="pg-stat"><b>3 May</b><span>Original NEET-UG 2026</span></div>
-          <div class="pg-stat"><b>12 May</b><span>NTA cancels exam; re-test announced</span></div>
-          <div class="pg-stat"><b>21 Jun</b><span>Re-NEET UG 2026 conducted</span></div>
-          <div class="pg-stat"><b>11.21 L</b><span>Candidates qualified the re-NEET</span></div>
+        <p class="pg-lede">Conducted by NTA. It is <strong>mandatory</strong> if you want to practise in India with a foreign degree.</p>
+        <h3>2026 at a glance <span class="pg-asof">As of Oct 2026</span></h3>
+        <div class="pg-stats pg-stats--3">
+          <div class="pg-stat"><b>12 May</b><span>NTA cancels the 3 May exam</span></div>
+          <div class="pg-stat"><b>21 Jun</b><span>Re-NEET UG held</span></div>
+          <div class="pg-stat"><b>11.21 L</b><span>Qualified the re-NEET</span></div>
         </div>
-        <p class="pg-small">NTA cancelled the 3 May exam with Government approval following investigation findings around an alleged paper leak, and a CBI probe was ordered. The re-exam result and category cut-offs were released in July 2026.</p>
-        <div class="pg-note"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><p><strong>The lesson for 2027 aspirants:</strong> keep your documents ready early and never let one date be your only plan. Families who had an abroad plan in parallel lost far less time in 2026.</p></div>
-      </div>
-    </article>
-
-    <!-- 5 · CH2 CUT-OFFS -->
-    <article class="sg-page" id="ch2b" data-title="2 · Cut-offs & eligibility" data-run="NEET-UG">
-      <div class="pg">
-        <h3>Qualifying cut-off &mdash; Re-NEET UG 2026</h3>
         <table class="pg-table">
-          <thead><tr><th>Category</th><th>Percentile</th><th>2026 marks</th><th>2025 marks</th></tr></thead>
+          <thead><tr><th>Category</th><th>Percentile</th><th>2026 marks</th></tr></thead>
           <tbody>
-            <tr><td>General / EWS</td><td>50th</td><td><b>715 &ndash; 213</b></td><td>686 &ndash; 144</td></tr>
-            <tr><td>OBC / SC / ST</td><td>40th</td><td><b>212 &ndash; 177</b></td><td>143 &ndash; 113</td></tr>
-            <tr><td>General / EWS &ndash; PwBD</td><td>45th</td><td><b>212 &ndash; 194</b></td><td>143 &ndash; 127</td></tr>
-            <tr><td>OBC / SC &ndash; PwBD</td><td>40th</td><td><b>193 &ndash; 177</b></td><td>126 &ndash; 113</td></tr>
-            <tr><td>ST &ndash; PwBD</td><td>40th</td><td><b>191 &ndash; 177</b></td><td>126 &ndash; 113</td></tr>
+            <tr><td>General / EWS</td><td>50th</td><td><b>715 &ndash; 213</b></td></tr>
+            <tr><td>OBC / SC / ST</td><td>40th</td><td><b>212 &ndash; 177</b></td></tr>
           </tbody>
         </table>
-        <p class="pg-small">Percentiles were unchanged; marks rose because of the score distribution. Per NTA, July 2026.</p>
-        <h3>Eligibility checklist</h3>
+        <h3>Eligibility</h3>
         <ul class="pg-check">
-          <li>Passed Class 12 with Physics, Chemistry, Biology/Biotechnology and English.</li>
-          <li>Minimum PCB marks as prescribed (commonly 50% General; 40% OBC/SC/ST).</li>
-          <li>17 years old on or before 31 December of the admission year.</li>
-          <li>NEET-UG qualified at or above the category percentile.</li>
+          <li>Class 12 with Physics, Chemistry, Biology/Biotech and English.</li>
+          <li>Minimum PCB marks (commonly 50% General; 40% OBC/SC/ST).</li>
+          <li>17 years old by 31 December of the admission year.</li>
         </ul>
+        <p class="pg-small pg-opt">Cut-offs per NTA, July 2026.</p>
       </div>
     </article>
 
-    <!-- 6 · CH3 INDIA COUNSELLING -->
-    <article class="sg-page" id="ch3" data-title="3 · Counselling in India" data-run="Counselling">
+    <!-- 4 · COUNSELLING -->
+    <article class="sg-page" id="ch3" data-title="3 · Counselling" data-run="Counselling">
       <div class="pg">
-        <header class="pg-hero" data-num="03">
-          <p class="pg-kicker">Chapter 03</p>
-          <h2>Counselling &mdash; In India &amp; For Abroad</h2>
-          <p>Smart families run two tracks at once: Indian counselling for a government or affordable seat, and an abroad application as a safety net.</p>
+        <header class="pg-head">
+          <span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg></span>
+          <div><p class="pg-kicker">Chapter 03</p><h2>Counselling: two tracks, one plan</h2></div>
         </header>
-        <h3>How Indian counselling works</h3>
+        <p class="pg-lede pg-opt">Smart families run Indian counselling and an abroad application side by side.</p>
         <div class="pg-cards pg-cards--wash">
-          <div class="pg-card"><h4>MCC &mdash; All India counselling</h4><p>Run by the Medical Counselling Committee. Covers the 15% All India Quota in government colleges, deemed and central universities, AIIMS and JIPMER.</p></div>
-          <div class="pg-card"><h4>State counselling</h4><p>Each state fills its own quota (the remaining 85% of government seats, plus private and management seats) on a separate schedule and portal.</p></div>
+          <div class="pg-card"><h4>MCC &mdash; All India</h4><p>15% All India Quota in government colleges, plus deemed and central universities, AIIMS and JIPMER.</p></div>
+          <div class="pg-card"><h4>State counselling</h4><p>The remaining 85% of government seats, plus private and management seats, on each state&rsquo;s own portal.</p></div>
         </div>
-        <p class="pg-small">Every round: seat matrix published &rarr; register &amp; pay fee &rarr; fill and lock choices &rarr; seat allotment &rarr; result &rarr; report and join &rarr; college verifies your joining.</p>
-        <h3>The 2026 MCC calendar <span class="pg-asof">As of Aug 2026</span></h3>
-        <table class="pg-table">
-          <tbody>
-            <tr><td>Round 1</td><td>Registration from 5 Aug &middot; result 17 Aug</td></tr>
-            <tr><td>Round 2</td><td>Registration 25 Aug &middot; result 2 Sep</td></tr>
-            <tr><td>Round 3</td><td>Registration 11 Sep &middot; result 18 Sep</td></tr>
-            <tr><td>Stray vacancy</td><td>28&ndash;30 Sep &middot; result 3 Oct</td></tr>
-            <tr><td>State rounds</td><td>From 13 Aug &middot; stray till 10 Oct</td></tr>
-          </tbody>
-        </table>
-        <p class="pg-small">2027 dates will differ &mdash; always follow mcc.nic.in and your state portal.</p>
-      </div>
-    </article>
-
-    <!-- 7 · CH3 ABROAD COUNSELLING -->
-    <article class="sg-page" id="ch3b" data-title="3 · Counselling for abroad" data-run="Counselling">
-      <div class="pg">
-        <h3>Counselling for abroad &mdash; with Mathura Overseas</h3>
-        <ol class="pg-steps">
-          <li><b>Free profile review</b><span>NEET score, category, PCB marks, budget and long-term goal (India, USMLE or elsewhere).</span></li>
-          <li><b>Shortlist by compliance</b><span>Universities checked against FMGL rules, NMC advisories and Indian embassy notices.</span></li>
-          <li><b>Honest comparison</b><span>Total cost, clinical exposure, language, climate, Indian student community &mdash; side by side.</span></li>
-          <li><b>Document verification</b><span>Marksheets, NEET scorecard, passport and birth certificate checked before applying.</span></li>
-          <li><b>Offer letter review</b><span>We read the admission letter and fee invoice with you before any payment.</span></li>
-          <li><b>Visa to arrival</b><span>Visa, forex, flight, airport pickup, hostel &mdash; and parent support afterwards.</span></li>
+        <h3>Abroad, with Mathura Overseas</h3>
+        <ol class="pg-chips-steps">
+          <li>Free profile review</li>
+          <li>Shortlist by compliance</li>
+          <li>Honest comparison</li>
+          <li>Document verification</li>
+          <li>Offer-letter review</li>
+          <li>Visa to arrival</li>
         </ol>
-        <div class="pg-note pg-note--dark"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><p><strong>Timing tip:</strong> most foreign intakes start classes in September&ndash;October &mdash; the same weeks as MCC Rounds 2 and 3. Start your abroad documents in June so you can decide quickly once Indian results are clear, without missing the foreign intake.</p></div>
+        <div class="pg-note pg-note--dark"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><p><strong>Timing tip:</strong> foreign intakes start in September&ndash;October, the same weeks as MCC Rounds 2 and 3. Prepare abroad documents by June.</p></div>
       </div>
     </article>
 
-    <!-- 8 · CH4 NMC 1-5 -->
+    <!-- 5 · NMC -->
     <article class="sg-page" id="ch4" data-title="4 · NMC rulebook" data-run="NMC rules">
       <div class="pg">
-        <header class="pg-hero" data-num="04">
-          <p class="pg-kicker">Chapter 04</p>
-          <h2>The NMC Rulebook: FMGL Regulations, 2021</h2>
-          <p>Notified on 18 November 2021 and still the governing framework in 2026. Get this chapter right and your degree is safe.</p>
+        <header class="pg-head">
+          <span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span>
+          <div><p class="pg-kicker">Chapter 04</p><h2>The NMC rulebook (FMGL 2021)</h2></div>
         </header>
-        <div class="pg-stats pg-stats--4">
-          <div class="pg-stat"><b>54 mo</b><span>Minimum course duration</span></div>
+        <div class="pg-stats">
+          <div class="pg-stat"><b>54 mo</b><span>Minimum course</span></div>
           <div class="pg-stat"><b>12 mo</b><span>Internship, same institution</span></div>
-          <div class="pg-stat"><b>100%</b><span>English-medium instruction</span></div>
+          <div class="pg-stat"><b>100%</b><span>English-medium teaching</span></div>
           <div class="pg-stat"><b>+12 mo</b><span>CRMI in India after FMGE</span></div>
         </div>
-        <h3>The 10 conditions every student must know</h3>
-        <ol class="pg-steps pg-steps--c">
-          <li>54 months (4.5 years) minimum course, excluding internship.</li>
-          <li>12-month internship at the same foreign institution &mdash; split internships are not accepted.</li>
-          <li>English medium throughout; any online study must be compensated by physical attendance.</li>
-          <li>Curriculum equivalent to Indian MBBS in theory, practicals and clinical training.</li>
-          <li>Local licence eligibility &mdash; you must be able to register as a doctor in that country, at par with its citizens.</li>
-        </ol>
-      </div>
-    </article>
-
-    <!-- 9 · CH4 NMC 6-10 -->
-    <article class="sg-page" id="ch4b" data-title="4 · NMC conditions 6–10" data-run="NMC rules">
-      <div class="pg">
-        <ol class="pg-steps pg-steps--c pg-steps--6">
-          <li>Real clinical training with hands-on hospital exposure.</li>
-          <li>Recognised institution, legally recognised in its own country.</li>
-          <li>12 more months of supervised internship (CRMI) in India before permanent registration.</li>
-          <li>A licensing exam &mdash; FMGE today, NExT once it is in force (Chapter 05).</li>
-          <li>No offshore shortcuts &mdash; campuses or &ldquo;partner&rdquo; study centres outside the country don&rsquo;t count.</li>
-        </ol>
-        <div class="pg-note"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg><p>Always verify on <strong>nmc.org.in</strong> (Public Notices) and the Indian embassy website of your destination before paying any fee.</p></div>
-        <p class="pg-quote">Get this chapter right and your degree is safe.</p>
-      </div>
-    </article>
-
-    <!-- 10 · CH4 2026 NOTICE + RED FLAGS -->
-    <article class="sg-page" id="ch4c" data-title="4 · New in 2026 & red flags" data-run="NMC rules">
-      <div class="pg">
-        <h3>New in 2026 &mdash; NMC public notice, 18 March 2026 <span class="pg-asof">As of Mar 2026</span></h3>
-        <div class="pg-note pg-note--dark"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><p>Students admitted on or after 18 Nov 2021 do one year of CRMI in India after FMGE. Online years not compensated abroad mean 1&ndash;2 years of clinical clerkship in India. FMG internship seats: 7.5% of seats in older colleges and 100% in new colleges without their own interns. Internship must finish within 10 years of joining abroad.</p></div>
-        <h3>Red flags before admission</h3>
-        <ul class="pg-cross">
-          <li>The university can&rsquo;t show its internship structure in writing.</li>
-          <li>Teaching is &ldquo;English&rdquo; only on paper.</li>
-          <li>Classes are partly run from an Indian city.</li>
-          <li>The agent asks for fees in a personal account.</li>
-          <li>Anyone promises &ldquo;guaranteed registration&rdquo; or &ldquo;100% FMGE pass&rdquo;.</li>
+        <h3>Must-haves</h3>
+        <ul class="pg-check">
+          <li>Curriculum equal to Indian MBBS, with real hospital training.</li>
+          <li>Recognised institution, eligible for a local licence at par with citizens.</li>
+          <li>No offshore or &ldquo;partner&rdquo; study centres outside the country.</li>
         </ul>
+        <div class="pg-note"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><p><strong>New in 2026 (NMC, 18 Mar 2026):</strong> the internship must finish within <strong>ten years</strong> of joining the foreign institution. Verify on <strong>nmc.org.in</strong> before paying.</p></div>
       </div>
     </article>
 
-    <!-- 11 · CH5 FMGE -->
-    <article class="sg-page" id="ch5" data-title="5 · FMGE" data-run="FMGE & NExT">
+    <!-- 6 · FMGE -->
+    <article class="sg-page" id="ch5" data-title="5 · FMGE & NExT" data-run="FMGE & NExT">
       <div class="pg">
-        <header class="pg-hero" data-num="05">
-          <p class="pg-kicker">Chapter 05</p>
-          <h2>FMGE Today, NExT Tomorrow</h2>
-          <p>Your degree is only the beginning. The licensing exam decides when you start practising in India.</p>
+        <header class="pg-head">
+          <span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-check-square"></use></svg></span>
+          <div><p class="pg-kicker">Chapter 05</p><h2>FMGE today, NExT tomorrow</h2></div>
         </header>
-        <p>The <strong>Foreign Medical Graduate Examination (FMGE)</strong> is conducted by NBEMS for Indian citizens and OCI cardholders with a medical degree from outside India. Pass it, complete your CRMI, and you can register.</p>
-        <div class="pg-stats pg-stats--4">
-          <div class="pg-stat"><b>300</b><span>MCQs in two parts</span></div>
-          <div class="pg-stat"><b>150</b><span>Marks needed to pass (50%)</span></div>
+        <div class="pg-stats">
+          <div class="pg-stat"><b>300</b><span>MCQs, two parts</span></div>
+          <div class="pg-stat"><b>150</b><span>To pass (50%)</span></div>
           <div class="pg-stat"><b>0</b><span>Negative marking</span></div>
-          <div class="pg-stat"><b>2&times; / yr</b><span>June &amp; December sessions</span></div>
+          <div class="pg-stat"><b>2&times; / yr</b><span>June &amp; December</span></div>
         </div>
         <h3>The pass-rate reality <span class="pg-asof">As of Oct 2026</span></h3>
         <table class="pg-table">
           <tbody>
-            <tr><td>Dec 2025<small>&asymp; 24%</small></td><td>10,264 of 42,872 candidates passed &mdash; more than three in four did not.</td></tr>
-            <tr><td>June 2026<small>&asymp; 12.4%</small></td><td>Result declared 7 July 2026; widely reported as a much tougher paper.</td></tr>
-            <tr><td>June 2026 first-timers<small>&asymp; 35%</small></td><td>Government data in Parliament: ~88% of candidates were repeaters. Fresh, well-prepared graduates do much better.</td></tr>
+            <tr><td>Dec 2025</td><td><b>&asymp; 24%</b></td></tr>
+            <tr><td>June 2026</td><td><b>&asymp; 12.4%</b></td></tr>
+            <tr><td>June 2026 first-timers</td><td><b>&asymp; 35%</b></td></tr>
           </tbody>
         </table>
-        <p class="pg-small">Next session: FMGE December 2026 is scheduled for 9 January 2027 (provisional). Pass rates are not officially published by university &mdash; treat any &ldquo;university pass-rate&rdquo; advert with caution.</p>
+        <div class="pg-note pg-note--dark"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><p><strong>NExT is deferred</strong> by 3&ndash;4 years (NMC Chairman). FMGE stays for foreign graduates, so prepare from year one &mdash; first-timers pass at nearly 3&times; the overall rate.</p></div>
       </div>
     </article>
 
-    <!-- 12 · CH5 NEXT + ODDS -->
-    <article class="sg-page" id="ch5b" data-title="5 · NExT & how to prepare" data-run="FMGE & NExT">
-      <div class="pg">
-        <h3>What about NExT?</h3>
-        <div class="pg-cards pg-cards--wash">
-          <div class="pg-card"><h4>The plan</h4><p>The National Exit Test is meant to replace both FMGE and NEET-PG with one exam for all graduates &mdash; Indian and foreign.</p></div>
-          <div class="pg-card"><h4>The status <span class="pg-asof">As of Oct 2026</span></h4><p>Deferred by 3&ndash;4 years (NMC Chairman). An NMC draft reported in Aug 2026 keeps FMGE for registration &ldquo;until NExT comes into force&rdquo;. Prepare for FMGE.</p></div>
-        </div>
-        <h3>How to beat the odds</h3>
-        <ul class="pg-check">
-          <li>Revise from first year &mdash; use Indian standard textbooks alongside university notes.</li>
-          <li>Solve MCQs every week from a standard question bank.</li>
-          <li>Treat clinical rotations as exam prep: history-taking, examination, real patients.</li>
-          <li>Join structured FMGE coaching during the clinical years, not after graduation.</li>
-          <li>Take your first attempt seriously &mdash; first-timers pass at nearly 3&times; the overall rate.</li>
-          <li>Stay in a peer study group with other Indian students.</li>
-        </ul>
-      </div>
-    </article>
-
-    <!-- 13 · CH6 MYTHS 1-5 -->
+    <!-- 7 · MYTHS -->
     <article class="sg-page" id="ch6" data-title="6 · Myth vs. fact" data-run="Myth vs. fact">
       <div class="pg">
-        <header class="pg-hero" data-num="06">
-          <p class="pg-kicker">Chapter 06</p>
-          <h2>Myth vs. Fact</h2>
-          <p>Most bad decisions start with a confident sentence from someone who won&rsquo;t be around when the results arrive.</p>
+        <header class="pg-head">
+          <span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg></span>
+          <div><p class="pg-kicker">Chapter 06</p><h2>Myth vs. fact</h2></div>
         </header>
         <div class="pg-myths">
-          <div class="pg-myth"><b>Myth</b><p>MBBS abroad is only for students with low NEET scores.</p><b>Fact</b><p>Many high scorers choose it for affordability, international exposure or a USMLE pathway.</p></div>
-          <div class="pg-myth"><b>Myth</b><p>Every foreign medical degree is valid in India.</p><b>Fact</b><p>Only degrees that meet the FMGL Regulations, 2021 &mdash; followed by FMGE and CRMI &mdash; lead to Indian registration.</p></div>
-          <div class="pg-myth"><b>Myth</b><p>The cheapest university is the smartest choice.</p><b>Fact</b><p>A ₹2&ndash;3 lakh saving means nothing if clinical exposure is weak and you clear FMGE years later.</p></div>
+          <div class="pg-myth"><b>Myth</b><p>MBBS abroad is only for low NEET scores.</p><b>Fact</b><p>Many high scorers choose it for affordability, exposure or a USMLE pathway.</p></div>
+          <div class="pg-myth"><b>Myth</b><p>Every foreign degree is valid in India.</p><b>Fact</b><p>Only degrees that meet FMGL 2021, followed by FMGE and CRMI.</p></div>
+          <div class="pg-myth"><b>Myth</b><p>The cheapest university is the smartest choice.</p><b>Fact</b><p>A ₹2&ndash;3 lakh saving means little if clinical exposure is weak.</p></div>
+          <div class="pg-myth"><b>Myth</b><p>&ldquo;This university has a 100% FMGE pass rate.&rdquo;</p><b>Fact</b><p>NBEMS publishes no university-wise rates. Ask for the source.</p></div>
         </div>
       </div>
     </article>
 
-    <!-- 14 · CH6 MYTHS 5-10 -->
-    <article class="sg-page" id="ch6b" data-title="6 · Myth vs. fact, continued" data-run="Myth vs. fact">
+    <!-- 8 · COUNTRIES -->
+    <article class="sg-page" id="ch7" data-title="7 · Countries at a glance" data-run="Countries">
       <div class="pg">
-        <div class="pg-myths">
-          <div class="pg-myth"><b>Myth</b><p>English-medium means no local language needed.</p><b>Fact</b><p>Patients speak the local language. Basic Russian, Uzbek, Vietnamese or Georgian is essential for clinical years.</p></div>
-          <div class="pg-myth"><b>Myth</b><p>&ldquo;This university has a 100% FMGE pass rate.&rdquo;</p><b>Fact</b><p>NBEMS does not publish official university-wise pass rates. Ask for the source of any figure.</p></div>
-          <div class="pg-myth"><b>Myth</b><p>NExT is coming, so I can skip FMGE preparation.</p><b>Fact</b><p>NExT has been deferred by 3&ndash;4 years. FMGE remains the exam for foreign graduates.</p></div>
-          <div class="pg-myth"><b>Myth</b><p>An NMC advisory means the country is banned.</p><b>Fact</b><p>Advisories are usually precautionary and name specific institutions &mdash; e.g. the Indian Embassy in Tashkent clarified in Aug 2026 that Uzbekistan admissions are not banned.</p></div>
-        </div>
-      </div>
-    </article>
-
-    <!-- CH6 MYTHS 8-10 -->
-    <article class="sg-page" id="ch6c" data-title="6 &middot; Myth vs. fact, continued" data-run="Myth vs. fact">
-      <div class="pg">
-        <div class="pg-myths">
-          <div class="pg-myth"><b>Myth</b><p>A &ldquo;6-year MD&rdquo; automatically includes the 12-month internship.</p><b>Fact</b><p>Not always. NMC said in Sept 2026 that this depends on the country&rsquo;s licensing law &mdash; check it case by case (see Georgia).</p></div>
-          <div class="pg-myth"><b>Myth</b><p>Russia is too difficult for Indian students.</p><b>Fact</b><p>Success depends on individual preparation far more than on the country.</p></div>
-          <div class="pg-myth"><b>Myth</b><p>Final-year coaching is enough for FMGE.</p><b>Fact</b><p>Continuous preparation from year one is consistently more effective.</p></div>
-        </div>
-        <p class="pg-quote">Most bad decisions start with a confident sentence. Ask for it in writing.</p>
-      </div>
-    </article>
-
-    <!-- 15 · CH7 DESTINATION INTRO -->
-    <article class="sg-page" id="ch7" data-title="7 · Destination guide" data-run="Destination guide">
-      <div class="pg">
-        <header class="pg-hero" data-num="07">
-          <p class="pg-kicker">Chapter 07</p>
-          <h2>Destination Guide</h2>
-          <p>There is no single &ldquo;best country&rdquo; &mdash; only the best fit for your budget, goals and temperament. Each country below has a one-page profile.</p>
+        <header class="pg-head">
+          <span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span>
+          <div><p class="pg-kicker">Chapter 07</p><h2>Countries at a glance</h2></div>
         </header>
-        <h3>How to read the country pages</h3>
-        <div class="pg-cards pg-cards--wash">
-          <div class="pg-card"><h4>Fees</h4><p>Approximate tuition for the full programme, excluding hostel, food, visa, travel and insurance. Ranges from the Mathura Overseas fee guide unless marked otherwise.</p></div>
-          <div class="pg-card"><h4>Badges</h4><p>&ldquo;Featured&rdquo; marks our spotlight institution. An &ldquo;advisory&rdquo; tag means the institution is named in a recent NMC or embassy notice &mdash; verify before applying.</p></div>
-          <div class="pg-card"><h4>Living</h4><p>Average monthly living budget for a student, in rupees. Your actual spend depends on city and lifestyle.</p></div>
-        </div>
-        <div class="pg-note pg-note--dark"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><p><strong>The golden rule:</strong> choose a university, not a country. Quality, clinical exposure and FMGL compliance vary widely within the same country.</p></div>
-        <p class="pg-quote">&ldquo;Never finalise a university from a social media ad or a fee chart. Ask for the complete curriculum, internship details, hospital affiliations and NMC compliance &mdash; in writing.&rdquo;</p>
-      </div>
-    </article>
-
-    <!-- 16 · PHILIPPINES -->
-    <article class="sg-page" id="philippines" data-title="Philippines" data-run="Philippines">
-      <div class="pg">
-        <header class="pg-country" data-code="PH">
-          <p class="pg-kicker">Destination &middot; Asia-Pacific</p>
-          <h2>Philippines</h2>
-          <p>American-pattern curriculum &middot; English everywhere &middot; strong clinical exposure</p>
-        </header>
-        <div class="pg-facts">
-          <div><span>Pathway</span><b>BS (~1.5&ndash;2 yr) + MD (4 yr)</b></div>
-          <div><span>Medium</span><b>English</b></div>
-          <div><span>Tuition</span><b>₹18&ndash;35 L total</b></div>
-          <div><span>Living / month</span><b>₹20&ndash;35k</b></div>
-        </div>
-        <p>For more than two decades the Philippines has been a favourite for Indian medical students: an American-style system, English as the everyday language, and extensive patient interaction through affiliated teaching hospitals.</p>
-        <div class="pg-feature"><span class="pg-badge pg-badge--solid">Featured</span><p><strong>UV Gullas College of Medicine, Cebu</strong>One of the institutions Mathura Overseas works with most closely &mdash; ask us for its full fee letter and internship structure.</p></div>
-      </div>
-    </article>
-
-    <!-- 17 · PHILIPPINES FEES -->
-    <article class="sg-page" id="philippines-fees" data-title="Philippines · universities" data-run="Philippines">
-      <div class="pg">
-        <div class="pg-two">
-          <div><h3>Advantages</h3><ul class="pg-check"><li>English-medium, American-pattern curriculum</li><li>Early, hands-on clinical exposure</li><li>Large Indian student community; tropical climate</li></ul></div>
-          <div><h3>Consider</h3><ul class="pg-cross"><li>BS&ndash;MD structure differs from Indian MBBS &mdash; confirm the MD portion meets FMGL</li><li>Local licensure via the Physician Licensure Exam depends on Philippine law</li></ul></div>
-        </div>
-        <h3>Philippines &mdash; universities &amp; approximate tuition</h3>
-        <table class="pg-table">
-          <thead><tr><th>University</th><th>Full programme</th></tr></thead>
-          <tbody>
-            <tr><td>UV Gullas College of Medicine <span class="pg-badge pg-badge--solid">Featured</span></td><td><b>₹18&ndash;25 L</b></td></tr>
-            <tr><td>Lyceum Northwestern University</td><td><b>₹18&ndash;24 L</b></td></tr>
-            <tr><td>University of Northern Philippines</td><td><b>₹18&ndash;24 L</b></td></tr>
-            <tr><td>Davao Medical School Foundation</td><td><b>₹20&ndash;28 L</b></td></tr>
-            <tr><td>Emilio Aguinaldo College</td><td><b>₹22&ndash;30 L</b></td></tr>
-            <tr><td>AMA School of Medicine</td><td><b>₹22&ndash;30 L</b></td></tr>
-            <tr><td>Our Lady of Fatima University</td><td><b>₹24&ndash;32 L</b></td></tr>
-            <tr><td>University of Perpetual Help</td><td><b>₹24&ndash;32 L</b></td></tr>
-            <tr><td>Cebu Doctors&rsquo; University</td><td><b>₹24&ndash;35 L</b></td></tr>
-          </tbody>
-        </table>
-        <p class="pg-small">Tuition excludes hostel, food, visa, travel and insurance.</p>
-      </div>
-    </article>
-
-    <!-- 18 · RUSSIA -->
-    <article class="sg-page" id="russia" data-title="Russia" data-run="Russia">
-      <div class="pg">
-        <header class="pg-country" data-code="RU">
-          <p class="pg-kicker">Destination &middot; Europe / Asia</p>
-          <h2>Russia</h2>
-          <p>Established government universities &middot; large teaching hospitals &middot; six decades of Indian students</p>
-        </header>
-        <div class="pg-facts">
-          <div><span>Duration</span><b>6-year MD</b></div>
-          <div><span>Medium</span><b>English / Russian</b></div>
-          <div><span>Tuition</span><b>₹18&ndash;65 L total</b></div>
-          <div><span>Living / month</span><b>₹15&ndash;25k</b></div>
-        </div>
-        <p>Russia has hosted Indian medical students for more than 60 years. Its government universities offer experienced faculty, modern labs and large teaching hospitals, with English-medium options at many institutions.</p>
-      </div>
-    </article>
-
-    <!-- 19 · RUSSIA FEES -->
-    <article class="sg-page" id="russia-fees" data-title="Russia · universities" data-run="Russia">
-      <div class="pg">
-        <div class="pg-two">
-          <div><h3>Advantages</h3><ul class="pg-check"><li>Well-established state medical universities</li><li>Excellent clinical exposure in large hospitals</li><li>Wide fee range &mdash; from budget to premium Moscow institutions</li></ul></div>
-          <div><h3>Consider</h3><ul class="pg-cross"><li>Cold climate in most regions</li><li>Russian is needed for patient interaction in clinical years</li><li>Confirm the English-medium track covers all six years</li></ul></div>
-        </div>
-        <h3>Russia &mdash; universities &amp; approximate tuition</h3>
-        <table class="pg-table">
-          <thead><tr><th>University</th><th>Full programme</th></tr></thead>
-          <tbody>
-            <tr><td>Bashkir State Medical University</td><td><b>₹18&ndash;28 L</b></td></tr>
-            <tr><td>Orenburg State Medical University</td><td><b>₹18&ndash;26 L</b></td></tr>
-            <tr><td>Crimea Federal University</td><td><b>₹18&ndash;28 L</b></td></tr>
-            <tr><td>Volgograd State Medical University</td><td><b>₹20&ndash;30 L</b></td></tr>
-            <tr><td>Perm State Medical University</td><td><b>₹20&ndash;30 L</b></td></tr>
-            <tr><td>Kazan State Medical University</td><td><b>₹22&ndash;32 L</b></td></tr>
-            <tr><td>First Moscow State Medical University (Sechenov)</td><td><b>₹40&ndash;60 L</b></td></tr>
-            <tr><td>RUDN University</td><td><b>₹40&ndash;65 L</b></td></tr>
-          </tbody>
-        </table>
-        <p class="pg-small">Tuition excludes hostel, food, visa, travel and insurance.</p>
-      </div>
-    </article>
-
-    <!-- 20 · UZBEKISTAN -->
-    <article class="sg-page" id="uzbekistan" data-title="Uzbekistan" data-run="Uzbekistan">
-      <div class="pg">
-        <header class="pg-country" data-code="UZ">
-          <p class="pg-kicker">Destination &middot; Central Asia</p>
-          <h2>Uzbekistan</h2>
-          <p>Affordable &middot; modern campuses &middot; growing English-medium programmes &mdash; verify carefully</p>
-        </header>
-        <div class="pg-facts">
-          <div><span>Duration</span><b>6-year MD</b></div>
-          <div><span>Medium</span><b>English (verify)</b></div>
-          <div><span>Tuition</span><b>₹15&ndash;25 L total</b></div>
-          <div><span>Living / month</span><b>₹12&ndash;20k</b></div>
-        </div>
-        <p>Uzbekistan is among the most affordable options and its English-medium offering is growing &mdash; but it is also the destination where NMC has asked students to take the most care.</p>
-        <div class="pg-note pg-note--dark"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><p><strong>NMC advisory, 1 April 2026 (as of Aug 2026)</strong> &mdash; named Bukhara State Medical Institute, Samarkand State Medical University and Tashkent State Medical University (incl. its Termez branch and a Bangalore &ldquo;offshore&rdquo; partner), citing intake above capacity, non-English teaching and FMGL concerns. In <strong>August 2026 the Indian Embassy in Tashkent clarified this is precautionary, not a ban</strong>, and is working with these institutes on compliance.</p></div>
-      </div>
-    </article>
-
-    <!-- 21 · UZBEKISTAN FEES -->
-    <article class="sg-page" id="uzbekistan-fees" data-title="Uzbekistan · universities" data-run="Uzbekistan">
-      <div class="pg">
-        <div class="pg-two">
-          <div><h3>Advantages</h3><ul class="pg-check"><li>Among the lowest total costs</li><li>Moderate climate</li><li>Embassy actively engaged on student welfare</li></ul></div>
-          <div><h3>Consider</h3><ul class="pg-cross"><li>Confirm English is the real teaching language in clinical years</li><li>Check intake numbers and hospital access</li><li>Avoid any &ldquo;India campus&rdquo; or offshore model</li></ul></div>
-        </div>
-        <h3>Uzbekistan &mdash; universities &amp; approximate tuition</h3>
-        <table class="pg-table">
-          <thead><tr><th>University</th><th>Full programme</th></tr></thead>
-          <tbody>
-            <tr><td>Andijan State Medical Institute</td><td><b>₹16&ndash;22 L</b></td></tr>
-            <tr><td>Fergana Medical Institute of Public Health</td><td><b>₹15&ndash;22 L</b></td></tr>
-            <tr><td>Bukhara State Medical Institute <span class="pg-badge">Advisory</span></td><td><b>₹17&ndash;24 L</b></td></tr>
-            <tr><td>Tashkent Medical Academy</td><td><b>₹18&ndash;24 L</b></td></tr>
-            <tr><td>Samarkand State Medical University <span class="pg-badge">Advisory</span></td><td><b>₹18&ndash;25 L</b></td></tr>
-            <tr><td>Tashkent Pediatric Medical Institute</td><td><b>₹18&ndash;25 L</b></td></tr>
-          </tbody>
-        </table>
-        <p class="pg-small">&ldquo;Advisory&rdquo; means the institution is named in an NMC notice &mdash; verify before applying. Tuition excludes hostel, food, visa, travel and insurance.</p>
-      </div>
-    </article>
-
-    <!-- 22 · KYRGYZSTAN -->
-    <article class="sg-page" id="kyrgyzstan" data-title="Kyrgyzstan" data-run="Kyrgyzstan">
-      <div class="pg">
-        <header class="pg-country" data-code="KG">
-          <p class="pg-kicker">Destination &middot; Central Asia</p>
-          <h2>Kyrgyzstan</h2>
-          <p>One of the most affordable destinations &middot; English-medium programmes &middot; established Indian community</p>
-        </header>
-        <div class="pg-facts">
-          <div><span>Duration</span><b>6-year MD</b></div>
-          <div><span>Medium</span><b>English</b></div>
-          <div><span>Tuition</span><b>₹18&ndash;33 L total</b></div>
-          <div><span>Living / month</span><b>₹12&ndash;20k</b></div>
-        </div>
-        <p>Kyrgyzstan attracts budget-conscious families with English-medium programmes and a large Indian student community in Bishkek and Osh. The quality gap between universities is wide, so the university you pick matters more than the country.</p>
-        <div class="pg-note"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><p><strong>NMC has advised due diligence here before.</strong> In February 2022 it flagged newly launched colleges that had enrolled Indian students without a single local student. Prefer long-established institutions with their own teaching hospitals.</p></div>
-      </div>
-    </article>
-
-    <!-- 23 · KYRGYZSTAN FEES -->
-    <article class="sg-page" id="kyrgyzstan-fees" data-title="Kyrgyzstan · universities" data-run="Kyrgyzstan">
-      <div class="pg">
-        <div class="pg-two">
-          <div><h3>Advantages</h3><ul class="pg-check"><li>Low tuition and living costs</li><li>English-medium programmes</li><li>Large Indian student community</li></ul></div>
-          <div><h3>Consider</h3><ul class="pg-cross"><li>Cold winters</li><li>Kyrgyz/Russian needed in clinical postings</li><li>Avoid very new colleges with no local students</li></ul></div>
-        </div>
-        <h3>Kyrgyzstan &mdash; universities &amp; approximate tuition</h3>
-        <table class="pg-table">
-          <thead><tr><th>University</th><th>Full programme</th></tr></thead>
-          <tbody>
-            <tr><td>Asian Medical Institute</td><td><b>₹18&ndash;22 L</b></td></tr>
-            <tr><td>Jalal-Abad State University</td><td><b>₹20&ndash;23 L</b></td></tr>
-            <tr><td>Osh State University</td><td><b>₹22&ndash;25 L</b></td></tr>
-            <tr><td>Kyrgyz State Medical Academy</td><td><b>₹24&ndash;28 L</b></td></tr>
-            <tr><td>International University of Kyrgyzstan</td><td><b>₹26&ndash;30 L</b></td></tr>
-            <tr><td>International School of Medicine (ISM)</td><td><b>₹28&ndash;33 L</b></td></tr>
-          </tbody>
-        </table>
-        <p class="pg-small">Tuition excludes hostel, food, visa, travel and insurance.</p>
-      </div>
-    </article>
-
-    <!-- 24 · KAZAKHSTAN -->
-    <article class="sg-page" id="kazakhstan" data-title="Kazakhstan" data-run="Kazakhstan">
-      <div class="pg">
-        <header class="pg-country" data-code="KZ">
-          <p class="pg-kicker">Destination &middot; Central Asia</p>
-          <h2>Kazakhstan</h2>
-          <p>Large national medical universities &middot; modern cities &middot; mid-range costs</p>
-        </header>
-        <div class="pg-facts">
-          <div><span>Duration</span><b>6 years</b></div>
-          <div><span>Medium</span><b>English (verify)</b></div>
-          <div><span>Tuition</span><b>$4,200&ndash;5,600 / yr</b></div>
-          <div><span>6-year tuition</span><b>&asymp; ₹24&ndash;36 L</b></div>
-        </div>
-        <p>Kazakhstan&rsquo;s established national universities in Almaty, Astana, Karaganda and Shymkent take international students in English-medium tracks. Costs sit between Kyrgyzstan and Russia.</p>
-      </div>
-    </article>
-
-    <!-- 25 · KAZAKHSTAN FEES -->
-    <article class="sg-page" id="kazakhstan-fees" data-title="Kazakhstan · universities" data-run="Kazakhstan">
-      <div class="pg">
-        <div class="pg-two">
-          <div><h3>Advantages</h3><ul class="pg-check"><li>Long-established national universities</li><li>Choice of major cities</li><li>Moderate tuition</li></ul></div>
-          <div><h3>Consider</h3><ul class="pg-cross"><li>Very cold winters in the north (Astana)</li><li>Kazakh/Russian needed for patients</li><li>Confirm the internship year is inside the programme</li></ul></div>
-        </div>
-        <h3>Kazakhstan &mdash; universities &amp; approximate tuition</h3>
-        <table class="pg-table">
-          <thead><tr><th>University</th><th>Per year</th><th>6 years</th></tr></thead>
-          <tbody>
-            <tr><td>Asfendiyarov Kazakh National Medical University, Almaty</td><td>&asymp; 3,000,000 KZT</td><td><b>&asymp; ₹36 L</b></td></tr>
-            <tr><td>Astana Medical University</td><td>$5,600</td><td><b>&asymp; ₹32 L</b></td></tr>
-            <tr><td>South Kazakhstan Medical Academy, Shymkent</td><td>$4,500</td><td><b>&asymp; ₹26 L</b></td></tr>
-            <tr><td>Karaganda State Medical University</td><td>$4,500</td><td><b>&asymp; ₹26 L</b></td></tr>
-            <tr><td>Al-Farabi Kazakh National University</td><td>$4,200</td><td><b>&asymp; ₹24 L</b></td></tr>
-          </tbody>
-        </table>
-        <p class="pg-small">Fees as of Aug 2026; rupee totals at ₹95.46 / US$ (25 Aug 2026) and 1 KZT &asymp; ₹0.20. Excludes hostel and living. Ask us for the current fee letter.</p>
-      </div>
-    </article>
-
-    <!-- 26 · GEORGIA -->
-    <article class="sg-page" id="georgia" data-title="Georgia" data-run="Georgia">
-      <div class="pg">
-        <header class="pg-country" data-code="GE">
-          <p class="pg-kicker">Destination &middot; Caucasus / Europe</p>
-          <h2>Georgia</h2>
-          <p>European-style 6-year MD &middot; English-medium &middot; popular with Indian students &mdash; licensing needs checking</p>
-        </header>
-        <div class="pg-facts">
-          <div><span>Duration</span><b>6-year MD</b></div>
-          <div><span>Medium</span><b>English</b></div>
-          <div><span>Tuition</span><b>$5,500&ndash;8,000 / yr</b></div>
-          <div><span>6-year tuition</span><b>&asymp; ₹31&ndash;46 L</b></div>
-        </div>
-        <div class="pg-note pg-note--dark"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><p><strong>Check before you choose (as of Oct 2026)</strong> &mdash; Indian Embassy documents say Georgian 6-year MD graduates work as supervised <em>junior doctors</em>; independent practice needs a certification exam and residency, and a licence at par with citizens has been linked to Georgian-language ability. Replying to a grievance in Sept 2026, <strong>NMC said junior-doctor status satisfies FMGL only if Georgian law permits practice at the required level</strong>. Ask the university for written confirmation of the 12-month internship and licence pathway.</p></div>
-      </div>
-    </article>
-
-    <!-- 27 · GEORGIA FEES -->
-    <article class="sg-page" id="georgia-fees" data-title="Georgia · universities" data-run="Georgia">
-      <div class="pg">
-        <div class="pg-two">
-          <div><h3>Advantages</h3><ul class="pg-check"><li>European-style curriculum and campus life</li><li>English-medium programmes</li><li>Popular with Indian students</li></ul></div>
-          <div><h3>Consider</h3><ul class="pg-cross"><li>FMGL internship/licence question (above)</li><li>Higher cost than Central Asia</li><li>Georgian language needed for patients</li></ul></div>
-        </div>
-        <h3>Georgia &mdash; universities &amp; approximate tuition</h3>
-        <table class="pg-table">
-          <thead><tr><th>University</th><th>Per year</th><th>6 years</th></tr></thead>
-          <tbody>
-            <tr><td>Tbilisi State Medical University (TSMU)</td><td>$8,000</td><td><b>&asymp; ₹46 L</b></td></tr>
-            <tr><td>Caucasus International University</td><td>$6,000</td><td><b>&asymp; ₹34 L</b></td></tr>
-            <tr><td>Georgian National University SEU</td><td>$5,900</td><td><b>&asymp; ₹34 L</b></td></tr>
-            <tr><td>East European University</td><td>$5,500</td><td><b>&asymp; ₹32 L</b></td></tr>
-          </tbody>
-        </table>
-        <p class="pg-small">Fees as of Aug 2026; rupee totals at ₹95.46 / US$ (25 Aug 2026). Excludes hostel and living.</p>
-      </div>
-    </article>
-
-    <!-- VIETNAM -->
-    <article class="sg-page" id="vietnam" data-title="Vietnam" data-run="Vietnam">
-      <div class="pg">
-        <header class="pg-country" data-code="VN">
-          <p class="pg-kicker">Destination &middot; Southeast Asia</p>
-          <h2>Vietnam</h2>
-          <p>Emerging option &middot; modern infrastructure &middot; safe cities</p>
-        </header>
-        <div class="pg-facts">
-          <div><span>Duration</span><b>6 years</b></div>
-          <div><span>Medium</span><b>English + local</b></div>
-          <div><span>Tuition</span><b>₹28&ndash;45 L total</b></div>
-          <div><span>Living / month</span><b>₹18&ndash;30k</b></div>
-        </div>
-        <p>An emerging destination with modern infrastructure and safe cities. English-medium availability varies by institution &mdash; some require Vietnamese for clinical communication.</p>
-      </div>
-    </article>
-
-    <!-- 29 · VIETNAM FEES -->
-    <article class="sg-page" id="vietnam-fees" data-title="Vietnam · universities" data-run="Vietnam">
-      <div class="pg">
-        <div class="pg-two">
-          <div><h3>Advantages</h3><ul class="pg-check"><li>Modern infrastructure</li><li>Tropical climate</li></ul></div>
-          <div><h3>Consider</h3><ul class="pg-cross"><li>Vietnamese often needed clinically</li><li>Higher fees than Central Asia</li></ul></div>
-        </div>
-        <h3>Vietnam &mdash; universities &amp; approximate tuition</h3>
-        <table class="pg-table">
-          <thead><tr><th>University</th><th>Full programme</th></tr></thead>
-          <tbody>
-            <tr><td>Can Tho University of Medicine &amp; Pharmacy</td><td><b>₹28&ndash;38 L</b></td></tr>
-            <tr><td>Hue University of Medicine &amp; Pharmacy</td><td><b>₹30&ndash;40 L</b></td></tr>
-            <tr><td>Hanoi Medical University</td><td><b>₹35&ndash;45 L</b></td></tr>
-            <tr><td>University of Medicine &amp; Pharmacy, Ho Chi Minh City</td><td><b>₹35&ndash;45 L</b></td></tr>
-          </tbody>
-        </table>
-        <p class="pg-small">Tuition excludes hostel, food, visa, travel and insurance.</p>
-      </div>
-    </article>
-
-    <!-- 30 · TIMOR-LESTE -->
-    <article class="sg-page" id="timor-leste" data-title="Timor-Leste" data-run="Timor-Leste">
-      <div class="pg">
-        <header class="pg-country" data-code="TL">
-          <p class="pg-kicker">Destination &middot; Southeast Asia</p>
-          <h2>Timor-Leste</h2>
-          <p>A newer, affordable option with English-supported teaching</p>
-        </header>
-        <div class="pg-facts">
-          <div><span>Duration</span><b>6 years</b></div>
-          <div><span>Medium</span><b>English-supported</b></div>
-          <div><span>Tuition</span><b>₹15&ndash;20 L total</b></div>
-          <div><span>Living / month</span><b>₹15&ndash;25k</b></div>
-        </div>
-        <p>A relatively new option with affordable fees and English-supported instruction at selected institutions. Fewer Indian students are enrolled so far &mdash; extra due diligence on clinical training, internship and licensing is essential.</p>
-        <div class="pg-note"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><p><strong>Ask us</strong> for UCT&rsquo;s current fee letter, hospital affiliations and internship structure before deciding.</p></div>
-      </div>
-    </article>
-
-    <article class="sg-page" id="timor-leste-fees" data-title="Timor-Leste · institution" data-run="Timor-Leste">
-      <div class="pg">
-        <div class="pg-two">
-          <div><h3>Advantages</h3><ul class="pg-check"><li>Among the most affordable tuition</li><li>English-supported teaching</li><li>Tropical climate</li></ul></div>
-          <div><h3>Consider</h3><ul class="pg-cross"><li>Small Indian student community so far</li><li>Clinical training still developing &mdash; verify hospitals</li><li>Confirm FMGL compliance in writing</li></ul></div>
-        </div>
-        <h3>Timor-Leste &mdash; institution &amp; approximate tuition</h3>
-        <table class="pg-table">
-          <thead><tr><th>Institution</th><th>Full programme</th></tr></thead>
-          <tbody><tr><td>Universidade Cristal Timor (UCT), Dili</td><td><b>₹15&ndash;20 L</b></td></tr></tbody>
-        </table>
-        <p class="pg-small">Tuition excludes hostel, food, visa, travel and insurance.</p>
-      </div>
-    </article>
-
-    <!-- 30 · CENTRAL AMERICA -->
-    <article class="sg-page" id="central-america" data-title="Central America & Caribbean" data-run="Central America">
-      <div class="pg">
-        <header class="pg-country" data-code="CA">
-          <p class="pg-kicker">Destination &middot; Americas</p>
-          <h2>Central America &amp; the Caribbean</h2>
-          <p>English-medium &middot; USMLE-oriented pathways for a North American career</p>
-        </header>
-        <div class="pg-facts">
-          <div><span>Duration</span><b>5&ndash;6 years</b></div>
-          <div><span>Medium</span><b>English</b></div>
-          <div><span>Tuition</span><b>₹35 L &ndash; 1.8 Cr</b></div>
-          <div><span>Living / month</span><b>₹35&ndash;60k</b></div>
-        </div>
-        <p>These schools appeal to students who want English-medium teaching, modern campuses and &mdash; at some institutions &mdash; USMLE-focused curricula with clinical rotations in North America. They are the most expensive destinations in this handbook.</p>
-        <div class="pg-note pg-note--dark"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><p><strong>Important:</strong> some Caribbean programmes run clinical rotations in another country, which can conflict with FMGL&rsquo;s same-institution, same-country rules. If you plan to return to India, verify compliance before admission.</p></div>
-      </div>
-    </article>
-
-    <!-- 31 · CENTRAL AMERICA TABLE -->
-    <article class="sg-page" id="central-america-fees" data-title="Central America · schools" data-run="Central America">
-      <div class="pg">
-        <div class="pg-two">
-          <div><h3>Advantages</h3><ul class="pg-check"><li>Fully English-speaking environment</li><li>USMLE-focused teaching at many schools</li><li>International faculty, simulation labs</li></ul></div>
-          <div><h3>Consider</h3><ul class="pg-cross"><li>Highest tuition and living costs</li><li>Confirm clinical sites and internship country</li><li>Best suited to a USA/Canada career goal</li></ul></div>
-        </div>
-        <h3>Central America &amp; the Caribbean &mdash; sample schools</h3>
-        <table class="pg-table">
-          <thead><tr><th>Country</th><th>Sample universities</th><th>Tuition</th></tr></thead>
-          <tbody>
-            <tr><td>Guyana</td><td>Texila American, Lincoln American, Green Heart Medical</td><td><b>₹35&ndash;50 L</b></td></tr>
-            <tr><td>Belize</td><td>CAHSU, Columbus Central University</td><td><b>₹35&ndash;55 L</b></td></tr>
-            <tr><td>Antigua &amp; Barbuda</td><td>American University of Antigua, Metropolitan University</td><td><b>₹40&ndash;90 L</b></td></tr>
-            <tr><td>Dominica</td><td>All Saints University, American Canadian School of Medicine</td><td><b>₹38&ndash;50 L</b></td></tr>
-            <tr><td>Grenada</td><td>St. George&rsquo;s University</td><td><b>₹1.2&ndash;1.8 Cr</b></td></tr>
-          </tbody>
-        </table>
-        <p class="pg-small">Tuition excludes hostel, food, visa, travel and insurance.</p>
-      </div>
-    </article>
-
-    <!-- 32 · CH8 COMPARE -->
-    <article class="sg-page" id="ch8" data-title="8 · Compare & choose" data-run="Compare & choose">
-      <div class="pg">
-        <header class="pg-hero" data-num="08">
-          <p class="pg-kicker">Chapter 08</p>
-          <h2>Compare &amp; Choose</h2>
-          <p>Put the options side by side, match them to what you actually want, then interrogate your shortlist.</p>
-        </header>
-        <table class="pg-table">
+        <table class="pg-table pg-table--compact">
           <thead><tr><th>Country</th><th>Tuition (total)</th><th>Living / mo</th><th>Climate</th></tr></thead>
           <tbody>
-            <tr><td>Philippines<small>BS + MD &middot; English</small></td><td><b>₹18&ndash;35 L</b></td><td>₹20&ndash;35k</td><td>Tropical</td></tr>
-            <tr><td>Russia<small>6 yrs &middot; Eng / Rus</small></td><td><b>₹18&ndash;65 L</b></td><td>₹15&ndash;25k</td><td>Cold</td></tr>
-            <tr><td>Uzbekistan<small>6 yrs &middot; English*</small></td><td><b>₹15&ndash;25 L</b></td><td>₹12&ndash;20k</td><td>Moderate</td></tr>
-            <tr><td>Kyrgyzstan<small>6 yrs &middot; English</small></td><td><b>₹18&ndash;33 L</b></td><td>₹12&ndash;20k</td><td>Cold</td></tr>
-            <tr><td>Kazakhstan<small>6 yrs &middot; English*</small></td><td><b>&asymp; ₹24&ndash;36 L</b></td><td>Ask us</td><td>Cold</td></tr>
-            <tr><td>Georgia<small>6 yrs &middot; English</small></td><td><b>&asymp; ₹31&ndash;46 L</b></td><td>Ask us</td><td>Moderate</td></tr>
-            <tr><td>Vietnam<small>6 yrs &middot; Eng + local</small></td><td><b>₹28&ndash;45 L</b></td><td>₹18&ndash;30k</td><td>Tropical</td></tr>
-            <tr><td>Timor-Leste<small>6 yrs &middot; English*</small></td><td><b>₹15&ndash;20 L</b></td><td>₹15&ndash;25k</td><td>Tropical</td></tr>
-            <tr><td>Central America<small>5&ndash;6 yrs &middot; English</small></td><td><b>₹35 L&ndash;1.8 Cr</b></td><td>₹35&ndash;60k</td><td>Tropical</td></tr>
+            <tr><td>Philippines</td><td><b>₹18&ndash;35 L</b></td><td>₹20&ndash;35k</td><td>Tropical</td></tr>
+            <tr><td>Russia</td><td><b>₹18&ndash;65 L</b></td><td>₹15&ndash;25k</td><td>Cold</td></tr>
+            <tr><td>Uzbekistan</td><td><b>₹15&ndash;25 L</b></td><td>₹12&ndash;20k</td><td>Moderate</td></tr>
+            <tr><td>Kyrgyzstan</td><td><b>₹18&ndash;33 L</b></td><td>₹12&ndash;20k</td><td>Cold</td></tr>
+            <tr><td>Kazakhstan</td><td><b>&asymp; ₹24&ndash;36 L</b></td><td>Ask us</td><td>Cold</td></tr>
+            <tr><td>Georgia</td><td><b>&asymp; ₹31&ndash;46 L</b></td><td>Ask us</td><td>Moderate</td></tr>
+            <tr><td>Vietnam</td><td><b>₹28&ndash;45 L</b></td><td>₹18&ndash;30k</td><td>Tropical</td></tr>
+            <tr><td>Timor-Leste</td><td><b>₹15&ndash;20 L</b></td><td>₹15&ndash;25k</td><td>Tropical</td></tr>
+            <tr><td>Central America</td><td><b>₹35 L&ndash;1.8 Cr</b></td><td>₹35&ndash;60k</td><td>Tropical</td></tr>
           </tbody>
         </table>
-        <p class="pg-small">*Varies by university &mdash; verify. Tuition excludes hostel, food, visa, travel and insurance.</p>
+        <p class="pg-small">Tuition excludes hostel, food, visa, travel and insurance. English medium varies by university &mdash; verify.</p>
+        <a class="pg-link" href="destinations.html">See every country and university <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
       </div>
     </article>
 
-    <!-- 33 · CH8 DECISION MATRIX -->
-    <article class="sg-page" id="ch8b" data-title="8 · Decision matrix" data-run="Compare & choose">
+    <!-- 9 · CHOOSE -->
+    <article class="sg-page" id="ch8" data-title="8 · Choose your fit" data-run="Choose your fit">
       <div class="pg">
-        <h3>Decision matrix</h3>
+        <header class="pg-head">
+          <span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-target"></use></svg></span>
+          <div><p class="pg-kicker">Chapter 08</p><h2>Choose your fit</h2></div>
+        </header>
         <table class="pg-table">
           <thead><tr><th>If you want&hellip;</th><th>Look at&hellip;</th></tr></thead>
           <tbody>
@@ -869,18 +368,21 @@
             <tr><td>A USA / Canada career</td><td><b>Selected Caribbean schools</b></td></tr>
           </tbody>
         </table>
-        <div class="pg-note pg-note--dark"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><p>This matrix only narrows the field. The university you choose &mdash; its compliance, clinical exposure and recognition &mdash; decides the outcome.</p></div>
+        <div class="pg-note pg-note--dark"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><p><strong>Choose a university, not a country.</strong> Quality, clinical exposure and FMGL compliance vary widely within the same country.</p></div>
         <p class="pg-quote">There is no single &ldquo;best&rdquo; country &mdash; only the best fit for you.</p>
       </div>
     </article>
 
-    <!-- 34 · CH8 10 QUESTIONS -->
-    <article class="sg-page" id="ch8c" data-title="8 · 10 questions to ask" data-run="Compare & choose">
+    <!-- 10 · QUESTIONS + RED FLAGS -->
+    <article class="sg-page" id="ch9" data-title="9 · Ask before you pay" data-run="Ask before you pay">
       <div class="pg">
-        <h3>10 questions to ask any university</h3>
-        <ol class="pg-steps pg-steps--c">
+        <header class="pg-head">
+          <span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg></span>
+          <div><p class="pg-kicker">Chapter 09</p><h2>10 questions for any university</h2></div>
+        </header>
+        <ol class="pg-steps pg-steps--c pg-steps--cols">
           <li>Is it recognised in its own country?</li>
-          <li>Does the programme meet the FMGL Regulations?</li>
+          <li>Does it meet the FMGL Regulations?</li>
           <li>Is every year taught in English?</li>
           <li>Where &mdash; and how much &mdash; clinical exposure?</li>
           <li>Where is the 12-month internship done?</li>
@@ -888,48 +390,47 @@
           <li>Is it named in any NMC / embassy advisory?</li>
           <li>What hostel and safety support exists?</li>
           <li>Can I speak to current Indian students?</li>
-          <li>Have I verified all this myself, in writing?</li>
+          <li>Have I verified all this in writing?</li>
         </ol>
+        <h3>Red flags</h3>
+        <ul class="pg-cross">
+          <li>Internship structure not shown in writing.</li>
+          <li>Fees requested in a personal account.</li>
+          <li>&ldquo;Guaranteed registration&rdquo; or &ldquo;100% FMGE pass&rdquo;.</li>
+        </ul>
       </div>
     </article>
 
-    <!-- 35 · CH9 STEPS 1-5 -->
-    <article class="sg-page" id="ch9" data-title="9 · Admission journey" data-run="Admission & visa">
+    <!-- 11 · ADMISSION -->
+    <article class="sg-page" id="ch10" data-title="10 · Admission journey" data-run="Admission">
       <div class="pg">
-        <header class="pg-hero" data-num="09">
-          <p class="pg-kicker">Chapter 09</p>
-          <h2>Admission, Visa &amp; Documents</h2>
-          <p>A planned admission saves money, avoids stress, and gets you the university you actually want.</p>
+        <header class="pg-head">
+          <span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-passport"></use></svg></span>
+          <div><p class="pg-kicker">Chapter 10</p><h2>The admission journey</h2></div>
         </header>
-        <h3>The 10-step journey</h3>
-        <ol class="pg-steps">
-          <li><b>Qualify NEET-UG</b><span>Keep scorecard, admit card and rank ready.</span></li>
-          <li><b>Shortlist universities</b><span>Compliance, recognition, exposure, budget, safety.</span></li>
-          <li><b>Free career counselling</b><span>Budget fit, career goal, total expenses.</span></li>
-          <li><b>Document verification</b><span>Marksheets, NEET scorecard, passport, photos, birth certificate.</span></li>
-          <li><b>University application</b><span>Leads to a provisional admission / offer letter.</span></li>
+        <ol class="pg-steps pg-steps--path pg-steps--cols">
+          <li><b>Qualify NEET-UG</b></li>
+          <li><b>Shortlist universities</b></li>
+          <li><b>Free career counselling</b></li>
+          <li><b>Document verification</b></li>
+          <li><b>University application</b></li>
+          <li><b>Confirm admission</b></li>
+          <li><b>Pay fees safely</b></li>
+          <li><b>Student visa</b></li>
+          <li><b>Pre-departure</b></li>
+          <li><b>Arrival &amp; orientation</b></li>
         </ol>
+        <div class="pg-note pg-note--dark"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg><p><strong>Safe-payment rule:</strong> pay only to the official university account or authorised partner. If anyone asks for a personal account, or &ldquo;today only&rdquo;, stop and call us first.</p></div>
       </div>
     </article>
 
-    <!-- 36 · CH9 STEPS 6-10 -->
-    <article class="sg-page" id="ch9b" data-title="9 · Admission journey, continued" data-run="Admission & visa">
+    <!-- 12 · TIMELINE + DOCUMENTS -->
+    <article class="sg-page" id="ch11" data-title="11 · Timeline & documents" data-run="Timeline">
       <div class="pg">
-        <ol class="pg-steps pg-steps--6">
-          <li><b>Confirm admission</b><span>Check the admission letter, invitation letter and fee invoice.</span></li>
-          <li><b>Pay fees safely</b><span>Only to the official university account or authorised partner &mdash; never a personal account, never &ldquo;today only&rdquo;.</span></li>
-          <li><b>Student visa</b><span>Requirements vary by country; apply early.</span></li>
-          <li><b>Pre-departure</b><span>Flights, forex, insurance, original + digital copies of documents.</span></li>
-          <li><b>Arrival</b><span>Pickup, hostel, registration, medical check, ID card, orientation.</span></li>
-        </ol>
-        <div class="pg-note pg-note--dark"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg><p><strong>Safe-payment rule:</strong> if anyone asks you to pay into a personal account, or to pay &ldquo;today only&rdquo;, stop and call us first.</p></div>
-      </div>
-    </article>
-
-    <!-- 37 · CH9 TIMELINE + DOCS -->
-    <article class="sg-page" id="ch9c" data-title="9 · Timeline & documents" data-run="Admission & visa">
-      <div class="pg">
-        <h3>A typical year for a Class 12 student</h3>
+        <header class="pg-head">
+          <span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span>
+          <div><p class="pg-kicker">Chapter 11</p><h2>Timeline &amp; documents</h2></div>
+        </header>
         <table class="pg-table">
           <tbody>
             <tr><td>Feb&ndash;Mar</td><td>Class 12 board exams</td></tr>
@@ -940,63 +441,50 @@
             <tr><td>Sep&ndash;Oct</td><td>Travel &middot; classes begin</td></tr>
           </tbody>
         </table>
-        <p class="pg-small">2027 dates are not yet announced (as of Oct 2026). Most universities run one main intake a year &mdash; treat the July application step as your real deadline. Visa processing commonly takes 4&ndash;6 weeks.</p>
+        <p class="pg-small">2027 dates are not announced (as of Oct 2026). Treat July as your real application deadline; visas commonly take 4&ndash;6 weeks.</p>
         <h3>Documents checklist</h3>
-        <ul class="pg-check">
+        <ul class="pg-check pg-check--cols">
           <li>Passport</li>
           <li>Class 10 &amp; 12 marksheets</li>
           <li>NEET-UG scorecard</li>
-          <li>Passport-size photographs</li>
+          <li>Passport photographs</li>
           <li>Birth certificate</li>
           <li>Medical fitness certificate</li>
-          <li>Police clearance (country-specific)</li>
-          <li>Admission letter &amp; student visa</li>
+          <li>Police clearance</li>
+          <li>Admission letter &amp; visa</li>
         </ul>
       </div>
     </article>
 
-    <!-- 38 · CH10 LIFE ABROAD -->
-    <article class="sg-page" id="ch10" data-title="10 · Life abroad" data-run="Life & mistakes">
+    <!-- 13 · LIFE + MISTAKES -->
+    <article class="sg-page" id="ch12" data-title="12 · Life abroad" data-run="Life abroad">
       <div class="pg">
-        <header class="pg-hero" data-num="10">
-          <p class="pg-kicker">Chapter 10</p>
-          <h2>Life Abroad &amp; Costly Mistakes</h2>
-          <p>Studying abroad is about adapting and growing up &mdash; and about avoiding the errors other families learned the hard way.</p>
+        <header class="pg-head">
+          <span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg></span>
+          <div><p class="pg-kicker">Chapter 12</p><h2>Life abroad &amp; costly mistakes</h2></div>
         </header>
         <div class="pg-cards pg-cards--wash">
-          <div class="pg-card"><h4>Accommodation</h4><p>Most universities offer on-campus or affiliated hostels &mdash; furnished, with Wi-Fi, laundry and 24&times;7 security. Private flats may be an option after year one.</p></div>
-          <div class="pg-card"><h4>Food</h4><p>Popular destinations have Indian restaurants, grocers or hostel messes &mdash; especially where the Indian community is large.</p></div>
-          <div class="pg-card"><h4>SIM &amp; banking</h4><p>Get a local SIM on arrival, use a forex or international debit card, and track spending in a budgeting app.</p></div>
+          <div class="pg-card"><h4>Stay &amp; food</h4><p>Furnished hostels with Wi-Fi and security. Indian food is easy to find where the community is large.</p></div>
+          <div class="pg-card"><h4>SIM &amp; banking</h4><p>Local SIM on arrival, a forex or international debit card, and a budgeting app.</p></div>
         </div>
-        <div class="pg-two">
-          <div><h3>Habits of successful students</h3><ul class="pg-check"><li>Excellent attendance from day one</li><li>Learn local-language phrases early</li><li>Sleep, eat well, stay in touch with family</li></ul></div>
-          <div><h3>Safety basics</h3><ul class="pg-check"><li>Digital copies of every document</li><li>Save embassy &amp; university emergency numbers</li><li>Tell family before travelling to another city</li></ul></div>
-        </div>
-      </div>
-    </article>
-
-    <!-- 39 · CH10 MISTAKES -->
-    <article class="sg-page" id="ch10b" data-title="10 · Costly mistakes" data-run="Life & mistakes">
-      <div class="pg">
         <h3>Costly mistakes to avoid</h3>
-        <table class="pg-table">
-          <thead><tr><th>Mistake</th><th>Why it hurts</th></tr></thead>
-          <tbody>
-            <tr><td>Choosing only because it&rsquo;s cheap</td><td>Weak academics or clinicals can cost years at the FMGE stage.</td></tr>
-            <tr><td>Ignoring FMGL rules</td><td>Duration, internship and language decide whether you can register in India.</td></tr>
-            <tr><td>Believing &ldquo;100% pass&rdquo; adverts</td><td>No official university-wise data exists.</td></tr>
-            <tr><td>Ignoring NMC / embassy advisories</td><td>They name specific institutions for a reason &mdash; read them.</td></tr>
-            <tr><td>Not asking about hidden costs</td><td>Hostel, visa, insurance, exam fees and flights add up fast.</td></tr>
-            <tr><td>Starting FMGE prep after graduation</td><td>First-attempt, well-prepared graduates pass at far higher rates.</td></tr>
-          </tbody>
-        </table>
+        <ul class="pg-cross">
+          <li>Choosing only because it is cheap.</li>
+          <li>Ignoring FMGL rules and NMC / embassy advisories.</li>
+          <li>Not asking about hidden costs.</li>
+          <li>Starting FMGE prep after graduation.</li>
+        </ul>
+        <p class="pg-quote">Choosing the right university matters far more than choosing the lowest fee.</p>
       </div>
     </article>
 
-    <!-- 40 · CH10 PRE-ADMISSION CHECKLIST (interactive) -->
-    <article class="sg-page" id="ch10c" data-title="10 · Pre-admission checklist" data-run="Life & mistakes">
+    <!-- 14 · INTERACTIVE CHECKLIST -->
+    <article class="sg-page" id="ch13" data-title="13 · Your checklist" data-run="Your checklist">
       <div class="pg">
-        <h3>Before paying any fee, can you say &ldquo;yes&rdquo; to all of these?</h3>
+        <header class="pg-head">
+          <span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-check-square"></use></svg></span>
+          <div><p class="pg-kicker">Chapter 13</p><h2>Before paying any fee, say &ldquo;yes&rdquo; to all</h2></div>
+        </header>
         <div class="pg-tick">
           <label><input type="checkbox"> I have qualified NEET-UG</label>
           <label><input type="checkbox"> I understand the full course structure</label>
@@ -1009,37 +497,19 @@
           <label><input type="checkbox"> I read the admission letter &amp; invoice</label>
           <label><input type="checkbox"> My decision rests on verified facts</label>
         </div>
-        <p class="pg-progress"><b id="sgTickCount">0</b> of 10 ticked &mdash; tap each line as you confirm it.</p>
+        <p class="pg-progress"><b id="sgTickCount">0</b> of 10 ticked</p>
       </div>
     </article>
 
-    <!-- 41 · CH11 WHY MATHURA OVERSEAS -->
-    <article class="sg-page" id="ch11" data-title="11 · Why Mathura Overseas" data-run="Why Mathura Overseas">
-      <div class="pg">
-        <header class="pg-hero" data-num="11">
-          <p class="pg-kicker">Chapter 11</p>
-          <h2>Why Choose Mathura Overseas?</h2>
-          <p>&ldquo;We don&rsquo;t just help you secure admission &mdash; we help you build your medical career.&rdquo;</p>
-        </header>
-        <p>Mathura Overseas helps Indian students pursue quality medical education abroad through honest guidance, transparent counselling and end-to-end support &mdash; recommending universities on career goals and compliance, not marketing claims.</p>
-        <div class="pg-two">
-          <div><h3>Before admission</h3><ul class="pg-check"><li>Career counselling matched to your budget and goals</li><li>University selection on academics, clinical exposure, faculty and compliance</li><li>Application, documentation and fee guidance</li></ul></div>
-          <div><h3>Visa &amp; beyond</h3><ul class="pg-check"><li>Student visa, forex and flight booking support</li><li>Airport pickup coordination and hostel assistance</li><li>Ongoing student and parent support after arrival</li></ul></div>
-        </div>
-        <div class="pg-note pg-note--dark"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg><p><strong>Our commitment:</strong> transparency, honest counselling, verified information and student-centric guidance. We never recommend a university solely because it is the cheapest.</p></div>
-      </div>
-    </article>
-
-    <!-- 42 · BACK COVER -->
+    <!-- 15 · BACK COVER -->
     <article class="sg-page sg-page--dark" id="end" data-title="Your next step">
       <div class="pg-end">
         <span class="pg-pill"><i></i>Your next step</span>
         <h2>Talk to a counsellor before you <em>pay anyone.</em></h2>
-        <p>Share your NEET score, budget and goals. We&rsquo;ll give you an honest shortlist &mdash; with the compliance checks done &mdash; free of charge.</p>
+        <p>Share your NEET score, budget and goals. We give you an honest, compliance-checked shortlist, free of charge.</p>
         <a class="btn btn--ondark" href="https://wa.me/919360859919?text=Hi%2C%20I%20just%20read%20the%20MBBS%20Abroad%20Handbook%20and%20want%20a%20free%20counselling%20call" target="_blank" rel="noopener"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>WhatsApp us &middot; +91 93608 59919</a>
-        <button type="button" class="btn btn--outline-light" data-sg="download"><svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>Download the PDF</button>
-        <div class="pg-end__cards"><div><span>WhatsApp / call</span>+91 93608 59919</div><div><span>Website</span>mathuraoverseas.com</div></div>
-        <p class="pg-small">MBBS Abroad Handbook &middot; 2026&ndash;27 edition. General educational guidance only. Verify current NMC / NBEMS / NTA notifications and university fees before any decision or payment.</p>
+        <button type="button" class="btn btn--outline-light" data-sg="download"><svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>Get the full handbook (PDF)</button>
+        <p class="pg-small pg-opt">The PDF has every chapter, university fee tables and the 2026 updates. General guidance only &mdash; verify current NMC / NBEMS / NTA notices and university fees before any payment.</p>
       </div>
     </article>
 

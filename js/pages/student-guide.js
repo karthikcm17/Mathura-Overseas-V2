@@ -57,11 +57,11 @@ document.addEventListener('DOMContentLoaded', function () {
   // ---------- sizing: the book fills the stage, nothing scrolls ----------
   function size() {
     var w = stage.clientWidth, h = stage.clientHeight;
-    var aw = w - 24, ah = h - 12;
+    var aw = w - (w < 640 ? 16 : 32), ah = h - 8;
     var wantSpread = w >= 880 && w / h >= 1.2;
     var pw, ph;
-    if (wantSpread) { ph = Math.min(ah, 780); pw = Math.min(ph * RATIO, (aw - 24) / 2); ph = Math.min(ph, pw / RATIO + 40); }
-    else { pw = Math.min(aw, 520); ph = ah; if (pw / ph > 0.9) pw = Math.floor(ph * 0.9); }
+    if (wantSpread) { ph = Math.min(ah, 860); pw = Math.min(ph * RATIO, (aw - 24) / 2); ph = Math.min(ph, pw / RATIO + 40); }
+    else { pw = Math.min(aw, 600); ph = ah; if (pw / ph > 0.9) pw = Math.floor(ph * 0.9); }
     book.style.setProperty('--pw', Math.floor(pw) + 'px');
     book.style.setProperty('--ph', Math.floor(ph) + 'px');
     return wantSpread;
@@ -69,9 +69,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ---------- fit each page's text to its page ----------
   function fit(p) {
-    var pg = p.querySelector('.pg'); if (!pg) return;
+    var pg = p.querySelector('.pg, .pg-end'); if (!pg) return;
     var w = p.clientWidth; if (!w) return;
-    var hi = Math.max(12.5, Math.min(16.5, w / 23));
+    var hi = Math.max(13, Math.min(22, w / 21));
     function ok(px) { p.style.setProperty('--fs', px + 'px'); return pg.scrollHeight <= pg.clientHeight + 1; }
     // largest font size (between MIN_FONT and hi) at which the whole page content fits; null if even the smallest does not
     function solve() {
@@ -83,8 +83,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     pg.classList.remove('is-scroll', 'is-tight');
     var fs = solve();
-    // still too small to read comfortably: drop the optional lines (contents sub-titles, chapter intro) and try again
-    if ((fs === null || fs < 12) && pg.querySelector('.pg-toc small, .pg-hero p')) { pg.classList.add('is-tight'); fs = solve(); }
+    // still too small to read comfortably: drop the optional lines (anything marked class="pg-opt") and try again
+    if ((fs === null || fs < 13) && pg.querySelector('.pg-opt')) { pg.classList.add('is-tight'); fs = solve(); }
     if (fs === null) { ok(MIN_FONT); pg.classList.add('is-scroll'); } else ok(fs);
   }
   function fitAll() { pages.forEach(fit); }
@@ -200,6 +200,12 @@ document.addEventListener('DOMContentLoaded', function () {
     if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.4) go(state + (dx < 0 ? 1 : -1));
   }, { passive: true });
 
+  // the reader never scrolls: if a deep link (#ch3) or focus makes the browser scroll the locked page, snap it back
+  function lock() { [document.documentElement, document.body, main, stage].forEach(function (el) { if (el && el.scrollTop) el.scrollTop = 0; }); }
+  var main = document.getElementById('main');
+  [main, stage, document.body].forEach(function (el) { if (el) el.addEventListener('scroll', lock); });
+  window.addEventListener('scroll', lock);
+
   // re-size when the window changes (rotation, resizing); keep the reader on the same page
   var rt = null;
   function relayout() {
@@ -217,4 +223,5 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('hashchange', function () { if (location.hash) goTo(location.hash.slice(1)); });
   // initial deep link
   if (location.hash) { var di = pageIndex(location.hash.slice(1)); if (di > 0) { state = spread ? Math.ceil(di / 2) : di; paint(); ui(); } }
+  lock(); setTimeout(lock, 300);
 });
