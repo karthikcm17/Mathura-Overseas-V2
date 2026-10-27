@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>NEET &amp; Counselling Updates | Mathura Overseas</title>
-<meta name="description" content="NEET UG and PG news plus All India (MCC) and state counselling updates: results, schedules, cut-offs and allotments, explained simply.">
+<title>NEET UG &amp; PG Updates and Counselling News | Mathura Overseas</title>
+<meta name="description" content="NEET UG, PG and MDS news plus MCC and state counselling updates: schedules, cut-offs and allotments, explained simply.">
 <meta name="theme-color" content="#1E3A8A">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta property="og:type" content="website">
-<meta property="og:title" content="NEET &amp; Counselling Updates | Mathura Overseas">
-<meta property="og:description" content="NEET UG and PG news plus All India (MCC) and state counselling updates: results, schedules, cut-offs and allotments, explained simply.">
+<meta property="og:title" content="NEET UG &amp; PG Updates and Counselling News | Mathura Overseas">
+<meta property="og:description" content="NEET UG, PG and MDS news plus MCC and state counselling updates: schedules, cut-offs and allotments, explained simply.">
 <meta property="og:image" content="assets/images/og/home.jpg">
 <link rel="icon" href="assets/images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -103,80 +103,59 @@
 
 <main id="main">
 
-  <!-- ============ HEADER BAND ============ -->
+  <!-- ============ HERO — same blue gradient, globe and flight arc as the homepage. No year in the heading, so it stays right for 2027. ============ -->
   <section class="upd-hero">
     <svg class="upd-hero__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+    <svg class="upd-hero__arc" viewBox="0 0 600 300" aria-hidden="true"><path class="upd-hero__arc-path" d="M0,275 C190,275 380,225 600,28"/></svg>
     <div class="container upd-hero__inner">
+      <span class="upd-pill"><span class="upd-pill__dot"></span><span id="updCycleLabel">NEET updates</span><span class="upd-pill__sep" aria-hidden="true">&middot;</span>Updated <strong id="updLast">&hellip;</strong></span>
       <h1>NEET and counselling updates</h1>
-      <p class="upd-hero__lead">Results, schedules, cut-offs and allotments for NEET UG and PG, from MCC (All India) and from each state, explained in plain language.</p>
-      <p class="upd-hero__meta"><span class="upd-hero__dot" aria-hidden="true"></span>Last updated <strong id="updLast">&hellip;</strong></p>
+      <p class="upd-hero__lead">UG, PG and MDS news, plus MCC and state counselling dates, results and cut-offs, in plain language.</p>
     </div>
   </section>
 
+  <!-- ============ COUNSELLING TRACKER (floats over the hero edge, like the homepage stat strip). Data: assets/data/counselling-tracker.json ============ -->
+  <div class="upd-tracker" id="updTracker" hidden>
+    <div class="container">
+      <div class="card upd-tracker__panel">
+        <div class="upd-tracker__head"><h2>Counselling tracker</h2><p id="updTrackerNote">Result date of each round</p></div>
+        <div class="upd-tracker__row" id="updTrackerRow"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- ============ FILTERS + FEED ============ -->
-  <section class="section upd-body">
+  <section class="section has-dots upd-body">
     <div class="container upd-layout">
 
-      <button type="button" class="btn btn--outline btn--sm upd-filter-toggle" id="updFilterToggle" aria-expanded="false" aria-controls="updFilters">
-        <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>Search and filter <span class="upd-filter-count" id="updFilterCount" hidden></span>
-      </button>
-
-      <aside class="upd-filters card" id="updFilters" aria-label="Filter updates">
-
+      <!-- Desktop: sticky side panel. Phone: one swipeable row of buttons (built by updates.js; edit GROUPS at the top of that file) -->
+      <aside class="upd-filters" id="updFilters" aria-label="Filter updates">
+        <div class="upd-years" id="updYears" role="group" aria-label="Choose NEET year" hidden></div>
         <div class="upd-search">
           <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
-          <input type="search" id="updSearch" placeholder="Search updates, e.g. cut-off" aria-label="Search updates" autocomplete="off">
+          <input type="search" id="updSearch" placeholder="Search updates" aria-label="Search updates" autocomplete="off">
         </div>
-
-        <fieldset class="upd-group">
-          <legend>Exam</legend>
-          <div class="upd-chips" data-group="exam">
-            <button type="button" class="upd-chip is-active" data-value="all" aria-pressed="true">All <span class="upd-chip__n"></span></button>
-            <button type="button" class="upd-chip" data-value="ug" aria-pressed="false">NEET UG <span class="upd-chip__n"></span></button>
-            <button type="button" class="upd-chip" data-value="pg" aria-pressed="false">NEET PG <span class="upd-chip__n"></span></button>
-          </div>
-        </fieldset>
-
-        <fieldset class="upd-group">
-          <legend>Type</legend>
-          <div class="upd-chips" data-group="type">
-            <button type="button" class="upd-chip is-active" data-value="all" aria-pressed="true">All <span class="upd-chip__n"></span></button>
-            <button type="button" class="upd-chip" data-value="exam" aria-pressed="false">Exam news <span class="upd-chip__n"></span></button>
-            <button type="button" class="upd-chip" data-value="counselling" aria-pressed="false">Counselling <span class="upd-chip__n"></span></button>
-            <button type="button" class="upd-chip" data-value="guide" aria-pressed="false">Guidance <span class="upd-chip__n"></span></button>
-          </div>
-        </fieldset>
-
-        <fieldset class="upd-group" id="updScopeGroup" hidden>
-          <legend>Counselling level</legend>
-          <div class="upd-chips" data-group="scope">
-            <button type="button" class="upd-chip is-active" data-value="all" aria-pressed="true">All <span class="upd-chip__n"></span></button>
-            <button type="button" class="upd-chip" data-value="all-india" aria-pressed="false">All India (MCC) <span class="upd-chip__n"></span></button>
-            <button type="button" class="upd-chip" data-value="state" aria-pressed="false">State <span class="upd-chip__n"></span></button>
-          </div>
-          <div class="upd-state" id="updStateWrap" hidden>
-            <label for="updState" class="sr-only">Choose a state</label>
-            <select id="updState"><option value="">All states</option></select>
-          </div>
-        </fieldset>
-
-        <fieldset class="upd-group" id="updTagGroup" hidden>
-          <legend>Topic</legend>
-          <div class="upd-chips" id="updTags" data-group="tag"></div>
-        </fieldset>
-
-        <button type="button" class="btn btn--link upd-reset" id="updReset" hidden>Clear all filters</button>
+        <div class="upd-groups" id="updGroups" role="group" aria-label="Show"></div>
       </aside>
 
       <div class="upd-feed">
-        <p class="upd-status" id="updStatus" role="status" aria-live="polite">Loading updates&hellip;</p>
-        <div id="updList" class="upd-list"></div>
+        <div class="upd-feed__head">
+          <h2>Latest updates</h2>
+          <p class="upd-status" id="updStatus" role="status" aria-live="polite">Loading&hellip;</p>
+        </div>
+        <div id="updList" class="upd-list">
+          <div class="upd-skel" aria-hidden="true"></div><div class="upd-skel" aria-hidden="true"></div><div class="upd-skel" aria-hidden="true"></div>
+        </div>
+        <div class="upd-more" id="updMoreWrap" hidden>
+          <button type="button" class="btn btn--outline" id="updMore">View more updates</button>
+        </div>
         <div class="upd-empty" id="updEmpty" hidden>
           <span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-news"></use></svg></span>
-          <h2 id="updEmptyTitle">No updates match these filters</h2>
-          <p id="updEmptyText">Try a different exam or counselling level, or clear the filters.</p>
-          <button type="button" class="btn btn--primary btn--sm" id="updEmptyReset">Clear all filters</button>
+          <h3 id="updEmptyTitle">No updates match</h3>
+          <p id="updEmptyText">Try a different filter.</p>
+          <button type="button" class="btn btn--primary btn--sm" id="updEmptyReset" hidden>Clear filters</button>
         </div>
+        <p class="upd-disclaimer">Dates are compiled from official notices and education news reports. Always confirm on <a href="https://mcc.nic.in" target="_blank" rel="noopener">mcc.nic.in</a> or <a href="https://www.tnmedicalselection.net" target="_blank" rel="noopener">tnmedicalselection.net</a> before acting.</p>
       </div>
 
     </div>
@@ -187,9 +166,9 @@
     <div class="container">
       <div class="upd-cta">
         <svg class="upd-cta__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
-        <div><h2>Not sure how your score maps to real options?</h2><p>Check your MBBS-abroad eligibility in a minute, or talk to a counsellor.</p></div>
+        <div><h2>Seat not in reach this year?</h2><p>See which MBBS-abroad options fit your NEET score and budget. Free, no obligation.</p></div>
         <div class="btn-row">
-          <a href="find-your-university.html" class="btn btn--ondark">Check eligibility <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <a href="find-your-university.html" class="btn btn--ondark">Check my eligibility <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
           <a href="apply.html" class="btn btn--outline-light">Talk to a counsellor</a>
         </div>
       </div>
@@ -241,6 +220,7 @@
 <nav class="bottom-nav" aria-label="Mobile primary">
   <div class="bottom-nav__inner">
       <a href="index.html" class="bottom-nav__item"><svg class="icon" aria-hidden="true"><use href="#i-home"></use></svg>Home</a>
+      <a href="destinations.html" class="bottom-nav__item"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Countries</a>
       <a href="find-your-university.html" class="bottom-nav__item"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>Find</a>
       <a href="neet-2026-updates.html" class="bottom-nav__item" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#i-news"></use></svg>Updates</a>
       <a href="student-guide.html" class="bottom-nav__item"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg>Guide</a>

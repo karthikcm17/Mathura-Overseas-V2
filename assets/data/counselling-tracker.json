@@ -1,0 +1,116 @@
+{
+  "cycle": "2026",
+  "asOf": "23 Oct 2026",
+  "tracks": [
+    {
+      "name": "MCC NEET UG",
+      "sub": "MBBS, BDS, B.Sc Nursing",
+      "steps": [
+        [
+          "Round 1",
+          "19 Aug 2026"
+        ],
+        [
+          "Round 2",
+          "12 Sep 2026"
+        ],
+        [
+          "Round 3",
+          "01 Oct 2026"
+        ],
+        [
+          "Stray",
+          "19 Oct 2026"
+        ]
+      ]
+    },
+    {
+      "name": "Tamil Nadu MBBS/BDS",
+      "sub": "State counselling",
+      "steps": [
+        [
+          "Round 1",
+          "27 Aug 2026"
+        ],
+        [
+          "Round 2",
+          "15 Sep 2026"
+        ],
+        [
+          "Round 3",
+          "12 Oct 2026"
+        ],
+        [
+          "Stray",
+          "22 Oct 2026"
+        ]
+      ]
+    },
+    {
+      "name": "MCC NEET PG",
+      "sub": "MD, MS, Diploma",
+      "steps": [
+        [
+          "Round 1",
+          "24 Oct 2026"
+        ],
+        [
+          "Round 2",
+          "14 Nov 2026"
+        ],
+        [
+          "Round 3",
+          "04 Dec 2026"
+        ],
+        [
+          "Stray",
+          "24 Dec 2026"
+        ]
+      ]
+    },
+    {
+      "name": "MCC NEET MDS",
+      "sub": "Dental PG",
+      "steps": [
+        [
+          "Round 1",
+          "01 Sep 2026"
+        ],
+        [
+          "Round 2",
+          "23 Sep 2026"
+        ],
+        [
+          "Round 3",
+          "10 Oct 2026"
+        ],
+        [
+          "Stray",
+          "29 Oct 2026"
+        ]
+      ]
+    },
+    {
+      "name": "Tamil Nadu MDS",
+      "sub": "State counselling",
+      "steps": [
+        [
+          "Round 1",
+          "05 Sep 2026"
+        ],
+        [
+          "Round 2",
+          "26 Sep 2026"
+        ],
+        [
+          "Mop-up",
+          null
+        ],
+        [
+          "Stray",
+          null
+        ]
+      ]
+    }
+  ]
+}
