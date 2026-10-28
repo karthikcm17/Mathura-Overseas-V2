@@ -1,0 +1,22 @@
+<!-- ============ HEADER + MENU (_includes/header.html) — one file for every page.
+     The highlighted (teal) menu item is chosen automatically from the "active:" line at the top of each page:
+     countries · planner · updates · guide · about. You never add aria-current by hand. -->
+<header class="app-header">
+  <div class="container app-header__inner">
+    <a href="index.html" class="logo" aria-label="Mathura Overseas home">
+      <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true"><rect class="logo__badge" width="40" height="40" rx="12"/><g class="logo__cap"><path d="M20 9 7 15.5 20 22l13-6.5L20 9Z"/><path d="M12 19.2V24c0 2.2 3.6 4 8 4s8-1.8 8-4v-4.8L20 24.4l-8-5.2Z" opacity=".92"/></g><g class="logo__tassel"><path class="logo__tassel-cord" d="M33 16v7"/><circle class="logo__tassel-end" cx="33" cy="25" r="1.9"/></g></svg>
+      <span class="logo__text">MATHURA<span>OVERSEAS</span></span>
+    </a>
+    <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg></button>
+    <nav class="site-nav" aria-label="Primary">
+      <button type="button" class="site-nav__close" aria-label="Close menu"><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
+      <a href="destinations.html"{% if page.active == "countries" %} aria-current="page"{% endif %}><span class="site-nav__ico"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><span class="site-nav__label">Countries</span></a>
+      <a href="mbbs-abroad-planner.html"{% if page.active == "planner" %} aria-current="page"{% endif %}><span class="site-nav__ico"><svg class="icon" aria-hidden="true"><use href="#i-check-square"></use></svg></span><span class="site-nav__label">MBBS Planner</span></a>
+      <a href="neet-2026-updates.html"{% if page.active == "updates" %} aria-current="page"{% endif %}><span class="site-nav__ico"><svg class="icon" aria-hidden="true"><use href="#i-news"></use></svg></span><span class="site-nav__label">Updates</span></a>
+      <a href="student-guide.html"{% if page.active == "guide" %} aria-current="page"{% endif %}><span class="site-nav__ico"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg></span><span class="site-nav__label">Guide</span></a>
+      <a href="about-us.html"{% if page.active == "about" %} aria-current="page"{% endif %}><span class="site-nav__ico"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span><span class="site-nav__label">About</span></a>
+      <a href="apply.html" class="btn btn--primary btn--sm">Get Free Counselling</a>
+    </nav>
+  </div>
+  <div class="nav-scrim"></div>
+</header>

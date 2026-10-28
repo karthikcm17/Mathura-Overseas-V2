@@ -53,7 +53,7 @@ var COST_SCALE_MAX = 50;   // right edge of the tuition chart, in lakhs. Raise i
 var WHATSAPP_NUMBER = '919360859919';
 // Paste your Google Apps Script web-app URL here and call-back requests are saved to your sheet.
 // While it is empty, "Call me back" opens WhatsApp with the visitor's details instead, so no lead is lost.
-var LEAD_ENDPOINT = '';
+var LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbw6cRblZGrLuXe_1RW03Rp7B72gyhTZnZTT2I0bl9co/dev';
 
 /* ======================= helpers (no need to edit below this line) ======================= */
 var MO = {

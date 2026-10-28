@@ -1,0 +1,5 @@
+# Created by Jekyll when you preview on your own computer — never upload these.
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/

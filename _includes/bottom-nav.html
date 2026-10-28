@@ -1,0 +1,16 @@
+<!-- ============ BOTTOM TAB BAR + FLOATING WHATSAPP (_includes/bottom-nav.html) — one file for every page.
+     6 tabs on phones; hides on scroll down. The highlighted tab follows the page's "active:" line
+     (home · countries · planner · updates · guide). A page can hide the tab bar with  hide_bottom_nav: true  -->
+{% unless page.hide_bottom_nav %}<nav class="bottom-nav" aria-label="Mobile primary">
+  <div class="bottom-nav__inner">
+      <a href="index.html" class="bottom-nav__item"{% if page.active == "home" %} aria-current="page"{% endif %}><svg class="icon" aria-hidden="true"><use href="#i-home"></use></svg>Home</a>
+      <a href="destinations.html" class="bottom-nav__item"{% if page.active == "countries" %} aria-current="page"{% endif %}><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Countries</a>
+      <a href="mbbs-abroad-planner.html" class="bottom-nav__item"{% if page.active == "planner" %} aria-current="page"{% endif %}><svg class="icon" aria-hidden="true"><use href="#i-check-square"></use></svg>Planner</a>
+      <a href="neet-2026-updates.html" class="bottom-nav__item"{% if page.active == "updates" %} aria-current="page"{% endif %}><svg class="icon" aria-hidden="true"><use href="#i-news"></use></svg>Updates</a>
+      <a href="student-guide.html" class="bottom-nav__item"{% if page.active == "guide" %} aria-current="page"{% endif %}><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg>Guide</a>
+      <a href="https://wa.me/919360859919?text=Hi%2C%20I%20want%20to%20know%20about%20MBBS%20Abroad%20via%20Mathura%20Overseas" class="bottom-nav__item bottom-nav__item--whatsapp" target="_blank" rel="noopener"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>WhatsApp</a>
+  </div>
+</nav>
+{% endunless %}
+<!-- Desktop-only floating WhatsApp -->
+<a href="https://wa.me/919360859919?text=Hi%2C%20I%20want%20to%20know%20about%20MBBS%20Abroad%20via%20Mathura%20Overseas" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg></a>

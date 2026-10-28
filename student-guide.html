@@ -1,34 +1,19 @@
+---
+# Shared parts (announcement bar, header, footer, tab bar, icons) live in the _includes folder.
+active: guide   # highlighted menu item: home, countries, planner, updates, guide, about, privacy
+hide_bottom_nav: true   # this page is a full-screen book reader with its own controls
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <!-- BUILD 20261028-6 : student guide, viewport-safe version -->
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>The Ultimate MBBS Abroad Handbook 2026-27 | Mathura Overseas</title>
 <meta name="description" content="A page-by-page guide to MBBS abroad: NEET eligibility, NMC FMGL rules, country comparisons, costs and licensing. Read it online like a book or download the PDF.">
-<meta name="theme-color" content="#1E3A8A">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta property="og:type" content="website">
 <meta property="og:title" content="The Ultimate MBBS Abroad Handbook 2026-27 | Mathura Overseas">
 <meta property="og:description" content="A page-by-page guide to MBBS abroad: NEET eligibility, NMC FMGL rules, country comparisons, costs and licensing. Read it online like a book or download the PDF.">
 <meta property="og:image" content="assets/images/og/home.jpg">
-<link rel="icon" href="assets/images/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Font: one variable file (all weights), loaded without blocking the first paint -->
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..800&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="css/variables.css">
-<link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/typography.css">
-<link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/components.css">
-<link rel="stylesheet" href="css/forms.css">
-<link rel="stylesheet" href="css/navigation.css">
-<link rel="stylesheet" href="css/footer.css">
-<link rel="stylesheet" href="css/animations.css">
-<link rel="stylesheet" href="css/responsive.css">
+{% include head.html font="async" %}
 <link rel="stylesheet" href="css/pages/student-guide.css?v=20261028-6">
 <script>document.documentElement.classList.add('js');
 // real visible height (Chrome/Safari toolbars included) so the bottom controls are never hidden
@@ -47,80 +32,9 @@ document.addEventListener('DOMContentLoaded',function(){setAppH();setTimeout(set
 </head>
 <body class="sg-reader">
 
-<!-- Icons: one inline block per page, so nothing external can break. To add an icon, add a <symbol> here and use it with
-     <svg class="icon"><use href="#i-name"></use></svg> -->
-<svg class="svg-sprite" aria-hidden="true" focusable="false"><defs><linearGradient id="mo-grad" x1="0" y1="0" x2="1" y2="1"><stop class="grad-a" offset="0"/><stop class="grad-b" offset="1"/></linearGradient></defs>
-<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></symbol>
-<symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11.5a7 7 0 1 0-14 0C5 14.5 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
-<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
-<symbol id="i-news" viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5z"/><path d="M9 9h6M9 13h6M9 17h4"/></symbol>
-<symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></symbol>
-<symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.78-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.48 0 1.46 1.06 2.87 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35ZM12.04 2a9.9 9.9 0 0 0-8.4 15.1L2 22l5-1.6A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3 .95.97-2.9-.2-.3A8.2 8.2 0 1 1 12.04 20.1Z"/></symbol>
-<symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></symbol>
-<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
-<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
-<symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
-<symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
-<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.25"/><path d="M12 8v5M12 16.5h.01"/></symbol>
-<symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M12 2 3 6v6c0 5 4 8 9 10 5-2 9-5 9-10V6l-9-4Z"/><path d="m8.5 12 2.3 2.3L16 9"/></symbol>
-<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></symbol>
-<symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
-<symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 5.6a5.2 5.2 0 0 0-7.4 0L12 7l-1.4-1.4a5.2 5.2 0 0 0-7.4 7.4L12 21.8l8.8-8.8a5.2 5.2 0 0 0 0-7.4Z"/></symbol>
-<symbol id="i-check-square" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></symbol>
-<symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="13" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></symbol>
-<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="18" cy="9" r="2.6"/><path d="M15.8 13a5.2 5.2 0 0 1 5.7 5.2"/></symbol>
-<symbol id="i-cap" viewBox="0 0 24 24"><path d="M12 4 2 9l10 5 10-5-10-5Z"/><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/></symbol>
-<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12h.01"/></symbol>
-<symbol id="i-building" viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6M10 11h4"/></symbol>
-<symbol id="i-passport" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M9 17h6"/></symbol>
-<symbol id="i-plane" viewBox="0 0 24 24"><path d="m3 11 18-8-8 18-2-8-8-2Z"/></symbol>
-<symbol id="i-message" viewBox="0 0 24 24"><path d="M4 4.5h13a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H10l-4.2 3.2a.6.6 0 0 1-.96-.48V15.5H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Z"/><path d="M8 9.5h.01M12 9.5h.01M16 9.5h.01"/></symbol>
-<symbol id="i-facebook" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M13.5 21v-8.1h2.72l.41-3.16h-3.13V7.73c0-.91.25-1.53 1.56-1.53h1.67V3.38C15.98 3.26 15 3.17 13.87 3.17c-2.36 0-3.97 1.44-3.97 4.08v2.65H7.17v3.16h2.73V21h3.6Z"/></symbol>
-<symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><path d="M17 7h.01"/></symbol>
-<symbol id="i-youtube" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M21.6 7.6a2.75 2.75 0 0 0-1.94-1.95C18 5.2 12 5.2 12 5.2s-6 0-7.66.45A2.75 2.75 0 0 0 2.4 7.6 28.9 28.9 0 0 0 2 12a28.9 28.9 0 0 0 .4 4.4 2.75 2.75 0 0 0 1.94 1.95C6 18.8 12 18.8 12 18.8s6 0 7.66-.45a2.75 2.75 0 0 0 1.94-1.95c.27-1.45.4-2.93.4-4.4a28.9 28.9 0 0 0-.4-4.4ZM10 15.02V8.98L15.27 12 10 15.02Z"/></symbol>
-<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5L20 6"/></symbol>
-<symbol id="i-quote" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M4 17.5c0-4.1 1.2-7.4 4.9-9.9l1 1.5C7.7 10.6 7.3 12 7.2 13.5H10V19H4v-1.5Zm10 0c0-4.1 1.2-7.4 4.9-9.9l1 1.5c-2.2 1.5-2.6 2.9-2.7 4.4H20V19h-6v-1.5Z"/></symbol>
-<symbol id="i-globe-art" viewBox="0 0 400 400"><circle cx="200" cy="200" r="190"/><ellipse cx="200" cy="200" rx="190" ry="28"/><ellipse cx="200" cy="105" rx="165" ry="25"/><ellipse cx="200" cy="295" rx="165" ry="25"/><ellipse cx="200" cy="36" rx="95" ry="14"/><ellipse cx="200" cy="364" rx="95" ry="14"/><ellipse cx="200" cy="200" rx="95" ry="190"/><ellipse cx="200" cy="200" rx="165" ry="190"/><path d="M200 10v380"/></symbol>
-<symbol id="i-airplane" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0 0 11.5 2 1.5 1.5 0 0 0 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></symbol>
-<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
-<symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></symbol>
-<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></symbol>
-</svg>
-
-<!-- ============ ANNOUNCEMENT BAR — identical on every page (no close button). Edit the 3 messages here and copy to all pages. ============ -->
-<div class="announce">
-  <div class="container announce__inner">
-    <span class="announce__icon"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg></span>
-    <div class="announce__track">
-      <span class="announce__item is-active">TN MBBS Government Quota Round 1 results are out &mdash; check your college now</span>
-      <span class="announce__item">MCC AIQ Round 1 counselling is live &mdash; talk to a counsellor today</span>
-      <span class="announce__item">Admissions open for 2026&ndash;27 &mdash; limited seats across all destinations</span>
-    </div>
-  </div>
-</div>
-
-<!-- ============ HEADER — identical on every page; only aria-current changes ============ -->
-<header class="app-header">
-  <div class="container app-header__inner">
-    <a href="index.html" class="logo" aria-label="Mathura Overseas home">
-      <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true"><rect class="logo__badge" width="40" height="40" rx="12"/><g class="logo__cap"><path d="M20 9 7 15.5 20 22l13-6.5L20 9Z"/><path d="M12 19.2V24c0 2.2 3.6 4 8 4s8-1.8 8-4v-4.8L20 24.4l-8-5.2Z" opacity=".92"/></g><g class="logo__tassel"><path class="logo__tassel-cord" d="M33 16v7"/><circle class="logo__tassel-end" cx="33" cy="25" r="1.9"/></g></svg>
-      <span class="logo__text">MATHURA<span>OVERSEAS</span></span>
-    </a>
-    <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg></button>
-    <nav class="site-nav" aria-label="Primary">
-      <button type="button" class="site-nav__close" aria-label="Close menu"><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
-      <a href="destinations.html"><span class="site-nav__ico"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><span class="site-nav__label">Countries</span></a>
-      <a href="find-your-university.html"><span class="site-nav__ico"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg></span><span class="site-nav__label">Find university</span></a>
-      <a href="neet-2026-updates.html"><span class="site-nav__ico"><svg class="icon" aria-hidden="true"><use href="#i-news"></use></svg></span><span class="site-nav__label">Updates</span></a>
-      <a href="student-guide.html" aria-current="page"><span class="site-nav__ico"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg></span><span class="site-nav__label">Guide</span></a>
-      <a href="about-us.html"><span class="site-nav__ico"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span><span class="site-nav__label">About</span></a>
-      <a href="apply.html" class="btn btn--primary btn--sm">Get Free Counselling</a>
-    </nav>
-  </div>
-  <div class="nav-scrim"></div>
-</header>
-
-
+{% include icons.html %}
+{% include announcement.html %}
+{% include header.html %}
 
 <main id="main">
   <svg class="sg-globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
@@ -561,54 +475,10 @@ document.addEventListener('DOMContentLoaded',function(){setAppH();setTimeout(set
 
 </main>
 
-<!-- ============ FOOTER — identical on every page ============ -->
-<footer class="site-footer">
-  <svg class="site-footer__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
-  <div class="container">
-    <div class="site-footer__grid">
-      <div class="site-footer__brand">
-        <a href="index.html" class="logo" aria-label="Mathura Overseas home"><svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true"><rect class="logo__badge" width="40" height="40" rx="12"/><g class="logo__cap"><path d="M20 9 7 15.5 20 22l13-6.5L20 9Z"/><path d="M12 19.2V24c0 2.2 3.6 4 8 4s8-1.8 8-4v-4.8L20 24.4l-8-5.2Z" opacity=".92"/></g><g class="logo__tassel"><path class="logo__tassel-cord" d="M33 16v7"/><circle class="logo__tassel-end" cx="33" cy="25" r="1.9"/></g></svg><span class="logo__text">MATHURA<span>OVERSEAS</span></span></a>
-        <p class="site-footer__tagline">Your gateway to a global medical career.</p>
-        <p class="site-footer__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Based in Tiruchirappalli, Tamil Nadu</p>
-      </div>
-      <div class="site-footer__col site-footer__col--countries">
-        <h4>Countries</h4>
-        <div class="site-footer__links site-footer__links--2">
-          <a href="mbbs-in-philippines.html">Philippines</a><a href="mbbs-in-timor-uct-timor.html">Timor-Leste</a><a href="mbbs-in-uzbekistan.html">Uzbekistan</a><a href="mbbs-in-vietnam.html">Vietnam</a><a href="mbbs-in-russia.html">Russia</a><a href="mbbs-in-georgia.html">Georgia</a><a href="mbbs-in-kazakhstan.html">Kazakhstan</a><a href="mbbs-in-kyrgyzstan.html">Kyrgyzstan</a><a href="mbbs-in-central-america.html">Central America</a>
-        </div>
-      </div>
-      <div class="site-footer__col site-footer__col--explore">
-        <h4>Explore</h4>
-        <div class="site-footer__links">
-          <a href="find-your-university.html">Find university</a><a href="neet-2026-updates.html">Updates</a><a href="student-guide.html">Student guide</a><a href="about-us.html">About us</a>
-        </div>
-      </div>
-      <div class="site-footer__col site-footer__contact">
-        <h4>Talk to us</h4>
-        <a class="contact-row" href="tel:+919360859919"><svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg><span class="contact-row__text"><b>Call us</b><span>+91 93608 59919</span></span><svg class="icon contact-row__chev" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
-        <a class="contact-row contact-row--wa" href="https://wa.me/919360859919" target="_blank" rel="noopener"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg><span class="contact-row__text"><b>WhatsApp</b><span>Chat with a counsellor</span></span><svg class="icon contact-row__chev" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
-        <a class="contact-row" href="mailto:mathuraoverseas@gmail.com"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg><span class="contact-row__text"><b>Email</b><span>mathuraoverseas@gmail.com</span></span><svg class="icon contact-row__chev" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
-        <div class="site-footer__social">
-          <a href="#" aria-label="Facebook"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-facebook"></use></svg></a>
-          <a href="#" aria-label="Instagram"><svg class="icon" aria-hidden="true"><use href="#i-instagram"></use></svg></a>
-          <a href="#" aria-label="YouTube"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-youtube"></use></svg></a>
-          <a href="https://wa.me/919360859919" aria-label="WhatsApp"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg></a>
-        </div>
-      </div>
-    </div>
-    <div class="site-footer__bottom"><span>&copy; 2026 Mathura Overseas</span><a href="privacy-policy.html">Privacy policy</a></div>
-  </div>
-</footer>
-
-<!-- ============ BOTTOM TAB BAR — identical on every page; 5 items; hides on scroll down ============ -->
-
-
-<!-- Desktop-only floating WhatsApp -->
-<a href="https://wa.me/919360859919?text=Hi%2C%20I%20want%20to%20know%20about%20MBBS%20Abroad%20via%20Mathura%20Overseas" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg></a>
-
+{% include footer.html %}
+{% include bottom-nav.html %}
+<!-- This page's own script loads BEFORE the shared scripts (it builds the book first). Keep this order. -->
 <script src="js/pages/student-guide.js?v=20261028-6"></script>
-<script src="js/main.js"></script>
-<script src="js/navigation.js"></script>
-<script src="js/animations.js"></script>
+{% include scripts.html %}
 </body>
 </html>

@@ -1,0 +1,27 @@
+# ============ JEKYLL SETTINGS — Mathura Overseas ============
+# GitHub Pages reads this file automatically and assembles every page from the pieces in _includes/.
+# You rarely need to touch it. If you change it while previewing on your computer, stop (Ctrl+C) and
+# run "jekyll serve" again — this one file is not reloaded automatically.
+
+title: Mathura Overseas
+
+# Pages are plain HTML documents: never wrap them in a theme layout.
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: null
+
+# Files that live in the repository but must NOT be published on the website.
+exclude:
+  - PAGE_TEMPLATE.html          # starting point for new pages, not a real page
+  - bottom-nav-snippet.html     # old copy-paste snippet, replaced by _includes/bottom-nav.html
+  - README.md
+  - JEKYLL_SETUP.md
+  - SITE_CONTENT_PLAN.md
+  - IMAGE_BRIEF.md
+  - google-sheets-lead-script.gs
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
