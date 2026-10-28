@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* ================= QUICK PLANNER (hero tool) =================
      Each tab gives an instant answer, then its button carries the visitor's input to
-     find-your-university.html (e.g. ?score=250&cat=general#eligibility), where the full tool picks it up. */
+     mbbs-abroad-planner.html (e.g. ?score=250&cat=general#eligibility), where the full tool picks it up. */
   var tool = $('heroTool');
   if (tool && typeof MO !== 'undefined') {
     // ---- tabs + mobile bottom sheet ----
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var p = pointAt(r.neet / 720);
       mark.setAttribute('cx', p[0].toFixed(1)); mark.setAttribute('cy', p[1].toFixed(1));
       gauge.classList.add('has-mark');
-      var go = 'find-your-university.html?cat=' + cat;
+      var go = 'mbbs-abroad-planner.html?cat=' + cat;
       if (raw === '' || isNaN(score) || score < 0 || score > 720) {
         fill.style.setProperty('--off', 100);
         gauge.classList.remove('is-short');
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
       $('qCostStatus').innerHTML = any ? 'Highlighted: tuition <strong>starts within ₹' + v + 'L</strong>. Living costs are extra — see the full plan.'
         : 'Tuition starts a little higher than this — slide right to see options.';
-      $('qCostGo').href = 'find-your-university.html?budget=' + v + '#cost';
+      $('qCostGo').href = 'mbbs-abroad-planner.html?budget=' + v + '#cost';
     };
     budget.addEventListener('input', renderBudget);
     renderBudget();
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
     selA.innerHTML = opts; selB.innerHTML = opts; selA.value = 'philippines'; selB.value = 'uzbekistan';
     var renderCompare = function () {
       var a = selA.value, b = selB.value;
-      $('qCmpGo').href = 'find-your-university.html?cmp=' + a + (a !== b ? ',' + b : '') + '#compare';
+      $('qCmpGo').href = 'mbbs-abroad-planner.html?cmp=' + a + (a !== b ? ',' + b : '') + '#compare';
       if (a === b) { $('qCmp').innerHTML = '<p class="qx__same">Pick two different destinations.</p>'; return; }
       var A = DESTINATIONS[a], B = DESTINATIONS[b];
       var cheaper = A.tuition[0] === B.tuition[0] ? (A.tuition[1] <= B.tuition[1] ? a : b) : (A.tuition[0] < B.tuition[0] ? a : b);

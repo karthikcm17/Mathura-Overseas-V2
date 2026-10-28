@@ -1,5 +1,5 @@
 // tools.js — THE NUMBERS FILE. Every figure used by the planning tools lives here, and only here.
-// Used by: index.html (quick planner in the hero) and find-your-university.html (full tools).
+// Used by: index.html (quick planner in the hero) and mbbs-abroad-planner.html (full tools).
 // Update a number once and both pages change. Nothing below the "helpers" line needs editing.
 
 /* ======================= ELIGIBILITY ======================= */

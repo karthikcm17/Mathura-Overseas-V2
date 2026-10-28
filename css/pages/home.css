@@ -25,7 +25,7 @@
 .hero__desktop-only { display: none; }
 
 /* ================= HERO TOOL — quick planner =================
-   One input per tab, an instant answer, one button to the full tools on find-your-university.html.
+   One input per tab, an instant answer, one button to the full tools on mbbs-abroad-planner.html (MBBS Planner).
    The body has ONE fixed height so switching tabs never resizes the card. Mobile = bottom sheet. */
 .tool-scrim { position: fixed; inset: 0; z-index: var(--z-overlay); background: rgba(11,31,77,.55); opacity: 0; visibility: hidden; transition: opacity .25s var(--ease), visibility .25s; }
 .tool-scrim.is-open { opacity: 1; visibility: visible; }
