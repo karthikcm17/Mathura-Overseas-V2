@@ -1,0 +1,187 @@
+/* apply.css — styling unique to apply.html. Mobile-first; tablet/desktop upgrades at the bottom.
+   The form is a "boarding pass": the dark top half fills in live as the student types (name = passenger,
+   city = departure code) and the plane flies one third of the route for each completed detail.
+   Same hero sky, eyebrow, buttons and icon badges as the finalised Home and About pages. */
+
+/* ================= HERO SKY + LAYOUT ================= */
+.apply { position: relative; isolation: isolate; padding: var(--sp-4) 0 var(--sp-6); }
+/* The dark sky. On phones it covers the intro and tucks behind the top of the pass; on desktop it fills the section. */
+.apply__sky { position: absolute; left: 0; right: 0; top: 0; z-index: -1; height: 360px; overflow: hidden; border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  background: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1.6px) 0 0 / 22px 22px, var(--grad-hero); }
+.apply__globe { position: absolute; width: 520px; height: 520px; right: -280px; top: -170px; color: rgba(255,255,255,.15); }
+/* minmax(0, 1fr) stops long content (e.g. a button label) from pushing the column wider than a small phone */
+.apply__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--sp-4); }
+
+.apply__intro { color: var(--color-text-inverse); }
+.apply__intro h1 { max-width: 16ch; color: var(--color-text-inverse); font-size: clamp(1.75rem, 1.2rem + 2.6vw, 3.1rem); line-height: 1.1; letter-spacing: -.03em; text-wrap: balance; }
+.apply__intro h1 em { font-style: normal; color: var(--color-blue-pale); }
+.apply__lead { margin-top: var(--sp-2); max-width: 46ch; color: var(--color-text-inverse-muted); font-size: .8125rem; line-height: 1.6; }
+
+/* ================= THE BOARDING PASS ================= */
+/* --p goes 0 → 0.33 → 0.67 → 1 as details are completed (set by js/pages/apply.js). One soft shadow follows the
+   ticket's cut-out shape (drop-shadow, not box-shadow, because the notches are cut with a mask). */
+.pass { --p: 0; position: relative; width: 100%; max-width: 460px; justify-self: center;
+  filter: drop-shadow(0 18px 26px rgba(11,31,77,.20)) drop-shadow(0 2px 4px rgba(11,31,77,.10)); }
+
+/* The two halves each have half-circle notches cut where they meet (classic ticket shape).
+   The #000 below is a mask stencil (= "keep visible"), not a colour on screen, so it does not belong in variables.css. */
+.pass__head { position: relative; padding: var(--sp-4) var(--sp-5); border-radius: 22px 22px 0 0; color: var(--color-text-inverse);
+  background: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1.6px) 0 0 / 18px 18px, var(--grad-night);
+  -webkit-mask: radial-gradient(circle at 0 100%, transparent 13px, #000 13.5px) left / 51% 100% no-repeat, radial-gradient(circle at 100% 100%, transparent 13px, #000 13.5px) right / 51% 100% no-repeat;
+          mask: radial-gradient(circle at 0 100%, transparent 13px, #000 13.5px) left / 51% 100% no-repeat, radial-gradient(circle at 100% 100%, transparent 13px, #000 13.5px) right / 51% 100% no-repeat; }
+.pass__body { position: relative; padding: var(--sp-5) var(--sp-5) var(--sp-4); border-radius: 0 0 22px 22px; background: var(--color-surface);
+  -webkit-mask: radial-gradient(circle at 0 0, transparent 13px, #000 13.5px) left / 51% 100% no-repeat, radial-gradient(circle at 100% 0, transparent 13px, #000 13.5px) right / 51% 100% no-repeat;
+          mask: radial-gradient(circle at 0 0, transparent 13px, #000 13.5px) left / 51% 100% no-repeat, radial-gradient(circle at 100% 0, transparent 13px, #000 13.5px) right / 51% 100% no-repeat; }
+.pass__body::before { content: ""; position: absolute; top: 0; left: 22px; right: 22px; border-top: 2px dashed var(--color-border); }
+
+.pass__top { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); }
+.pass__brand, .pass__status { white-space: nowrap; }
+@media (max-width: 359px) { .pass__brand { display: none; } .pass__top { justify-content: flex-end; } }   /* very small phones: the logo is right above */
+.pass__brand { font-size: .66rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--color-blue-pale); }
+.pass__status { padding: .22rem .65rem; border-radius: 999px; border: 1px solid rgba(255,255,255,.3); font-size: .6rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; transition: background var(--speed) var(--ease), color var(--speed) var(--ease), border-color var(--speed) var(--ease); }
+.pass.is-done .pass__status { background: var(--color-surface); border-color: var(--color-surface); color: var(--color-primary); }
+
+/* Route: FROM code — dashed track with the plane — TO code */
+.pass__route { display: grid; grid-template-columns: 4.6rem minmax(0, 1fr) 4.6rem; align-items: center; gap: var(--sp-3); margin-top: var(--sp-3); }
+.pass__port { min-width: 0; }
+.pass__port--to { text-align: right; }
+.pass__port small { display: block; font-size: .58rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--color-blue-pale); }
+.pass__port b { display: block; font-size: 1.6rem; font-weight: 800; line-height: 1.1; letter-spacing: .02em; }
+.pass__port span { display: block; font-size: .7rem; color: var(--color-text-inverse-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pass__track { position: relative; height: 30px; }
+.pass__line { position: absolute; left: 0; right: 0; top: 50%; border-top: 2px dashed rgba(255,255,255,.32); }
+.pass__fill { position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: var(--color-surface); transform-origin: left center; transform: scaleX(var(--p)); transition: transform .7s var(--ease); }
+.pass__track::after { content: ""; position: absolute; right: -2px; top: 50%; width: 9px; height: 9px; margin-top: -3.5px; border-radius: 50%; border: 2px solid var(--color-surface); background: var(--color-night); }
+/* The mover is the track minus the plane's width; sliding it by --p × its own width parks the plane exactly at each stage. */
+.pass__mover { position: absolute; top: 0; bottom: 0; left: 0; width: calc(100% - 24px); transform: translateX(calc(var(--p) * 100%)); transition: transform .7s var(--ease); }
+.pass__plane { position: absolute; left: 0; top: 50%; width: 24px; height: 24px; margin-top: -11px; color: var(--color-surface); transform: rotate(90deg); }
+
+.pass__meta { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, .9fr) minmax(0, .6fr); gap: var(--sp-3); margin-top: var(--sp-3); padding-top: var(--sp-3); border-top: 1px solid rgba(255,255,255,.14); }
+.pass__meta div { min-width: 0; }
+.pass__meta dt { font-size: .56rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--color-blue-pale); }
+.pass__meta dd { margin-top: .1rem; font-size: .85rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pass__meta dd.is-placeholder, .pass__port span.is-placeholder { color: rgba(255,255,255,.5); font-weight: 600; }
+
+/* ================= MINI PASS (sticky while typing) =================
+   A zero-height sticky holder at the top of the form; the bar hangs from it, so it takes no space and only
+   appears (fade + slide, GPU-friendly) when js/pages/apply.js adds .is-mini to the pass (big route scrolled away).
+   It sits just under the top bar when the bar is showing, and at the very top when the bar has slid away. */
+.pass-mini { position: sticky; z-index: 5; top: calc(var(--safe-top) + 10px); height: 0; margin-bottom: calc(-1 * var(--sp-3)); pointer-events: none; transition: top .28s var(--ease); }
+.app-header:not(.is-hidden) ~ main .pass-mini { top: calc(var(--header-h) + var(--safe-top) + 10px); }
+.pass-mini__bar { display: flex; align-items: center; gap: var(--sp-3); padding: .55rem .6rem .55rem .95rem; border-radius: var(--radius-md); color: var(--color-text-inverse); box-shadow: var(--shadow-lg);
+  background: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1.6px) 0 0 / 16px 16px, var(--grad-night);
+  opacity: 0; transform: translateY(-12px) scale(.97); transition: opacity .3s var(--ease), transform .35s var(--ease); }
+.pass.is-mini .pass-mini__bar { opacity: 1; transform: none; }
+.pass-mini__code { font-size: .9rem; font-weight: 800; letter-spacing: .04em; }
+.pass-mini__track { position: relative; flex: 1; height: 22px; }
+.pass-mini__track::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 2px dashed rgba(255,255,255,.32); }
+.pass-mini__fill { position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: var(--color-surface); transform-origin: left center; transform: scaleX(var(--p)); transition: transform .7s var(--ease); }
+.pass-mini__mover { position: absolute; top: 0; bottom: 0; left: 0; width: calc(100% - 18px); transform: translateX(calc(var(--p) * 100%)); transition: transform .7s var(--ease); }
+.pass-mini__plane { position: absolute; left: 0; top: 50%; width: 18px; height: 18px; margin-top: -8px; color: var(--color-surface); transform: rotate(90deg); }
+.pass-mini__count { flex-shrink: 0; min-width: 2.6rem; padding: .2rem .5rem; border-radius: 999px; background: var(--color-surface); color: var(--color-primary); font-size: .72rem; font-weight: 800; text-align: center; font-variant-numeric: tabular-nums; }
+.pass.is-complete .pass-mini__count { animation: apply-pop .45s cubic-bezier(.3,1.6,.5,1); }
+@keyframes apply-pop { 50% { transform: scale(1.2); } }
+@media (min-width: 1024px) {
+  .pass-mini, .app-header:not(.is-hidden) ~ main .pass-mini { top: calc(var(--announce-h) + var(--header-h-lg) + 12px); }
+}
+
+/* ================= FORM ================= */
+.apply-form { display: grid; gap: var(--sp-3); }
+/* "2 of 3 details": tablet/desktop only — on phones the plane already shows progress and every pixel counts */
+.apply-form__progress { display: none; margin-bottom: calc(-1 * var(--sp-1)); font-size: .68rem; font-weight: 700; color: var(--color-text-muted); text-align: right; }
+.apply-field label { font-size: .8rem; font-weight: 700; color: var(--color-text); }
+.apply-input { position: relative; display: flex; align-items: center; }
+/* Soft filled inputs: ivory fill, no border until focused (overrides the shared .field input look for this page only) */
+.apply-input input { min-height: 52px; padding-left: 2.75rem; padding-right: 2.75rem; border-color: transparent; background: var(--color-bg); font-weight: 600;
+  transition: border-color var(--speed) var(--ease), box-shadow var(--speed) var(--ease), background-color var(--speed) var(--ease); }
+.apply-input input::placeholder { color: var(--color-text-muted); opacity: .6; font-weight: 500; }
+.apply-input input:focus { background: var(--color-surface); }
+/* Chrome draws a ▼ on inputs that have city suggestions; hide it so it never sits on top of the tick */
+.apply-input input::-webkit-calendar-picker-indicator { display: none !important; }
+.apply-input--phone input { padding-left: 4rem; letter-spacing: .03em; }
+.apply-input__ico { position: absolute; left: .95rem; width: 18px; height: 18px; color: var(--color-text-muted); pointer-events: none; transition: color var(--speed) var(--ease); }
+.apply-input:focus-within .apply-input__ico { color: var(--color-primary); }
+.apply-input__prefix { position: absolute; left: .95rem; padding-right: .6rem; border-right: 1.5px solid var(--color-border); font-size: 16px; font-weight: 700; line-height: 1.25; color: var(--color-primary); pointer-events: none; }
+.apply-input__ok { position: absolute; right: .9rem; width: 20px; height: 20px; padding: 4px; border-radius: 50%; background: var(--color-primary); color: var(--color-text-inverse); stroke-width: 3.2; opacity: 0; transform: scale(.4); pointer-events: none; transition: opacity var(--speed) var(--ease), transform .3s cubic-bezier(.3,1.6,.5,1); }
+.apply-field.is-valid .apply-input__ok { opacity: 1; transform: scale(1); }
+.apply-field.is-invalid .apply-input input { border-color: var(--icon-pink-b); background: var(--color-surface); box-shadow: 0 0 0 3px rgba(244,63,94,.12); }
+.apply-field__err { font-size: .72rem; font-weight: 600; color: var(--icon-pink-b); }
+.apply-field__err:empty { display: none; }
+
+/* Spam trap: invisible to people */
+.apply-trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* Labels may wrap on very small phones (the shared .btn never wraps, which would push the page sideways) */
+.apply-form__submit, .pass__done-actions .btn { white-space: normal; text-align: center; line-height: 1.25; padding-inline: var(--sp-4); }
+.apply-form__submit { min-height: 54px; margin-top: var(--sp-1); font-size: var(--fs-base); }
+.apply-form__submit.is-loading { pointer-events: none; opacity: .8; }
+.apply-form__submit.is-loading .icon { animation: apply-nudge .8s ease-in-out infinite alternate; }
+@keyframes apply-nudge { from { transform: translateX(-2px); } to { transform: translateX(4px); } }
+.apply-form__note { display: flex; align-items: flex-start; gap: .45rem; font-size: .72rem; line-height: 1.5; color: var(--color-text-muted); }
+.apply-form__note .icon { width: 14px; height: 14px; margin-top: 2px; }
+.apply-form__note a { color: var(--color-primary); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+
+/* ================= DONE (after submitting) ================= */
+.pass__done { text-align: center; padding-top: var(--sp-2); }
+.pass__stamp { display: inline-block; padding: .35rem 1.05rem; border: 3px solid var(--color-primary); border-radius: 10px; color: var(--color-primary); font-size: 1.05rem; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; transform: rotate(-6deg); animation: apply-stamp .55s cubic-bezier(.2,.9,.3,1.25) both; }
+@keyframes apply-stamp { from { opacity: 0; transform: scale(1.9) rotate(-16deg); } to { opacity: 1; transform: scale(1) rotate(-6deg); } }
+.pass__done-title { margin-top: var(--sp-4); font-size: 1.35rem; }
+.pass__done-title:focus { outline: none; }
+.pass__done-text { margin: var(--sp-2) auto 0; font-size: var(--fs-sm); line-height: 1.6; color: var(--color-text-muted); }
+.pass__done-text b { color: var(--color-text); }
+.pass__ref { display: inline-flex; align-items: center; gap: .4rem; margin-top: var(--sp-3); padding: .35rem .85rem; border-radius: 999px; background: var(--color-wash); font-size: .74rem; color: var(--color-text-muted); }
+.pass__ref b { color: var(--color-primary); letter-spacing: .05em; font-variant-numeric: tabular-nums; }
+.pass__done-actions { display: grid; gap: var(--sp-2); margin-top: var(--sp-5); }
+
+/* ================= TRUST POINTS (one white card on phones; plain list on the dark sky on desktop) ================= */
+.apply__trust { display: grid; gap: var(--sp-4); padding: var(--sp-5); border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
+.apply__trust li { display: flex; align-items: flex-start; gap: var(--sp-3); font-size: .8rem; line-height: 1.5; color: var(--color-text-muted); }
+.apply__trust b { display: block; font-size: var(--fs-sm); color: var(--color-text); }
+
+/* ================= WHAT HAPPENS NEXT ================= */
+.apply-next { padding-top: var(--sp-5); }
+.apply-steps { display: grid; gap: var(--sp-3); }
+.apply-step { display: flex; align-items: flex-start; gap: var(--sp-4); padding: var(--sp-4); border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
+.apply-step__num { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--grad-hero); color: var(--color-text-inverse); font-weight: 800; }
+.apply-step h3 { font-size: 1rem; }
+.apply-step p { margin-top: .2rem; font-size: var(--fs-sm); line-height: 1.6; color: var(--color-text-muted); }
+.apply-next__talk { margin-top: var(--sp-6); text-align: center; }
+.apply-next__talk p { margin: 0 auto var(--sp-3); font-weight: 700; color: var(--color-primary); }
+.apply-next__talk .btn-row { justify-content: center; }
+.apply-next__talk .btn { flex: 1 1 100%; }
+
+/* ================= TABLET / DESKTOP ================= */
+@media (min-width: 768px) {
+  .apply { padding-top: var(--sp-6); }
+  .apply__grid { gap: var(--sp-5); }
+  .apply__sky { height: 400px; }
+  .apply__lead { font-size: var(--fs-sm); }
+  .pass__head { padding: var(--sp-4) var(--sp-5) var(--sp-5); }
+  .pass__body { padding: var(--sp-5); }
+  .apply-form__progress { display: block; }
+  .apply__intro { text-align: center; }
+  .apply__intro h1, .apply__lead { margin-inline: auto; }
+  .pass__route { grid-template-columns: 5.4rem 1fr 5.4rem; }
+  .pass__port b { font-size: 1.9rem; }
+  .apply__trust { grid-template-columns: repeat(3, 1fr); }
+  .apply-steps { grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); }
+  .apply-step { flex-direction: column; padding: var(--sp-5); }
+  .apply-next__talk .btn { flex: 0 0 auto; }
+}
+
+@media (min-width: 1024px) {
+  .section-head { margin-bottom: var(--sp-6); }
+  /* The whole hero section becomes the dark sky: intro + trust on the left, pass on the right */
+  .apply { padding: var(--sp-7) 0 var(--sp-8); }
+  .apply__sky { bottom: 0; height: auto; }
+  .apply__globe { width: 680px; height: 680px; right: auto; left: -260px; top: auto; bottom: -330px; color: rgba(255,255,255,.1); }
+  .apply__grid { grid-template-columns: 1.1fr .9fr; grid-template-areas: "intro pass" "trust pass"; column-gap: var(--sp-8); row-gap: var(--sp-6); align-items: start; }
+  .apply__intro { grid-area: intro; align-self: end; text-align: left; }
+  .apply__intro h1, .apply__lead { margin-inline: 0; }
+  .apply__lead { margin-top: var(--sp-4); font-size: var(--fs-lead); line-height: 1.7; }
+  .pass { grid-area: pass; justify-self: end; }
+  .apply__trust { grid-area: trust; grid-template-columns: 1fr; gap: var(--sp-4); padding: 0; background: none; border: 0; box-shadow: none; color: var(--color-text-inverse-muted); }
+  .apply__trust li { color: var(--color-text-inverse-muted); font-size: var(--fs-sm); }
+  .apply__trust b { color: var(--color-text-inverse); font-size: var(--fs-base); }
+  .apply-next { padding-top: var(--sp-7); }
+}
