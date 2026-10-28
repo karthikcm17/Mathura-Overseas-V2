@@ -68,6 +68,12 @@ var TRAVEL = {
   }
 };
 
+// WhatsApp link builder: uses the shared one in tools.js (MO.wa); falls back to a plain link if tools.js did not load.
+function waLink(message) {
+  if (typeof MO !== 'undefined' && MO.wa) return MO.wa(message);
+  return 'https://wa.me/919360859919?text=' + encodeURIComponent(message);
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function $(id) { return document.getElementById(id); }

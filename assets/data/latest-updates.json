@@ -1,5 +1,26 @@
 [
   {
+    "id": "mcc-pg-round1-result",
+    "date": "24 Oct 2026",
+    "cycle": "2026",
+    "cats": [
+      "pg",
+      "counselling",
+      "mcc"
+    ],
+    "title": "MCC NEET PG Round 1 result out; Round 2 starts 6 November",
+    "summary": "MCC released the NEET PG Round 1 seat allotment on 24 October. Allotted candidates report from 26 October to 2 November, and Round 2 registration opens on 6 November.",
+    "points": [
+      "Seats allotted: about 28,700 (reports say 28,723 or 28,728; confirm on mcc.nic.in)",
+      "Round 1 reporting: 26 Oct – 2 Nov; data verification on 3 Nov",
+      "Round 2: registration 6–11 Nov, choice filling 7–12 Nov, result 14 Nov, reporting 16–23 Nov",
+      "Round 3 result is expected on 4 Dec and the Stray Round result on 24 Dec"
+    ],
+    "source": "https://mcc.nic.in",
+    "via": "Careers360 and KollegeApply",
+    "important": true
+  },
+  {
     "id": "tn-ug-stray-result",
     "date": "22 Oct 2026",
     "cycle": "2026",
@@ -135,6 +156,27 @@
     "points": [],
     "source": "https://mcc.nic.in",
     "via": "FindMyCollege"
+  },
+  {
+    "id": "tn-pg-registration",
+    "date": "09 Oct 2026",
+    "cycle": "2026",
+    "cats": [
+      "pg",
+      "counselling",
+      "state",
+      "tn"
+    ],
+    "title": "Tamil Nadu PG (MD/MS) counselling 2026: registration opens",
+    "summary": "The Tamil Nadu Medical Selection Committee opened PG medical counselling registration on 9 October. Registration closed on 15 October (one report says 16 October).",
+    "points": [
+      "Register online at tnmedicalselection.net",
+      "Four rounds are expected: Round 1, Round 2, Mop-up and Stray",
+      "Choice filling, Round 1 result and reporting dates were not announced when we last checked (28 Oct)",
+      "Check the official site for the schedule before you act"
+    ],
+    "source": "https://www.tnmedicalselection.net",
+    "via": "MedAdmit"
   },
   {
     "id": "mcc-pg-counselling-schedule",

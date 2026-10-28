@@ -1,6 +1,6 @@
 // updates.js — behaviour unique to neet-2026-updates.html.
 // ADD AN UPDATE: edit assets/data/latest-updates.json (newest first, date as "DD Mon YYYY", "cycle": "2026").
-// UPDATE THE TRACKER: edit assets/data/counselling-tracker.json (each round's result date; null = date awaited).
+// UPDATE THE TRACKER: edit assets/data/counselling-tracker.json (each round: start date, last date of reporting; null = date awaited).
 // Allowed cats: ug, pg, mds, exam, counselling, mcc, state, tn, abroad
 document.addEventListener('DOMContentLoaded', function () {
   var DATA_URL = 'assets/data/latest-updates.json';
@@ -131,31 +131,60 @@ document.addEventListener('DOMContentLoaded', function () {
     $('updLast').textContent = yr.length ? yr[0].date : 'no updates yet';
   }
 
-  // ---- Counselling tracker: status of each round is worked out from today's date ----
+  // ---- Counselling tracker ----
+  // Each round in counselling-tracker.json is [label, start, end, note]:
+  //   start = the day the round opens (registration), end = the LAST DATE OF REPORTING. Use null when a date is not announced.
+  //   note  = optional text shown when there is no range, e.g. "Result 4 Dec".
+  // Status is worked out from today's date: done (last reporting date passed), live (running now), next (first one still to come).
+  function short(str) { var d = parseDate(str); return d.d + ' ' + MONTHS[d.m]; }
+  function rangeText(st) {
+    if (st.s && st.e) return short(st.raw[1]) + ' – ' + short(st.raw[2]);
+    if (st.s) return 'From ' + short(st.raw[1]);
+    return st.raw[3] || 'Date awaited';
+  }
   function renderTracker() {
     var box = $('updTracker');
     if (!tracker || !tracker.tracks || String(tracker.cycle) !== state.cycle) { box.hidden = true; return; }
     var t0 = today();
-    $('updTrackerNote').textContent = 'Result date of each round · as of ' + tracker.asOf;
+    $('updTrackerNote').textContent = 'Start to last date of reporting · as of ' + tracker.asOf;
     $('updTrackerRow').innerHTML = tracker.tracks.map(function (tr) {
-      var next = -1;
-      var steps = tr.steps.map(function (s, i) {
-        var t = s[1] ? parseDate(s[1]).t : null, done = t !== null && t < t0;
-        if (!done && next === -1) next = i;
-        return { label: s[0], raw: s[1], t: t, done: done };
+      var focus = -1;
+      var steps = tr.steps.map(function (r) {
+        var s = r[1] ? parseDate(r[1]).t : null, e = r[2] ? parseDate(r[2]).t : null;
+        return { raw: r, label: r[0], s: s, e: e, done: e !== null && e < t0, live: s !== null && s <= t0 && (e === null || e >= t0) };
       });
-      var li = steps.map(function (s, i) {
-        var cls = s.done ? 'is-done' : i === next ? 'is-next' : '';
-        var when = s.raw ? s.raw.replace(/ \d{4}$/, '') : 'Date awaited';
-        return '<li class="' + cls + '"><span class="upd-track__dot"></span><span>' + esc(s.label) + '</span><time>' + esc(when) + '</time></li>';
+      // focus = the round happening now, otherwise the first one still to come
+      steps.forEach(function (st, i) { if (focus === -1 && !st.done) focus = i; });
+      var li = steps.map(function (st, i) {
+        var cls = st.done ? 'is-done' : i === focus ? (st.live ? 'is-live' : 'is-next') : '';
+        return '<li class="' + cls + '"><span class="upd-track__dot"></span><span>' + esc(st.label) + '</span><time>' + esc(rangeText(st)) + '</time></li>';
       }).join('');
-      var st = next === -1 ? '<span class="upd-track__state is-done">All rounds complete</span>'
-        : '<span class="upd-track__state">Next: ' + esc(steps[next].label) + (steps[next].raw ? ' · ' + esc(steps[next].raw.replace(/ \d{4}$/, '')) : '') + '</span>';
+      var chip;
+      if (focus === -1) chip = '<span class="upd-track__state is-done">All rounds complete</span>';
+      else if (steps[focus].live) chip = '<span class="upd-track__state is-live">Live: ' + esc(steps[focus].label) + '</span>';
+      else chip = '<span class="upd-track__state">Next: ' + esc(steps[focus].label) + (steps[focus].s ? ' · ' + short(steps[focus].raw[1]) : '') + '</span>';
       return '<div class="upd-track"><div class="upd-track__head"><div><h3>' + esc(tr.name) + '</h3><p class="upd-track__sub">' + esc(tr.sub || '') + '</p></div></div>' +
-        '<ul class="upd-track__steps">' + li + '</ul><div>' + st + '</div></div>';
+        '<ul class="upd-track__steps">' + li + '</ul><div>' + chip + '</div></div>';
     }).join('');
     box.hidden = false;
+    syncArrows();
   }
+
+  // Arrow buttons: scroll the tracker row by about one card; they only show when the row overflows
+  function syncArrows() {
+    var row = $('updTrackerRow'), nav = $('updTrackerNav'), max = row.scrollWidth - row.clientWidth;
+    nav.hidden = max <= 4;
+    $('updTrackerPrev').disabled = row.scrollLeft <= 4;
+    $('updTrackerNext').disabled = row.scrollLeft >= max - 4;
+  }
+  function nudge(dir) {
+    var row = $('updTrackerRow'), card = row.querySelector('.upd-track');
+    row.scrollBy({ left: dir * (card ? card.offsetWidth + 12 : 280), behavior: 'smooth' });
+  }
+  $('updTrackerPrev').addEventListener('click', function () { nudge(-1); });
+  $('updTrackerNext').addEventListener('click', function () { nudge(1); });
+  $('updTrackerRow').addEventListener('scroll', syncArrows, { passive: true });
+  window.addEventListener('resize', syncArrows);
 
   function setCycle(y) {
     state.cycle = y; state.filter = 'all'; state.q = ''; state.shown = PAGE_SIZE; searchEl.value = '';

@@ -242,63 +242,70 @@
 .fyu-callback--light input:focus { border-color: var(--color-primary); }
 .fyu-callback__msg { font-size: var(--fs-xs); color: var(--color-text-muted); }
 .fyu-callback__msg:empty { display: none; }
-.fyu-nmc__grid { display: grid; gap: var(--sp-5); }
-.fyu-nmc__intro p { margin-top: var(--sp-2); color: var(--color-text-muted); }
-.fyu-meter { display: flex; align-items: center; gap: var(--sp-3); margin-top: var(--sp-5); }
-.fyu-meter__ring { width: 64px; height: 64px; transform: rotate(-90deg); }
-.fyu-meter__track, .fyu-meter__bar { fill: none; stroke-width: 6; }
+/* ================= NMC CHECKLIST (phone first: intro → progress card → checklist → "back in India") ================= */
+.fyu-nmc__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--sp-5); }
+.fyu-nmc__grid > * { min-width: 0; }
+.fyu-nmc__intro h2 { text-wrap: balance; }
+.fyu-nmc__intro p { margin-top: var(--sp-2); font-size: var(--fs-sm); color: var(--color-text-muted); }
+.fyu-meter { display: flex; align-items: center; gap: var(--sp-3); margin-top: var(--sp-4); padding: var(--sp-3) var(--sp-4); border-radius: var(--radius-lg); background: var(--color-surface); box-shadow: var(--shadow-sm); }
+.fyu-meter__ring { flex-shrink: 0; width: 52px; height: 52px; transform: rotate(-90deg); }
+.fyu-meter__track, .fyu-meter__bar { fill: none; stroke-width: 7; }
 .fyu-meter__track { stroke: var(--color-wash-deep); }
 .fyu-meter__bar { stroke: var(--color-primary); stroke-linecap: round; stroke-dasharray: 100; stroke-dashoffset: var(--off, 100); transition: stroke-dashoffset .5s var(--ease); }
-.fyu-meter b { display: block; font-size: 1.4rem; font-weight: 800; line-height: 1; color: var(--color-primary); }
+.fyu-meter b { display: block; font-size: 1.2rem; font-weight: 800; line-height: 1; color: var(--color-primary); }
 .fyu-meter span { display: block; margin-top: .2rem; font-size: var(--fs-xs); color: var(--color-text-muted); }
+.fyu-meter.is-done { box-shadow: inset 0 0 0 1.5px var(--color-primary), var(--shadow-sm); }
 .fyu-meter.is-done span { font-weight: 700; color: var(--color-primary); }
-.fyu-source { display: flex; align-items: flex-start; gap: .45rem; margin-top: var(--sp-5); font-size: var(--fs-xs); color: var(--color-text-muted); }
-.fyu-source .icon { width: 15px; height: 15px; margin-top: .1rem; }
+.fyu-source { display: flex; align-items: flex-start; gap: .45rem; margin-top: var(--sp-4); font-size: var(--fs-xs); line-height: 1.5; color: var(--color-text-muted); }
+.fyu-source .icon { width: 15px; height: 15px; margin-top: .1rem; flex-shrink: 0; }
 .fyu-source a { color: var(--color-primary); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
-.fyu-ticks { display: grid; gap: var(--sp-2); }
-.fyu-tick { position: relative; display: flex; align-items: flex-start; gap: var(--sp-3); padding: var(--sp-3) var(--sp-4); border: 1.5px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); cursor: pointer; transition: border-color var(--speed) var(--ease), background var(--speed) var(--ease); }
+.fyu-ticks { overflow: hidden; border-radius: var(--radius-lg); background: var(--color-surface); box-shadow: var(--shadow-sm); }
+.fyu-tick { position: relative; display: flex; align-items: flex-start; gap: var(--sp-3); padding: var(--sp-4); cursor: pointer; transition: background var(--speed) var(--ease); }
+.fyu-tick + .fyu-tick { border-top: 1px solid var(--color-border); }
 .fyu-tick input { position: absolute; opacity: 0; width: 1px; height: 1px; }
-.fyu-tick__box { flex-shrink: 0; width: 26px; height: 26px; display: grid; place-items: center; margin-top: .05rem; border: 2px solid var(--color-blue-pale); border-radius: 8px; color: transparent; transition: background var(--speed) var(--ease), border-color var(--speed) var(--ease), color var(--speed) var(--ease); }
+.fyu-tick__box { flex-shrink: 0; width: 26px; height: 26px; display: grid; place-items: center; border: 2px solid var(--color-blue-pale); border-radius: 8px; color: transparent; transition: background var(--speed) var(--ease), border-color var(--speed) var(--ease), color var(--speed) var(--ease); }
 .fyu-tick__box .icon { width: 16px; height: 16px; stroke-width: 3; }
-.fyu-tick__text b { display: block; font-size: var(--fs-sm); font-weight: 800; color: var(--color-primary); }
+.fyu-tick__text { min-width: 0; }
+.fyu-tick__text b { display: block; font-size: var(--fs-sm); font-weight: 800; line-height: 1.3; color: var(--color-primary); }
 .fyu-tick__text span { display: block; margin-top: .15rem; font-size: var(--fs-xs); line-height: 1.5; color: var(--color-text-muted); }
-.fyu-tick:hover { border-color: var(--color-blue-pale); }
-.fyu-tick:has(input:checked) { border-color: var(--color-primary); background: var(--color-wash); }
+.fyu-tick:has(input:checked) { background: var(--color-wash); }
 .fyu-tick input:checked + .fyu-tick__box { background: var(--color-primary); border-color: var(--color-primary); color: var(--color-text-inverse); }
 .fyu-tick input:focus-visible + .fyu-tick__box { box-shadow: 0 0 0 3px rgba(30,58,138,.22); }
-.fyu-home { margin-top: var(--sp-3); padding: var(--sp-4); border-radius: var(--radius-lg); background: var(--grad-night); color: var(--color-text-inverse); }
+.fyu-home { margin-top: var(--sp-3); padding: var(--sp-5) var(--sp-4); border-radius: var(--radius-lg); background: var(--grad-night); color: var(--color-text-inverse); }
 .fyu-home h3 { display: flex; align-items: center; gap: .5rem; font-size: 1rem; color: var(--color-text-inverse); }
 .fyu-home h3 .icon { width: 18px; height: 18px; color: var(--color-blue-pale); }
-.fyu-home ol { counter-reset: hm; display: grid; gap: var(--sp-3); margin-top: var(--sp-3); }
-.fyu-home li { counter-increment: hm; position: relative; padding-left: 2.2rem; }
-.fyu-home li::before { content: counter(hm); position: absolute; left: 0; top: 0; width: 1.6rem; height: 1.6rem; display: grid; place-items: center; border-radius: 50%; background: rgba(255,255,255,.16); font-size: .75rem; font-weight: 800; }
-.fyu-home li b { display: block; font-size: var(--fs-sm); }
-.fyu-home li span { display: block; margin-top: .1rem; font-size: var(--fs-xs); line-height: 1.5; color: var(--color-text-inverse-muted); }
-.fyu-faq__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--sp-4); }
+.fyu-home ol { counter-reset: hm; display: grid; gap: var(--sp-4); margin-top: var(--sp-4); }
+.fyu-home li { counter-increment: hm; position: relative; padding-left: 2.3rem; }
+.fyu-home li::before { content: counter(hm); position: absolute; left: 0; top: 0; width: 1.65rem; height: 1.65rem; display: grid; place-items: center; border-radius: 50%; background: rgba(255,255,255,.16); font-size: .75rem; font-weight: 800; }
+.fyu-home li b { display: block; font-size: var(--fs-sm); line-height: 1.35; }
+.fyu-home li span { display: block; margin-top: .15rem; font-size: var(--fs-xs); line-height: 1.5; color: var(--color-text-inverse-muted); }
+
+/* ================= FAQ (phone first: heading + button, then one clean accordion card) ================= */
+.fyu-faq__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--sp-5); }
 .fyu-faq__grid > * { min-width: 0; }
-.fyu-faq .section-head .btn { margin-top: var(--sp-4); }
-.fyu-acc { display: grid; gap: var(--sp-2); }
-.fyu-q { border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); transition: border-color var(--speed) var(--ease), box-shadow var(--speed) var(--ease); }
-.fyu-q[open] { border-color: var(--color-blue-pale); box-shadow: var(--shadow-sm); }
-.fyu-q summary { position: relative; display: block; padding: var(--sp-4) 3rem var(--sp-4) var(--sp-4); font-size: var(--fs-sm); font-weight: 800; color: var(--color-primary); cursor: pointer; list-style: none; }
+.fyu-faq .section-head { margin-bottom: 0; }
+.fyu-faq .section-head .btn { width: 100%; margin-top: var(--sp-4); }
+.fyu-acc { overflow: hidden; border-radius: var(--radius-lg); background: var(--color-surface); box-shadow: var(--shadow-sm); }
+.fyu-q + .fyu-q { border-top: 1px solid var(--color-border); }
+.fyu-q summary { position: relative; display: block; padding: var(--sp-4) 3.2rem var(--sp-4) var(--sp-4); font-size: var(--fs-sm); font-weight: 800; line-height: 1.4; color: var(--color-primary); cursor: pointer; list-style: none; }
 .fyu-q summary::-webkit-details-marker { display: none; }
-.fyu-q summary::before, .fyu-q summary::after { content: ""; position: absolute; right: var(--sp-4); top: 50%; width: 14px; height: 2px; border-radius: 2px; background: var(--color-primary); transition: transform var(--speed) var(--ease); }
-.fyu-q summary::after { transform: rotate(90deg); }
-.fyu-q[open] summary::after { transform: rotate(0); }
-.fyu-q summary:focus-visible { outline: 2px solid var(--color-primary); outline-offset: -2px; border-radius: var(--radius-md); }
+.fyu-q summary::before { content: ""; position: absolute; right: var(--sp-4); top: 50%; width: 26px; height: 26px; margin-top: -13px; border-radius: 50%; background: var(--color-wash); }
+.fyu-q summary::after { content: ""; position: absolute; right: calc(var(--sp-4) + 8px); top: 50%; width: 10px; height: 10px; margin-top: -7px; border-right: 2px solid var(--color-primary); border-bottom: 2px solid var(--color-primary); transform: rotate(45deg); transition: transform var(--speed) var(--ease), margin var(--speed) var(--ease); }
+.fyu-q[open] summary::after { margin-top: -2px; transform: rotate(-135deg); }
+.fyu-q summary:focus-visible { outline: 2px solid var(--color-primary); outline-offset: -2px; }
 .fyu-q p { padding: 0 var(--sp-4) var(--sp-4); font-size: var(--fs-sm); line-height: 1.6; color: var(--color-text-muted); }
-.fyu-cta { position: relative; overflow: hidden; display: grid; gap: var(--sp-5); padding: var(--sp-6) var(--sp-5); border-radius: var(--radius-xl); color: var(--color-text-inverse); background: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1.6px) 0 0 / 22px 22px, var(--grad-hero); }
-.fyu-cta__globe { position: absolute; right: -90px; top: -90px; width: 300px; height: 300px; color: rgba(255,255,255,.14); pointer-events: none; }
+.fyu-q[open] { background: linear-gradient(180deg, var(--color-surface), var(--color-wash) 220%); }
+
+/* ================= CLOSING CTA (phone first: one column, full-width actions) ================= */
+.fyu-cta { position: relative; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--sp-5); padding: var(--sp-6) var(--sp-5); border-radius: var(--radius-xl); color: var(--color-text-inverse); background: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1.6px) 0 0 / 22px 22px, var(--grad-hero); }
+.fyu-cta > * { min-width: 0; }
+.fyu-cta__globe { position: absolute; right: -110px; top: -110px; width: 280px; height: 280px; color: rgba(255,255,255,.12); pointer-events: none; }
 .fyu-cta > *:not(.fyu-cta__globe) { position: relative; }
-.fyu-cta h2 { color: var(--color-text-inverse); }
+.fyu-cta h2 { color: var(--color-text-inverse); font-size: clamp(1.5rem, 1.2rem + 1.6vw, 2.2rem); text-wrap: balance; }
 .fyu-cta p { margin-top: var(--sp-2); font-size: var(--fs-sm); color: var(--color-text-inverse-muted); }
 .fyu-cta__act { display: grid; gap: var(--sp-2); }
+.fyu-cta__act .btn { white-space: normal; text-align: center; line-height: 1.3; }
 .fyu-cta .fyu-callback__msg { color: var(--color-text-inverse-muted); }
-.fyu-nmc__grid { grid-template-columns: .85fr 1.15fr; gap: var(--sp-7); align-items: start; }
-.fyu-nmc__intro { position: sticky; top: 140px; }
-.fyu-faq__grid { grid-template-columns: .8fr 1.2fr; gap: var(--sp-7); align-items: start; }
-.fyu-cta { grid-template-columns: 1.3fr 1fr; align-items: center; padding: var(--sp-7) var(--sp-6); }
-.fyu-nmc__intro { top: calc(var(--announce-h) + var(--header-h-lg) + var(--sp-6)); }
 
 /* ================= TABLET ================= */
 @media (min-width: 640px) {
@@ -355,10 +362,13 @@
   .fyu-nmc__intro { position: sticky; top: 140px; }
   .fyu-faq__grid { grid-template-columns: .8fr 1.2fr; gap: var(--sp-7); align-items: start; }
   .fyu-cta { grid-template-columns: 1.3fr 1fr; align-items: center; padding: var(--sp-7) var(--sp-6); }
+  .fyu-faq .section-head .btn { width: auto; }
+  .fyu-cta__globe { right: -90px; top: -90px; width: 320px; height: 320px; }
 }
 @media (min-width: 1024px) {
   #tools { scroll-margin-top: calc(var(--announce-h) + var(--header-h-lg)); }
-  .fyu-nmc__intro { top: calc(var(--announce-h) + var(--header-h-lg) + var(--sp-6)); }}
+  .fyu-nmc__intro { top: calc(var(--announce-h) + var(--header-h-lg) + var(--sp-6)); }
+}
 @media (prefers-reduced-motion: reduce) {
   .pl-panel { animation: none; }
   .pl-check__fill, .pl-ring__bar, .pl-split i { transition: none; }
