@@ -66,6 +66,11 @@
 <symbol id="i-globe-art" viewBox="0 0 400 400"><circle cx="200" cy="200" r="190"/><ellipse cx="200" cy="200" rx="190" ry="28"/><ellipse cx="200" cy="105" rx="165" ry="25"/><ellipse cx="200" cy="295" rx="165" ry="25"/><ellipse cx="200" cy="36" rx="95" ry="14"/><ellipse cx="200" cy="364" rx="95" ry="14"/><ellipse cx="200" cy="200" rx="95" ry="190"/><ellipse cx="200" cy="200" rx="165" ry="190"/><path d="M200 10v380"/></symbol>
 <symbol id="i-airplane" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0 0 11.5 2 1.5 1.5 0 0 0 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></symbol>
 <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+<symbol id="i-wallet" viewBox="0 0 24 24"><path d="M19 7V5.5A1.5 1.5 0 0 0 17.5 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1v-3"/><path d="M3 6a2 2 0 0 0 2 2h14a1 1 0 0 1 1 1v3"/><path d="M21 12h-4a2 2 0 0 0 0 4h4z"/></symbol>
+<symbol id="i-columns" viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="16" rx="1.5"/><rect x="14" y="4" width="7" height="16" rx="1.5"/></symbol>
+<symbol id="i-swap" viewBox="0 0 24 24"><path d="M7 4 3 8l4 4"/><path d="M3 8h14"/><path d="m17 20 4-4-4-4"/><path d="M21 16H7"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
 </svg>
 
 <!-- ============ ANNOUNCEMENT BAR — identical on every page (no close button). Edit the 3 messages here and copy to all pages. ============ -->
@@ -123,56 +128,69 @@
         </div>
       </div>
 
-      <div class="tool" id="heroTool" role="region" aria-label="Quick tools">
+      <!-- ============ HERO TOOL — a QUICK planner. One input per tab, an instant answer, then a button that carries the
+           visitor's answer to find-your-university.html, where the full tools live. All numbers come from js/tools.js. ============ -->
+      <div class="tool" id="heroTool" role="region" aria-label="Quick MBBS planner">
         <div class="tool__grab" aria-hidden="true"></div>
         <button type="button" class="tool__close" id="toolClose" aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
-        <div class="tool__tabs" role="tablist" aria-label="Quick tools">
-          <button type="button" class="tool__tab" role="tab" aria-selected="true" aria-controls="toolElig">Eligibility</button>
-          <button type="button" class="tool__tab" role="tab" aria-selected="false" aria-controls="toolCost">Cost</button>
-          <button type="button" class="tool__tab" role="tab" aria-selected="false" aria-controls="toolCmp">Compare</button>
+
+        <div class="tool__head">
+          <span class="tool__kicker"><span class="tool__live" aria-hidden="true"></span>Quick planner</span>
+          <span class="tool__meta">Free &middot; 10 seconds</span>
         </div>
+
+        <div class="tool__tabs" id="toolTabs" role="tablist" aria-label="Quick planner">
+          <button type="button" class="tool__tab" role="tab" aria-selected="true" aria-controls="toolElig"><svg class="icon" aria-hidden="true"><use href="#i-check-square"></use></svg><span>Eligibility</span></button>
+          <button type="button" class="tool__tab" role="tab" aria-selected="false" aria-controls="toolCost"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg><span>Budget</span></button>
+          <button type="button" class="tool__tab" role="tab" aria-selected="false" aria-controls="toolCmp"><svg class="icon" aria-hidden="true"><use href="#i-columns"></use></svg><span>Compare</span></button>
+        </div>
+
         <div class="tool__body">
 
+          <!-- 1. Eligibility: score + category -> live gauge against the cutoff -->
           <div class="tool__panel" id="toolElig" role="tabpanel">
-            <div class="tool__view" id="eligFormView">
-              <h2 class="tool__title">Check your eligibility</h2>
-              <p class="tool__sub">Enter your NEET details for an instant result.</p>
-              <form id="eligForm" novalidate>
-                <div class="field-grid">
-                  <div class="field"><label for="inNeetScore">NEET score</label><input type="number" id="inNeetScore" min="0" max="720" placeholder="e.g. 250" inputmode="numeric"></div>
-                  <div class="field"><label for="inPassedYear">NEET year</label><select id="inPassedYear"><option value="2026">2026</option><option value="2025">2025</option><option value="2024">2024</option></select></div>
-                  <div class="field"><label for="inCommunity">Community</label><select id="inCommunity"><option value="general">General</option><option value="other">OBC</option><option value="other">SC / ST</option></select></div>
-                  <div class="field"><label for="inPcb">Class 12 PCB %</label><input type="number" id="inPcb" min="0" max="100" step="0.1" placeholder="e.g. 62" inputmode="decimal"></div>
-                  <div class="field"><label for="inAge">Age <span class="field__hint">(by 31 Dec)</span></label><input type="number" id="inAge" min="14" max="30" placeholder="e.g. 18" inputmode="numeric"></div>
-                  <div class="field field--action"><button type="submit" class="btn btn--primary btn--block">Check now <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button></div>
-                </div>
-              </form>
-              <p class="tool__note">Free &middot; instant &middot; no sign-up needed</p>
+            <div class="qe">
+              <div class="qe__inputs">
+                <div class="field"><label for="qScore">Your NEET score</label><input type="number" id="qScore" class="qe__score" min="0" max="720" placeholder="e.g. 250" inputmode="numeric"></div>
+                <fieldset class="seg seg--sm">
+                  <legend class="seg__legend">Category</legend>
+                  <label class="seg__opt"><input type="radio" name="qCat" value="general" checked><span>General</span></label>
+                  <label class="seg__opt"><input type="radio" name="qCat" value="obc"><span>OBC</span></label>
+                  <label class="seg__opt"><input type="radio" name="qCat" value="scst"><span>SC/ST</span></label>
+                </fieldset>
+              </div>
+              <div class="gauge" id="qGauge">
+                <svg class="gauge__svg" viewBox="0 0 120 68" aria-hidden="true">
+                  <path class="gauge__track" d="M10 62 A50 50 0 0 1 110 62" pathLength="100"/>
+                  <path class="gauge__fill" id="qGaugeFill" d="M10 62 A50 50 0 0 1 110 62" pathLength="100"/>
+                  <circle class="gauge__mark" id="qGaugeMark" cx="10" cy="62" r="3.4"/>
+                </svg>
+                <div class="gauge__read"><b id="qGaugeNum">&ndash;</b><span>of 720</span></div>
+              </div>
             </div>
-            <div class="tool__view" id="eligResultView" hidden>
-              <div id="eligResult"></div>
-              <button type="button" class="btn btn--link tool__edit" id="eligEdit">&larr; Edit details</button>
-            </div>
+            <p class="qstatus" id="qEligStatus" aria-live="polite">Type your score to see where you stand.</p>
+            <a class="btn btn--primary btn--block tool__go" id="qEligGo" href="find-your-university.html#eligibility">Get my full eligibility report <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
           </div>
 
+          <!-- 2. Budget: one slider -> destinations light up when their tuition starts within it -->
           <div class="tool__panel" id="toolCost" role="tabpanel" hidden>
-            <h2 class="tool__title">Estimate your cost</h2>
-            <p class="tool__sub">Choose a destination to see the approximate tuition.</p>
-            <div class="field-grid">
-              <div class="field"><label for="inCostCountry">Destination</label><select id="inCostCountry"><option value="" selected disabled>Select destination</option><option value="philippines">Philippines</option><option value="uzbekistan">Uzbekistan</option><option value="russia">Russia</option><option value="kyrgyzstan">Kyrgyzstan</option><option value="vietnam">Vietnam</option><option value="timor">Timor-Leste</option></select></div>
-              <div class="field"><label for="inCostBudget">Your budget <span class="field__hint">(optional)</span></label><select id="inCostBudget"><option value="" selected>Select budget</option><option value="b1">Up to &#8377;15L</option><option value="b2">&#8377;15L &ndash; &#8377;25L</option><option value="b3">&#8377;25L &ndash; &#8377;35L</option><option value="b4">Above &#8377;35L</option></select></div>
-            </div>
-            <div class="tool__out" id="costResult"></div>
+            <div class="qb__top"><label for="qBudget">Your tuition budget</label><output id="qBudgetOut" for="qBudget">&#8377;25L</output></div>
+            <input type="range" class="slider qb__range" id="qBudget" min="10" max="50" step="1" value="25" aria-describedby="qCostStatus">
+            <div class="slider__scale" aria-hidden="true"><span>&#8377;10L</span><span>&#8377;50L+</span></div>
+            <div class="qb__fits" id="qFits"></div>
+            <p class="qstatus" id="qCostStatus" aria-live="polite"></p>
+            <a class="btn btn--primary btn--block tool__go" id="qCostGo" href="find-your-university.html#cost">Plan my full cost <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
           </div>
 
+          <!-- 3. Compare: two dropdowns -> a two-number snapshot -->
           <div class="tool__panel" id="toolCmp" role="tabpanel" hidden>
-            <h2 class="tool__title">Compare two destinations</h2>
-            <p class="tool__sub">Choose two destinations to see them side by side.</p>
-            <div class="field-grid">
-              <div class="field"><label for="inCmpA">Destination A</label><select id="inCmpA"><option value="" selected disabled>Select destination</option><option value="philippines">Philippines</option><option value="uzbekistan">Uzbekistan</option><option value="russia">Russia</option><option value="kyrgyzstan">Kyrgyzstan</option><option value="vietnam">Vietnam</option><option value="timor">Timor-Leste</option></select></div>
-              <div class="field"><label for="inCmpB">Destination B</label><select id="inCmpB"><option value="" selected disabled>Select destination</option><option value="philippines">Philippines</option><option value="uzbekistan">Uzbekistan</option><option value="russia">Russia</option><option value="kyrgyzstan">Kyrgyzstan</option><option value="vietnam">Vietnam</option><option value="timor">Timor-Leste</option></select></div>
+            <div class="qx__pick">
+              <label class="sr-only" for="qCmpA">First destination</label><select id="qCmpA"></select>
+              <span class="qx__vs" aria-hidden="true">vs</span>
+              <label class="sr-only" for="qCmpB">Second destination</label><select id="qCmpB"></select>
             </div>
-            <div class="tool__out" id="cmpResult"></div>
+            <div class="qx" id="qCmp" aria-live="polite"></div>
+            <a class="btn btn--primary btn--block tool__go" id="qCmpGo" href="find-your-university.html#compare">Compare in detail <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
           </div>
 
         </div>
@@ -186,7 +204,7 @@
     <div class="container">
       <div class="card proof__card">
         <div class="proof__item"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span><div><div class="proof__num proof__num--text">NMC &middot; WHO</div><div class="proof__label">Recognised universities</div></div></div>
-        <div class="proof__item"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg></span><div><div class="proof__num proof__num--text">Zero</div><div class="proof__label">No donation or capitation</div></div></div>
+        <div class="proof__item"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg></span><div><div class="proof__num proof__num--text">Zero fees</div><div class="proof__label">No donation or capitation</div></div></div>
         <div class="proof__item"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span><div><div class="proof__num" data-count="200" data-suffix="+">200+</div><div class="proof__label">Students guided</div></div></div>
         <div class="proof__item"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div><div class="proof__num" data-count="10" data-suffix="+">10+</div><div class="proof__label">Years of guidance</div></div></div>
       </div>

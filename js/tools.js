@@ -1,185 +1,93 @@
-// tools.js — shared calculators. Used by the home hero tool now; the Find University page will reuse the same data.
-// KEEP THE NUMBERS BELOW CURRENT: update them here once and every page that uses them updates.
+// tools.js — THE NUMBERS FILE. Every figure used by the planning tools lives here, and only here.
+// Used by: index.html (quick planner in the hero) and find-your-university.html (full tools).
+// Update a number once and both pages change. Nothing below the "helpers" line needs editing.
 
-// NEET cutoffs for MBBS-abroad eligibility, by the year NEET was passed.
-// A score stays valid for the exam year plus the following two years (different from admission inside India).
-// TO ADD A YEAR: add one line (e.g. 2027: { general: 000, other: 000 }) and one <option> in the HTML select.
+/* ======================= ELIGIBILITY ======================= */
+// NEET qualifying score for MBBS abroad, by the year NEET was passed.
+// TO ADD A YEAR: add one line (e.g. 2027: { general: 000, other: 000 }) and one <option> in each page's NEET-year select.
 var NEET_CUTOFFS = {
   2026: { general: 213, other: 177 },
   2025: { general: 144, other: 113 },
   2024: { general: 162, other: 127 }
 };
-var PCB_REQUIREMENT = { general: 50, other: 40 };   // Class 12 PCB % required
-var MIN_AGE = 17;                                    // by 31 Dec of the admission year
-
-// Approx. tuition for the full course, in lakhs of rupees (excludes living costs). Source: MBBS Abroad Handbook 2026-27.
-var COST_ESTIMATES = {
-  philippines: { label: 'Philippines', low: 18, high: 35 },
-  uzbekistan:  { label: 'Uzbekistan',  low: 15, high: 25 },
-  russia:      { label: 'Russia',      low: 18, high: 32 },
-  kyrgyzstan:  { label: 'Kyrgyzstan',  low: 18, high: 33 },
-  vietnam:     { label: 'Vietnam',     low: 28, high: 45 },
-  timor:       { label: 'Timor-Leste', low: 15, high: 20 }
-};
-var DESTINATION_DATA = {
-  philippines: { label: 'Philippines', duration: '5.5\u20136.5 yrs', tuition: '\u20B918L\u201335L', living: '\u20B920k\u201335k/mo', climate: 'Tropical' },
-  uzbekistan:  { label: 'Uzbekistan',  duration: '6 yrs',            tuition: '\u20B915L\u201325L', living: '\u20B912k\u201320k/mo', climate: 'Moderate' },
-  russia:      { label: 'Russia',      duration: '6 yrs',            tuition: '\u20B918L\u201332L', living: '\u20B915k\u201325k/mo', climate: 'Cold' },
-  kyrgyzstan:  { label: 'Kyrgyzstan',  duration: '6 yrs',            tuition: '\u20B918L\u201333L', living: '\u20B912k\u201320k/mo', climate: 'Cold winters' },
-  vietnam:     { label: 'Vietnam',     duration: '6 yrs',            tuition: '\u20B928L\u201345L', living: '\u20B918k\u201330k/mo', climate: 'Tropical' },
-  timor:       { label: 'Timor-Leste', duration: '5.5 yrs',          tuition: '\u20B915L\u201320L', living: '\u20B915k\u201325k/mo', climate: 'Tropical' }
+// A NEET score stays valid for MBBS abroad for the exam year plus this many following years.
+var NEET_VALID_EXTRA_YEARS = 2;
+var PCB_REQUIREMENT = { general: 50, other: 40 };   // Class 12 Physics-Chemistry-Biology %, minimum
+var MIN_AGE = 17;                                    // by 31 December of the admission year
+// Categories shown as buttons. "group" says which cutoff column applies.
+var CATEGORIES = {
+  general: { label: 'General', group: 'general' },
+  obc:     { label: 'OBC',     group: 'other' },
+  scst:    { label: 'SC / ST', group: 'other' }
 };
 
-// ---- Lead capture settings ----
+/* ======================= DESTINATIONS ======================= */
+// tuition: full course, in lakhs of rupees (excludes living)  · years: course length [shortest, longest]
+// living: per month, in thousands of rupees [low, high]        Source: MBBS Abroad Handbook 2026-27.
+// flight / fare / tz / lang / currency / rate / why: researched travel facts, the same ones used on the Countries page
+// (destinations.js). Fares and exchange rates are indicative — re-check them and update TRAVEL_AS_OF when you do.
+var TRAVEL_AS_OF = 'Sep 2026';
+var DESTINATIONS = {
+  philippines: { label: 'Philippines', page: 'mbbs-in-philippines.html', tuition: [18, 35], years: [5.5, 6.5], living: [20, 35], climate: 'Tropical',
+    flight: [10, 10], stops: '1 stop', fare: 13434, tz: '2h 30m ahead', lang: 'Filipino & English', currency: 'Philippine peso', rate: '1 INR ≈ 0.66 PHP',
+    why: ['American-style curriculum, taught in English', 'A large Indian student community', 'Strong clinical exposure'] },
+  uzbekistan:  { label: 'Uzbekistan',  page: 'mbbs-in-uzbekistan.html', tuition: [15, 25], years: [6, 6], living: [12, 20], climate: 'Continental',
+    flight: [8, 8], stops: '1 stop', fare: 20073, tz: '30m behind', lang: 'Uzbek', currency: 'Uzbek som', rate: '1 INR ≈ 124.5 UZS',
+    why: ['Silk Road cities like Tashkent and Samarkand', 'Modern campuses', 'Established Indian student communities'] },
+  russia:      { label: 'Russia',      page: 'mbbs-in-russia.html', tuition: [18, 32], years: [6, 6], living: [15, 25], climate: 'Cold',
+    flight: [12, 15], stops: '1 stop', fare: null, fareText: 'About ₹61,667 return', tz: '2h 30m behind', lang: 'Russian', currency: 'Russian rouble', rate: '1 INR ≈ 0.90 RUB',
+    why: ['Government universities with 60+ years of Indian students', 'Moscow is Russia’s capital and largest city', 'Long, cold winters — a real change from home'] },
+  kyrgyzstan:  { label: 'Kyrgyzstan',  page: 'mbbs-in-kyrgyzstan.html', tuition: [18, 33], years: [6, 6], living: [12, 20], climate: 'Cold winters',
+    flight: [9, 10], stops: '1 stop', fare: 34725, tz: '30m ahead', lang: 'Kyrgyz & Russian', currency: 'Kyrgyz som', rate: '1 INR ≈ 1.0 KGS',
+    why: ['Among the most affordable options', 'Bishkek sits at the foot of the Ala-Too mountains', 'Russian is widely used alongside Kyrgyz'] },
+  vietnam:     { label: 'Vietnam',     page: 'mbbs-in-vietnam.html', tuition: [28, 45], years: [6, 6], living: [18, 30], climate: 'Tropical',
+    flight: [7, 7], stops: '1 stop', fare: 12679, tz: '1h 30m ahead', lang: 'Vietnamese', currency: 'Vietnamese dong', rate: '1 INR ≈ 275.6 VND',
+    why: ['Modern, safe cities', 'Hanoi: lakes, an old quarter and famous street food', 'One of the shorter flights from South India'] },
+  timor:       { label: 'Timor-Leste', page: 'mbbs-in-timor-uct-timor.html', tuition: [15, 20], years: [5.5, 5.5], living: [15, 25], climate: 'Tropical',
+    flight: [20, 24], stops: 'via Singapore', fare: 35561, tz: '3h 30m ahead', lang: 'Tetum & Portuguese', currency: 'US dollar', rate: '1 INR ≈ 0.0114 USD',
+    why: ['Indian-aligned syllabus, taught in English', 'A tropical island setting', 'An emerging option — extra due diligence needed'] }
+};
+var COST_SCALE_MAX = 50;   // right edge of the tuition chart, in lakhs. Raise it if any tuition goes above 50.
+
+/* ======================= LEADS ======================= */
 var WHATSAPP_NUMBER = '919360859919';
-// Paste your Google Apps Script web-app URL here (the same one your apply form posts to) and call-back requests are saved to your sheet.
-// While this is empty, "Call me" opens WhatsApp with the visitor's details instead, so no lead is lost.
+// Paste your Google Apps Script web-app URL here and call-back requests are saved to your sheet.
+// While it is empty, "Call me back" opens WhatsApp with the visitor's details instead, so no lead is lost.
 var LEAD_ENDPOINT = '';
 
-// Budget bands (in lakhs of rupees) used by the Cost tab. Edit the labels/values here.
-var BUDGET_BANDS = {
-  b1: { min: 0,  max: 15 },
-  b2: { min: 15, max: 25 },
-  b3: { min: 25, max: 35 },
-  b4: { min: 35, max: 999 }
-};
-
-function toolIcon(name) { return '<svg class="icon" aria-hidden="true"><use href="#i-' + name + '"></use></svg>'; }
-function waLink(message) { return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(message); }
-function badgeIcon(pass, name) { return '<span class="icon-badge icon-badge--sm icon-badge--' + (pass ? 'teal' : 'pink') + '">' + toolIcon(name) + '</span>'; }
-function checkTile(pass, label, detail) {
-  return '<div class="check-tile">' + badgeIcon(pass, pass ? 'check' : 'close') + '<strong>' + label + '</strong><span>' + detail + '</span></div>';
-}
-function emptyState(icon, text) { return '<div class="tool__empty">' + toolIcon(icon) + '<p>' + text + '</p></div>'; }
-
-document.addEventListener('DOMContentLoaded', function () {
-  var tool = document.getElementById('heroTool');
-  if (!tool) return;
-  function $(id) { return document.getElementById(id); }
-
-  // ---- Tabs + mobile bottom sheet. The body keeps one fixed height, so switching tabs never changes the card size. ----
-  var tabs = tool.querySelectorAll('.tool__tab');
-  var panels = tool.querySelectorAll('.tool__panel');
-  var PANEL_FOR = { elig: 'toolElig', cost: 'toolCost', cmp: 'toolCmp' };
-  function selectTab(key) {
-    var id = PANEL_FOR[key] || PANEL_FOR.elig;
-    tabs.forEach(function (t) { t.setAttribute('aria-selected', t.getAttribute('aria-controls') === id ? 'true' : 'false'); });
-    panels.forEach(function (p) { p.hidden = p.id !== id; });
-  }
-  tabs.forEach(function (tab) {
-    tab.addEventListener('click', function () {
-      var id = tab.getAttribute('aria-controls');
-      selectTab(Object.keys(PANEL_FOR).filter(function (k) { return PANEL_FOR[k] === id; })[0]);
-    });
-  });
-  var scrim = $('toolScrim');
-  function openSheet(key) { selectTab(key); tool.classList.add('is-open'); scrim.classList.add('is-open'); document.body.classList.add('sheet-open'); }
-  function closeSheet() { tool.classList.remove('is-open'); scrim.classList.remove('is-open'); document.body.classList.remove('sheet-open'); }
-  document.querySelectorAll('[data-open-tool]').forEach(function (b) { b.addEventListener('click', function () { openSheet(b.dataset.openTool); }); });
-  $('toolClose').addEventListener('click', closeSheet);
-  scrim.addEventListener('click', closeSheet);
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeSheet(); });
-  window.addEventListener('resize', function () { if (window.innerWidth >= 768) closeSheet(); });
-
-  // ---- Eligibility: the result replaces the form (same space) and ends with a lead-capture step ----
-  var formView = $('eligFormView'), resultView = $('eligResultView'), eligResult = $('eligResult');
-
-  function leadBlock(eligible, message) {
-    return '<div class="lead-cta">' +
-      '<p class="lead-cta__title">' + (eligible
-        ? 'You\u2019re on track \u2014 get a free university shortlist.'
-        : 'Not a match yet? A counsellor can check for exceptions \u2014 free.') + '</p>' +
-      '<a class="btn btn--primary btn--block" href="' + waLink(message) + '" target="_blank" rel="noopener">' + toolIcon('whatsapp').replace('class="icon"', 'class="icon icon--fill"') + (eligible ? 'Get my shortlist on WhatsApp' : 'Ask a counsellor on WhatsApp') + '</a>' +
-      '<form class="lead-cta__form" id="leadForm" novalidate>' +
-        '<input type="tel" id="leadPhone" placeholder="Your mobile number" inputmode="tel" autocomplete="tel" aria-label="Mobile number">' +
-        '<button type="submit" class="btn btn--outline btn--sm">Call me back</button>' +
-      '</form>' +
-      '<p class="lead-cta__msg" id="leadMsg" role="status"></p>' +
-    '</div>';
-  }
-
-  function submitLead(context) {
-    var msg = $('leadMsg');
-    var phone = $('leadPhone').value.replace(/[\s\-()]/g, '').replace(/^\+?91/, '');
-    if (!/^[6-9]\d{9}$/.test(phone)) { msg.textContent = 'Please enter a valid 10-digit mobile number.'; return; }
-    var payload = Object.assign({ phone: phone, source: 'home-hero-tool', page: location.pathname }, context);
+/* ======================= helpers (no need to edit below this line) ======================= */
+var MO = {
+  icon: function (name, fill) { return '<svg class="icon' + (fill ? ' icon--fill' : '') + '" aria-hidden="true"><use href="#i-' + name + '"></use></svg>'; },
+  wa: function (message) { return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(message); },
+  latestYear: function () { return Object.keys(NEET_CUTOFFS).sort().reverse()[0]; },
+  rules: function (year, cat) {
+    var c = CATEGORIES[cat] || CATEGORIES.general, row = NEET_CUTOFFS[year] || NEET_CUTOFFS[MO.latestYear()];
+    return { neet: row[c.group], pcb: PCB_REQUIREMENT[c.group], age: MIN_AGE, label: c.label };
+  },
+  num: function (v) { return Math.round(v * 10) / 10; },
+  lakh: function (v) { return '₹' + MO.num(v) + 'L'; },
+  range: function (a, b) { return MO.num(a) === MO.num(b) ? MO.lakh(a) : MO.lakh(a) + '–' + MO.num(b) + 'L'; },
+  years: function (d) { return d.years[0] === d.years[1] ? d.years[0] + ' yrs' : d.years[0] + '–' + d.years[1] + ' yrs'; },
+  hours: function (d) { return '~' + d.flight[0] + (d.flight[1] !== d.flight[0] ? '–' + d.flight[1] : '') + ' hrs'; },
+  fare: function (d) { return d.fare ? 'From ₹' + d.fare.toLocaleString('en-IN') + ' one-way' : d.fareText; },
+  living: function (d) { return '₹' + d.living[0] + 'k–' + d.living[1] + 'k / month'; },
+  // living for the whole course, in lakhs: monthly (thousands) x months / 100
+  livingTotal: function (d) { return [d.living[0] * 12 * d.years[0] / 100, d.living[1] * 12 * d.years[1] / 100]; },
+  total: function (d) { var l = MO.livingTotal(d); return [d.tuition[0] + l[0], d.tuition[1] + l[1]]; },
+  pct: function (v, max) { return Math.max(0, Math.min(100, v / (max || COST_SCALE_MAX) * 100)).toFixed(2) + '%'; },
+  // Send a call-back request. Validates an Indian mobile, then posts to the sheet or falls back to WhatsApp.
+  submitLead: function (phoneInput, msgEl, context) {
+    var phone = phoneInput.value.replace(/[\s\-()]/g, '').replace(/^\+?91/, '');
+    if (!/^[6-9]\d{9}$/.test(phone)) { msgEl.textContent = 'Please enter a valid 10-digit mobile number.'; phoneInput.focus(); return; }
+    var payload = Object.assign({ phone: phone, page: location.pathname }, context);
     if (LEAD_ENDPOINT) {
-      msg.textContent = 'Sending\u2026';
+      msgEl.textContent = 'Sending…';
       fetch(LEAD_ENDPOINT, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(payload) })
-        .then(function () { msg.textContent = 'Thank you! A counsellor will call you soon.'; })
-        .catch(function () { msg.textContent = 'Could not send. Please use the WhatsApp button above.'; });
+        .then(function () { msgEl.textContent = 'Thank you! A counsellor will call you soon.'; })
+        .catch(function () { msgEl.textContent = 'Could not send. Please use the WhatsApp button instead.'; });
     } else {
-      window.open(waLink(context.message + ' Please call me on ' + phone + '.'), '_blank');
-      msg.textContent = 'Opening WhatsApp so we get your details\u2026';
+      window.open(MO.wa(context.message + ' Please call me on ' + phone + '.'), '_blank');
+      msgEl.textContent = 'Opening WhatsApp so we get your details…';
     }
   }
-
-  $('eligForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    var score = parseFloat($('inNeetScore').value), pcb = parseFloat($('inPcb').value), age = parseFloat($('inAge').value);
-    var year = $('inPassedYear').value, community = $('inCommunity').value;
-    if (isNaN(score) || isNaN(pcb) || isNaN(age)) {
-      eligResult.innerHTML = '<div class="verdict">' + badgeIcon(false, 'close') + '<span>Please fill in every field to check your eligibility.</span></div>';
-    } else {
-      var cutoff = NEET_CUTOFFS[year][community], pcbNeeded = PCB_REQUIREMENT[community];
-      var label = community === 'general' ? 'General' : 'OBC / SC / ST';
-      var scoreOk = score >= cutoff, pcbOk = pcb >= pcbNeeded, ageOk = age >= MIN_AGE;
-      var eligible = scoreOk && pcbOk && ageOk;
-      var profile = 'NEET ' + score + ' (' + year + '), ' + label + ', PCB ' + pcb + '%, age ' + age;
-      var message = 'Hi Mathura Overseas, I checked my eligibility on your website: ' + profile + '. ' +
-        (eligible ? 'I meet the criteria. Please suggest suitable universities for me.' : 'I don\u2019t meet all criteria yet. Can a counsellor check if any exceptions apply?');
-      eligResult.innerHTML =
-        '<div class="verdict">' + badgeIcon(eligible, eligible ? 'check' : 'close') + '<span>' + (eligible
-          ? 'You meet the baseline eligibility criteria for MBBS abroad.'
-          : 'You don\u2019t meet all criteria yet \u2014 but exceptions may apply.') + '</span></div>' +
-        '<div class="check-tiles">' +
-          checkTile(scoreOk, 'NEET', score + ' / min ' + cutoff) +
-          checkTile(pcbOk, 'PCB', pcb + '% / min ' + pcbNeeded + '%') +
-          checkTile(ageOk, 'Age', age + ' / min ' + MIN_AGE) +
-        '</div>' + leadBlock(eligible, message);
-      $('leadForm').addEventListener('submit', function (ev) {
-        ev.preventDefault();
-        submitLead({ result: eligible ? 'eligible' : 'not-eligible', neetScore: score, neetYear: year, community: label, pcb: pcb, age: age, message: message });
-      });
-    }
-    formView.hidden = true; resultView.hidden = false;
-  });
-  $('eligEdit').addEventListener('click', function () { resultView.hidden = true; formView.hidden = false; });
-
-  // ---- Cost: result appears once a destination is chosen; an optional budget adds a fit message ----
-  function renderCost() {
-    var est = COST_ESTIMATES[$('inCostCountry').value];
-    if (!est) { $('costResult').innerHTML = emptyState('briefcase', 'Select a destination to see the estimated cost.'); return; }
-    var band = BUDGET_BANDS[$('inCostBudget').value], fit = '';
-    if (band) {
-      fit = band.min >= est.high ? 'Your budget is above the typical range here \u2014 you have room to spare.'
-          : band.max <= est.low ? 'Your budget is below the typical range here \u2014 ask us about lower-cost options.'
-          : 'Your budget is within the typical range here.';
-    }
-    $('costResult').innerHTML =
-      '<div class="cost-figure">\u20B9' + est.low + 'L \u2013 \u20B9' + est.high + 'L</div>' +
-      '<p class="cost-note">Approx. tuition for the full course in ' + est.label + ' (excludes living costs).</p>' +
-      (fit ? '<p class="cost-fit">' + fit + '</p>' : '') +
-      '<a class="btn btn--link" href="' + waLink('Hi Mathura Overseas, I\u2019d like to know more about MBBS in ' + est.label + '.') + '" target="_blank" rel="noopener">Ask a counsellor about ' + est.label + ' ' + toolIcon('arrow-right') + '</a>';
-  }
-  $('inCostCountry').addEventListener('change', renderCost);
-  $('inCostBudget').addEventListener('change', renderCost);
-  renderCost();
-
-  // ---- Compare: result appears once two different destinations are chosen ----
-  function renderCompare() {
-    var a = $('inCmpA').value, b = $('inCmpB').value;
-    if (!a || !b) { $('cmpResult').innerHTML = emptyState('users', 'Select two destinations to compare them.'); return; }
-    if (a === b) { $('cmpResult').innerHTML = emptyState('users', 'Pick two different destinations to compare.'); return; }
-    var A = DESTINATION_DATA[a], B = DESTINATION_DATA[b];
-    $('cmpResult').innerHTML = '<table class="mini-table"><thead><tr><th></th><th>' + A.label + '</th><th>' + B.label + '</th></tr></thead><tbody>' +
-      '<tr><th>Duration</th><td>' + A.duration + '</td><td>' + B.duration + '</td></tr>' +
-      '<tr><th>Tuition</th><td>' + A.tuition + '</td><td>' + B.tuition + '</td></tr>' +
-      '<tr><th>Living</th><td>' + A.living + '</td><td>' + B.living + '</td></tr>' +
-      '<tr><th>Climate</th><td>' + A.climate + '</td><td>' + B.climate + '</td></tr></tbody></table>' +
-      '<a class="btn btn--link" href="' + waLink('Hi Mathura Overseas, I\u2019m comparing ' + A.label + ' and ' + B.label + '. Can you guide me?') + '" target="_blank" rel="noopener">Get a counsellor\u2019s opinion ' + toolIcon('arrow-right') + '</a>';
-  }
-  $('inCmpA').addEventListener('change', renderCompare);
-  $('inCmpB').addEventListener('change', renderCompare);
-  renderCompare();
-});
+};

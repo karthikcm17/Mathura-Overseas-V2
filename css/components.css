@@ -93,3 +93,31 @@
 .whatsapp-float { display: none; position: fixed; right: var(--sp-4); bottom: var(--sp-4); z-index: var(--z-widget); width: 54px; height: 54px; border-radius: 50%; background: var(--color-whatsapp); color: #fff; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(0,0,0,.22); }
 .whatsapp-float { animation: wa-pulse 2.6s ease-out infinite; }
 .whatsapp-float .icon { width: 28px; height: 28px; transform-origin: 50% 85%; animation: wa-wiggle 6s ease-in-out infinite; }
+
+/* ---- Segmented choice (home quick planner + Find Your University): real radio buttons styled as chips,
+        so keyboard and screen readers work with no extra code. Markup:
+        <fieldset class="seg"><legend class="seg__legend">…</legend><label class="seg__opt"><input type="radio" …><span>…</span></label>…</fieldset> ---- */
+.seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; min-width: 0; margin: 0; padding: 0; border: 0; }
+.seg__legend { padding: 0; margin-bottom: .3rem; font-size: var(--fs-xs); font-weight: 700; }
+.seg__opt { position: relative; min-width: 0; }
+.seg__opt input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: pointer; }
+.seg__opt span { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 .4rem; border: 1.5px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-surface); font-size: var(--fs-sm); font-weight: 700; color: var(--color-text-muted); white-space: nowrap; transition: border-color var(--speed) var(--ease), background var(--speed) var(--ease), color var(--speed) var(--ease); }
+.seg__opt:hover span { border-color: var(--color-blue-pale); }
+.seg__opt input:checked + span { border-color: var(--color-primary); background: var(--color-wash); color: var(--color-primary); }
+.seg__opt input:focus-visible + span { box-shadow: 0 0 0 3px rgba(30,58,138,.18); }
+.seg--sm .seg__opt span { min-height: 38px; font-size: var(--fs-xs); }
+
+/* ---- Range slider (home quick planner + Find Your University). The filled part of the track follows --fill,
+        which the page script sets as the thumb moves. Markup: <input type="range" class="slider" …> ---- */
+.slider { --fill: 50%; display: block; width: 100%; height: 28px; margin: 0; appearance: none; -webkit-appearance: none; background: transparent; cursor: pointer; }
+.slider::-webkit-slider-runnable-track { height: 8px; border-radius: 8px; background: linear-gradient(90deg, var(--color-primary) var(--fill), var(--color-wash-deep) var(--fill)); }
+.slider::-moz-range-track { height: 8px; border-radius: 8px; background: linear-gradient(90deg, var(--color-primary) var(--fill), var(--color-wash-deep) var(--fill)); }
+.slider::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; margin-top: -8px; border-radius: 50%; background: var(--color-surface); border: 3px solid var(--color-primary); box-shadow: var(--shadow-sm); transition: box-shadow var(--speed) var(--ease); }
+.slider::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: var(--color-surface); border: 3px solid var(--color-primary); box-shadow: var(--shadow-sm); }
+.slider:focus-visible { outline: none; }
+.slider:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 5px rgba(30,58,138,.2); }
+.slider:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 5px rgba(30,58,138,.2); }
+.slider__scale { display: flex; justify-content: space-between; font-size: .66rem; font-weight: 600; color: var(--color-text-muted); }
+
+/* ---- Form error outline (shared by every tool form) ---- */
+.field input.is-invalid { border-color: var(--icon-pink-b); box-shadow: 0 0 0 3px rgba(244,63,94,.12); }

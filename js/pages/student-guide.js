@@ -14,7 +14,7 @@
   // GOOGLE SHEETS: paste your Google Apps Script web-app URL between the quotes (steps are in google-sheets-lead-script.gs).
   // Every download is then saved as a row in your sheet. While it is empty, the PDF still downloads and the
   // thank-you box offers a one-tap "send my details on WhatsApp", so no lead is lost.
-  var LEAD_ENDPOINT = '';
+  var LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx-QzoRYzbvX3lsouSRFYGnsaHf1Gcph2WigYjvIQHtYtBVJRUekwmU7zSR1fLhFhb4Nw/exec';
   var STORE_KEY = 'mo_guide_unlocked';
   var QUEUE_KEY = 'mo_guide_pending';
   var RATIO = 0.72;            // page width / height on desktop spreads
