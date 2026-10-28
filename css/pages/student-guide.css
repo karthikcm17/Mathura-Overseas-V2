@@ -1,4 +1,4 @@
-/* BUILD 20261027-5 */
+/* BUILD 20261028-6 */
 /* ==========================================================================
    student-guide.css — styling unique to student-guide.html
    Concept: an immersive full-screen "reader". The site header, announcement bar and bottom tab bar are
@@ -300,3 +300,9 @@ html.js, html.js body.sg-reader, .sg-book { -webkit-text-size-adjust: 100%; text
 .sg-probe { position: fixed; left: 0; top: 0; width: 0; height: 100vh; height: 100svh; visibility: hidden; pointer-events: none; }
 
 .sg-debug { position: fixed; left: 4px; bottom: 4px; z-index: 9999; margin: 0; padding: 6px 8px; font: 11px/1.3 monospace; color: #0f0; background: rgba(0,0,0,.82); border-radius: 6px; pointer-events: none; white-space: pre; }
+
+/* phones: the book sits on top and the control bar (home, prev / page / next, PDF) moves to the bottom, so the thumb stays in one place */
+@media (max-width: 767px) {
+  .sg-stage { order: 1; }
+  .sg-hud { order: 2; padding: var(--sp-2) var(--sp-3) calc(var(--sp-2) + var(--safe-top, 0px) * 0); }
+}

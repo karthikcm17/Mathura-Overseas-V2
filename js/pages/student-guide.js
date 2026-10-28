@@ -1,4 +1,4 @@
-/* BUILD 20261027-5 */
+/* BUILD 20261028-6 */
 // student-guide.js — turns every <article class="sg-page"> in #sgSource into a page of a 3D page-turn book,
 // sizes the book to the screen (no page scrolling), keeps ONE text size across the whole book, and runs the PDF download gate.
 // This script is loaded first on the page and starts straight away (it does not wait for the shared site scripts).
@@ -14,7 +14,7 @@
   // GOOGLE SHEETS: paste your Google Apps Script web-app URL between the quotes (steps are in google-sheets-lead-script.gs).
   // Every download is then saved as a row in your sheet. While it is empty, the PDF still downloads and the
   // thank-you box offers a one-tap "send my details on WhatsApp", so no lead is lost.
-  var LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx-QzoRYzbvX3lsouSRFYGnsaHf1Gcph2WigYjvIQHtYtBVJRUekwmU7zSR1fLhFhb4Nw/exec';
+  var LEAD_ENDPOINT = '';
   var STORE_KEY = 'mo_guide_unlocked';
   var QUEUE_KEY = 'mo_guide_pending';
   var RATIO = 0.72;            // page width / height on desktop spreads
@@ -327,7 +327,7 @@
         'app-h ' + document.documentElement.style.getPropertyValue('--app-h'), 'body ' + r(document.body), 'main ' + r(main),
         'stage ' + r(stage), 'book ' + r(book), 'pg ' + (pgs ? pgs.clientHeight + '/' + pgs.scrollHeight : '-'),
         'safe-bottom ' + getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'),
-        'font ' + (document.fonts && document.fonts.check('16px "Plus Jakarta Sans"')), 'build 20261027-5'].join('\n');
+        'font ' + (document.fonts && document.fonts.check('16px "Plus Jakarta Sans"')), 'build 20261028-6'].join('\n');
       setTimeout(paintDbg, 700);
     })();
   }
