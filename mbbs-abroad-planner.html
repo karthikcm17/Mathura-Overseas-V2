@@ -7,9 +7,9 @@ active: planner   # highlighted menu item: home, countries, planner, updates, gu
 <head>
 <meta charset="UTF-8">
 <title>MBBS Planner | Eligibility, Full Cost &amp; Compare Countries | Mathura Overseas</title>
-<meta name="description" content="Check your MBBS abroad eligibility, estimate the full course cost and compare destinations side by side. Free tools with NEET cutoffs and NMC rules explained.">
+<meta name="description" content="Check your MBBS abroad eligibility, see the average full course cost and compare countries side by side. Free tools with NEET cutoffs and NMC rules explained.">
 <meta property="og:title" content="MBBS Planner | Eligibility, Full Cost &amp; Compare Countries | Mathura Overseas">
-<meta property="og:description" content="Check your MBBS abroad eligibility, estimate the full course cost and compare destinations side by side. Free tools with NEET cutoffs and NMC rules explained.">
+<meta property="og:description" content="Check your MBBS abroad eligibility, see the average full course cost and compare countries side by side. Free tools with NEET cutoffs and NMC rules explained.">
 <meta property="og:image" content="assets/images/og/home.jpg">
 {% include head.html %}
 <link rel="stylesheet" href="css/pages/planner.css">
@@ -58,7 +58,7 @@ active: planner   # highlighted menu item: home, countries, planner, updates, gu
         <div class="pl-panel" id="eligibility" role="tabpanel" aria-labelledby="tab-eligibility">
           <div class="pl-io">
             <form class="pl-in" id="eligForm" novalidate>
-              <div class="pl-head"><h2>Check your eligibility</h2><p>Your result updates as you type. Nothing is saved.</p></div>
+              <div class="pl-head"><h2>Check your eligibility</h2><p>Updates as you type.</p></div>
               <p class="pl-handoff" id="eligHandoff" hidden><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg><span>Your NEET score came over from the home page &mdash; just add your PCB % and age.</span></p>
               <div class="pl-fields">
                 <div class="field"><label for="inNeetScore">NEET score <span class="field__hint">out of 720</span></label><input type="number" id="inNeetScore" min="0" max="720" placeholder="e.g. 250" inputmode="numeric"></div>
@@ -72,11 +72,6 @@ active: planner   # highlighted menu item: home, countries, planner, updates, gu
                 <div class="field"><label for="inPcb">Class 12 PCB % <span class="field__hint">Phy + Chem + Bio</span></label><input type="number" id="inPcb" min="0" max="100" step="0.1" placeholder="e.g. 62" inputmode="decimal"></div>
                 <div class="field"><label for="inAge">Age <span class="field__hint">on 31 Dec</span></label><input type="number" id="inAge" min="14" max="35" placeholder="e.g. 18" inputmode="numeric"></div>
               </div>
-              <ol class="pl-how" aria-label="How it works">
-                <li><b>Fill in four details</b><span>Your NEET score and year, category, PCB % and age.</span></li>
-                <li><b>See each rule checked</b><span>Against the official minimum for your year and category.</span></li>
-                <li><b>Get your shortlist</b><span>A counsellor matches recognised universities to your result.</span></li>
-              </ol>
             </form>
             <div class="pl-out" aria-live="polite">
               <div class="pl-verdict" id="eligVerdict">
@@ -88,9 +83,7 @@ active: planner   # highlighted menu item: home, countries, planner, updates, gu
               <div class="pl-after" id="eligAfter" hidden></div>
             </div>
           </div>
-          <div class="pl-foot">
-            <div class="pl-foot__head"><h3>The rules we check against</h3><p>Minimum NEET score to study MBBS abroad, by the year you passed NEET.</p></div>
-            <div class="pl-cutoffs" id="cutoffRows"></div>
+          <div class="pl-foot pl-foot--facts">
             <ul class="pl-facts">
               <li><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg>Class 12 PCB: <b data-fill="pcb">&ndash;</b></li>
               <li><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg>Minimum age: <b data-fill="age">&ndash;</b></li>
@@ -103,8 +96,8 @@ active: planner   # highlighted menu item: home, countries, planner, updates, gu
         <div class="pl-panel" id="cost" role="tabpanel" aria-labelledby="tab-cost" hidden>
           <div class="pl-io">
             <div class="pl-in">
-              <div class="pl-head"><h2>Plan the full cost</h2><p>Tuition plus living for the whole course &mdash; not just the fee.</p></div>
-              <fieldset class="pl-dests" id="costPick"><legend class="pl-label">Destination</legend></fieldset>
+              <div class="pl-head"><h2>Plan the full cost</h2><p>Average tuition and living, for the whole course.</p></div>
+              <div class="field pl-select"><label for="costDest">Country</label><select id="costDest"></select></div>
               <div class="pl-budget">
                 <div class="pl-budget__top"><label class="pl-label" for="costBudget">Your total budget</label><output id="costBudgetOut" for="costBudget">&#8377;40L</output></div>
                 <input type="range" class="slider" id="costBudget" min="10" max="70" step="1" value="40">
@@ -113,32 +106,19 @@ active: planner   # highlighted menu item: home, countries, planner, updates, gu
             </div>
             <div class="pl-out" id="costOut" aria-live="polite"></div>
           </div>
-          <div class="pl-foot">
-            <div class="pl-foot__head pl-foot__head--row">
-              <div><h3>All destinations, one scale</h3><p>Estimated full-course cost. Tap one to plan it.</p></div>
-              <ul class="pl-legend" aria-hidden="true"><li><i class="pl-legend__t"></i>Tuition</li><li><i class="pl-legend__l"></i>Living</li><li><i class="pl-legend__b"></i>Your budget</li></ul>
-            </div>
-            <div class="pl-bars" id="costChart"></div>
-            <div class="pl-extra">
-              <span class="pl-label">Not included &mdash; your counsellor confirms these</span>
-              <ul class="pl-extra__list">
-                <li><svg class="icon icon--fill" aria-hidden="true"><use href="#i-airplane"></use></svg>Flights home</li>
-                <li><svg class="icon" aria-hidden="true"><use href="#i-passport"></use></svg>Visa &amp; paperwork</li>
-                <li><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg>Health insurance</li>
-                <li><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg>Books &amp; personal</li>
-              </ul>
-            </div>
-          </div>
         </div>
 
         <!-- ---------- 3. COMPARE ---------- -->
         <div class="pl-panel" id="compare" role="tabpanel" aria-labelledby="tab-compare" hidden>
           <div class="pl-io pl-io--cmp">
             <div class="pl-in">
-              <div class="pl-head"><h2>Compare destinations</h2><p>Pick two or three. The best value in each row is highlighted.</p></div>
-              <fieldset class="pl-dests pl-dests--multi" id="cmpPick"><legend class="pl-label">Destinations</legend></fieldset>
-              <p class="pl-hint" id="cmpHint" aria-live="polite"></p>
-            </div>
+              <div class="pl-head"><h2>Compare countries</h2><p>The best value in each row is highlighted.</p></div>
+              <div class="pl-selects" id="cmpPick">
+                <div class="field pl-select"><label for="cmpA">Country 1</label><select id="cmpA"></select></div>
+                <div class="field pl-select"><label for="cmpB">Country 2</label><select id="cmpB"></select></div>
+                <div class="field pl-select"><label for="cmpC">Country 3 <span class="field__hint">optional</span></label><select id="cmpC"></select></div>
+              </div>
+                          </div>
             <div class="pl-out pl-out--cmp">
               <div class="pl-cmp-wrap" id="cmpWrap"><table class="pl-cmp" id="cmpTable"></table></div>
               <div class="pl-cmp__foot">
@@ -197,9 +177,9 @@ active: planner   # highlighted menu item: home, countries, planner, updates, gu
         <details class="fyu-q"><summary>Why is the cutoff lower for some categories?</summary><p>The qualifying score is lower for OBC, SC and ST candidates. For NEET <span data-fill="year">2026</span> it is <span data-fill="cut-general">213</span> for General and <span data-fill="cut-other">177</span> for OBC / SC / ST.</p></details>
         <details class="fyu-q"><summary>What Class 12 marks do I need?</summary><p>At least <span data-fill="pcb-general">50%</span> in Physics, Chemistry and Biology together for General, and <span data-fill="pcb-other">40%</span> for OBC / SC / ST.</p></details>
         <details class="fyu-q"><summary>Is there a minimum age?</summary><p>Yes &mdash; you must be at least <span data-fill="age-num">17</span> on 31 December of the year you take admission.</p></details>
-        <details class="fyu-q"><summary>Do the fees include hostel and food?</summary><p>No. The tuition figures cover tuition only. The cost planner adds an estimate of monthly living costs for the length of the course; flights, visa, insurance and hostel deposits are extra and vary by university.</p></details>
+        <details class="fyu-q"><summary>Do the fees include hostel and food?</summary><p>Tuition covers tuition only. The cost planner adds average living costs for the whole course; flights, visa and insurance are extra.</p></details>
         <details class="fyu-q"><summary>Can I do my internship in India instead?</summary><p>No. NMC requires a 12-month internship at the same foreign university. After you return, you also complete a 12-month supervised internship in India.</p></details>
-        <details class="fyu-q"><summary>How accurate are these figures?</summary><p>They are approximate ranges from our MBBS Abroad Handbook 2026&ndash;27. Fares and exchange rates are indicative, as of <span data-fill="asof">Sep 2026</span>. Fees differ by university and intake, so a counsellor confirms the exact figure before you decide.</p></details>
+        <details class="fyu-q"><summary>How accurate are these figures?</summary><p>They are averages from our MBBS Abroad Handbook 2026&ndash;27 and published 2026 fee guides, as of <span data-fill="asof">Oct 2026</span>. Fees differ by university and intake, so a counsellor confirms the exact figure before you decide.</p></details>
       </div>
     </div>
   </section>

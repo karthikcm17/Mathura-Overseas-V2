@@ -1,0 +1,445 @@
+/* ==========================================================================
+   country.css — ONE stylesheet for EVERY country page (mbbs-in-{country}.html).
+   Built with the Philippines page; Timor-Leste, Uzbekistan, Russia… reuse it unchanged.
+   Only change this file to add something EVERY country needs — never one country's special case.
+
+   Section map (same order as the page):
+     1 .cty-hero      dark hero, split with photo + flight "ticket"
+     2 .cty-glance    floating "at a glance" stat card
+     3 .cty-tabs      sticky section tabs
+     4 .cty-feature   why-study cards
+     5 .cty-path      course roadmap (proportional bar)
+     6 .cty-status    recognition: confirmed vs still open
+     7 .uni-card      university cards (link to a university page, or ask for a fee sheet)
+     8 .cty-fees      average yearly budget with ₹ / $ switch
+     9 .cty-elig      eligibility checklist + planner card
+    10 .cty-steps     admission steps
+    11 .cty-life      student life: photo, seasons, tiles
+    12 .cty-docs      documents to keep ready
+    13 .cty-faq       FAQ accordion (native <details>, no script needed)
+   Optional blocks (added with the Kyrgyzstan page — at the END of this file):
+     6a .cty-board    official list board: which universities passed / failed a regulator's review
+     7a .uni-spot     spotlight card for one university, with a fee preview (made for universities that
+                      have their own detailed fee page)
+   Mobile-first; tablet/desktop upgrades are at the bottom.
+   ========================================================================== */
+
+/* Anchor jumps land below the sticky header + tabs */
+html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
+
+/* Eyebrow on a pale-blue section: white pill so it stays visible */
+.section--wash .eyebrow { background: var(--color-surface); }
+
+/* ================= 1. HERO ================= */
+.cty-hero { position: relative; overflow: hidden; color: var(--color-text-inverse);
+  padding: var(--sp-5) 0 calc(var(--sp-7) + var(--sp-6)); border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  background: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1.6px) 0 0 / 22px 22px, var(--grad-hero); }
+.cty-hero__globe { position: absolute; width: 560px; height: 560px; right: -260px; top: -160px; color: rgba(255,255,255,.15); pointer-events: none; }
+.cty-hero__grid { position: relative; display: grid; gap: var(--sp-6); }
+.cty-crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; margin-bottom: var(--sp-4); font-size: var(--fs-xs); font-weight: 600; color: var(--color-text-inverse-muted); }
+.cty-crumbs a { color: var(--color-text-inverse-muted); transition: color var(--speed) var(--ease); }
+.cty-crumbs a:hover { color: #fff; }
+.cty-crumbs .icon { width: 12px; height: 12px; opacity: .6; }
+.cty-crumbs [aria-current] { color: #fff; }
+.cty-hero h1 { margin-top: var(--sp-4); color: var(--color-text-inverse); font-size: clamp(2rem, 1.3rem + 3vw, 3.4rem); line-height: 1.08; letter-spacing: -.03em; text-wrap: balance; }
+.cty-hero h1 em { font-style: normal; color: var(--color-blue-pale); }
+.cty-hero__lead { margin-top: var(--sp-3); max-width: 50ch; color: var(--color-text-inverse-muted); font-size: var(--fs-lead); line-height: 1.7; }
+.cty-hero__chips { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: var(--sp-4); }
+.cty-hero__chip { display: inline-flex; align-items: center; gap: .35rem; padding: .32rem .7rem; border-radius: 999px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.22); font-size: .72rem; font-weight: 700; color: #fff; }
+.cty-hero__chip .icon { width: 13px; height: 13px; stroke-width: 2.6; color: var(--color-blue-pale); }
+.cty-hero .btn-row { margin-top: var(--sp-5); }
+.cty-hero .btn-row .btn { flex: 1 1 100%; }
+.cty-hero__desk { display: none !important; }   /* phones keep ONE hero button, same rule as Home */
+
+/* Photo + the flight "ticket" that sits on it */
+.cty-hero__media { position: relative; }
+.cty-hero__media .img-slot { --ratio: 16 / 10; border-radius: var(--radius-xl); background: rgba(255,255,255,.1); box-shadow: 0 24px 50px rgba(7,18,52,.4), 0 0 0 1px rgba(255,255,255,.18); }
+.cty-hero__media .img-slot.is-empty::after { border-color: rgba(255,255,255,.25); }
+.cty-ticket { position: absolute; left: var(--sp-3); right: var(--sp-3); bottom: var(--sp-3); display: grid; gap: .55rem; padding: var(--sp-3) var(--sp-4); border-radius: var(--radius-lg); background: var(--color-surface); color: var(--color-text); box-shadow: 0 16px 34px rgba(7,18,52,.3); }
+.cty-ticket__route { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--sp-3); }
+.cty-ticket__port b { display: block; font-size: 1.25rem; font-weight: 800; line-height: 1; letter-spacing: -.02em; color: var(--color-primary); }
+.cty-ticket__port span { display: block; margin-top: .2rem; font-size: .66rem; font-weight: 700; color: var(--color-text-muted); }
+.cty-ticket__port--to { text-align: right; }
+.cty-ticket__line { position: relative; height: 2px; background: repeating-linear-gradient(to right, var(--color-blue-pale) 0 5px, transparent 5px 10px); }
+.cty-ticket__plane { position: absolute; left: 50%; top: 50%; width: 26px; height: 26px; margin: -13px 0 0 -13px; display: grid; place-items: center; border-radius: 50%; background: var(--color-primary); color: #fff; }
+.cty-ticket__plane .icon { width: 14px; height: 14px; transform: rotate(90deg); }
+.cty-ticket__meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .2rem var(--sp-3); padding-top: .55rem; border-top: 1px dashed var(--color-border); font-size: .7rem; font-weight: 600; color: var(--color-text-muted); }
+.cty-ticket__meta b { color: var(--color-primary); font-weight: 800; }
+
+/* ================= 2. AT A GLANCE (floats over the hero's bottom edge) ================= */
+.cty-glance { position: relative; z-index: 3; margin-top: calc(-1 * var(--sp-7)); }
+.cty-glance__card { display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border: 0; box-shadow: 0 16px 36px rgba(11,31,77,.16); }
+.cty-glance__card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--grad-hero); }
+.cty-glance__item { display: flex; align-items: center; gap: .6rem; padding: var(--sp-3);  border-bottom: 1px solid var(--color-border); }
+.cty-glance__item:nth-child(odd) { border-right: 1px solid var(--color-border); }
+.cty-glance__item:nth-last-child(-n+2) { border-bottom: 0; }
+.cty-glance__item .icon-badge { width: 34px; height: 34px; }
+.cty-glance__item .icon-badge .icon { width: 16px; height: 16px; }
+.cty-glance__num { font-size: 1.05rem; font-weight: 800; line-height: 1.1; letter-spacing: -.02em; color: var(--color-primary); font-variant-numeric: tabular-nums; }
+.cty-glance__label { font-size: .7rem; line-height: 1.35; color: var(--color-text-muted); }
+
+/* ================= 3. STICKY SECTION TABS =================
+   Sits under the header; when the mobile header slides away (navigation.js adds .is-hidden), the tabs move up to the top. */
+.cty-tabs { position: sticky; top: calc(var(--header-h) + var(--safe-top)); z-index: calc(var(--z-header) - 1); margin-top: var(--sp-5); background: rgba(248,247,243,.97); border-bottom: 1px solid var(--color-border); transition: top .28s var(--ease); }
+.app-header.is-hidden ~ main .cty-tabs { top: 0; }
+.cty-tabs__track { display: flex; gap: .35rem; overflow-x: auto; padding: .55rem var(--gutter); scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.cty-tabs__track::-webkit-scrollbar { display: none; }
+.cty-tabs a { flex-shrink: 0; display: inline-flex; align-items: center; min-height: 36px; padding: 0 .9rem; border-radius: var(--radius-sm); font-size: var(--fs-xs); font-weight: 700; color: var(--color-text-muted); white-space: nowrap; transition: background var(--speed) var(--ease), color var(--speed) var(--ease); }
+.cty-tabs a:hover { color: var(--color-primary); background: var(--color-wash); }
+.cty-tabs a.is-active { background: var(--color-primary); color: var(--color-text-inverse); }
+
+/* ================= 4. WHY STUDY HERE =================
+   Phone: one list card. Desktop: 3 × 2 separate cards (same as About). */
+.cty-features { overflow: hidden; border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-border); box-shadow: var(--shadow-md); }
+.cty-feature { display: flex; gap: var(--sp-3); align-items: flex-start; padding: var(--sp-4); }
+.cty-feature + .cty-feature { border-top: 1px solid var(--color-border); }
+.cty-feature .icon-badge { width: 42px; height: 42px; }
+.cty-feature h3 { font-size: 1rem; }
+.cty-feature p { margin-top: .2rem; font-size: var(--fs-sm); color: var(--color-text-muted); line-height: 1.6; }
+
+/* ================= 5. COURSE ROADMAP =================
+   Each stage's width = its length in months (--m). The bar fills when it scrolls into view (.reveal → .is-in). */
+.cty-path { display: grid; gap: var(--sp-3); }
+.cty-path__bar { display: none; }
+.cty-path__stage { position: relative; display: grid; grid-template-columns: auto 1fr; gap: var(--sp-3); padding: var(--sp-4); border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
+.cty-path__num { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--color-wash); color: var(--color-primary); font-size: var(--fs-xs); font-weight: 800; }
+.cty-path__stage--core .cty-path__num { background: var(--color-primary); color: #fff; }
+.cty-path__len { display: inline-block; margin-bottom: .2rem; font-size: .66rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--color-blue-light); }
+.cty-path__stage h3 { font-size: 1rem; }
+.cty-path__stage p { margin-top: .2rem; font-size: var(--fs-sm); color: var(--color-text-muted); line-height: 1.55; }
+.cty-path__note { display: inline-flex; align-items: center; gap: .35rem; margin-top: var(--sp-2); padding: .25rem .6rem; border-radius: 999px; background: var(--color-wash); font-size: .68rem; font-weight: 700; color: var(--color-primary); }
+.cty-path__note .icon { width: 13px; height: 13px; }
+.cty-path__total { display: flex; align-items: flex-start; gap: var(--sp-3); margin-top: var(--sp-4); padding: var(--sp-3) var(--sp-4); border-radius: var(--radius-md); background: var(--color-wash); font-size: var(--fs-sm); color: var(--color-text); }
+.cty-path__total .icon { width: 20px; height: 20px; margin-top: .1rem; color: var(--color-primary); }
+.cty-path__total b { color: var(--color-primary); }
+
+/* ================= 6. RECOGNITION STATUS (navy card) ================= */
+.cty-status { position: relative; overflow: hidden; display: grid; gap: var(--sp-5); padding: var(--sp-5) var(--sp-4); border-radius: var(--radius-xl); color: var(--color-text-inverse); box-shadow: var(--shadow-lg);
+  background: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1.6px) 0 0 / 22px 22px, var(--grad-night); }
+.cty-status__globe { position: absolute; right: -130px; bottom: -150px; width: 380px; height: 380px; color: rgba(255,255,255,.08); pointer-events: none; }
+.cty-status > *:not(.cty-status__globe) { position: relative; }
+.cty-status h2 { color: var(--color-text-inverse); font-size: clamp(1.4rem, 1.1rem + 1.6vw, 2.2rem); line-height: 1.15; }
+.cty-status__intro p { margin-top: var(--sp-2); color: var(--color-text-inverse-muted); font-size: var(--fs-sm); line-height: 1.65; max-width: 46ch; }
+.cty-status__col h3 { display: flex; align-items: center; gap: .5rem; margin-bottom: var(--sp-3); font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--color-blue-pale); }
+.cty-status__list { display: grid; gap: var(--sp-2); }
+.cty-status__item { display: flex; gap: var(--sp-3); align-items: flex-start; padding: .7rem var(--sp-3); border-radius: var(--radius-md); background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.13); font-size: var(--fs-sm); line-height: 1.5; color: var(--color-text-inverse); }
+.cty-status__item b { font-weight: 800; }
+.cty-status__tick { flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--color-surface); color: var(--color-primary); }
+.cty-status__tick .icon { width: 13px; height: 13px; stroke-width: 3; }
+.cty-status__open { padding: var(--sp-4); border-radius: var(--radius-lg); background: var(--color-surface); color: var(--color-text); }
+.cty-status__open-head { display: flex; align-items: center; gap: var(--sp-3); }
+.cty-status__open-head h4 { font-size: 1rem; color: var(--color-primary); line-height: 1.25; }
+.cty-status__open-head small { display: block; font-size: .65rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-muted); }
+.cty-status__open p { margin-top: var(--sp-3); font-size: var(--fs-sm); line-height: 1.65; color: var(--color-text-muted); }
+.cty-status__promise { display: flex; gap: var(--sp-3); align-items: flex-start; margin-top: var(--sp-4); padding-top: var(--sp-4); border-top: 1px solid var(--color-border); font-size: var(--fs-sm); line-height: 1.55; color: var(--color-text); }
+.cty-status__promise .icon { width: 20px; height: 20px; margin-top: .1rem; color: var(--color-primary); }
+.cty-status__src { font-size: .7rem; line-height: 1.6; color: var(--color-text-inverse-muted); }
+.cty-status__src a { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
+
+/* ================= 7. UNIVERSITY CARDS =================
+   Two kinds of footer: a university WITH its own page links to it ("View fees & details");
+   one WITHOUT a page yet asks for the fee sheet on WhatsApp. Swipe row on phones. */
+.uni-row > * { flex-basis: 84%; }
+.uni-card { overflow: hidden; display: flex; flex-direction: column; }
+.uni-card .img-slot { --ratio: 16 / 10; border-radius: 0; }
+.uni-card__body { display: flex; flex-direction: column; flex: 1; padding: var(--sp-4); }
+.uni-card__place { display: flex; align-items: center; gap: .3rem; font-size: .7rem; font-weight: 700; color: var(--color-text-muted); }
+.uni-card__place .icon { width: 13px; height: 13px; color: var(--color-blue-light); }
+.uni-card h3 { margin-top: .35rem; font-size: 1.08rem; line-height: 1.25; }
+.uni-card__facts { display: grid; gap: .4rem; margin: var(--sp-3) 0 var(--sp-4); }
+.uni-card__facts li { display: flex; gap: .5rem; align-items: flex-start; font-size: var(--fs-xs); line-height: 1.45; color: var(--color-text); }
+.uni-card__facts .icon { width: 15px; height: 15px; margin-top: .05rem; color: var(--color-primary); }
+.uni-card__foot { display: flex; align-items: center; justify-content: flex-start; gap: var(--sp-2); margin-top: auto; padding-top: var(--sp-3); border-top: 1px solid var(--color-border); }
+.uni-card__go { display: inline-flex; align-items: center; gap: .35rem; font-size: var(--fs-xs); font-weight: 800; color: var(--color-primary); }
+.uni-card__go--wa > .icon--fill { width: 16px; height: 16px; color: var(--color-whatsapp); transform: none !important; }
+.uni-card__go .icon { width: 14px; height: 14px; stroke-width: 2.6; transition: transform var(--speed) var(--ease); }
+.uni-card:hover .uni-card__go .icon { transform: translateX(4px); }
+.uni-card__cover { position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
+.uni-card__cover:focus-visible { outline-offset: -3px; }
+.uni-card__go--wa { position: relative; z-index: 2; }
+/* "Another university?" card */
+.uni-card--ask { justify-content: center; gap: var(--sp-3); padding: var(--sp-5); border: 1.5px dashed var(--color-blue-pale); background: var(--color-wash); box-shadow: none; }
+.uni-card--ask h3 { margin: 0; }
+.uni-card--ask p { font-size: var(--fs-sm); line-height: 1.6; color: var(--color-text-muted); }
+.uni-card--ask .btn { align-self: flex-start; }
+
+/* ================= 8. FEES: average yearly budget ================= */
+.cty-fees { display: grid; gap: var(--sp-4); }
+.cty-fees__total { position: relative; overflow: hidden; display: flex; flex-direction: column; gap: var(--sp-4); padding: var(--sp-5); border-radius: var(--radius-xl); color: var(--color-text-inverse);
+  background: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1.6px) 0 0 / 20px 20px, var(--grad-hero); }
+.cty-fees__switch { display: inline-grid; grid-template-columns: 1fr 1fr; align-self: flex-start; padding: 3px; border-radius: 12px; background: rgba(255,255,255,.14); }
+.cty-fees__switch button { min-height: 34px; padding: 0 .9rem; border-radius: 9px; font-size: var(--fs-xs); font-weight: 800; color: var(--color-text-inverse-muted); transition: background var(--speed) var(--ease), color var(--speed) var(--ease); }
+.cty-fees__switch button[aria-pressed="true"] { background: var(--color-surface); color: var(--color-primary); }
+.cty-fees__kicker { font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--color-blue-pale); }
+.cty-fees__big { display: block; margin-top: .2rem; font-size: clamp(2.4rem, 1.8rem + 2.6vw, 3.4rem); font-weight: 800; line-height: 1; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.cty-fees__big small { font-size: .38em; font-weight: 700; letter-spacing: 0; color: var(--color-text-inverse-muted); }
+.cty-fees__total p { font-size: var(--fs-sm); line-height: 1.6; color: var(--color-text-inverse-muted); }
+.cty-fees__course { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); margin-top: auto; padding-top: var(--sp-4); border-top: 1px solid rgba(255,255,255,.22); font-size: var(--fs-xs); font-weight: 700; color: var(--color-text-inverse-muted); }
+.cty-fees__course b { font-size: 1.05rem; font-weight: 800; color: #fff; white-space: nowrap; }
+.cty-fees__rows { padding: var(--sp-2) var(--sp-4); }
+.cty-fees__row { padding: var(--sp-4) 0; }
+.cty-fees__row + .cty-fees__row { border-top: 1px solid var(--color-border); }
+.cty-fees__row-top { display: flex; align-items: center; gap: var(--sp-3); }
+.cty-fees__row-top .icon-badge { width: 36px; height: 36px; }
+.cty-fees__row-top .icon-badge .icon { width: 17px; height: 17px; }
+.cty-fees__name { flex: 1; min-width: 0; }
+.cty-fees__name b { display: block; font-size: var(--fs-sm); font-weight: 800; color: var(--color-text); }
+.cty-fees__name > span { display: block; font-size: .7rem; color: var(--color-text-muted); }
+.cty-fees__val { font-size: 1.1rem; font-weight: 800; color: var(--color-primary); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.cty-fees__meter { height: 6px; margin-top: var(--sp-3); border-radius: 6px; background: var(--color-wash-deep); overflow: hidden; }
+.cty-fees__meter span { display: block; height: 100%; width: calc(var(--w, 0) * 1%); border-radius: 6px; background: var(--color-primary); transform-origin: left; transform: scaleX(0); transition: transform .9s var(--ease); }
+.cty-fees.is-in .cty-fees__meter span { transform: scaleX(1); }
+.cty-fees__extras { display: grid; gap: var(--sp-2); }
+.cty-fees__extra { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-3) var(--sp-4); border-radius: var(--radius-md); background: var(--color-surface); border: 1px solid var(--color-border); font-size: var(--fs-xs); line-height: 1.45; color: var(--color-text-muted); }
+.cty-fees__extra .icon { width: 18px; height: 18px; color: var(--color-primary); }
+.cty-fees__extra b { color: var(--color-text); }
+.cty-asof { display: flex; gap: .45rem; align-items: flex-start; margin-top: var(--sp-4); font-size: .72rem; line-height: 1.55; color: var(--color-text-muted); }
+.cty-asof .icon { width: 14px; height: 14px; margin-top: .12rem; }
+
+/* ================= 9. ELIGIBILITY ================= */
+.cty-elig { display: grid; gap: var(--sp-4); }
+.cty-checks { padding: var(--sp-2) var(--sp-4); }
+.cty-check { display: flex; gap: var(--sp-3); align-items: flex-start; padding: var(--sp-3) 0; }
+.cty-check + .cty-check { border-top: 1px solid var(--color-border); }
+.cty-check__tick { flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--color-primary); color: #fff; }
+.cty-check__tick .icon { width: 14px; height: 14px; stroke-width: 3; }
+.cty-check b { display: block; font-size: var(--fs-sm); font-weight: 800; color: var(--color-text); }
+.cty-check div > span { display: block; margin-top: .1rem; font-size: var(--fs-xs); line-height: 1.5; color: var(--color-text-muted); }
+.cty-elig__tool { position: relative; overflow: hidden; display: flex; flex-direction: column; gap: var(--sp-3); padding: var(--sp-5); border-radius: var(--radius-xl); color: var(--color-text-inverse); background: var(--grad-night); }
+.cty-elig__tool h3 { font-size: 1.25rem; color: var(--color-text-inverse); }
+.cty-elig__tool p { font-size: var(--fs-sm); line-height: 1.6; color: var(--color-text-inverse-muted); }
+.cty-elig__tool .btn { align-self: flex-start; }
+.cty-elig__globe { position: absolute; right: -80px; bottom: -110px; width: 260px; height: 260px; color: rgba(255,255,255,.1); pointer-events: none; }
+.cty-elig__tool > *:not(.cty-elig__globe) { position: relative; }
+
+/* ================= 10. ADMISSION STEPS (one colour, numbered route) ================= */
+.cty-steps { position: relative; display: grid; gap: var(--sp-4); counter-reset: step; }
+.cty-steps::before { content: ""; position: absolute; left: 21px; top: 22px; bottom: 22px; width: 3px; border-radius: 3px; background: repeating-linear-gradient(to bottom, var(--color-border) 0 6px, transparent 6px 12px); }
+.cty-step { position: relative; display: flex; gap: var(--sp-4); align-items: flex-start; counter-increment: step; }
+.cty-step__num { position: relative; z-index: 1; flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--color-surface); border: 2px solid var(--color-primary); color: var(--color-primary); font-size: var(--fs-sm); font-weight: 800; }
+.cty-step__num::before { content: counter(step); }
+.cty-step:last-child .cty-step__num { background: var(--color-primary); color: #fff; box-shadow: 0 6px 16px rgba(30,58,138,.35); }
+.cty-step h3 { font-size: var(--fs-base); }
+.cty-step p { margin-top: .15rem; font-size: var(--fs-sm); line-height: 1.55; color: var(--color-text-muted); }
+
+/* ================= 11. STUDENT LIFE ================= */
+.cty-life { display: grid; gap: var(--sp-4); }
+.cty-life__photo { position: relative; }
+.cty-life__photo .img-slot { --ratio: 4 / 3; border-radius: var(--radius-xl); }
+.cty-seasons { display: grid; grid-template-columns: repeat(3, 1fr); overflow: hidden; margin-top: calc(-1 * var(--sp-6)); margin-inline: var(--sp-3); position: relative; border-radius: var(--radius-lg); background: var(--color-surface); box-shadow: var(--shadow-lg); }
+.cty-season { padding: var(--sp-3); text-align: center; }
+.cty-season + .cty-season { border-left: 1px solid var(--color-border); }
+.cty-season small { display: block; font-size: .62rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--color-text-muted); }
+.cty-season b { display: block; margin-top: .15rem; font-size: var(--fs-sm); font-weight: 800; color: var(--color-primary); line-height: 1.2; }
+.cty-season span { display: block; margin-top: .1rem; font-size: .66rem; color: var(--color-text-muted); }
+.cty-life__note { margin-top: var(--sp-3); font-size: .72rem; line-height: 1.55; color: var(--color-text-muted); text-align: center; }
+.cty-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); }
+.cty-tile { display: flex; flex-direction: column; gap: .45rem; padding: var(--sp-4); }
+.cty-tile .icon-badge { width: 36px; height: 36px; }
+.cty-tile .icon-badge .icon { width: 17px; height: 17px; }
+.cty-tile h3 { font-size: var(--fs-sm); font-weight: 800; }
+.cty-tile p { font-size: var(--fs-xs); line-height: 1.5; color: var(--color-text-muted); }
+.cty-tile--wide { grid-column: 1 / -1; }
+
+/* ================= 12. DOCUMENTS ================= */
+.cty-docs { display: grid; grid-template-columns: 1fr; gap: var(--sp-2); }
+.cty-doc { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-3) var(--sp-4); border-radius: var(--radius-md); background: var(--color-surface); border: 1px solid var(--color-border); font-size: var(--fs-sm); font-weight: 700; color: var(--color-text); }
+.cty-doc .icon { width: 18px; height: 18px; color: var(--color-primary); }
+.cty-doc small { display: block; font-size: .7rem; font-weight: 500; color: var(--color-text-muted); }
+
+/* ================= 13. FAQ (native <details>: works with no script) ================= */
+.cty-faq { display: grid; gap: var(--sp-2); max-width: 820px; margin-inline: auto; }
+.cty-faq details { border-radius: var(--radius-md); background: var(--color-surface); border: 1px solid var(--color-border); transition: box-shadow var(--speed) var(--ease), border-color var(--speed) var(--ease); }
+.cty-faq details[open] { border-color: var(--color-blue-pale); box-shadow: var(--shadow-md); }
+.cty-faq summary { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); min-height: 56px; padding: var(--sp-3) var(--sp-4); font-size: var(--fs-sm); font-weight: 800; color: var(--color-text); cursor: pointer; list-style: none; }
+.cty-faq summary::-webkit-details-marker { display: none; }
+.cty-faq summary .icon { width: 18px; height: 18px; color: var(--color-primary); transition: transform var(--speed) var(--ease); }
+.cty-faq details[open] summary .icon { transform: rotate(180deg); }
+.cty-faq details > div { padding: 0 var(--sp-4) var(--sp-4); font-size: var(--fs-sm); line-height: 1.7; color: var(--color-text-muted); }
+.cty-faq details > div a { color: var(--color-primary); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+
+/* ================= TABLET ================= */
+@media (min-width: 768px) {
+  .cty-hero .btn-row .btn { flex: 0 0 auto; }
+  .cty-hero__desk { display: inline-flex !important; }
+  .cty-hero__media .img-slot { --ratio: 16 / 11; }
+  .cty-ticket { left: var(--sp-4); right: auto; width: 330px; bottom: var(--sp-4); }
+  .cty-glance__card { grid-template-columns: repeat(3, 1fr); }
+  .cty-glance__item, .cty-glance__item:nth-child(odd) { border-right: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+  .cty-glance__item:nth-child(3n) { border-right: 0; }
+  .cty-glance__item:nth-last-child(-n+3) { border-bottom: 0; }
+  .uni-row > * { flex-basis: auto; }
+  .cty-docs { grid-template-columns: repeat(2, 1fr); }
+  .cty-tiles { grid-template-columns: repeat(3, 1fr); }
+  .cty-tile--wide { grid-column: auto; }
+  .cty-status { padding: var(--sp-6); }
+}
+
+/* ================= DESKTOP ================= */
+@media (min-width: 1024px) {
+  html { scroll-padding-top: calc(var(--announce-h) + var(--header-h-lg) + 72px); }
+  .section-head { margin-bottom: var(--sp-6); }
+
+  .cty-hero { padding: var(--sp-7) 0 calc(var(--sp-8) + var(--sp-6)); }
+  .cty-hero__grid { grid-template-columns: 1.08fr .92fr; align-items: center; gap: var(--sp-7); }
+  .cty-hero__media .img-slot { --ratio: 4 / 4.4; }
+  .cty-ticket { left: calc(-1 * var(--sp-6)); right: auto; bottom: var(--sp-6); width: 320px; }
+
+  .cty-glance__card { grid-template-columns: repeat(6, 1fr); }
+  .cty-glance__item, .cty-glance__item:nth-child(odd), .cty-glance__item:nth-child(3n) { border-bottom: 0; border-right: 1px solid var(--color-border); }
+  .cty-glance__item:last-child { border-right: 0; }
+  .cty-glance__item { flex-direction: column; align-items: flex-start; gap: .5rem; padding: var(--sp-5) var(--sp-4); }
+  .cty-glance__item .icon-badge { width: 36px; height: 36px; }
+  .cty-glance__num { font-size: 1.35rem; }
+
+  .cty-tabs { top: calc(var(--announce-h) + var(--header-h-lg)); }
+  .app-header.is-hidden ~ main .cty-tabs { top: calc(var(--announce-h) + var(--header-h-lg)); }
+  .cty-tabs__track { justify-content: center; padding-block: .6rem; }
+  .cty-tabs a { min-height: 38px; font-size: var(--fs-sm); }
+
+  .cty-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); overflow: visible; border: 0; border-radius: 0; background: none; box-shadow: none; }
+  .cty-feature { flex-direction: column; gap: var(--sp-4); padding: var(--sp-5); border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface); box-shadow: var(--shadow-md); transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease); }
+  .cty-feature + .cty-feature { border-top: 1px solid var(--color-border); }
+  .cty-feature .icon-badge { width: 48px; height: 48px; }
+  .cty-feature h3 { font-size: 1.05rem; }
+  .cty-feature:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+  /* Roadmap: one proportional bar on top, the stages as columns under it */
+  /* The bar is a to-scale timeline: each segment's width comes from the matching stage's data-months in the HTML
+     (country.js turns it into --m), and its label from data-label. Cards below stay equal width so text never squeezes. */
+  .cty-path__bar { display: flex; gap: 6px; margin-bottom: var(--sp-5); }
+  .cty-path__seg { flex: var(--m, 1) 1 0; min-width: 0; }
+  .cty-path__seg::after { content: attr(data-label); display: block; margin-top: .45rem; font-size: .68rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cty-path__seg--core::after { color: var(--color-primary); }
+  .cty-path__seg span { display: block; height: 12px; border-radius: 8px; background: var(--color-blue-pale); transform-origin: left; transform: scaleX(0); transition: transform .9s var(--ease); }
+  .cty-path__seg--core span { background: var(--color-primary); }
+  .cty-path__seg:nth-child(2) span { transition-delay: .25s; }
+  .cty-path__seg:nth-child(3) span { transition-delay: .5s; }
+  .cty-path__wrap.is-in .cty-path__seg span { transform: scaleX(1); }
+  .cty-path { grid-template-columns: repeat(4, 1fr); gap: var(--sp-3); }
+  .cty-path__stage { grid-template-columns: 1fr; align-content: start; padding: var(--sp-4); }
+  .cty-path__stage--home { background: var(--color-wash); border-style: dashed; box-shadow: none; }
+
+  .cty-status { grid-template-columns: 1fr 1fr; align-items: start; gap: var(--sp-5) var(--sp-6); padding: var(--sp-7); }
+  .cty-status__intro { grid-column: 1 / -1; }
+  .cty-status__intro p { max-width: 62ch; }
+  .cty-status__open { margin-top: calc(var(--sp-3) + 1.1rem); }  /* line up with the list under the "Confirmed" label */
+  .cty-status__src { grid-column: 1 / -1; }
+
+  .uni-row { grid-template-columns: repeat(4, 1fr); gap: var(--sp-4); }
+
+  .cty-fees { grid-template-columns: .85fr 1.15fr; align-items: stretch; gap: var(--sp-5); }
+  .cty-fees__total { padding: var(--sp-6); }
+  .cty-fees__rows { padding: var(--sp-2) var(--sp-5); }
+  .cty-fees__extras { grid-column: 1 / -1; grid-template-columns: repeat(3, 1fr); gap: var(--sp-3); }
+
+  .cty-elig { grid-template-columns: 1.4fr .9fr; align-items: start; gap: var(--sp-5); }
+  .cty-checks { padding: var(--sp-2) var(--sp-5); }
+  .cty-elig__tool { position: sticky; top: calc(var(--announce-h) + var(--header-h-lg) + 80px); padding: var(--sp-6); }
+
+  .cty-steps { grid-template-columns: repeat(6, 1fr); gap: var(--sp-3); }
+  .cty-steps::before { left: 8.333%; right: 8.333%; top: 21px; bottom: auto; width: auto; height: 3px; background: repeating-linear-gradient(to right, var(--color-border) 0 6px, transparent 6px 12px); }
+  .cty-step { flex-direction: column; align-items: center; text-align: center; padding: 0 var(--sp-1); }
+
+  .cty-life { grid-template-columns: .95fr 1.05fr; align-items: center; gap: var(--sp-7); }
+  .cty-life__photo .img-slot { --ratio: 4 / 4.2; }
+  .cty-tiles { grid-template-columns: repeat(2, 1fr); gap: var(--sp-3); }
+  .cty-tile--wide { grid-column: 1 / -1; }
+
+  .cty-docs { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ==========================================================================
+   OPTIONAL BLOCKS — added with the Kyrgyzstan page. Any country page can use them.
+   ========================================================================== */
+
+/* ================= 6a. OFFICIAL LIST BOARD (.cty-board) =================
+   Use when a government or the Indian Embassy publishes WHICH universities passed or failed a review.
+   Sits under the .cty-status card in the "recognition" section.
+   • .cty-board__col--ok  → navy column for the "safe" group (always open)
+   • a plain .cty-board__col → neutral group (always open)
+   • <details class="cty-board__col cty-board__col--warn"> → long "avoid" lists, closed until tapped, so phones stay short
+   Each university is one <li>Name<span>City</span></li>. Update the "as of" line when the list changes. */
+.cty-board { display: grid; gap: var(--sp-3); margin-top: var(--sp-5); }
+.cty-board__col { overflow: hidden; border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
+.cty-board__head { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-4); }
+.cty-board__head small { display: block; font-size: .64rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-muted); }
+.cty-board__head h3 { font-size: 1rem; line-height: 1.25; }
+.cty-board__list { display: grid; gap: .4rem; padding: 0 var(--sp-4) var(--sp-4); }
+.cty-board__list li { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-3); padding: .55rem .75rem; border-radius: var(--radius-sm); background: var(--color-wash); font-size: var(--fs-xs); font-weight: 700; line-height: 1.4; color: var(--color-text); }
+.cty-board__list li span { flex-shrink: 0; font-size: .66rem; font-weight: 600; color: var(--color-text-muted); }
+.cty-board__note { padding: 0 var(--sp-4) var(--sp-4); font-size: .7rem; line-height: 1.55; color: var(--color-text-muted); }
+/* Navy "safe" column */
+.cty-board__col--ok { border: 0; color: var(--color-text-inverse); background: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1.6px) 0 0 / 20px 20px, var(--grad-night); box-shadow: var(--shadow-md); }
+.cty-board__col--ok .cty-board__head h3 { color: var(--color-text-inverse); }
+.cty-board__col--ok .cty-board__head small { color: var(--color-blue-pale); }
+.cty-board__col--ok .cty-board__list li { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); color: var(--color-text-inverse); }
+.cty-board__col--ok .cty-board__list li span { color: var(--color-text-inverse-muted); }
+.cty-board__col--ok .cty-board__note { color: var(--color-text-inverse-muted); }
+/* Collapsible "avoid" columns */
+.cty-board__col--warn summary { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-4); cursor: pointer; list-style: none; }
+.cty-board__col--warn summary::-webkit-details-marker { display: none; }
+.cty-board__col--warn summary .cty-board__head { flex: 1; padding: 0; }
+.cty-board__more { flex-shrink: 0; display: inline-flex; align-items: center; gap: .3rem; font-size: .7rem; font-weight: 800; color: var(--color-primary); }
+.cty-board__more .icon { width: 16px; height: 16px; transition: transform var(--speed) var(--ease); }
+.cty-board__col--warn[open] .cty-board__more .icon { transform: rotate(180deg); }
+.cty-board__col--warn[open] { border-color: var(--color-blue-pale); }
+.cty-board__col--warn .cty-board__list li { background: var(--color-bg); border: 1px solid var(--color-border); font-weight: 600; }
+.cty-board__src { margin-top: var(--sp-3); font-size: .7rem; line-height: 1.6; color: var(--color-text-muted); }
+.cty-board__src a { color: var(--color-primary); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+
+/* ================= 7a. UNIVERSITY SPOTLIGHT (.uni-spot) =================
+   One wide card ABOVE the university row, for the university a country page leads with.
+   It is built for universities that have their OWN page with a detailed, year-by-year fee structure
+   (mbbs-in-{country}-{university}.html). Same two footers as .uni-card:
+   • page exists → footer "View the full fee structure" + an .uni-card__cover link over the whole card
+   • no page yet → footer "Get the fee sheet on WhatsApp" (no cover link)
+   The three .uni-spot__stat tiles are a fee PREVIEW; the full table lives on the university page. */
+.uni-spot { overflow: hidden; display: grid; margin-bottom: var(--sp-4); box-shadow: var(--shadow-md); }
+.uni-spot .img-slot { --ratio: 16 / 10; border-radius: 0; }
+.uni-spot__body { display: flex; flex-direction: column; gap: var(--sp-3); padding: var(--sp-5) var(--sp-4); }
+.uni-spot__kicker { display: inline-flex; align-items: center; gap: .4rem; font-size: .66rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--color-blue-light); }
+.uni-spot__kicker .icon { width: 14px; height: 14px; }
+.uni-spot h3 { font-size: clamp(1.25rem, 1.05rem + 1vw, 1.7rem); line-height: 1.18; letter-spacing: -.02em; }
+.uni-spot__lead { font-size: var(--fs-sm); line-height: 1.65; color: var(--color-text-muted); }
+.uni-spot__chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+.uni-spot__chip { display: inline-flex; align-items: center; gap: .3rem; padding: .28rem .65rem; border-radius: 999px; background: var(--color-wash); font-size: .7rem; font-weight: 700; color: var(--color-primary); }
+.uni-spot__chip .icon { width: 13px; height: 13px; stroke-width: 2.6; }
+.uni-spot__stats { display: grid; grid-template-columns: repeat(3, 1fr); overflow: hidden; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-bg); }
+.uni-spot__stat { padding: var(--sp-3); min-width: 0; }
+.uni-spot__stat + .uni-spot__stat { border-left: 1px solid var(--color-border); }
+.uni-spot__stat b { display: block; font-size: 1.05rem; font-weight: 800; line-height: 1.15; letter-spacing: -.02em; color: var(--color-primary); font-variant-numeric: tabular-nums; }
+.uni-spot__stat span { display: block; margin-top: .2rem; font-size: .64rem; line-height: 1.35; color: var(--color-text-muted); }
+.uni-spot .uni-card__foot { margin-top: var(--sp-1); }
+.uni-spot:hover .uni-card__go .icon { transform: translateX(4px); }
+
+@media (min-width: 768px) {
+  .cty-board { grid-template-columns: repeat(2, 1fr); align-items: start; }
+  .uni-spot { grid-template-columns: 1fr 1.1fr; }
+  .uni-spot .img-slot { --ratio: auto; height: 100%; min-height: 320px; }
+  .uni-spot__body { padding: var(--sp-5); }
+}
+@media (min-width: 1024px) {
+  .cty-board { gap: var(--sp-4); margin-top: var(--sp-6); }
+  .uni-spot { margin-bottom: var(--sp-5); grid-template-columns: 1fr 1.05fr; }
+  .uni-spot__body { padding: var(--sp-6); gap: var(--sp-4); }
+  .uni-spot__stat { padding: var(--sp-3) var(--sp-4); }
+  .uni-spot__stat b { font-size: 1.25rem; }
+}
+
+/* "Considering another university?" card: when it would sit ALONE on the last row of the grid,
+   it stretches into a slim full-width strip instead of leaving a gap. Has no effect otherwise. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .uni-row > .uni-card--ask:nth-child(odd):last-child { grid-column: 1 / -1; }
+}
+@media (min-width: 768px) {
+  .uni-row > .uni-card--ask:last-child:nth-child(odd) { flex-direction: row; align-items: center; gap: var(--sp-4); padding: var(--sp-4) var(--sp-5); }
+  .uni-row > .uni-card--ask:last-child:nth-child(odd) p { flex: 1; }
+  .uni-row > .uni-card--ask:last-child:nth-child(odd) .btn { align-self: center; }
+}
+@media (min-width: 1024px) {
+  .uni-row > .uni-card--ask:last-child:nth-child(odd) { flex-direction: column; align-items: stretch; padding: var(--sp-5); }
+  .uni-row > .uni-card--ask:last-child:nth-child(odd) .btn { align-self: flex-start; }
+  .uni-row > .uni-card--ask:nth-child(4n+1):last-child { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: var(--sp-5); padding: var(--sp-4) var(--sp-5); }
+  .uni-row > .uni-card--ask:nth-child(4n+1):last-child .btn { align-self: center; }
+}
