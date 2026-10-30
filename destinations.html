@@ -103,10 +103,14 @@ active: countries   # highlighted menu item: home, countries, planner, updates, 
       <div class="route" id="route" aria-live="polite">
         <svg class="route__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
 
-        <div class="route__chips" role="group" aria-label="Choose a country">
+        <!-- On phones the chips are a sideways swipe row: the hint (arrow + fade) shows until the visitor swipes -->
+        <div class="route__chips-wrap" id="routeChipsWrap">
+        <div class="route__chips" id="routeChips" role="group" aria-label="Choose a country">
 {%- for c in site.data.countries %}
           <button type="button" class="route-chip" data-dest="{{ c.slug }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}">{{ c.name | escape }}</button>
 {%- endfor %}
+        </div>
+        <span class="route__swipe" aria-hidden="true">Swipe<svg class="icon"><use href="#i-chevron-right"></use></svg></span>
         </div>
 
         <div class="route__body">
@@ -121,9 +125,9 @@ active: countries   # highlighted menu item: home, countries, planner, updates, 
             </svg>
             <div class="route__ends"><span><b>MAA</b> Chennai</span><span><b data-r="airport">{{ c0.airport }}</b> <span data-r="city">{{ c0.city | escape }}</span></span></div>
             <p class="route__label">Typical flight time</p>
-            <p class="route__time"><span id="routeTime" data-r="hours">{{ c0.hours }}</span><span class="route__unit">hrs</span><span class="route__stop" data-r="stops">{{ c0.stops | escape }}</span></p>
-            <div class="route__meter" aria-hidden="true"><span class="route__meter-fill" id="routeMeter" data-hours="{{ c0.hours_num }}"></span></div>
-            <div class="route__fare"><span class="route__fare-label"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg>Lowest fare, one-way</span><b><span data-r="fare">{{ c0.fare }}</span> <small>&middot; <span data-r="fare_as_of">{{ c0.fare_as_of }}</span></small></b></div>
+            <p class="route__time"><span id="routeTime" data-r="hours">{{ c0.hours }}</span><span class="route__unit" id="routeUnit">{% if c0.hours_unit != nil %}{{ c0.hours_unit }}{% else %}hrs{% endif %}</span><span class="route__stop" data-r="stops">{{ c0.stops | escape }}</span></p>
+            <div class="route__meter" id="routeMeterWrap" aria-hidden="true"><span class="route__meter-fill" id="routeMeter" data-hours="{{ c0.hours_num }}"></span></div>
+            <div class="route__fare"><span class="route__fare-label"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg><span id="routeFareLabel">{% if c0.fare_label %}{{ c0.fare_label }}{% else %}Lowest fare, one-way{% endif %}</span></span><b><span data-r="fare">{{ c0.fare }}</span> <small id="routeFareDate">&middot; <span data-r="fare_as_of">{{ c0.fare_as_of }}</span></small></b></div>
           </div>
 
           <div class="route__tiles">
@@ -154,17 +158,17 @@ active: countries   # highlighted menu item: home, countries, planner, updates, 
           </div>
         </div>
       </div>
-      <p class="udir-asof udir-asof--center"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><span>Flight times are typical one-stop routes from Chennai. Fares are the lowest one-way economy fares seen on the date shown and change daily, so confirm before booking. Exchange rates are indicative. Every figure comes from that country&rsquo;s own page.</span></p>
+      <p class="udir-asof udir-asof--center"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><span>Flight times are typical routes from Chennai. Fares are the lowest one-way economy fares seen on the date shown and change daily, so confirm before booking. Exchange rates are indicative. Every figure comes from that country&rsquo;s own page.</span></p>
     </div>
   </section>
 
   <!-- ============ 3. UNIVERSITIES. The wrapper keeps the filter bar sticky only while the universities are on screen. ============ -->
   <div class="udir-wrap" id="universities">
   <div class="container udir-intro">
-    <div class="section-head udir-head reveal"><span class="eyebrow">Universities</span><h2>Every university we recommend</h2><p>Grouped by country. Search above, tap a country, or show only universities with a full fee structure page.</p></div>
+    <div class="section-head udir-head reveal"><span class="eyebrow">Universities</span><h2>Every university we recommend</h2><p>Grouped by country. Search above or tap a country. Universities with their own fee page show a navy &ldquo;Fees &amp; details&rdquo; button.</p></div>
   </div>
 
-  <!-- ============ 3a. STICKY FILTER BAR: one chip per country (from _data/countries.yml) + "full fee structure" ============ -->
+  <!-- ============ 3a. STICKY FILTER BAR: one chip per country that has universities in _data/universities.yml ============ -->
   <nav class="udir-bar" aria-label="Filter universities">
     <div class="udir-bar__track">
       <button type="button" data-udir-country="all" aria-pressed="true">All countries</button>
@@ -174,8 +178,6 @@ active: countries   # highlighted menu item: home, countries, planner, updates, 
       <button type="button" data-udir-country="{{ c.slug }}" aria-pressed="false">{{ c.name | escape }}</button>
 {%- endif %}
 {%- endfor %}
-      <span class="udir-bar__sep" aria-hidden="true"></span>
-      <button type="button" class="udir-bar__toggle" data-udir-page aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg>Full fee structure</button>
     </div>
   </nav>
 
@@ -202,7 +204,7 @@ active: countries   # highlighted menu item: home, countries, planner, updates, 
 {%- for u in list %}
 {%- capture hay %}{{ u.name }} {{ u.aka }} {{ u.city }} {{ c.name }} {{ u.badge }}{% endcapture %}
 {%- assign has_page = false %}{% if u.page and u.page != "" %}{% assign has_page = true %}{% endif %}
-          <article class="card udir-card{% if has_page %} udir-card--page{% endif %}" data-country="{{ c.slug }}" data-search="{{ hay | downcase | escape }}"{% if has_page %} data-has-page{% endif %}>
+          <article class="card udir-card{% if has_page %} udir-card--page{% endif %}" data-country="{{ c.slug }}" data-search="{{ hay | downcase | escape }}">
             <div class="img-slot udir-card__img" data-spec="{{ u.image | remove: 'assets/images/' }}"><img src="{{ u.image }}" width="1200" height="750" alt="Campus of {{ u.name | escape }}, {{ u.city | escape }}" loading="lazy"></div>
             <div class="udir-card__body">
               <span class="udir-card__badge">{{ u.badge | escape }}</span>
@@ -270,9 +272,10 @@ active: countries   # highlighted menu item: home, countries, planner, updates, 
         <a href="mbbs-in-philippines.html" class="card dest-pick reveal"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div><h3>I want an American-style course in English</h3><p>The Philippines teaches a US-pattern MD, in English.</p></div><span class="dest-pick__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></a>
         <a href="mbbs-in-timor-uct-timor.html" class="card dest-pick reveal"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg></span><div><h3>I want a syllabus close to India&rsquo;s</h3><p>Timor-Leste teaches on India&rsquo;s own CBME framework.</p></div><span class="dest-pick__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></a>
         <a href="mbbs-in-russia.html" class="card dest-pick reveal"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></span><div><h3>I prefer long-established state universities</h3><p>Russia&rsquo;s medical universities go back decades, some for two centuries.</p></div><span class="dest-pick__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></a>
-        <a href="mbbs-in-nepal.html" class="card dest-pick reveal"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-home"></use></svg></span><div><h3>I want to stay close to home</h3><p>Nepal: no visa, and just 15 minutes ahead of Indian time.</p></div><span class="dest-pick__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></a>
+        <a href="mbbs-abroad-planner.html?cmp=nepal,bangladesh#compare" class="card dest-pick reveal"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-home"></use></svg></span><div><h3>I want to stay close to home</h3><p>Nepal needs no visa; Bangladesh is a direct flight of under three hours.</p></div><span class="dest-pick__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></a>
         <a href="mbbs-in-georgia.html" class="card dest-pick reveal"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span><div><h3>I want a European-style degree</h3><p>Georgia&rsquo;s six-year MD is built on 360 ECTS credits.</p></div><span class="dest-pick__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></a>
-        <a href="mbbs-in-caribbean.html" class="card dest-pick reveal"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><div><h3>I&rsquo;m aiming for the USMLE and a US career</h3><p>The Caribbean&rsquo;s US-style MD schools, with an honest look at the NMC rules.</p></div><span class="dest-pick__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></a>
+        <a href="mbbs-in-bangladesh.html" class="card dest-pick reveal"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-target"></use></svg></span><div><h3>I want a strong FMGE track record</h3><p>Bangladesh graduates had the highest FMGE pass rate of the major destinations in 2023.</p></div><span class="dest-pick__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></a>
+        <a href="mbbs-in-caribbean.html" class="card dest-pick reveal"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><div><h3>I&rsquo;m aiming to practise in the USA</h3><p>Caribbean schools teach a US-style MD built around the USMLE.</p></div><span class="dest-pick__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></a>
       </div>
 
       <!-- Comparing countries happens in ONE place: the MBBS Planner's Compare tab -->

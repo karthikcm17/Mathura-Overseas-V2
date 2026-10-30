@@ -7,7 +7,8 @@
 #   slug        short id, lowercase. Every university in _data/universities.yml points to one of these.
 #   name        shown on the site
 #   page        the country page
-#   planner     OPTIONAL. The country's id in the MBBS Planner, only if it differs from slug (Timor-Leste = timor)
+#   planner     OPTIONAL. The country's id in the MBBS Planner, only if it differs from slug (Timor-Leste = timor).
+#               Write  planner: false  if the Planner doesn't have the country yet: the "Compare" link then hides.
 #   year_cost   the "average year, all-in" figure from the country page, as text
 #   year_inr    the same figure as a plain number of rupees (sizes the bar in the chart)
 #   duration    course length, short
@@ -15,9 +16,11 @@
 #   airport     3-letter code of the arrival airport (MNL, TAS…)
 #   city        the arrival city
 #   hours       flight time from Chennai as shown, e.g. "~10" or "9–10"
-#   hours_num   the same as one number (sizes the "share of a day" bar; 9–10 → 9.5)
+#   hours_unit  OPTIONAL. The word after it; "hrs" if left out. Use "" when hours already says it ("2h 40m")
+#   hours_num   the same as one number (sizes the "share of a day" bar; 9–10 → 9.5). Leave out if unknown: the bar hides
 #   stops       e.g. "1 stop" or "via Singapore"
-#   fare        lowest one-way fare seen from Chennai, as text      fare_as_of: when you checked it
+#   fare        lowest one-way fare seen from Chennai, as text      fare_as_of: when you checked it (leave "" if no date)
+#   fare_label  OPTIONAL. The label before the fare; "Lowest fare, one-way" if left out
 #   time        time difference with India
 #   money       exchange rate, as text                              money_as_of: when you checked it
 #   language    local language(s)
@@ -234,3 +237,54 @@
     - No visa needed for Indian citizens
     - Food, festivals and script that feel like home
     - A Nepal licence on equal terms since November 2024
+
+- slug: bangladesh
+  name: Bangladesh
+  page: mbbs-in-bangladesh.html
+  year_cost: "₹8.9 L"
+  year_inr: 888000
+  duration: "6 yrs incl. internship"
+  airport: DAC
+  city: Dhaka
+  hours: "2h 40m"
+  hours_unit: ""
+  hours_num: 2.7
+  stops: "direct"
+  fare: "₹8,994"
+  fare_as_of: "Nov 2026"
+  time: "30m ahead"
+  money: "₹1 ≈ 1.30 taka"
+  money_as_of: "Oct 2026"
+  language: "Bangla; textbooks & exams in English"
+  climate: "Tropical; monsoon May–Sep"
+  why:
+    - A course built much like India's, from the same English textbooks
+    - The highest FMGE pass rate of the major destinations in 2023 (NBEMS)
+    - A direct flight from Chennai in about 2 hours 40 minutes
+
+# The Caribbean is a REGION page for USMLE aspirants. No single airport or fare: routes take 2–3 stops,
+# often through the USA. Its schools are a reference list on the page, NOT in _data/universities.yml.
+- slug: caribbean
+  name: Caribbean
+  page: mbbs-in-caribbean.html
+  planner: false
+  year_cost: "₹35 L"
+  year_inr: 3500000
+  duration: "5.5–6 yrs incl. pre-med"
+  airport: CARIB
+  city: Island campuses
+  hours: "2–3"
+  hours_unit: "stops"
+  stops: "often via the USA"
+  fare_label: "Getting there"
+  fare: "US visa needed"
+  fare_as_of: ""
+  time: "9.5–10.5 hrs behind"
+  money: "Fees in US$ · $1 = ₹95"
+  money_as_of: "Oct 2026"
+  language: "English on most islands"
+  climate: "Tropical; storms Jun–Nov"
+  why:
+    - A US-style MD, taught around the USMLE
+    - Clinical rotations often in US hospitals
+    - Accreditors the US accepts, such as CAAM-HP and ACCM

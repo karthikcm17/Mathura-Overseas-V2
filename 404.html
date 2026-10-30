@@ -1,0 +1,58 @@
+---
+# The "page not found" page. GitHub Pages shows it for any address that doesn't exist.
+# noindex keeps it out of Google; sitemap: false keeps it out of sitemap.xml.
+active: none
+noindex: true
+sitemap: false
+permalink: /404.html
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Page not found | Mathura Overseas</title>
+<meta name="description" content="This page may have moved. Find MBBS abroad countries, universities, the MBBS Planner and free counselling from Mathura Overseas.">
+{% include head.html %}
+<link rel="stylesheet" href="css/pages/404.css">
+</head>
+<body>
+
+{% include icons.html %}
+{% include announcement.html %}
+{% include header.html %}
+
+<main id="main">
+  <section class="lost">
+    <svg class="lost__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+    <div class="container lost__inner">
+      <div class="lost__badge" aria-hidden="true"><span>4</span><span class="lost__plane"><svg class="icon icon--fill"><use href="#i-airplane"></use></svg></span><span>4</span></div>
+      <h1>This page has flown off our map</h1>
+      <p class="lost__lead">The address may have changed, or there may be a small typo. Pick where you were heading:</p>
+      <div class="btn-row lost__actions">
+        <a href="index.html" class="btn btn--ondark"><svg class="icon" aria-hidden="true"><use href="#i-home"></use></svg>Home page</a>
+        <a href="destinations.html" class="btn btn--outline-light"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Countries &amp; universities</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head section-head--center"><span class="eyebrow">MBBS abroad</span><h2>Looking for a country?</h2></div>
+      <div class="lost__chips">
+{%- for c in site.data.countries %}
+        <a href="{{ c.page }}">{{ c.name | escape }}</a>
+{%- endfor %}
+      </div>
+      <div class="lost__help">
+        <p>Still can&rsquo;t find it? Tell us what you were looking for and we will send you the right page.</p>
+        <a href="https://wa.me/919360859919?text=Hi%20Mathura%20Overseas%2C%20I%20couldn%E2%80%99t%20find%20a%20page%20on%20your%20website." class="btn btn--primary btn--sm" target="_blank" rel="noopener"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Ask on WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+{% include footer.html %}
+{% include bottom-nav.html %}
+{% include scripts.html %}
+</body>
+</html>

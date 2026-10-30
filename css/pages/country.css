@@ -74,6 +74,16 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
 .cty-ticket__plane .icon { width: 14px; height: 14px; transform: rotate(90deg); }
 .cty-ticket__meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .2rem var(--sp-3); padding-top: .55rem; border-top: 1px dashed var(--color-border); font-size: .7rem; font-weight: 600; color: var(--color-text-muted); }
 .cty-ticket__meta b { color: var(--color-primary); font-weight: 800; }
+/* The fare always lines up on the right, under the destination — on the same line or, if it wraps, the next one */
+.cty-ticket__meta > span:last-child { margin-left: auto; text-align: right; }
+
+/* Phones: the hero photo is a portrait shot (1200×1320), so show it at 4:3 instead of a thin 16:10 strip,
+   and move the ticket OFF the photo — it now straddles the photo's bottom edge like a boarding pass tucked
+   underneath, so the students in the picture stay visible. Tablet/desktop keep the ticket floating on the photo. */
+@media (max-width: 767px) {
+  .cty-hero__media .img-slot { --ratio: 4 / 3; }
+  .cty-ticket { position: relative; left: auto; right: auto; bottom: auto; z-index: 1; margin: -2.75rem var(--sp-3) 0; }
+}
 
 /* ================= 2. AT A GLANCE (floats over the hero's bottom edge) ================= */
 .cty-glance { position: relative; z-index: 3; margin-top: calc(-1 * var(--sp-7)); }

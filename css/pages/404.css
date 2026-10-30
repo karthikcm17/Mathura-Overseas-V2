@@ -1,0 +1,17 @@
+/* 404.css — styling unique to 404.html (page not found). Same blue hero language as the home page. */
+.lost { position: relative; overflow: hidden; padding: var(--sp-7) 0 var(--sp-7); color: var(--color-text-inverse); text-align: center; border-radius: 0 0 var(--radius-xl) var(--radius-xl); background: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1.6px) 0 0 / 22px 22px, var(--grad-hero); }
+.lost__globe { position: absolute; width: 520px; height: 520px; left: 50%; top: -120px; margin-left: -260px; color: rgba(255,255,255,.12); pointer-events: none; }
+.lost__inner { position: relative; display: grid; justify-items: center; }
+.lost__badge { display: flex; align-items: center; gap: .1em; font-size: clamp(4rem, 3rem + 6vw, 7rem); font-weight: 800; line-height: 1; letter-spacing: -.04em; }
+.lost__plane { display: grid; place-items: center; width: .9em; height: .9em; border-radius: 50%; background: rgba(255,255,255,.14); }
+.lost__plane .icon { width: .5em; height: .5em; transform: rotate(45deg); animation: lost-fly 3.6s ease-in-out infinite; }
+@keyframes lost-fly { 0%, 100% { transform: rotate(45deg) translateY(0); } 50% { transform: rotate(45deg) translateY(-6px); } }
+.lost h1 { margin-top: var(--sp-4); color: var(--color-text-inverse); text-wrap: balance; }
+.lost__lead { margin: var(--sp-3) auto 0; max-width: 44ch; color: var(--color-text-inverse-muted); }
+.lost__actions { justify-content: center; margin-top: var(--sp-5); }
+.lost__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--sp-2); max-width: 760px; margin-inline: auto; }
+.lost__chips a { padding: .55rem 1rem; border: 1.5px solid var(--color-border); border-radius: 999px; background: var(--color-surface); font-size: var(--fs-sm); font-weight: 700; color: var(--color-primary); transition: border-color var(--speed) var(--ease), background var(--speed) var(--ease); }
+.lost__chips a:hover { border-color: var(--color-primary); background: var(--color-wash); }
+.lost__help { display: grid; justify-items: center; gap: var(--sp-3); margin-top: var(--sp-6); text-align: center; }
+.lost__help p { color: var(--color-text-muted); font-size: var(--fs-sm); }
+@media (prefers-reduced-motion: reduce) { .lost__plane .icon { animation: none; } }

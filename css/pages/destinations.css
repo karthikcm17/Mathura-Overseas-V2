@@ -73,7 +73,6 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
 .udir-bar button:hover { border-color: var(--color-blue-pale); color: var(--color-primary); }
 .udir-bar button[aria-pressed="true"] { background: var(--color-primary); border-color: var(--color-primary); color: var(--color-text-inverse); }
 .udir-bar button .icon { width: 15px; height: 15px; }
-.udir-bar__sep { flex-shrink: 0; width: 1px; height: 22px; margin-inline: .2rem; background: var(--color-border); }
 
 /* ================= 3. RESULTS ================= */
 .udir-results { padding-top: var(--sp-4); }
@@ -209,7 +208,17 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
 .route__globe { position: absolute; right: -140px; bottom: -160px; width: 400px; height: 400px; color: rgba(255,255,255,.07); pointer-events: none; }
 .route > *:not(.route__globe) { position: relative; }
 
-/* Country chips: a swipe row on phones */
+/* Country chips: a swipe row on phones, with a "Swipe →" hint at the right edge so visitors know more countries
+   are hidden. destinations.js nudges the row once when it comes into view and adds .is-swiped after the first swipe. */
+.route__chips-wrap { position: relative; }
+.route__swipe { position: absolute; top: 0; bottom: var(--sp-1); right: calc(-1 * var(--sp-4)); display: flex; align-items: center; gap: .1rem; padding: 0 var(--sp-3) 0 2.6rem; pointer-events: none;
+  background: linear-gradient(90deg, rgba(12,29,78,0) 0%, rgba(12,29,78,.92) 45%, var(--color-night) 100%);
+  font-size: .62rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #fff; transition: opacity .3s var(--ease); }
+.route__swipe .icon { width: 16px; height: 16px; stroke-width: 2.8; animation: swipe-nudge 1.2s var(--ease) infinite; }
+.route__chips-wrap.is-swiped .route__swipe { opacity: 0; }
+.route__chips-wrap.is-swiped .route__swipe .icon { animation: none; }
+@keyframes swipe-nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
+@media (prefers-reduced-motion: reduce) { .route__swipe .icon { animation: none; } }
 .route__chips { display: flex; gap: 6px; overflow-x: auto; margin-inline: calc(-1 * var(--sp-4)); padding: 2px var(--sp-4) var(--sp-1); scrollbar-width: none; -webkit-overflow-scrolling: touch; }
 .route__chips::-webkit-scrollbar { display: none; }
 .route-chip { flex-shrink: 0; min-height: 38px; padding: 0 .9rem; border: 1px solid rgba(255,255,255,.25); border-radius: var(--radius-sm); background: rgba(255,255,255,.08); color: #fff; font-size: .72rem; font-weight: 700; white-space: nowrap; transition: background var(--speed) var(--ease), color var(--speed) var(--ease), border-color var(--speed) var(--ease); }
@@ -233,6 +242,7 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
 #routeTime { font-size: clamp(2.6rem, 2rem + 3vw, 3.6rem); font-weight: 800; line-height: 1; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
 .route__unit { font-size: 1.1rem; font-weight: 700; }
 .route__stop { margin-left: auto; padding: .25rem .65rem; border-radius: 999px; background: rgba(255,255,255,.14); font-size: .7rem; font-weight: 700; white-space: nowrap; }
+.route__meter.is-off { visibility: hidden; }   /* no single flight time (e.g. the Caribbean) */
 .route__meter { height: 6px; margin-top: var(--sp-3); border-radius: 6px; background: rgba(255,255,255,.16); overflow: hidden; }
 .route__meter-fill { display: block; height: 100%; width: calc(var(--fill, 40) * 1%); border-radius: 6px; background: #fff; transform-origin: left; }
 .route__fare { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); margin-top: var(--sp-3); font-size: var(--fs-xs); }
@@ -287,6 +297,7 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
 @media (min-width: 768px) {
   .route { padding: var(--sp-5); }
   .route__chips { flex-wrap: wrap; justify-content: center; overflow: visible; margin-inline: 0; padding-inline: 0; gap: var(--sp-2); }
+  .route__swipe { display: none; }   /* every chip fits from tablet up */
   .route-chip { min-height: 42px; padding: 0 1.1rem; font-size: var(--fs-xs); }
   .route__body { grid-template-columns: 1fr 1fr; gap: var(--sp-4); margin-top: var(--sp-5); }
   .route__trip { padding: var(--sp-5); }
@@ -301,7 +312,8 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
 @media (min-width: 1024px) {
   /* Country list on the left, everything else beside it, so the whole card fits one desktop screen */
   .route { display: grid; grid-template-columns: 180px minmax(0, 1fr); grid-template-areas: "chips body" "chips why"; column-gap: var(--sp-5); row-gap: var(--sp-3); padding: var(--sp-5); }
-  .route__chips { grid-area: chips; flex-direction: column; flex-wrap: nowrap; justify-content: flex-start; align-self: start; gap: 6px; }
+  .route__chips-wrap { grid-area: chips; align-self: start; }
+  .route__chips { flex-direction: column; flex-wrap: nowrap; justify-content: flex-start; gap: 6px; }
   .route-chip { text-align: left; padding: 0 var(--sp-4); }
   .route__body { grid-area: body; grid-template-columns: 1fr 1.2fr; gap: var(--sp-3); margin-top: 0; }
   .route__why { grid-area: why; margin-top: 0; padding: var(--sp-4) var(--sp-5); gap: var(--sp-5); }
@@ -343,7 +355,7 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
   .dest-compare .btn { justify-self: auto; }
 }
 @media (min-width: 1024px) {
-  .dest-picks { grid-template-columns: repeat(3, 1fr); }
+  .dest-picks { grid-template-columns: repeat(4, 1fr); }
   .dest-pick { flex-direction: column; align-items: flex-start; padding: var(--sp-5); }
   .dest-pick > div { flex: 0 0 auto; }
   .dest-pick__go { margin-top: auto; }

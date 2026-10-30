@@ -24,7 +24,7 @@ var CATEGORIES = {
 /* ======================= DESTINATIONS (home page + MBBS Planner) ======================= */
 // tuition: full course, in lakhs of rupees (excludes living)  · years: course length [shortest, longest]
 // living: per month, in thousands of rupees [low, high]        Source: MBBS Abroad Handbook 2026-27.
-// The MBBS Planner shows the AVERAGE (middle) of each range, so families see a typical figure, not the extremes.
+// The MBBS Planner and the home page show the AVERAGE (middle) of each range, so families see a typical figure, not the extremes.
 // flight / fare / tz / lang / currency / rate / why: researched travel facts, the same ones used on the Countries page
 // (destinations.js). Fares and exchange rates are indicative — re-check them and update TRAVEL_AS_OF when you do.
 var TRAVEL_AS_OF = 'Sep 2026';
@@ -49,8 +49,8 @@ var DESTINATIONS = {
     why: ['Indian-aligned syllabus, taught in English', 'A tropical island setting', 'An emerging option — extra due diligence needed'] }
 };
 
-/* ======================= MORE DESTINATIONS (MBBS Planner only: Cost + Compare) ======================= */
-// Other countries Indian students commonly choose. Same fields as above (tuition and living are ranges; the Planner shows the average).
+/* ======================= MORE DESTINATIONS (MBBS Planner Cost + Compare, and the home page's Compare tab) ======================= */
+// Other countries Indian students commonly choose. Same fields as above (tuition and living are ranges; the tools show the average).
 // page: the country page on this site, or null if there isn't one yet.
 // Sources (checked Oct 2026; fees change every year, so a counsellor confirms the exact figure):
 //   Tuition: Careers360 "Best country for MBBS abroad in 2026 with low fees" (13 May 2026) for Georgia, Kazakhstan, Nepal,
@@ -63,9 +63,9 @@ var MORE_DESTINATIONS = {
     lang: 'Georgian', why: ['Where Europe meets Asia', 'Tbilisi’s old town and mild climate'] },
   kazakhstan: { label: 'Kazakhstan', page: 'mbbs-in-kazakhstan.html', tuition: [20, 35], years: [6, 6], living: [10, 19], climate: 'Continental, cold winters',
     lang: 'Kazakh & Russian', why: ['Established state medical universities', 'Almaty sits beneath snow-capped mountains'] },
-  nepal:      { label: 'Nepal',      page: null, tuition: [20, 30], years: [5.5, 5.5], living: [10, 15], climate: 'Mild in Kathmandu',
+  nepal:      { label: 'Nepal',      page: 'mbbs-in-nepal.html', tuition: [20, 30], years: [5.5, 5.5], living: [10, 15], climate: 'Mild in Kathmandu',
     lang: 'Nepali', why: ['Right next door — similar food and culture', 'Patients and diseases much like India’s'] },
-  bangladesh: { label: 'Bangladesh', page: null, tuition: [20, 35], years: [6, 6], living: [8, 17], climate: 'Tropical monsoon',
+  bangladesh: { label: 'Bangladesh', page: 'mbbs-in-bangladesh.html', tuition: [20, 35], years: [6, 6], living: [8, 17], climate: 'Tropical monsoon',
     lang: 'Bengali', why: ['Curriculum close to India’s MBBS', 'Short distance from India'] },
   china:      { label: 'China',      page: null, tuition: [20, 40], years: [6, 6], living: [15, 28], climate: 'Varies by region',
     lang: 'Mandarin', why: ['Large, well-equipped university hospitals', 'Chinese (HSK) needed for clinical years'] },
@@ -83,9 +83,17 @@ var COST_SCALE_MAX = 50;   // right edge of the tuition chart, in lakhs. Raise i
 
 /* ======================= LEADS ======================= */
 var WHATSAPP_NUMBER = '919360859919';
-// Paste your Google Apps Script web-app URL here and call-back requests are saved to your sheet.
-// While it is empty, "Call me back" opens WhatsApp with the visitor's details instead, so no lead is lost.
-var LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbw6cRblZGrLuXe_1RW03Rp7B72gyhTZnZTT2I0bl9co/dev';
+// GOOGLE SHEET LINK — ONE place for the whole website: the Apply page, the Guide's PDF download, and the
+// "Call me back" boxes on the home page and the MBBS Planner all save to the sheet through this link.
+// Paste your Apps Script "Web app" link between the quotes. It must END IN /exec
+// (set-up steps: google-sheets-lead-script.gs). While it is empty, every form falls back to WhatsApp, so no lead is lost.
+var LEAD_ENDPOINT = '';
+// Safety check: a link ending in /dev only works for the script's owner while signed in to Google, so every
+// visitor's lead would be lost without any error. Such a link is ignored (WhatsApp fallback) until the /exec link is pasted.
+if (/\/dev\/?$/.test(LEAD_ENDPOINT)) {
+  if (window.console) console.warn('LEAD_ENDPOINT ends in /dev and is ignored. Paste the Web app link that ends in /exec.');
+  LEAD_ENDPOINT = '';
+}
 
 /* ======================= helpers (no need to edit below this line) ======================= */
 var MO = {
@@ -107,7 +115,7 @@ var MO = {
   livingTotal: function (d) { return [d.living[0] * 12 * d.years[0] / 100, d.living[1] * 12 * d.years[1] / 100]; },
   total: function (d) { var l = MO.livingTotal(d); return [d.tuition[0] + l[0], d.tuition[1] + l[1]]; },
   pct: function (v, max) { return Math.max(0, Math.min(100, v / (max || COST_SCALE_MAX) * 100)).toFixed(2) + '%'; },
-  // ---- averages (used by the MBBS Planner) ----
+  // ---- averages (used by the MBBS Planner and the home page) ----
   mid: function (r) { return (r[0] + r[1]) / 2; },
   avgTuition: function (d) { return MO.mid(d.tuition); },                       // lakhs
   avgLiving: function (d) { return MO.mid(d.living); },                         // thousands per month
@@ -124,13 +132,15 @@ var MO = {
     return out;
   },
   // Send a call-back request. Validates an Indian mobile, then posts to the sheet or falls back to WhatsApp.
+  // Saved to the "Call-back requests" tab of the sheet.
   submitLead: function (phoneInput, msgEl, context) {
     var phone = phoneInput.value.replace(/[\s\-()]/g, '').replace(/^\+?91/, '');
     if (!/^[6-9]\d{9}$/.test(phone)) { msgEl.textContent = 'Please enter a valid 10-digit mobile number.'; phoneInput.focus(); return; }
-    var payload = Object.assign({ phone: phone, page: location.pathname }, context);
+    var payload = Object.assign({ phone: phone, source: 'call-back', page: location.pathname,
+      device: /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop' }, context);
     if (LEAD_ENDPOINT) {
       msgEl.textContent = 'Sending…';
-      fetch(LEAD_ENDPOINT, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(payload) })
+      fetch(LEAD_ENDPOINT, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
         .then(function () { msgEl.textContent = 'Thank you! A counsellor will call you soon.'; })
         .catch(function () { msgEl.textContent = 'Could not send. Please use the WhatsApp button instead.'; });
     } else {

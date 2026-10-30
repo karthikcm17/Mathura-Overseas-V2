@@ -4,6 +4,8 @@
 # run "jekyll serve" again — this one file is not reloaded automatically.
 
 title: Mathura Overseas
+# The live address. Used by sitemap.xml so Google gets full links. No slash at the end.
+url: "https://mathuraoverseas.com"
 
 # Pages are plain HTML documents: never wrap them in a theme layout.
 defaults:
@@ -16,11 +18,15 @@ defaults:
 exclude:
   - PAGE_TEMPLATE.html          # starting point for new pages, not a real page
   - bottom-nav-snippet.html     # old copy-paste snippet, replaced by _includes/bottom-nav.html
+  - mbbs-in-central-america.html  # replaced by mbbs-in-caribbean.html; delete the file when you are ready
   - README.md
   - JEKYLL_SETUP.md
   - SITE_CONTENT_PLAN.md
   - IMAGE_BRIEF.md
+  - COUNTRY_PAGES_PLAN.md
+  - GO_LIVE_CHECKLIST.md
   - google-sheets-lead-script.gs
+  - claude
   - Gemfile
   - Gemfile.lock
   - node_modules

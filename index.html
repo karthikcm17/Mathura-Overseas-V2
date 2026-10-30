@@ -1,5 +1,7 @@
 ---
 # Shared parts (announcement bar, header, footer, tab bar, icons) live in the _includes folder.
+# The destination-card fees and the "Where our students study" cards read _data/countries.yml and _data/universities.yml,
+# so they always match the Countries page. Update those two files, not this page.
 active: home   # highlighted menu item: home, countries, planner, updates, guide, about, privacy
 ---
 <!DOCTYPE html>
@@ -8,11 +10,30 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
 <meta charset="UTF-8">
 <title>Mathura Overseas | Your Gateway to a Global Medical Career</title>
 <meta name="description" content="NMC-compliant MBBS admissions guidance across the Philippines, Uzbekistan, Timor-Leste, Vietnam and more. End-to-end support from application to arrival.">
+<link rel="canonical" href="https://mathuraoverseas.com/">
 <meta property="og:title" content="Mathura Overseas | Your Gateway to a Global Medical Career">
 <meta property="og:description" content="NMC-compliant MBBS admissions guidance across the Philippines, Uzbekistan, Timor-Leste, Vietnam and more. End-to-end support from application to arrival.">
-<meta property="og:image" content="assets/images/og/home.jpg">
-{% include head.html %}
+<meta property="og:url" content="https://mathuraoverseas.com/">
+<meta property="og:image" content="https://mathuraoverseas.com/assets/images/og/home.jpg">
+{% include head.html font="async" %}
 <link rel="stylesheet" href="css/pages/home.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "Mathura Overseas",
+  "url": "https://mathuraoverseas.com/",
+  "description": "MBBS abroad admissions guidance, from counselling to campus.",
+  "telephone": "+91-93608-59919",
+  "email": "mathuraoverseas@gmail.com",
+  "address": { "@type": "PostalAddress", "addressLocality": "Tiruchirappalli", "addressRegion": "Tamil Nadu", "addressCountry": "IN" },
+  "sameAs": [
+    "https://www.facebook.com/mathuraoverseas",
+    "https://www.instagram.com/mathura_overseas",
+    "https://www.youtube.com/@mathuraoverseas"
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -40,12 +61,18 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
           <button type="button" class="btn btn--ondark hero__mobile-only" data-open-tool="elig">Check my eligibility <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
           <a href="apply.html" class="btn btn--outline-light hero__desktop-only">Talk to a Counsellor <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
         </div>
+        <ul class="hero__trust hero__desktop-only">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Fees in writing</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>No donation or capitation</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>NMC rules checked first</li>
+        </ul>
       </div>
 
       <!-- ============ HERO TOOL — a QUICK planner. One input per tab, an instant answer, then a button that carries the
-           visitor's answer to mbbs-abroad-planner.html, where the full tools live. All numbers come from js/tools.js. ============ -->
+           visitor's answer to mbbs-abroad-planner.html, where the full tools live. All numbers come from js/tools.js,
+           and the figures are AVERAGES, exactly as the MBBS Planner shows them. ============ -->
       <div class="tool" id="heroTool" role="region" aria-label="Quick MBBS planner">
-        <div class="tool__grab" aria-hidden="true"></div>
+        <div class="tool__grab" id="toolGrab" aria-hidden="true"></div>
         <button type="button" class="tool__close" id="toolClose" aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
 
         <div class="tool__head">
@@ -54,18 +81,18 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
         </div>
 
         <div class="tool__tabs" id="toolTabs" role="tablist" aria-label="Quick planner">
-          <button type="button" class="tool__tab" role="tab" aria-selected="true" aria-controls="toolElig"><svg class="icon" aria-hidden="true"><use href="#i-check-square"></use></svg><span>Eligibility</span></button>
-          <button type="button" class="tool__tab" role="tab" aria-selected="false" aria-controls="toolCost"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg><span>Budget</span></button>
-          <button type="button" class="tool__tab" role="tab" aria-selected="false" aria-controls="toolCmp"><svg class="icon" aria-hidden="true"><use href="#i-columns"></use></svg><span>Compare</span></button>
+          <button type="button" class="tool__tab" id="tabElig" role="tab" aria-selected="true" aria-controls="toolElig"><svg class="icon" aria-hidden="true"><use href="#i-check-square"></use></svg><span>Eligibility</span></button>
+          <button type="button" class="tool__tab" id="tabCost" role="tab" aria-selected="false" aria-controls="toolCost" tabindex="-1"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg><span>Budget</span></button>
+          <button type="button" class="tool__tab" id="tabCmp" role="tab" aria-selected="false" aria-controls="toolCmp" tabindex="-1"><svg class="icon" aria-hidden="true"><use href="#i-columns"></use></svg><span>Compare</span></button>
         </div>
 
         <div class="tool__body">
 
           <!-- 1. Eligibility: score + category -> live gauge against the cutoff -->
-          <div class="tool__panel" id="toolElig" role="tabpanel">
+          <div class="tool__panel" id="toolElig" role="tabpanel" aria-labelledby="tabElig">
             <div class="qe">
               <div class="qe__inputs">
-                <div class="field"><label for="qScore">Your NEET score</label><input type="number" id="qScore" class="qe__score" min="0" max="720" placeholder="e.g. 250" inputmode="numeric"></div>
+                <div class="field"><label for="qScore">Your NEET score</label><input type="number" id="qScore" class="qe__score" min="0" max="720" step="1" placeholder="e.g. 250" inputmode="numeric" enterkeyhint="go"></div>
                 <fieldset class="seg seg--sm">
                   <legend class="seg__legend">Category</legend>
                   <label class="seg__opt"><input type="radio" name="qCat" value="general" checked><span>General</span></label>
@@ -86,9 +113,9 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
             <a class="btn btn--primary btn--block tool__go" id="qEligGo" href="mbbs-abroad-planner.html#eligibility">Get my full eligibility report <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
           </div>
 
-          <!-- 2. Budget: one slider -> destinations light up when their tuition starts within it -->
-          <div class="tool__panel" id="toolCost" role="tabpanel" hidden>
-            <div class="qb__top"><label for="qBudget">Your tuition budget</label><output id="qBudgetOut" for="qBudget">&#8377;25L</output></div>
+          <!-- 2. Budget: one slider -> destinations light up when their AVERAGE tuition (full course) fits -->
+          <div class="tool__panel" id="toolCost" role="tabpanel" aria-labelledby="tabCost" hidden>
+            <div class="qb__top"><label for="qBudget">Tuition budget <small>full course</small></label><output id="qBudgetOut" for="qBudget">&#8377;25L</output></div>
             <input type="range" class="slider qb__range" id="qBudget" min="10" max="50" step="1" value="25" aria-describedby="qCostStatus">
             <div class="slider__scale" aria-hidden="true"><span>&#8377;10L</span><span>&#8377;50L+</span></div>
             <div class="qb__fits" id="qFits"></div>
@@ -96,11 +123,11 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
             <a class="btn btn--primary btn--block tool__go" id="qCostGo" href="mbbs-abroad-planner.html#cost">Plan my full cost <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
           </div>
 
-          <!-- 3. Compare: two dropdowns -> a two-number snapshot -->
-          <div class="tool__panel" id="toolCmp" role="tabpanel" hidden>
+          <!-- 3. Compare: two dropdowns -> a snapshot of averages -->
+          <div class="tool__panel" id="toolCmp" role="tabpanel" aria-labelledby="tabCmp" hidden>
             <div class="qx__pick">
               <label class="sr-only" for="qCmpA">First destination</label><select id="qCmpA"></select>
-              <span class="qx__vs" aria-hidden="true">vs</span>
+              <button type="button" class="qx__vs" id="qCmpSwap" aria-label="Swap the two destinations"><svg class="icon" aria-hidden="true"><use href="#i-swap"></use></svg></button>
               <label class="sr-only" for="qCmpB">Second destination</label><select id="qCmpB"></select>
             </div>
             <div class="qx" id="qCmp" aria-live="polite"></div>
@@ -108,6 +135,7 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
           </div>
 
         </div>
+        <p class="tool__note" id="toolNote">Averages as of Oct 2026 &middot; a counsellor confirms exact fees</p>
       </div>
     </div>
   </section>
@@ -126,7 +154,7 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
   </div>
 
   <!-- ============ FIND YOUR PATH — links to OTHER pages (the hero tool already covers eligibility / cost / compare).
-       IMAGE 1: handbook-cover.webp 600 x 800 px (3:4) -->
+       IMAGE 1: assets/images/home/handbook-cover.webp — 600 x 800 px (3:4). The real front cover of the handbook PDF. -->
   <section class="section has-dots">
     <div class="container">
       <div class="section-head reveal"><span class="eyebrow">Resources</span><h2>Find your path</h2><p>Everything you need to plan your MBBS journey.</p></div>
@@ -148,7 +176,7 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
           <span class="path-card__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
           <span class="path-card__more">Open updates <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
         </a>
-        <a href="about-us.html" class="card card--link path-card reveal">
+        <a href="about-us.html#how-we-vet" class="card card--link path-card reveal">
           <span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span>
           <div class="path-card__text"><h3>How we work</h3><p>What we check before we recommend a university.</p></div>
           <span class="path-card__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
@@ -159,41 +187,75 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
   </section>
 
   <!-- ============ TOP DESTINATIONS (swipe on mobile). Detailed travel info lives on the Countries page.
-       IMAGES 2-5: destination photos, 1200 x 800 px (3:2) -->
+       The fee line on each card is read from _data/countries.yml ("an average year, all-in"), the same figure the Countries page shows.
+       IMAGES 2-5: tall cards (4:5), best size 1000 x 1250 px; 1200 x 800 files still work (centre-cropped, keep the subject in the middle).
+       Philippines: heritage stone church beside modern towers, blue sky. Timor-Leste: Dili waterfront, palms, calm sea, morning light.
+       Uzbekistan: blue-tiled Registan madrasas at golden hour, students in foreground. Vietnam: Hanoi lake skyline at dusk, warm lights. -->
+{%- assign c_ph = site.data.countries | where: "slug", "philippines" | first %}
+{%- assign c_tl = site.data.countries | where: "slug", "timor-leste" | first %}
+{%- assign c_uz = site.data.countries | where: "slug", "uzbekistan" | first %}
+{%- assign c_vn = site.data.countries | where: "slug", "vietnam" | first %}
   <section class="section section--wash">
     <div class="container">
       <div class="section-head reveal"><span class="eyebrow">Destinations</span><h2>Explore top destinations</h2><p>World-class education. Modern infrastructure. Global exposure.</p></div>
-      <!-- IMAGES B-E: destination photos, now TALL cards (4:5). Best size 1000x1250 px; your existing 1200x800 files still work (centre-cropped, keep the subject in the middle).
-       B Philippines: heritage stone church beside modern towers, blue sky. C Timor-Leste: Dili waterfront, palms, calm sea, morning light.
-       D Uzbekistan: blue-tiled Registan madrasas at golden hour, students in foreground. E Vietnam: Hanoi lake skyline at dusk, warm lights. -->
       <div class="snap-row snap-row--4">
-        <a href="mbbs-in-philippines.html" class="dest-tall reveal">
+        <a href="{{ c_ph.page }}" class="dest-tall reveal">
           <div class="img-slot" data-spec="philippines.jpg · 1000×1250 px"><img src="assets/images/destinations/philippines.jpg" width="1000" height="1250" alt="Skyline of a Philippine city with a heritage church and modern towers" loading="lazy"></div>
-          <span class="tag tag--abs">Best Value</span>
-          <div class="dest-tall__body"><h3>Philippines</h3><p>US-based curriculum, full clinical exposure</p><div class="dest-tall__foot"><span>₹18L–35L total</span><span class="dest-tall__go">Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></div></div>
+          <span class="tag tag--abs">US-style MD</span>
+          <div class="dest-tall__body"><h3>{{ c_ph.name }}</h3><p>English in class, on the ward and around town</p><div class="dest-tall__foot"><span class="dest-tall__fee"><b>{{ c_ph.year_cost }}</b> a year, all-in</span><span class="dest-tall__go">Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></div></div>
         </a>
-        <a href="mbbs-in-timor-uct-timor.html" class="dest-tall reveal">
+        <a href="{{ c_tl.page }}" class="dest-tall reveal">
           <div class="img-slot" data-spec="timor-leste.jpg · 1000×1250 px"><img src="assets/images/destinations/timor-leste.jpg" width="1000" height="1250" alt="Waterfront and university campus in Dili, Timor-Leste" loading="lazy"></div>
           <span class="tag tag--abs">Indian Curriculum</span>
-          <div class="dest-tall__body"><h3>Timor-Leste</h3><p>Indian-aligned curriculum, taught in English</p><div class="dest-tall__foot"><span>$35,000–40,000 total</span><span class="dest-tall__go">Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></div></div>
+          <div class="dest-tall__body"><h3>{{ c_tl.name }}</h3><p>Taught on India&rsquo;s own CBME framework, in English</p><div class="dest-tall__foot"><span class="dest-tall__fee"><b>{{ c_tl.year_cost }}</b> a year, all-in</span><span class="dest-tall__go">Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></div></div>
         </a>
-        <a href="mbbs-in-uzbekistan.html" class="dest-tall reveal">
+        <a href="{{ c_uz.page }}" class="dest-tall reveal">
           <div class="img-slot" data-spec="uzbekistan.jpg · 1000×1250 px"><img src="assets/images/destinations/uzbekistan.jpg" width="1000" height="1250" alt="Blue-tiled historic madrasa in Samarkand, Uzbekistan" loading="lazy"></div>
-          <span class="tag tag--abs">Modern Campuses</span>
-          <div class="dest-tall__body"><h3>Uzbekistan</h3><p>Silk Road cities, modern campuses</p><div class="dest-tall__foot"><span>₹15L–25L total</span><span class="dest-tall__go">Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></div></div>
+          <span class="tag tag--abs">Government Universities</span>
+          <div class="dest-tall__body"><h3>{{ c_uz.name }}</h3><p>Silk Road cities, long-established state universities</p><div class="dest-tall__foot"><span class="dest-tall__fee"><b>{{ c_uz.year_cost }}</b> a year, all-in</span><span class="dest-tall__go">Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></div></div>
         </a>
-        <a href="mbbs-in-vietnam.html" class="dest-tall reveal">
+        <a href="{{ c_vn.page }}" class="dest-tall reveal">
           <div class="img-slot" data-spec="vietnam.jpg · 1000×1250 px"><img src="assets/images/destinations/vietnam.jpg" width="1000" height="1250" alt="Hanoi skyline at sunset with a modern city centre" loading="lazy"></div>
-          <span class="tag tag--abs">Closest to India</span>
-          <div class="dest-tall__body"><h3>Vietnam</h3><p>Closest destination to India, ~4 hour flight</p><div class="dest-tall__foot"><span>₹2L–4.6L / yr</span><span class="dest-tall__go">Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></div></div>
+          <span class="tag tag--abs">Big-City Hospitals</span>
+          <div class="dest-tall__body"><h3>{{ c_vn.name }}</h3><p>English programmes built for Indian students</p><div class="dest-tall__foot"><span class="dest-tall__fee"><b>{{ c_vn.year_cost }}</b> a year, all-in</span><span class="dest-tall__go">Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></div></div>
         </a>
       </div>
       <div class="section__more"><a href="destinations.html" class="btn btn--primary">Explore all countries <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></div>
     </div>
   </section>
 
+  <!-- ============ WHERE OUR STUDENTS STUDY — built from _data/universities.yml: every university whose badge is
+       "Mathura students here" (first four). Card photo = the same file the Countries page uses (1200 x 750 px). ============ -->
+{%- assign ours = site.data.universities | where: "badge", "Mathura students here" %}
+{%- if ours.size > 0 %}
+  <section class="section">
+    <div class="container">
+      <div class="section-head section-head--split reveal">
+        <div><span class="eyebrow">Universities</span><h2>Where our students study</h2><p>Universities with Mathura Overseas students on campus today.</p></div>
+        <a href="destinations.html#universities" class="btn btn--outline btn--sm section-head__link">Every university we recommend <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+      </div>
+      <div class="snap-row snap-row--4 uni-row">
+{%- for u in ours limit: 4 %}
+{%- assign uc = site.data.countries | where: "slug", u.country | first %}
+        <a href="{% if u.page and u.page != "" %}{{ u.page }}{% else %}{{ uc.page }}{% endif %}" class="card card--link uni-card reveal">
+          <div class="img-slot uni-card__img" data-spec="{{ u.image | remove: 'assets/images/' }} · 1200×750 px"><img src="{{ u.image }}" width="1200" height="750" alt="Campus of {{ u.name | escape }}, {{ u.city | escape }}" loading="lazy"></div>
+          <div class="uni-card__body">
+            <span class="uni-card__country">{{ uc.name | escape }}</span>
+            <h3>{{ u.name | escape }}</h3>
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>{{ u.city | escape }}</span>
+            <p>{{ u.facts.first | escape }}</p>
+            <span class="uni-card__go">{% if u.page and u.page != "" %}Fees &amp; details{% else %}MBBS in {{ uc.name | escape }}{% endif %} <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+          </div>
+        </a>
+{%- endfor %}
+      </div>
+    </div>
+  </section>
+{%- endif %}
+
   <!-- ============ WHY FAMILIES TRUST US: photo behind navy
-       IMAGE 6: counsellor-family.webp 1600 x 900 px (16:9) -->
+       IMAGE 6: assets/images/home/counsellor-family.webp — 1600 x 900 px (16:9). A counsellor guiding a student and her parents
+       through a brochure at a desk; keep the people on the RIGHT half (text sits on the left on computers). -->
   <section class="banner">
     <div class="banner__bg">
       <div class="img-slot" data-spec="counsellor-family.webp · 1600×900 px">
@@ -252,7 +314,7 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
   </section>
 
   <!-- ============ STUDENT STORY
-       IMAGE 7: priyadharshini-sekar.webp 400 x 400 px (1:1) -->
+       IMAGE 7: assets/images/stories/priyadharshini-sekar.webp — 400 x 400 px (1:1), a friendly head-and-shoulders photo. -->
   <section class="section section--dark story-band has-grid">
     <svg class="icon story-band__quote-mark" aria-hidden="true"><use href="#i-quote"></use></svg>
     <div class="container">
@@ -262,7 +324,7 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
           <div class="img-slot ratio-1x1" data-spec="priyadharshini-sekar.webp · 400×400 px">
             <img src="assets/images/stories/priyadharshini-sekar.webp" width="400" height="400" alt="Priyadharshini Sekar, student at Davao Medical School Foundation" loading="lazy">
           </div>
-          <div><div class="story__name">Priyadharshini Sekar</div><div class="story__school">Davao Medical School Foundation</div></div>
+          <figcaption><span class="story__name">Priyadharshini Sekar</span><span class="story__school">Davao Medical School Foundation</span></figcaption>
         </div>
         <blockquote>&ldquo;The guidance from Mathura Overseas was exceptional at every step, from admission to reaching campus.&rdquo;</blockquote>
       </figure>
@@ -270,16 +332,22 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
     </div>
   </section>
 
-  <!-- ============ CLOSING CTA ============ -->
+  <!-- ============ CLOSING CTA — a plain blue card with a one-field "Call me back" form.
+       The number goes to your Google Sheet (LEAD_ENDPOINT in js/tools.js); until that link is pasted, it opens WhatsApp instead. ============ -->
   <section class="section">
     <div class="container">
       <div class="cta reveal">
         <svg class="cta__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
-        <div><h2>Ready to start your medical journey?</h2><p>Talk to a counsellor today &mdash; free, no obligation.</p></div>
-        <div class="btn-row">
-          <a href="apply.html" class="btn btn--ondark">Get free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
-          <a href="tel:+919360859919" class="btn btn--outline-light"><svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg> +91 93608 59919</a>
-        </div>
+        <div><h2>Ready to start your medical journey?</h2><p>Leave your number and a counsellor will call you &mdash; free, with no obligation.</p></div>
+        <form class="cta-call" id="ctaForm" novalidate>
+          <label class="cta-call__label" for="ctaPhone">Your mobile number</label>
+          <div class="cta-call__row">
+            <div class="cta-call__field"><span aria-hidden="true">+91</span><input type="tel" id="ctaPhone" name="phone" placeholder="98765 43210" inputmode="numeric" autocomplete="tel-national" maxlength="14" required aria-describedby="ctaMsg"></div>
+            <button type="submit" class="btn btn--ondark">Call me back <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
+          </div>
+          <p class="cta-call__msg" id="ctaMsg" aria-live="polite"></p>
+          <p class="cta-call__alt">Prefer to talk now? <a href="tel:+919360859919">+91 93608 59919</a> &middot; <a href="apply.html">Apply online</a></p>
+        </form>
       </div>
     </div>
   </section>
@@ -290,12 +358,12 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
 {% include bottom-nav.html %}
 
 <!-- Home page only: AI assistant (desktop) -->
-<button type="button" class="ai-chat-bubble" id="aiChatBubble" aria-label="Open AI assistant"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg></button>
-<div class="ai-chat-panel" id="aiChatPanel">
+<button type="button" class="ai-chat-bubble" id="aiChatBubble" aria-label="Open AI assistant" aria-expanded="false" aria-controls="aiChatPanel"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg></button>
+<div class="ai-chat-panel" id="aiChatPanel" role="dialog" aria-label="Mathura AI Assistant">
   <div class="ai-chat-panel__head"><span>Mathura AI Assistant</span><button type="button" id="aiChatClose" aria-label="Close chat"><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button></div>
-  <div class="ai-chat-panel__msgs" id="aiChatMsgs"><div class="ai-msg ai-msg--bot">Hi! I can help with eligibility, fees, or choosing a destination. What would you like to know?</div></div>
+  <div class="ai-chat-panel__msgs" id="aiChatMsgs" aria-live="polite"><div class="ai-msg ai-msg--bot">Hi! I can help with eligibility, fees, or choosing a destination. What would you like to know?</div></div>
   <div class="ai-chat-panel__chips" id="aiChatChips"><button type="button">Am I eligible?</button><button type="button">Compare Philippines vs Uzbekistan</button><button type="button">Total cost of MBBS abroad?</button></div>
-  <form class="ai-chat-panel__form" id="aiChatForm"><input type="text" id="aiChatInput" placeholder="Type your question..." autocomplete="off" aria-label="Your question"><button type="submit" class="btn btn--primary btn--sm">Send</button></form>
+  <form class="ai-chat-panel__form" id="aiChatForm"><input type="text" id="aiChatInput" placeholder="Type your question..." autocomplete="off" aria-label="Your question" maxlength="500"><button type="submit" class="btn btn--primary btn--sm">Send</button></form>
 </div>
 
 {% include scripts.html %}

@@ -458,3 +458,54 @@
     - Accepts NEET or MECEE-BL, per its own eligibility page
   image: assets/images/universities/nepalgunj-mc/card.webp
   aka: NGMC, Kohalpur
+
+# ---------------- BANGLADESH ----------------
+- name: Holy Family Red Crescent Medical College
+  country: bangladesh
+  city: Eskaton, central Dhaka
+  badge: Private · Dhaka
+  facts:
+    - A hospital since 1953; the college opened in 2000
+    - A 750-bed teaching hospital; University of Dhaka degree
+  image: assets/images/universities/holy-family/spotlight.webp
+  aka: Holy Family, HFRCMC, Red Crescent, Dhaka
+
+- name: Bangladesh Medical College
+  country: bangladesh
+  city: Dhanmondi, Dhaka
+  badge: Private
+  facts:
+    - Founded in 1986, the country's first private medical college
+    - A 500-bed teaching hospital; University of Dhaka degree
+  image: assets/images/universities/bangladesh-medical-college/card.webp
+  aka: BMC, Dhanmondi
+
+- name: Jahurul Islam Medical College
+  country: bangladesh
+  city: Bajitpur, Kishoreganj
+  badge: Private
+  facts:
+    - Founded in 1992, the second-oldest private medical college
+    - A 390-bed hospital on a green 52-acre campus
+  image: assets/images/universities/jahurul-islam/card.webp
+  aka: JIMC, Bajitpur
+
+- name: Eastern Medical College
+  country: bangladesh
+  city: Cumilla
+  badge: Private
+  facts:
+    - Founded in 2005; degree from Chittagong Medical University
+    - A 600-bed teaching hospital
+  image: assets/images/universities/eastern-medical-college/card.webp
+  aka: EMC, Comilla, Cumilla
+
+- name: Khwaja Yunus Ali Medical College
+  country: bangladesh
+  city: Enayetpur, Sirajganj
+  badge: Private
+  facts:
+    - Founded in 2005; degree from Rajshahi University
+    - A 500-bed hospital with heart surgery and a cancer centre
+  image: assets/images/universities/khwaja-yunus-ali/card.webp
+  aka: KYAMC, Sirajganj

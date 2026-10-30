@@ -1,5 +1,48 @@
 [
   {
+    "id": "mcc-ug-special-stray",
+    "date": "30 Oct 2026",
+    "cycle": "2026",
+    "cats": [
+      "ug",
+      "counselling",
+      "mcc"
+    ],
+    "title": "MCC announces Special Stray Vacancy Round for MBBS (and Round 5 for BDS/B.Sc Nursing)",
+    "summary": "MCC will run one more round for MBBS seats from 2 November. The result is on 7 November and reporting runs until 16 November.",
+    "points": [
+      "Registration and payment: 2–5 Nov (registration till 11:00 AM, payment till 6:00 PM on 5 Nov)",
+      "Choice filling: 2–4 Nov (till 3:00 PM); locking 4 Nov 4:00 PM to 5 Nov 11:00 AM",
+      "Seat allotment processing: 5–6 Nov; result: 7 Nov",
+      "Reporting at the allotted college: 7–16 Nov (till 5:00 PM)",
+      "The same notice makes this Round 5 for BDS and B.Sc Nursing seats"
+    ],
+    "source": "https://mcc.nic.in",
+    "via": "MCC notice",
+    "important": true
+  },
+  {
+    "id": "mcc-ug-bds-round6",
+    "date": "30 Oct 2026",
+    "cycle": "2026",
+    "cats": [
+      "ug",
+      "counselling",
+      "mcc"
+    ],
+    "title": "MCC Round 6 for BDS and B.Sc Nursing seats: 17–28 November",
+    "summary": "After the Special Stray Round, MCC will hold a 6th round only for BDS and B.Sc Nursing seats. Registration opens on 17 November and reporting closes on 28 November.",
+    "points": [
+      "Registration and payment: 17–19 Nov (registration till 3:00 PM on 18 Nov, payment till 6:00 PM on 19 Nov)",
+      "Choice filling: 17–19 Nov (till 9:00 AM); locking 18 Nov 4:00 PM to 19 Nov 9:00 AM",
+      "Seat allotment processing: 19 Nov; result: 20 Nov",
+      "Reporting at the allotted college: 21–28 Nov (till 5:00 PM)",
+      "MBBS seats are not part of this round"
+    ],
+    "source": "https://mcc.nic.in",
+    "via": "MCC notice"
+  },
+  {
     "id": "mcc-pg-round1-result",
     "date": "24 Oct 2026",
     "cycle": "2026",

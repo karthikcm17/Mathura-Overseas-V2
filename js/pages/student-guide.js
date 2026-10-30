@@ -1,4 +1,4 @@
-/* BUILD 20261030-1 */
+/* BUILD 20261030-2 */
 // student-guide.js — turns every <article class="sg-page"> in #sgSource into a page of a 3D page-turn book,
 // sizes the book to the screen (no page scrolling), keeps ONE text size across the whole book, and runs the PDF download gate.
 // This script is loaded first on the page and starts straight away (it does not wait for the shared site scripts).
@@ -11,10 +11,11 @@
   // ---- SETTINGS (edit here) ----
   var PDF = 'assets/downloads/mathura-overseas-mbbs-handbook-2026-27.pdf';
   var WHATSAPP_NUMBER = '919360859919';
-  // GOOGLE SHEETS: paste your Google Apps Script web-app URL between the quotes (steps are in google-sheets-lead-script.gs).
-  // Every download is then saved as a row in your sheet. While it is empty, the PDF still downloads and the
+  // GOOGLE SHEETS: the sheet link is NOT set here. It lives in ONE place, js/tools.js (var LEAD_ENDPOINT),
+  // shared with the Apply page and the call-back forms. student-guide.html loads tools.js just before this file.
+  // Downloads are saved to the "Handbook downloads" tab. While the link is empty, the PDF still downloads and the
   // thank-you box offers a one-tap "send my details on WhatsApp", so no lead is lost.
-  var LEAD_ENDPOINT = '';
+  var LEAD_ENDPOINT = typeof window.LEAD_ENDPOINT === 'string' ? window.LEAD_ENDPOINT : '';
   var STORE_KEY = 'mo_guide_unlocked';
   var QUEUE_KEY = 'mo_guide_pending';
   var RATIO = 0.72;            // page width / height on desktop spreads
@@ -336,7 +337,7 @@
         'app-h ' + document.documentElement.style.getPropertyValue('--app-h'), 'body ' + r(document.body), 'main ' + r(main),
         'stage ' + r(stage), 'book ' + r(book), 'pg ' + (pgs ? pgs.clientHeight + '/' + pgs.scrollHeight : '-'),
         'safe-bottom ' + getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'),
-        'font ' + (document.fonts && document.fonts.check('16px "Plus Jakarta Sans"')), 'build 20261030-1'].join('\n');
+        'font ' + (document.fonts && document.fonts.check('16px "Plus Jakarta Sans"')), 'build 20261030-2'].join('\n');
       setTimeout(paintDbg, 700);
     })();
   }

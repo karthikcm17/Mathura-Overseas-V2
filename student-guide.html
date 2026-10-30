@@ -14,7 +14,7 @@ hide_bottom_nav: true   # this page is a full-screen book reader with its own co
 <meta property="og:description" content="A page-by-page guide to MBBS abroad: NEET eligibility, NMC FMGL rules, country comparisons, costs and licensing. Read it online like a book or download the PDF.">
 <meta property="og:image" content="assets/images/og/home.jpg">
 {% include head.html font="async" %}
-<link rel="stylesheet" href="css/pages/student-guide.css?v=20261030-1">
+<link rel="stylesheet" href="css/pages/student-guide.css?v=20261030-2">
 <script>document.documentElement.classList.add('js');
 // real visible height (Chrome/Safari toolbars included) so the bottom controls are never hidden
 function setAppH(){
@@ -476,8 +476,10 @@ document.addEventListener('DOMContentLoaded',function(){setAppH();setTimeout(set
 
 {% include footer.html %}
 {% include bottom-nav.html %}
+<!-- tools.js holds LEAD_ENDPOINT (your Google Sheet link), shared with the Apply page. It must load BEFORE student-guide.js. -->
+<script src="js/tools.js?v=20261030-2"></script>
 <!-- This page's own script loads BEFORE the shared scripts (it builds the book first). Keep this order. -->
-<script src="js/pages/student-guide.js?v=20261030-1"></script>
+<script src="js/pages/student-guide.js?v=20261030-2"></script>
 {% include scripts.html %}
 </body>
 </html>

@@ -1,0 +1,14 @@
+---
+# SITEMAP — builds itself. Every published .html page is listed automatically when the site is built,
+# so a new country page appears here with no extra work. A page can stay out by adding  sitemap: false  to its top block.
+layout: null
+sitemap: false
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for p in site.html_pages %}
+{%- unless p.sitemap == false or p.noindex %}
+  <url><loc>{{ site.url }}{{ p.url | replace: "/index.html", "/" }}</loc></url>
+{%- endunless %}
+{%- endfor %}
+</urlset>

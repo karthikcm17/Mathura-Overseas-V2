@@ -1,11 +1,11 @@
 /* footer.css — shared site footer.
-   Mobile = tidy app-style list (contact rows + short link lists). Desktop (responsive.css) = one compact row of columns. */
+   Mobile = tidy app-style stack: brand, contact rows, then short link grids. Desktop (responsive.css) = one compact row of columns. */
 .site-footer { position: relative; overflow: hidden; background: var(--grad-night); color: var(--color-text-inverse-muted); padding-block: var(--sp-6) var(--sp-4); font-size: var(--fs-sm); border-top: 1px solid rgba(255,255,255,.12); }
 .site-footer__globe { position: absolute; right: -150px; bottom: -170px; width: 420px; height: 420px; color: rgba(255,255,255,.07); pointer-events: none; }
 .site-footer .container { position: relative; z-index: 1; }
 .site-footer .logo__text, .site-footer .logo__text span { color: var(--color-text-inverse); }
 .site-footer .logo__mark { outline: 1px solid rgba(255,255,255,.28); outline-offset: 2px; border-radius: 12px; }
-.site-footer__grid { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "brand brand" "contact contact" "countries explore"; gap: var(--sp-5) var(--sp-4); padding-bottom: var(--sp-5); }
+.site-footer__grid { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "brand" "contact" "countries" "explore"; gap: var(--sp-5); padding-bottom: var(--sp-5); }
 .site-footer__brand { grid-area: brand; }
 .site-footer__contact { grid-area: contact; }
 .site-footer__col--countries { grid-area: countries; }
@@ -23,15 +23,23 @@
 .contact-row__text b { font-size: var(--fs-xs); font-weight: 700; }
 .contact-row__text span { font-size: var(--fs-xs); color: var(--color-text-inverse-muted); overflow: hidden; text-overflow: ellipsis; }
 .contact-row__chev { width: 16px; height: 16px; opacity: .5; }
+
+/* Socials: under the brand */
 .site-footer__social { display: flex; gap: var(--sp-2); margin-top: var(--sp-4); }
 .site-footer__social a { width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(255,255,255,.22); display: grid; place-items: center; color: #fff; transition: background var(--speed) var(--ease), border-color var(--speed) var(--ease); }
 .site-footer__social a:active { background: rgba(255,255,255,.18); }
 .site-footer__social .icon { width: 17px; height: 17px; }
 
-/* Link lists: plain text, no boxes */
-.site-footer__links { display: grid; gap: 0 var(--sp-3); }
-.site-footer__links--2 { grid-template-columns: repeat(2, max-content); column-gap: var(--sp-5); }
-.site-footer__links a { white-space: nowrap; padding: .32rem 0; font-size: var(--fs-xs); color: inherit; transition: color var(--speed) var(--ease); }
+/* Link lists: plain text, no boxes. Phones: countries in 3 columns, explore in 2. */
+.site-footer__links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--sp-3); }
+.site-footer__links--grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.site-footer__links a { padding: .32rem 0; font-size: var(--fs-xs); color: inherit; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; transition: color var(--speed) var(--ease); }
 .site-footer__links a:active { color: #fff; }
-.site-footer__bottom { display: flex; justify-content: space-between; align-items: center; gap: var(--sp-2); padding-top: var(--sp-4); border-top: 1px solid rgba(255,255,255,.14); font-size: var(--fs-xs); }
+.site-footer__all { display: inline-flex; align-items: center; gap: .35rem; margin-top: var(--sp-2); font-size: var(--fs-xs); font-weight: 700; color: #fff; }
+.site-footer__all .icon { width: 14px; height: 14px; stroke-width: 2.6; transition: transform var(--speed) var(--ease); }
+.site-footer__all:hover .icon { transform: translateX(3px); }
+
+/* Bottom line: © year · note · privacy */
+.site-footer__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--sp-2) var(--sp-4); padding-top: var(--sp-4); border-top: 1px solid rgba(255,255,255,.14); font-size: var(--fs-xs); }
 .site-footer__bottom a { color: #fff; }
+.site-footer__note { order: 3; flex-basis: 100%; font-size: .7rem; opacity: .75; }

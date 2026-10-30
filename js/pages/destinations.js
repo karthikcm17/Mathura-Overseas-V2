@@ -2,7 +2,7 @@
 //   A. "Fly the route from Chennai": the country explorer. Its data is written into the page from
 //      _data/countries.yml (the <script id="countryData"> block), so there is NOTHING to edit in this file
 //      when a country, fare or exchange rate changes. Edit _data/countries.yml instead.
-//   B. The universities: search box, country chips and the "Full fee structure" chip filter the cards
+//   B. The universities: the search box and the country chips filter the cards
 //      built from _data/universities.yml. Countries with more than three universities open with three
 //      and a "Show all" button. The address bar remembers the filter, so a link like
 //      destinations.html?country=russia  or  destinations.html?q=kazan  opens the page already filtered.
@@ -49,12 +49,19 @@ document.addEventListener('DOMContentLoaded', function () {
     current = slug;
     each(chips, function (b) { b.setAttribute('aria-pressed', b.dataset.dest === slug ? 'true' : 'false'); });
     each(route.querySelectorAll('[data-r]'), function (el) { if (el.id !== 'routeTime') el.textContent = c[el.dataset.r] == null ? '' : c[el.dataset.r]; });
-    meter.style.setProperty('--fill', Math.max(6, Math.min(100, Math.round((+c.hours_num || 0) / DAY * 100))));
+    // Optional values: a country without a single flight time (the Caribbean) hides the bar, etc.
+    document.getElementById('routeUnit').textContent = c.hours_unit == null ? 'hrs' : c.hours_unit;
+    document.getElementById('routeMeterWrap').classList.toggle('is-off', !c.hours_num);
+    if (c.hours_num) meter.style.setProperty('--fill', Math.max(6, Math.min(100, Math.round(+c.hours_num / DAY * 100))));
+    document.getElementById('routeFareDate').hidden = !c.fare_as_of;
+    document.getElementById('routeFareLabel').textContent = c.fare_label || 'Lowest fare, one-way';
     document.getElementById('routeWhy').innerHTML = (c.why || []).map(function (w) {
       return '<li><span class="route__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span>' + esc(w) + '</span></li>';
     }).join('');
     document.getElementById('routeGo').href = c.page;
-    document.getElementById('routeCmp').href = 'mbbs-abroad-planner.html?cmp=' + encodeURIComponent(c.planner || c.slug) + '#compare';
+    var cmp = document.getElementById('routeCmp');
+    cmp.hidden = c.planner === false;                  // planner: false → the Planner doesn't have this country yet
+    if (c.planner !== false) cmp.href = 'mbbs-abroad-planner.html?cmp=' + encodeURIComponent(c.planner || c.slug) + '#compare';
     if (animate === false) { timeEl.textContent = c.hours; return; }
     countUp(c.hours);
     route.classList.remove('is-swap'); void route.offsetWidth; route.classList.add('is-swap');
@@ -65,7 +72,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // "Its universities": filter the list below to this country and scroll to it
   var unis = document.getElementById('routeUnis');
-  if (unis) unis.addEventListener('click', function () { if (window.MO_showUniversities) window.MO_showUniversities(current); });
+  //  A country with no universities in _data/universities.yml (e.g. the Caribbean, whose page keeps its own school list)
+  //  goes to its country page instead.
+  if (unis) unis.addEventListener('click', function () {
+    if (document.querySelector('[data-udir-group="' + current + '"]') && window.MO_showUniversities) window.MO_showUniversities(current);
+    else location.href = bySlug[current].page + '#universities';
+  });
+
+  // Phones: the chips are a swipe row. Keep the tapped chip in view, hide the "Swipe" hint after the first swipe,
+  // and nudge the row once when the card first appears, so visitors see that it moves.
+  var chipRow = document.getElementById('routeChips'), chipWrap = document.getElementById('routeChipsWrap'), nudging = false;
+  function isPhone() { return chipRow && chipRow.scrollWidth > chipRow.clientWidth + 4; }
+  if (chipRow) {
+    chipRow.addEventListener('scroll', function () { if (!nudging && chipRow.scrollLeft > 8) chipWrap.classList.add('is-swiped'); }, { passive: true });
+    each(chips, function (b) {
+      b.addEventListener('click', function () {
+        if (!isPhone()) return;
+        chipRow.scrollTo({ left: Math.max(0, b.offsetLeft - (chipRow.clientWidth - b.offsetWidth) / 2), behavior: 'smooth' });
+      });
+    });
+  }
+  function nudge() {
+    if (reduce || !isPhone() || chipWrap.classList.contains('is-swiped')) return;
+    nudging = true;
+    chipRow.scrollTo({ left: 70, behavior: 'smooth' });
+    setTimeout(function () { chipRow.scrollTo({ left: 0, behavior: 'smooth' }); setTimeout(function () { nudging = false; }, 500); }, 650);
+  }
 
   // Hero cost chart: tap a country to fly its route
   each(document.querySelectorAll('[data-route-set]'), function (b) {
@@ -80,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var started = false;
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (en) {
-      if (en[0].isIntersecting && !started) { started = true; io.disconnect(); show(current); }
+      if (en[0].isIntersecting && !started) { started = true; io.disconnect(); show(current); setTimeout(nudge, 500); }
     }, { threshold: 0.3 });
     io.observe(route);
   }
@@ -95,7 +127,6 @@ document.addEventListener('DOMContentLoaded', function () {
   var cards = document.querySelectorAll('.udir-card');
   var groups = document.querySelectorAll('[data-udir-group]');
   var countryBtns = document.querySelectorAll('[data-udir-country]');
-  var pageBtn = $('[data-udir-page]');
   var input = $('#udirQ');
   var clearQ = $('#udirClearQ');
   var empty = $('#udirEmpty');
@@ -107,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var names = {};   // country slug -> display name (read from the chips)
   each(countryBtns, function (b) { names[b.dataset.udirCountry] = b.textContent.trim(); });
 
-  var state = { country: 'all', q: '', pageOnly: false };
+  var state = { country: 'all', q: '' };
 
   // Lower-case and strip accents, so "catolica" finds "Católica"
   function norm(s) {
@@ -123,7 +154,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     each(cards, function (c) {
       var ok = (state.country === 'all' || c.dataset.country === state.country) &&
-               (!state.pageOnly || c.hasAttribute('data-has-page')) &&
                words.every(function (w) { return c._hay.indexOf(w) !== -1; });
       c.hidden = !ok;
       if (ok) any = true;
@@ -131,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
     each(groups, function (g) { g.hidden = !g.querySelector('.udir-card:not([hidden])'); });
 
     // Long countries open with three cards + "Show all"; while searching or filtering, every match shows
-    var filtering = state.country !== 'all' || !!state.q || state.pageOnly;
+    var filtering = state.country !== 'all' || !!state.q;
     each(groups, function (g) {
       g.classList.toggle('is-collapsed', !!g.querySelector('[data-udir-more]') && !filtering && !g._open);
     });
@@ -140,7 +170,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (askStrip) askStrip.hidden = !any;
 
     each(countryBtns, function (b) { b.setAttribute('aria-pressed', b.dataset.udirCountry === state.country ? 'true' : 'false'); });
-    if (pageBtn) pageBtn.setAttribute('aria-pressed', state.pageOnly ? 'true' : 'false');
     if (clearQ) clearQ.hidden = !state.q;
 
     // The empty-state WhatsApp button carries what the visitor typed
@@ -151,7 +180,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (status) {
       var parts = [];
       if (state.country !== 'all') parts.push('in ' + names[state.country]);
-      if (state.pageOnly) parts.push('with a full fee structure page');
       if (state.q) parts.push('matching “' + state.q + '”');
       status.textContent = !any ? 'No matches yet.'
         : parts.length ? 'Showing universities ' + parts.join(', ') + '.'
@@ -163,7 +191,6 @@ document.addEventListener('DOMContentLoaded', function () {
       var p = new URLSearchParams();
       if (state.country !== 'all') p.set('country', state.country);
       if (state.q) p.set('q', state.q);
-      if (state.pageOnly) p.set('fees', '1');
       var qs = p.toString();
       history.replaceState(null, '', location.pathname + (qs ? '?' + qs : '') + location.hash);
     }
@@ -179,8 +206,6 @@ document.addEventListener('DOMContentLoaded', function () {
   each(countryBtns, function (b) {
     b.addEventListener('click', function () { state.country = b.dataset.udirCountry; apply('chip'); });
   });
-  // "Full fee structure" chip
-  if (pageBtn) pageBtn.addEventListener('click', function () { state.pageOnly = !state.pageOnly; apply('chip'); });
 
   // Search box (filters as you type)
   var t;
@@ -215,13 +240,13 @@ document.addEventListener('DOMContentLoaded', function () {
   // "Show all universities" in the empty box
   each(document.querySelectorAll('[data-udir-reset]'), function (b) {
     b.addEventListener('click', function () {
-      state = { country: 'all', q: '', pageOnly: false }; if (input) input.value = ''; apply('chip');
+      state = { country: 'all', q: '' }; if (input) input.value = ''; apply('chip');
     });
   });
 
   // Used by the flight explorer's "Its universities" button
   window.MO_showUniversities = function (slug) {
-    state = { country: names[slug] ? slug : 'all', q: '', pageOnly: false };
+    state = { country: names[slug] ? slug : 'all', q: '' };
     if (input) input.value = '';
     apply();
     var wrap = document.getElementById('universities');
@@ -232,7 +257,6 @@ document.addEventListener('DOMContentLoaded', function () {
   var params = new URLSearchParams(location.search);
   if (params.get('country') && names[params.get('country')]) state.country = params.get('country');
   if (params.get('q')) { state.q = params.get('q'); if (input) input.value = state.q; }
-  if (params.get('fees') === '1') state.pageOnly = true;
   apply();
 
   // Hero cost bars: width = this country's yearly cost as a share of the dearest one
