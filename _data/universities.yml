@@ -1,0 +1,460 @@
+# ============ UNIVERSITIES — ONE LIST FOR THE WHOLE SITE (_data/universities.yml) ============
+# Every university we recommend lives here ONCE. The Universities page (mbbs-universities.html) builds its
+# cards, search and filters from this list automatically, so a new university needs no HTML at all.
+#
+# TO ADD A UNIVERSITY: copy one entry (from "- name:" down to its "aka:" line), paste it under the same
+# country, and change the values. Keep the two spaces at the start of each line exactly as they are.
+#
+#   name       full name, as on the country page
+#   country    must match a "slug" in _data/countries.yml (e.g. philippines, russia)
+#   city       shown under the name
+#   badge      the short label on the card (e.g. Government, Private, Mathura students here)
+#   facts      one or two short lines. Phones show the first; computers show both.
+#   fee        OPTIONAL. Only a figure you have confirmed, e.g. "₹3.3 L". Leave the line out if unsure.
+#   fee_note   what the fee means, e.g. "tuition a year (US$3,500)" or "full course"
+#   page       OPTIONAL. The university's own fee page. Leave the line out until that page exists;
+#              the card then offers "Get the fee sheet" on WhatsApp instead.
+#   image      the photo. Same file the country page uses, so you only upload it once.
+#   aka        other names and short forms people search for (KSMA, Akhunbaev…). Not shown on the page.
+#
+# Everything below is copied from the country pages (as of Oct 2026). Fees use 1 USD = ₹95 (26 Oct 2026).
+
+# ---------------- PHILIPPINES ----------------
+- name: UV Gullas College of Medicine
+  country: philippines
+  city: Mandaue City, Cebu
+  badge: Mathura students here
+  facts:
+    - Founded in 1977, part of the University of the Visayas
+    - Ten affiliated hospitals across Cebu and Bohol
+  page: mbbs-in-philippines-uv-gullas.html
+  image: assets/images/universities/uv-gullas/card.webp
+  aka: UV Gullas, UVGCM, University of the Visayas, Cebu
+
+- name: Davao Medical School Foundation
+  country: philippines
+  city: Davao City, Mindanao
+  badge: Mathura students here
+  facts:
+    - Founded in 1976, the first medical school in Mindanao
+    - Its own teaching hospital, opened in 2003
+  image: assets/images/universities/dmsf/card.webp
+  aka: DMSF, Davao
+
+- name: Lyceum-Northwestern University
+  country: philippines
+  city: Dagupan City, Pangasinan
+  badge: Mathura students here
+  facts:
+    - College of Medicine recognised since 1984
+    - Clinical training at Region 1 Medical Center
+  image: assets/images/universities/lyceum-northwestern/card.webp
+  aka: LNU, Lyceum, Dagupan
+
+# ---------------- TIMOR-LESTE ----------------
+- name: Universidade Católica Timorense (UCT)
+  country: timor-leste
+  city: Balide, Dili
+  badge: Mathura students here
+  facts:
+    - An MBBS on the CBME framework Indian colleges use
+    - Its own teaching hospital and an Indian mess on campus
+  fee: "₹2.5 L"
+  fee_note: tuition a year, the same every year
+  image: assets/images/universities/uct/spotlight.webp
+  aka: UCT, Universidade Catolica Timorense, Catholic University, Dili, East Timor
+
+# ---------------- UZBEKISTAN ----------------
+- name: Samarkand State Medical University
+  country: uzbekistan
+  city: Samarkand
+  badge: Government
+  facts:
+    - Founded in 1930, one of the oldest in Central Asia
+    - Two university clinics with 375 and 200 beds
+  image: assets/images/universities/samarkand-smu/card.webp
+  aka: SamSMU, Samarkand
+
+- name: Tashkent State Medical University
+  country: uzbekistan
+  city: Tashkent, the capital
+  badge: Government
+  facts:
+    - Formed in 2025 from Tashkent Medical Academy and two partner institutes
+    - Medicine, paediatrics and dentistry under one roof
+  image: assets/images/universities/tashkent-smu/card.webp
+  aka: TSMU, Tashkent Medical Academy
+
+- name: Bukhara State Medical Institute
+  country: uzbekistan
+  city: Bukhara
+  badge: Government
+  facts:
+    - Founded in 1990, named after Abu Ali ibn Sino (Avicenna)
+    - In a UNESCO World Heritage city
+  image: assets/images/universities/bukhara-smi/card.webp
+  aka: BSMI, Avicenna, Ibn Sina
+
+- name: Andijan State Medical University
+  country: uzbekistan
+  city: Andijan, Fergana Valley
+  badge: Government
+  facts:
+    - Founded in 1955; university status since 2025
+    - Most departments sit inside its own campus clinic
+  image: assets/images/universities/andijan-smu/card.webp
+  aka: ASMU, Andijan
+
+- name: Fergana Medical Institute of Public Health
+  country: uzbekistan
+  city: Fergana, Fergana Valley
+  badge: Government
+  facts:
+    - Set up in 2020 from the Fergana branch of Tashkent Medical Academy
+    - A focus on public health and disease prevention
+  image: assets/images/universities/fergana-mi/card.webp
+  aka: FMIPH, Fergana
+
+- name: Alfraganus University
+  country: uzbekistan
+  city: Tashkent
+  badge: Private
+  facts:
+    - A private university, founded in 2022
+    - Its own university clinic in Tashkent
+  image: assets/images/universities/alfraganus/card.webp
+  aka: Alfraganus
+
+# ---------------- RUSSIA ----------------
+- name: Kazan State Medical University
+  country: russia
+  city: Kazan
+  badge: Government
+  facts:
+    - Medical teaching since 1814; university status since 1994
+    - About 60,000 specialists trained
+  image: assets/images/universities/kazan-smu/spotlight.webp
+  aka: KSMU Kazan, Kazan Medical
+
+- name: Kazan Federal University
+  country: russia
+  city: Kazan, Tatarstan
+  badge: Federal university
+  facts:
+    - Founded in 1804; medicine taught again since 2013
+    - Its own University Clinic as the clinical base
+  image: assets/images/universities/kazan-federal/card.webp
+  aka: KFU, Kazan
+
+- name: Kursk State Medical University
+  country: russia
+  city: Kursk, western Russia
+  badge: Government
+  facts:
+    - Founded in 1935; university status since 1994
+    - More than 30% of students come from abroad
+  image: assets/images/universities/kursk-smu/card.webp
+  aka: KSMU Kursk, Kursk
+
+- name: Volgograd State Medical University
+  country: russia
+  city: Volgograd, on the Volga
+  badge: Government
+  facts:
+    - Founded in 1935
+    - About 12,000 students, over 2,000 of them international
+  image: assets/images/universities/volgograd-smu/card.webp
+  aka: VolgSMU, Volgograd
+
+- name: Bashkir State Medical University
+  country: russia
+  city: Ufa, Bashkortostan
+  badge: Government
+  facts:
+    - Founded in 1932; about 5,000 international students
+    - Its own 755-bed university hospital
+  image: assets/images/universities/bashkir-smu/card.webp
+  aka: BSMU, Ufa
+
+- name: Orenburg State Medical University
+  country: russia
+  city: Orenburg, on the Ural River
+  badge: Government
+  facts:
+    - Founded in 1944 as a medical institute
+    - A smaller campus of about 3,000 students
+  image: assets/images/universities/orenburg-smu/card.webp
+  aka: OrSMU, Orenburg
+
+- name: Rostov State Medical University
+  country: russia
+  city: Rostov-on-Don, the south
+  badge: Government
+  facts:
+    - Roots in 1915; university status since 1994
+    - An 860-bed university clinic
+  image: assets/images/universities/rostov-smu/card.webp
+  aka: RostSMU, Rostov
+
+# ---------------- GEORGIA ----------------
+- name: Petre Shotadze Tbilisi Medical Academy (TMA)
+  country: georgia
+  city: Tbilisi
+  badge: Private · medicine only
+  facts:
+    - Founded in 1992 by the paediatric surgeon Petre Shotadze
+    - A six-year MD taught in English
+  fee: "₹6.7 L"
+  fee_note: tuition a year (US$7,000)
+  image: assets/images/universities/tma/spotlight.webp
+  aka: TMA, Shotadze, Tbilisi Medical Academy
+
+- name: David Tvildiani Medical University
+  country: georgia
+  city: Tbilisi
+  badge: Private
+  facts:
+    - Began as AIETI Medical School; its MD is accredited by NCEQE until 2028
+    - A curriculum built around the US licensing exam (USMLE)
+  image: assets/images/universities/dtmu/card.webp
+  aka: DTMU, AIETI, Tvildiani
+
+- name: New Vision University
+  country: georgia
+  city: Tbilisi
+  badge: Private
+  facts:
+    - A non-profit private university, founded in 2013
+    - Schools of medicine and dentistry on one campus
+  image: assets/images/universities/new-vision/card.webp
+  aka: NVU
+
+- name: Georgian American University
+  country: georgia
+  city: Tbilisi
+  badge: Private
+  facts:
+    - A private university, founded in 2005
+    - Its School of Medicine runs an English-medium MD
+  image: assets/images/universities/gau/card.webp
+  aka: GAU
+
+- name: The University of Georgia
+  country: georgia
+  city: Tbilisi
+  badge: Private
+  facts:
+    - Founded in 2004; one of Georgia's larger private universities
+    - An English medical programme in its School of Health Sciences
+  image: assets/images/universities/ug/card.webp
+  aka: UG, UoG
+
+# ---------------- KAZAKHSTAN ----------------
+- name: Asfendiyarov Kazakh National Medical University (KazNMU)
+  country: kazakhstan
+  city: Almaty
+  badge: National university
+  facts:
+    - Founded in 1930; national university status since 2001
+    - Around 11,000 students
+  image: assets/images/universities/kaznmu/spotlight.webp
+  aka: KazNMU, Asfendiyarov, Almaty
+
+- name: Astana Medical University
+  country: kazakhstan
+  city: Astana, the capital
+  badge: Government
+  facts:
+    - Founded in 1964 as the Tselinograd State Medical Institute
+    - More than 30,000 doctors and pharmacists trained
+  image: assets/images/universities/astana-mu/card.webp
+  aka: AMU, Astana
+
+- name: Karaganda Medical University
+  country: kazakhstan
+  city: Karaganda, central Kazakhstan
+  badge: Government
+  facts:
+    - Opened on 1 September 1950
+    - Over 47,000 graduates and 127 foreign partners
+  image: assets/images/universities/karaganda-mu/card.webp
+  aka: KMU, Karaganda
+
+- name: Semey Medical University
+  country: kazakhstan
+  city: Semey, on the Irtysh River
+  badge: Government
+  facts:
+    - Took its first students in 1953
+    - Its own university hospital, with heart surgery since 2013
+  image: assets/images/universities/semey-mu/card.webp
+  aka: Semey, Semipalatinsk
+
+- name: South Kazakhstan Medical Academy
+  country: kazakhstan
+  city: Shymkent, the warm south
+  badge: Government
+  facts:
+    - Founded in 1979
+    - In the country's mildest region, with shorter winters
+  image: assets/images/universities/skma/card.webp
+  aka: SKMA, Shymkent
+
+- name: West Kazakhstan Marat Ospanov Medical University
+  country: kazakhstan
+  city: Aktobe, western Kazakhstan
+  badge: Government
+  facts:
+    - Founded in 1957
+    - The medical university of western Kazakhstan
+  image: assets/images/universities/wkmu/card.webp
+  aka: WKMU, Ospanov, Aktobe
+
+- name: Kazakh-Russian Medical University
+  country: kazakhstan
+  city: Almaty
+  badge: Private
+  facts:
+    - A private medical university, founded in 1992
+    - Listed by the Embassy of India among Kazakhstan's medical universities
+  image: assets/images/universities/krmu/card.webp
+  aka: KRMU
+
+# ---------------- KYRGYZSTAN (only universities with full 6-year accreditation or state status) ----------------
+- name: Kyrgyz State Medical Academy (KSMA)
+  country: kyrgyzstan
+  city: Bishkek
+  badge: State academy
+  facts:
+    - Training doctors since 1939; a six-year course since 1948
+    - Named the lead state institution for medical training in 2026
+  fee: "₹3.3 L"
+  fee_note: minimum tuition a year (US$3,500)
+  image: assets/images/universities/ksma/spotlight.webp
+  aka: KSMA, Akhunbaev, Kyrgyz State Medical
+
+- name: Osh State University
+  country: kyrgyzstan
+  city: Osh, the southern capital
+  badge: 6-year accreditation
+  facts:
+    - A government university; its medical faculty opened in 1993
+    - Teaches in English, Russian and Kyrgyz
+  image: assets/images/universities/osh-state/card.webp
+  aka: OshSU, Osh
+
+- name: International Higher School of Medicine
+  country: kyrgyzstan
+  city: Bishkek
+  badge: 6-year accreditation
+  facts:
+    - Founded in 2003, part of the International University of Kyrgyzstan
+    - Its own clinics in Bishkek and on Lake Issyk-Kul
+  image: assets/images/universities/ihsm/card.webp
+  aka: IHSM
+
+- name: International University of Kyrgyzstan
+  country: kyrgyzstan
+  city: Bishkek
+  badge: 6-year accreditation
+  facts:
+    - A state international university, founded by presidential decree in 1993
+    - San Francisco State University was among its founders
+  image: assets/images/universities/iuk/card.webp
+  aka: IUK
+
+- name: Asian International University
+  country: kyrgyzstan
+  city: Kant, 20 km from Bishkek
+  badge: 6-year accreditation
+  facts:
+    - Founded in 2004; also known as the Asian Medical Institute
+    - Its own polyclinic with a simulation centre
+  image: assets/images/universities/asian-international/card.webp
+  aka: AIU, Asian Medical Institute, AMI, Tentishev, Kant
+
+# ---------------- VIETNAM ----------------
+- name: Dai Nam University
+  country: vietnam
+  city: Hanoi
+  badge: Private
+  facts:
+    - An English-taught medical programme for students from India, opened in 2025–26
+    - Clinical training in major Hanoi hospitals
+  fee: "₹4.8 L"
+  fee_note: tuition a year (about US$5,000, per the university)
+  image: assets/images/universities/dai-nam/spotlight.webp
+  aka: DNU, Hanoi
+
+- name: Hong Bang International University
+  country: vietnam
+  city: Ho Chi Minh City
+  badge: Private
+  facts:
+    - Founded in 1997; part of Nguyen Hoang Group
+    - Clinical training at Cho Ray, Thong Nhat and FV hospitals
+  image: assets/images/universities/hong-bang/card.webp
+  aka: HIU, HCMC, Saigon
+
+- name: Phan Chau Trinh University
+  country: vietnam
+  city: Da Nang, central coast
+  badge: Private
+  facts:
+    - Founded in 2007; medicine approved in December 2017
+    - Its own university hospital, plus Tam Tri hospitals
+  image: assets/images/universities/phan-chau-trinh/card.webp
+  aka: PCTU, Danang
+
+# ---------------- NEPAL ----------------
+- name: Kathmandu Medical College (KMC)
+  country: nepal
+  city: Sinamangal, Kathmandu
+  badge: Kathmandu University
+  facts:
+    - Teaching MBBS since 1997, with its own teaching hospital
+    - Publishes its fee sheet for Indian students openly
+  fee: "₹57 L"
+  fee_note: full course, pre-booked (2025–26)
+  image: assets/images/universities/kmc-nepal/spotlight.webp
+  aka: KMC, Kathmandu
+
+- name: Manipal College of Medical Sciences
+  country: nepal
+  city: Pokhara, under the Annapurnas
+  badge: Kathmandu University
+  facts:
+    - Founded in 1994; run by the Manipal Education and Medical Group
+    - Its own 700-bed Manipal Teaching Hospital
+  image: assets/images/universities/manipal-pokhara/card.webp
+  aka: MCOMS, Manipal, Pokhara
+
+- name: Nepal Medical College
+  country: nepal
+  city: Jorpati, Kathmandu Valley
+  badge: Kathmandu University
+  facts:
+    - Teaching MBBS since 1997
+    - Its own teaching hospital in the valley
+  image: assets/images/universities/nepal-medical-college/card.webp
+  aka: NMCTH, Jorpati
+
+- name: Universal College of Medical Sciences
+  country: nepal
+  city: Bhairahawa, near the Sonauli border
+  badge: Tribhuvan University
+  facts:
+    - Founded in 1998, affiliated to Tribhuvan University
+    - A short road trip from Uttar Pradesh
+  image: assets/images/universities/ucms-bhairahawa/card.webp
+  aka: UCMS, Bhairahawa
+
+- name: Nepalgunj Medical College
+  country: nepal
+  city: Nepalgunj, near the Indian border
+  badge: Kathmandu University
+  facts:
+    - Founded in 1996, affiliated to Kathmandu University
+    - Accepts NEET or MECEE-BL, per its own eligibility page
+  image: assets/images/universities/nepalgunj-mc/card.webp
+  aka: NGMC, Kohalpur

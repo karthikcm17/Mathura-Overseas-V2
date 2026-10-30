@@ -1,0 +1,200 @@
+/* ==========================================================================
+   universities.css — the Universities page only (mbbs-universities.html).
+   The cards are built from _data/universities.yml, so this file never needs a change for a new university.
+
+   Section map (same order as the page):
+     1 .udir-hero    dark hero: search box + "Try" shortcuts; on computers a "year, all-in" cost list (.udir-costs)
+     2 .udir-bar     sticky filter bar: country chips + "Full fee structure"
+     3 .udir-group   one block per country: heading row + .udir-grid of .udir-card
+       .udir-card    phone: compact app-style row (photo left, text right) · tablet/computer: photo on top
+       .udir-empty   shown only when nothing matches · .udir-ask "university not on the list?" strip
+     4 .udir-check   "how we choose" cards
+   Mobile-first; tablet/desktop upgrades are at the bottom.
+   ========================================================================== */
+
+html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
+
+/* The script hides cards and groups with the hidden attribute; make sure no display rule overrides it */
+.udir-card[hidden], .udir-group[hidden], .udir-empty[hidden], .udir-search__clear[hidden] { display: none; }
+
+/* ================= 1. HERO ================= */
+.udir-hero { position: relative; overflow: hidden; color: var(--color-text-inverse);
+  padding: var(--sp-5) 0 var(--sp-6); border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  background: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1.6px) 0 0 / 22px 22px, var(--grad-hero); }
+.udir-hero__globe { position: absolute; width: 560px; height: 560px; right: -260px; top: -160px; color: rgba(255,255,255,.15); pointer-events: none; }
+.udir-hero__grid { position: relative; display: grid; gap: var(--sp-6); }
+.udir-crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; margin-bottom: var(--sp-4); font-size: var(--fs-xs); font-weight: 600; color: var(--color-text-inverse-muted); }
+.udir-crumbs a { color: var(--color-text-inverse-muted); transition: color var(--speed) var(--ease); }
+.udir-crumbs a:hover { color: #fff; }
+.udir-crumbs .icon { width: 12px; height: 12px; opacity: .6; }
+.udir-crumbs [aria-current] { color: #fff; }
+.udir-hero h1 { margin-top: var(--sp-4); color: var(--color-text-inverse); font-size: clamp(1.9rem, 1.3rem + 2.8vw, 3.2rem); line-height: 1.08; letter-spacing: -.03em; text-wrap: balance; }
+.udir-hero h1 em { font-style: normal; color: var(--color-blue-pale); }
+.udir-hero__lead { margin-top: var(--sp-3); max-width: 52ch; color: var(--color-text-inverse-muted); font-size: var(--fs-base); line-height: 1.7; }
+
+/* Search box: a big white field, like an app's search bar */
+.udir-search { position: relative; display: flex; align-items: center; margin-top: var(--sp-5); border-radius: var(--radius-md); background: var(--color-surface); box-shadow: 0 14px 30px rgba(7,18,52,.3); }
+.udir-search > .icon { position: absolute; left: var(--sp-4); width: 20px; height: 20px; color: var(--color-primary); pointer-events: none; }
+.udir-search input { flex: 1; min-width: 0; height: 56px; padding: 0 3rem 0 3.1rem; border: 0; border-radius: inherit; background: transparent; font: inherit; font-size: 16px; /* 16px stops iPhones zooming in */ font-weight: 600; color: var(--color-text); }
+.udir-search input::placeholder { color: var(--color-text-muted); font-weight: 500; }
+.udir-search input:focus { outline: none; }
+.udir-search:focus-within { box-shadow: 0 14px 30px rgba(7,18,52,.3), 0 0 0 3px rgba(184,204,255,.7); }
+.udir-search input::-webkit-search-cancel-button { -webkit-appearance: none; }
+.udir-search__clear { position: absolute; right: .4rem; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; color: var(--color-text-muted); transition: background var(--speed) var(--ease), color var(--speed) var(--ease); }
+.udir-search__clear:hover { background: var(--color-wash); color: var(--color-primary); }
+.udir-search__clear .icon { width: 18px; height: 18px; }
+
+.udir-try { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin-top: var(--sp-3); }
+.udir-try span { margin-right: .15rem; font-size: .66rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--color-blue-pale); }
+.udir-try button { min-height: 32px; padding: 0 .75rem; border-radius: 999px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.22); font-size: .72rem; font-weight: 700; color: #fff; transition: background var(--speed) var(--ease), border-color var(--speed) var(--ease); }
+.udir-try button:hover { background: rgba(255,255,255,.2); border-color: rgba(255,255,255,.5); }
+
+/* "A year, all-in" list: computers only (phones see the same figure on each country heading) */
+.udir-costs { display: none; }
+.udir-costs__head { display: flex; align-items: center; gap: var(--sp-3); }
+.udir-costs__head small { display: block; font-size: .64rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-muted); }
+.udir-costs__head p { font-size: 1rem; font-weight: 800; color: var(--color-primary); line-height: 1.25; }
+.udir-costs__list { display: grid; gap: 2px; margin-top: var(--sp-3); }
+.udir-costs__list button { width: 100%; display: grid; grid-template-columns: 86px 1fr 58px; align-items: center; gap: var(--sp-3); padding: .5rem .6rem; border-radius: var(--radius-sm); text-align: left; transition: background var(--speed) var(--ease); }
+.udir-costs__list button:hover { background: var(--color-wash); }
+.udir-costs__name { font-size: var(--fs-xs); font-weight: 700; color: var(--color-text); }
+.udir-costs__bar { height: 8px; border-radius: 8px; background: var(--color-wash-deep); overflow: hidden; }
+.udir-costs__bar span { display: block; height: 100%; width: calc(var(--w, 0) * 1%); border-radius: 8px; background: var(--color-primary); transition: width .9s var(--ease); }
+.udir-costs__list b { font-size: var(--fs-xs); font-weight: 800; color: var(--color-primary); text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.udir-costs__note { margin-top: var(--sp-3); padding-top: var(--sp-3); border-top: 1px solid var(--color-border); font-size: .68rem; line-height: 1.5; color: var(--color-text-muted); }
+
+/* ================= 2. STICKY FILTER BAR =================
+   Sits under the header; when the mobile header slides away (navigation.js adds .is-hidden), the bar moves up to the top. */
+.udir-bar { position: sticky; top: calc(var(--header-h) + var(--safe-top)); z-index: calc(var(--z-header) - 1); margin-top: var(--sp-4); background: rgba(248,247,243,.97); border-bottom: 1px solid var(--color-border); transition: top .28s var(--ease); }
+.app-header.is-hidden ~ main .udir-bar { top: 0; }
+.udir-bar__track { display: flex; align-items: center; gap: .4rem; overflow-x: auto; padding: .55rem var(--gutter); scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.udir-bar__track::-webkit-scrollbar { display: none; }
+.udir-bar button { flex-shrink: 0; display: inline-flex; align-items: center; gap: .35rem; min-height: 38px; padding: 0 .95rem; border-radius: var(--radius-sm); border: 1.5px solid var(--color-border); background: var(--color-surface); font-size: var(--fs-xs); font-weight: 700; color: var(--color-text-muted); white-space: nowrap; transition: background var(--speed) var(--ease), color var(--speed) var(--ease), border-color var(--speed) var(--ease); }
+.udir-bar button:hover { border-color: var(--color-blue-pale); color: var(--color-primary); }
+.udir-bar button[aria-pressed="true"] { background: var(--color-primary); border-color: var(--color-primary); color: var(--color-text-inverse); }
+.udir-bar button .icon { width: 15px; height: 15px; }
+.udir-bar__sep { flex-shrink: 0; width: 1px; height: 22px; margin-inline: .2rem; background: var(--color-border); }
+
+/* ================= 3. RESULTS ================= */
+.udir-results { padding-top: var(--sp-5); }
+.udir-status { margin-bottom: var(--sp-2); font-size: var(--fs-xs); font-weight: 600; color: var(--color-text-muted); }
+
+.udir-group + .udir-group { margin-top: var(--sp-6); }
+.udir-group__head { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--sp-3); margin-bottom: var(--sp-3); padding-bottom: var(--sp-3); border-bottom: 2px solid var(--color-wash-deep); }
+.udir-group__head h2 { font-size: clamp(1.25rem, 1.05rem + .9vw, 1.6rem); line-height: 1.15; }
+.udir-group__head p { margin-top: .15rem; font-size: var(--fs-xs); color: var(--color-text-muted); }
+.udir-group__head p b { color: var(--color-primary); font-weight: 800; }
+.udir-group__link { flex-shrink: 0; display: inline-flex; align-items: center; gap: .3rem; min-height: 36px; font-size: var(--fs-xs); font-weight: 800; color: var(--color-primary); }
+.udir-group__link .icon { width: 14px; height: 14px; stroke-width: 2.6; transition: transform var(--speed) var(--ease); }
+.udir-group__link:hover .icon { transform: translateX(4px); }
+
+.udir-grid { display: grid; gap: var(--sp-3); }
+
+/* University card — phone: photo on the left, text on the right */
+.udir-card { overflow: hidden; display: grid; grid-template-columns: 104px 1fr; }
+.udir-card__img { --ratio: auto; height: 100%; min-height: 100%; border-radius: 0; }
+.udir-card__img.is-empty::after { padding: var(--sp-2); font-size: .5rem; letter-spacing: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.udir-card__body { display: flex; flex-direction: column; min-width: 0; padding: var(--sp-3) var(--sp-4) var(--sp-3) var(--sp-3); }
+.udir-card__badge { align-self: flex-start; padding: .16rem .5rem; border-radius: 999px; background: var(--color-wash); font-size: .6rem; font-weight: 800; letter-spacing: .02em; color: var(--color-primary); }
+.udir-card h3 { margin-top: .4rem; font-size: .98rem; line-height: 1.25; }
+.udir-card__place { display: flex; align-items: center; gap: .3rem; margin-top: .25rem; font-size: .7rem; font-weight: 700; color: var(--color-text-muted); }
+.udir-card__place .icon { width: 13px; height: 13px; color: var(--color-blue-light); }
+.udir-card__facts { display: grid; gap: .35rem; margin-top: var(--sp-2); }
+.udir-card__facts li { display: flex; gap: .4rem; align-items: flex-start; font-size: .72rem; line-height: 1.45; color: var(--color-text); }
+.udir-card__facts li:nth-child(n+2) { display: none; }   /* phones: first fact only */
+.udir-card__facts .icon { width: 13px; height: 13px; margin-top: .12rem; stroke-width: 2.8; color: var(--color-primary); }
+.udir-card__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .35rem var(--sp-3); margin-top: auto; padding-top: var(--sp-3); }
+.udir-card__fee { display: flex; flex-direction: column; font-size: .64rem; line-height: 1.3; color: var(--color-text-muted); }
+.udir-card__fee b { font-size: 1rem; font-weight: 800; color: var(--color-primary); font-variant-numeric: tabular-nums; }
+.udir-card__go { display: inline-flex; align-items: center; gap: .35rem; font-size: var(--fs-xs); font-weight: 800; color: var(--color-primary); }
+.udir-card__go .icon { width: 14px; height: 14px; stroke-width: 2.6; transition: transform var(--speed) var(--ease); }
+.udir-card__go--wa { position: relative; z-index: 2; min-height: 32px; }
+.udir-card__go--wa > .icon--fill { width: 16px; height: 16px; color: var(--color-whatsapp); }
+/* Cards with their own fee page: the whole card is the link */
+.udir-card--page { border-color: var(--color-blue-pale); transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease); }
+.udir-card--page .udir-card__go { padding: .35rem .75rem; border-radius: var(--radius-sm); background: var(--color-primary); color: var(--color-text-inverse); }
+.udir-card--page:hover .udir-card__go .icon { transform: translateX(3px); }
+.udir-card__cover { position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
+.udir-card__cover:focus-visible { outline-offset: -3px; }
+.udir-card--page:active { transform: scale(.985); }
+
+/* Long countries open with three universities and a "Show all" button (the script adds .is-collapsed;
+   without the script, or while searching / filtering, every card shows) */
+.udir-group.is-collapsed .udir-card:nth-child(n+4) { display: none; }
+.udir-more { display: none; }
+.udir-group.is-collapsed .udir-more { display: flex; align-items: center; justify-content: center; gap: .4rem; width: 100%; min-height: 46px; margin-top: var(--sp-3); border-radius: var(--radius-md); border: 1.5px solid var(--color-blue-pale); background: var(--color-surface); font-size: var(--fs-xs); font-weight: 800; color: var(--color-primary); transition: background var(--speed) var(--ease); }
+.udir-more:hover { background: var(--color-wash); }
+.udir-more .icon { width: 16px; height: 16px; stroke-width: 2.6; }
+
+/* Nothing matches */
+.udir-empty { display: grid; justify-items: center; gap: var(--sp-3); margin-top: var(--sp-4); padding: var(--sp-6) var(--sp-4); border-radius: var(--radius-lg); border: 1.5px dashed var(--color-blue-pale); background: var(--color-surface); text-align: center; }
+.udir-empty h2 { font-size: 1.2rem; }
+.udir-empty p { max-width: 46ch; font-size: var(--fs-sm); line-height: 1.6; color: var(--color-text-muted); }
+.udir-empty .btn-row { justify-content: center; }
+
+/* "Considering a university that isn't on this list?" */
+.udir-ask { display: grid; gap: var(--sp-3); margin-top: var(--sp-6); padding: var(--sp-5) var(--sp-4); border-radius: var(--radius-lg); border: 1.5px dashed var(--color-blue-pale); background: var(--color-wash); }
+.udir-ask h2 { font-size: 1.1rem; line-height: 1.3; }
+.udir-ask p { margin-top: .25rem; font-size: var(--fs-sm); line-height: 1.6; color: var(--color-text-muted); }
+.udir-ask .btn { justify-self: start; }
+
+.udir-asof { display: flex; gap: .45rem; align-items: flex-start; margin-top: var(--sp-4); font-size: .72rem; line-height: 1.55; color: var(--color-text-muted); }
+.udir-asof .icon { width: 14px; height: 14px; margin-top: .12rem; }
+
+/* ================= 4. HOW WE CHOOSE ================= */
+.section--wash .eyebrow { background: var(--color-surface); }
+.udir-checks { overflow: hidden; border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-border); box-shadow: var(--shadow-md); }
+.udir-check { display: flex; gap: var(--sp-3); align-items: flex-start; padding: var(--sp-4); }
+.udir-check + .udir-check { border-top: 1px solid var(--color-border); }
+.udir-check .icon-badge { width: 42px; height: 42px; }
+.udir-check h3 { font-size: 1rem; }
+.udir-check p { margin-top: .2rem; font-size: var(--fs-sm); line-height: 1.6; color: var(--color-text-muted); }
+
+/* ================= TABLET ================= */
+@media (min-width: 640px) {
+  .udir-grid { grid-template-columns: repeat(2, 1fr); gap: var(--sp-4); }
+  .udir-card { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+  .udir-card__img { --ratio: 16 / 10; height: auto; min-height: 0; }
+  .udir-card__img.is-empty::after { font-size: var(--fs-xs); letter-spacing: .03em; }
+  .udir-card__body { padding: var(--sp-4); }
+  .udir-card h3 { font-size: 1.08rem; }
+  .udir-card__facts li:nth-child(n+2) { display: flex; }
+  .udir-card__facts li { font-size: var(--fs-xs); }
+  .udir-card__foot { margin-top: auto; padding-top: var(--sp-4); border-top: 1px solid var(--color-border); }
+  .udir-card__body > .udir-card__facts { margin-bottom: var(--sp-4); }
+  /* A country with just one university: the card lies across the row (photo left) instead of leaving a gap */
+  .udir-card:only-child { grid-column: 1 / -1; grid-template-columns: minmax(240px, 38%) 1fr; grid-template-rows: auto; }
+  .udir-card:only-child .udir-card__img { --ratio: auto; height: 100%; min-height: 220px; }
+  .udir-ask { grid-template-columns: auto 1fr auto; align-items: center; gap: var(--sp-4); padding: var(--sp-5); }
+  .udir-ask .btn { justify-self: auto; }
+}
+@media (min-width: 768px) {
+  .udir-hero .udir-search { max-width: 560px; }
+  .udir-bar__track { flex-wrap: wrap; justify-content: center; overflow: visible; }
+}
+@media (hover: hover) {
+  .udir-card--page:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+}
+
+/* ================= DESKTOP ================= */
+@media (min-width: 1024px) {
+  html { scroll-padding-top: calc(var(--announce-h) + var(--header-h-lg) + 80px); }
+  .udir-hero { padding: var(--sp-7) 0 var(--sp-7); }
+  .udir-hero__grid { grid-template-columns: 1.15fr .85fr; align-items: center; gap: var(--sp-7); }
+  .udir-hero__lead { font-size: var(--fs-lead); }
+  .udir-costs { display: block; padding: var(--sp-5); border-radius: var(--radius-xl); background: var(--color-surface); color: var(--color-text); box-shadow: 0 24px 50px rgba(7,18,52,.35); }
+
+  .udir-bar { top: calc(var(--announce-h) + var(--header-h-lg)); margin-top: var(--sp-5); }
+  .app-header.is-hidden ~ main .udir-bar { top: calc(var(--announce-h) + var(--header-h-lg)); }
+  .udir-bar__track { padding-block: .6rem; }
+
+  .udir-results { padding-top: var(--sp-6); }
+  .udir-group + .udir-group { margin-top: var(--sp-7); }
+  .udir-grid { grid-template-columns: repeat(3, 1fr); gap: var(--sp-5); }
+  .udir-group__head { margin-bottom: var(--sp-5); }
+
+  .udir-checks { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-4); overflow: visible; border: 0; border-radius: 0; background: none; box-shadow: none; }
+  .udir-check { flex-direction: column; gap: var(--sp-4); padding: var(--sp-5); border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface); box-shadow: var(--shadow-md); }
+  .udir-check + .udir-check { border-top: 1px solid var(--color-border); }
+  .udir-check .icon-badge { width: 48px; height: 48px; }
+}

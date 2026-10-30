@@ -1,233 +1,252 @@
-// destinations.js — Countries page: filters, compare (max 3) and the "Fly the route" explorer.
-//
-// WHERE TO EDIT:
-//  • Fees, duration, living cost  → data-* attributes on each country card in destinations.html
-//  • Flight, time, language, rates, highlights → the TRAVEL object below (one block per country)
-// Exchange rates are indicative. Re-check them and update the "as of" date in destinations.html when you do.
+// destinations.js — the Countries page (destinations.html) only. Two parts:
+//   A. "Fly the route from Chennai": the country explorer. Its data is written into the page from
+//      _data/countries.yml (the <script id="countryData"> block), so there is NOTHING to edit in this file
+//      when a country, fare or exchange rate changes. Edit _data/countries.yml instead.
+//   B. The universities: search box, country chips and the "Full fee structure" chip filter the cards
+//      built from _data/universities.yml. Countries with more than three universities open with three
+//      and a "Show all" button. The address bar remembers the filter, so a link like
+//      destinations.html?country=russia  or  destinations.html?q=kazan  opens the page already filtered.
+// Comparing countries side by side lives in ONE place: the MBBS Planner (mbbs-abroad-planner.html#compare).
 
-var TRAVEL = {
-  vietnam: {
-    name: 'Vietnam', page: 'mbbs-in-vietnam.html',
-    t: [7, null], n: 7, stop: '1 stop', tz: '1h 30m ahead', capital: 'Hanoi', lang: 'Vietnamese', climate: 'Tropical',
-    fare: 'From \u20B912,679 one-way', currency: 'Vietnamese dong', rate: '1 INR ≈ 275.6 VND',
-    why: [['shield-check', 'Modern, safe cities'], ['map-pin', 'Hanoi: lakes, an old quarter and famous street food'], ['plane', 'One of the shorter flights from South India']],
-    know: 'Usually connects via Singapore or Bangkok. English availability varies by campus \u2014 ask us which teach it.'
-  },
-  philippines: {
-    name: 'Philippines', page: 'mbbs-in-philippines.html',
-    t: [10, null], n: 10, stop: '1 stop', tz: '2h 30m ahead', capital: 'Manila', lang: 'Filipino & English', climate: 'Tropical',
-    fare: 'From \u20B913,434 one-way', currency: 'Philippine peso', rate: '1 INR ≈ 0.66 PHP',
-    why: [['cap', 'American-style curriculum, taught in English'], ['users', 'A large Indian student community'], ['heart', 'Strong clinical exposure']],
-    know: 'Fastest options connect via Kuala Lumpur; English is widely spoken, so day-to-day life is easy.'
-  },
-  uzbekistan: {
-    name: 'Uzbekistan', page: 'mbbs-in-uzbekistan.html',
-    t: [8, null], n: 8, stop: '1 stop', tz: '30m behind', capital: 'Tashkent', lang: 'Uzbek', climate: 'Continental',
-    fare: 'From \u20B920,073 one-way', currency: 'Uzbek som', rate: '1 INR ≈ 124.5 UZS',
-    why: [['map-pin', 'Silk Road cities like Tashkent and Samarkand'], ['building', 'Modern campuses'], ['users', 'Established Indian student communities']],
-    know: 'Usually connects via Delhi or Sharjah. NMC advises extra caution here, so verify the campus before you pay.'
-  },
-  kazakhstan: {
-    name: 'Kazakhstan', page: 'mbbs-in-kazakhstan.html',
-    t: [9, null], n: 9, stop: 'lands in Almaty', tz: '30m behind', capital: 'Astana', lang: 'Kazakh & Russian', climate: 'Continental',
-    fare: 'From \u20B928,502 one-way', currency: 'Kazakh tenge', rate: '1 INR ≈ 4.83 KZT',
-    why: [['map-pin', 'Almaty sits right beneath snow-capped mountains'], ['building', 'Astana is a planned, modern capital'], ['globe', 'Kazakh and Russian are both widely spoken']],
-    know: 'Usually connects via Delhi or Dubai and lands in Almaty; Astana is a further domestic hop.'
-  },
-  kyrgyzstan: {
-    name: 'Kyrgyzstan', page: 'mbbs-in-kyrgyzstan.html',
-    t: [9, 10], n: 9.5, stop: '1 stop', tz: '30m ahead', capital: 'Bishkek', lang: 'Kyrgyz & Russian', climate: 'Cold winters',
-    fare: 'From \u20B934,725 one-way', currency: 'Kyrgyz som', rate: '1 INR ≈ 1.0 KGS',
-    why: [['briefcase', 'Among the most affordable options'], ['map-pin', 'Bishkek sits at the foot of the Ala-Too mountains'], ['globe', 'Russian is widely used alongside Kyrgyz']],
-    know: 'Winters are properly cold, so plan your wardrobe. Ask us for the best connecting route.'
-  },
-  georgia: {
-    name: 'Georgia', page: 'mbbs-in-georgia.html',
-    t: [10, null], n: 10, stop: '1 stop', tz: '1h 30m behind', capital: 'Tbilisi', lang: 'Georgian', climate: 'Temperate',
-    fare: 'From \u20B927,271 one-way', currency: 'Georgian lari', rate: '1 INR ≈ 0.0273 GEL',
-    why: [['map-pin', 'Tbilisi: an old town, sulphur baths and wine culture'], ['globe', 'Where Europe meets Asia'], ['sun', 'A mild, temperate climate']],
-    know: 'Usually connects via Dubai, Doha or Sharjah. Ask us for current fees and course details.'
-  },
-  russia: {
-    name: 'Russia', page: 'mbbs-in-russia.html',
-    t: [12, 15], n: 13.5, stop: '1 stop', tz: '2h 30m behind', capital: 'Moscow', lang: 'Russian', climate: 'Cold',
-    fare: 'About \u20B961,667 return', currency: 'Russian rouble', rate: '1 INR ≈ 0.90 RUB',
-    why: [['building', 'Government universities with 60+ years of Indian students'], ['map-pin', 'Moscow is Russia’s capital and largest city'], ['target', 'Long, cold winters — a real change from home']],
-    know: 'No direct flights; the fastest options take about 11h 45m. Moscow time is 2h 30m behind India.'
-  },
-  timor: {
-    name: 'Timor-Leste', page: 'mbbs-in-timor-uct-timor.html',
-    t: [20, 24], n: 22, stop: 'via Singapore', tz: '3h 30m ahead', capital: 'Dili', lang: 'Tetum & Portuguese', climate: 'Tropical',
-    fare: 'From \u20B935,561 one-way', currency: 'US dollar', rate: '1 INR ≈ 0.0114 USD',
-    why: [['cap', 'Indian-aligned syllabus, taught in English'], ['sun', 'A tropical island setting'], ['target', 'An emerging option — extra due diligence needed']],
-    know: 'Usually connects via Singapore or Kuala Lumpur. The US dollar is the local currency, so budget in dollars.'
-  },
-  'central-america': {
-    name: 'Central America', page: 'mbbs-in-central-america.html', explore: false,
-    n: null, flightText: 'Ask a counsellor', climate: 'Tropical'
-  }
-};
-
-// WhatsApp link builder: uses the shared one in tools.js (MO.wa); falls back to a plain link if tools.js did not load.
-function waLink(message) {
-  if (typeof MO !== 'undefined' && MO.wa) return MO.wa(message);
-  return 'https://wa.me/919360859919?text=' + encodeURIComponent(message);
-}
-
+/* ======================= A. FLY THE ROUTE ======================= */
 document.addEventListener('DOMContentLoaded', function () {
+  var route = document.getElementById('route');
+  var dataEl = document.getElementById('countryData');
+  if (!route || !dataEl) return;
+  var COUNTRIES = [];
+  try { COUNTRIES = JSON.parse(dataEl.textContent); } catch (e) { return; }
+  var bySlug = {};
+  COUNTRIES.forEach(function (c) { bySlug[c.slug] = c; });
+
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function $(id) { return document.getElementById(id); }
   function each(list, fn) { Array.prototype.forEach.call(list, fn); }
+  function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  var chips = route.querySelectorAll('.route-chip');
+  var motion = document.getElementById('routeMotion'), plane = document.getElementById('routePlane');
+  var meter = document.getElementById('routeMeter'), timeEl = document.getElementById('routeTime');
+  var current = COUNTRIES.length ? COUNTRIES[0].slug : null, tick = null;
+  var DAY = 24;   // the bar shows the flight as a share of a 24-hour day
 
-  /* ================= 1. FILTER CHIPS ================= */
-  var cards = Array.prototype.slice.call(document.querySelectorAll('.dest-tile'));
-  var chips = document.querySelectorAll('.dest-chip');
-  var empty = $('destEmpty');
-  each(chips, function (chip) {
-    chip.addEventListener('click', function () {
-      each(chips, function (c) { c.classList.remove('is-active'); c.setAttribute('aria-pressed', 'false'); });
-      chip.classList.add('is-active'); chip.setAttribute('aria-pressed', 'true');
-      var key = chip.dataset.filter, shown = 0;
-      cards.forEach(function (card) {
-        var ok = key === 'all' || (card.dataset.tags || '').split(' ').indexOf(key) !== -1;
-        card.hidden = !ok; if (ok) shown++;
-      });
-      empty.hidden = shown > 0;
-    });
-  });
-
-  /* ================= 2. COMPARE (max 3) ================= */
-  var MAX = 3, selected = [];                       // array of card keys, in the order picked
-  var tray = $('compareTray'), trayCount = $('trayCount'), trayNames = $('trayNames'), hint = $('destHint');
-  var panel = $('comparePanel'), grid = $('compareGrid'), wa = $('compareWhatsApp');
-  var HINT_DEFAULT = hint.textContent;
-
-  function cardByKey(k) { return cards.filter(function (c) { return c.dataset.key === k; })[0]; }
-  function setPressed(card, on) {
-    var b = card.querySelector('.dest-cmp');
-    b.setAttribute('aria-pressed', on ? 'true' : 'false');
-    b.querySelector('.dest-cmp__label').textContent = on ? 'Added' : 'Compare';
-    card.classList.toggle('is-picked', on);
-  }
-  function refresh() {
-    trayCount.textContent = selected.length + ' selected';
-    trayNames.textContent = selected.map(function (k) { return cardByKey(k).dataset.name; }).join(' · ');
-    tray.classList.toggle('is-open', selected.length >= 2);
-    hint.textContent = selected.length === 0 ? HINT_DEFAULT
-      : selected.length === 1 ? 'One selected — pick one more to compare.'
-      : selected.length < MAX ? 'Add one more, or open the comparison.'
-      : 'Maximum of ' + MAX + ' reached. Remove one to swap.';
-    cards.forEach(function (c) { c.classList.toggle('is-locked', selected.length >= MAX && selected.indexOf(c.dataset.key) === -1); });
-  }
-  cards.forEach(function (card) {
-    card.querySelector('.dest-cmp').addEventListener('click', function () {
-      var k = card.dataset.key, i = selected.indexOf(k);
-      if (i === -1) { if (selected.length >= MAX) { shake(card); return; } selected.push(k); }
-      else selected.splice(i, 1);
-      setPressed(card, selected.indexOf(k) !== -1);
-      refresh();
-    });
-  });
-  function shake(card) { card.classList.remove('is-shake'); void card.offsetWidth; card.classList.add('is-shake'); }
-
-  function clearAll() {
-    selected.forEach(function (k) { setPressed(cardByKey(k), false); });
-    selected = []; refresh(); closePanel();
-  }
-  $('trayClear').addEventListener('click', clearAll);
-  $('comparePanelClear').addEventListener('click', clearAll);
-
-  // Rows: [label, how to read it, which value wins]
-  function flightOf(k) { var d = TRAVEL[k]; if (d && d.t) return '~' + d.t[0] + (d.t[1] ? '–' + d.t[1] : '') + ' hrs'; return (d && d.flightText) || 'Ask a counsellor'; }
-  var ROWS = [
-    ['Tuition (full course)', function (c) { return c.dataset.fee; },      function (c) { return parseFloat(c.dataset.low); }, 'Lowest fee'],
-    ['Course length',         function (c) { return c.dataset.duration; }, null],
-    ['Living cost / month',   function (c) { return c.dataset.living; },   null],
-    ['Climate',               function (c) { return (TRAVEL[c.dataset.key] || {}).climate || '—'; }, null],
-    ['Flight from Chennai',   function (c) { return flightOf(c.dataset.key); }, function (c) { var d = TRAVEL[c.dataset.key]; return d && d.n ? d.n : NaN; }, 'Shortest']
-  ];
-  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
-
-  function openPanel() {
-    var chosen = selected.map(cardByKey);
-    var n = chosen.length, html = '';
-    grid.style.setProperty('--n', n);
-    html += '<div class="cmp__row cmp__row--head" role="row"><span class="cmp__label" role="presentation"></span>' +
-      chosen.map(function (c) { return '<span class="cmp__head" role="columnheader">' + esc(c.dataset.name) + '</span>'; }).join('') + '</div>';
-    ROWS.forEach(function (r) {
-      var best = null;
-      if (r[2]) {
-        var nums = chosen.map(r[2]).filter(function (v) { return !isNaN(v); });
-        if (nums.length >= 2) { var m = Math.min.apply(null, nums); if (nums.filter(function (v) { return v === m; }).length === 1) best = m; }
-      }
-      html += '<div class="cmp__row" role="row"><span class="cmp__label" role="rowheader">' + r[0] + '</span>' +
-        chosen.map(function (c) {
-          var isBest = best !== null && r[2](c) === best;
-          return '<span class="cmp__cell' + (isBest ? ' is-best' : '') + '" role="cell">' + esc(r[1](c)) + (isBest ? '<em>' + r[3] + '</em>' : '') + '</span>';
-        }).join('') + '</div>';
-    });
-    grid.innerHTML = html;
-    var names = chosen.map(function (c) { return c.dataset.name; });
-    wa.href = waLink('Hi Mathura Overseas, I’m comparing ' + names.join(', ').replace(/, ([^,]*)$/, ' and $1') + '. Can a counsellor guide me?');
-    panel.classList.add('is-open'); document.body.classList.add('cmp-open');
-    $('comparePanelClose').focus();
-  }
-  function closePanel() { panel.classList.remove('is-open'); document.body.classList.remove('cmp-open'); }
-  $('trayCompareBtn').addEventListener('click', openPanel);
-  $('comparePanelClose').addEventListener('click', closePanel);
-  panel.addEventListener('click', function (e) { if (e.target === panel) closePanel(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePanel(); });
-
-  /* ================= 3. FLY THE ROUTE (one country at a time) ================= */
-  var route = $('route');
-  if (!route) return;
-  var rChips = route.querySelectorAll('.route-chip');
-  var motion = $('routeMotion'), plane = $('routePlane');
-  var timeEl = $('routeTime'), tick = null, started = false;
-  var MAX_HRS = 24;                                  // the meter is "share of a 24-hour journey"
-
-  function countUp(d) {
+  // The flight time counts up: "~10" → 0…10, "9–10" → both numbers together
+  function countUp(text) {
     if (tick) cancelAnimationFrame(tick);
-    var a = d.t[0], b = d.t[1], t0 = null, dur = 900;
-    function text(p) { return '~' + Math.round(a * p) + (b ? '–' + Math.round(b * p) : ''); }
-    if (reduce) { timeEl.textContent = text(1); return; }
+    var nums = String(text).match(/\d+(\.\d+)?/g);
+    if (reduce || !nums) { timeEl.textContent = text; return; }
+    var t0 = null;
     function step(ts) {
       if (t0 === null) t0 = ts;
-      var p = Math.min((ts - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
-      timeEl.textContent = text(e);
+      var p = Math.min((ts - t0) / 900, 1), e = 1 - Math.pow(1 - p, 3), i = 0;
+      timeEl.textContent = String(text).replace(/\d+(\.\d+)?/g, function (n) {
+        var v = parseFloat(nums[i++]) * e; return n.indexOf('.') > -1 ? v.toFixed(1) : Math.round(v);
+      });
       if (p < 1) tick = requestAnimationFrame(step);
     }
     tick = requestAnimationFrame(step);
   }
 
-  function show(key) {
-    var d = TRAVEL[key]; if (!d || d.explore === false) return;
-    each(rChips, function (c) {
-      var on = c.dataset.dest === key;
-      c.classList.toggle('is-active', on); c.setAttribute('aria-pressed', on ? 'true' : 'false');
-    });
-    $('routeName').textContent = d.name;
-    $('routeStop').textContent = d.stop;
-    $('routeMeter').style.setProperty('--fill', Math.round(d.n / MAX_HRS * 100));
-    each(route.querySelectorAll('[data-f]'), function (el) { el.textContent = d[el.dataset.f]; });
-    $('routeWhyTitle').textContent = 'Why students pick ' + d.name;
-    $('routeWhy').innerHTML = d.why.map(function (w) {
-      return '<li><span class="icon-badge icon-badge--sm icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-' + w[0] + '"></use></svg></span><span>' + esc(w[1]) + '</span></li>';
+  function show(slug, animate) {
+    var c = bySlug[slug]; if (!c) return;
+    current = slug;
+    each(chips, function (b) { b.setAttribute('aria-pressed', b.dataset.dest === slug ? 'true' : 'false'); });
+    each(route.querySelectorAll('[data-r]'), function (el) { if (el.id !== 'routeTime') el.textContent = c[el.dataset.r] == null ? '' : c[el.dataset.r]; });
+    meter.style.setProperty('--fill', Math.max(6, Math.min(100, Math.round((+c.hours_num || 0) / DAY * 100))));
+    document.getElementById('routeWhy').innerHTML = (c.why || []).map(function (w) {
+      return '<li><span class="route__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span>' + esc(w) + '</span></li>';
     }).join('');
-    $('routeKnow').textContent = d.know;
-    $('routeGo').firstChild.nodeValue = 'See MBBS in ' + d.name + ' ';
-    $('routeGo').href = d.page;
-    $('routeAsk').href = waLink('Hi Mathura Overseas, I’d like to know more about MBBS in ' + d.name + '.');
-    countUp(d);
-    // Restart the draw-in / fade-in animations
+    document.getElementById('routeGo').href = c.page;
+    document.getElementById('routeCmp').href = 'mbbs-abroad-planner.html?cmp=' + encodeURIComponent(c.planner || c.slug) + '#compare';
+    if (animate === false) { timeEl.textContent = c.hours; return; }
+    countUp(c.hours);
     route.classList.remove('is-swap'); void route.offsetWidth; route.classList.add('is-swap');
     if (!reduce && motion && motion.beginElement) { plane.setAttribute('opacity', '1'); motion.beginElement(); }
   }
-  each(rChips, function (c) { c.addEventListener('click', function () { show(c.dataset.dest); }); });
 
-  // Play the first route when the card scrolls into view
+  each(chips, function (b) { b.addEventListener('click', function () { show(b.dataset.dest); }); });
+
+  // "Its universities": filter the list below to this country and scroll to it
+  var unis = document.getElementById('routeUnis');
+  if (unis) unis.addEventListener('click', function () { if (window.MO_showUniversities) window.MO_showUniversities(current); });
+
+  // Hero cost chart: tap a country to fly its route
+  each(document.querySelectorAll('[data-route-set]'), function (b) {
+    b.addEventListener('click', function () {
+      show(b.dataset.routeSet);
+      document.getElementById('route-sec').scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // Set the first country's bar without animation, then play it when the card scrolls into view
+  show(current, false);
+  var started = false;
   if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting && !started) { started = true; io.disconnect(); show('vietnam'); } }, { threshold: 0.25 });
+    var io = new IntersectionObserver(function (en) {
+      if (en[0].isIntersecting && !started) { started = true; io.disconnect(); show(current); }
+    }, { threshold: 0.3 });
     io.observe(route);
-  } else { show('vietnam'); }
+  }
+});
+
+/* ======================= B. UNIVERSITIES ======================= */
+document.addEventListener('DOMContentLoaded', function () {
+  var WA_NUMBER = '919360859919';
+  function each(list, fn) { Array.prototype.forEach.call(list, fn); }
+  function $(sel) { return document.querySelector(sel); }
+
+  var cards = document.querySelectorAll('.udir-card');
+  var groups = document.querySelectorAll('[data-udir-group]');
+  var countryBtns = document.querySelectorAll('[data-udir-country]');
+  var pageBtn = $('[data-udir-page]');
+  var input = $('#udirQ');
+  var clearQ = $('#udirClearQ');
+  var empty = $('#udirEmpty');
+  var status = $('#udirStatus');
+  var results = $('#results');
+  var bar = $('.udir-bar');
+  if (!cards.length) return;
+
+  var names = {};   // country slug -> display name (read from the chips)
+  each(countryBtns, function (b) { names[b.dataset.udirCountry] = b.textContent.trim(); });
+
+  var state = { country: 'all', q: '', pageOnly: false };
+
+  // Lower-case and strip accents, so "catolica" finds "Católica"
+  function norm(s) {
+    s = (s || '').toLowerCase();
+    if (s.normalize) s = s.normalize('NFD').replace(/[̀-ͯ]/g, '');
+    return s.replace(/\s+/g, ' ').trim();
+  }
+  each(cards, function (c) { c._hay = norm(c.dataset.search); });
+
+  function apply(fromUser) {
+    var words = norm(state.q).split(' ').filter(Boolean);
+    var any = false;
+
+    each(cards, function (c) {
+      var ok = (state.country === 'all' || c.dataset.country === state.country) &&
+               (!state.pageOnly || c.hasAttribute('data-has-page')) &&
+               words.every(function (w) { return c._hay.indexOf(w) !== -1; });
+      c.hidden = !ok;
+      if (ok) any = true;
+    });
+    each(groups, function (g) { g.hidden = !g.querySelector('.udir-card:not([hidden])'); });
+
+    // Long countries open with three cards + "Show all"; while searching or filtering, every match shows
+    var filtering = state.country !== 'all' || !!state.q || state.pageOnly;
+    each(groups, function (g) {
+      g.classList.toggle('is-collapsed', !!g.querySelector('[data-udir-more]') && !filtering && !g._open);
+    });
+    if (empty) empty.hidden = any;
+    var askStrip = $('.udir-ask');            // the empty box already asks, so don't repeat it
+    if (askStrip) askStrip.hidden = !any;
+
+    each(countryBtns, function (b) { b.setAttribute('aria-pressed', b.dataset.udirCountry === state.country ? 'true' : 'false'); });
+    if (pageBtn) pageBtn.setAttribute('aria-pressed', state.pageOnly ? 'true' : 'false');
+    if (clearQ) clearQ.hidden = !state.q;
+
+    // The empty-state WhatsApp button carries what the visitor typed
+    var ask = $('#udirAskEmpty');
+    if (ask) ask.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent('Hi Mathura Overseas, can you check a university for me? The university is: ' + state.q);
+
+    // Status line in words (never a count)
+    if (status) {
+      var parts = [];
+      if (state.country !== 'all') parts.push('in ' + names[state.country]);
+      if (state.pageOnly) parts.push('with a full fee structure page');
+      if (state.q) parts.push('matching “' + state.q + '”');
+      status.textContent = !any ? 'No matches yet.'
+        : parts.length ? 'Showing universities ' + parts.join(', ') + '.'
+        : 'Showing every university, grouped by country.';
+    }
+
+    // Keep the filter in the address bar (no page reload)
+    if (window.history && history.replaceState) {
+      var p = new URLSearchParams();
+      if (state.country !== 'all') p.set('country', state.country);
+      if (state.q) p.set('q', state.q);
+      if (state.pageOnly) p.set('fees', '1');
+      var qs = p.toString();
+      history.replaceState(null, '', location.pathname + (qs ? '?' + qs : '') + location.hash);
+    }
+
+    // After tapping a chip low on the page, bring the top of the results back into view
+    if (fromUser === 'chip' && results && bar) {
+      var top = results.getBoundingClientRect().top + window.pageYOffset - bar.offsetHeight - 70;
+      if (window.pageYOffset > top) window.scrollTo({ top: top, behavior: 'smooth' });
+    }
+  }
+
+  // Country chips
+  each(countryBtns, function (b) {
+    b.addEventListener('click', function () { state.country = b.dataset.udirCountry; apply('chip'); });
+  });
+  // "Full fee structure" chip
+  if (pageBtn) pageBtn.addEventListener('click', function () { state.pageOnly = !state.pageOnly; apply('chip'); });
+
+  // Search box (filters as you type)
+  var t;
+  if (input) {
+    input.addEventListener('input', function () {
+      clearTimeout(t);
+      t = setTimeout(function () { state.q = input.value.trim(); apply(); }, 120);
+    });
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); input.blur(); if (results) results.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  }
+  if (clearQ) clearQ.addEventListener('click', function () { input.value = ''; state.q = ''; apply(); input.focus(); });
+
+  // "Try: Cebu, Samarkand…" shortcuts under the search box
+  each(document.querySelectorAll('[data-udir-q]'), function (b) {
+    b.addEventListener('click', function () {
+      input.value = b.dataset.udirQ; state.q = input.value; state.country = 'all'; apply();
+      if (results) results.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // "Show all universities in Russia" under a long country
+  each(document.querySelectorAll('[data-udir-more]'), function (b) {
+    b.addEventListener('click', function () {
+      var g = b.closest('[data-udir-group]'); g._open = true; g.classList.remove('is-collapsed');
+      var fourth = g.querySelectorAll('.udir-card')[3];
+      if (fourth) { var a = fourth.querySelector('a'); if (a) a.focus({ preventScroll: true }); }
+    });
+  });
+
+  // "Show all universities" in the empty box
+  each(document.querySelectorAll('[data-udir-reset]'), function (b) {
+    b.addEventListener('click', function () {
+      state = { country: 'all', q: '', pageOnly: false }; if (input) input.value = ''; apply('chip');
+    });
+  });
+
+  // Used by the flight explorer's "Its universities" button
+  window.MO_showUniversities = function (slug) {
+    state = { country: names[slug] ? slug : 'all', q: '', pageOnly: false };
+    if (input) input.value = '';
+    apply();
+    var wrap = document.getElementById('universities');
+    if (wrap) wrap.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // Start from the address bar, e.g. ?country=georgia or ?q=ksma
+  var params = new URLSearchParams(location.search);
+  if (params.get('country') && names[params.get('country')]) state.country = params.get('country');
+  if (params.get('q')) { state.q = params.get('q'); if (input) input.value = state.q; }
+  if (params.get('fees') === '1') state.pageOnly = true;
+  apply();
+
+  // Hero cost bars: width = this country's yearly cost as a share of the dearest one
+  var barEls = document.querySelectorAll('[data-bar-inr]');
+  var max = 0;
+  each(barEls, function (el) { max = Math.max(max, +el.dataset.barInr || 0); });
+  each(barEls, function (el) { if (max) el.style.setProperty('--w', Math.max(8, Math.round(+el.dataset.barInr / max * 100))); });
+
+  // WhatsApp buttons with a ready-made message
+  each(document.querySelectorAll('[data-wa]'), function (a) {
+    if (a.id === 'udirAskEmpty') return;   // set by apply() so it includes the search text
+    a.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(a.dataset.wa);
+    a.target = '_blank'; a.rel = 'noopener';
+  });
+  var askEmpty = $('#udirAskEmpty');
+  if (askEmpty) { askEmpty.target = '_blank'; askEmpty.rel = 'noopener'; }
 });

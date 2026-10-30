@@ -1,4 +1,4 @@
-/* BUILD 20261028-6 */
+/* BUILD 20261030-1 */
 /* ==========================================================================
    student-guide.css — styling unique to student-guide.html
    Concept: an immersive full-screen "reader". The site header, announcement bar and bottom tab bar are
@@ -281,6 +281,13 @@ html:not(.js) .sg-stage, html:not(.js) .sg-hud { display: none; }
 .sg-book.is-spread .sg-face { box-shadow: none; }
 .sg-book.is-spread .sg-face--cover { box-shadow: 0 18px 44px rgba(5,14,44,.55); }
 @media (hover: hover) { .sg-book.is-spread .sg-leaf--cover:not(.is-flipped):hover { transform: rotateY(-8deg); } }
+
+/* SHARP LEFT PAGE: browsers draw text inside a 3D-rotated layer as a picture, which looks blurred.
+   Once a page has finished turning, student-guide.js adds .is-flat: the turned leaf is laid flat again and its
+   left-hand page is simply moved into place on the left, so its text is drawn normally — crisp, like the right page. */
+.sg-book.is-spread .sg-leaf.is-flat { transform: none; transition: none; }
+.sg-book.is-spread .sg-leaf.is-flat .sg-face--right { visibility: hidden; }
+.sg-book.is-spread .sg-leaf.is-flat .sg-face--left { transform: none; left: -100%; right: 100%; }
 
 @media (prefers-reduced-motion: reduce) {
   .sg-leaf, .sg-book { transition-duration: .01s; }

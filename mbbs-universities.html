@@ -1,0 +1,243 @@
+---
+# Shared parts (announcement bar, header, footer, tab bar, icons) live in the _includes folder.
+# This page has NO university written into it by hand. Every card, chip and cost bar is built from
+#   _data/universities.yml  (one entry per university)   and   _data/countries.yml  (one entry per country).
+# To add a university, add it to _data/universities.yml — it appears here automatically.
+active: countries
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MBBS Abroad Universities | Fees &amp; Details | Mathura Overseas</title>
+<meta name="description" content="Every MBBS-abroad university we recommend, in one place. Search by name or city, filter by country, and see fees, recognition and the full fee structure.">
+<link rel="canonical" href="https://mathuraoverseas.com/mbbs-universities.html">
+<meta property="og:title" content="MBBS Abroad Universities | Mathura Overseas">
+<meta property="og:description" content="Search every university we recommend for MBBS abroad: Philippines, Uzbekistan, Russia, Georgia and more, each checked against the NMC rules.">
+<meta property="og:url" content="https://mathuraoverseas.com/mbbs-universities.html">
+<meta property="og:image" content="assets/images/og/home.jpg">
+{% include head.html %}
+<link rel="stylesheet" href="css/pages/universities.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mathuraoverseas.com/index.html" },
+    { "@type": "ListItem", "position": 2, "name": "Countries", "item": "https://mathuraoverseas.com/destinations.html" },
+    { "@type": "ListItem", "position": 3, "name": "Universities", "item": "https://mathuraoverseas.com/mbbs-universities.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "MBBS abroad universities recommended by Mathura Overseas",
+  "itemListElement": [
+{%- for u in site.data.universities %}
+    { "@type": "ListItem", "position": {{ forloop.index }}, "item": { "@type": "CollegeOrUniversity", "name": {{ u.name | jsonify }}, "address": { "@type": "PostalAddress", "addressLocality": {{ u.city | jsonify }} }{% if u.page and u.page != "" %}, "url": {{ u.page | prepend: "https://mathuraoverseas.com/" | jsonify }}{% endif %} } }{% unless forloop.last %},{% endunless %}
+{%- endfor %}
+  ]
+}
+</script>
+</head>
+<body>
+
+{% include icons.html %}
+{% include announcement.html %}
+{% include header.html %}
+
+<main id="main">
+
+  <!-- ============ 1. HERO: search on the left; on computers, "a year, all-in" by country on the right ============ -->
+  <section class="udir-hero">
+    <svg class="udir-hero__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+    <div class="container udir-hero__grid">
+      <div class="udir-hero__copy">
+        <nav class="udir-crumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+          <a href="destinations.html">Countries</a><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+          <span aria-current="page">Universities</span>
+        </nav>
+        <span class="pill"><span class="pill__dot"></span>Universities &middot; 2026&ndash;27 intake</span>
+        <h1>Every university we recommend, <em>in one place</em></h1>
+        <p class="udir-hero__lead">Search by name, city or short form like KSMA, TMA or UCT. Each university here is checked against the NMC rules before we recommend it, and every fee comes to you in writing.</p>
+
+        <div class="udir-search" role="search">
+          <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+          <input type="search" id="udirQ" placeholder="University, city or country" aria-label="Search universities by name, city or country" autocomplete="off" enterkeyhint="search">
+          <button type="button" class="udir-search__clear" id="udirClearQ" aria-label="Clear search" hidden><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
+        </div>
+        <div class="udir-try">
+          <span>Try</span>
+          <button type="button" data-udir-q="Cebu">Cebu</button>
+          <button type="button" data-udir-q="Samarkand">Samarkand</button>
+          <button type="button" data-udir-q="Bishkek">Bishkek</button>
+          <button type="button" data-udir-q="Tbilisi">Tbilisi</button>
+          <button type="button" data-udir-q="Kathmandu">Kathmandu</button>
+        </div>
+      </div>
+
+      <aside class="udir-costs" aria-labelledby="udirCostsTitle">
+        <div class="udir-costs__head">
+          <span class="icon-badge icon-badge--teal icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span>
+          <div><small>An average year, all-in</small><p id="udirCostsTitle">Compare countries at a glance</p></div>
+        </div>
+        <ul class="udir-costs__list">
+{%- for c in site.data.countries %}
+{%- assign list = site.data.universities | where: "country", c.slug %}
+{%- if list.size > 0 %}
+          <li><button type="button" data-udir-country-set="{{ c.slug }}"><span class="udir-costs__name">{{ c.name | escape }}</span><span class="udir-costs__bar"><span data-bar-inr="{{ c.year_inr }}"></span></span><b>{{ c.year_cost }}</b></button></li>
+{%- endif %}
+{%- endfor %}
+        </ul>
+        <p class="udir-costs__note">Tuition, hostel, meals and day-to-day costs, from each country page (indicative, Oct 2026). Tap a country to see its universities.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ 2. STICKY FILTER BAR: one chip per country (from _data/countries.yml) + "full fee structure" ============ -->
+  <nav class="udir-bar" aria-label="Filter universities">
+    <div class="udir-bar__track">
+      <button type="button" data-udir-country="all" aria-pressed="true">All countries</button>
+{%- for c in site.data.countries %}
+{%- assign list = site.data.universities | where: "country", c.slug %}
+{%- if list.size > 0 %}
+      <button type="button" data-udir-country="{{ c.slug }}" aria-pressed="false">{{ c.name | escape }}</button>
+{%- endif %}
+{%- endfor %}
+      <span class="udir-bar__sep" aria-hidden="true"></span>
+      <button type="button" class="udir-bar__toggle" data-udir-page aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg>Full fee structure</button>
+    </div>
+  </nav>
+
+  <!-- ============ 3. RESULTS — one group per country, cards built from _data/universities.yml.
+       Card photo = the same file the country page uses (assets/images/universities/{name}/card.webp, 1200 x 750 px),
+       so each photo is uploaded once and appears on both pages. ============ -->
+  <section class="section udir-results" id="results">
+    <div class="container">
+      <p class="udir-status" id="udirStatus" aria-live="polite">Showing every university, grouped by country.</p>
+
+{%- for c in site.data.countries %}
+{%- assign list = site.data.universities | where: "country", c.slug %}
+{%- if list.size > 0 %}
+
+      <section class="udir-group" id="{{ c.slug }}" data-udir-group="{{ c.slug }}" aria-labelledby="g-{{ c.slug }}">
+        <header class="udir-group__head">
+          <div>
+            <h2 id="g-{{ c.slug }}">{{ c.name | escape }}</h2>
+            <p><b>{{ c.year_cost }}</b> a year, all-in &middot; {{ c.duration | escape }}</p>
+          </div>
+          <a class="udir-group__link" href="{{ c.page }}">Country guide <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        </header>
+        <div class="udir-grid">
+{%- for u in list %}
+{%- capture hay %}{{ u.name }} {{ u.aka }} {{ u.city }} {{ c.name }} {{ u.badge }}{% endcapture %}
+{%- assign has_page = false %}{% if u.page and u.page != "" %}{% assign has_page = true %}{% endif %}
+          <article class="card udir-card{% if has_page %} udir-card--page{% endif %}" data-country="{{ c.slug }}" data-search="{{ hay | downcase | escape }}"{% if has_page %} data-has-page{% endif %}>
+            <div class="img-slot udir-card__img" data-spec="{{ u.image | remove: 'assets/images/' }}"><img src="{{ u.image }}" width="1200" height="750" alt="Campus of {{ u.name | escape }}, {{ u.city | escape }}" loading="lazy"></div>
+            <div class="udir-card__body">
+              <span class="udir-card__badge">{{ u.badge | escape }}</span>
+              <h3>{{ u.name | escape }}</h3>
+              <span class="udir-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>{{ u.city | escape }}</span>
+              <ul class="udir-card__facts">
+{%- for f in u.facts %}
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>{{ f | escape }}</li>
+{%- endfor %}
+              </ul>
+              <div class="udir-card__foot">
+{%- if u.fee and u.fee != "" %}
+                <span class="udir-card__fee"><b>{{ u.fee }}</b>{{ u.fee_note | escape }}</span>
+{%- endif %}
+{%- if has_page %}
+                <span class="udir-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+{%- else %}
+                <a class="udir-card__go udir-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for {{ u.name | escape }}."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet</a>
+{%- endif %}
+              </div>
+            </div>
+{%- if has_page %}
+            <a class="udir-card__cover" href="{{ u.page }}" aria-label="View fees and details for {{ u.name | escape }}"></a>
+{%- endif %}
+          </article>
+{%- endfor %}
+        </div>
+{%- if list.size > 3 %}
+        <button type="button" class="udir-more" data-udir-more>Show all universities in {{ c.name | escape }} <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></button>
+{%- endif %}
+      </section>
+{%- endif %}
+{%- endfor %}
+
+      <!-- Shown by the script only when the search and filters match nothing -->
+      <div class="udir-empty" id="udirEmpty" hidden>
+        <span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg></span>
+        <h2>No university here matches that yet</h2>
+        <p>It may be one we haven&rsquo;t listed, or a different spelling. Send us the name and we will check it against the NMC conditions &mdash; free, and in writing.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary btn--sm" id="udirAskEmpty" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, can you check a university for me? The university is: "><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Ask us to check it</a>
+          <button type="button" class="btn btn--outline btn--sm" data-udir-reset>Show all universities</button>
+        </div>
+      </div>
+
+      <article class="udir-ask">
+        <span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span>
+        <div>
+          <h2>Considering a university that isn&rsquo;t on this list?</h2>
+          <p>Send us its name. We check its course length, internship, medium of instruction and its country&rsquo;s latest rules &mdash; free, and in writing.</p>
+        </div>
+        <a class="btn btn--primary btn--sm" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, can you check a university for me? The university is: ">Ask us to check <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+      </article>
+
+      <p class="udir-asof"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><span>Fees and facts as of Oct 2026, from each country page; 1 USD = &#8377;95 (as of 26 Oct 2026). Every university sets its own fees and they can change for each new batch &mdash; confirm the exact figures with your counsellor.</span></p>
+    </div>
+  </section>
+
+  <!-- ============ 4. HOW WE CHOOSE ============ -->
+  <section class="section section--wash has-dots">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><span class="eyebrow">How we choose</span><h2>Why a university makes this list</h2><p>Being popular is not enough. These are the four checks every university passes before we recommend it to your family.</p></div>
+      <div class="udir-checks" data-stagger>
+        <article class="udir-check reveal">
+          <span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span>
+          <div><h3>Built to NMC&rsquo;s rules</h3><p>At least 54 months of study, English throughout and a 12-month internship at the same university, as FMGL 2021 requires.</p></div>
+        </article>
+        <article class="udir-check reveal">
+          <span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg></span>
+          <div><h3>Official lists, not reputation</h3><p>We follow each country&rsquo;s regulator. In Kyrgyzstan, for example, we list only universities with full 2026 state accreditation or state status.</p></div>
+        </article>
+        <article class="udir-check reveal">
+          <span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span>
+          <div><h3>English for every year</h3><p>Some courses switch language halfway. Where that risk exists, as in Russia, the university confirms English for all six years in writing.</p></div>
+        </article>
+        <article class="udir-check reveal">
+          <span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span>
+          <div><h3>Fees in writing, paid directly</h3><p>You get every fee on paper before you commit, and you pay the university directly, against an official receipt.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. CLOSING CTA (same card as Home, About and the country pages) ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="cta reveal">
+        <svg class="cta__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+        <div><h2>Not sure which university fits?</h2><p>One conversation: your NEET score, your budget and a shortlist checked against every NMC rule &mdash; in writing.</p></div>
+        <div class="btn-row">
+          <a href="apply.html" class="btn btn--ondark">Get free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <a href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, can you help me shortlist a university for MBBS abroad?" class="btn btn--outline-light"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg> WhatsApp us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{% include footer.html %}
+{% include bottom-nav.html %}
+{% include scripts.html %}
+<script src="js/pages/universities.js"></script>
+</body>
+</html>

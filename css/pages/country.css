@@ -1,9 +1,10 @@
 /* ==========================================================================
-   country.css — ONE stylesheet for EVERY country page (mbbs-in-{country}.html).
-   Built with the Philippines page; Timor-Leste, Uzbekistan, Russia… reuse it unchanged.
-   Only change this file to add something EVERY country needs — never one country's special case.
+   country.css — FINAL. ONE stylesheet for EVERY country page (mbbs-in-{country}.html).
+   Used by: Philippines, Uzbekistan, Kyrgyzstan, Kazakhstan, Russia, Georgia, Vietnam,
+            Timor-Leste (mbbs-in-timor-uct-timor.html), Nepal — and every country page added later.
+   Only change this file to add something EVERY country could use — never one country's special case.
 
-   Section map (same order as the page):
+   CORE BLOCKS (every country page has these, in this order):
      1 .cty-hero      dark hero, split with photo + flight "ticket"
      2 .cty-glance    floating "at a glance" stat card
      3 .cty-tabs      sticky section tabs
@@ -17,11 +18,19 @@
     11 .cty-life      student life: photo, seasons, tiles
     12 .cty-docs      documents to keep ready
     13 .cty-faq       FAQ accordion (native <details>, no script needed)
-   Optional blocks (added with the Kyrgyzstan page — at the END of this file):
-     6a .cty-board    official list board: which universities passed / failed a regulator's review
-     7a .uni-spot     spotlight card for one university, with a fee preview (made for universities that
-                      have their own detailed fee page)
-   Mobile-first; tablet/desktop upgrades are at the bottom.
+
+   OPTIONAL BLOCKS (use on any page that needs them — they sit at the END of this file):
+     6a .cty-board    official list board: which universities passed / failed a review   (Kyrgyzstan)
+     6b .cty-shift    "then vs now" / "avoid vs choose" year-block comparison            (Kazakhstan, Russia)
+     7a .uni-spot     spotlight card for one university, with a fee preview              (most pages)
+     7b .uni-filter   city chips that filter the spotlight + cards (country.js part 5)   (Kazakhstan, Russia)
+     5a .cty-match    syllabus matched to India's MBBS, year by year                     (Timor-Leste)
+     9a .cty-fit      honest "is this country right for you?" two-column check          (Timor-Leste)
+    11a .cty-cities   "where you'll live" city cards with a photo                         (Vietnam)
+     9b .cty-routes   two admission routes side by side, with an "or" between            (Nepal)
+     8a .cty-fees__row--zero  a fee row that costs nothing (e.g. "Visa — ₹0")            (Nepal)
+
+   Mobile-first; tablet/desktop upgrades are at the bottom of each part.
    ========================================================================== */
 
 /* Anchor jumps land below the sticky header + tabs */
@@ -140,6 +149,8 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
    Two kinds of footer: a university WITH its own page links to it ("View fees & details");
    one WITHOUT a page yet asks for the fee sheet on WhatsApp. Swipe row on phones. */
 .uni-row > * { flex-basis: 84%; }
+/* A row that holds ONLY the "another university?" card (e.g. Timor-Leste) fills the width on phones */
+.uni-row > .uni-card--ask:only-child { flex-basis: 100%; }
 .uni-card { overflow: hidden; display: flex; flex-direction: column; }
 .uni-card .img-slot { --ratio: 16 / 10; border-radius: 0; }
 .uni-card__body { display: flex; flex-direction: column; flex: 1; padding: var(--sp-4); }
@@ -189,6 +200,8 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
 .cty-fees__meter { height: 6px; margin-top: var(--sp-3); border-radius: 6px; background: var(--color-wash-deep); overflow: hidden; }
 .cty-fees__meter span { display: block; height: 100%; width: calc(var(--w, 0) * 1%); border-radius: 6px; background: var(--color-primary); transform-origin: left; transform: scaleX(0); transition: transform .9s var(--ease); }
 .cty-fees.is-in .cty-fees__meter span { transform: scaleX(1); }
+/* 8a. A row that costs nothing (e.g. Nepal: no visa for Indians). No data-row-inr, no meter — just a muted ₹0. */
+.cty-fees__row--zero .cty-fees__val { color: var(--color-text-muted); }
 .cty-fees__extras { display: grid; gap: var(--sp-2); }
 .cty-fees__extra { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-3) var(--sp-4); border-radius: var(--radius-md); background: var(--color-surface); border: 1px solid var(--color-border); font-size: var(--fs-xs); line-height: 1.45; color: var(--color-text-muted); }
 .cty-fees__extra .icon { width: 18px; height: 18px; color: var(--color-primary); }
@@ -442,4 +455,232 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
   .uni-row > .uni-card--ask:last-child:nth-child(odd) .btn { align-self: flex-start; }
   .uni-row > .uni-card--ask:nth-child(4n+1):last-child { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: var(--sp-5); padding: var(--sp-4) var(--sp-5); }
   .uni-row > .uni-card--ask:nth-child(4n+1):last-child .btn { align-self: center; }
+}
+
+/* ==========================================================================
+   OPTIONAL BLOCKS — added with the Kazakhstan page. Any country page can use them.
+   ========================================================================== */
+
+/* ================= 6b. RULE CHANGE: THEN vs NOW (.cty-shift) =================
+   Use when a country changes the course for a given intake (Kazakhstan: 6 → 7 years), or to compare a course
+   to avoid with one to choose (Russia: "bilingual" vs English throughout). Sits right under the .cty-status card.
+   Two columns, each with a row of year blocks:
+   • <li>1</li> … one block per year at university
+   • <li class="is-intern">Intern</li> → a highlighted year (internship, or a year taught in another language)
+   • <li class="is-empty" aria-hidden="true"></li> → an empty slot, so both rows line up and the extra year stands out
+   Both rows must have the SAME number of <li> (use .is-empty to pad). The --new column is the navy one. */
+.cty-shift { display: grid; gap: var(--sp-3); margin-top: var(--sp-5); }
+.cty-shift__col { display: flex; flex-direction: column; gap: var(--sp-3); padding: var(--sp-4); border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
+.cty-shift__head { display: flex; align-items: center; gap: var(--sp-3); }
+.cty-shift__head small { display: block; font-size: .64rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-muted); }
+.cty-shift__head h3 { font-size: 1.05rem; line-height: 1.25; }
+.cty-shift__years { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 5px; counter-reset: none; }
+.cty-shift__years li { display: grid; place-items: center; min-width: 0; height: 38px; border-radius: 9px; background: var(--color-wash); color: var(--color-primary); font-size: .72rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.cty-shift__years li.is-intern { background: var(--color-primary); color: #fff; font-size: .6rem; letter-spacing: .02em; text-transform: uppercase; }
+.cty-shift__years li.is-empty { background: none; border: 1.5px dashed var(--color-border); }
+.cty-shift__col p { font-size: var(--fs-sm); line-height: 1.6; color: var(--color-text-muted); }
+.cty-shift__col p b { color: var(--color-text); }
+.cty-shift__arrow { display: none; }
+/* Navy "now" column */
+.cty-shift__col--new { border: 0; color: var(--color-text-inverse); box-shadow: var(--shadow-md); background: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1.6px) 0 0 / 20px 20px, var(--grad-hero); }
+.cty-shift__col--new .cty-shift__head h3 { color: var(--color-text-inverse); }
+.cty-shift__col--new .cty-shift__head small { color: var(--color-blue-pale); }
+.cty-shift__col--new .cty-shift__years li { background: rgba(255,255,255,.14); color: #fff; }
+.cty-shift__col--new .cty-shift__years li.is-intern { background: var(--color-surface); color: var(--color-primary); }
+.cty-shift__col--new p { color: var(--color-text-inverse-muted); }
+.cty-shift__col--new p b { color: #fff; }
+/* Year blocks fill in one by one when the card scrolls into view (.reveal → .is-in) */
+.cty-shift__years li:not(.is-empty) { transform: scale(.6); opacity: 0; transition: transform .45s var(--ease), opacity .45s var(--ease); }
+.cty-shift.is-in .cty-shift__years li { transform: none; opacity: 1; }
+.cty-shift__years li:nth-child(2) { transition-delay: .06s; }
+.cty-shift__years li:nth-child(3) { transition-delay: .12s; }
+.cty-shift__years li:nth-child(4) { transition-delay: .18s; }
+.cty-shift__years li:nth-child(5) { transition-delay: .24s; }
+.cty-shift__years li:nth-child(6) { transition-delay: .3s; }
+.cty-shift__years li:nth-child(7) { transition-delay: .45s; }
+@media (prefers-reduced-motion: reduce) { .cty-shift__years li:not(.is-empty) { transform: none; opacity: 1; } }
+
+/* ================= 7b. CITY FILTER (.uni-filter) =================
+   Chips above the spotlight + cards: <button type="button" data-uni-filter="almaty" aria-pressed="false">Almaty</button>.
+   Give each .uni-spot / .uni-card a matching data-city="almaty". The first chip is data-uni-filter="all".
+   Cards with no data-city (the "Considering another university?" card) always stay visible. Script: country.js part 5. */
+.uni-filter { display: flex; gap: .4rem; overflow-x: auto; margin: 0 calc(-1 * var(--gutter)) var(--sp-4); padding: 2px var(--gutter) var(--sp-1); scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.uni-filter::-webkit-scrollbar { display: none; }
+.uni-filter button { flex-shrink: 0; display: inline-flex; align-items: center; gap: .35rem; min-height: 38px; padding: 0 .95rem; border-radius: var(--radius-sm); border: 1.5px solid var(--color-border); background: var(--color-surface); font-size: var(--fs-xs); font-weight: 700; color: var(--color-text-muted); white-space: nowrap; transition: background var(--speed) var(--ease), color var(--speed) var(--ease), border-color var(--speed) var(--ease); }
+.uni-filter button .icon { width: 14px; height: 14px; }
+.uni-filter button:hover { border-color: var(--color-blue-pale); color: var(--color-primary); }
+.uni-filter button[aria-pressed="true"] { background: var(--color-primary); border-color: var(--color-primary); color: var(--color-text-inverse); }
+.uni-filter__label { flex-shrink: 0; align-self: center; margin-right: .2rem; font-size: .66rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-muted); }
+
+@media (min-width: 768px) {
+  .cty-shift { grid-template-columns: 1fr auto 1fr; align-items: stretch; gap: var(--sp-3); }
+  .cty-shift__col { padding: var(--sp-5); }
+  .cty-shift__arrow { display: grid; place-items: center; align-self: center; width: 40px; height: 40px; border-radius: 50%; background: var(--color-surface); border: 1px solid var(--color-border); color: var(--color-primary); box-shadow: var(--shadow-sm); }
+  .cty-shift__arrow .icon { width: 18px; height: 18px; stroke-width: 2.6; }
+  .uni-filter { flex-wrap: wrap; overflow: visible; margin-inline: 0; padding-inline: 0; }
+}
+@media (min-width: 1024px) {
+  .cty-shift { margin-top: var(--sp-6); gap: var(--sp-4); }
+  .cty-shift__years li { height: 44px; font-size: .8rem; }
+  .uni-filter { margin-bottom: var(--sp-5); }
+  /* "Considering another university?" card as the 3rd item of the last row: it spans the 2 empty columns as a strip */
+  .uni-row > .uni-card--ask:nth-child(4n+3):last-child { grid-column: span 2; display: grid; grid-template-columns: auto 1fr auto; align-content: center; column-gap: var(--sp-4); row-gap: var(--sp-2); padding: var(--sp-6); }
+  .uni-row > .uni-card--ask:nth-child(4n+3):last-child .icon-badge { grid-row: 1 / 3; }
+  .uni-row > .uni-card--ask:nth-child(4n+3):last-child h3 { align-self: end; }
+  .uni-row > .uni-card--ask:nth-child(4n+3):last-child p { grid-column: 2; }
+  .uni-row > .uni-card--ask:nth-child(4n+3):last-child .btn { grid-column: 3; grid-row: 1 / 3; align-self: center; }
+}
+
+/* ==========================================================================
+   OPTIONAL BLOCKS — added with the Timor-Leste page. Any country page can use them.
+   ========================================================================== */
+
+/* ================= 5a. SYLLABUS MATCH (.cty-match) =================
+   For a country whose curriculum follows India's MBBS. A navy intro card on the left,
+   then one card per year with its subjects as chips. Mark the final card .cty-match__phase--last.
+   Each subject is one <span class="cty-match__subject"><svg class="icon">…#i-check…</svg>Anatomy</span>. */
+.cty-match { display: grid; gap: var(--sp-4); }
+.cty-match__intro { position: relative; overflow: hidden; display: flex; flex-direction: column; gap: var(--sp-3); padding: var(--sp-5); border-radius: var(--radius-xl); color: var(--color-text-inverse); box-shadow: var(--shadow-lg);
+  background: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1.6px) 0 0 / 22px 22px, var(--grad-night); }
+.cty-match__globe { position: absolute; right: -110px; bottom: -130px; width: 300px; height: 300px; color: rgba(255,255,255,.1); pointer-events: none; }
+.cty-match__intro > *:not(.cty-match__globe) { position: relative; }
+.cty-match__big { font-size: clamp(2.4rem, 1.8rem + 2.6vw, 3.4rem); font-weight: 800; line-height: 1; letter-spacing: -.03em; color: #fff; }
+.cty-match__big small { display: block; margin-top: .4rem; font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--color-blue-pale); }
+.cty-match__intro h3 { font-size: 1.2rem; line-height: 1.25; color: var(--color-text-inverse); }
+.cty-match__intro p { font-size: var(--fs-sm); line-height: 1.65; color: var(--color-text-inverse-muted); }
+.cty-match__points { display: grid; gap: .5rem; margin-top: var(--sp-1); padding-top: var(--sp-3); border-top: 1px solid rgba(255,255,255,.18); }
+.cty-match__points li { display: flex; gap: .55rem; align-items: flex-start; font-size: var(--fs-sm); font-weight: 600; line-height: 1.45; }
+.cty-match__points .icon { width: 16px; height: 16px; margin-top: .15rem; stroke-width: 2.8; color: var(--color-blue-pale); }
+.cty-match__phases { display: grid; gap: var(--sp-3); }
+.cty-match__phase { display: flex; flex-direction: column; gap: var(--sp-3); padding: var(--sp-4); border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
+.cty-match__phase--last { border-color: var(--color-blue-pale); box-shadow: var(--shadow-md); }
+.cty-match__head { display: flex; align-items: center; gap: var(--sp-3); }
+.cty-match__num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--color-wash); color: var(--color-primary); font-size: var(--fs-sm); font-weight: 800; }
+.cty-match__phase--last .cty-match__num { background: var(--color-primary); color: #fff; }
+.cty-match__when { display: block; font-size: .66rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--color-blue-light); }
+.cty-match__head h3 { font-size: 1rem; line-height: 1.25; }
+.cty-match__subjects { display: flex; flex-wrap: wrap; gap: .4rem; }
+.cty-match__subject { display: inline-flex; align-items: center; gap: .3rem; padding: .28rem .65rem; border-radius: 999px; background: var(--color-wash); font-size: .72rem; font-weight: 700; color: var(--color-primary); }
+.cty-match__subject .icon { width: 12px; height: 12px; stroke-width: 3; }
+.cty-match__note { margin-top: auto; font-size: var(--fs-xs); line-height: 1.5; color: var(--color-text-muted); }
+
+/* ================= 9a. FIT CHECK (.cty-fit) =================
+   An honest "is this country right for you?". Two columns: .cty-fit__col--yes (navy) for who it suits,
+   a plain .cty-fit__col for what to weigh carefully. Each point: <li class="cty-fit__item"><span class="cty-fit__mark">icon</span><span><b>Lead.</b> Detail.</span></li>.
+   .cty-fit__foot underneath links to the MBBS Planner's comparison. */
+.cty-fit { display: grid; gap: var(--sp-3); }
+.cty-fit__col { display: flex; flex-direction: column; gap: var(--sp-4); padding: var(--sp-5) var(--sp-4); border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
+.cty-fit__head { display: flex; align-items: center; gap: var(--sp-3); }
+.cty-fit__head small { display: block; font-size: .64rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-muted); }
+.cty-fit__head h3 { font-size: 1.05rem; line-height: 1.25; }
+.cty-fit__list { display: grid; gap: var(--sp-3); }
+.cty-fit__item { display: flex; gap: var(--sp-3); align-items: flex-start; font-size: var(--fs-sm); line-height: 1.55; color: var(--color-text-muted); }
+.cty-fit__item b { color: var(--color-text); }
+.cty-fit__mark { flex-shrink: 0; width: 24px; height: 24px; margin-top: .05rem; border-radius: 50%; display: grid; place-items: center; background: var(--color-wash); color: var(--color-primary); }
+.cty-fit__mark .icon { width: 13px; height: 13px; stroke-width: 3; }
+/* Navy "a strong fit" column */
+.cty-fit__col--yes { border: 0; color: var(--color-text-inverse); box-shadow: var(--shadow-md); background: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1.6px) 0 0 / 20px 20px, var(--grad-night); }
+.cty-fit__col--yes .cty-fit__head h3 { color: var(--color-text-inverse); }
+.cty-fit__col--yes .cty-fit__head small { color: var(--color-blue-pale); }
+.cty-fit__col--yes .cty-fit__item { color: var(--color-text-inverse-muted); }
+.cty-fit__col--yes .cty-fit__item b { color: #fff; }
+.cty-fit__col--yes .cty-fit__mark { background: var(--color-surface); color: var(--color-primary); }
+.cty-fit__foot { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-3); margin-top: var(--sp-4); padding: var(--sp-4); border-radius: var(--radius-lg); background: var(--color-wash); border: 1.5px dashed var(--color-blue-pale); }
+.cty-fit__foot p { font-size: var(--fs-sm); line-height: 1.6; color: var(--color-text-muted); }
+.cty-fit__foot p b { color: var(--color-text); }
+
+@media (min-width: 768px) {
+  .cty-match__phases { grid-template-columns: repeat(2, 1fr); }
+  .cty-fit { grid-template-columns: 1fr 1fr; align-items: stretch; }
+  .cty-fit__col { padding: var(--sp-5); }
+  .cty-fit__foot { flex-direction: row; align-items: center; justify-content: space-between; gap: var(--sp-4); padding: var(--sp-4) var(--sp-5); }
+  .cty-fit__foot .btn { flex-shrink: 0; }
+}
+@media (min-width: 1024px) {
+  .cty-match { grid-template-columns: .82fr 1.18fr; align-items: stretch; gap: var(--sp-5); }
+  .cty-match__intro { padding: var(--sp-6); }
+  .cty-match__phases { gap: var(--sp-4); }
+  .cty-match__phase { padding: var(--sp-5); }
+  .cty-fit { gap: var(--sp-4); }
+  .cty-fit__col { padding: var(--sp-6); }
+  .cty-fit__foot { margin-top: var(--sp-5); }
+}
+
+/* ==========================================================================
+   OPTIONAL BLOCK — added with the Vietnam page. Any country page can use it.
+   ========================================================================== */
+
+/* ================= 11a. WHERE YOU'LL LIVE (.cty-cities) =================
+   One card per student city, in a swipe row on phones and three columns from tablet up.
+   Markup: <div class="snap-row cty-cities"><article class="card cty-city">
+             <div class="cty-city__media"><div class="img-slot">…</div><div class="cty-city__name"><small>…</small><h3>City</h3></div></div>
+             <div class="cty-city__body"><p>…</p><ul class="cty-city__facts"><li>icon + fact</li></ul></div></article>…
+   Photos 1200 × 900 (4:3): keep the bottom third simple and fairly dark — the city name sits there in white. */
+.cty-cities > * { flex-basis: 84%; }
+.cty-city { overflow: hidden; display: flex; flex-direction: column; }
+.cty-city__media { position: relative; }
+.cty-city__media .img-slot { --ratio: 4 / 3; border-radius: 0; }
+.cty-city__media::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to top, rgba(12,29,78,.88) 0%, rgba(12,29,78,.2) 50%, transparent 75%); }
+.cty-city__name { position: absolute; left: var(--sp-4); right: var(--sp-4); bottom: var(--sp-3); z-index: 1; color: #fff; }
+.cty-city__name small { display: block; font-size: .64rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--color-blue-pale); }
+.cty-city__name h3 { margin-top: .15rem; font-size: 1.35rem; line-height: 1.15; letter-spacing: -.02em; color: #fff; }
+.cty-city__body { display: flex; flex-direction: column; gap: var(--sp-3); flex: 1; padding: var(--sp-4); }
+.cty-city__body > p { font-size: var(--fs-sm); line-height: 1.6; color: var(--color-text-muted); }
+.cty-city__facts { display: grid; gap: .45rem; margin-top: auto; padding-top: var(--sp-3); border-top: 1px solid var(--color-border); }
+.cty-city__facts li { display: flex; gap: .5rem; align-items: flex-start; font-size: var(--fs-xs); line-height: 1.45; color: var(--color-text); }
+.cty-city__facts .icon { width: 15px; height: 15px; margin-top: .05rem; color: var(--color-primary); }
+
+@media (min-width: 768px) {
+  .cty-cities { grid-template-columns: repeat(3, 1fr); }
+  .cty-cities > * { flex-basis: auto; }
+  .cty-city__name h3 { font-size: 1.2rem; }
+}
+@media (min-width: 1024px) {
+  .cty-cities { gap: var(--sp-4); }
+  .cty-city__name h3 { font-size: 1.4rem; }
+  .cty-city__body { padding: var(--sp-5); }
+  .cty-city { transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease); }
+  .cty-city:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+}
+
+/* ==========================================================================
+   OPTIONAL BLOCK — added with the Nepal page. Any country page can use it.
+   ========================================================================== */
+
+/* ================= 9b. TWO WAYS IN (.cty-routes) =================
+   When a country offers two admission routes (Nepal: sit MECEE-BL, or apply on your NEET result).
+   Two .cty-route cards with a round "or" between them (<span class="cty-routes__or" aria-hidden="true">or</span>).
+   The second card takes .cty-route--alt (outlined number, pale top stripe).
+   .cty-route__facts is a label/value list: <li><span>Exam</span><b>200 MCQs · 3 hours</b></li>. */
+.cty-routes { display: grid; gap: var(--sp-3); }
+.cty-route { display: flex; flex-direction: column; gap: var(--sp-3); padding: var(--sp-5) var(--sp-4); box-shadow: var(--shadow-md); }
+.cty-route::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; border-radius: var(--radius-lg) var(--radius-lg) 0 0; background: var(--grad-hero); }
+.cty-route--alt::before { background: var(--color-blue-pale); }
+.cty-route__head { display: flex; align-items: center; gap: var(--sp-3); }
+.cty-route__num { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--color-primary); color: #fff; font-size: var(--fs-base); font-weight: 800; }
+.cty-route--alt .cty-route__num { background: var(--color-surface); border: 2px solid var(--color-primary); color: var(--color-primary); }
+.cty-route__head small { display: block; font-size: .64rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-muted); }
+.cty-route__head h3 { font-size: 1.1rem; line-height: 1.25; }
+.cty-route > p { font-size: var(--fs-sm); line-height: 1.6; color: var(--color-text-muted); }
+.cty-route__facts { display: grid; overflow: hidden; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-bg); }
+.cty-route__facts li { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-3); padding: .6rem var(--sp-3); font-size: var(--fs-xs); line-height: 1.4; }
+.cty-route__facts li + li { border-top: 1px solid var(--color-border); }
+.cty-route__facts span { color: var(--color-text-muted); font-weight: 600; }
+.cty-route__facts b { text-align: right; font-weight: 800; color: var(--color-primary); font-variant-numeric: tabular-nums; }
+.cty-route__best { display: flex; gap: var(--sp-2); align-items: flex-start; margin-top: auto; padding: var(--sp-3); border-radius: var(--radius-md); background: var(--color-wash); font-size: var(--fs-xs); line-height: 1.55; color: var(--color-text-muted); }
+.cty-route__best .icon { width: 16px; height: 16px; margin-top: .1rem; color: var(--color-primary); }
+.cty-route__best b { color: var(--color-text); }
+/* The round "or" overlaps the gap between the two cards */
+.cty-routes__or { position: relative; z-index: 2; justify-self: center; display: grid; place-items: center; width: 42px; height: 42px; margin-block: calc(-1 * var(--sp-4)); border-radius: 50%; background: var(--color-surface); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); font-size: .7rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--color-primary); }
+
+@media (min-width: 768px) {
+  .cty-routes { grid-template-columns: 1fr auto 1fr; align-items: stretch; gap: var(--sp-3); }
+  .cty-routes__or { align-self: center; margin: 0 calc(-1 * var(--sp-4)); }
+  .cty-route { padding: var(--sp-5); }
+}
+@media (min-width: 1024px) {
+  .cty-routes { gap: var(--sp-4); }
+  .cty-route { padding: var(--sp-6); gap: var(--sp-4); }
+  .cty-route__facts li { padding: .7rem var(--sp-4); font-size: var(--fs-sm); }
+  .cty-routes__or { width: 48px; height: 48px; margin: 0 calc(-1 * var(--sp-5)); }
 }

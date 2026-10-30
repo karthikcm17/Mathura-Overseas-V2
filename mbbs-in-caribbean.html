@@ -1,0 +1,491 @@
+---
+# Shared parts (announcement bar, header, footer, tab bar, icons) live in the _includes folder.
+# Country pages all use css/pages/country.css + js/pages/country.js — only the content below changes.
+# This is a REGION page (the Caribbean), built on the same country template.
+active: countries
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>USMLE-Focused MBBS in the Caribbean | Mathura Overseas</title>
+<meta name="description" content="US-style MD in the Caribbean for USMLE aspirants: accredited schools by country, average fees, NMC rules for India and the schools NMC warned against.">
+<link rel="canonical" href="https://mathuraoverseas.com/mbbs-in-caribbean.html">
+<meta property="og:title" content="USMLE-Focused MBBS in the Caribbean | Mathura Overseas">
+<meta property="og:description" content="An honest guide for students aiming at the USMLE: accredited Caribbean medical schools, real average costs and what NMC requires if you may ever practise in India.">
+<meta property="og:url" content="https://mathuraoverseas.com/mbbs-in-caribbean.html">
+<meta property="og:image" content="assets/images/countries/caribbean/hero.webp">
+{% include head.html %}
+<link rel="stylesheet" href="css/pages/country.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mathuraoverseas.com/index.html" },
+    { "@type": "ListItem", "position": 2, "name": "Countries", "item": "https://mathuraoverseas.com/destinations.html" },
+    { "@type": "ListItem", "position": 3, "name": "MBBS in the Caribbean", "item": "https://mathuraoverseas.com/mbbs-in-caribbean.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Who is MBBS in the Caribbean right for?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Students who are clear that they want to practise in the USA or Canada and plan to take the USMLE. Caribbean schools follow a US-style MD and many place students in US hospitals for clinical rotations. If your main goal is to practise in India, a country whose course is built around the NMC rules is usually a safer choice." } },
+    { "@type": "Question", "name": "Is a Caribbean MD valid in India?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Only if the course meets every NMC FMGL 2021 condition: at least 54 months of study in English, the whole course, training and a 12-month internship at the same foreign institution, and eligibility for a licence in that country. Many US-style programmes send students to US hospitals for rotations and run about four years, so check each point in writing before you pay." } },
+    { "@type": "Question", "name": "Which accreditation matters for the USMLE?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Since 2024 ECFMG only certifies graduates of schools accredited by an agency recognised by the World Federation for Medical Education (WFME). In the Caribbean these include CAAM-HP, ACCM and Grenada's Medical and Dental Council. Several schools hold conditional accreditation, so check the current status on the accreditor's own website." } },
+    { "@type": "Question", "name": "Which schools did NMC warn against?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In 2025 NMC advised Indian students not to take admission at three institutions in Belize: Central American Health and Sciences University, Columbus Central University and Washington University of Health and Sciences. It cited poor infrastructure and training, harassment of students, excessive fees and refunds being denied, and warned that students may become ineligible for registration in India." } },
+    { "@type": "Question", "name": "How long does it take?",
+      "acceptedAnswer": { "@type": "Answer", "text": "After Class 12, students usually complete one to two years of pre-medical study, then an MD of about four years: basic sciences on the island campus, then clinical rotations, often in US hospitals. Plan for roughly 5.5 to 6 years before the USMLE and residency applications." } },
+    { "@type": "Question", "name": "How much does a year cost?",
+      "acceptedAnswer": { "@type": "Answer", "text": "At lower-cost schools an average MD year comes to about 35 lakh rupees all-in: roughly 22 lakh tuition, 11 lakh housing, food and local travel, and 2 lakh for fees, insurance and visas (indicative, October 2026). Basic-science years cost less and US clinical years cost more. MD tuition at these schools typically totals 80 lakh to 1 crore rupees; the best-known schools cost far more." } },
+    { "@type": "Question", "name": "Do I need NEET for the Caribbean?",
+      "acceptedAnswer": { "@type": "Answer", "text": "NMC requires Indian students who study medicine abroad to qualify NEET-UG if they want to be eligible to practise in India, and the result stays valid for three years. Even if you are aiming for the USA, qualifying NEET keeps the India option open." } },
+    { "@type": "Question", "name": "What is the weather like?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Tropical, much like South India: warm all year, with a drier season from about December to April and a wetter season from June to November. The Atlantic hurricane season runs from June to November, and schools have storm plans." } },
+    { "@type": "Question", "name": "Will I need a US visa?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Usually yes. Most routes from India connect through the USA, and Indian passport holders need a US visa even to transit. If your programme includes clinical rotations in US hospitals, you will need a US visa for those years too, so plan for it from the start." } }
+  ]
+}
+</script>
+</head>
+<body>
+
+{% include icons.html %}
+{% include announcement.html %}
+{% include header.html %}
+
+<main id="main">
+
+  <!-- ============ 1. HERO.  IMAGE 1: assets/images/countries/caribbean/hero.webp — 1200 x 1320 px
+       Indian students in white coats walking along a palm-lined island campus path, turquoise Caribbean sea behind, bright morning sun.
+       Keep faces in the middle third: phones crop the top and bottom. ============ -->
+  <section class="cty-hero">
+    <svg class="cty-hero__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+    <div class="container cty-hero__grid">
+      <div class="cty-hero__copy">
+        <nav class="cty-crumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+          <a href="destinations.html">Countries</a><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+          <span aria-current="page">Caribbean</span>
+        </nav>
+        <span class="pill"><span class="pill__dot"></span>MD in the Caribbean &middot; for USMLE aspirants</span>
+        <h1>A US-style MD, <em>a short hop from America</em></h1>
+        <p class="cty-hero__lead">For students set on practising in the USA or Canada: English-medium, US-pattern medical schools across the Caribbean islands and Guyana. An honest guide to how the course works, which schools are accredited, what it really costs &mdash; and what NMC requires if India stays one of your options.</p>
+        <div class="cty-hero__chips">
+          <span class="cty-hero__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>US-style MD</span>
+          <span class="cty-hero__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>USMLE-focused</span>
+          <span class="cty-hero__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Accreditation checked for you</span>
+        </div>
+        <div class="btn-row">
+          <a href="apply.html" class="btn btn--ondark">Get free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <a href="#fees" class="btn btn--outline-light cty-hero__desk">See average fees</a>
+        </div>
+      </div>
+      <div class="cty-hero__media">
+        <div class="img-slot" data-spec="countries/caribbean/hero.webp · 1200×1320 px">
+          <img src="assets/images/countries/caribbean/hero.webp" width="1200" height="1320" alt="Indian medical students in white coats on a palm-lined island campus by the Caribbean sea" fetchpriority="high">
+        </div>
+        <div class="cty-ticket" aria-label="Flights from Chennai to the Caribbean: usually two to three stops, often through the USA">
+          <div class="cty-ticket__route">
+            <div class="cty-ticket__port"><b>MAA</b><span>Chennai</span></div>
+            <div class="cty-ticket__line"><span class="cty-ticket__plane"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-airplane"></use></svg></span></div>
+            <div class="cty-ticket__port cty-ticket__port--to"><b>CARIB</b><span>Island campuses</span></div>
+          </div>
+          <div class="cty-ticket__meta"><span><b>2&ndash;3 stops</b> &middot; long-haul</span><span>Often via the USA &middot; <b>US visa</b> needed</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. AT A GLANCE ============ -->
+  <div class="cty-glance">
+    <div class="container">
+      <div class="card cty-glance__card">
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div><div class="cty-glance__num">5.5&ndash;6 yrs</div><div class="cty-glance__label">Pre-med plus a ~4-year MD</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span><div><div class="cty-glance__num">English</div><div class="cty-glance__label">In class and on most islands</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><div><div class="cty-glance__num">&#8377;17&ndash;32 L</div><div class="cty-glance__label">Tuition per MD year (lower-cost schools)</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><div><div class="cty-glance__num">2&ndash;3 stops</div><div class="cty-glance__label">From Chennai, often via the USA</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-sun"></use></svg></span><div><div class="cty-glance__num">Tropical</div><div class="cty-glance__label">Warm all year; storms Jun&ndash;Nov</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg></span><div><div class="cty-glance__num">US$</div><div class="cty-glance__label">Schools charge fees in US dollars</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 3. STICKY SECTION TABS (each href must match a section id below) ============ -->
+  <nav class="cty-tabs" aria-label="On this page">
+    <div class="cty-tabs__track">
+      <a href="#overview">Overview</a><a href="#course">Course</a><a href="#recognition">NMC rules</a><a href="#universities">Schools</a><a href="#fees">Fees</a><a href="#eligibility">Eligibility</a><a href="#life">Student life</a><a href="#faqs">FAQs</a>
+    </div>
+  </nav>
+
+  <!-- ============ 4. WHY THE CARIBBEAN ============ -->
+  <section class="section has-dots" id="overview">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><span class="eyebrow">Why the Caribbean</span><h2>Six reasons USMLE aspirants look here</h2><p>This region is not for everyone &mdash; but for the right student, these are the things that matter.</p></div>
+      <div class="cty-features" data-stagger>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span>
+          <div><h3>Taught the American way</h3><p>Schools follow a US-style MD: basic sciences first, then clinical clerkships, with teaching built around the USMLE &mdash; the exam you need to work as a doctor in the USA.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-stethoscope"></use></svg></span>
+          <div><h3>Clinical years in US hospitals</h3><p>Many programmes place students in affiliated hospitals in the USA for their clinical rotations, so you learn the American system before you apply for residency there.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span>
+          <div><h3>Accreditors the US accepts</h3><p>The region has WFME-recognised accreditors such as CAAM-HP and ACCM &mdash; the standard ECFMG has required since 2024 for the USMLE route.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span>
+          <div><h3>Close to the USA</h3><p>The islands sit a short flight from Miami, Atlanta and New York, so rotations, interviews and exam centres are far easier to reach than from Asia.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg></span>
+          <div><h3>More than one start date</h3><p>Many US-style schools take students several times a year, often in January, May and September, so you are not tied to a single intake.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-sun"></use></svg></span>
+          <div><h3>Weather like home</h3><p>Warm and tropical all year &mdash; no winters to survive, just a wetter season much like a South Indian monsoon.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. HOW THE COURSE WORKS. data-months = length of each stage; it sizes the to-scale bar on desktop. ============ -->
+  <section class="section section--wash" id="course">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">How the course works</span><h2>From Class 12 to the USMLE: the Caribbean route</h2><p>There is no direct MBBS. You complete a pre-medical course, then a US-style MD in two halves &mdash; on the island, then in hospitals. Here is how the years add up.</p></div>
+      <div class="cty-path__wrap reveal">
+        <div class="cty-path__bar" aria-hidden="true">
+          <span class="cty-path__seg" data-label="Pre-med"><span></span></span>
+          <span class="cty-path__seg cty-path__seg--core" data-label="Basic sciences"><span></span></span>
+          <span class="cty-path__seg cty-path__seg--core" data-label="Clinical rotations"><span></span></span>
+          <span class="cty-path__seg" data-label="USMLE &amp; residency"><span></span></span>
+        </div>
+        <ol class="cty-path">
+          <li class="cty-path__stage" data-months="18">
+            <span class="cty-path__num">1</span>
+            <div><span class="cty-path__len">About 1&ndash;2 years</span><h3>Pre-medical course</h3><p>Biology, chemistry and the college-level credits a US-style MD expects. Some students with strong Class 12 marks need less.</p>
+              <span class="cty-path__note"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg>Not counted by NMC</span></div>
+          </li>
+          <li class="cty-path__stage cty-path__stage--core" data-months="20">
+            <span class="cty-path__num">2</span>
+            <div><span class="cty-path__len">About 5 semesters</span><h3>Basic sciences</h3><p>Anatomy, physiology, pathology and pharmacology on the island campus, ending with preparation for USMLE Step 1.</p></div>
+          </li>
+          <li class="cty-path__stage cty-path__stage--core" data-months="24">
+            <span class="cty-path__num">3</span>
+            <div><span class="cty-path__len">About 5&ndash;6 semesters</span><h3>Clinical rotations</h3><p>Core and elective clerkships in affiliated hospitals &mdash; often in the USA, which needs a US visa.</p>
+              <span class="cty-path__note"><svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>Check how NMC sees this</span></div>
+          </li>
+          <li class="cty-path__stage cty-path__stage--home" data-months="12">
+            <span class="cty-path__num">4</span>
+            <div><span class="cty-path__len">After the MD</span><h3>USMLE &amp; the Match</h3><p>Pass the USMLE, earn ECFMG certification and apply for a US residency place.</p></div>
+          </li>
+        </ol>
+        <p class="cty-path__total"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg><span>In all, plan for <b>roughly 5.5&ndash;6 years after Class 12</b> before residency. Your counsellor confirms the exact plan for each school.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. NMC RULES — re-check NMC alerts every few months and update the "as of" date.
+       6a. The board lists the institutions NMC told students to avoid. Add or remove an <li> if NMC changes its list. ============ -->
+  <section class="section" id="recognition">
+    <div class="container">
+      <div class="cty-status reveal">
+        <svg class="cty-status__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+        <div class="cty-status__intro">
+          <span class="eyebrow eyebrow--light">NMC rules &middot; as of Oct 2026</span>
+          <h2>Built for America &mdash; so check twice if India is your plan</h2>
+          <p>Caribbean schools are designed for the US route. That is their strength, and also why they don&rsquo;t always fit India&rsquo;s rules. Here is the honest picture.</p>
+        </div>
+        <div class="cty-status__col">
+          <h3><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg>Confirmed</h3>
+          <ul class="cty-status__list">
+            <li class="cty-status__item"><span class="cty-status__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span><b>NMC&rsquo;s rules (FMGL 2021):</b> at least 54 months of study in English, the whole course and a 12-month internship at the same foreign institution, and eligibility for a licence in that country.</span></li>
+            <li class="cty-status__item"><span class="cty-status__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span><b>NMC&rsquo;s 2025 advisory:</b> students were told not to join three institutions in Belize, listed below, and warned they may become ineligible for registration in India.</span></li>
+            <li class="cty-status__item"><span class="cty-status__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span><b>For the USA:</b> since 2024, ECFMG only certifies graduates of schools whose accreditor is recognised by the WFME.</span></li>
+          </ul>
+        </div>
+        <div class="cty-status__open">
+          <div class="cty-status__open-head">
+            <span class="icon-badge icon-badge--orange icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg></span>
+            <div><small>Worth checking</small><h4>Rotations abroad and a course under 54 months</h4></div>
+          </div>
+          <p>Most Caribbean programmes send students to hospitals in another country for their clinical years, and many run about four years. NMC expects the whole course and internship at the same institution, for at least 54 months plus 12. If there is any chance you will want to practise in India, get the school&rsquo;s answer on each point in writing.</p>
+          <div class="cty-status__promise"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg><span><b>Our promise:</b> before you pay anything, we check a school&rsquo;s accreditation for the USA and every NMC condition for India &mdash; and tell you plainly which doors it keeps open.</span></div>
+        </div>
+        <p class="cty-status__src">Sources: NMC Foreign Medical Graduate Licentiate Regulations, 2021; NMC alert on four foreign institutions (2025); ECFMG accreditation requirement. Rules can change; we re-check them for every student.</p>
+      </div>
+
+      <div class="cty-board reveal">
+        <div class="cty-board__col cty-board__col--ok">
+          <div class="cty-board__head">
+            <span class="icon-badge icon-badge--teal icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span>
+            <div><small>Green flags</small><h3>What a sound school can show you</h3></div>
+          </div>
+          <ul class="cty-board__list">
+            <li>A WFME-recognised accreditor<span>Needed for ECFMG</span></li>
+            <li>A real campus with labs and faculty<span>Visit or video tour</span></li>
+            <li>Named hospitals for rotations<span>In writing</span></li>
+            <li>A published fee and refund policy<span>Before you pay</span></li>
+            <li>USMLE results it will share<span>Ask for them</span></li>
+          </ul>
+          <p class="cty-board__note">If a school can&rsquo;t show these, we don&rsquo;t recommend it.</p>
+        </div>
+        <details class="cty-board__col cty-board__col--warn" open>
+          <summary>
+            <div class="cty-board__head">
+              <span class="icon-badge icon-badge--orange icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-ban"></use></svg></span>
+              <div><small>NMC advisory &middot; 2025</small><h3>Institutions NMC told students to avoid</h3></div>
+            </div>
+            <span class="cty-board__more">List<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></span>
+          </summary>
+          <ul class="cty-board__list">
+            <li>Central American Health and Sciences University<span>Belize</span></li>
+            <li>Columbus Central University<span>Belize</span></li>
+            <li>Washington University of Health and Sciences<span>Belize</span></li>
+          </ul>
+          <p class="cty-board__note">NMC cited poor infrastructure and training, harassment of students, excessive fees and refunds being denied. Many other small schools in the region hold no recognised accreditation at all &mdash; send us any name to check.</p>
+        </details>
+      </div>
+      <p class="cty-board__src">Source: NMC alert note on admission to foreign institutes for undergraduate medical courses (2025), based on concerns from the Embassy of India in Mexico. As of Oct 2026.</p>
+    </div>
+  </section>
+
+  <!-- ============ 7. SCHOOLS (id="universities" so the shared tabs and links still work)
+       7-1. The six questions + "Ask us to check" card.
+       7-2. ACCREDITED SCHOOLS BY COUNTRY — a reference list, NOT Mathura partners. One .cty-board__col per country;
+            each <li> is "School name<span>Accreditor · status</span>". Re-check statuses every few months on
+            caam-hp.org/programs and accredmed.org, and update the "as of" line. Drop any school that loses accreditation.
+       7-3. When Mathura partners with a school and builds its own fee page (mbbs-in-caribbean-{school}.html),
+            add a .uni-spot card (see mbbs-in-russia.html) or a snap-row of .uni-card cards between the questions and
+            the board, with the "View the full fee structure" footer + an .uni-card__cover link. ============ -->
+  <section class="section section--wash" id="universities">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Schools</span><h2>Accredited Caribbean schools &mdash; and how to check any of them</h2><p>Good and poor schools sit side by side in this region. Start with these six questions, then see the schools whose accreditor is recognised by the WFME.</p></div>
+
+      <div class="cty-elig">
+        <ul class="card cty-checks reveal">
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>Who accredits you, and is it current?</b><span>Ask for the accreditor and the expiry date, then check it on the accreditor&rsquo;s own website.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>Where exactly are the clinical rotations?</b><span>Ask for the hospital names and cities, and whether placement is guaranteed.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>How many months is the MD, and where is the internship?</b><span>The answer decides whether NMC will accept the degree in India.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>What are your USMLE pass rates?</b><span>A confident school shares recent Step 1 and Step 2 results.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>What is the full cost, including clinical years?</b><span>Clinical semesters usually cost more than basic sciences &mdash; get every term in writing.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>What is your refund policy?</b><span>Denied refunds were one of the problems NMC named in its advisory.</span></div></li>
+        </ul>
+        <aside class="cty-elig__tool reveal">
+          <svg class="cty-elig__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+          <span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg></span>
+          <h3>Have a school in mind?</h3>
+          <p>Send us its name. We check its accreditation, rotations, fees and the NMC conditions &mdash; free, and in writing.</p>
+          <a href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, can you check a Caribbean medical school for me? The school is: " class="btn btn--ondark">Ask us to check <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        </aside>
+      </div>
+
+      <div class="cty-board">
+        <div class="cty-board__col reveal">
+          <div class="cty-board__head"><span class="icon-badge icon-badge--teal icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><div><small>South America&rsquo;s Caribbean coast</small><h3>Guyana</h3></div></div>
+          <ul class="cty-board__list"><li>Texila American University<span>ACCM &middot; CAAM-HP (conditional)</span></li></ul>
+        </div>
+        <div class="cty-board__col reveal">
+          <div class="cty-board__head"><span class="icon-badge icon-badge--blue icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><div><small>Eastern Caribbean</small><h3>St Kitts &amp; Nevis</h3></div></div>
+          <ul class="cty-board__list"><li>Medical University of the Americas<span>ACCM</span></li><li>University of Medicine and Health Sciences<span>ACCM</span></li></ul>
+        </div>
+        <div class="cty-board__col reveal">
+          <div class="cty-board__head"><span class="icon-badge icon-badge--purple icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><div><small>Eastern Caribbean</small><h3>St Vincent &amp; Anguilla</h3></div></div>
+          <ul class="cty-board__list"><li>Trinity School of Medicine<span>CAAM-HP (conditional)</span></li><li>Saint James School of Medicine<span>ACCM</span></li></ul>
+        </div>
+        <div class="cty-board__col reveal">
+          <div class="cty-board__head"><span class="icon-badge icon-badge--orange icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><div><small>Eastern Caribbean</small><h3>Antigua &amp; Barbuda</h3></div></div>
+          <ul class="cty-board__list"><li>American University of Antigua<span>CAAM-HP (conditional)</span></li></ul>
+        </div>
+        <div class="cty-board__col reveal">
+          <div class="cty-board__head"><span class="icon-badge icon-badge--pink icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><div><small>Dutch Caribbean</small><h3>Cura&ccedil;ao, Aruba &amp; Sint Maarten</h3></div></div>
+          <ul class="cty-board__list"><li>Avalon University<span>Cura&ccedil;ao &middot; ACCM</span></li><li>Xavier University<span>Aruba &middot; ACCM</span></li><li>American University of the Caribbean<span>Sint Maarten &middot; ACCM</span></li></ul>
+        </div>
+        <div class="cty-board__col reveal">
+          <div class="cty-board__head"><span class="icon-badge icon-badge--navy icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><div><small>Long-established, higher fees</small><h3>Grenada, Barbados &amp; Cayman</h3></div></div>
+          <ul class="cty-board__list"><li>St George&rsquo;s University<span>Grenada &middot; GMDC</span></li><li>Ross University<span>Barbados &middot; CAAM-HP (conditional)</span></li><li>St Matthew&rsquo;s University<span>Cayman &middot; ACCM</span></li></ul>
+        </div>
+      </div>
+      <p class="cty-board__src">A reference list, not a list of our partners. Sources: CAAM-HP assessed programmes and ACCM accredited programmes lists, checked Oct 2026. &ldquo;Conditional&rdquo; means accredited with conditions the school must meet. Statuses change &mdash; we re-check before every admission.</p>
+    </div>
+  </section>
+
+  <!-- ============ 8. FEES — an AVERAGE MD year at LOWER-COST Caribbean schools (not the best-known, far pricier names).
+       To change a figure, edit its data-inr number (in rupees, per year).
+       data-row-inr on each row must match the number inside it; the total's data-inr must equal their sum.
+       Tuition average ≈ US$23,000 a year: published 2026 rates at lower-cost schools are about US$4,500–10,000 per
+       basic-science semester and US$8,750–14,800 per clinical semester, roughly three semesters a year. ============ -->
+  <section class="section" id="fees">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Fees</span><h2>What a year in a Caribbean MD really costs</h2><p>An average, all-in budget at lower-cost schools &mdash; not the top quotes you will find online. This is a premium route, so we show it to you plainly.</p></div>
+      <div class="cty-fees reveal">
+        <div class="cty-fees__total">
+          <div class="cty-fees__switch" role="group" aria-label="Show amounts in">
+            <button type="button" data-currency="inr" aria-pressed="true">&#8377; INR</button>
+            <button type="button" data-currency="usd" aria-pressed="false">$ USD</button>
+          </div>
+          <div>
+            <span class="cty-fees__kicker">An average MD year, all-in</span>
+            <span class="cty-fees__big"><span id="feeTotal" data-inr="3500000">&#8377;35 L</span> <small>/ year</small></span>
+          </div>
+          <p>Tuition, housing and food, local travel, school fees, insurance and visas added together. Basic-science years cost less; US clinical years cost more.</p>
+          <div class="cty-fees__course"><span>MD tuition in total, typically</span><b><span data-inr-range="8000000-10000000">&#8377;80&ndash;100 L</span></b></div>
+        </div>
+
+        <div class="card cty-fees__rows">
+          <div class="cty-fees__row" data-row-inr="2200000">
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div class="cty-fees__name"><b>Tuition</b><span>Range <span data-inr-range="1700000-3200000">&#8377;17&ndash;32 L</span> a year</span></div><span class="cty-fees__val" data-inr="2200000">&#8377;22 L</span></div>
+            <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
+          </div>
+          <div class="cty-fees__row" data-row-inr="1100000">
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-home"></use></svg></span><div class="cty-fees__name"><b>Housing, food &amp; local travel</b><span><span data-inr-range="70000-140000">&#8377;70k&ndash;1.4 L</span> a month; more in US cities</span></div><span class="cty-fees__val" data-inr="1100000">&#8377;11 L</span></div>
+            <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
+          </div>
+          <div class="cty-fees__row" data-row-inr="200000">
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-passport"></use></svg></span><div class="cty-fees__name"><b>School fees, insurance &amp; visas</b><span>Admin fees, health cover, student and US visas</span></div><span class="cty-fees__val" data-inr="200000">&#8377;2 L</span></div>
+            <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
+          </div>
+        </div>
+
+        <div class="cty-fees__extras">
+          <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg><span><b>Flights:</b> multi-stop from Chennai, often through the USA &mdash; budget for a US visa</span></div>
+          <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg><span><b>One-time:</b> pre-med course, application fee, seat deposit and USMLE exam fees</span></div>
+          <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg><span><b>Always:</b> pay the school directly, against an official receipt and a written refund policy</span></div>
+        </div>
+      </div>
+      <p class="cty-asof"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><span>Indicative averages as of Oct 2026, built from published 2026 tuition at lower-cost Caribbean schools; <span data-rate-label>1 USD = &#8377;95 (as of 26 Oct 2026)</span>. The best-known schools can cost US$180,000 or more for the MD and are not in this average. Pre-med costs are extra. Confirm every term&rsquo;s fees with your counsellor.</span></p>
+    </div>
+  </section>
+
+  <!-- ============ 9. ELIGIBILITY ============ -->
+  <section class="section section--wash" id="eligibility">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Eligibility</span><h2>Can you apply? What you need</h2><p>What the schools ask for &mdash; plus what keeps the door to India open.</p></div>
+      <div class="cty-elig">
+        <ul class="card cty-checks reveal">
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>NEET-UG qualified</b><span>NMC requires it if you may ever want to practise in India. The result stays valid for three years.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>50% in Physics, Chemistry and Biology</b><span>In Class 12, with English as a subject. 40% for SC, ST and OBC candidates.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>17 years old by 31 December</b><span>Of the year you join.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>A pre-medical course first</b><span>US-style MDs expect college-level science credits; most Class 12 students complete a pre-med course.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>An interview with the school</b><span>Many schools hold one before they make an offer. We help you prepare.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>A plan for US visas</b><span>For transit and for US clinical rotations &mdash; start early.</span></div></li>
+        </ul>
+        <aside class="cty-elig__tool reveal">
+          <svg class="cty-elig__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+          <span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-check-square"></use></svg></span>
+          <h3>Not sure where you stand?</h3>
+          <p>Enter your NEET score and Class 12 marks in the MBBS Planner and get an instant answer &mdash; free, in about ten seconds.</p>
+          <a href="mbbs-abroad-planner.html#eligibility" class="btn btn--ondark">Check my eligibility <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10. ADMISSION STEPS ============ -->
+  <section class="section has-grid" id="admission">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><span class="eyebrow">Admission</span><h2>Your path to a Caribbean medical school</h2><p>One counsellor, from your first call to your first rotation &mdash; and after.</p></div>
+      <ol class="cty-steps" data-stagger>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Honest counselling</h3><p>Your goals, budget and whether this route really fits you.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Verify the school</h3><p>Accreditation, rotations, fees and NMC conditions checked in writing.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Apply &amp; interview</h3><p>We prepare your application and coach you for the interview.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Offer &amp; visas</h3><p>Seat confirmed with the school, then your student visa and US visa plan.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Fly &amp; settle</h3><p>Travel planning, housing and a pre-departure briefing.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Study &amp; USMLE</h3><p>We stay with you through rotations, the USMLE and residency planning.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ 11. STUDENT LIFE.  IMAGE 2: assets/images/countries/caribbean/life.webp — 1400 x 1470 px
+       Indian students in light summer clothes laughing at a seaside café on a Caribbean island, colourful houses and palms, late-afternoon light. ============ -->
+  <section class="section section--wash" id="life">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Student life</span><h2>Island life, day to day</h2><p>Warm weather, English all around and the sea on your doorstep &mdash; with a little planning.</p></div>
+      <div class="cty-life">
+        <div class="cty-life__photo reveal">
+          <div class="img-slot" data-spec="countries/caribbean/life.webp · 1400×1470 px"><img src="assets/images/countries/caribbean/life.webp" width="1400" height="1470" alt="Indian students at a seaside café on a Caribbean island" loading="lazy"></div>
+          <div class="cty-seasons" aria-label="Seasons in the Caribbean">
+            <div class="cty-season"><small>Dec&ndash;Apr</small><b>Drier</b><span>Breezy, pleasant</span></div>
+            <div class="cty-season"><small>May&ndash;Jun</small><b>Hot</b><span>Humid days</span></div>
+            <div class="cty-season"><small>Jun&ndash;Nov</small><b>Wetter</b><span>Hurricane season</span></div>
+          </div>
+          <p class="cty-life__note">Weather varies a little by island. Schools have storm plans for the hurricane season, which peaks around September.</p>
+        </div>
+        <div class="cty-tiles" data-stagger>
+          <div class="card cty-tile cty-tile--wide reveal"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><h3>Monthly living cost</h3><p>Plan roughly &#8377;70,000&ndash;1.4 lakh a month for shared housing, food and transport; US rotation cities sit at the top of the range (Oct 2026).</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-utensils"></use></svg></span><h3>Food</h3><p>Rice, beans, chicken and seafood are local staples. Indian groceries are limited on small islands, so most students cook.</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg></span><h3>Language</h3><p>English is spoken on most islands and in Guyana. On the Dutch islands, English is widely used alongside Dutch and Papiamento.</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></span><h3>Time zone</h3><p>About 9.5 to 10.5 hours behind India: your morning is your family&rsquo;s evening.</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span><h3>Staying safe</h3><p>Live where your school recommends, avoid isolated areas at night, and save your nearest Indian Embassy&rsquo;s contacts.</p></div>
+          <div class="card cty-tile cty-tile--wide reveal"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><h3>Getting there</h3><p>Usually two or three stops from Chennai, often through the USA. Indian passport holders need a US visa even to transit, so apply early.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 12. DOCUMENTS ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Documents</span><h2>What to keep ready</h2><p>Start gathering these early. Your counsellor gives you the exact list for your school and for any US visa.</p></div>
+      <ul class="cty-docs" data-stagger>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-passport"></use></svg><span>Valid passport<small>Ten years&rsquo; validity is ideal</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg><span>NEET-UG scorecard<small>Keeps the India option open</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg><span>Class 10 &amp; 12 mark sheets<small>Plus pre-med transcripts</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg><span>Birth certificate<small>Matching your passport details</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg><span>Medical &amp; vaccination records<small>US hospitals ask for these</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg><span>Police clearance certificate<small>From your passport office</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg><span>Proof of funds<small>For the student and US visas</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg><span>Recommendation letters<small>Often asked for with the application</small></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 13. FAQs — keep these in step with the FAQPage block in <head> ============ -->
+  <section class="section section--wash" id="faqs">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><span class="eyebrow">FAQs</span><h2>Questions parents ask us most</h2><p>Straight answers. Anything else, just ask a counsellor.</p></div>
+      <div class="cty-faq">
+        <details><summary>Who is this route right for?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Students who are clear that they want to practise in the USA or Canada and plan to take the USMLE. Caribbean schools follow a US-style MD and many place students in US hospitals for clinical rotations. If your main goal is to practise in India, a country whose course is built around the NMC rules is usually a safer choice &mdash; <a href="destinations.html">compare countries</a>.</div></details>
+        <details><summary>Is a Caribbean MD valid in India?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Only if the course meets every NMC FMGL 2021 condition: at least 54 months of study in English, the whole course, training and a 12-month internship at the same foreign institution, and eligibility for a licence in that country. Many US-style programmes send students to US hospitals for rotations and run about four years, so check each point in writing before you pay. See <a href="#recognition">NMC rules</a> above.</div></details>
+        <details><summary>Which accreditation matters for the USMLE?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Since 2024 ECFMG only certifies graduates of schools accredited by an agency recognised by the World Federation for Medical Education (WFME). In the Caribbean these include CAAM-HP, ACCM and Grenada&rsquo;s Medical and Dental Council. Several schools hold conditional accreditation, so check the current status on the accreditor&rsquo;s own website. See the <a href="#universities">school list</a>.</div></details>
+        <details><summary>Which schools did NMC warn against?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>In 2025 NMC advised Indian students not to take admission at three institutions in Belize: Central American Health and Sciences University, Columbus Central University and Washington University of Health and Sciences. It cited poor infrastructure and training, harassment of students, excessive fees and refunds being denied, and warned that students may become ineligible for registration in India.</div></details>
+        <details><summary>How long does it take?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>After Class 12, students usually complete one to two years of pre-medical study, then an MD of about four years: basic sciences on the island campus, then clinical rotations, often in US hospitals. Plan for roughly 5.5&ndash;6 years before the USMLE and residency applications.</div></details>
+        <details><summary>How much does a year cost?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>At lower-cost schools an average MD year comes to about &#8377;35 lakh all-in: roughly &#8377;22 lakh tuition, &#8377;11 lakh housing, food and local travel, and &#8377;2 lakh for fees, insurance and visas (indicative, Oct 2026). Basic-science years cost less and US clinical years cost more. MD tuition at these schools typically totals &#8377;80 lakh to &#8377;1 crore; the best-known schools cost far more. See the <a href="#fees">fee breakdown</a>.</div></details>
+        <details><summary>Do I need NEET?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>NMC requires Indian students who study medicine abroad to qualify NEET-UG if they want to be eligible to practise in India, and the result stays valid for three years. Even if you are aiming for the USA, qualifying NEET keeps the India option open.</div></details>
+        <details><summary>What is the weather like?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Tropical, much like South India: warm all year, with a drier season from about December to April and a wetter season from June to November. The Atlantic hurricane season runs from June to November, and schools have storm plans.</div></details>
+        <details><summary>Will I need a US visa?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Usually yes. Most routes from India connect through the USA, and Indian passport holders need a US visa even to transit. If your programme includes clinical rotations in US hospitals, you will need a US visa for those years too, so plan for it from the start.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 14. CLOSING CTA (same card as Home and About) ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="cta reveal">
+        <svg class="cta__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+        <div><h2>Aiming for a US medical career?</h2><p>One honest conversation: whether this route fits you, which Caribbean schools are worth your money, and what each one means for India and the USA.</p></div>
+        <div class="btn-row">
+          <a href="apply.html" class="btn btn--ondark">Get free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <a href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, I'd like to know more about studying medicine in the Caribbean." class="btn btn--outline-light"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg> WhatsApp us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{% include footer.html %}
+{% include bottom-nav.html %}
+{% include scripts.html %}
+<script src="js/pages/country.js"></script>
+</body>
+</html>

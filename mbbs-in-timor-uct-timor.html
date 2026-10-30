@@ -1,0 +1,544 @@
+---
+# Shared parts (announcement bar, header, footer, tab bar, icons) live in the _includes folder.
+# Country pages all use css/pages/country.css + js/pages/country.js — only the content below changes.
+# This file keeps its old name (mbbs-in-timor-uct-timor.html) because Home, Countries and the MBBS Planner already link to it.
+active: countries
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MBBS in Timor-Leste 2026 | Mathura Overseas</title>
+<meta name="description" content="Study MBBS in Timor-Leste: a 5.5-year, English-medium course on India's CBME curriculum at UCT, Dili. Average fees, NMC rules for 2026 and student life.">
+<link rel="canonical" href="https://mathuraoverseas.com/mbbs-in-timor-uct-timor.html">
+<meta property="og:title" content="MBBS in Timor-Leste 2026 | Mathura Overseas">
+<meta property="og:description" content="An Indian-style MBBS by the Timor Sea: the curriculum, average fees, NMC rules and student life in Dili, explained honestly.">
+<meta property="og:url" content="https://mathuraoverseas.com/mbbs-in-timor-uct-timor.html">
+<meta property="og:image" content="assets/images/countries/timor-leste/hero.webp">
+{% include head.html %}
+<link rel="stylesheet" href="css/pages/country.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mathuraoverseas.com/index.html" },
+    { "@type": "ListItem", "position": 2, "name": "Countries", "item": "https://mathuraoverseas.com/destinations.html" },
+    { "@type": "ListItem", "position": 3, "name": "MBBS in Timor-Leste", "item": "https://mathuraoverseas.com/mbbs-in-timor-uct-timor.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Is an MBBS from Timor-Leste valid in India?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, if the course meets every NMC FMGL 2021 condition: at least 54 months of study, taught in English, a 12-month internship at the same university, and eligibility for a medical licence in Timor-Leste. UCT's MBBS is built to these rules: 4.5 years of study plus a 12-month internship at its own teaching hospital. You then clear FMGE or NExT to practise in India." } },
+    { "@type": "Question", "name": "Is UCT Timor-Leste approved by NMC?",
+      "acceptedAnswer": { "@type": "Answer", "text": "NMC does not publish a list of approved foreign universities. Instead, it checks each graduate's course against the FMGL 2021 regulations. UCT is listed in the World Directory of Medical Schools and holds A-grade accreditation from Timor-Leste's national agency, ANAAA (March 2025). We confirm every FMGL condition for your batch in writing before you pay." } },
+    { "@type": "Question", "name": "How long is MBBS in Timor-Leste?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Five and a half years: 4.5 years (54 months) of study followed by a 12-month internship at the university's own teaching hospital. That is exactly the minimum NMC requires." } },
+    { "@type": "Question", "name": "Does UCT follow the Indian MBBS syllabus?",
+      "acceptedAnswer": { "@type": "Answer", "text": "UCT teaches on the Competency Based Medical Education (CBME) framework that Indian medical colleges use, from Indian and international textbooks, with Indian faculty on its staff. The subjects are the same as an Indian MBBS, which helps when you prepare for FMGE or NExT." } },
+    { "@type": "Question", "name": "How much does MBBS in Timor-Leste cost?",
+      "acceptedAnswer": { "@type": "Answer", "text": "An average year costs about 4.9 lakh rupees all-in: roughly 2.5 lakh tuition, 1.75 lakh hostel and meals and about 65,000 for personal and local travel costs (indicative, October 2026). Tuition is charged for the 4.5 study years and stays the same each year; the whole course typically comes to about 24 lakh rupees all-in." } },
+    { "@type": "Question", "name": "Do I need NEET to study MBBS in Timor-Leste?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. NMC requires every Indian student who studies medicine abroad to qualify NEET-UG, and the result stays valid for three years. UCT admits Indian students on their Class 12 marks and NEET result, with no IELTS or extra entrance test." } },
+    { "@type": "Question", "name": "How do I travel from India to Timor-Leste?",
+      "acceptedAnswer": { "@type": "Answer", "text": "There are no direct flights. From Chennai the journey takes about 20 to 24 hours, usually through Singapore or Bali, from about 35,561 rupees one-way (September 2026). Dili is 3 hours 30 minutes ahead of India." } },
+    { "@type": "Question", "name": "What is the weather like in Dili?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Tropical and warm all year, much like South India. Daytime highs stay around 30 to 32 degrees Celsius. The wet season runs from December to March; June to September is dry, with cooler nights around 21 to 22 degrees." } },
+    { "@type": "Question", "name": "Is Timor-Leste safe for Indian students?",
+      "acceptedAnswer": { "@type": "Answer", "text": "India opened a resident embassy in Dili in September 2024, so help is close at hand. UCT's hostel has 24-hour security and a separate girls' block with a resident warden. Register with the Embassy when you arrive, and our team stays in touch for the whole course." } }
+  ]
+}
+</script>
+</head>
+<body>
+
+{% include icons.html %}
+{% include announcement.html %}
+{% include header.html %}
+
+<main id="main">
+
+  <!-- ============ 1. HERO.  IMAGE 1: assets/images/countries/timor-leste/hero.webp — 1200 x 1320 px
+       Indian students in white coats walking along the palm-lined Dili waterfront, calm turquoise Timor Sea on one side
+       and the Cristo Rei headland in the distance, soft morning light. Keep faces in the middle third: phones crop the top and bottom. ============ -->
+  <section class="cty-hero">
+    <svg class="cty-hero__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+    <div class="container cty-hero__grid">
+      <div class="cty-hero__copy">
+        <nav class="cty-crumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+          <a href="destinations.html">Countries</a><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+          <span aria-current="page">Timor-Leste</span>
+        </nav>
+        <span class="pill"><span class="pill__dot"></span>MBBS in Timor-Leste &middot; 2026&ndash;27 intake</span>
+        <h1>An Indian-style MBBS, <em>by the Timor Sea</em></h1>
+        <p class="cty-hero__lead">A 5.5-year, English-medium MBBS in Dili, taught on the same CBME framework Indian medical colleges follow &mdash; with Indian faculty, an Indian mess and one of the lowest tuition fees abroad. Plus a straight answer on the NMC rules before you pay a rupee.</p>
+        <div class="cty-hero__chips">
+          <span class="cty-hero__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Indian CBME curriculum</span>
+          <span class="cty-hero__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>5.5-year MBBS</span>
+          <span class="cty-hero__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>100% English</span>
+        </div>
+        <div class="btn-row">
+          <a href="apply.html" class="btn btn--ondark">Get free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <a href="#fees" class="btn btn--outline-light cty-hero__desk">See average fees</a>
+        </div>
+      </div>
+      <div class="cty-hero__media">
+        <div class="img-slot" data-spec="countries/timor-leste/hero.webp · 1200×1320 px">
+          <img src="assets/images/countries/timor-leste/hero.webp" width="1200" height="1320" alt="Indian medical students in white coats on the palm-lined Dili waterfront in Timor-Leste" fetchpriority="high">
+        </div>
+        <div class="cty-ticket" aria-label="Flight from Chennai to Dili: about 20 to 24 hours, usually via Singapore">
+          <div class="cty-ticket__route">
+            <div class="cty-ticket__port"><b>MAA</b><span>Chennai</span></div>
+            <div class="cty-ticket__line"><span class="cty-ticket__plane"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-airplane"></use></svg></span></div>
+            <div class="cty-ticket__port cty-ticket__port--to"><b>DIL</b><span>Dili</span></div>
+          </div>
+          <div class="cty-ticket__meta"><span><b>20&ndash;24 hrs</b> &middot; via Singapore</span><span>From <b>&#8377;35,561</b> one-way &middot; Sep 2026</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. AT A GLANCE ============ -->
+  <div class="cty-glance">
+    <div class="container">
+      <div class="card cty-glance__card">
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div><div class="cty-glance__num">5.5 years</div><div class="cty-glance__label">4.5 years of study plus a 12-month internship</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg></span><div><div class="cty-glance__num">CBME</div><div class="cty-glance__label">The framework Indian colleges teach</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><div><div class="cty-glance__num">&#8377;2.5 L</div><div class="cty-glance__label">Tuition per year, the same every year</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><div><div class="cty-glance__num">20&ndash;24 hrs</div><div class="cty-glance__label">Chennai to Dili, via Singapore</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-sun"></use></svg></span><div><div class="cty-glance__num">21&ndash;32&deg;C</div><div class="cty-glance__label">Tropical all year, like South India</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg></span><div><div class="cty-glance__num">US dollar</div><div class="cty-glance__label">The local currency &middot; 1 USD = &#8377;95, Oct 2026</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 3. STICKY SECTION TABS (each href must match a section id below) ============ -->
+  <nav class="cty-tabs" aria-label="On this page">
+    <div class="cty-tabs__track">
+      <a href="#overview">Overview</a><a href="#syllabus">Syllabus</a><a href="#course">Course</a><a href="#recognition">NMC status</a><a href="#universities">University</a><a href="#fees">Fees</a><a href="#fit">Is it for you?</a><a href="#eligibility">Eligibility</a><a href="#life">Student life</a><a href="#faqs">FAQs</a>
+    </div>
+  </nav>
+
+  <!-- ============ 4. WHY TIMOR-LESTE ============ -->
+  <section class="section has-dots" id="overview">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><span class="eyebrow">Why Timor-Leste</span><h2>Six reasons Indian families are looking at Timor-Leste</h2><p>Asia&rsquo;s youngest nation, and one of the newest MBBS destinations. Here is what makes it different.</p></div>
+      <div class="cty-features" data-stagger>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg></span>
+          <div><h3>India&rsquo;s own curriculum, abroad</h3><p>The MBBS follows Competency Based Medical Education &mdash; the framework every Indian medical college uses &mdash; taught from Indian and international textbooks. You study what FMGE and NExT will test.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span>
+          <div><h3>Indian faculty in the classroom</h3><p>Lecturers from India teach alongside colleagues from Timor-Leste, Cuba, Portugal, Australia and the USA. Familiar teaching, with an international outlook.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span>
+          <div><h3>One flat, low tuition fee</h3><p>Tuition is about &#8377;2.5 lakh a year and stays the same every year, with no donation or capitation fee. It is one of the most affordable MBBS options for Indian families.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-sun"></use></svg></span>
+          <div><h3>A climate just like home</h3><p>Dili stays between about 21&deg; and 32&deg;C all year. No winter wardrobe, no snow, no shock to the system &mdash; and tropical illnesses you will also see in Indian hospitals.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-utensils"></use></svg></span>
+          <div><h3>Indian food, safe hostels</h3><p>An Indian mess in the hostel, 24-hour security, and a separate girls&rsquo; block with a resident warden. Parents can rest easy.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span>
+          <div><h3>A young country close to India</h3><p>India opened its embassy in Dili in September 2024, and Timor-Leste joined ASEAN as its 11th member in October 2025. Ties between the two countries are growing fast.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5a. SYLLABUS MATCH (optional block .cty-match — use it for any country with an India-aligned curriculum).
+       Subjects per year as published for UCT's MBBS. Every chip is a subject that is also in India's MBBS. ============ -->
+  <section class="section section--wash" id="syllabus">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Syllabus</span><h2>The subjects you&rsquo;d study in India &mdash; year by year</h2><p>This is what sets Timor-Leste apart. You learn the Indian way from day one, so there is far less to re-learn for your licensing exam back home.</p></div>
+      <div class="cty-match">
+        <div class="cty-match__intro reveal">
+          <svg class="cty-match__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+          <div class="cty-match__big">CBME<small>India&rsquo;s MBBS framework</small></div>
+          <h3>Built to the same plan as an Indian medical college</h3>
+          <p>UCT runs its MBBS on Competency Based Medical Education, the framework NMC set for every Indian college, with a syllabus modelled on AIIMS New Delhi.</p>
+          <ul class="cty-match__points">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Early clinical exposure from the first year</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Indian and international textbooks</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>FMGE / NExT preparation built in</li>
+          </ul>
+        </div>
+        <div class="cty-match__phases" data-stagger>
+          <article class="cty-match__phase reveal">
+            <div class="cty-match__head"><span class="cty-match__num">1</span><div><span class="cty-match__when">Year 1</span><h3>How the body works</h3></div></div>
+            <div class="cty-match__subjects">
+              <span class="cty-match__subject"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Anatomy</span>
+              <span class="cty-match__subject"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Physiology</span>
+              <span class="cty-match__subject"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Biochemistry</span>
+            </div>
+            <p class="cty-match__note">Hospital visits begin in your very first year.</p>
+          </article>
+          <article class="cty-match__phase reveal">
+            <div class="cty-match__head"><span class="cty-match__num">2</span><div><span class="cty-match__when">Year 2</span><h3>How disease works</h3></div></div>
+            <div class="cty-match__subjects">
+              <span class="cty-match__subject"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Pathology</span>
+              <span class="cty-match__subject"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Microbiology</span>
+              <span class="cty-match__subject"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Pharmacology</span>
+              <span class="cty-match__subject"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Forensic Medicine</span>
+            </div>
+            <p class="cty-match__note">The para-clinical subjects, as in Phase II in India.</p>
+          </article>
+          <article class="cty-match__phase reveal">
+            <div class="cty-match__head"><span class="cty-match__num">3</span><div><span class="cty-match__when">Year 3</span><h3>Into the wards</h3></div></div>
+            <div class="cty-match__subjects">
+              <span class="cty-match__subject"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>General Medicine</span>
+              <span class="cty-match__subject"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Surgery</span>
+              <span class="cty-match__subject"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Obstetrics &amp; Gynaecology</span>
+              <span class="cty-match__subject"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Community Medicine</span>
+            </div>
+            <p class="cty-match__note">Clinical rotations start at the teaching hospitals.</p>
+          </article>
+          <article class="cty-match__phase cty-match__phase--last reveal">
+            <div class="cty-match__head"><span class="cty-match__num">4</span><div><span class="cty-match__when">Year 4 &ndash; 4.5</span><h3>Specialities &amp; finals</h3></div></div>
+            <div class="cty-match__subjects">
+              <span class="cty-match__subject"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Paediatrics</span>
+              <span class="cty-match__subject"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Orthopaedics</span>
+              <span class="cty-match__subject"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>ENT</span>
+              <span class="cty-match__subject"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Ophthalmology</span>
+              <span class="cty-match__subject"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Psychiatry</span>
+            </div>
+            <p class="cty-match__note">Final professional exams, then your 12-month internship.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. HOW THE COURSE WORKS. data-months = length of each stage; it sizes the to-scale bar on desktop. ============ -->
+  <section class="section" id="course">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">How the course works</span><h2>From Class 12 to doctor: the Timor-Leste route</h2><p>A direct MBBS with no pre-medical degree. It is built to exactly the length NMC asks for &mdash; here is how the years add up.</p></div>
+      <div class="cty-path__wrap reveal">
+        <div class="cty-path__bar" aria-hidden="true">
+          <span class="cty-path__seg cty-path__seg--core" data-label="Pre-clinical"><span></span></span>
+          <span class="cty-path__seg cty-path__seg--core" data-label="Clinical years"><span></span></span>
+          <span class="cty-path__seg cty-path__seg--core" data-label="Internship"><span></span></span>
+          <span class="cty-path__seg" data-label="In India"><span></span></span>
+        </div>
+        <ol class="cty-path">
+          <li class="cty-path__stage cty-path__stage--core" data-months="24">
+            <span class="cty-path__num">1</span>
+            <div><span class="cty-path__len">Years 1&ndash;2</span><h3>Pre-clinical sciences</h3><p>Anatomy, physiology and biochemistry, then pathology, microbiology and pharmacology &mdash; with early visits to the hospital.</p></div>
+          </li>
+          <li class="cty-path__stage cty-path__stage--core" data-months="30">
+            <span class="cty-path__num">2</span>
+            <div><span class="cty-path__len">Years 3&ndash;4.5</span><h3>Clinical years</h3><p>Rotations through medicine, surgery, obstetrics, paediatrics and the specialities, ending with your final exams.</p>
+              <span class="cty-path__note"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>54 months of study in all</span></div>
+          </li>
+          <li class="cty-path__stage cty-path__stage--core" data-months="12">
+            <span class="cty-path__num">3</span>
+            <div><span class="cty-path__len">12 months</span><h3>Internship</h3><p>Rotating internship at UCT&rsquo;s own teaching hospital &mdash; the same university, as NMC requires.</p>
+              <span class="cty-path__note"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg>We confirm this before you apply</span></div>
+          </li>
+          <li class="cty-path__stage cty-path__stage--home" data-months="18">
+            <span class="cty-path__num">4</span>
+            <div><span class="cty-path__len">Back in India</span><h3>FMGE / NExT</h3><p>Clear the licensing exam on a syllabus you already know, complete any internship NMC asks of you, and register to practise.</p></div>
+          </li>
+        </ol>
+        <p class="cty-path__total"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg><span>In all, plan for <b>five and a half years abroad</b> &mdash; 54 months of study and a 12-month internship, exactly NMC&rsquo;s minimum. Your counsellor will confirm the plan for your batch.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. RECOGNITION STATUS — re-check the UCT site, WDOMS and any NMC notice every few months and update the dates. ============ -->
+  <section class="section section--wash" id="recognition">
+    <div class="container">
+      <div class="cty-status reveal">
+        <svg class="cty-status__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+        <div class="cty-status__intro">
+          <span class="eyebrow eyebrow--light">NMC status &middot; as of Oct 2026</span>
+          <h2>What&rsquo;s confirmed &mdash; and what a new destination still has to prove</h2>
+          <p>Timor-Leste is new to Indian families, so it deserves straight answers. Here is where things stand, in plain words.</p>
+        </div>
+        <div class="cty-status__col">
+          <h3><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg>Confirmed</h3>
+          <ul class="cty-status__list">
+            <li class="cty-status__item"><span class="cty-status__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span><b>Built to the FMGL 2021 length:</b> 54 months of study and a 12-month internship at UCT&rsquo;s own teaching hospital, taught entirely in English.</span></li>
+            <li class="cty-status__item"><span class="cty-status__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span><b>Recognised at home:</b> UCT is licensed by Timor-Leste&rsquo;s Ministry of Higher Education and won A-grade accreditation from the national agency, ANAAA, in March 2025.</span></li>
+            <li class="cty-status__item"><span class="cty-status__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span><b>Listed worldwide:</b> UCT appears in the World Directory of Medical Schools, and its graduates are eligible for a medical licence in Timor-Leste.</span></li>
+          </ul>
+        </div>
+        <div class="cty-status__open">
+          <div class="cty-status__open-head">
+            <span class="icon-badge icon-badge--orange icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg></span>
+            <div><small>Worth knowing</small><h4>A young programme, without a track record yet</h4></div>
+          </div>
+          <p>The first international MBBS batch began in 2024, so no student has sat FMGE from Timor-Leste yet. NMC also does not publish a list of &ldquo;approved&rdquo; foreign universities &mdash; it checks each graduate&rsquo;s course against FMGL 2021. That is why the paperwork for your batch matters.</p>
+          <div class="cty-status__promise"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg><span><b>Our promise:</b> before you pay anything, we confirm in writing the 54-month course, the same-university internship, English medium and your licence eligibility in Timor-Leste.</span></div>
+        </div>
+        <p class="cty-status__src">Sources: <a href="https://www.uct.tl/" target="_blank" rel="noopener">Universidade Cat&oacute;lica Timorense</a>; <a href="https://en.tatoli.tl/2026/03/24/uct-sees-mbbs-collaboration-with-india-strengthening-medical-education-in-timor-leste/13/" target="_blank" rel="noopener">Tatoli, Timor-Leste&rsquo;s national news agency (24 March 2026)</a>; NMC Foreign Medical Graduate Licentiate Regulations, 2021. Rules can change; we re-check them for every student.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. UNIVERSITY
+       7a. SPOTLIGHT (.uni-spot) — UCT is the university this page leads with. When its own fee page is built
+           (suggested name: mbbs-in-timor-leste-uct.html):
+             1. replace the WhatsApp footer with:  <span class="uni-card__go">View the full fee structure <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+             2. add before </article>:            <a class="uni-card__cover" href="mbbs-in-timor-leste-uct.html" aria-label="View the full fee structure for Universidade Católica Timorense"></a>
+       7b. Only the "another university?" card sits in the row below; country.css makes it fill the width on phones.
+           To add a second university later, paste a .uni-card (copy one from mbbs-in-uzbekistan.html) ABOVE that card.
+       IMAGE 2: assets/images/universities/uct/spotlight.webp — 1400 x 1000 px, UCT's four-storey Pope Francis Building
+       on the Balide campus in Dili, blue sky, a few students in white coats at the entrance. ============ -->
+  <section class="section" id="universities">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">University</span><h2>Where we place students in Timor-Leste</h2><p>One university we know well, checked against every NMC condition. Ask for its full, year-by-year fee sheet.</p></div>
+
+      <article class="card uni-spot reveal">
+        <div class="img-slot" data-spec="universities/uct/spotlight.webp · 1400×1000 px"><img src="assets/images/universities/uct/spotlight.webp" width="1400" height="1000" alt="The Pope Francis Building on the Universidade Católica Timorense campus in Balide, Dili" loading="lazy"></div>
+        <span class="tag tag--abs">Mathura students here</span>
+        <div class="uni-spot__body">
+          <span class="uni-spot__kicker"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Balide, Dili &middot; founded December 2021</span>
+          <h3>Universidade Cat&oacute;lica Timorense (UCT)</h3>
+          <p class="uni-spot__lead">Timor-Leste&rsquo;s Catholic university, founded by the Archdiocese of Dili and named after Saint John Paul II. Its Faculty of Medical Sciences launched the MBBS with an Indian partner in 2024 and taught 380 Indian students by March 2026, in new buildings with a clinical skills laboratory.</p>
+          <div class="uni-spot__chips">
+            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>A-grade accredited</span>
+            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Own teaching hospital</span>
+            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Indian mess on campus</span>
+          </div>
+          <div class="uni-spot__stats">
+            <div class="uni-spot__stat"><b data-inr="250000">&#8377;2.5 L</b><span>Tuition a year, the same every year</span></div>
+            <div class="uni-spot__stat"><b>5.5 years</b><span>MBBS, internship included</span></div>
+            <div class="uni-spot__stat"><b>380</b><span>Indian students, March 2026</span></div>
+          </div>
+          <div class="uni-card__foot">
+            <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the full fee sheet for Universidade Católica Timorense (UCT), Timor-Leste."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the full fee sheet on WhatsApp</a>
+          </div>
+        </div>
+      </article>
+
+      <div class="snap-row uni-row">
+        <article class="card uni-card uni-card--ask reveal">
+          <span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg></span>
+          <h3>Heard about another university in Timor-Leste?</h3>
+          <p>Send us its name. We will check its course length, internship, medium of instruction and licence rules against NMC&rsquo;s conditions &mdash; free, and in writing.</p>
+          <a class="btn btn--primary btn--sm" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, can you check a university in Timor-Leste for me? The university is: ">Ask us to check <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. FEES — an AVERAGE year. To change a figure, edit its data-inr number (in rupees, per year).
+       data-row-inr on each row must match the number inside it; the total's data-inr must equal their sum.
+       Tuition = ₹2.5 L a year, charged for the 4.5 study years (₹11.25 L). Hostel & meals = middle of ₹1.5–2 L; personal = middle of ₹50–80k.
+       Whole course ≈ ₹11.25 L tuition + 5.5 years × ₹2.4 L living = about ₹24.5 L. ============ -->
+  <section class="section section--wash" id="fees">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Fees</span><h2>What a year in Timor-Leste really costs</h2><p>An average, all-in budget &mdash; not the highest quote you will find online. Ask us for UCT&rsquo;s own year-by-year sheet.</p></div>
+      <div class="cty-fees reveal">
+        <div class="cty-fees__total">
+          <div class="cty-fees__switch" role="group" aria-label="Show amounts in">
+            <button type="button" data-currency="inr" aria-pressed="true">&#8377; INR</button>
+            <button type="button" data-currency="usd" aria-pressed="false">$ USD</button>
+          </div>
+          <div>
+            <span class="cty-fees__kicker">An average year, all-in</span>
+            <span class="cty-fees__big"><span id="feeTotal" data-inr="490000">&#8377;4.9 L</span> <small>/ year</small></span>
+          </div>
+          <p>Tuition, hostel with meals and day-to-day spending added together, using the middle of published ranges.</p>
+          <div class="cty-fees__course"><span>Whole 5.5-year course, all-in, about</span><b><span data-inr="2450000">&#8377;24.5 L</span></b></div>
+        </div>
+
+        <div class="card cty-fees__rows">
+          <div class="cty-fees__row" data-row-inr="250000">
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div class="cty-fees__name"><b>Tuition</b><span>Flat every year &middot; <span data-inr="1125000">&#8377;11.3 L</span> for the 4.5 study years</span></div><span class="cty-fees__val" data-inr="250000">&#8377;2.5 L</span></div>
+            <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
+          </div>
+          <div class="cty-fees__row" data-row-inr="175000">
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-home"></use></svg></span><div class="cty-fees__name"><b>Hostel &amp; Indian mess</b><span>Range <span data-inr-range="150000-200000">&#8377;1.5&ndash;2 L</span> a year</span></div><span class="cty-fees__val" data-inr="175000">&#8377;1.8 L</span></div>
+            <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
+          </div>
+          <div class="cty-fees__row" data-row-inr="65000">
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><div class="cty-fees__name"><b>Personal &amp; local travel</b><span>Range <span data-inr-range="50000-80000">&#8377;50k&ndash;80k</span> a year</span></div><span class="cty-fees__val" data-inr="65000">&#8377;65k</span></div>
+            <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
+          </div>
+        </div>
+
+        <div class="cty-fees__extras">
+          <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg><span><b>Flights:</b> Chennai to Dili from &#8377;35,561 one-way, usually via Singapore (Sep 2026)</span></div>
+          <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg><span><b>One-time:</b> student visa, document attestation and insurance &mdash; itemised in your fee sheet</span></div>
+          <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg><span><b>Always:</b> no donation or capitation fee &mdash; pay the university directly, against an official receipt</span></div>
+        </div>
+      </div>
+      <p class="cty-asof"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><span>Indicative averages as of Oct 2026, from the published fee guide for UCT&rsquo;s MBBS. Timor-Leste uses the US dollar; <span data-rate-label>1 USD = &#8377;95 (as of 26 Oct 2026)</span>. Fees can change for each new batch &mdash; confirm the exact figures, including any internship-year charges, with your counsellor.</span></p>
+    </div>
+  </section>
+
+  <!-- ============ 9a. FIT CHECK (optional block .cty-fit — an honest "is this country right for you?" for any country page) ============ -->
+  <section class="section" id="fit">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><span class="eyebrow">Is it for you?</span><h2>Is Timor-Leste the right fit for your child?</h2><p>Every destination suits some students better than others. Here is our honest view.</p></div>
+      <div class="cty-fit">
+        <div class="cty-fit__col cty-fit__col--yes reveal">
+          <div class="cty-fit__head">
+            <span class="icon-badge icon-badge--teal icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-target"></use></svg></span>
+            <div><small>A strong fit</small><h3>Timor-Leste suits you if you&hellip;</h3></div>
+          </div>
+          <ul class="cty-fit__list">
+            <li class="cty-fit__item"><span class="cty-fit__mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span><b>Plan to practise in India.</b> Studying the Indian syllabus from day one is the best start for FMGE and NExT.</span></li>
+            <li class="cty-fit__item"><span class="cty-fit__mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span><b>Need a firm budget.</b> One flat tuition fee, low living costs and no donation make the five and a half years easy to plan.</span></li>
+            <li class="cty-fit__item"><span class="cty-fit__mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span><b>Prefer warm weather and Indian food.</b> No winters to survive, and a mess that cooks the food you grew up on.</span></li>
+            <li class="cty-fit__item"><span class="cty-fit__mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span><b>Study best without distractions.</b> Dili is a small, quiet capital by the sea &mdash; not a big, busy city.</span></li>
+          </ul>
+        </div>
+        <div class="cty-fit__col reveal">
+          <div class="cty-fit__head">
+            <span class="icon-badge icon-badge--orange icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-scale"></use></svg></span>
+            <div><small>Think it through</small><h3>Weigh it carefully if you&hellip;</h3></div>
+          </div>
+          <ul class="cty-fit__list">
+            <li class="cty-fit__item"><span class="cty-fit__mark"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg></span><span><b>Want a proven FMGE record.</b> The programme is new; the first FMGE results are still a few years away.</span></li>
+            <li class="cty-fit__item"><span class="cty-fit__mark"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg></span><span><b>Want quick trips home.</b> There are no direct flights; the journey takes 20 hours or more each way.</span></li>
+            <li class="cty-fit__item"><span class="cty-fit__mark"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg></span><span><b>Want many seniors from your town.</b> The Indian community is close-knit but much smaller than in Russia or the Philippines.</span></li>
+            <li class="cty-fit__item"><span class="cty-fit__mark"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg></span><span><b>Want a big-city lifestyle.</b> Shopping, nightlife and weekend travel are limited compared with larger capitals.</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="cty-fit__foot reveal">
+        <p><b>Still deciding between countries?</b> Compare Timor-Leste with the Philippines, Uzbekistan and more on fees, course length and travel.</p>
+        <a href="mbbs-abroad-planner.html" class="btn btn--primary btn--sm">Compare in the MBBS Planner <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 9. ELIGIBILITY ============ -->
+  <section class="section section--wash" id="eligibility">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Eligibility</span><h2>Can you apply? The NMC checklist</h2><p>Every point below must be true for your degree to count in India.</p></div>
+      <div class="cty-elig">
+        <ul class="card cty-checks reveal">
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>NEET-UG qualified</b><span>Required for every Indian student studying medicine abroad. A qualifying score is enough, and it stays valid for three years.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>50% in Physics, Chemistry and Biology</b><span>In Class 12, with English as a subject. 40% for SC, ST and OBC candidates.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>17 years old by 31 December</b><span>Of the year you join.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>No IELTS, no extra entrance test</b><span>UCT admits on your Class 12 marks and NEET result.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>A course that meets FMGL 2021</b><span>At least 54 months of study, taught in English, with a 12-month internship at the same university.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>Eligible for a licence in Timor-Leste</b><span>The last NMC condition. UCT says its graduates qualify; we confirm it for your batch in writing.</span></div></li>
+        </ul>
+        <aside class="cty-elig__tool reveal">
+          <svg class="cty-elig__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+          <span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-check-square"></use></svg></span>
+          <h3>Not sure where you stand?</h3>
+          <p>Enter your NEET score and Class 12 marks in the MBBS Planner and get an instant answer &mdash; free, in about ten seconds.</p>
+          <a href="mbbs-abroad-planner.html#eligibility" class="btn btn--ondark">Check my eligibility <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10. ADMISSION STEPS ============ -->
+  <section class="section has-grid" id="admission">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><span class="eyebrow">Admission</span><h2>Your path to UCT, Timor-Leste</h2><p>One counsellor, from your first call to your first lecture &mdash; and after.</p></div>
+      <ol class="cty-steps" data-stagger>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Free counselling</h3><p>Your NEET score, budget and goals, in one honest conversation.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Verify in writing</h3><p>Course length, internship, English medium and fees confirmed on paper.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Admission letter</h3><p>We send your application to UCT and get your offer letter.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Invitation &amp; visa</h3><p>UCT issues your invitation letter; we prepare your student visa file.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Fly to Dili</h3><p>Help with the route via Singapore or Bali, airport pickup and hostel check-in.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Study &amp; FMGE prep</h3><p>We stay with you through all five and a half years and the exam back home.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ 11. STUDENT LIFE.  IMAGE 3: assets/images/countries/timor-leste/life.webp — 1400 x 1470 px
+       Indian students in casual cottons laughing on a quiet white-sand beach near Dili at sunset, palm trees and calm sea.
+       (Alternative: students sharing a meal of rice, dal and curry in a bright hostel mess.) ============ -->
+  <section class="section section--wash" id="life">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Student life</span><h2>Life in Dili, day to day</h2><p>A small, green capital between the mountains and the sea, with weather that feels like home.</p></div>
+      <div class="cty-life">
+        <div class="cty-life__photo reveal">
+          <div class="img-slot" data-spec="countries/timor-leste/life.webp · 1400×1470 px"><img src="assets/images/countries/timor-leste/life.webp" width="1400" height="1470" alt="Indian students relaxing on a beach near Dili at sunset" loading="lazy"></div>
+          <div class="cty-seasons" aria-label="Seasons in Dili">
+            <div class="cty-season"><small>Jun&ndash;Sep</small><b>Dry</b><span>Nights ~21&deg;C</span></div>
+            <div class="cty-season"><small>Oct&ndash;Nov &middot; Apr&ndash;May</small><b>Warm</b><span>Up to ~32&deg;C</span></div>
+            <div class="cty-season"><small>Dec&ndash;Mar</small><b>Wet</b><span>Tropical showers</span></div>
+          </div>
+          <p class="cty-life__note">Dili averages. Pack cottons, an umbrella and mosquito repellent &mdash; no winter clothes needed.</p>
+        </div>
+        <div class="cty-tiles" data-stagger>
+          <div class="card cty-tile cty-tile--wide reveal"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><h3>Monthly living cost</h3><p>About &#8377;20,000 a month on average for hostel, Indian mess, local travel and personal spending (Oct 2026).</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-utensils"></use></svg></span><h3>Food</h3><p>An Indian mess in the hostel, added at students&rsquo; request. Rice, fish and fresh fruit are everyday food in Dili.</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg></span><h3>Language</h3><p>Classes are in English. Tetum and Portuguese are the official languages; Indonesian and English are widely used too.</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></span><h3>Time zone</h3><p>3 hours 30 minutes ahead of India. An evening call from Dili reaches home in the afternoon.</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span><h3>Staying safe</h3><p>24-hour hostel security and a separate girls&rsquo; block. India&rsquo;s embassy in Dili opened in 2024 &mdash; register with it when you arrive.</p></div>
+          <div class="card cty-tile cty-tile--wide reveal"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg></span><h3>Money</h3><p>Timor-Leste uses the US dollar, so there is no local currency to exchange. Carry a forex card and keep some small dollar notes for daily spending.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 12. DOCUMENTS ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Documents</span><h2>What to keep ready</h2><p>Start gathering these early. Your counsellor gives you the exact list for UCT, including any attestation needed.</p></div>
+      <ul class="cty-docs" data-stagger>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-passport"></use></svg><span>Valid passport<small>At least 18 months&rsquo; validity</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg><span>NEET-UG scorecard<small>Within its three-year validity</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg><span>Class 10 &amp; 12 mark sheets<small>Notarised and attested copies</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg><span>Birth certificate<small>Matching your passport details</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-eye"></use></svg><span>Passport-size photographs<small>Recent, white background</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg><span>Medical fitness certificate<small>From a registered doctor</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg><span>Bank statements<small>Last 3&ndash;6 months, for the visa</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg><span>Admission &amp; invitation letters<small>We arrange these with UCT</small></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 13. FAQs — keep these in step with the FAQPage block in <head> ============ -->
+  <section class="section section--wash" id="faqs">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><span class="eyebrow">FAQs</span><h2>Questions parents ask us most</h2><p>Straight answers. Anything else, just ask a counsellor.</p></div>
+      <div class="cty-faq">
+        <details><summary>Is an MBBS from Timor-Leste valid in India?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Yes, if the course meets every NMC FMGL 2021 condition: at least 54 months of study, taught in English, a 12-month internship at the same university, and eligibility for a medical licence in Timor-Leste. UCT&rsquo;s MBBS is built to these rules: 4.5 years of study plus a 12-month internship at its own teaching hospital. You then clear FMGE or NExT to practise in India.</div></details>
+        <details><summary>Is UCT approved by NMC?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>NMC does not publish a list of approved foreign universities. Instead, it checks each graduate&rsquo;s course against the FMGL 2021 regulations. UCT is listed in the World Directory of Medical Schools and holds A-grade accreditation from Timor-Leste&rsquo;s national agency, ANAAA (March 2025). We confirm every FMGL condition for your batch in writing before you pay. See <a href="#recognition">NMC status</a> above.</div></details>
+        <details><summary>How long is the course?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Five and a half years: 4.5 years (54 months) of study followed by a 12-month internship at the university&rsquo;s own teaching hospital. That is exactly the minimum NMC requires.</div></details>
+        <details><summary>Does UCT follow the Indian syllabus?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>UCT teaches on the Competency Based Medical Education (CBME) framework that Indian medical colleges use, from Indian and international textbooks, with Indian faculty on its staff. The subjects are the same as an Indian MBBS, which helps when you prepare for FMGE or NExT. See the <a href="#syllabus">year-by-year syllabus</a>.</div></details>
+        <details><summary>How much does it cost?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>An average year costs about &#8377;4.9 lakh all-in: roughly &#8377;2.5 lakh tuition, &#8377;1.75 lakh hostel and meals and about &#8377;65,000 for personal and local travel costs (indicative, Oct 2026). Tuition is charged for the 4.5 study years and stays the same each year; the whole course typically comes to about &#8377;24 lakh all-in. See the <a href="#fees">fee breakdown</a>.</div></details>
+        <details><summary>Do I need NEET?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Yes. NMC requires every Indian student who studies medicine abroad to qualify NEET-UG, and the result stays valid for three years. UCT admits Indian students on their Class 12 marks and NEET result, with no IELTS or extra entrance test.</div></details>
+        <details><summary>How do I get there from India?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>There are no direct flights. From Chennai the journey takes about 20&ndash;24 hours, usually through Singapore or Bali, from about &#8377;35,561 one-way (Sep 2026). Dili is 3 hours 30 minutes ahead of India. We help you plan the route and meet you at Dili airport.</div></details>
+        <details><summary>What is the weather like?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Tropical and warm all year, much like South India. Daytime highs stay around 30&ndash;32&deg;C. The wet season runs from December to March; June to September is dry, with cooler nights around 21&ndash;22&deg;C.</div></details>
+        <details><summary>Is Timor-Leste safe for Indian students?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>India opened a resident embassy in Dili in September 2024, so help is close at hand. UCT&rsquo;s hostel has 24-hour security and a separate girls&rsquo; block with a resident warden. Register with the Embassy when you arrive, and our team stays in touch for the whole course.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 14. CLOSING CTA (same card as Home and About) ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="cta reveal">
+        <svg class="cta__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+        <div><h2>Planning MBBS in Timor-Leste?</h2><p>One conversation: your NEET score, your budget, UCT&rsquo;s fee sheet &mdash; and every NMC check, in writing.</p></div>
+        <div class="btn-row">
+          <a href="apply.html" class="btn btn--ondark">Get free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <a href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, I'd like to know more about MBBS in Timor-Leste." class="btn btn--outline-light"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg> WhatsApp us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{% include footer.html %}
+{% include bottom-nav.html %}
+{% include scripts.html %}
+<script src="js/pages/country.js"></script>
+</body>
+</html>

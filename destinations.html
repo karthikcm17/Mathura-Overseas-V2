@@ -1,18 +1,46 @@
 ---
 # Shared parts (announcement bar, header, footer, tab bar, icons) live in the _includes folder.
+# The Countries page: countries AND universities on one page. Nothing about a country or a university is typed here.
+#   _data/countries.yml     → the cost chart, the "Fly the route" explorer, the country chips and headings
+#   _data/universities.yml  → every university card, the search and the filters
+# To add or change a country or a university, edit those two files. This page updates itself.
 active: countries   # highlighted menu item: home, countries, planner, updates, guide, about, privacy
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>MBBS Abroad Countries | Compare Destinations | Mathura Overseas</title>
-<meta name="description" content="Compare MBBS-abroad countries side by side: fees, flights from Chennai, climate and student life. Filter by budget, pick up to three and talk to a counsellor.">
-<meta property="og:title" content="MBBS Abroad Countries | Compare Destinations | Mathura Overseas">
-<meta property="og:description" content="Compare MBBS-abroad countries side by side: fees, flights, climate and student life.">
+<title>MBBS Abroad Countries &amp; Universities | Mathura Overseas</title>
+<meta name="description" content="Choose your MBBS-abroad country, then your university: flights from Chennai, yearly costs, and every university we recommend, checked against the NMC rules.">
+<link rel="canonical" href="https://mathuraoverseas.com/destinations.html">
+<meta property="og:title" content="MBBS Abroad Countries &amp; Universities | Mathura Overseas">
+<meta property="og:description" content="Flights from Chennai, what a year really costs, and every university we recommend for MBBS abroad, in one place.">
+<meta property="og:url" content="https://mathuraoverseas.com/destinations.html">
 <meta property="og:image" content="assets/images/og/home.jpg">
 {% include head.html %}
 <link rel="stylesheet" href="css/pages/destinations.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mathuraoverseas.com/index.html" },
+    { "@type": "ListItem", "position": 2, "name": "Countries", "item": "https://mathuraoverseas.com/destinations.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "MBBS abroad universities recommended by Mathura Overseas",
+  "itemListElement": [
+{%- for u in site.data.universities %}
+    { "@type": "ListItem", "position": {{ forloop.index }}, "item": { "@type": "CollegeOrUniversity", "name": {{ u.name | jsonify }}, "address": { "@type": "PostalAddress", "addressLocality": {{ u.city | jsonify }} }{% if u.page and u.page != "" %}, "url": {{ u.page | prepend: "https://mathuraoverseas.com/" | jsonify }}{% endif %} } }{% unless forloop.last %},{% endunless %}
+{%- endfor %}
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -22,146 +50,63 @@ active: countries   # highlighted menu item: home, countries, planner, updates, 
 
 <main id="main">
 
-  <!-- ============ HERO ============ -->
-  <section class="dest-hero">
-    <svg class="dest-hero__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
-    <div class="container dest-hero__inner">
-      <nav class="dest-crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><span>Countries</span></nav>
-      <span class="dest-pill"><span class="dest-pill__dot"></span>Compare before you decide</span>
-      <h1>Find the country that <em>fits your plan</em></h1>
-      <p class="dest-hero__lead">Fees, flights, climate and student life, side by side. Filter what matters to you, pick up to three countries to compare, and take the shortlist to a counsellor.</p>
-      <div class="btn-row">
-        <a href="#countries" class="btn btn--ondark">Browse countries <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
-        <a href="apply.html" class="btn btn--outline-light">Get free counselling</a>
+  <!-- ============ 1. HERO: university search on the left; on computers, "a year, all-in" by country on the right ============ -->
+  <section class="udir-hero">
+    <svg class="udir-hero__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+    <div class="container udir-hero__grid">
+      <div class="udir-hero__copy">
+        <nav class="udir-crumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+          <span aria-current="page">Countries</span>
+        </nav>
+        <span class="pill"><span class="pill__dot"></span>Countries &amp; universities &middot; 2026&ndash;27 intake</span>
+        <h1>Choose your country, <em>then your university</em></h1>
+        <p class="udir-hero__lead">See the flight from Chennai and what a year really costs, then search every university we recommend. Each one is checked against the NMC rules, and every fee comes to you in writing.</p>
+
+        <div class="udir-search" role="search">
+          <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+          <input type="search" id="udirQ" placeholder="University, city or country" aria-label="Search universities by name, city or country" autocomplete="off" enterkeyhint="search">
+          <button type="button" class="udir-search__clear" id="udirClearQ" aria-label="Clear search" hidden><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
+        </div>
+        <div class="udir-try">
+          <span>Try</span>
+          <button type="button" data-udir-q="Cebu">Cebu</button>
+          <button type="button" data-udir-q="Samarkand">Samarkand</button>
+          <button type="button" data-udir-q="Bishkek">Bishkek</button>
+          <button type="button" data-udir-q="Tbilisi">Tbilisi</button>
+          <button type="button" data-udir-q="Kathmandu">Kathmandu</button>
+        </div>
       </div>
+
+      <aside class="udir-costs" aria-labelledby="udirCostsTitle">
+        <div class="udir-costs__head">
+          <span class="icon-badge icon-badge--teal icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span>
+          <div><small>An average year, all-in</small><p id="udirCostsTitle">Compare countries at a glance</p></div>
+        </div>
+        <ul class="udir-costs__list">
+{%- for c in site.data.countries %}
+          <li><button type="button" data-route-set="{{ c.slug }}"><span class="udir-costs__name">{{ c.name | escape }}</span><span class="udir-costs__bar"><span data-bar-inr="{{ c.year_inr }}"></span></span><b>{{ c.year_cost }}</b></button></li>
+{%- endfor %}
+        </ul>
+        <p class="udir-costs__note">Tuition, hostel, meals and day-to-day costs, from each country page (indicative, Oct 2026). Tap a country to fly its route.</p>
+      </aside>
     </div>
   </section>
 
-  <!-- ============ HOW THIS PAGE HELPS (floats over the hero edge) ============ -->
-  <div class="dest-proof">
+  <!-- ============ 2. FLY THE ROUTE — one country at a time. The chips and every value come from _data/countries.yml;
+       the script swaps the values in when a chip is tapped. The first country is written in here so the card is never empty. ============ -->
+{%- assign c0 = site.data.countries.first %}
+  <section class="section dest-route-sec" id="route-sec">
     <div class="container">
-      <div class="card dest-proof__card">
-        <div class="dest-proof__item"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-sliders"></use></svg></span><div><b>Filter</b><span>by budget, flight or climate</span></div></div>
-        <div class="dest-proof__item"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-scale"></use></svg></span><div><b>Compare</b><span>up to 3 countries at once</span></div></div>
-        <div class="dest-proof__item"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><div><b>Preview</b><span>the flight from Chennai</span></div></div>
-        <div class="dest-proof__item"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span><div><b>Decide</b><span>with a counsellor, free</span></div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============ COUNTRY CARDS ============
-       To update a country: edit its data-* values here (fee, duration, living cost). Flight, climate and highlights live in js/pages/destinations.js.
-       IMAGES: one 1000 x 1250 px (4:5) photo per country, saved as assets/images/destinations/{name}.jpg. Keep the subject in the centre; the bottom third sits under the text. -->
-  <section class="section" id="countries">
-    <div class="container">
-      <div class="section-head reveal"><h2>Choose your destination</h2><p>Tap a card to explore it, or use the <strong>+</strong> button to add it to your comparison.</p></div>
-
-      <div class="dest-chips" role="group" aria-label="Filter countries">
-        <button type="button" class="dest-chip is-active" data-filter="all" aria-pressed="true">All countries</button>
-        <button type="button" class="dest-chip" data-filter="budget" aria-pressed="false">Fees up to &#8377;25L</button>
-        <button type="button" class="dest-chip" data-filter="near" aria-pressed="false">Shorter flights</button>
-        <button type="button" class="dest-chip" data-filter="warm" aria-pressed="false">Warm climate</button>
-        <button type="button" class="dest-chip" data-filter="english" aria-pressed="false">English-medium</button>
-      </div>
-      <p class="dest-hint" id="destHint" role="status"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg>Pick up to 3 countries to compare side by side.</p>
-
-      <div class="dest-grid" id="destGrid">
-
-        <article class="dest-tall dest-tile reveal" data-key="philippines" data-name="Philippines" data-tags="english warm" data-fee="&#8377;18L&ndash;35L" data-low="18" data-duration="5.5&ndash;6.5 yrs" data-living="&#8377;20k&ndash;35k">
-          <div class="img-slot" data-spec="philippines.jpg · 1000×1250 px"><img src="assets/images/destinations/philippines.jpg" width="1000" height="1250" alt="A Philippine city street with a heritage stone church beside modern towers" loading="lazy"></div>
-          <span class="tag tag--abs">Best value</span>
-          <a class="dest-tall__cover" href="mbbs-in-philippines.html" aria-label="Explore MBBS in Philippines"></a>
-          <button type="button" class="dest-cmp" aria-pressed="false" aria-label="Compare Philippines"><svg class="icon dest-cmp__plus" aria-hidden="true"><use href="#i-plus"></use></svg><svg class="icon dest-cmp__tick" aria-hidden="true"><use href="#i-check"></use></svg><span class="dest-cmp__label">Compare</span></button>
-          <div class="dest-tall__body"><h3>Philippines</h3><p>American-style, English-medium teaching</p><div class="dest-tall__foot"><span>&#8377;18L&ndash;35L</span><span class="dest-tall__go"><span class="dest-tall__go-text">Explore</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></div></div>
-        </article>
-
-        <article class="dest-tall dest-tile reveal" data-key="uzbekistan" data-name="Uzbekistan" data-tags="budget near" data-fee="&#8377;15L&ndash;25L" data-low="15" data-duration="6 yrs" data-living="&#8377;12k&ndash;20k">
-          <div class="img-slot" data-spec="uzbekistan.jpg · 1000×1250 px"><img src="assets/images/destinations/uzbekistan.jpg" width="1000" height="1250" alt="Blue-tiled Registan madrasas in Samarkand at golden hour" loading="lazy"></div>
-          <span class="tag tag--abs">Lower fees</span>
-          <a class="dest-tall__cover" href="mbbs-in-uzbekistan.html" aria-label="Explore MBBS in Uzbekistan"></a>
-          <button type="button" class="dest-cmp" aria-pressed="false" aria-label="Compare Uzbekistan"><svg class="icon dest-cmp__plus" aria-hidden="true"><use href="#i-plus"></use></svg><svg class="icon dest-cmp__tick" aria-hidden="true"><use href="#i-check"></use></svg><span class="dest-cmp__label">Compare</span></button>
-          <div class="dest-tall__body"><h3>Uzbekistan</h3><p>Silk Road cities, modern campuses</p><div class="dest-tall__foot"><span>&#8377;15L&ndash;25L</span><span class="dest-tall__go"><span class="dest-tall__go-text">Explore</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></div></div>
-        </article>
-
-        <article class="dest-tall dest-tile reveal" data-key="russia" data-name="Russia" data-tags="" data-fee="&#8377;18L&ndash;32L" data-low="18" data-duration="6 yrs" data-living="&#8377;15k&ndash;25k">
-          <div class="img-slot" data-spec="russia.jpg · 1000×1250 px"><img src="assets/images/destinations/russia.jpg" width="1000" height="1250" alt="Snow-dusted historic university building in Moscow with the skyline behind" loading="lazy"></div>
-          <span class="tag tag--abs">Government-run</span>
-          <a class="dest-tall__cover" href="mbbs-in-russia.html" aria-label="Explore MBBS in Russia"></a>
-          <button type="button" class="dest-cmp" aria-pressed="false" aria-label="Compare Russia"><svg class="icon dest-cmp__plus" aria-hidden="true"><use href="#i-plus"></use></svg><svg class="icon dest-cmp__tick" aria-hidden="true"><use href="#i-check"></use></svg><span class="dest-cmp__label">Compare</span></button>
-          <div class="dest-tall__body"><h3>Russia</h3><p>60+ years of Indian students</p><div class="dest-tall__foot"><span>&#8377;18L&ndash;32L</span><span class="dest-tall__go"><span class="dest-tall__go-text">Explore</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></div></div>
-        </article>
-
-        <article class="dest-tall dest-tile reveal" data-key="vietnam" data-name="Vietnam" data-tags="near warm" data-fee="&#8377;28L&ndash;45L" data-low="28" data-duration="6 yrs" data-living="&#8377;18k&ndash;30k">
-          <div class="img-slot" data-spec="vietnam.jpg · 1000×1250 px"><img src="assets/images/destinations/vietnam.jpg" width="1000" height="1250" alt="Hanoi lake and skyline at dusk with warm city lights" loading="lazy"></div>
-          <span class="tag tag--abs">Closest to India</span>
-          <a class="dest-tall__cover" href="mbbs-in-vietnam.html" aria-label="Explore MBBS in Vietnam"></a>
-          <button type="button" class="dest-cmp" aria-pressed="false" aria-label="Compare Vietnam"><svg class="icon dest-cmp__plus" aria-hidden="true"><use href="#i-plus"></use></svg><svg class="icon dest-cmp__tick" aria-hidden="true"><use href="#i-check"></use></svg><span class="dest-cmp__label">Compare</span></button>
-          <div class="dest-tall__body"><h3>Vietnam</h3><p>Modern, safe cities, short flight</p><div class="dest-tall__foot"><span>&#8377;28L&ndash;45L</span><span class="dest-tall__go"><span class="dest-tall__go-text">Explore</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></div></div>
-        </article>
-
-        <article class="dest-tall dest-tile reveal" data-key="kyrgyzstan" data-name="Kyrgyzstan" data-tags="" data-fee="&#8377;18L&ndash;33L" data-low="18" data-duration="6 yrs" data-living="&#8377;12k&ndash;20k">
-          <div class="img-slot" data-spec="kyrgyzstan.jpg · 1000×1250 px"><img src="assets/images/destinations/kyrgyzstan.jpg" width="1000" height="1250" alt="Bishkek city with snow-capped Ala-Too mountains rising behind it" loading="lazy"></div>
-          <span class="tag tag--abs">Budget-friendly</span>
-          <a class="dest-tall__cover" href="mbbs-in-kyrgyzstan.html" aria-label="Explore MBBS in Kyrgyzstan"></a>
-          <button type="button" class="dest-cmp" aria-pressed="false" aria-label="Compare Kyrgyzstan"><svg class="icon dest-cmp__plus" aria-hidden="true"><use href="#i-plus"></use></svg><svg class="icon dest-cmp__tick" aria-hidden="true"><use href="#i-check"></use></svg><span class="dest-cmp__label">Compare</span></button>
-          <div class="dest-tall__body"><h3>Kyrgyzstan</h3><p>Among the most affordable options</p><div class="dest-tall__foot"><span>&#8377;18L&ndash;33L</span><span class="dest-tall__go"><span class="dest-tall__go-text">Explore</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></div></div>
-        </article>
-
-        <article class="dest-tall dest-tile reveal" data-key="timor" data-name="Timor-Leste" data-tags="budget warm english" data-fee="&#8377;15L&ndash;20L" data-low="15" data-duration="5.5 yrs" data-living="&#8377;15k&ndash;25k">
-          <div class="img-slot" data-spec="timor-leste.jpg · 1000×1250 px"><img src="assets/images/destinations/timor-leste.jpg" width="1000" height="1250" alt="Dili waterfront with palms and calm sea in morning light" loading="lazy"></div>
-          <span class="tag tag--abs">Indian syllabus</span>
-          <a class="dest-tall__cover" href="mbbs-in-timor-uct-timor.html" aria-label="Explore MBBS in Timor-Leste"></a>
-          <button type="button" class="dest-cmp" aria-pressed="false" aria-label="Compare Timor-Leste"><svg class="icon dest-cmp__plus" aria-hidden="true"><use href="#i-plus"></use></svg><svg class="icon dest-cmp__tick" aria-hidden="true"><use href="#i-check"></use></svg><span class="dest-cmp__label">Compare</span></button>
-          <div class="dest-tall__body"><h3>Timor-Leste</h3><p>Indian-aligned syllabus, in English</p><div class="dest-tall__foot"><span>&#8377;15L&ndash;20L</span><span class="dest-tall__go"><span class="dest-tall__go-text">Explore</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></div></div>
-        </article>
-
-        <article class="dest-tall dest-tile reveal" data-key="georgia" data-name="Georgia" data-tags="" data-fee="Ask a counsellor" data-low="" data-duration="Ask a counsellor" data-living="Ask a counsellor">
-          <div class="img-slot" data-spec="georgia.jpg · 1000×1250 px"><img src="assets/images/destinations/georgia.jpg" width="1000" height="1250" alt="Tbilisi old town with colourful balconies and a hilltop fortress" loading="lazy"></div>
-          <span class="tag tag--abs">Europe&ndash;Asia</span>
-          <a class="dest-tall__cover" href="mbbs-in-georgia.html" aria-label="Explore MBBS in Georgia"></a>
-          <button type="button" class="dest-cmp" aria-pressed="false" aria-label="Compare Georgia"><svg class="icon dest-cmp__plus" aria-hidden="true"><use href="#i-plus"></use></svg><svg class="icon dest-cmp__tick" aria-hidden="true"><use href="#i-check"></use></svg><span class="dest-cmp__label">Compare</span></button>
-          <div class="dest-tall__body"><h3>Georgia</h3><p>Tbilisi&rsquo;s old town, mild climate</p><div class="dest-tall__foot"><span>Fees on request</span><span class="dest-tall__go"><span class="dest-tall__go-text">Explore</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></div></div>
-        </article>
-
-        <article class="dest-tall dest-tile reveal" data-key="kazakhstan" data-name="Kazakhstan" data-tags="" data-fee="Ask a counsellor" data-low="" data-duration="Ask a counsellor" data-living="Ask a counsellor">
-          <div class="img-slot" data-spec="kazakhstan.jpg · 1000×1250 px"><img src="assets/images/destinations/kazakhstan.jpg" width="1000" height="1250" alt="Almaty city lights with snow-capped mountains behind" loading="lazy"></div>
-          <span class="tag tag--abs">Central Asia</span>
-          <a class="dest-tall__cover" href="mbbs-in-kazakhstan.html" aria-label="Explore MBBS in Kazakhstan"></a>
-          <button type="button" class="dest-cmp" aria-pressed="false" aria-label="Compare Kazakhstan"><svg class="icon dest-cmp__plus" aria-hidden="true"><use href="#i-plus"></use></svg><svg class="icon dest-cmp__tick" aria-hidden="true"><use href="#i-check"></use></svg><span class="dest-cmp__label">Compare</span></button>
-          <div class="dest-tall__body"><h3>Kazakhstan</h3><p>Almaty beneath snowy mountains</p><div class="dest-tall__foot"><span>Fees on request</span><span class="dest-tall__go"><span class="dest-tall__go-text">Explore</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></div></div>
-        </article>
-
-        <article class="dest-tall dest-tile reveal" data-key="central-america" data-name="Central America" data-tags="warm english" data-fee="&#8377;35L&ndash;1.8Cr" data-low="35" data-duration="Varies" data-living="&#8377;35k&ndash;60k">
-          <div class="img-slot" data-spec="central-america.jpg · 1000×1250 px"><img src="assets/images/destinations/central-america.jpg" width="1000" height="1250" alt="A Caribbean-coast town in Belize with palms and turquoise water" loading="lazy"></div>
-          <span class="tag tag--abs">USMLE-oriented</span>
-          <a class="dest-tall__cover" href="mbbs-in-central-america.html" aria-label="Explore MBBS in Central America"></a>
-          <button type="button" class="dest-cmp" aria-pressed="false" aria-label="Compare Central America"><svg class="icon dest-cmp__plus" aria-hidden="true"><use href="#i-plus"></use></svg><svg class="icon dest-cmp__tick" aria-hidden="true"><use href="#i-check"></use></svg><span class="dest-cmp__label">Compare</span></button>
-          <div class="dest-tall__body"><h3>Central America</h3><p>North America-oriented programmes</p><div class="dest-tall__foot"><span>&#8377;35L&ndash;1.8Cr</span><span class="dest-tall__go"><span class="dest-tall__go-text">Explore</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></div></div>
-        </article>
-
-      </div>
-      <p class="dest-empty" id="destEmpty" hidden>No countries match this filter yet. Try another one.</p>
-      <p class="dest-note">Fees are approximate tuition for the full course; living costs are monthly. Source: MBBS Abroad Handbook 2026&ndash;27. Not every institution in Central America meets India&rsquo;s registration requirements &mdash; ask us first.</p>
-    </div>
-  </section>
-
-  <!-- ============ FLY THE ROUTE (pick one country; everything inside animates for that country only) ============ -->
-  <section class="section section--wash has-dots dest-route-sec">
-    <div class="container">
-      <div class="section-head section-head--center reveal"><h2>Fly the route from Chennai</h2><p>Pick a country to see the journey, the local basics and why students choose it.</p></div>
+      <div class="section-head section-head--center reveal"><span class="eyebrow">Fly the route</span><h2>From Chennai to your new campus</h2><p>Pick a country to see the journey, the local basics and why students choose it.</p></div>
 
       <div class="route" id="route" aria-live="polite">
         <svg class="route__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
 
         <div class="route__chips" role="group" aria-label="Choose a country">
-          <button type="button" class="route-chip is-active" data-dest="vietnam" aria-pressed="true">Vietnam</button>
-          <button type="button" class="route-chip" data-dest="philippines" aria-pressed="false">Philippines</button>
-          <button type="button" class="route-chip" data-dest="uzbekistan" aria-pressed="false">Uzbekistan</button>
-          <button type="button" class="route-chip" data-dest="kazakhstan" aria-pressed="false">Kazakhstan</button>
-          <button type="button" class="route-chip" data-dest="kyrgyzstan" aria-pressed="false">Kyrgyzstan</button>
-          <button type="button" class="route-chip" data-dest="georgia" aria-pressed="false">Georgia</button>
-          <button type="button" class="route-chip" data-dest="russia" aria-pressed="false">Russia</button>
-          <button type="button" class="route-chip" data-dest="timor" aria-pressed="false">Timor-Leste</button>
+{%- for c in site.data.countries %}
+          <button type="button" class="route-chip" data-dest="{{ c.slug }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}">{{ c.name | escape }}</button>
+{%- endfor %}
         </div>
 
         <div class="route__body">
@@ -174,72 +119,207 @@ active: countries   # highlighted menu item: home, countries, planner, updates, 
               <g class="route__plane" id="routePlane" opacity="0"><g transform="rotate(90)"><use href="#i-airplane" x="-13" y="-13" width="26" height="26"></use></g>
                 <animateMotion id="routeMotion" dur="1.4s" begin="indefinite" fill="freeze" rotate="auto" calcMode="spline" keyTimes="0;1" keySplines=".4 0 .2 1" path="M24,98 C110,2 290,2 376,84"/></g>
             </svg>
-            <div class="route__ends"><span>Chennai</span><span id="routeName">Vietnam</span></div>
+            <div class="route__ends"><span><b>MAA</b> Chennai</span><span><b data-r="airport">{{ c0.airport }}</b> <span data-r="city">{{ c0.city | escape }}</span></span></div>
             <p class="route__label">Typical flight time</p>
-            <p class="route__time"><span id="routeTime">~7</span><span class="route__unit">hrs</span><span class="route__stop" id="routeStop">1 stop</span></p>
-            <div class="route__meter" id="routeMeter" aria-hidden="true"><span class="route__meter-fill"></span></div>
-            <div class="route__fare"><span class="route__fare-label"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg>Typical fare</span><b data-f="fare">From &#8377;12,679 one-way</b></div>
+            <p class="route__time"><span id="routeTime" data-r="hours">{{ c0.hours }}</span><span class="route__unit">hrs</span><span class="route__stop" data-r="stops">{{ c0.stops | escape }}</span></p>
+            <div class="route__meter" aria-hidden="true"><span class="route__meter-fill" id="routeMeter" data-hours="{{ c0.hours_num }}"></span></div>
+            <div class="route__fare"><span class="route__fare-label"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg>Lowest fare, one-way</span><b><span data-r="fare">{{ c0.fare }}</span> <small>&middot; <span data-r="fare_as_of">{{ c0.fare_as_of }}</span></small></b></div>
           </div>
 
           <div class="route__tiles">
-            <div class="route-tile"><span class="icon-badge icon-badge--sm icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></span><div><span class="route-tile__label">Time vs India</span><span class="route-tile__value" data-f="tz">1h 30m ahead</span></div></div>
-            <div class="route-tile"><span class="icon-badge icon-badge--sm icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></span><div><span class="route-tile__label">Capital</span><span class="route-tile__value" data-f="capital">Hanoi</span></div></div>
-            <div class="route-tile"><span class="icon-badge icon-badge--sm icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg></span><div><span class="route-tile__label">Language</span><span class="route-tile__value" data-f="lang">Vietnamese</span></div></div>
-            <div class="route-tile"><span class="icon-badge icon-badge--sm icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-sun"></use></svg></span><div><span class="route-tile__label">Climate</span><span class="route-tile__value" data-f="climate">Tropical</span></div></div>
-            <div class="route-tile"><span class="icon-badge icon-badge--sm icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg></span><div><span class="route-tile__label">Currency</span><span class="route-tile__value" data-f="currency">Vietnamese dong</span></div></div>
-            <div class="route-tile"><span class="icon-badge icon-badge--sm icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"></use></svg></span><div><span class="route-tile__label">Rate</span><span class="route-tile__value" data-f="rate">1 INR &asymp; 275.6 VND</span></div></div>
+            <div class="route-tile"><span class="icon-badge icon-badge--sm icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></span><div><span class="route-tile__label">Time vs India</span><span class="route-tile__value" data-r="time">{{ c0.time | escape }}</span></div></div>
+            <div class="route-tile"><span class="icon-badge icon-badge--sm icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><div><span class="route-tile__label">A year, all-in</span><span class="route-tile__value" data-r="year_cost">{{ c0.year_cost }}</span></div></div>
+            <div class="route-tile"><span class="icon-badge icon-badge--sm icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div><span class="route-tile__label">Course</span><span class="route-tile__value" data-r="duration">{{ c0.duration | escape }}</span></div></div>
+            <div class="route-tile"><span class="icon-badge icon-badge--sm icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg></span><div><span class="route-tile__label">Language</span><span class="route-tile__value" data-r="language">{{ c0.language | escape }}</span></div></div>
+            <div class="route-tile"><span class="icon-badge icon-badge--sm icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-sun"></use></svg></span><div><span class="route-tile__label">Climate</span><span class="route-tile__value" data-r="climate">{{ c0.climate | escape }}</span></div></div>
+            <div class="route-tile"><span class="icon-badge icon-badge--sm icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg></span><div><span class="route-tile__label">Money &middot; <span data-r="money_as_of">{{ c0.money_as_of }}</span></span><span class="route-tile__value" data-r="money">{{ c0.money | escape }}</span></div></div>
           </div>
         </div>
 
         <div class="route__why">
           <div class="route__why-main">
-            <h3 id="routeWhyTitle">Why students pick Vietnam</h3>
+            <h3>Why students pick <span data-r="name">{{ c0.name | escape }}</span></h3>
             <ul class="route__list" id="routeWhy">
-              <li><span class="icon-badge icon-badge--sm icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span><span>Modern, safe cities</span></li>
-              <li><span class="icon-badge icon-badge--sm icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><span>Hanoi: lakes, an old quarter and famous street food</span></li>
-              <li><span class="icon-badge icon-badge--sm icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><span>One of the shorter flights from South India</span></li>
+{%- for w in c0.why %}
+              <li><span class="route__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span>{{ w | escape }}</span></li>
+{%- endfor %}
             </ul>
           </div>
           <div class="route__why-side">
-            <p class="route__know"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><span id="routeKnow">Usually connects via Singapore or Bangkok. English availability varies by campus &mdash; ask us which teach it.</span></p>
             <div class="btn-row">
-              <a href="mbbs-in-vietnam.html" class="btn btn--ondark" id="routeGo">See MBBS in Vietnam <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
-              <a href="https://wa.me/919360859919" class="btn btn--outline-light" id="routeAsk" target="_blank" rel="noopener"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Ask a counsellor</a>
+              <a href="{{ c0.page }}" class="btn btn--ondark" id="routeGo"><span>MBBS in <span data-r="name">{{ c0.name | escape }}</span></span><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+              <button type="button" class="btn btn--outline-light" id="routeUnis"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Its universities</button>
             </div>
+            <a class="route__cmp" id="routeCmp" href="mbbs-abroad-planner.html?cmp={% if c0.planner %}{{ c0.planner }}{% else %}{{ c0.slug }}{% endif %}#compare"><svg class="icon" aria-hidden="true"><use href="#i-columns"></use></svg>Compare it with other countries in the MBBS Planner</a>
           </div>
         </div>
       </div>
-      <p class="dest-note dest-note--center">Flight times are typical one-stop routes from Chennai. Fares are the lowest economy fares seen on Skyscanner (Russia: average return on Momondo) as of 27 Oct 2026 and change daily, so confirm before booking. Exchange rates are indicative, as of Sep 2026. Central America routing varies by country &mdash; ask a counsellor.</p>
+      <p class="udir-asof udir-asof--center"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><span>Flight times are typical one-stop routes from Chennai. Fares are the lowest one-way economy fares seen on the date shown and change daily, so confirm before booking. Exchange rates are indicative. Every figure comes from that country&rsquo;s own page.</span></p>
     </div>
   </section>
 
-  <!-- ============ QUICK WAYS TO CHOOSE (from the Student Handbook decision guide) ============ -->
-  <section class="section">
+  <!-- ============ 3. UNIVERSITIES. The wrapper keeps the filter bar sticky only while the universities are on screen. ============ -->
+  <div class="udir-wrap" id="universities">
+  <div class="container udir-intro">
+    <div class="section-head udir-head reveal"><span class="eyebrow">Universities</span><h2>Every university we recommend</h2><p>Grouped by country. Search above, tap a country, or show only universities with a full fee structure page.</p></div>
+  </div>
+
+  <!-- ============ 3a. STICKY FILTER BAR: one chip per country (from _data/countries.yml) + "full fee structure" ============ -->
+  <nav class="udir-bar" aria-label="Filter universities">
+    <div class="udir-bar__track">
+      <button type="button" data-udir-country="all" aria-pressed="true">All countries</button>
+{%- for c in site.data.countries %}
+{%- assign list = site.data.universities | where: "country", c.slug %}
+{%- if list.size > 0 %}
+      <button type="button" data-udir-country="{{ c.slug }}" aria-pressed="false">{{ c.name | escape }}</button>
+{%- endif %}
+{%- endfor %}
+      <span class="udir-bar__sep" aria-hidden="true"></span>
+      <button type="button" class="udir-bar__toggle" data-udir-page aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg>Full fee structure</button>
+    </div>
+  </nav>
+
+  <!-- ============ 3b. UNIVERSITIES — one group per country, cards built from _data/universities.yml.
+       Card photo = the same file the country page uses (assets/images/universities/{name}/card.webp, 1200 x 750 px),
+       so each photo is uploaded once and appears on both pages. ============ -->
+  <section class="section udir-results" id="results">
     <div class="container">
-      <div class="section-head section-head--center reveal"><h2>Start from what matters to you</h2><p>Know your priority already? Here&rsquo;s where most students begin.</p></div>
-      <div class="dest-picks">
-        <a href="mbbs-in-kyrgyzstan.html" class="card card--link dest-pick reveal"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"></use></svg></span><div><h3>I need the lowest budget</h3><p>Start with Kyrgyzstan or Uzbekistan.</p></div><span class="dest-pick__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></a>
-        <a href="mbbs-in-philippines.html" class="card card--link dest-pick reveal"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div><h3>I want an American-style course in English</h3><p>The Philippines is the usual first stop.</p></div><span class="dest-pick__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></a>
-        <a href="mbbs-in-russia.html" class="card card--link dest-pick reveal"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></span><div><h3>I prefer established government universities</h3><p>Russia has decades of Indian students.</p></div><span class="dest-pick__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></a>
-        <a href="mbbs-in-vietnam.html" class="card card--link dest-pick reveal"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><div><h3>I want an emerging Asian option</h3><p>Look at Vietnam&rsquo;s modern cities.</p></div><span class="dest-pick__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></a>
-        <a href="mbbs-in-central-america.html" class="card card--link dest-pick reveal"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span><div><h3>I&rsquo;m aiming for North America later</h3><p>Central America&rsquo;s programmes are USMLE-oriented.</p></div><span class="dest-pick__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></a>
-        <a href="mbbs-in-timor-uct-timor.html" class="card card--link dest-pick reveal"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg></span><div><h3>I want a syllabus close to India&rsquo;s</h3><p>Timor-Leste follows an Indian-aligned curriculum.</p></div><span class="dest-pick__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></a>
+      <p class="udir-status" id="udirStatus" aria-live="polite">Showing every university, grouped by country.</p>
+
+{%- for c in site.data.countries %}
+{%- assign list = site.data.universities | where: "country", c.slug %}
+{%- if list.size > 0 %}
+
+      <section class="udir-group" id="{{ c.slug }}" data-udir-group="{{ c.slug }}" aria-labelledby="g-{{ c.slug }}">
+        <header class="udir-group__head">
+          <div>
+            <h2 id="g-{{ c.slug }}">{{ c.name | escape }}</h2>
+            <p><b>{{ c.year_cost }}</b> a year, all-in &middot; {{ c.duration | escape }}</p>
+          </div>
+          <a class="udir-group__link" href="{{ c.page }}">Country guide <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        </header>
+        <div class="udir-grid">
+{%- for u in list %}
+{%- capture hay %}{{ u.name }} {{ u.aka }} {{ u.city }} {{ c.name }} {{ u.badge }}{% endcapture %}
+{%- assign has_page = false %}{% if u.page and u.page != "" %}{% assign has_page = true %}{% endif %}
+          <article class="card udir-card{% if has_page %} udir-card--page{% endif %}" data-country="{{ c.slug }}" data-search="{{ hay | downcase | escape }}"{% if has_page %} data-has-page{% endif %}>
+            <div class="img-slot udir-card__img" data-spec="{{ u.image | remove: 'assets/images/' }}"><img src="{{ u.image }}" width="1200" height="750" alt="Campus of {{ u.name | escape }}, {{ u.city | escape }}" loading="lazy"></div>
+            <div class="udir-card__body">
+              <span class="udir-card__badge">{{ u.badge | escape }}</span>
+              <h3>{{ u.name | escape }}</h3>
+              <span class="udir-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>{{ u.city | escape }}</span>
+              <ul class="udir-card__facts">
+{%- for f in u.facts %}
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>{{ f | escape }}</li>
+{%- endfor %}
+              </ul>
+              <div class="udir-card__foot">
+{%- if u.fee and u.fee != "" %}
+                <span class="udir-card__fee"><b>{{ u.fee }}</b>{{ u.fee_note | escape }}</span>
+{%- endif %}
+{%- if has_page %}
+                <span class="udir-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+{%- else %}
+                <a class="udir-card__go udir-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for {{ u.name | escape }}."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet</a>
+{%- endif %}
+              </div>
+            </div>
+{%- if has_page %}
+            <a class="udir-card__cover" href="{{ u.page }}" aria-label="View fees and details for {{ u.name | escape }}"></a>
+{%- endif %}
+          </article>
+{%- endfor %}
+        </div>
+{%- if list.size > 3 %}
+        <button type="button" class="udir-more" data-udir-more>Show all universities in {{ c.name | escape }} <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></button>
+{%- endif %}
+      </section>
+{%- endif %}
+{%- endfor %}
+
+      <!-- Shown by the script only when the search and filters match nothing -->
+      <div class="udir-empty" id="udirEmpty" hidden>
+        <span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg></span>
+        <h2>No university here matches that yet</h2>
+        <p>It may be one we haven&rsquo;t listed, or a different spelling. Send us the name and we will check it against the NMC conditions &mdash; free, and in writing.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary btn--sm" id="udirAskEmpty" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, can you check a university for me? The university is: "><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Ask us to check it</a>
+          <button type="button" class="btn btn--outline btn--sm" data-udir-reset>Show all universities</button>
+        </div>
+      </div>
+
+      <article class="udir-ask">
+        <span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span>
+        <div>
+          <h2>Considering a university that isn&rsquo;t on this list?</h2>
+          <p>Send us its name. We check its course length, internship, medium of instruction and its country&rsquo;s latest rules &mdash; free, and in writing.</p>
+        </div>
+        <a class="btn btn--primary btn--sm" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, can you check a university for me? The university is: ">Ask us to check <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+      </article>
+
+      <p class="udir-asof"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><span>Fees and facts as of Oct 2026, from each country page; 1 USD = &#8377;95 (as of 26 Oct 2026). Every university sets its own fees and they can change for each new batch &mdash; confirm the exact figures with your counsellor.</span></p>
+    </div>
+  </section>
+  </div>
+  <!-- ============ 4. START FROM WHAT MATTERS (each answer matches a country page or the Planner's compare tool) ============ -->
+  <section class="section section--wash">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><span class="eyebrow">Not sure where to start?</span><h2>Start from what matters to you</h2><p>Know your priority already? Here&rsquo;s where most families begin.</p></div>
+      <div class="dest-picks" data-stagger>
+        <a href="mbbs-abroad-planner.html?cmp=timor,uzbekistan,kyrgyzstan#compare" class="card dest-pick reveal"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><div><h3>I need the lowest yearly budget</h3><p>Compare Timor-Leste, Uzbekistan and Kyrgyzstan side by side.</p></div><span class="dest-pick__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></a>
+        <a href="mbbs-in-philippines.html" class="card dest-pick reveal"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div><h3>I want an American-style course in English</h3><p>The Philippines teaches a US-pattern MD, in English.</p></div><span class="dest-pick__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></a>
+        <a href="mbbs-in-timor-uct-timor.html" class="card dest-pick reveal"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg></span><div><h3>I want a syllabus close to India&rsquo;s</h3><p>Timor-Leste teaches on India&rsquo;s own CBME framework.</p></div><span class="dest-pick__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></a>
+        <a href="mbbs-in-russia.html" class="card dest-pick reveal"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></span><div><h3>I prefer long-established state universities</h3><p>Russia&rsquo;s medical universities go back decades, some for two centuries.</p></div><span class="dest-pick__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></a>
+        <a href="mbbs-in-nepal.html" class="card dest-pick reveal"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-home"></use></svg></span><div><h3>I want to stay close to home</h3><p>Nepal: no visa, and just 15 minutes ahead of Indian time.</p></div><span class="dest-pick__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></a>
+        <a href="mbbs-in-georgia.html" class="card dest-pick reveal"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span><div><h3>I want a European-style degree</h3><p>Georgia&rsquo;s six-year MD is built on 360 ECTS credits.</p></div><span class="dest-pick__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></a>
+        <a href="mbbs-in-caribbean.html" class="card dest-pick reveal"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><div><h3>I&rsquo;m aiming for the USMLE and a US career</h3><p>The Caribbean&rsquo;s US-style MD schools, with an honest look at the NMC rules.</p></div><span class="dest-pick__go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></a>
+      </div>
+
+      <!-- Comparing countries happens in ONE place: the MBBS Planner's Compare tab -->
+      <div class="dest-compare reveal">
+        <span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-columns"></use></svg></span>
+        <div>
+          <h2>Weighing two or three countries?</h2>
+          <p>Put them side by side in the MBBS Planner: tuition, living cost, total course cost, language and climate.</p>
+        </div>
+        <a href="mbbs-abroad-planner.html#compare" class="btn btn--primary btn--sm">Compare countries <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
       </div>
     </div>
   </section>
 
-  <!-- ============ CLOSING CTA (plain blue card, same as the other pages) ============ -->
-  <section class="section section--tight">
+  <!-- ============ 5. HOW WE CHOOSE ============ -->
+  <section class="section has-dots">
     <div class="container">
-      <div class="dest-cta reveal">
-        <svg class="dest-cta__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
-        <div>
-          <h2>Not sure which country fits?</h2>
-          <p>Share your NEET score and budget &mdash; we&rsquo;ll narrow it down with you, honestly and for free.</p>
-        </div>
+      <div class="section-head section-head--center reveal"><span class="eyebrow">How we choose</span><h2>Why a university makes this list</h2><p>Being popular is not enough. These are the four checks every university passes before we recommend it to your family.</p></div>
+      <div class="udir-checks" data-stagger>
+        <article class="udir-check reveal">
+          <span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span>
+          <div><h3>Built to NMC&rsquo;s rules</h3><p>At least 54 months of study, English throughout and a 12-month internship at the same university, as FMGL 2021 requires.</p></div>
+        </article>
+        <article class="udir-check reveal">
+          <span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg></span>
+          <div><h3>Official lists, not reputation</h3><p>We follow each country&rsquo;s regulator. In Kyrgyzstan, for example, we list only universities with full 2026 state accreditation or state status.</p></div>
+        </article>
+        <article class="udir-check reveal">
+          <span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span>
+          <div><h3>English for every year</h3><p>Some courses switch language halfway. Where that risk exists, as in Russia, the university confirms English for all six years in writing.</p></div>
+        </article>
+        <article class="udir-check reveal">
+          <span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span>
+          <div><h3>Fees in writing, paid directly</h3><p>You get every fee on paper before you commit, and you pay the university directly, against an official receipt.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+  <!-- ============ 6. CLOSING CTA (same card as Home, About and the country pages) ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="cta reveal">
+        <svg class="cta__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+        <div><h2>Not sure which country or university fits?</h2><p>One conversation: your NEET score, your budget and a shortlist checked against every NMC rule &mdash; in writing.</p></div>
         <div class="btn-row">
           <a href="apply.html" class="btn btn--ondark">Get free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
-          <a href="mbbs-abroad-planner.html#eligibility" class="btn btn--outline-light">Check eligibility</a>
+          <a href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, can you help me choose a country and university for MBBS abroad?" class="btn btn--outline-light"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg> WhatsApp us</a>
         </div>
       </div>
     </div>
@@ -247,32 +327,12 @@ active: countries   # highlighted menu item: home, countries, planner, updates, 
 
 </main>
 
-<!-- ============ COMPARE TRAY (appears when 2 or 3 are picked) + COMPARE SHEET — this page only ============ -->
-<div class="compare-tray" id="compareTray">
-  <div class="compare-tray__info"><b id="trayCount">0 selected</b><span id="trayNames"></span></div>
-  <button type="button" class="btn btn--ondark btn--sm" id="trayCompareBtn">Compare <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
-  <button type="button" class="compare-tray__clear" id="trayClear" aria-label="Clear selection"><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
-</div>
-<div class="compare-panel" id="comparePanel" role="dialog" aria-modal="true" aria-labelledby="comparePanelTitle">
-  <div class="compare-panel__sheet">
-    <div class="compare-panel__grab" aria-hidden="true"></div>
-    <div class="compare-panel__head">
-      <h3 id="comparePanelTitle">Your comparison</h3>
-      <button type="button" class="compare-panel__close" id="comparePanelClose" aria-label="Close comparison"><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
-    </div>
-    <div class="cmp" id="compareGrid" role="table" aria-label="Country comparison"></div>
-    <p class="compare-panel__note">Approximate figures. Ask a counsellor for current, university-specific fees.</p>
-    <div class="compare-panel__actions">
-      <a href="https://wa.me/919360859919" class="btn btn--primary" id="compareWhatsApp" target="_blank" rel="noopener"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Ask a counsellor</a>
-      <button type="button" class="btn btn--outline" id="comparePanelClear">Clear &amp; close</button>
-    </div>
-  </div>
-</div>
+<!-- Country data for the flight explorer, written from _data/countries.yml when the site is built -->
+<script type="application/json" id="countryData">{{ site.data.countries | jsonify }}</script>
 
 {% include footer.html %}
 {% include bottom-nav.html %}
 {% include scripts.html %}
-<script src="js/tools.js"></script>
 <script src="js/pages/destinations.js"></script>
 </body>
 </html>

@@ -1,0 +1,585 @@
+---
+# Shared parts (announcement bar, header, footer, tab bar, icons) live in the _includes folder.
+# Country pages all use css/pages/country.css + js/pages/country.js — only the content below changes.
+active: countries
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MBBS in Russia 2026 | Mathura Overseas</title>
+<meta name="description" content="Study MBBS in Russia at state medical universities in Kazan, Kursk, Volgograd, Ufa and Rostov. Average fees, the English-medium rule and student life for 2026.">
+<link rel="canonical" href="https://mathuraoverseas.com/mbbs-in-russia.html">
+<meta property="og:title" content="MBBS in Russia 2026 | Mathura Overseas">
+<meta property="og:description" content="Historic state medical universities, an honest average budget and the one question to settle first: is it English for all six years?">
+<meta property="og:url" content="https://mathuraoverseas.com/mbbs-in-russia.html">
+<meta property="og:image" content="assets/images/countries/russia/hero.webp">
+{% include head.html %}
+<link rel="stylesheet" href="css/pages/country.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mathuraoverseas.com/index.html" },
+    { "@type": "ListItem", "position": 2, "name": "Countries", "item": "https://mathuraoverseas.com/destinations.html" },
+    { "@type": "ListItem", "position": 3, "name": "MBBS in Russia", "item": "https://mathuraoverseas.com/mbbs-in-russia.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Is an MBBS from Russia valid in India?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, if the course meets every NMC FMGL 2021 condition: at least 54 months of study, taught in English throughout, a 12-month internship at the same university, and eligibility for a licence to practise medicine in Russia. You then clear FMGE or NExT to practise in India. We check each of these for your university, in writing, before you pay." } },
+    { "@type": "Question", "name": "Is MBBS in Russia taught in English?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Many universities run English-medium programmes for international students, but Russian is the main teaching language in Russia, and India's Ministry of External Affairs has warned that some courses switch to Russian in the later years. NMC requires English for the whole course, so we only recommend programmes that confirm English for all six years in writing. You still learn Russian to talk to patients." } },
+    { "@type": "Question", "name": "How long is MBBS in Russia?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Six years of General Medicine: pre-clinical years, clinical years in university hospitals and a final clinical year. Ask exactly how your university meets NMC's 12-month internship rule; we get the answer in writing for you." } },
+    { "@type": "Question", "name": "How much does a year in Russia cost?",
+      "acceptedAnswer": { "@type": "Answer", "text": "An average year at a regional state medical university costs about 6.9 lakh rupees all-in: roughly 4.2 lakh tuition, 1.8 lakh hostel and food, and about 90,000 for personal costs, visa, insurance and registration (indicative, October 2026). Six years of tuition typically comes to 18 to 32 lakh rupees. Top Moscow and St Petersburg universities cost more." } },
+    { "@type": "Question", "name": "Do I need NEET to study MBBS in Russia?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. NMC requires every Indian student who studies medicine abroad to qualify NEET-UG, and the result stays valid for three years. Most Russian universities admit on your Class 12 marks and NEET result; a few hold a short entrance test or interview." } },
+    { "@type": "Question", "name": "How far is Russia from India?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Chennai to Moscow takes about 12 and a half hours with one stop, usually via Dubai. There are no non-stop flights from Chennai. Moscow is two and a half hours behind India." } },
+    { "@type": "Question", "name": "What is the weather like in Russia?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Real winters. In Moscow, January days average about minus 5 degrees Celsius and nights about minus 10, and it usually snows from mid-October to early April. July afternoons average about 24 degrees. Cities further east, such as Ufa and Orenburg, are colder in winter; the south, around Volgograd and Rostov, is milder." } },
+    { "@type": "Question", "name": "Can I use my Indian debit or credit card in Russia?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Visa and Mastercard cards issued outside Russia do not work there as of 2026. Students carry cash, open a local bank account with a Mir card, or use a UnionPay card. Fees are paid in roubles at a bank, against an official university receipt; we walk your family through it." } },
+    { "@type": "Question", "name": "Is Russia safe for Indian students?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Indian students have studied in Russian cities for decades. Follow the Indian government's advice: carry your passport, visa and registration at all times, avoid going out alone late at night, take full medical insurance and keep the Embassy of India in Moscow's contacts saved. Our team stays in contact throughout the course." } }
+  ]
+}
+</script>
+</head>
+<body>
+
+{% include icons.html %}
+{% include announcement.html %}
+{% include header.html %}
+
+<main id="main">
+
+  <!-- ============ 1. HERO.  IMAGE 1: assets/images/countries/russia/hero.webp — 1200 x 1320 px
+       Indian students in white coats and dark winter jackets walking through fresh snow in front of the Kazan Kremlin
+       (white walls, the blue-domed Kul Sharif mosque behind), clear winter sky, soft golden light.
+       Keep faces in the middle third: phones crop the top and bottom. ============ -->
+  <section class="cty-hero">
+    <svg class="cty-hero__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+    <div class="container cty-hero__grid">
+      <div class="cty-hero__copy">
+        <nav class="cty-crumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+          <a href="destinations.html">Countries</a><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+          <span aria-current="page">Russia</span>
+        </nav>
+        <span class="pill"><span class="pill__dot"></span>MBBS in Russia &middot; 2026&ndash;27 intake</span>
+        <h1>Medicine with <em>two centuries of history</em> behind it</h1>
+        <p class="cty-hero__lead">Long-established state medical universities in Kazan, Kursk, Volgograd, Ufa, Orenburg and Rostov, with big teaching hospitals and fees in the middle of the range. Plus the one question to settle before you pay a rupee: is it English for all six years?</p>
+        <div class="cty-hero__chips">
+          <span class="cty-hero__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>State medical universities</span>
+          <span class="cty-hero__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>6-year course</span>
+          <span class="cty-hero__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>English medium, checked in writing</span>
+        </div>
+        <div class="btn-row">
+          <a href="apply.html" class="btn btn--ondark">Get free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <a href="#fees" class="btn btn--outline-light cty-hero__desk">See average fees</a>
+        </div>
+      </div>
+      <div class="cty-hero__media">
+        <div class="img-slot" data-spec="countries/russia/hero.webp · 1200×1320 px">
+          <img src="assets/images/countries/russia/hero.webp" width="1200" height="1320" alt="Indian medical students in white coats and winter jackets walking through snow in front of the Kazan Kremlin" fetchpriority="high">
+        </div>
+        <div class="cty-ticket" aria-label="Flight from Chennai to Moscow: about 12 and a half hours with one stop">
+          <div class="cty-ticket__route">
+            <div class="cty-ticket__port"><b>MAA</b><span>Chennai</span></div>
+            <div class="cty-ticket__line"><span class="cty-ticket__plane"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-airplane"></use></svg></span></div>
+            <div class="cty-ticket__port cty-ticket__port--to"><b>DME</b><span>Moscow</span></div>
+          </div>
+          <div class="cty-ticket__meta"><span><b>~12.5 hrs</b> &middot; 1 stop</span><span>From <b>&#8377;38,152</b> one-way &middot; Oct 2026</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. AT A GLANCE ============ -->
+  <div class="cty-glance">
+    <div class="container">
+      <div class="card cty-glance__card">
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div><div class="cty-glance__num">6 years</div><div class="cty-glance__label">General Medicine, start to finish</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span><div><div class="cty-glance__num">English</div><div class="cty-glance__label">Only if it covers all six years</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><div><div class="cty-glance__num">&#8377;3&ndash;5.3 L</div><div class="cty-glance__label">Tuition per year (indicative)</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><div><div class="cty-glance__num">~12.5 hrs</div><div class="cty-glance__label">Chennai to Moscow, one stop</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-sun"></use></svg></span><div><div class="cty-glance__num">Real winters</div><div class="cty-glance__label">Snow from mid-October to April</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg></span><div><div class="cty-glance__num">&#8381;1 &asymp; &#8377;1.18</div><div class="cty-glance__label">Russian rouble &middot; Oct 2026</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 3. STICKY SECTION TABS (each href must match a section id below) ============ -->
+  <nav class="cty-tabs" aria-label="On this page">
+    <div class="cty-tabs__track">
+      <a href="#overview">Overview</a><a href="#course">Course</a><a href="#recognition">English rule</a><a href="#universities">Universities</a><a href="#fees">Fees</a><a href="#eligibility">Eligibility</a><a href="#life">Student life</a><a href="#faqs">FAQs</a>
+    </div>
+  </nav>
+
+  <!-- ============ 4. WHY RUSSIA ============ -->
+  <section class="section has-dots" id="overview">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><span class="eyebrow">Why Russia</span><h2>Six reasons Indian students choose Russia</h2><p>Not brochure slogans &mdash; the things that actually shape your six years as a medical student.</p></div>
+      <div class="cty-features" data-stagger>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg></span>
+          <div><h3>Two centuries of medical teaching</h3><p>Kazan&rsquo;s medical school held its first academic council in 1814. Rostov&rsquo;s traces back to 1915, and Kursk and Volgograd both opened in 1935. You learn where medicine has been taught for generations.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></span>
+          <div><h3>Large teaching hospitals</h3><p>Universities run their own clinics &mdash; Rostov&rsquo;s has 860 beds and Bashkir&rsquo;s hospital in Ufa has 755. More patients on the wards means more cases you see with your own eyes.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span>
+          <div><h3>Fees in the middle of the range</h3><p>At regional state universities, tuition sits around &#8377;3&ndash;5.3 lakh a year. We point families to these, not to the top-priced Moscow names, so the full six years stay on one clear budget.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span>
+          <div><h3>Campuses used to the world</h3><p>About 5,000 of Bashkir&rsquo;s students come from 64 countries, and more than 30% of Kursk&rsquo;s are international. Dean&rsquo;s offices, hostels and teachers here know how to look after foreign students.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span>
+          <div><h3>A big Indian student family</h3><p>India&rsquo;s External Affairs Ministry has put the number of Indian medical students in Russia at more than 15,000. Seniors from your state and Indian festivals are part of campus life.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg></span>
+          <div><h3>Cities with a story</h3><p>Kazan&rsquo;s white-walled Kremlin is a UNESCO World Heritage Site; Volgograd and Rostov sit on great rivers. Six years here are an education outside the lecture hall too.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. HOW THE COURSE WORKS. data-months = length of each stage; it sizes the to-scale bar on desktop. ============ -->
+  <section class="section section--wash" id="course">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">How the course works</span><h2>From Class 12 to doctor: the Russian route</h2><p>Russia offers a direct six-year degree in General Medicine &mdash; no separate pre-medical course. Here is how the years add up.</p></div>
+      <div class="cty-path__wrap reveal">
+        <div class="cty-path__bar" aria-hidden="true">
+          <span class="cty-path__seg cty-path__seg--core" data-label="Pre-clinical"><span></span></span>
+          <span class="cty-path__seg cty-path__seg--core" data-label="Clinical years"><span></span></span>
+          <span class="cty-path__seg cty-path__seg--core" data-label="Final clinical year"><span></span></span>
+          <span class="cty-path__seg" data-label="In India"><span></span></span>
+        </div>
+        <ol class="cty-path">
+          <li class="cty-path__stage cty-path__stage--core" data-months="24">
+            <span class="cty-path__num">1</span>
+            <div><span class="cty-path__len">Years 1&ndash;2</span><h3>Pre-clinical sciences</h3><p>Anatomy, physiology and biochemistry, with Russian language classes from the start so you can talk to patients later.</p></div>
+          </li>
+          <li class="cty-path__stage cty-path__stage--core" data-months="36">
+            <span class="cty-path__num">2</span>
+            <div><span class="cty-path__len">Years 3&ndash;5</span><h3>Clinical years</h3><p>Rotations in the university&rsquo;s own clinics and city hospitals across medicine, surgery, paediatrics, obstetrics and more.</p></div>
+          </li>
+          <li class="cty-path__stage cty-path__stage--core" data-months="12">
+            <span class="cty-path__num">3</span>
+            <div><span class="cty-path__len">Year 6 &middot; 12 months</span><h3>Final clinical year</h3><p>Supervised work on the wards, then the final state exams. NMC requires a 12-month internship at the same university.</p>
+              <span class="cty-path__note"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg>We confirm the internship in writing</span></div>
+          </li>
+          <li class="cty-path__stage cty-path__stage--home" data-months="18">
+            <span class="cty-path__num">4</span>
+            <div><span class="cty-path__len">Back in India</span><h3>FMGE / NExT</h3><p>Clear the licensing exam, complete any internship NMC asks of you, and register to practise.</p></div>
+          </li>
+        </ol>
+        <p class="cty-path__total"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg><span>In all, plan for <b>six years abroad</b>, then the licensing exam in India. Your counsellor confirms the exact plan for your university.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. THE ENGLISH-MEDIUM RULE — re-check NMC notices and the Embassy of India, Moscow
+       (https://www.indianembassy-moscow.gov.in) every few months and update the "as of" date. ============ -->
+  <section class="section" id="recognition">
+    <div class="container">
+      <div class="cty-status reveal">
+        <svg class="cty-status__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+        <div class="cty-status__intro">
+          <span class="eyebrow eyebrow--light">NMC rules &middot; as of Oct 2026</span>
+          <h2>In Russia, one question matters most: is it English for all six years?</h2>
+          <p>Russian universities are long-established and well known in India. The risk is rarely the university itself &mdash; it is a course that quietly changes language halfway through. Here is what to know, in plain words.</p>
+        </div>
+        <div class="cty-status__col">
+          <h3><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg>Confirmed</h3>
+          <ul class="cty-status__list">
+            <li class="cty-status__item"><span class="cty-status__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span><b>The NMC rules (FMGL 2021):</b> at least 54 months of study, taught in English throughout, a 12-month internship at the same university and eligibility for a licence in Russia.</span></li>
+            <li class="cty-status__item"><span class="cty-status__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span><b>Russian is the main teaching language:</b> India&rsquo;s External Affairs Ministry warns that some &ldquo;English&rdquo; courses move to Russian from the fourth year.</span></li>
+            <li class="cty-status__item"><span class="cty-status__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span><b>Back home:</b> every graduate still clears FMGE or NExT and any internship NMC asks for before practising in India.</span></li>
+          </ul>
+        </div>
+        <div class="cty-status__open">
+          <div class="cty-status__open-head">
+            <span class="icon-badge icon-badge--orange icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg></span>
+            <div><small>Worth checking</small><h4>&ldquo;Bilingual&rdquo; courses and the final-year internship</h4></div>
+          </div>
+          <p>A course that starts in English and finishes in Russian may not meet NMC&rsquo;s English-throughout rule, and that can cost you your eligibility in India years later. Ask too how the sixth year meets the 12-month internship rule. You will still learn Russian &mdash; but for patients, not for your exams.</p>
+          <div class="cty-status__promise"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg><span><b>Our promise:</b> before you pay anything, we get the university to confirm in writing that all six years are taught in English, plus the internship and licence eligibility.</span></div>
+        </div>
+        <p class="cty-status__src">Sources: <a href="https://www.mea.gov.in/images/pdf/advisory-russian.pdf" target="_blank" rel="noopener">Ministry of External Affairs &mdash; Advisory for Indian students going to Russia</a>; NMC Foreign Medical Graduate Licentiate Regulations, 2021. Rules can change; we re-check them for every student.</p>
+      </div>
+
+      <!-- 6b. SIDE-BY-SIDE: the course to avoid vs the course to choose. Both year rows must have the SAME number of <li>.
+           .is-intern marks a highlighted year (here: a year taught in Russian). -->
+      <div class="cty-shift reveal">
+        <div class="cty-shift__col">
+          <div class="cty-shift__head">
+            <span class="icon-badge icon-badge--orange icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg></span>
+            <div><small>Avoid</small><h3>&ldquo;Bilingual&rdquo; course</h3></div>
+          </div>
+          <ol class="cty-shift__years" aria-label="Years 1 to 3 in English, years 4 to 6 in Russian">
+            <li>1</li><li>2</li><li>3</li><li class="is-intern">RU</li><li class="is-intern">RU</li><li class="is-intern">RU</li>
+          </ol>
+          <p>English for the first years, then <b>Russian for the clinical years</b>. Cheaper on paper &mdash; but it may not meet NMC&rsquo;s rule.</p>
+        </div>
+        <span class="cty-shift__arrow" aria-hidden="true"><svg class="icon"><use href="#i-arrow-right"></use></svg></span>
+        <div class="cty-shift__col cty-shift__col--new">
+          <div class="cty-shift__head">
+            <span class="icon-badge icon-badge--teal icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span>
+            <div><small>Choose</small><h3>English throughout</h3></div>
+          </div>
+          <ol class="cty-shift__years" aria-label="All six years taught in English">
+            <li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li>
+          </ol>
+          <p>All six years taught in English, with Russian as a <b>language class for the wards</b>. This is the only kind of course we recommend.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. UNIVERSITIES
+       7b. CITY CHIPS filter the spotlight and cards: each button's data-uni-filter must match a card's data-city.
+       7a. SPOTLIGHT (.uni-spot) — the university this page leads with. When its own fee page is built
+           (e.g. mbbs-in-russia-kazan-smu.html):
+             1. replace the WhatsApp footer with:  <span class="uni-card__go">View the full fee structure <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+             2. add before </article>:            <a class="uni-card__cover" href="mbbs-in-russia-kazan-smu.html" aria-label="View the full fee structure for Kazan State Medical University"></a>
+           The same two steps turn any ordinary .uni-card below into a link to its own page.
+       IMAGE 2: assets/images/universities/kazan-smu/spotlight.webp — 1400 x 1000 px, Kazan State Medical University's
+                historic main building on a bright autumn day, students on the steps.
+       IMAGES 3-8: assets/images/universities/{name}/card.webp — 1200 x 750 px (16:10), the main campus building in daylight. ============ -->
+  <section class="section section--wash" id="universities">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Universities</span><h2>Where we place students in Russia</h2><p>State medical universities with decades of teaching behind them, each checked for an English-medium course that meets the NMC rules. Pick a city, or ask for any university&rsquo;s year-by-year fee sheet.</p></div>
+
+      <div class="uni-filter" role="group" aria-label="Show universities in">
+        <span class="uni-filter__label">City</span>
+        <button type="button" data-uni-filter="all" aria-pressed="true">All cities</button>
+        <button type="button" data-uni-filter="kazan" aria-pressed="false">Kazan</button>
+        <button type="button" data-uni-filter="kursk" aria-pressed="false">Kursk</button>
+        <button type="button" data-uni-filter="volgograd" aria-pressed="false">Volgograd</button>
+        <button type="button" data-uni-filter="ufa" aria-pressed="false">Ufa</button>
+        <button type="button" data-uni-filter="orenburg" aria-pressed="false">Orenburg</button>
+        <button type="button" data-uni-filter="rostov" aria-pressed="false">Rostov-on-Don</button>
+      </div>
+
+      <article class="card uni-spot reveal" data-city="kazan">
+        <div class="img-slot" data-spec="universities/kazan-smu/spotlight.webp · 1400×1000 px"><img src="assets/images/universities/kazan-smu/spotlight.webp" width="1400" height="1000" alt="Historic main building of Kazan State Medical University" loading="lazy"></div>
+        <span class="tag tag--abs">Government</span>
+        <div class="uni-spot__body">
+          <span class="uni-spot__kicker"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Kazan &middot; medical teaching since 1814</span>
+          <h3>Kazan State Medical University</h3>
+          <p class="uni-spot__lead">Kazan&rsquo;s medical school began inside Kazan University, holding its first academic council in 1814. It became an independent institute in 1930 and a university in 1994, and has trained about 60,000 specialists.</p>
+          <div class="uni-spot__chips">
+            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Government</span>
+            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>University clinics since 1840</span>
+            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>In historic Kazan</span>
+          </div>
+          <div class="uni-spot__stats">
+            <div class="uni-spot__stat"><b>1814</b><span>Medical school founded</span></div>
+            <div class="uni-spot__stat"><b>1994</b><span>University status</span></div>
+            <div class="uni-spot__stat"><b>~60,000</b><span>Specialists trained</span></div>
+          </div>
+          <div class="uni-card__foot">
+            <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the full fee sheet for Kazan State Medical University."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the full fee sheet on WhatsApp</a>
+          </div>
+        </div>
+      </article>
+
+      <div class="snap-row uni-row">
+
+        <article class="card uni-card reveal" data-city="kazan">
+          <div class="img-slot" data-spec="universities/kazan-federal/card.webp · 1200×750 px"><img src="assets/images/universities/kazan-federal/card.webp" width="1200" height="750" alt="Classical main building of Kazan Federal University" loading="lazy"></div>
+          <span class="tag tag--abs">Federal university</span>
+          <div class="uni-card__body">
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Kazan, Tatarstan</span>
+            <h3>Kazan Federal University</h3>
+            <ul class="uni-card__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Founded in 1804; medicine taught again since 2013</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Its own University Clinic as the clinical base</li>
+            </ul>
+            <div class="uni-card__foot">
+              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Kazan Federal University (General Medicine)."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card uni-card reveal" data-city="kursk">
+          <div class="img-slot" data-spec="universities/kursk-smu/card.webp · 1200×750 px"><img src="assets/images/universities/kursk-smu/card.webp" width="1200" height="750" alt="Main building of Kursk State Medical University" loading="lazy"></div>
+          <span class="tag tag--abs">Government</span>
+          <div class="uni-card__body">
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Kursk, western Russia</span>
+            <h3>Kursk State Medical University</h3>
+            <ul class="uni-card__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Founded in 1935; university status since 1994</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg>More than 30% of students come from abroad</li>
+            </ul>
+            <div class="uni-card__foot">
+              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Kursk State Medical University."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card uni-card reveal" data-city="volgograd">
+          <div class="img-slot" data-spec="universities/volgograd-smu/card.webp · 1200×750 px"><img src="assets/images/universities/volgograd-smu/card.webp" width="1200" height="750" alt="Campus of Volgograd State Medical University" loading="lazy"></div>
+          <span class="tag tag--abs">Government</span>
+          <div class="uni-card__body">
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Volgograd, on the Volga</span>
+            <h3>Volgograd State Medical University</h3>
+            <ul class="uni-card__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Founded in 1935</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg>About 12,000 students, over 2,000 of them international</li>
+            </ul>
+            <div class="uni-card__foot">
+              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Volgograd State Medical University."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card uni-card reveal" data-city="ufa">
+          <div class="img-slot" data-spec="universities/bashkir-smu/card.webp · 1200×750 px"><img src="assets/images/universities/bashkir-smu/card.webp" width="1200" height="750" alt="Main building of Bashkir State Medical University in Ufa" loading="lazy"></div>
+          <span class="tag tag--abs">Government</span>
+          <div class="uni-card__body">
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Ufa, Bashkortostan</span>
+            <h3>Bashkir State Medical University</h3>
+            <ul class="uni-card__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Founded in 1932; about 5,000 international students</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Its own 755-bed university hospital</li>
+            </ul>
+            <div class="uni-card__foot">
+              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Bashkir State Medical University."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card uni-card reveal" data-city="orenburg">
+          <div class="img-slot" data-spec="universities/orenburg-smu/card.webp · 1200×750 px"><img src="assets/images/universities/orenburg-smu/card.webp" width="1200" height="750" alt="Main building of Orenburg State Medical University" loading="lazy"></div>
+          <span class="tag tag--abs">Government</span>
+          <div class="uni-card__body">
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Orenburg, on the Ural River</span>
+            <h3>Orenburg State Medical University</h3>
+            <ul class="uni-card__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Founded in 1944 as a medical institute</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg>A smaller campus of about 3,000 students</li>
+            </ul>
+            <div class="uni-card__foot">
+              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Orenburg State Medical University."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card uni-card reveal" data-city="rostov">
+          <div class="img-slot" data-spec="universities/rostov-smu/card.webp · 1200×750 px"><img src="assets/images/universities/rostov-smu/card.webp" width="1200" height="750" alt="Campus of Rostov State Medical University in Rostov-on-Don" loading="lazy"></div>
+          <span class="tag tag--abs">Government</span>
+          <div class="uni-card__body">
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Rostov-on-Don, the south</span>
+            <h3>Rostov State Medical University</h3>
+            <ul class="uni-card__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Roots in 1915; university status since 1994</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>An 860-bed university clinic</li>
+            </ul>
+            <div class="uni-card__foot">
+              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Rostov State Medical University."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card uni-card uni-card--ask reveal">
+          <span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg></span>
+          <h3>Considering another university?</h3>
+          <p>Send us its name. We will check the language of instruction for all six years, the internship and the NMC conditions &mdash; free, and in writing.</p>
+          <a class="btn btn--primary btn--sm" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, can you check a Russian university for me? The university is: ">Ask us to check <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. FEES — an AVERAGE year at a regional state university (NOT the top Moscow / St Petersburg prices).
+       To change a figure, edit its data-inr number (in rupees, per year).
+       data-row-inr on each row must match the number inside it; the total's data-inr must equal their sum.
+       Tuition average = about ₹4.2 L (published 2026 tuition at regional state medical universities: roughly 3.2–6 lakh roubles a year).
+       Living ranges match the site-wide Russia figure of ₹15k–25k a month (js/tools.js). ============ -->
+  <section class="section" id="fees">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Fees</span><h2>What a year in Russia really costs</h2><p>An average, all-in budget at a regional state university &mdash; not the highest quote you will find online. Exact fees vary by university; ask us for any university&rsquo;s own sheet.</p></div>
+      <div class="cty-fees reveal">
+        <div class="cty-fees__total">
+          <div class="cty-fees__switch" role="group" aria-label="Show amounts in">
+            <button type="button" data-currency="inr" aria-pressed="true">&#8377; INR</button>
+            <button type="button" data-currency="usd" aria-pressed="false">$ USD</button>
+          </div>
+          <div>
+            <span class="cty-fees__kicker">An average year, all-in</span>
+            <span class="cty-fees__big"><span id="feeTotal" data-inr="691000">&#8377;6.9 L</span> <small>/ year</small></span>
+          </div>
+          <p>Tuition, hostel and food, day-to-day spending, visa, insurance and registration added together, using the middle of published ranges.</p>
+          <div class="cty-fees__course"><span>Six years of tuition, typically</span><b><span data-inr-range="1800000-3200000">&#8377;18&ndash;32 L</span></b></div>
+        </div>
+
+        <div class="card cty-fees__rows">
+          <div class="cty-fees__row" data-row-inr="420000">
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div class="cty-fees__name"><b>Tuition</b><span>Range <span data-inr-range="300000-530000">&#8377;3&ndash;5.3 L</span> a year</span></div><span class="cty-fees__val" data-inr="420000">&#8377;4.2 L</span></div>
+            <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
+          </div>
+          <div class="cty-fees__row" data-row-inr="180000">
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-home"></use></svg></span><div class="cty-fees__name"><b>Hostel &amp; food</b><span><span data-inr-range="12000-18000">&#8377;12k&ndash;18k</span> a month; many students cook</span></div><span class="cty-fees__val" data-inr="180000">&#8377;1.8 L</span></div>
+            <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
+          </div>
+          <div class="cty-fees__row" data-row-inr="66000">
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><div class="cty-fees__name"><b>Personal, travel &amp; books</b><span><span data-inr-range="4000-7000">&#8377;4k&ndash;7k</span> a month</span></div><span class="cty-fees__val" data-inr="66000">&#8377;66k</span></div>
+            <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
+          </div>
+          <div class="cty-fees__row" data-row-inr="25000">
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-passport"></use></svg></span><div class="cty-fees__name"><b>Visa, insurance &amp; registration</b><span>Student visa, a full medical policy and migration registration</span></div><span class="cty-fees__val" data-inr="25000">&#8377;25k</span></div>
+            <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
+          </div>
+        </div>
+
+        <div class="cty-fees__extras">
+          <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg><span><b>Flights:</b> Chennai to Moscow from &#8377;38,152 one-way (Oct 2026); onward to your city by train or a short flight</span></div>
+          <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg><span><b>One-time:</b> apostille of your documents, the invitation letter and a proper winter wardrobe</span></div>
+          <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg><span><b>Always:</b> pay the university directly, in roubles at a bank, against an official receipt</span></div>
+        </div>
+      </div>
+      <p class="cty-asof"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><span>Indicative averages as of Oct 2026, built from published 2026 tuition at regional state medical universities; <span data-rate-label>1 USD = &#8377;95 (as of 26 Oct 2026)</span>. The best-known Moscow and St Petersburg universities can cost far more and are not included in this average. Every university sets its own fees, and first-year fees can be higher &mdash; confirm the exact figures with your counsellor.</span></p>
+    </div>
+  </section>
+
+  <!-- ============ 9. ELIGIBILITY ============ -->
+  <section class="section section--wash" id="eligibility">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Eligibility</span><h2>Can you apply? The NMC checklist</h2><p>Every point below must be true for your degree to count in India.</p></div>
+      <div class="cty-elig">
+        <ul class="card cty-checks reveal">
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>NEET-UG qualified</b><span>Required for every Indian student studying medicine abroad. The result stays valid for three years.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>50% in Physics, Chemistry and Biology</b><span>In Class 12, with English as a subject. 40% for SC, ST and OBC candidates.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>17 years old by 31 December</b><span>Of the year you join.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>Usually no extra entrance test</b><span>Most universities admit on your Class 12 marks and NEET result; a few hold a short test or interview.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>A course that meets FMGL 2021</b><span>At least 54 months of study with a 12-month internship at the same university, and eligibility for a licence in Russia.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>English for all six years</b><span>Not just the first three. That is why we <a href="#recognition">check it in writing</a> for every university.</span></div></li>
+        </ul>
+        <aside class="cty-elig__tool reveal">
+          <svg class="cty-elig__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+          <span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-check-square"></use></svg></span>
+          <h3>Not sure where you stand?</h3>
+          <p>Enter your NEET score and Class 12 marks in the MBBS Planner and get an instant answer &mdash; free, in about ten seconds.</p>
+          <a href="mbbs-abroad-planner.html#eligibility" class="btn btn--ondark">Check my eligibility <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10. ADMISSION STEPS ============ -->
+  <section class="section has-grid" id="admission">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><span class="eyebrow">Admission</span><h2>Your path to a Russian medical university</h2><p>One counsellor, from your first call to your first lecture &mdash; and after.</p></div>
+      <ol class="cty-steps" data-stagger>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Free counselling</h3><p>Your NEET score, budget and goals, in one honest conversation.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Shortlist &amp; verify</h3><p>English for all six years, internship and licence checked; fees put in writing.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Admission letter</h3><p>We prepare the application and get your offer from the university.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Invitation &amp; visa</h3><p>The university issues your official invitation; we prepare your student visa file.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Fly &amp; register</h3><p>Airport pickup, hostel check-in and migration registration within seven days.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Study &amp; FMGE prep</h3><p>We stay with you through all six years and the exam back home.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ 11. STUDENT LIFE.  IMAGE 9: assets/images/countries/russia/life.webp — 1400 x 1470 px
+       Indian students in colourful winter jackets and woolly hats laughing on a snowy pedestrian street in Kazan
+       (Bauman Street) at dusk, warm shop lights and a light snowfall. ============ -->
+  <section class="section section--wash" id="life">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Student life</span><h2>Life in Russia, day to day</h2><p>Snowy winters, long summer evenings and university cities that are used to students from India.</p></div>
+      <div class="cty-life">
+        <div class="cty-life__photo reveal">
+          <div class="img-slot" data-spec="countries/russia/life.webp · 1400×1470 px"><img src="assets/images/countries/russia/life.webp" width="1400" height="1470" alt="Indian students in winter jackets laughing on a snowy street in Kazan at dusk" loading="lazy"></div>
+          <div class="cty-seasons" aria-label="Seasons in Moscow">
+            <div class="cty-season"><small>May &middot; Sep</small><b>Mild</b><span>Most pleasant</span></div>
+            <div class="cty-season"><small>Jun&ndash;Aug</small><b>Warm</b><span>Days ~24&deg;C</span></div>
+            <div class="cty-season"><small>Dec&ndash;Feb</small><b>Snowy</b><span>&minus;10 to &minus;5&deg;C</span></div>
+          </div>
+          <p class="cty-life__note">Moscow averages. Ufa and Orenburg are colder in winter; Volgograd and Rostov in the south are milder. We help you pack for your city.</p>
+        </div>
+        <div class="cty-tiles" data-stagger>
+          <div class="card cty-tile cty-tile--wide reveal"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><h3>Monthly living cost</h3><p>About &#8377;15,000&ndash;25,000 a month, including hostel, food, transport and books (Oct 2026).</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-utensils"></use></svg></span><h3>Food</h3><p>Hostels may not include meals, so many students cook. Ask us which campuses have an Indian mess nearby.</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg></span><h3>Language</h3><p>Russian is spoken everywhere outside class. Start lessons in year one &mdash; patients will thank you.</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg></span><h3>Money &amp; cards</h3><p>Indian Visa and Mastercard cards don&rsquo;t work in Russia. Carry cash, then open a local account with a Mir card.</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span><h3>Staying safe</h3><p>Carry your passport, visa and registration, avoid walking alone late at night, and save the Embassy of India, Moscow contacts.</p></div>
+          <div class="card cty-tile cty-tile--wide reveal"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><h3>Getting there</h3><p>About 12.5 hours from Chennai to Moscow with one stop, usually via Dubai. Moscow is two and a half hours behind India.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 12. DOCUMENTS ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Documents</span><h2>What to keep ready</h2><p>Start gathering these early. Russia asks for apostilled education documents &mdash; your counsellor gives you the exact list for your university.</p></div>
+      <ul class="cty-docs" data-stagger>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-passport"></use></svg><span>Valid passport<small>Six months&rsquo; validity and blank pages</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg><span>NEET-UG scorecard<small>Within its three-year validity</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg><span>Class 10 &amp; 12 mark sheets<small>Apostilled in India</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg><span>Birth certificate<small>Matching your passport details</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-eye"></use></svg><span>Passport-size photographs<small>Recent, white background</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg><span>Medical fitness certificate<small>Usually including an HIV test</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg><span>Bank statements<small>Proof of funds for the visa</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg><span>Admission &amp; invitation letters<small>We arrange these with the university</small></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 13. FAQs — keep these in step with the FAQPage block in <head> ============ -->
+  <section class="section section--wash" id="faqs">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><span class="eyebrow">FAQs</span><h2>Questions parents ask us most</h2><p>Straight answers. Anything else, just ask a counsellor.</p></div>
+      <div class="cty-faq">
+        <details><summary>Is an MBBS from Russia valid in India?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Yes, if the course meets every NMC FMGL 2021 condition: at least 54 months of study, taught in English throughout, a 12-month internship at the same university, and eligibility for a licence to practise medicine in Russia. You then clear FMGE or NExT to practise in India. We check each of these for your university, in writing, before you pay.</div></details>
+        <details><summary>Is it taught in English?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Many universities run English-medium programmes for international students, but Russian is the main teaching language in Russia, and India&rsquo;s External Affairs Ministry has warned that some courses switch to Russian in the later years. NMC requires English for the whole course, so we only recommend programmes that confirm English for all six years in writing. See <a href="#recognition">the English rule</a> above. You still learn Russian to talk to patients.</div></details>
+        <details><summary>How long is the course?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Six years of General Medicine: pre-clinical years, clinical years in university hospitals and a final clinical year. Ask exactly how your university meets NMC&rsquo;s 12-month internship rule &mdash; we get the answer in writing for you.</div></details>
+        <details><summary>How much does a year cost?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>An average year at a regional state medical university costs about &#8377;6.9 lakh all-in: roughly &#8377;4.2 lakh tuition, &#8377;1.8 lakh hostel and food, and about &#8377;90,000 for personal costs, visa, insurance and registration (indicative, Oct 2026). Six years of tuition typically comes to &#8377;18&ndash;32 lakh. Top Moscow and St Petersburg universities cost more. See the <a href="#fees">fee breakdown</a>.</div></details>
+        <details><summary>Do I need NEET?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Yes. NMC requires every Indian student who studies medicine abroad to qualify NEET-UG, and the result stays valid for three years. Most Russian universities admit on your Class 12 marks and NEET result; a few hold a short entrance test or interview.</div></details>
+        <details><summary>How far is Russia from India?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Chennai to Moscow takes about 12.5 hours with one stop, usually via Dubai. There are no non-stop flights from Chennai. Moscow is two and a half hours behind India.</div></details>
+        <details><summary>What is the weather like?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Real winters. In Moscow, January days average about &minus;5&deg;C and nights about &minus;10&deg;C, and it usually snows from mid-October to early April. July afternoons average about 24&deg;C. Cities further east, such as Ufa and Orenburg, are colder in winter; the south, around Volgograd and Rostov, is milder.</div></details>
+        <details><summary>Can I use my Indian debit or credit card?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>No. Visa and Mastercard cards issued outside Russia do not work there as of 2026. Students carry cash, open a local bank account with a Mir card, or use a UnionPay card. Fees are paid in roubles at a bank, against an official university receipt &mdash; we walk your family through it.</div></details>
+        <details><summary>Is Russia safe for Indian students?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Indian students have studied in Russian cities for decades. Follow the Indian government&rsquo;s advice: carry your passport, visa and registration at all times, avoid going out alone late at night, take full medical insurance and keep the Embassy of India in Moscow&rsquo;s contacts saved. Our team stays in contact throughout the course.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 14. CLOSING CTA (same card as Home and About) ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="cta reveal">
+        <svg class="cta__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+        <div><h2>Planning MBBS in Russia?</h2><p>One conversation: your NEET score, your budget, the right city and university &mdash; and an English-medium course confirmed in writing.</p></div>
+        <div class="btn-row">
+          <a href="apply.html" class="btn btn--ondark">Get free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <a href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, I'd like to know more about MBBS in Russia." class="btn btn--outline-light"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg> WhatsApp us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{% include footer.html %}
+{% include bottom-nav.html %}
+{% include scripts.html %}
+<script src="js/pages/country.js"></script>
+</body>
+</html>

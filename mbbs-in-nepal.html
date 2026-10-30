@@ -1,0 +1,548 @@
+---
+# Shared parts (announcement bar, header, footer, tab bar, icons) live in the _includes folder.
+# Country pages all use css/pages/country.css + js/pages/country.js — only the content below changes.
+active: countries
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MBBS in Nepal 2026 | Mathura Overseas</title>
+<meta name="description" content="Study MBBS in Nepal: no visa for Indians, English medium, 5.5 years. Average fees, MEC admission routes, the licence rules and student life.">
+<link rel="canonical" href="https://mathuraoverseas.com/mbbs-in-nepal.html">
+<meta property="og:title" content="MBBS in Nepal 2026 | Mathura Overseas">
+<meta property="og:description" content="Medicine just across the border: average fees, the two MEC admission routes, the licence rules and student life in Nepal.">
+<meta property="og:url" content="https://mathuraoverseas.com/mbbs-in-nepal.html">
+<meta property="og:image" content="assets/images/countries/nepal/hero.webp">
+{% include head.html %}
+<link rel="stylesheet" href="css/pages/country.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mathuraoverseas.com/index.html" },
+    { "@type": "ListItem", "position": 2, "name": "Countries", "item": "https://mathuraoverseas.com/destinations.html" },
+    { "@type": "ListItem", "position": 3, "name": "MBBS in Nepal", "item": "https://mathuraoverseas.com/mbbs-in-nepal.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Is an MBBS from Nepal valid in India?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, when the course meets every NMC FMGL 2021 condition. Nepal's MBBS runs 5.5 years in English, including a one-year internship at the college's own teaching hospital, and since November 2024 foreign graduates of Nepali colleges can sit the Nepal Medical Council licensing exam and receive a licence equal to Nepali citizens. You then clear FMGE or NExT to practise in India." } },
+    { "@type": "Question", "name": "Do Indian students need a visa to study MBBS in Nepal?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Indian citizens do not need a visa for Nepal, thanks to the open border between the two countries. You can fly or travel by road. Carry a valid passport, which you also need for your college admission." } },
+    { "@type": "Question", "name": "Do I need NEET or the MECEE-BL exam for MBBS in Nepal?",
+      "acceptedAnswer": { "@type": "Answer", "text": "You need NEET-UG in any case, because NMC requires it of every Indian student who studies medicine abroad. Nepal's Medical Education Commission then offers two routes: sit its own MECEE-BL entrance for first priority on seats, or apply without that exam if you scored at the 50th percentile or above in NEET, for the seats left after the MECEE-BL merit list." } },
+    { "@type": "Question", "name": "How much does MBBS in Nepal cost?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Colleges set their own fees for foreign students. As a common reference, Kathmandu Medical College's 2025-26 fee for Indian students is 57 lakh rupees for the full course when the seat is pre-booked. Spread over 5.5 years with hostel, meals and personal costs, an average year comes to about 13 lakh rupees all-in (indicative, October 2026)." } },
+    { "@type": "Question", "name": "How long is MBBS in Nepal?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Five and a half years: four and a half years of study followed by a one-year compulsory internship at the college's affiliated teaching hospital, all taught in English." } },
+    { "@type": "Question", "name": "How are MBBS seats in Nepal allotted to foreign students?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Centrally, by the Medical Education Commission (MEC). You apply on the MEC portal, choose your route, set your college preferences, and MEC matches you to a seat on merit. The law allows up to one-third of seats to go to foreign students. In 2026, 2,428 undergraduate seats were reserved for foreign students and only 476 were filled." } },
+    { "@type": "Question", "name": "What is the weather like in Nepal?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In the Kathmandu Valley, June highs average about 28 degrees Celsius and January nights about 3 degrees. The monsoon runs from June to September, with July the wettest month. Spring and autumn are clear and pleasant. Colleges in the southern plains, such as Nepalgunj and Bhairahawa, are warmer." } },
+    { "@type": "Question", "name": "How far is Nepal from India?",
+      "acceptedAnswer": { "@type": "Answer", "text": "There is no direct flight from Chennai to Kathmandu; one-stop flights through Delhi or Kolkata take about 7 hours. Several colleges sit close to the Indian border and can also be reached by road. Nepal is just 15 minutes ahead of Indian time." } }
+  ]
+}
+</script>
+</head>
+<body>
+
+{% include icons.html %}
+{% include announcement.html %}
+{% include header.html %}
+
+<main id="main">
+
+  <!-- ============ 1. HERO.  IMAGE 1: assets/images/countries/nepal/hero.webp — 1200 x 1320 px
+       Indian medical students in white coats on a hospital terrace in the Kathmandu Valley, prayer flags in the
+       foreground, snow peaks of the Himalaya faint on the horizon, clear October morning light.
+       Keep faces in the middle third: phones crop the top and bottom. ============ -->
+  <section class="cty-hero">
+    <svg class="cty-hero__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+    <div class="container cty-hero__grid">
+      <div class="cty-hero__copy">
+        <nav class="cty-crumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+          <a href="destinations.html">Countries</a><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+          <span aria-current="page">Nepal</span>
+        </nav>
+        <span class="pill"><span class="pill__dot"></span>MBBS in Nepal &middot; 2026&ndash;27 intake</span>
+        <h1>Become a doctor <em>just across the border</em></h1>
+        <p class="cty-hero__lead">An English-medium MBBS at Kathmandu University and Tribhuvan University colleges, in a country where the food, the festivals and even the script feel familiar. No visa, no new language to learn &mdash; and a clear view of the licence rules before you pay a rupee.</p>
+        <div class="cty-hero__chips">
+          <span class="cty-hero__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>No visa for Indians</span>
+          <span class="cty-hero__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>5.5-year MBBS</span>
+          <span class="cty-hero__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>English medium</span>
+        </div>
+        <div class="btn-row">
+          <a href="apply.html" class="btn btn--ondark">Get free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <a href="#fees" class="btn btn--outline-light cty-hero__desk">See average fees</a>
+        </div>
+      </div>
+      <div class="cty-hero__media">
+        <div class="img-slot" data-spec="countries/nepal/hero.webp · 1200×1320 px">
+          <img src="assets/images/countries/nepal/hero.webp" width="1200" height="1320" alt="Indian medical students in white coats on a terrace in the Kathmandu Valley with Himalayan peaks behind" fetchpriority="high">
+        </div>
+        <div class="cty-ticket" aria-label="Flight from Chennai to Kathmandu: about 7 hours with one stop">
+          <div class="cty-ticket__route">
+            <div class="cty-ticket__port"><b>MAA</b><span>Chennai</span></div>
+            <div class="cty-ticket__line"><span class="cty-ticket__plane"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-airplane"></use></svg></span></div>
+            <div class="cty-ticket__port cty-ticket__port--to"><b>KTM</b><span>Kathmandu</span></div>
+          </div>
+          <div class="cty-ticket__meta"><span><b>~7 hrs</b> &middot; 1 stop</span><span>From <b>&#8377;19,622</b> one-way &middot; Oct 2026</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. AT A GLANCE ============ -->
+  <div class="cty-glance">
+    <div class="container">
+      <div class="card cty-glance__card">
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div><div class="cty-glance__num">5.5 years</div><div class="cty-glance__label">4.5 years of study plus a 1-year internship</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-passport"></use></svg></span><div><div class="cty-glance__num">No visa</div><div class="cty-glance__label">For Indian citizens &middot; open border</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><div><div class="cty-glance__num">&#8377;13 L</div><div class="cty-glance__label">An average year, all-in (indicative)</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><div><div class="cty-glance__num">~7 hrs</div><div class="cty-glance__label">Chennai to Kathmandu, one stop</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></span><div><div class="cty-glance__num">+15 min</div><div class="cty-glance__label">Ahead of Indian time</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg></span><div><div class="cty-glance__num">1.6 NPR</div><div class="cty-glance__label">Per &#8377;1 &middot; fixed exchange rate</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 3. STICKY SECTION TABS (each href must match a section id below) ============ -->
+  <nav class="cty-tabs" aria-label="On this page">
+    <div class="cty-tabs__track">
+      <a href="#overview">Overview</a><a href="#course">Course</a><a href="#recognition">NMC status</a><a href="#universities">Colleges</a><a href="#fees">Fees</a><a href="#routes">How to apply</a><a href="#eligibility">Eligibility</a><a href="#life">Student life</a><a href="#faqs">FAQs</a>
+    </div>
+  </nav>
+
+  <!-- ============ 4. WHY NEPAL ============ -->
+  <section class="section has-dots" id="overview">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><span class="eyebrow">Why Nepal</span><h2>Six reasons Indian families choose Nepal</h2><p>Not brochure slogans &mdash; the things that actually shape your five and a half years as a medical student.</p></div>
+      <div class="cty-features" data-stagger>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-passport"></use></svg></span>
+          <div><h3>No visa, an open border</h3><p>Indian citizens need no visa to live and study in Nepal. Fly in, or travel by road to colleges near the border &mdash; and come home for any festival.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg></span>
+          <div><h3>A home away from home</h3><p>Dal-bhat on the table, Dashain and Tihar in the calendar, and Nepali written in the same Devanagari script as Hindi. Homesickness has little room here.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg></span>
+          <div><h3>English from day one</h3><p>Lectures, textbooks and exams are in English, with no year lost to learning a new language before you can speak to patients.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-stethoscope"></use></svg></span>
+          <div><h3>Patients like the ones at home</h3><p>The illnesses you treat on Nepal&rsquo;s wards are much the same as in India &mdash; useful practice for your career back home and for FMGE.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></span>
+          <div><h3>Degrees from established universities</h3><p>Colleges are affiliated to Kathmandu University or Tribhuvan University, Nepal&rsquo;s oldest university &mdash; each with its own teaching hospital.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span>
+          <div><h3>A licence on equal terms</h3><p>Since November 2024, foreign graduates of Nepali colleges can sit the Nepal Medical Council exam and get the same licence as Nepali doctors.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. HOW THE COURSE WORKS. data-months = length of each stage; it sizes the to-scale bar on desktop. ============ -->
+  <section class="section section--wash" id="course">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">How the course works</span><h2>From Class 12 to doctor: the Nepal route</h2><p>Nepal offers a direct MBBS with no pre-medical year. Here is how the five and a half years add up.</p></div>
+      <div class="cty-path__wrap reveal">
+        <div class="cty-path__bar" aria-hidden="true">
+          <span class="cty-path__seg cty-path__seg--core" data-label="Basic sciences"><span></span></span>
+          <span class="cty-path__seg cty-path__seg--core" data-label="Clinical years"><span></span></span>
+          <span class="cty-path__seg cty-path__seg--core" data-label="Internship"><span></span></span>
+          <span class="cty-path__seg" data-label="In India"><span></span></span>
+        </div>
+        <ol class="cty-path">
+          <li class="cty-path__stage cty-path__stage--core" data-months="24">
+            <span class="cty-path__num">1</span>
+            <div><span class="cty-path__len">Years 1&ndash;2</span><h3>Basic sciences</h3><p>Anatomy, physiology, biochemistry, pathology and more, often taught organ system by organ system, with early visits to the hospital.</p></div>
+          </li>
+          <li class="cty-path__stage cty-path__stage--core" data-months="30">
+            <span class="cty-path__num">2</span>
+            <div><span class="cty-path__len">Years 3&ndash;4.5</span><h3>Clinical years</h3><p>Rotations through medicine, surgery, paediatrics, obstetrics and more in the college&rsquo;s own teaching hospital.</p></div>
+          </li>
+          <li class="cty-path__stage cty-path__stage--core" data-months="12">
+            <span class="cty-path__num">3</span>
+            <div><span class="cty-path__len">12 months</span><h3>Internship</h3><p>Compulsory, at the teaching hospital affiliated to your college &mdash; exactly what NMC asks for.</p>
+              <span class="cty-path__note"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Same institution, as NMC requires</span></div>
+          </li>
+          <li class="cty-path__stage cty-path__stage--home" data-months="18">
+            <span class="cty-path__num">4</span>
+            <div><span class="cty-path__len">Back in India</span><h3>FMGE / NExT</h3><p>Clear the licensing exam, complete any internship NMC asks of you, and register to practise.</p></div>
+          </li>
+        </ol>
+        <p class="cty-path__total"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg><span>In all, plan for <b>five and a half years in Nepal</b>, then the licensing exam in India. You can also sit the Nepal Medical Council exam after your internship.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. RECOGNITION STATUS — re-check the Nepal Medical Council (nmc.org.np) and MEC (mec.gov.np) notices
+       every few months and update the dates. ============ -->
+  <section class="section" id="recognition">
+    <div class="container">
+      <div class="cty-status reveal">
+        <svg class="cty-status__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+        <div class="cty-status__intro">
+          <span class="eyebrow eyebrow--light">NMC status &middot; as of Oct 2026</span>
+          <h2>What&rsquo;s confirmed &mdash; and what we check for you</h2>
+          <p>In 2024 parents heard that Indian students in Nepal might not get a licence. That question has since been settled. Here is where things stand, in plain words.</p>
+        </div>
+        <div class="cty-status__col">
+          <h3><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg>Confirmed</h3>
+          <ul class="cty-status__list">
+            <li class="cty-status__item"><span class="cty-status__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span><b>The licence is on equal terms:</b> on 10 November 2024 the Nepal Medical Council confirmed that foreign graduates of Nepali colleges can sit its licensing exam and receive a licence equal to Nepali citizens &mdash; a key FMGL 2021 condition.</span></li>
+            <li class="cty-status__item"><span class="cty-status__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span><b>The course fits the NMC rules:</b> 5.5 years in English, with a one-year internship at the college&rsquo;s own affiliated teaching hospital.</span></li>
+            <li class="cty-status__item"><span class="cty-status__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span><b>Seats are open:</b> the law lets up to a third of seats go to foreign students. In 2026, 2,428 undergraduate seats were reserved for foreign students and only 476 were filled.</span></li>
+          </ul>
+        </div>
+        <div class="cty-status__open">
+          <div class="cty-status__open-head">
+            <span class="icon-badge icon-badge--orange icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg></span>
+            <div><small>Worth knowing</small><h4>Seats come through one central system</h4></div>
+          </div>
+          <p>Every foreign seat is allotted by Nepal&rsquo;s Medical Education Commission (MEC) through its own portal and merit-based matching. Which college you get depends on your rank and the order of your preferences &mdash; so be wary of anyone who &ldquo;guarantees&rdquo; a named college outside that process. And like every MBBS abroad, you still clear FMGE or NExT back in India.</p>
+          <div class="cty-status__promise"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg><span><b>Our promise:</b> we file your MEC application with you, help you order your preferences, and confirm the college&rsquo;s fees and internship in writing before you pay anything.</span></div>
+        </div>
+        <p class="cty-status__src">Sources: Nepal Medical Council notice on licensing for foreign graduates (10 November 2024); <a href="https://kathmandupost.com/health/2026/08/12/foreign-medical-students-come-to-nepal-but-twice-as-many-nepalis-pursue-medicine-abroad" target="_blank" rel="noopener">The Kathmandu Post, MEC seat data (12 August 2026)</a>; Medical Education Act 2019. Rules can change; we re-check them for every student.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. COLLEGES
+       7a. SPOTLIGHT (.uni-spot) — when a detailed fee page is built (e.g. mbbs-in-nepal-kmc.html):
+             1. replace the WhatsApp footer with:  <span class="uni-card__go">View the full fee structure <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+             2. add before </article>:            <a class="uni-card__cover" href="mbbs-in-nepal-kmc.html" aria-label="View the full fee structure for Kathmandu Medical College"></a>
+           The same two steps turn any ordinary .uni-card below into a link to its own page.
+       IMAGE 2: assets/images/universities/kmc-nepal/spotlight.webp — 1400 x 1000 px, KMC's teaching hospital building in Kathmandu on a clear day.
+       IMAGES 3-6: assets/images/universities/{name}/card.webp — 1200 x 750 px (16:10), the main campus building in daylight. ============ -->
+  <section class="section section--wash" id="universities">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Colleges</span><h2>Where we place students in Nepal</h2><p>Established colleges with their own teaching hospitals, each checked against the NMC conditions. Ask for any college&rsquo;s year-by-year fee sheet.</p></div>
+
+      <article class="card uni-spot reveal">
+        <div class="img-slot" data-spec="universities/kmc-nepal/spotlight.webp · 1400×1000 px"><img src="assets/images/universities/kmc-nepal/spotlight.webp" width="1400" height="1000" alt="Kathmandu Medical College Teaching Hospital in Kathmandu" loading="lazy"></div>
+        <span class="tag tag--abs">Kathmandu University</span>
+        <div class="uni-spot__body">
+          <span class="uni-spot__kicker"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Sinamangal, Kathmandu &middot; the capital</span>
+          <h3>Kathmandu Medical College (KMC)</h3>
+          <p class="uni-spot__lead">One of the capital&rsquo;s longest-running private medical colleges, teaching MBBS since 1997 under Kathmandu University, with its own teaching hospital in the city. Its fee sheet for Indian students is published openly &mdash; a useful benchmark for any Nepal budget.</p>
+          <div class="uni-spot__chips">
+            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Own teaching hospital</span>
+            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>English medium</span>
+            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>In the capital</span>
+          </div>
+          <div class="uni-spot__stats">
+            <div class="uni-spot__stat"><b data-inr="5700000">&#8377;57 L</b><span>Full-course fee, pre-booked (2025&ndash;26)</span></div>
+            <div class="uni-spot__stat"><b>1997</b><span>Founded in Kathmandu</span></div>
+            <div class="uni-spot__stat"><b>5.5 years</b><span>MBBS with internship</span></div>
+          </div>
+          <div class="uni-card__foot">
+            <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the full fee sheet for Kathmandu Medical College (KMC), Nepal."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the full fee sheet on WhatsApp</a>
+          </div>
+        </div>
+      </article>
+
+      <div class="snap-row uni-row">
+
+        <article class="card uni-card reveal">
+          <div class="img-slot" data-spec="universities/manipal-pokhara/card.webp · 1200×750 px"><img src="assets/images/universities/manipal-pokhara/card.webp" width="1200" height="750" alt="Manipal Teaching Hospital in Pokhara with the Annapurna range behind" loading="lazy"></div>
+          <span class="tag tag--abs">Kathmandu University</span>
+          <div class="uni-card__body">
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Pokhara, under the Annapurnas</span>
+            <h3>Manipal College of Medical Sciences</h3>
+            <ul class="uni-card__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Founded in 1994; run by the Manipal Education and Medical Group</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Its own 700-bed Manipal Teaching Hospital</li>
+            </ul>
+            <div class="uni-card__foot">
+              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Manipal College of Medical Sciences, Pokhara."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card uni-card reveal">
+          <div class="img-slot" data-spec="universities/nepal-medical-college/card.webp · 1200×750 px"><img src="assets/images/universities/nepal-medical-college/card.webp" width="1200" height="750" alt="Nepal Medical College Teaching Hospital in Jorpati, Kathmandu" loading="lazy"></div>
+          <span class="tag tag--abs">Kathmandu University</span>
+          <div class="uni-card__body">
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Jorpati, Kathmandu Valley</span>
+            <h3>Nepal Medical College</h3>
+            <ul class="uni-card__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Teaching MBBS since 1997</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Its own teaching hospital in the valley</li>
+            </ul>
+            <div class="uni-card__foot">
+              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Nepal Medical College, Jorpati."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card uni-card reveal">
+          <div class="img-slot" data-spec="universities/ucms-bhairahawa/card.webp · 1200×750 px"><img src="assets/images/universities/ucms-bhairahawa/card.webp" width="1200" height="750" alt="Universal College of Medical Sciences campus in Bhairahawa" loading="lazy"></div>
+          <span class="tag tag--abs">Tribhuvan University</span>
+          <div class="uni-card__body">
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Bhairahawa, near the Sonauli border</span>
+            <h3>Universal College of Medical Sciences</h3>
+            <ul class="uni-card__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Founded in 1998, affiliated to Tribhuvan University</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>A short road trip from Uttar Pradesh</li>
+            </ul>
+            <div class="uni-card__foot">
+              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Universal College of Medical Sciences, Bhairahawa."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card uni-card reveal">
+          <div class="img-slot" data-spec="universities/nepalgunj-mc/card.webp · 1200×750 px"><img src="assets/images/universities/nepalgunj-mc/card.webp" width="1200" height="750" alt="Nepalgunj Medical College Teaching Hospital in Kohalpur" loading="lazy"></div>
+          <span class="tag tag--abs">Kathmandu University</span>
+          <div class="uni-card__body">
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Nepalgunj, near the Indian border</span>
+            <h3>Nepalgunj Medical College</h3>
+            <ul class="uni-card__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Founded in 1996, affiliated to Kathmandu University</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg>Accepts NEET or MECEE-BL, per its own eligibility page</li>
+            </ul>
+            <div class="uni-card__foot">
+              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Nepalgunj Medical College."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card uni-card uni-card--ask reveal">
+          <span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg></span>
+          <h3>Considering another college?</h3>
+          <p>Send us its name. We will check its affiliation, internship and fees against the NMC conditions &mdash; free, and in writing.</p>
+          <a class="btn btn--primary btn--sm" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, can you check a Nepal medical college for me? The college is: ">Ask us to check <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. FEES — an AVERAGE year. To change a figure, edit its data-inr number (in rupees, per year).
+       data-row-inr on each row must match the number inside it; the total's data-inr must equal their sum.
+       Tuition = KMC's 2025-26 pre-booked fee for Indian students (₹57 L) spread over 5.5 years ≈ ₹10.4 L.
+       Hostel = KMC: room ₹12,000 + meals ₹5,000–5,500 a month. ============ -->
+  <section class="section" id="fees">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Fees</span><h2>What a year in Nepal really costs</h2><p>An average, all-in budget &mdash; not the highest quote you will find online. Each college sets its own fee for foreign students; ask us for any college&rsquo;s own sheet.</p></div>
+      <div class="cty-fees reveal">
+        <div class="cty-fees__total">
+          <div class="cty-fees__switch" role="group" aria-label="Show amounts in">
+            <button type="button" data-currency="inr" aria-pressed="true">&#8377; INR</button>
+            <button type="button" data-currency="usd" aria-pressed="false">$ USD</button>
+          </div>
+          <div>
+            <span class="cty-fees__kicker">An average year, all-in</span>
+            <span class="cty-fees__big"><span id="feeTotal" data-inr="1307000">&#8377;13.1 L</span> <small>/ year</small></span>
+          </div>
+          <p>Colleges usually collect the course fee in a few large instalments in the first years. We spread it across all 5.5 years here, so you can compare Nepal fairly with other countries.</p>
+          <div class="cty-fees__course"><span>Full-course fee, from about</span><b><span data-inr="5700000">&#8377;57 L</span></b></div>
+        </div>
+
+        <div class="card cty-fees__rows">
+          <div class="cty-fees__row" data-row-inr="1040000">
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div class="cty-fees__name"><b>Course fee</b><span>The full-course fee, spread over 5.5 years</span></div><span class="cty-fees__val" data-inr="1040000">&#8377;10.4 L</span></div>
+            <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
+          </div>
+          <div class="cty-fees__row" data-row-inr="207000">
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-home"></use></svg></span><div class="cty-fees__name"><b>Hostel &amp; meals</b><span><span data-inr-range="17000-18000">&#8377;17k&ndash;18k</span> a month</span></div><span class="cty-fees__val" data-inr="207000">&#8377;2.1 L</span></div>
+            <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
+          </div>
+          <div class="cty-fees__row" data-row-inr="60000">
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><div class="cty-fees__name"><b>Personal, travel &amp; books</b><span><span data-inr-range="4000-6000">&#8377;4k&ndash;6k</span> a month</span></div><span class="cty-fees__val" data-inr="60000">&#8377;60k</span></div>
+            <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
+          </div>
+          <div class="cty-fees__row cty-fees__row--zero">
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-passport"></use></svg></span><div class="cty-fees__name"><b>Visa</b><span>Not needed for Indian citizens</span></div><span class="cty-fees__val">&#8377;0</span></div>
+          </div>
+        </div>
+
+        <div class="cty-fees__extras">
+          <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg><span><b>Flights:</b> Chennai to Kathmandu from &#8377;19,622 one-way (Oct 2026), or travel by road</span></div>
+          <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg><span><b>One-time:</b> admission, university affiliation and registration fees &mdash; about &#8377;3.9 L at KMC (2025&ndash;26)</span></div>
+          <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg><span><b>Always:</b> pay the college directly, against an official receipt</span></div>
+        </div>
+      </div>
+      <p class="cty-asof"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><span>Indicative averages as of Oct 2026, built from Kathmandu Medical College&rsquo;s published 2025&ndash;26 fee sheet for Indian students; <span data-rate-label>1 USD = &#8377;95 (as of 26 Oct 2026)</span>. Each college sets its own fee for foreign students, and the Nepali rupee is fixed at 1.6 to &#8377;1 &mdash; confirm the exact figures with your counsellor.</span></p>
+    </div>
+  </section>
+
+  <!-- ============ 9a. TWO WAYS IN (.cty-routes) — Nepal's MEC offers two admission routes to foreign students.
+       Update the dates and fee from the MEC notice each year (mec.gov.np). ============ -->
+  <section class="section section--wash" id="routes">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><span class="eyebrow">How to apply</span><h2>Two ways into a Nepali medical college</h2><p>Nepal&rsquo;s Medical Education Commission (MEC) allots every foreign seat. You pick one of two routes when you apply &mdash; here is how to choose.</p></div>
+      <div class="cty-routes">
+        <article class="card cty-route reveal">
+          <div class="cty-route__head">
+            <span class="cty-route__num">1</span>
+            <div><small>Subcategory I &middot; first priority</small><h3>Sit Nepal&rsquo;s MECEE-BL entrance</h3></div>
+          </div>
+          <p>MEC&rsquo;s own common entrance exam. Candidates on this route are matched to seats first, on their MECEE-BL merit.</p>
+          <ul class="cty-route__facts">
+            <li><span>Exam</span><b>200 MCQs &middot; 3 hours</b></li>
+            <li><span>Marking</span><b>+1 right &middot; &minus;0.25 wrong</b></li>
+            <li><span>To make the merit list</span><b>50th percentile</b></li>
+            <li><span>Application fee (2026)</span><b>NPR 8,000</b></li>
+          </ul>
+          <div class="cty-route__best"><svg class="icon" aria-hidden="true"><use href="#i-target"></use></svg><span><b>Best for:</b> students who want the widest choice of colleges, and reserved-category students whose NEET percentile is below 50.</span></div>
+        </article>
+        <span class="cty-routes__or" aria-hidden="true">or</span>
+        <article class="card cty-route cty-route--alt reveal">
+          <div class="cty-route__head">
+            <span class="cty-route__num">2</span>
+            <div><small>Subcategory II &middot; no extra exam</small><h3>Apply on your NEET result</h3></div>
+          </div>
+          <p>Apply without sitting MECEE-BL, using your rank in your home country&rsquo;s national exam &mdash; for Indian students, NEET-UG.</p>
+          <ul class="cty-route__facts">
+            <li><span>Extra exam</span><b>None</b></li>
+            <li><span>NEET needed</span><b>50th percentile or above</b></li>
+            <li><span>Seats</span><b>Those left after Route 1</b></li>
+            <li><span>Applied on</span><b>The same MEC portal</b></li>
+          </ul>
+          <div class="cty-route__best"><svg class="icon" aria-hidden="true"><use href="#i-target"></use></svg><span><b>Best for:</b> NEET-qualified students who would rather not sit a second entrance exam.</span></div>
+        </article>
+      </div>
+      <p class="cty-asof"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><span>From the MEC notice for foreign candidates, 2026: applications opened in August, with deadlines extended into September after the Bhotekoshi flood. You choose only one route. Every Indian student still needs a qualifying NEET-UG score for NMC, whichever route you take.</span></p>
+    </div>
+  </section>
+
+  <!-- ============ 9. ELIGIBILITY ============ -->
+  <section class="section" id="eligibility">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Eligibility</span><h2>Can you apply? The NMC checklist</h2><p>Every point below must be true for your degree to count in India.</p></div>
+      <div class="cty-elig">
+        <ul class="card cty-checks reveal">
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>NEET-UG qualified</b><span>Required for every Indian student studying medicine abroad. The result stays valid for three years.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>50% in Physics, Chemistry and Biology</b><span>In Class 12, with English as a subject. Nepal&rsquo;s MEC also asks for 50% aggregate in PCB.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>17 years old by 31 December</b><span>Of the year you join.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>MECEE-BL or a NEET percentile of 50+</b><span>One of the two MEC routes &mdash; see <a href="#routes">how to apply</a> above.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>A course that meets FMGL 2021</b><span>At least 54 months of study, taught in English, with a 12-month internship at the same institution &mdash; Nepal&rsquo;s 5.5-year MBBS does this.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>A seat allotted by MEC</b><span>Admission to a recognised college comes only through the Medical Education Commission.</span></div></li>
+        </ul>
+        <aside class="cty-elig__tool reveal">
+          <svg class="cty-elig__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+          <span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-check-square"></use></svg></span>
+          <h3>Not sure where you stand?</h3>
+          <p>Enter your NEET score and Class 12 marks in the MBBS Planner and get an instant answer &mdash; free, in about ten seconds.</p>
+          <a href="mbbs-abroad-planner.html#eligibility" class="btn btn--ondark">Check my eligibility <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10. ADMISSION STEPS ============ -->
+  <section class="section has-grid" id="admission">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><span class="eyebrow">Admission</span><h2>Your path to a Nepali medical college</h2><p>One counsellor, from your first call to your first lecture &mdash; and after.</p></div>
+      <ol class="cty-steps" data-stagger>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Free counselling</h3><p>Your NEET score, budget and goals, in one honest conversation.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Pick your route</h3><p>MECEE-BL or NEET-based &mdash; we help you choose the one that fits.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Apply on the MEC portal</h3><p>We fill in the form with you and help you rank your college choices.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Seat allotted</h3><p>MEC matches you to a college; we check the fees and internship in writing.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Travel &amp; report</h3><p>No visa to wait for: pay the college directly and move into the hostel.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Study &amp; FMGE prep</h3><p>We stay with you through the course and the exam back home.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ 11. STUDENT LIFE.  IMAGE 7: assets/images/countries/nepal/life.webp — 1400 x 1470 px
+       Indian students in light jackets sharing dal-bhat and momos at a rooftop café in Kathmandu, Boudhanath stupa and
+       prayer flags behind them, warm late-afternoon light. (Alternative: students rowing on Phewa Lake, Pokhara.) ============ -->
+  <section class="section section--wash" id="life">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Student life</span><h2>Life in Nepal, day to day</h2><p>Familiar food, mountain views and a culture that feels close to home.</p></div>
+      <div class="cty-life">
+        <div class="cty-life__photo reveal">
+          <div class="img-slot" data-spec="countries/nepal/life.webp · 1400×1470 px"><img src="assets/images/countries/nepal/life.webp" width="1400" height="1470" alt="Indian students sharing dal-bhat and momos at a rooftop café near Boudhanath in Kathmandu" loading="lazy"></div>
+          <div class="cty-seasons" aria-label="Seasons in Kathmandu">
+            <div class="cty-season"><small>Mar&ndash;May &middot; Oct&ndash;Nov</small><b>Clear</b><span>Most pleasant</span></div>
+            <div class="cty-season"><small>Jun&ndash;Sep</small><b>Monsoon</b><span>Highs ~28&deg;C</span></div>
+            <div class="cty-season"><small>Dec&ndash;Feb</small><b>Cool</b><span>Nights ~3&deg;C</span></div>
+          </div>
+          <p class="cty-life__note">Kathmandu Valley averages. Colleges in the southern plains, like Nepalgunj and Bhairahawa, are warmer all year.</p>
+        </div>
+        <div class="cty-tiles" data-stagger>
+          <div class="card cty-tile cty-tile--wide reveal"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><h3>Monthly living cost</h3><p>About &#8377;21,000&ndash;24,000 a month, including hostel, meals, transport and books (indicative, Oct 2026).</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-utensils"></use></svg></span><h3>Food</h3><p>Dal-bhat, rotis and curries are everyday food. Vegetarian meals are easy to find.</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg></span><h3>Language</h3><p>Classes are in English. Nepali uses the Devanagari script, and Hindi is widely understood.</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></span><h3>Time zone</h3><p>Just 15 minutes ahead of India: home is always on the same clock.</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg></span><h3>Money</h3><p>The Nepali rupee is fixed at 1.6 to &#8377;1, so your budget never moves with exchange rates.</p></div>
+          <div class="card cty-tile cty-tile--wide reveal"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><h3>Getting there</h3><p>About 7 hours from Chennai with one stop in Delhi or Kolkata. Colleges near the border, like Bhairahawa and Nepalgunj, are also a short road trip from Uttar Pradesh.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 12. DOCUMENTS ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Documents</span><h2>What to keep ready</h2><p>Start gathering these early. Your counsellor gives you the exact list for your college.</p></div>
+      <ul class="cty-docs" data-stagger>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-passport"></use></svg><span>Valid passport<small>Used for your MEC application and college admission</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg><span>NEET-UG scorecard<small>With your admit card, within its validity</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg><span>Class 10 &amp; 12 mark sheets<small>Originals are checked at admission</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-eye"></use></svg><span>Passport-size photograph<small>Recent; JPEG under 200 KB for the portal</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-edit"></use></svg><span>Scanned signature<small>For the MEC application</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-check-square"></use></svg><span>MEC confirmation page<small>Download it after you submit</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg><span>Medical fitness certificate<small>If your college asks for one</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg><span>Fee receipts<small>Every payment, made directly to the college</small></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 13. FAQs — keep these in step with the FAQPage block in <head> ============ -->
+  <section class="section section--wash" id="faqs">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><span class="eyebrow">FAQs</span><h2>Questions parents ask us most</h2><p>Straight answers. Anything else, just ask a counsellor.</p></div>
+      <div class="cty-faq">
+        <details><summary>Is an MBBS from Nepal valid in India?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Yes, when the course meets every NMC FMGL 2021 condition. Nepal&rsquo;s MBBS runs 5.5 years in English, including a one-year internship at the college&rsquo;s own teaching hospital, and since November 2024 foreign graduates of Nepali colleges can sit the Nepal Medical Council licensing exam and receive a licence equal to Nepali citizens. You then clear FMGE or NExT to practise in India. See <a href="#recognition">NMC status</a>.</div></details>
+        <details><summary>Do I need a visa?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>No. Indian citizens do not need a visa for Nepal, thanks to the open border. You can fly or travel by road. Carry a valid passport, which you also need for your college admission.</div></details>
+        <details><summary>Do I need NEET or the MECEE-BL exam?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>You need NEET-UG in any case, because NMC requires it of every Indian student studying medicine abroad. Nepal&rsquo;s MEC then offers two routes: sit its MECEE-BL entrance for first priority on seats, or apply without it if you are at the 50th percentile or above in NEET. See <a href="#routes">how to apply</a>.</div></details>
+        <details><summary>How much does it cost?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Colleges set their own fees for foreign students. As a common reference, Kathmandu Medical College&rsquo;s 2025&ndash;26 fee for Indian students is &#8377;57 lakh for the full course when the seat is pre-booked. Spread over 5.5 years with hostel, meals and personal costs, an average year comes to about &#8377;13 lakh all-in (indicative, Oct 2026). See the <a href="#fees">fee breakdown</a>.</div></details>
+        <details><summary>How long is the course?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Five and a half years: four and a half years of study followed by a one-year compulsory internship at the college&rsquo;s affiliated teaching hospital, all in English.</div></details>
+        <details><summary>How are seats allotted?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Centrally, by the Medical Education Commission. You apply on the MEC portal, choose your route, rank your colleges, and MEC matches you to a seat on merit. The law allows up to a third of seats to go to foreign students; in 2026, 2,428 undergraduate seats were reserved for them and only 476 were filled.</div></details>
+        <details><summary>What is the weather like?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>In the Kathmandu Valley, June highs average about 28&deg;C and January nights about 3&deg;C. The monsoon runs from June to September, with July the wettest month. Spring and autumn are clear and pleasant. Colleges in the southern plains are warmer.</div></details>
+        <details><summary>How far is Nepal from India?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>There is no direct flight from Chennai; one-stop flights through Delhi or Kolkata take about 7 hours. Several colleges sit near the Indian border and can be reached by road. Nepal is just 15 minutes ahead of Indian time.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 14. CLOSING CTA (same card as Home and About) ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="cta reveal">
+        <svg class="cta__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+        <div><h2>Planning MBBS in Nepal?</h2><p>One conversation: your NEET score, the right MEC route, your college choices &mdash; and every fee, in writing.</p></div>
+        <div class="btn-row">
+          <a href="apply.html" class="btn btn--ondark">Get free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <a href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, I'd like to know more about MBBS in Nepal." class="btn btn--outline-light"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg> WhatsApp us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{% include footer.html %}
+{% include bottom-nav.html %}
+{% include scripts.html %}
+<script src="js/pages/country.js"></script>
+</body>
+</html>

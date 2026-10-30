@@ -1,4 +1,4 @@
-/* BUILD 20261028-6 */
+/* BUILD 20261030-1 */
 // student-guide.js — turns every <article class="sg-page"> in #sgSource into a page of a 3D page-turn book,
 // sizes the book to the screen (no page scrolling), keeps ONE text size across the whole book, and runs the PDF download gate.
 // This script is loaded first on the page and starts straight away (it does not wait for the shared site scripts).
@@ -147,12 +147,15 @@
   function refit() { fitted = []; guard = 0; pages.forEach(function (q) { q.style.removeProperty('--fs'); }); fitVisible(); idle(fitRest); }
 
   // ---------- turning ----------
+  // While a page turns it moves in 3D. Once it lands, a turned page is laid FLAT again (class is-flat), because
+  // browsers draw text inside a 3D-rotated layer as a blurry picture. This is what keeps the left page sharp on desktop.
   function maxState() { return spread ? leaves.length : N - 1; }
   function clamp(v) { return Math.max(0, Math.min(maxState(), v)); }
   function paint() {
     leaves.forEach(function (leaf, i) {
       var flipped = i < state;
       leaf.classList.toggle('is-flipped', flipped);
+      leaf.classList.toggle('is-flat', flipped && !leaf.classList.contains('is-turning'));
       leaf.classList.toggle('is-far', Math.abs(i - state) > 2);   // pages far from the reader are not rendered at all
       if (!leaf.classList.contains('is-turning')) leaf.style.zIndex = flipped ? 100 + i : leaves.length - i + 1;
     });
@@ -160,6 +163,12 @@
     book.classList.toggle('is-end', spread && state === leaves.length);
   }
   function turn(leaf) {
+    if (leaf.classList.contains('is-flat')) {   // put a flat (already turned) page back into its 3D position, without animating
+      leaf.style.transition = 'none';
+      leaf.classList.remove('is-flat');
+      void leaf.offsetWidth;
+      leaf.style.transition = '';
+    }
     leaf.classList.add('is-turning'); leaf.style.zIndex = 500;
     setTimeout(function () { leaf.classList.remove('is-turning'); paint(); }, 900);
   }
@@ -327,7 +336,7 @@
         'app-h ' + document.documentElement.style.getPropertyValue('--app-h'), 'body ' + r(document.body), 'main ' + r(main),
         'stage ' + r(stage), 'book ' + r(book), 'pg ' + (pgs ? pgs.clientHeight + '/' + pgs.scrollHeight : '-'),
         'safe-bottom ' + getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'),
-        'font ' + (document.fonts && document.fonts.check('16px "Plus Jakarta Sans"')), 'build 20261028-6'].join('\n');
+        'font ' + (document.fonts && document.fonts.check('16px "Plus Jakarta Sans"')), 'build 20261030-1'].join('\n');
       setTimeout(paintDbg, 700);
     })();
   }

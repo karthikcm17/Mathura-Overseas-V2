@@ -1,4 +1,5 @@
-// country.js — shared by EVERY country page (and later the university pages).
+// country.js — FINAL. Shared by EVERY country page (mbbs-in-{country}.html) and, later, the university pages.
+// Used by: Philippines, Uzbekistan, Kyrgyzstan, Kazakhstan, Russia, Georgia, Vietnam, Timor-Leste, Nepal.
 //
 // ======================= THE ONLY LINES YOU NORMALLY EDIT =======================
 // When the dollar rate changes, update these two lines. Every ₹ / $ figure on every
@@ -7,12 +8,26 @@ var USD_TO_INR   = 95;             // 1 US dollar = ₹95
 var RATE_AS_OF   = '26 Oct 2026';  // the date you checked the rate
 // =================================================================================
 //
-// How fees are written in the HTML (no maths needed):
+// What this file does (each part only runs on pages that have the matching HTML):
+//   1. Money       ₹ / $ switch, and fee bars sized as a share of the yearly total
+//   2. Roadmap     to-scale bar widths on the course timeline
+//   3. WhatsApp    ready-made messages on WhatsApp links
+//   4. Tabs        highlights the sticky section tab for the section on screen
+//   5. City filter shows universities in one city (Kazakhstan, Russia)
+//
+// How to write things in the HTML (no maths needed):
 //   <span data-inr="380000"></span>                 → shows ₹3.8 L   (or $4,000 when $ is picked)
 //   <span data-inr-range="240000-530000"></span>    → shows ₹2.4–5.3 L
-//   <span class="cty-fees__meter" data-share-of="feeTotal">…</span> → bar sized as a share of the total
+//   <span class="cty-fees__meter"><span data-share-of="feeTotal"></span></span> → bar sized as a share of the total
+//      (the bar's row needs data-row-inr="…"; a row that costs nothing uses .cty-fees__row--zero and has no bar)
 // WhatsApp buttons:  <a data-wa="Hi, please send the DMSF fee sheet" href="https://wa.me/919360859919">
 // Course roadmap:    <li class="cty-path__stage" data-months="54"> (sets the width of that stage)
+// City filter:       <button data-uni-filter="almaty">  +  <article class="uni-card" data-city="almaty"> (or class="uni-spot")
+//                    A city card's link with data-uni-filter-set="almaty" jumps to the list already filtered.
+//
+// These blocks need NO script — they are pure CSS: FAQ accordion (<details>), official list board,
+// then-vs-now year blocks, syllabus match, fit check, city cards, two admission routes.
+// Scroll-in animations (.reveal → .is-in) come from the shared animations.js, not from here.
 
 document.addEventListener('DOMContentLoaded', function () {
   var WA_NUMBER = '919360859919';
@@ -95,5 +110,23 @@ document.addEventListener('DOMContentLoaded', function () {
       entries.forEach(function (e) { if (e.isIntersecting) setActive(e.target.id); });
     }, { rootMargin: '-35% 0px -60% 0px' });
     Object.keys(map).forEach(function (id) { io.observe(document.getElementById(id)); });
+  }
+
+  /* ---------- 5. Universities by city (only runs on pages that have a .uni-filter row) ---------- */
+  var filterBtns = document.querySelectorAll('[data-uni-filter]');
+  if (filterBtns.length) {
+    var uniRow = document.querySelector('.uni-row');
+    function showCity(city) {
+      each(filterBtns, function (b) { b.setAttribute('aria-pressed', b.dataset.uniFilter === city ? 'true' : 'false'); });
+      // The spotlight and cards follow the chip; cards without data-city (the "Considering another university?" card) always stay visible
+      each(document.querySelectorAll('.uni-spot[data-city], .uni-card[data-city]'), function (card) {
+        card.hidden = !(city === 'all' || card.dataset.city === city);
+      });
+      if (uniRow) uniRow.scrollTo({ left: 0, behavior: 'smooth' });
+    }
+    each(filterBtns, function (b) { b.addEventListener('click', function () { showCity(b.dataset.uniFilter); }); });
+    each(document.querySelectorAll('[data-uni-filter-set]'), function (a) {
+      a.addEventListener('click', function () { showCity(a.dataset.uniFilterSet); });
+    });
   }
 });

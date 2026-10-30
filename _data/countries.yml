@@ -1,0 +1,236 @@
+# ============ COUNTRIES — one entry per country page (_data/countries.yml) ============
+# The Countries page (destinations.html) builds EVERYTHING country-related from this file:
+# the "a year, all-in" chart, the "Fly the route from Chennai" explorer, the country chips and the
+# country headings above each group of universities. The ORDER here is the order shown on the site.
+# To add a country: copy one whole entry (from "- slug:" to the last "why" line) and change the values.
+#
+#   slug        short id, lowercase. Every university in _data/universities.yml points to one of these.
+#   name        shown on the site
+#   page        the country page
+#   planner     OPTIONAL. The country's id in the MBBS Planner, only if it differs from slug (Timor-Leste = timor)
+#   year_cost   the "average year, all-in" figure from the country page, as text
+#   year_inr    the same figure as a plain number of rupees (sizes the bar in the chart)
+#   duration    course length, short
+#   ---- the flight explorer ----
+#   airport     3-letter code of the arrival airport (MNL, TAS…)
+#   city        the arrival city
+#   hours       flight time from Chennai as shown, e.g. "~10" or "9–10"
+#   hours_num   the same as one number (sizes the "share of a day" bar; 9–10 → 9.5)
+#   stops       e.g. "1 stop" or "via Singapore"
+#   fare        lowest one-way fare seen from Chennai, as text      fare_as_of: when you checked it
+#   time        time difference with India
+#   money       exchange rate, as text                              money_as_of: when you checked it
+#   language    local language(s)
+#   climate     one short line
+#   why         exactly three short reasons, from the country page
+#
+# Every value below is copied from that country's own page (flight panel, "at a glance" band, fees and
+# "why" cards), as of Sep–Oct 2026. When you update a country page, update its entry here too.
+
+- slug: philippines
+  name: Philippines
+  page: mbbs-in-philippines.html
+  year_cost: "₹8.1 L"
+  year_inr: 806000
+  duration: "~7 yrs incl. pre-med"
+  airport: MNL
+  city: Manila
+  hours: "~10"
+  hours_num: 10
+  stops: "1 stop"
+  fare: "₹13,434"
+  fare_as_of: "Sep 2026"
+  time: "2h 30m ahead"
+  money: "₱1 ≈ ₹1.5"
+  money_as_of: "Sep 2026"
+  language: "English is spoken everywhere"
+  climate: "Tropical, 25–32°C all year"
+  why:
+    - English in class, on the ward and at the corner shop
+    - A US-pattern Doctor of Medicine
+    - CHED confirmed in writing that the MD meets India's FMGL rules (May 2025)
+
+- slug: timor-leste
+  name: Timor-Leste
+  page: mbbs-in-timor-uct-timor.html
+  planner: timor
+  year_cost: "₹4.9 L"
+  year_inr: 490000
+  duration: "5.5 yrs"
+  airport: DIL
+  city: Dili
+  hours: "20–24"
+  hours_num: 22
+  stops: "via Singapore"
+  fare: "₹35,561"
+  fare_as_of: "Sep 2026"
+  time: "3h 30m ahead"
+  money: "US dollar · $1 = ₹95"
+  money_as_of: "Oct 2026"
+  language: "Tetum & Portuguese; classes in English"
+  climate: "Tropical, 21–32°C all year"
+  why:
+    - Taught on India's own CBME framework, with Indian faculty
+    - One flat tuition of about ₹2.5 L a year, no donation
+    - An Indian mess and a hostel with 24-hour security
+
+- slug: uzbekistan
+  name: Uzbekistan
+  page: mbbs-in-uzbekistan.html
+  year_cost: "₹6.2 L"
+  year_inr: 620000
+  duration: "6 yrs"
+  airport: TAS
+  city: Tashkent
+  hours: "~8"
+  hours_num: 8
+  stops: "1 stop"
+  fare: "₹20,073"
+  fare_as_of: "Oct 2026"
+  time: "30m behind"
+  money: "₹1 ≈ 124 som"
+  money_as_of: "Sep 2026"
+  language: "Uzbek & Russian"
+  climate: "4 seasons; hot, dry summers"
+  why:
+    - Government universities with decades of teaching
+    - Direct flights from Delhi and Hyderabad
+    - Silk Road cities like Samarkand and Bukhara
+
+- slug: russia
+  name: Russia
+  page: mbbs-in-russia.html
+  year_cost: "₹6.9 L"
+  year_inr: 691000
+  duration: "6 yrs"
+  airport: DME
+  city: Moscow
+  hours: "~12.5"
+  hours_num: 12.5
+  stops: "1 stop"
+  fare: "₹38,152"
+  fare_as_of: "Oct 2026"
+  time: "2h 30m behind"
+  money: "₽1 ≈ ₹1.18"
+  money_as_of: "Oct 2026"
+  language: "Russian"
+  climate: "Real winters; snow mid-Oct to April"
+  why:
+    - Medical teaching in Kazan since 1814
+    - Large university teaching hospitals
+    - English for all six years, confirmed in writing
+
+- slug: georgia
+  name: Georgia
+  page: mbbs-in-georgia.html
+  year_cost: "₹9.8 L"
+  year_inr: 979000
+  duration: "6 yrs"
+  airport: TBS
+  city: Tbilisi
+  hours: "~9"
+  hours_num: 9
+  stops: "1 stop"
+  fare: "₹34,895"
+  fare_as_of: "Oct 2026"
+  time: "1h 30m behind"
+  money: "1 lari ≈ ₹36.9"
+  money_as_of: "Oct 2026"
+  language: "Georgian"
+  climate: "4 seasons; short, cool winters"
+  why:
+    - A European-style six-year MD (360 ECTS)
+    - English from the lecture hall to the ward
+    - A large Indian student community in Tbilisi
+
+- slug: kazakhstan
+  name: Kazakhstan
+  page: mbbs-in-kazakhstan.html
+  year_cost: "₹6.3 L"
+  year_inr: 630000
+  duration: "7 yrs from 2026"
+  airport: ALA
+  city: Almaty
+  hours: "~9"
+  hours_num: 9
+  stops: "1 stop"
+  fare: "₹28,600"
+  fare_as_of: "Oct 2026"
+  time: "30m behind"
+  money: "₹1 ≈ 4.8 tenge"
+  money_as_of: "Oct 2026"
+  language: "Kazakh & Russian"
+  climate: "4 seasons; snowy winters"
+  why:
+    - State medical universities since 1930
+    - A full year on the wards as an intern-doctor
+    - Direct Almaty–Delhi flights of about 3.5 hours
+
+- slug: kyrgyzstan
+  name: Kyrgyzstan
+  page: mbbs-in-kyrgyzstan.html
+  year_cost: "₹6.2 L"
+  year_inr: 624000
+  duration: "6 yrs"
+  airport: FRU
+  city: Bishkek
+  hours: "9–10"
+  hours_num: 9.5
+  stops: "1 stop"
+  fare: "₹34,725"
+  fare_as_of: "Oct 2026"
+  time: "30m ahead"
+  money: "₹1 ≈ 0.92 som"
+  money_as_of: "Oct 2026"
+  language: "Kyrgyz & Russian"
+  climate: "4 seasons; snowy winters"
+  why:
+    - A state medical academy since 1939
+    - Minimum tuition fixed at US$3,000 a year
+    - We list only universities that passed the 2026 accreditation
+
+- slug: vietnam
+  name: Vietnam
+  page: mbbs-in-vietnam.html
+  year_cost: "₹6.1 L"
+  year_inr: 610000
+  duration: "6 yrs"
+  airport: SGN
+  city: Ho Chi Minh City
+  hours: "~8"
+  hours_num: 8
+  stops: "1 stop"
+  fare: "₹24,349"
+  fare_as_of: "Oct 2026"
+  time: "1h 30m ahead"
+  money: "₹1 ≈ 271 dong"
+  money_as_of: "Oct 2026"
+  language: "Vietnamese"
+  climate: "Tropical south; cool winters in Hanoi"
+  why:
+    - Non-stop flights from Bengaluru, Hyderabad and Kochi
+    - English programmes built for Indian students
+    - Big-city teaching hospitals
+
+- slug: nepal
+  name: Nepal
+  page: mbbs-in-nepal.html
+  year_cost: "₹13.1 L"
+  year_inr: 1307000
+  duration: "5.5 yrs"
+  airport: KTM
+  city: Kathmandu
+  hours: "~7"
+  hours_num: 7
+  stops: "1 stop"
+  fare: "₹19,622"
+  fare_as_of: "Oct 2026"
+  time: "15m ahead"
+  money: "₹1 = 1.6 NPR (fixed)"
+  money_as_of: "Oct 2026"
+  language: "Nepali; Hindi widely understood"
+  climate: "Monsoon Jun–Sep; cool winters"
+  why:
+    - No visa needed for Indian citizens
+    - Food, festivals and script that feel like home
+    - A Nepal licence on equal terms since November 2024

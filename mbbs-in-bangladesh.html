@@ -1,0 +1,573 @@
+---
+# Shared parts (announcement bar, header, footer, tab bar, icons) live in the _includes folder.
+# Country pages all use css/pages/country.css + js/pages/country.js — only the content below changes.
+active: countries
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MBBS in Bangladesh 2026 | Mathura Overseas</title>
+<meta name="description" content="Study MBBS in Bangladesh: 5 years plus a 1-year internship, a course built much like India's, strong FMGE results and a direct flight from Chennai. Average fees.">
+<link rel="canonical" href="https://mathuraoverseas.com/mbbs-in-bangladesh.html">
+<meta property="og:title" content="MBBS in Bangladesh 2026 | Mathura Overseas">
+<meta property="og:description" content="The closest MBBS abroad to home: average fees, FMGE results, the NMC rules and student life in Bangladesh, in plain words.">
+<meta property="og:url" content="https://mathuraoverseas.com/mbbs-in-bangladesh.html">
+<meta property="og:image" content="assets/images/countries/bangladesh/hero.webp">
+{% include head.html %}
+<link rel="stylesheet" href="css/pages/country.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mathuraoverseas.com/index.html" },
+    { "@type": "ListItem", "position": 2, "name": "Countries", "item": "https://mathuraoverseas.com/destinations.html" },
+    { "@type": "ListItem", "position": 3, "name": "MBBS in Bangladesh", "item": "https://mathuraoverseas.com/mbbs-in-bangladesh.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Is an MBBS from Bangladesh valid in India?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, if the course meets every NMC FMGL 2021 condition: at least 54 months of study, taught in English, a 12-month internship at the same institution, and eligibility for a medical licence in Bangladesh. Bangladesh's five-year MBBS with a one-year internship in the college hospital fits this pattern. You then clear FMGE or NExT to practise in India." } },
+    { "@type": "Question", "name": "How much does MBBS in Bangladesh cost?",
+      "acceptedAnswer": { "@type": "Answer", "text": "An average year costs about 8.9 lakh rupees all-in: roughly 6.8 lakh tuition, 1.4 lakh hostel and meals and about 60,000 for personal costs, visa and insurance (indicative, October 2026). Most private colleges quote one package for the whole course, typically 30,000 to 42,000 US dollars (about 28 to 40 lakh rupees), and collect a large part of it at admission." } },
+    { "@type": "Question", "name": "How do Bangladesh graduates do in FMGE?",
+      "acceptedAnswer": { "@type": "Answer", "text": "According to NBEMS figures, 26.79 percent of Bangladesh graduates passed FMGE in 2023, the highest among the major MBBS destinations that year, and 32.39 percent passed in 2024 (914 of 2,822). Results depend on the student's own preparation." } },
+    { "@type": "Question", "name": "Is MBBS in Bangladesh taught in English?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Textbooks and examinations are in English. Some teachers explain in Bangla, and patients speak Bangla, so students pick up the language for the wards. NMC requires English-medium teaching, so we confirm it in writing for your college." } },
+    { "@type": "Question", "name": "Is Bangladesh safe for Indian students now?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Indian students have continued to study in Bangladesh through recent unrest, in August 2024 and again in December 2025, when students were advised to move in groups and avoid going out late. Things have been calmer since the February 2026 election, and Bangladesh resumed visa services for Indian nationals on 20 February 2026. We share the latest advisory before you travel and stay in touch throughout the course." } },
+    { "@type": "Question", "name": "How long is MBBS in Bangladesh?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Six years in all: five years of study in four phases, followed by a compulsory 12-month rotating internship in the college's own hospital." } },
+    { "@type": "Question", "name": "Do I need NEET for MBBS in Bangladesh?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. NMC requires every Indian student who studies medicine abroad to qualify NEET-UG, and the result stays valid for three years. Bangladesh also sets its own academic minimum for foreign students in each year's DGME notice." } },
+    { "@type": "Question", "name": "Can Indian students get a government medical college seat in Bangladesh?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Only a few. Bangladesh's government colleges keep a small SAARC quota; the 2025-26 notice listed 21 MBBS seats for India, applied for through the official government channel. Almost all Indian students study at private medical colleges." } },
+    { "@type": "Question", "name": "How far is Bangladesh from India?",
+      "acceptedAnswer": { "@type": "Answer", "text": "US-Bangla Airlines flies direct from Chennai to Dhaka in about 2 hours 40 minutes, five times a week from 13 November 2026. Bangladesh is just 30 minutes ahead of Indian time." } }
+  ]
+}
+</script>
+</head>
+<body>
+
+{% include icons.html %}
+{% include announcement.html %}
+{% include header.html %}
+
+<main id="main">
+
+  <!-- ============ 1. HERO.  IMAGE 1: assets/images/countries/bangladesh/hero.webp — 1200 x 1320 px
+       Indian medical students in white coats walking out of a red-brick teaching hospital in Dhaka, green trees,
+       a colourful cycle-rickshaw passing at the edge, soft morning light. Keep faces in the middle third: phones crop the top and bottom. ============ -->
+  <section class="cty-hero">
+    <svg class="cty-hero__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+    <div class="container cty-hero__grid">
+      <div class="cty-hero__copy">
+        <nav class="cty-crumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+          <a href="destinations.html">Countries</a><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+          <span aria-current="page">Bangladesh</span>
+        </nav>
+        <span class="pill"><span class="pill__dot"></span>MBBS in Bangladesh &middot; 2026&ndash;27 intake</span>
+        <h1>Study medicine <em>closest to home</em></h1>
+        <p class="cty-hero__lead">A five-year MBBS plus a one-year internship at established medical colleges with large teaching hospitals. A course built much like India&rsquo;s, patients with the illnesses you will treat back home, and a direct flight from Chennai in under three hours.</p>
+        <div class="cty-hero__chips">
+          <span class="cty-hero__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>BMDC-recognised colleges</span>
+          <span class="cty-hero__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>5 years + 1-year internship</span>
+          <span class="cty-hero__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Strong FMGE record</span>
+        </div>
+        <div class="btn-row">
+          <a href="apply.html" class="btn btn--ondark">Get free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <a href="#fees" class="btn btn--outline-light cty-hero__desk">See average fees</a>
+        </div>
+      </div>
+      <div class="cty-hero__media">
+        <div class="img-slot" data-spec="countries/bangladesh/hero.webp · 1200×1320 px">
+          <img src="assets/images/countries/bangladesh/hero.webp" width="1200" height="1320" alt="Indian medical students in white coats outside a teaching hospital in Dhaka" fetchpriority="high">
+        </div>
+        <div class="cty-ticket" aria-label="Direct flight from Chennai to Dhaka: about 2 hours 40 minutes">
+          <div class="cty-ticket__route">
+            <div class="cty-ticket__port"><b>MAA</b><span>Chennai</span></div>
+            <div class="cty-ticket__line"><span class="cty-ticket__plane"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-airplane"></use></svg></span></div>
+            <div class="cty-ticket__port cty-ticket__port--to"><b>DAC</b><span>Dhaka</span></div>
+          </div>
+          <div class="cty-ticket__meta"><span><b>2 h 40 m</b> &middot; direct</span><span>From <b>&#8377;8,994</b> one-way &middot; Nov 2026</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. AT A GLANCE ============ -->
+  <div class="cty-glance">
+    <div class="container">
+      <div class="card cty-glance__card">
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div><div class="cty-glance__num">5 + 1 years</div><div class="cty-glance__label">Five years of study plus a 12-month internship</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg></span><div><div class="cty-glance__num">English</div><div class="cty-glance__label">Textbooks and exams</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><div><div class="cty-glance__num">&#8377;5.7&ndash;8 L</div><div class="cty-glance__label">Tuition per year, averaged (indicative)</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><div><div class="cty-glance__num">2 h 40 m</div><div class="cty-glance__label">Chennai to Dhaka, direct</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-sun"></use></svg></span><div><div class="cty-glance__num">Tropical</div><div class="cty-glance__label">Like Chennai or Kolkata; monsoon May&ndash;Sep</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg></span><div><div class="cty-glance__num">1.30 taka</div><div class="cty-glance__label">Per &#8377;1 &middot; Bangladeshi taka, 29 Oct 2026</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 3. STICKY SECTION TABS (each href must match a section id below) ============ -->
+  <nav class="cty-tabs" aria-label="On this page">
+    <div class="cty-tabs__track">
+      <a href="#overview">Overview</a><a href="#course">Course</a><a href="#recognition">NMC status</a><a href="#universities">Colleges</a><a href="#fees">Fees</a><a href="#eligibility">Eligibility</a><a href="#life">Student life</a><a href="#faqs">FAQs</a>
+    </div>
+  </nav>
+
+  <!-- ============ 4. WHY BANGLADESH ============ -->
+  <section class="section has-dots" id="overview">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><span class="eyebrow">Why Bangladesh</span><h2>Six reasons Indian students choose Bangladesh</h2><p>Not brochure slogans &mdash; the things that actually shape your six years as a medical student.</p></div>
+      <div class="cty-features" data-stagger>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg></span>
+          <div><h3>A course built like India&rsquo;s</h3><p>Five years of study, then a 12-month rotating internship, taught from the same English textbooks used in Indian colleges. Indian students here say the curriculum closely resembles the one back home.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-target"></use></svg></span>
+          <div><h3>A strong FMGE record</h3><p>In 2023, Bangladesh graduates had the highest FMGE pass rate of the major MBBS destinations, and in 2024 nearly one in three passed. What you learn here carries over to India&rsquo;s exam.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-stethoscope"></use></svg></span>
+          <div><h3>Busy hospitals, real cases</h3><p>Colleges run their own teaching hospitals of 390 to 750 beds, crowded with patients. You see dengue, tuberculosis, diabetes and the other illnesses you will treat in India.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span>
+          <div><h3>The shortest trip home</h3><p>A direct flight from Chennai to Dhaka takes about 2 hours 40 minutes, and the clocks run only 30 minutes ahead of India. Parents can visit for a weekend.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></span>
+          <div><h3>Degrees from public universities</h3><p>Private medical colleges are affiliated to public universities such as the University of Dhaka, Chittagong Medical University and Rajshahi University, which award the MBBS degree.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-utensils"></use></svg></span>
+          <div><h3>Food and culture you know</h3><p>Rice, fish and dal on the table, Bangla in the streets, and Durga Puja and Eid celebrated across the country. Of all the MBBS destinations, it feels most like home.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4a. CLOSE TO HOME: India vs Bangladesh + FMGE results.
+       FMGE figures: NBEMS country-wise results (June + December sessions), as reported by Careers360 (6 Nov 2025).
+       Add the 2025 figures when NBEMS publishes them: copy one .cty-proof__stat and change the numbers. ============ -->
+  <section class="section section--wash" id="home-like">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Close to home</span><h2>How it compares with studying in India</h2><p>The reason Bangladesh suits so many Indian students: very little about medical college here feels foreign.</p></div>
+      <div class="cty-compare">
+        <div class="card cty-vs reveal">
+          <div class="cty-vs__head" aria-hidden="true"><span>Topic</span><span>In India</span><span>In Bangladesh</span></div>
+          <div class="cty-vs__row"><span class="cty-vs__topic"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg>Course length</span><span class="cty-vs__cell" data-label="India">4.5 years + 1-year internship</span><span class="cty-vs__cell cty-vs__cell--here" data-label="Bangladesh">5 years + 1-year internship</span></div>
+          <div class="cty-vs__row"><span class="cty-vs__topic"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg>Textbooks &amp; exams</span><span class="cty-vs__cell" data-label="India">English</span><span class="cty-vs__cell cty-vs__cell--here" data-label="Bangladesh">English</span></div>
+          <div class="cty-vs__row"><span class="cty-vs__topic"><svg class="icon" aria-hidden="true"><use href="#i-stethoscope"></use></svg>Illnesses you see</span><span class="cty-vs__cell" data-label="India">Tropical &amp; lifestyle diseases</span><span class="cty-vs__cell cty-vs__cell--here" data-label="Bangladesh">Much the same</span></div>
+          <div class="cty-vs__row"><span class="cty-vs__topic"><svg class="icon" aria-hidden="true"><use href="#i-utensils"></use></svg>Everyday food</span><span class="cty-vs__cell" data-label="India">Rice, dal, curries</span><span class="cty-vs__cell cty-vs__cell--here" data-label="Bangladesh">Rice, fish, dal</span></div>
+          <div class="cty-vs__row"><span class="cty-vs__topic"><svg class="icon" aria-hidden="true"><use href="#i-sun"></use></svg>Weather</span><span class="cty-vs__cell" data-label="India">Hot, humid, monsoon</span><span class="cty-vs__cell cty-vs__cell--here" data-label="Bangladesh">Hot, humid, monsoon</span></div>
+          <div class="cty-vs__row"><span class="cty-vs__topic"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg>Time zone</span><span class="cty-vs__cell" data-label="India">IST</span><span class="cty-vs__cell cty-vs__cell--here" data-label="Bangladesh">30 minutes ahead</span></div>
+        </div>
+        <aside class="cty-proof reveal">
+          <svg class="cty-proof__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+          <span class="eyebrow eyebrow--light">FMGE results &middot; NBEMS</span>
+          <h3>How Bangladesh graduates do in India&rsquo;s licensing exam</h3>
+          <p class="cty-proof__intro">The share of Bangladesh graduates who passed FMGE, both sessions of the year combined.</p>
+          <div class="cty-proof__stats">
+            <div class="cty-proof__stat">
+              <div class="cty-proof__top"><small>2024</small><span class="cty-proof__pct">32.4%</span></div>
+              <div class="cty-proof__meter"><span data-pct="32.39"></span></div>
+              <p class="cty-proof__note">914 of 2,822 passed &middot; second-highest of the major destinations</p>
+            </div>
+            <div class="cty-proof__stat">
+              <div class="cty-proof__top"><small>2023</small><span class="cty-proof__pct">26.8%</span></div>
+              <div class="cty-proof__meter"><span data-pct="26.79"></span></div>
+              <p class="cty-proof__note">627 of 2,340 passed &middot; the highest of the major destinations</p>
+            </div>
+          </div>
+          <p class="cty-proof__src">Source: NBEMS country-wise results, via <a href="https://medicine.careers360.com/articles/fmge-pass-percentage-country-wise-2025" target="_blank" rel="noopener">Careers360 (Nov 2025)</a>. A pass depends on your own preparation; we support you with FMGE coaching guidance.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. HOW THE COURSE WORKS. data-months = length of each stage; it sizes the to-scale bar on desktop.
+       Phases follow the BMDC MBBS curriculum. ============ -->
+  <section class="section" id="course">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">How the course works</span><h2>From Class 12 to doctor: the Bangladesh route</h2><p>Bangladesh offers a direct MBBS in four phases, each closing with a university professional exam, then a year of internship. There is no pre-medical degree.</p></div>
+      <div class="cty-path__wrap reveal">
+        <div class="cty-path__bar" aria-hidden="true">
+          <span class="cty-path__seg cty-path__seg--core" data-label="Phase 1"><span></span></span>
+          <span class="cty-path__seg cty-path__seg--core" data-label="Phases 2&ndash;3"><span></span></span>
+          <span class="cty-path__seg cty-path__seg--core" data-label="Phase 4"><span></span></span>
+          <span class="cty-path__seg cty-path__seg--core" data-label="Internship"><span></span></span>
+          <span class="cty-path__seg" data-label="In India"><span></span></span>
+        </div>
+        <ol class="cty-path">
+          <li class="cty-path__stage cty-path__stage--core" data-months="18">
+            <span class="cty-path__num">1</span>
+            <div><span class="cty-path__len">Phase 1 &middot; 1.5 years</span><h3>Basic sciences</h3><p>Anatomy, physiology and biochemistry, the foundation of everything after.</p></div>
+          </li>
+          <li class="cty-path__stage cty-path__stage--core" data-months="24">
+            <span class="cty-path__num">2</span>
+            <div><span class="cty-path__len">Phases 2&ndash;3 &middot; 2 years</span><h3>Para-clinical</h3><p>Pharmacology, forensic medicine, pathology, microbiology and community medicine, with ward visits starting.</p></div>
+          </li>
+          <li class="cty-path__stage cty-path__stage--core" data-months="18">
+            <span class="cty-path__num">3</span>
+            <div><span class="cty-path__len">Phase 4 &middot; 1.5 years</span><h3>Clinical</h3><p>Medicine, surgery, obstetrics and gynaecology and their branches, on the wards of the college hospital.</p></div>
+          </li>
+          <li class="cty-path__stage cty-path__stage--core" data-months="12">
+            <span class="cty-path__num">4</span>
+            <div><span class="cty-path__len">Year 6 &middot; 12 months</span><h3>Internship</h3><p>Rotating, supervised internship in the college&rsquo;s own hospital, as NMC requires.</p>
+              <span class="cty-path__note"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg>We confirm this before you apply</span></div>
+          </li>
+          <li class="cty-path__stage cty-path__stage--home" data-months="18">
+            <span class="cty-path__num">5</span>
+            <div><span class="cty-path__len">Back in India</span><h3>FMGE / NExT</h3><p>Clear the licensing exam, complete any internship NMC asks of you, and register to practise.</p></div>
+          </li>
+        </ol>
+        <p class="cty-path__total"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg><span>In all, plan for <b>six years in Bangladesh</b>, then the licensing exam in India. Your counsellor will confirm the exact plan for your college.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. RECOGNITION STATUS — re-check NMC notices, Indian High Commission (Dhaka) advisories and the visa
+       situation every few months, and update the dates. ============ -->
+  <section class="section section--wash" id="recognition">
+    <div class="container">
+      <div class="cty-status reveal">
+        <svg class="cty-status__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+        <div class="cty-status__intro">
+          <span class="eyebrow eyebrow--light">NMC status &middot; as of Oct 2026</span>
+          <h2>What&rsquo;s confirmed &mdash; and what we check for you</h2>
+          <p>Parents have heard a lot about Bangladesh since 2024. Here is where things actually stand for Indian students, in plain words.</p>
+        </div>
+        <div class="cty-status__col">
+          <h3><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg>Confirmed</h3>
+          <ul class="cty-status__list">
+            <li class="cty-status__item"><span class="cty-status__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span><b>The same NMC rules as everywhere:</b> FMGL 2021 asks for at least 54 months of study in English and a 12-month internship at the same institution. Bangladesh&rsquo;s five-plus-one MBBS is built this way.</span></li>
+            <li class="cty-status__item"><span class="cty-status__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span><b>Visas are flowing again:</b> Bangladesh resumed all visa services for Indian nationals on 20 February 2026, after a pause that began on 22 December 2025.</span></li>
+            <li class="cty-status__item"><span class="cty-status__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span><b>Room for foreign students:</b> each private medical college may fill up to 45% of its seats with foreign students, and in 2025&ndash;26 far fewer applied than there were seats.</span></li>
+          </ul>
+        </div>
+        <div class="cty-status__open">
+          <div class="cty-status__open-head">
+            <span class="icon-badge icon-badge--orange icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg></span>
+            <div><small>Worth knowing</small><h4>Three things we are honest about</h4></div>
+          </div>
+          <p><b>Calm is recent.</b> Unrest in August 2024 and again in December 2025 kept students indoors for a time; things have been calmer since the February 2026 election. <b>Language:</b> exams are in English, but some teachers explain in Bangla and patients speak it. <b>If you plan to go to the US later:</b> Bangladesh&rsquo;s accreditation council is not yet WFME-recognised (June 2026). This does not change the NMC rules for practising in India.</p>
+          <div class="cty-status__promise"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg><span><b>Our promise:</b> before you pay anything, we confirm BMDC recognition, English-medium teaching and the in-college internship for your college in writing &mdash; with the latest travel advisory.</span></div>
+        </div>
+        <p class="cty-status__src">Sources: <a href="https://www.thedailystar.net/news/bangladesh/news/private-medical-colleges-foreign-student-enrolment-drops-over-past-3-years-4203101" target="_blank" rel="noopener">The Daily Star, foreign student enrolment (20 June 2026)</a>; <a href="https://www.travelandtourworld.com/news/article/bangladesh-resumes-visa-services-for-indian-nationals-increasing-and-boosting-the-commitment-to-improved-bilateral-relations/" target="_blank" rel="noopener">visa services resumed (22 Feb 2026)</a>; <a href="https://news.careers360.com/mbbs-abroad-bangladesh-violence-medical-colleges-safe-indian-international-students-fees-nbems-fmge-2025-exam-admission-enrolment" target="_blank" rel="noopener">Careers360, Indian students in Bangladesh (24 Dec 2025)</a>. Rules can change; we re-check them for every student.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. COLLEGES
+       7a. SPOTLIGHT (.uni-spot) — the college this page leads with. When its own fee page is built
+           (e.g. mbbs-in-bangladesh-holy-family.html):
+             1. replace the WhatsApp footer with:  <span class="uni-card__go">View the full fee structure <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+             2. add before </article>:            <a class="uni-card__cover" href="mbbs-in-bangladesh-holy-family.html" aria-label="View the full fee structure for Holy Family Red Crescent Medical College"></a>
+           The same two steps turn any ordinary .uni-card below into a link to its own page.
+       IMAGE 2: assets/images/universities/holy-family/spotlight.webp — 1400 x 1000 px, the hospital's main building in Dhaka on a bright day.
+       IMAGES 3-6: assets/images/universities/{name}/card.webp — 1200 x 750 px (16:10), the main college building in daylight. ============ -->
+  <section class="section" id="universities">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Colleges</span><h2>Where Indian students study in Bangladesh</h2><p>Established private colleges with their own teaching hospitals, each checked against the NMC conditions. Ask for any college&rsquo;s year-by-year fee sheet.</p></div>
+
+      <article class="card uni-spot reveal">
+        <div class="img-slot" data-spec="universities/holy-family/spotlight.webp · 1400×1000 px"><img src="assets/images/universities/holy-family/spotlight.webp" width="1400" height="1000" alt="Holy Family Red Crescent Medical College Hospital in Dhaka" loading="lazy"></div>
+        <span class="tag tag--abs">Private &middot; Dhaka</span>
+        <div class="uni-spot__body">
+          <span class="uni-spot__kicker"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Eskaton, central Dhaka &middot; a hospital since 1953</span>
+          <h3>Holy Family Red Crescent Medical College</h3>
+          <p class="uni-spot__lead">The college opened in 2000 inside one of Dhaka&rsquo;s oldest hospitals, run today by the Red Crescent Society. Its degree is awarded by the University of Dhaka, and almost all of its foreign students come from India.</p>
+          <div class="uni-spot__chips">
+            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>BMDC-recognised</span>
+            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>University of Dhaka degree</span>
+            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Popular with Indian students</span>
+          </div>
+          <div class="uni-spot__stats">
+            <div class="uni-spot__stat"><b>750</b><span>Beds in its teaching hospital</span></div>
+            <div class="uni-spot__stat"><b>2000</b><span>College founded</span></div>
+            <div class="uni-spot__stat"><b>5 + 1</b><span>Years, internship included</span></div>
+          </div>
+          <div class="uni-card__foot">
+            <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the full fee sheet for Holy Family Red Crescent Medical College, Dhaka."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the full fee sheet on WhatsApp</a>
+          </div>
+        </div>
+      </article>
+
+      <div class="snap-row uni-row">
+
+        <article class="card uni-card reveal">
+          <div class="img-slot" data-spec="universities/bangladesh-medical-college/card.webp · 1200×750 px"><img src="assets/images/universities/bangladesh-medical-college/card.webp" width="1200" height="750" alt="Bangladesh Medical College and Hospital in Dhanmondi, Dhaka" loading="lazy"></div>
+          <span class="tag tag--abs">Private</span>
+          <div class="uni-card__body">
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Dhanmondi, Dhaka</span>
+            <h3>Bangladesh Medical College</h3>
+            <ul class="uni-card__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Founded in 1986, the country&rsquo;s first private medical college</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>A 500-bed teaching hospital; University of Dhaka degree</li>
+            </ul>
+            <div class="uni-card__foot">
+              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Bangladesh Medical College, Dhaka."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card uni-card reveal">
+          <div class="img-slot" data-spec="universities/jahurul-islam/card.webp · 1200×750 px"><img src="assets/images/universities/jahurul-islam/card.webp" width="1200" height="750" alt="Jahurul Islam Medical College campus in Bajitpur, Kishoreganj" loading="lazy"></div>
+          <span class="tag tag--abs">Private</span>
+          <div class="uni-card__body">
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Bajitpur, Kishoreganj</span>
+            <h3>Jahurul Islam Medical College</h3>
+            <ul class="uni-card__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Founded in 1992, the second-oldest private medical college</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>A 390-bed hospital on a green 52-acre campus</li>
+            </ul>
+            <div class="uni-card__foot">
+              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Jahurul Islam Medical College."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card uni-card reveal">
+          <div class="img-slot" data-spec="universities/eastern-medical-college/card.webp · 1200×750 px"><img src="assets/images/universities/eastern-medical-college/card.webp" width="1200" height="750" alt="Eastern Medical College and Hospital in Cumilla" loading="lazy"></div>
+          <span class="tag tag--abs">Private</span>
+          <div class="uni-card__body">
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Cumilla, on the Dhaka&ndash;Chattogram highway</span>
+            <h3>Eastern Medical College</h3>
+            <ul class="uni-card__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Founded in 2005; degree from Chittagong Medical University</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>A 600-bed teaching hospital</li>
+            </ul>
+            <div class="uni-card__foot">
+              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Eastern Medical College, Cumilla."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card uni-card reveal">
+          <div class="img-slot" data-spec="universities/khwaja-yunus-ali/card.webp · 1200×750 px"><img src="assets/images/universities/khwaja-yunus-ali/card.webp" width="1200" height="750" alt="Khwaja Yunus Ali Medical College and Hospital in Enayetpur, Sirajganj" loading="lazy"></div>
+          <span class="tag tag--abs">Private</span>
+          <div class="uni-card__body">
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Enayetpur, Sirajganj</span>
+            <h3>Khwaja Yunus Ali Medical College</h3>
+            <ul class="uni-card__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Founded in 2005; degree from Rajshahi University</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>A 500-bed hospital with heart surgery and a cancer centre</li>
+            </ul>
+            <div class="uni-card__foot">
+              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Khwaja Yunus Ali Medical College."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card uni-card uni-card--ask reveal">
+          <span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg></span>
+          <h3>Considering another college?</h3>
+          <p>Send us its name. We will check its BMDC recognition, its hospital and the NMC conditions &mdash; free, and in writing.</p>
+          <a class="btn btn--primary btn--sm" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, can you check a medical college in Bangladesh for me? The college is: ">Ask us to check <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. FEES — an AVERAGE year. To change a figure, edit its data-inr number (in rupees, per year).
+       data-row-inr on each row must match the number inside it; the total's data-inr must equal their sum.
+       Tuition = a typical whole-course package of US$30,000–42,000 (average about US$36,000), spread over the five study years.
+       A few Dhaka colleges charge more; this page shows the common middle, not the top. ============ -->
+  <section class="section section--wash" id="fees">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Fees</span><h2>What a year in Bangladesh really costs</h2><p>An average, all-in budget &mdash; not the highest quote you will find online. Exact fees vary by college; ask us for any college&rsquo;s own sheet.</p></div>
+      <div class="cty-fees reveal">
+        <div class="cty-fees__total">
+          <div class="cty-fees__switch" role="group" aria-label="Show amounts in">
+            <button type="button" data-currency="inr" aria-pressed="true">&#8377; INR</button>
+            <button type="button" data-currency="usd" aria-pressed="false">$ USD</button>
+          </div>
+          <div>
+            <span class="cty-fees__kicker">An average year, all-in</span>
+            <span class="cty-fees__big"><span id="feeTotal" data-inr="888000">&#8377;8.9 L</span> <small>/ year</small></span>
+          </div>
+          <p>The college package spread evenly over the five study years, plus hostel with meals, day-to-day spending, visa and insurance.</p>
+          <div class="cty-fees__course"><span>Whole-course college package, typically</span><b><span data-inr-range="2800000-4000000">&#8377;28&ndash;40 L</span></b></div>
+        </div>
+
+        <div class="card cty-fees__rows">
+          <div class="cty-fees__row" data-row-inr="684000">
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div class="cty-fees__name"><b>Tuition &amp; admission</b><span>Range <span data-inr-range="570000-800000">&#8377;5.7&ndash;8 L</span> a year, averaged</span></div><span class="cty-fees__val" data-inr="684000">&#8377;6.8 L</span></div>
+            <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
+          </div>
+          <div class="cty-fees__row" data-row-inr="144000">
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-home"></use></svg></span><div class="cty-fees__name"><b>Hostel &amp; meals</b><span><span data-inr-range="10000-14000">&#8377;10k&ndash;14k</span> a month</span></div><span class="cty-fees__val" data-inr="144000">&#8377;1.4 L</span></div>
+            <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
+          </div>
+          <div class="cty-fees__row" data-row-inr="48000">
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><div class="cty-fees__name"><b>Personal, travel &amp; books</b><span><span data-inr-range="3000-5000">&#8377;3k&ndash;5k</span> a month</span></div><span class="cty-fees__val" data-inr="48000">&#8377;48k</span></div>
+            <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
+          </div>
+          <div class="cty-fees__row" data-row-inr="12000">
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-passport"></use></svg></span><div class="cty-fees__name"><b>Visa, insurance &amp; paperwork</b><span>Student visa, a yearly health policy and renewals</span></div><span class="cty-fees__val" data-inr="12000">&#8377;12k</span></div>
+            <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
+          </div>
+        </div>
+
+        <div class="cty-fees__extras">
+          <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg><span><b>Flights:</b> Chennai to Dhaka direct from &#8377;8,994 one-way (Nov 2026)</span></div>
+          <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg><span><b>One-time:</b> document attestation, the equivalence certificate and your first trip&rsquo;s shopping</span></div>
+          <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg><span><b>Always:</b> pay the college directly, against an official receipt</span></div>
+        </div>
+      </div>
+
+      <!-- 8a. HOW THE FEES ARE PAID — split based on published college fee sheets (e.g. admission US$21,500 of a US$38,400 package).
+           Keep the three data-pct numbers adding up to 100. -->
+      <div class="card cty-pay reveal">
+        <div class="cty-pay__head">
+          <span class="icon-badge icon-badge--blue icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg></span>
+          <div><small>Plan your cash flow</small><h3>How colleges in Bangladesh collect the fee</h3></div>
+        </div>
+        <div class="cty-pay__bar" aria-hidden="true"><span data-pct="56"></span><span data-pct="39"></span><span data-pct="5"></span></div>
+        <div class="cty-pay__steps">
+          <div class="cty-pay__step"><span class="cty-pay__dot" aria-hidden="true"></span><b><small>At admission</small>About half or more</b><p>Most colleges collect the admission fee up front &mdash; usually half to two-thirds of the whole package.</p></div>
+          <div class="cty-pay__step"><span class="cty-pay__dot" aria-hidden="true"></span><b><small>During the course</small>The rest, in parts</b><p>The remaining tuition is paid monthly or yearly through the five study years.</p></div>
+          <div class="cty-pay__step"><span class="cty-pay__dot" aria-hidden="true"></span><b><small>Internship year</small>A small internship fee</b><p>Paid before the internship starts. Hostel is usually billed separately.</p></div>
+        </div>
+      </div>
+      <p class="cty-asof"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><span>Indicative averages as of Oct 2026, built from colleges&rsquo; published fee sheets for foreign students; <span data-rate-label>1 USD = &#8377;95 (as of 26 Oct 2026)</span>. Every college sets its own package, and a few charge more &mdash; confirm the exact figures with your counsellor.</span></p>
+    </div>
+  </section>
+
+  <!-- ============ 9. ELIGIBILITY ============ -->
+  <section class="section" id="eligibility">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Eligibility</span><h2>Can you apply? The checklist</h2><p>Every NMC point below must be true for your degree to count in India &mdash; plus Bangladesh&rsquo;s own entry minimum.</p></div>
+      <div class="cty-elig">
+        <ul class="card cty-checks reveal">
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>NEET-UG qualified</b><span>Required for every Indian student studying medicine abroad. The result stays valid for three years.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>50% in Physics, Chemistry and Biology</b><span>In Class 12, with English as a subject. 40% for SC, ST and OBC candidates.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>Bangladesh&rsquo;s own academic minimum</b><span>Set each year in the DGME notice for foreign students, and usually stricter than NMC&rsquo;s 50%. We match your Class 10 and 12 marks to it.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>17 years old by 31 December</b><span>Of the year you join.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>No extra entrance test</b><span>Private colleges admit foreign students on their Class 10 and 12 grades and NEET result.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>A course that meets FMGL 2021</b><span>At least 54 months of study, taught in English, with a 12-month internship at the same college.</span></div></li>
+        </ul>
+        <aside class="cty-elig__tool reveal">
+          <svg class="cty-elig__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+          <span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-check-square"></use></svg></span>
+          <h3>Not sure where you stand?</h3>
+          <p>Enter your NEET score and Class 12 marks in the MBBS Planner and get an instant answer &mdash; free, in about ten seconds.</p>
+          <a href="mbbs-abroad-planner.html#eligibility" class="btn btn--ondark">Check my eligibility <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10. ADMISSION STEPS — update the DGME dates when the 2026–27 notice for foreign students is published
+       (dgme.gov.bd; 2025–26 window for private colleges was 11 Nov 2025 – 15 Jan 2026). ============ -->
+  <section class="section section--wash has-grid" id="admission">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><span class="eyebrow">Admission</span><h2>Your path to a Bangladeshi medical college</h2><p>One counsellor, from your first call to your first lecture &mdash; and after.</p></div>
+      <ol class="cty-steps" data-stagger>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Free counselling</h3><p>Your NEET score, budget and goals, in one honest conversation.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Shortlist &amp; verify</h3><p>BMDC recognition, English medium and internship checked; the package put in writing.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Apply through DGME</h3><p>Foreign students apply online with the government&rsquo;s DGME, usually from November.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Admission &amp; visa</h3><p>Once DGME confirms your seat, we file your student visa with the Bangladesh mission.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Fly &amp; join</h3><p>A short flight, airport pickup and hostel check-in before classes begin.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Study &amp; FMGE prep</h3><p>We stay with you through all six years and the exam back home.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ 11. STUDENT LIFE.  IMAGE 7: assets/images/countries/bangladesh/life.webp — 1400 x 1470 px
+       Indian students laughing over tea in clay cups at a Dhaka tea stall, colourful painted rickshaws behind, late-afternoon light.
+       (Alternative: students on a wooden boat on a wide green river at sunset.) ============ -->
+  <section class="section" id="life">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Student life</span><h2>Life in Bangladesh, day to day</h2><p>Warm weather, familiar food and a short hop home.</p></div>
+      <div class="cty-life">
+        <div class="cty-life__photo reveal">
+          <div class="img-slot" data-spec="countries/bangladesh/life.webp · 1400×1470 px"><img src="assets/images/countries/bangladesh/life.webp" width="1400" height="1470" alt="Indian students sharing tea at a roadside tea stall in Dhaka with painted rickshaws behind" loading="lazy"></div>
+          <div class="cty-seasons" aria-label="Seasons in Dhaka">
+            <div class="cty-season"><small>Nov&ndash;Feb</small><b>Pleasant</b><span>Nights ~13&deg;C</span></div>
+            <div class="cty-season"><small>Mar&ndash;May</small><b>Hot</b><span>Up to ~34&deg;C</span></div>
+            <div class="cty-season"><small>Jun&ndash;Sep</small><b>Monsoon</b><span>Heavy rain</span></div>
+          </div>
+          <p class="cty-life__note">Dhaka averages. Humid most of the year, much like Chennai or Kolkata &mdash; no winter wardrobe needed.</p>
+        </div>
+        <div class="cty-tiles" data-stagger>
+          <div class="card cty-tile cty-tile--wide reveal"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><h3>Monthly living cost</h3><p>About &#8377;15,000&ndash;25,000 a month, including hostel, food, transport and books (indicative, 2026).</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-utensils"></use></svg></span><h3>Food</h3><p>Rice, fish, dal and vegetables every day, and Indian restaurants in Dhaka. Ask us which hostels serve vegetarian meals.</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg></span><h3>Language</h3><p>Bangla &mdash; the language of West Bengal. Students from India pick up ward Bangla quickly.</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></span><h3>Time zone</h3><p>Just 30 minutes ahead of India: calls home at any hour feel normal.</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span><h3>Staying safe</h3><p>Follow your college&rsquo;s advice, move in groups after dark during tense periods, and register with the High Commission of India in Dhaka.</p></div>
+          <div class="card cty-tile cty-tile--wide reveal"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><h3>Getting there</h3><p>US-Bangla flies Chennai to Dhaka direct in about 2 hours 40 minutes, five times a week from 13 November 2026. Kolkata is about an hour&rsquo;s flight away.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 12. DOCUMENTS ============ -->
+  <section class="section section--wash">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Documents</span><h2>What to keep ready</h2><p>Start gathering these early. Your counsellor gives you the exact list for your college, including the attestation DGME asks for.</p></div>
+      <ul class="cty-docs" data-stagger>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-passport"></use></svg><span>Valid passport<small>At least six months&rsquo; validity</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg><span>NEET-UG scorecard<small>Within its three-year validity</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg><span>Class 10 &amp; 12 certificates<small>With mark sheets, attested</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-scale"></use></svg><span>Equivalence certificate<small>From a Bangladesh education board; we apply for it</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-eye"></use></svg><span>Passport-size photographs<small>Recent, white background</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg><span>Medical fitness certificate<small>From a registered doctor</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg><span>Character certificate<small>From your last school or college</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg><span>DGME &amp; admission letters<small>We arrange these with the college</small></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 13. FAQs — keep these in step with the FAQPage block in <head> ============ -->
+  <section class="section" id="faqs">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><span class="eyebrow">FAQs</span><h2>Questions parents ask us most</h2><p>Straight answers. Anything else, just ask a counsellor.</p></div>
+      <div class="cty-faq">
+        <details><summary>Is an MBBS from Bangladesh valid in India?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Yes, if the course meets every NMC FMGL 2021 condition: at least 54 months of study, taught in English, a 12-month internship at the same institution, and eligibility for a medical licence in Bangladesh. Bangladesh&rsquo;s five-year MBBS with a one-year internship in the college hospital fits this pattern. You then clear FMGE or NExT to practise in India.</div></details>
+        <details><summary>How much does it cost?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>An average year costs about &#8377;8.9 lakh all-in: roughly &#8377;6.8 lakh tuition, &#8377;1.4 lakh hostel and meals and about &#8377;60,000 for personal costs, visa and insurance (indicative, Oct 2026). Most private colleges quote one package for the whole course, typically US$30,000&ndash;42,000 (about &#8377;28&ndash;40 lakh), and collect a large part of it at admission. See the <a href="#fees">fee breakdown</a>.</div></details>
+        <details><summary>How do Bangladesh graduates do in FMGE?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>According to NBEMS figures, 26.79% of Bangladesh graduates passed FMGE in 2023 &mdash; the highest among the major MBBS destinations that year &mdash; and 32.39% passed in 2024 (914 of 2,822). Results depend on your own preparation, and we guide you on FMGE coaching from the early years.</div></details>
+        <details><summary>Is it taught in English?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Textbooks and examinations are in English. Some teachers explain in Bangla, and patients speak Bangla, so you pick up the language for the wards. NMC requires English-medium teaching, so we confirm it in writing for your college.</div></details>
+        <details><summary>Is Bangladesh safe for Indian students now?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Indian students have continued to study in Bangladesh through recent unrest, in August 2024 and again in December 2025, when students were advised to move in groups and avoid going out late. Things have been calmer since the February 2026 election, and Bangladesh resumed visa services for Indian nationals on 20 February 2026. We share the latest advisory before you travel and stay in touch throughout the course. See <a href="#recognition">NMC status</a> above.</div></details>
+        <details><summary>How long is the course?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Six years in all: five years of study in four phases, followed by a compulsory 12-month rotating internship in the college&rsquo;s own hospital. See <a href="#course">how the course works</a>.</div></details>
+        <details><summary>Do I need NEET?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Yes. NMC requires every Indian student who studies medicine abroad to qualify NEET-UG, and the result stays valid for three years. Bangladesh also sets its own academic minimum for foreign students in each year&rsquo;s DGME notice.</div></details>
+        <details><summary>Can I get a government college seat?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Only a few. Bangladesh&rsquo;s government colleges keep a small SAARC quota; the 2025&ndash;26 notice listed 21 MBBS seats for India, applied for through the official government channel. Almost all Indian students study at private medical colleges.</div></details>
+        <details><summary>How far is Bangladesh from India?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>US-Bangla Airlines flies direct from Chennai to Dhaka in about 2 hours 40 minutes, five times a week from 13 November 2026. Bangladesh is just 30 minutes ahead of Indian time.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 14. CLOSING CTA (same card as Home and About) ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="cta reveal">
+        <svg class="cta__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+        <div><h2>Planning MBBS in Bangladesh?</h2><p>One conversation: your NEET score, your budget, the right college &mdash; and every NMC check, in writing.</p></div>
+        <div class="btn-row">
+          <a href="apply.html" class="btn btn--ondark">Get free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <a href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, I'd like to know more about MBBS in Bangladesh." class="btn btn--outline-light"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg> WhatsApp us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{% include footer.html %}
+{% include bottom-nav.html %}
+{% include scripts.html %}
+<script src="js/pages/country.js"></script>
+</body>
+</html>

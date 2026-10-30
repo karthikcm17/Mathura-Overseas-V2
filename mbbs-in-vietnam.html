@@ -1,0 +1,532 @@
+---
+# Shared parts (announcement bar, header, footer, tab bar, icons) live in the _includes folder.
+# Country pages all use css/pages/country.css + js/pages/country.js — only the content below changes.
+active: countries
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MBBS in Vietnam 2026 | Mathura Overseas</title>
+<meta name="description" content="Study MBBS in Vietnam: a 6-year English-medium medical degree in Hanoi, Ho Chi Minh City and Da Nang. Average fees, NMC rules for 2026 and student life.">
+<link rel="canonical" href="https://mathuraoverseas.com/mbbs-in-vietnam.html">
+<meta property="og:title" content="MBBS in Vietnam 2026 | Mathura Overseas">
+<meta property="og:description" content="English-medium medicine a short flight from India: average fees, the Embassy's 2026 advice, universities and student life in Vietnam.">
+<meta property="og:url" content="https://mathuraoverseas.com/mbbs-in-vietnam.html">
+<meta property="og:image" content="assets/images/countries/vietnam/hero.webp">
+{% include head.html %}
+<link rel="stylesheet" href="css/pages/country.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mathuraoverseas.com/index.html" },
+    { "@type": "ListItem", "position": 2, "name": "Countries", "item": "https://mathuraoverseas.com/destinations.html" },
+    { "@type": "ListItem", "position": 3, "name": "MBBS in Vietnam", "item": "https://mathuraoverseas.com/mbbs-in-vietnam.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Is an MBBS from Vietnam valid in India?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It can be, if the course meets every NMC FMGL 2021 condition: at least 54 months of study, taught in English, a 12-month internship at the same university, and eligibility for a medical licence in Vietnam. The Embassy of India in Hanoi asks every student to check these points with the university before enrolling. You then clear FMGE or NExT to practise in India." } },
+    { "@type": "Question", "name": "Is MBBS in Vietnam taught in English?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Some Vietnamese universities run English-medium programmes for international students, including Indian students. Patients on the wards speak Vietnamese, so the Embassy of India advises that students also need good Vietnamese for clinical training. Choose a university that teaches Vietnamese as part of the course." } },
+    { "@type": "Question", "name": "What is the new Vietnam licensing exam?",
+      "acceptedAnswer": { "@type": "Answer", "text": "According to the Embassy of India in Hanoi (5 June 2026), graduates who want to practise in Vietnam must complete 12 months of hospital practice, and from 2027 pass a central government licensing exam that is likely to be held in Vietnamese. NMC rules expect you to be eligible for a licence in the country where you studied, so ask us how your university prepares students for it." } },
+    { "@type": "Question", "name": "How long is MBBS in Vietnam?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Six years. Programmes usually begin with about two years of basic medical sciences, followed by clinical training in partner hospitals. Make sure the course includes a 12-month internship at the same university, as NMC requires." } },
+    { "@type": "Question", "name": "How much does a year in Vietnam cost?",
+      "acceptedAnswer": { "@type": "Answer", "text": "An average year costs about 6.1 lakh rupees all-in: roughly 3.8 lakh tuition, 1.5 lakh hostel and meals, and about 80,000 for personal costs, visa and insurance (indicative, October 2026). Tuition for the full six years typically comes to 18 to 28 lakh rupees." } },
+    { "@type": "Question", "name": "Do I need NEET to study MBBS in Vietnam?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. NMC requires every Indian student who studies medicine abroad to qualify NEET-UG, and the result stays valid for three years. Some universities also check your English, through IELTS or an interview." } },
+    { "@type": "Question", "name": "How far is Vietnam from India?",
+      "acceptedAnswer": { "@type": "Answer", "text": "There is no non-stop flight from Chennai as of 2026; one-stop flights reach Ho Chi Minh City in about 8 hours and Hanoi in about 7. Non-stop flights of around 4 to 5 hours run from Bengaluru, Hyderabad, Kochi, Delhi, Mumbai and Kolkata. Vietnam is one and a half hours ahead of India." } },
+    { "@type": "Question", "name": "What is the weather like in Vietnam?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It depends on the city. Ho Chi Minh City is tropical all year, with highs of 31 to 34 degrees Celsius and a rainy season from May to November. Hanoi has a cool winter, with January days around 14 to 20 degrees, and a hot, humid summer of about 33 degrees." } }
+  ]
+}
+</script>
+</head>
+<body>
+
+{% include icons.html %}
+{% include announcement.html %}
+{% include header.html %}
+
+<main id="main">
+
+  <!-- ============ 1. HERO.  IMAGE 1: assets/images/countries/vietnam/hero.webp — 1200 x 1320 px
+       Indian students in white coats walking beside Hoan Kiem Lake in Hanoi, the red The Huc bridge and green trees behind,
+       soft early-morning light. Keep faces in the middle third: phones crop the top and bottom. ============ -->
+  <section class="cty-hero">
+    <svg class="cty-hero__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+    <div class="container cty-hero__grid">
+      <div class="cty-hero__copy">
+        <nav class="cty-crumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+          <a href="destinations.html">Countries</a><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+          <span aria-current="page">Vietnam</span>
+        </nav>
+        <span class="pill"><span class="pill__dot"></span>MBBS in Vietnam &middot; 2026&ndash;27 intake</span>
+        <h1>Your medical degree, <em>a short flight east</em></h1>
+        <p class="cty-hero__lead">A six-year, English-medium medical degree in Hanoi, Ho Chi Minh City or Da Nang &mdash; at universities that have opened their doors to Indian students. Busy city hospitals, modest living costs, and an honest view of the NMC rules before you pay a rupee.</p>
+        <div class="cty-hero__chips">
+          <span class="cty-hero__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>6-year MBBS</span>
+          <span class="cty-hero__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>English-medium programmes</span>
+          <span class="cty-hero__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Non-stop flights from South India</span>
+        </div>
+        <div class="btn-row">
+          <a href="apply.html" class="btn btn--ondark">Get free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <a href="#fees" class="btn btn--outline-light cty-hero__desk">See average fees</a>
+        </div>
+      </div>
+      <div class="cty-hero__media">
+        <div class="img-slot" data-spec="countries/vietnam/hero.webp · 1200×1320 px">
+          <img src="assets/images/countries/vietnam/hero.webp" width="1200" height="1320" alt="Indian medical students in white coats walking beside Hoan Kiem Lake in Hanoi" fetchpriority="high">
+        </div>
+        <div class="cty-ticket" aria-label="Flight from Chennai to Ho Chi Minh City: about 8 hours with one stop">
+          <div class="cty-ticket__route">
+            <div class="cty-ticket__port"><b>MAA</b><span>Chennai</span></div>
+            <div class="cty-ticket__line"><span class="cty-ticket__plane"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-airplane"></use></svg></span></div>
+            <div class="cty-ticket__port cty-ticket__port--to"><b>SGN</b><span>Ho Chi Minh City</span></div>
+          </div>
+          <div class="cty-ticket__meta"><span><b>~8 hrs</b> &middot; 1 stop</span><span>From <b>&#8377;24,349</b> one-way &middot; Oct 2026</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. AT A GLANCE ============ -->
+  <div class="cty-glance">
+    <div class="container">
+      <div class="card cty-glance__card">
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div><div class="cty-glance__num">6 years</div><div class="cty-glance__label">Medical sciences, then hospital training</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span><div><div class="cty-glance__num">English</div><div class="cty-glance__label">In programmes for international students</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><div><div class="cty-glance__num">&#8377;2.9&ndash;4.8 L</div><div class="cty-glance__label">Tuition per year (indicative)</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><div><div class="cty-glance__num">~8 hrs</div><div class="cty-glance__label">Chennai to Ho Chi Minh City, one stop</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-sun"></use></svg></span><div><div class="cty-glance__num">Tropical</div><div class="cty-glance__label">Warm south; cool winters in Hanoi</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg></span><div><div class="cty-glance__num">271 dong</div><div class="cty-glance__label">Per &#8377;1 &middot; Vietnamese dong, Oct 2026</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 3. STICKY SECTION TABS (each href must match a section id below) ============ -->
+  <nav class="cty-tabs" aria-label="On this page">
+    <div class="cty-tabs__track">
+      <a href="#overview">Overview</a><a href="#course">Course</a><a href="#recognition">NMC status</a><a href="#universities">Universities</a><a href="#fees">Fees</a><a href="#eligibility">Eligibility</a><a href="#life">Student life</a><a href="#faqs">FAQs</a>
+    </div>
+  </nav>
+
+  <!-- ============ 4. WHY VIETNAM ============ -->
+  <section class="section has-dots" id="overview">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><span class="eyebrow">Why Vietnam</span><h2>Six reasons Indian students are looking at Vietnam</h2><p>Not brochure slogans &mdash; the things that actually shape your six years as a medical student.</p></div>
+      <div class="cty-features" data-stagger>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span>
+          <div><h3>Closer than Europe or Central Asia</h3><p>Non-stop flights of four to five hours from Bengaluru, Hyderabad and Kochi, and one-stop flights from Chennai. Vietnam is only one and a half hours ahead of India, so evening calls home are easy.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span>
+          <div><h3>English programmes built for India</h3><p>Universities such as Dai Nam in Hanoi and Hong Bang in Ho Chi Minh City now run six-year medical programmes taught in English, with intakes made up of NEET-qualified Indian students.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></span>
+          <div><h3>Big-city teaching hospitals</h3><p>Clinical training takes place in large hospitals in Hanoi and Ho Chi Minh City &mdash; including Cho Ray, one of the country&rsquo;s major national hospitals &mdash; so you see a high volume of patients.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-stethoscope"></use></svg></span>
+          <div><h3>Cases you will see at home</h3><p>Dengue, tuberculosis and other tropical illnesses are common in both countries, so the patients you treat on Vietnamese wards look a lot like the ones waiting for you in India.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span>
+          <div><h3>A budget families can plan</h3><p>Tuition at most universities sits around US$3,000&ndash;5,000 a year, and day-to-day living in Vietnamese cities is modest. Your family can plan all six years with confidence.</p></div>
+        </article>
+        <article class="cty-feature reveal">
+          <span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span>
+          <div><h3>The Embassy is close at hand</h3><p>The Embassy of India in Hanoi and the Consulate in Ho Chi Minh City stay in touch with Indian medical students &mdash; India&rsquo;s Ambassador met Dai Nam&rsquo;s Indian students on Independence Day 2026.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. HOW THE COURSE WORKS. data-months = length of each stage; it sizes the to-scale bar on desktop. ============ -->
+  <section class="section section--wash" id="course">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">How the course works</span><h2>From Class 12 to doctor: the Vietnam route</h2><p>Vietnam offers a direct six-year medical degree, with no separate pre-medical course. Here is how the years usually add up.</p></div>
+      <div class="cty-path__wrap reveal">
+        <div class="cty-path__bar" aria-hidden="true">
+          <span class="cty-path__seg cty-path__seg--core" data-label="Medical sciences"><span></span></span>
+          <span class="cty-path__seg cty-path__seg--core" data-label="Clinical years"><span></span></span>
+          <span class="cty-path__seg cty-path__seg--core" data-label="Final year"><span></span></span>
+          <span class="cty-path__seg" data-label="In India"><span></span></span>
+        </div>
+        <ol class="cty-path">
+          <li class="cty-path__stage cty-path__stage--core" data-months="24">
+            <span class="cty-path__num">1</span>
+            <div><span class="cty-path__len">Years 1&ndash;2</span><h3>Basic medical sciences</h3><p>Anatomy, physiology and biochemistry in English, plus Vietnamese classes so you can talk to patients later.</p></div>
+          </li>
+          <li class="cty-path__stage cty-path__stage--core" data-months="36">
+            <span class="cty-path__num">2</span>
+            <div><span class="cty-path__len">Years 3&ndash;5</span><h3>Clinical training</h3><p>Rotations through medicine, surgery, paediatrics and more in the university&rsquo;s partner hospitals.</p></div>
+          </li>
+          <li class="cty-path__stage cty-path__stage--core" data-months="12">
+            <span class="cty-path__num">3</span>
+            <div><span class="cty-path__len">Year 6 &middot; 12 months</span><h3>Final clinical year</h3><p>Supervised practice on the wards. NMC requires a 12-month internship at the same university you studied in.</p>
+              <span class="cty-path__note"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg>We confirm this before you apply</span></div>
+          </li>
+          <li class="cty-path__stage cty-path__stage--home" data-months="18">
+            <span class="cty-path__num">4</span>
+            <div><span class="cty-path__len">Back in India</span><h3>FMGE / NExT</h3><p>Clear the licensing exam, complete any internship NMC asks of you, and register to practise.</p></div>
+          </li>
+        </ol>
+        <p class="cty-path__total"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg><span>In all, plan for <b>six years abroad</b>, then the licensing exam in India. Each university structures its clinical years a little differently &mdash; your counsellor confirms the exact plan in writing.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. RECOGNITION STATUS — re-check the Embassy of India (Hanoi) advisories every few months and update the dates:
+       https://www.indembassyhanoi.gov.in ============ -->
+  <section class="section" id="recognition">
+    <div class="container">
+      <div class="cty-status reveal">
+        <svg class="cty-status__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+        <div class="cty-status__intro">
+          <span class="eyebrow eyebrow--light">NMC status &middot; as of Oct 2026</span>
+          <h2>What&rsquo;s confirmed &mdash; and what&rsquo;s still open</h2>
+          <p>Vietnam is a newer destination for Indian medical students, so the honest picture matters more here than anywhere. This is what the Embassy of India says, in plain words.</p>
+        </div>
+        <div class="cty-status__col">
+          <h3><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg>Confirmed</h3>
+          <ul class="cty-status__list">
+            <li class="cty-status__item"><span class="cty-status__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span><b>A six-year course with hospital training:</b> the Embassy&rsquo;s advisory of 5 June 2026 confirms the programme is six years, with clinical practice during the course.</span></li>
+            <li class="cty-status__item"><span class="cty-status__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span><b>English-medium options exist:</b> some universities teach in English. Dai Nam University&rsquo;s first batch of 208 NEET-qualified Indian students began in October 2025.</span></li>
+            <li class="cty-status__item"><span class="cty-status__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span><b>The same NMC rules apply:</b> FMGL 2021 &mdash; at least 54 months of study, English throughout, and a 12-month internship at the same university.</span></li>
+          </ul>
+        </div>
+        <div class="cty-status__open">
+          <div class="cty-status__open-head">
+            <span class="icon-badge icon-badge--orange icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg></span>
+            <div><small>Still open</small><h4>Vietnamese language and the 2027 licence exam</h4></div>
+          </div>
+          <p>Patients speak Vietnamese, so the Embassy says students need good Vietnamese for clinical training. To practise in Vietnam, graduates do 12 months of hospital practice and, from 2027, pass a central licensing exam that is likely to be in Vietnamese. It matters because NMC&rsquo;s rules expect you to be eligible for a licence in the country where you studied.</p>
+          <div class="cty-status__promise"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg><span><b>Our promise:</b> before you pay anything, we confirm in writing that teaching is in English, how the 12-month internship is structured, and how the university teaches Vietnamese &mdash; and we show you the latest Embassy advisory.</span></div>
+        </div>
+        <p class="cty-status__src">Sources: <a href="https://www.indembassyhanoi.gov.in/section/news2/advisory-for-indian-students-who-are-desirous-of-pursuing-medical-education-in-vietnam/" target="_blank" rel="noopener">Embassy of India, Hanoi &mdash; advisory on medical education in Vietnam</a> (5 June 2026); <a href="https://english.vov.vn/en/society/208-indian-students-enroll-in-medical-programme-in-vietnam-post1237708.vov" target="_blank" rel="noopener">VOV, Dai Nam intake</a> (14 Oct 2025). Rules can change; we re-check them for every student.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. UNIVERSITIES
+       7a. SPOTLIGHT (.uni-spot) — the university this page leads with. When its own fee page is built
+           (e.g. mbbs-in-vietnam-dai-nam.html):
+             1. replace the WhatsApp footer with:  <span class="uni-card__go">View the full fee structure <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+             2. add before </article>:            <a class="uni-card__cover" href="mbbs-in-vietnam-dai-nam.html" aria-label="View the full fee structure for Dai Nam University"></a>
+           The same two steps turn any ordinary .uni-card below into a link to its own page.
+       IMAGE 2: assets/images/universities/dai-nam/spotlight.webp — 1400 x 1000 px, Dai Nam University's main building in Hanoi, bright daylight.
+       IMAGES 3-4: assets/images/universities/{name}/card.webp — 1200 x 750 px (16:10), the main campus building in daylight. ============ -->
+  <section class="section section--wash" id="universities">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Universities</span><h2>English-medium medicine in Vietnam</h2><p>Universities that run six-year medical programmes in English for Indian students &mdash; each checked against the NMC conditions before we recommend it. Ask for any university&rsquo;s year-by-year fee sheet.</p></div>
+
+      <article class="card uni-spot reveal">
+        <div class="img-slot" data-spec="universities/dai-nam/spotlight.webp · 1400×1000 px"><img src="assets/images/universities/dai-nam/spotlight.webp" width="1400" height="1000" alt="Main building of Dai Nam University in Hanoi" loading="lazy"></div>
+        <span class="tag tag--abs">Spotlight</span>
+        <div class="uni-spot__body">
+          <span class="uni-spot__kicker"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Hanoi &middot; a programme built for Indian students</span>
+          <h3>Dai Nam University</h3>
+          <p class="uni-spot__lead">Founded in 2007, Dai Nam opened its English-taught medical doctor programme in the 2025&ndash;26 academic year for students from India. Its first 208 students &mdash; all NEET-qualified &mdash; began in October 2025, with clinical training in major Hanoi hospitals.</p>
+          <div class="uni-spot__chips">
+            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Private university</span>
+            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Taught fully in English</span>
+            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>NEET-qualified intake</span>
+          </div>
+          <div class="uni-spot__stats">
+            <div class="uni-spot__stat"><b data-inr="475000">&#8377;4.8 L</b><span>Tuition a year (about US$5,000, per the university)</span></div>
+            <div class="uni-spot__stat"><b>2 + 4</b><span>Years of theory, then clinical practice</span></div>
+            <div class="uni-spot__stat"><b>208</b><span>Indian students in the first batch, 2025</span></div>
+          </div>
+          <div class="uni-card__foot">
+            <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the full fee sheet for Dai Nam University, Hanoi."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the full fee sheet on WhatsApp</a>
+          </div>
+        </div>
+      </article>
+
+      <div class="snap-row uni-row">
+
+        <article class="card uni-card reveal">
+          <div class="img-slot" data-spec="universities/hong-bang/card.webp · 1200×750 px"><img src="assets/images/universities/hong-bang/card.webp" width="1200" height="750" alt="Campus of Hong Bang International University in Ho Chi Minh City" loading="lazy"></div>
+          <span class="tag tag--abs">Private</span>
+          <div class="uni-card__body">
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Ho Chi Minh City</span>
+            <h3>Hong Bang International University</h3>
+            <ul class="uni-card__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Founded in 1997; part of Nguyen Hoang Group</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Clinical training at Cho Ray, Thong Nhat and FV hospitals</li>
+            </ul>
+            <div class="uni-card__foot">
+              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Hong Bang International University, Ho Chi Minh City."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card uni-card reveal">
+          <div class="img-slot" data-spec="universities/phan-chau-trinh/card.webp · 1200×750 px"><img src="assets/images/universities/phan-chau-trinh/card.webp" width="1200" height="750" alt="Phan Chau Trinh University and its university hospital in Da Nang" loading="lazy"></div>
+          <span class="tag tag--abs">Private</span>
+          <div class="uni-card__body">
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Da Nang, central coast</span>
+            <h3>Phan Chau Trinh University</h3>
+            <ul class="uni-card__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Founded in 2007; medicine approved in December 2017</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Its own university hospital, plus Tam Tri hospitals</li>
+            </ul>
+            <div class="uni-card__foot">
+              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Phan Chau Trinh University, Da Nang."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card uni-card uni-card--ask reveal">
+          <span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg></span>
+          <h3>Considering another university?</h3>
+          <p>Send us its name. We will check its English medium, internship and the NMC conditions &mdash; free, and in writing.</p>
+          <a class="btn btn--primary btn--sm" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, can you check a Vietnamese university for me? The university is: ">Ask us to check <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. FEES — an AVERAGE year. To change a figure, edit its data-inr number (in rupees, per year).
+       data-row-inr on each row must match the number inside it; the total's data-inr must equal their sum.
+       Tuition average = about US$4,000 a year; range = US$3,000–5,000 from published figures. ============ -->
+  <section class="section" id="fees">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Fees</span><h2>What a year in Vietnam really costs</h2><p>An average, all-in budget &mdash; not the highest quote you will find online. Exact fees vary by university; ask us for any university&rsquo;s own sheet.</p></div>
+      <div class="cty-fees reveal">
+        <div class="cty-fees__total">
+          <div class="cty-fees__switch" role="group" aria-label="Show amounts in">
+            <button type="button" data-currency="inr" aria-pressed="true">&#8377; INR</button>
+            <button type="button" data-currency="usd" aria-pressed="false">$ USD</button>
+          </div>
+          <div>
+            <span class="cty-fees__kicker">An average year, all-in</span>
+            <span class="cty-fees__big"><span id="feeTotal" data-inr="610000">&#8377;6.1 L</span> <small>/ year</small></span>
+          </div>
+          <p>Tuition, hostel with meals, day-to-day spending, visa and insurance added together, using the middle of published ranges.</p>
+          <div class="cty-fees__course"><span>Full six-year tuition, typically</span><b><span data-inr-range="1800000-2800000">&#8377;18&ndash;28 L</span></b></div>
+        </div>
+
+        <div class="card cty-fees__rows">
+          <div class="cty-fees__row" data-row-inr="380000">
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div class="cty-fees__name"><b>Tuition</b><span>Range <span data-inr-range="285000-475000">&#8377;2.9&ndash;4.8 L</span> a year</span></div><span class="cty-fees__val" data-inr="380000">&#8377;3.8 L</span></div>
+            <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
+          </div>
+          <div class="cty-fees__row" data-row-inr="150000">
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-home"></use></svg></span><div class="cty-fees__name"><b>Hostel &amp; meals</b><span><span data-inr-range="10000-15000">&#8377;10k&ndash;15k</span> a month</span></div><span class="cty-fees__val" data-inr="150000">&#8377;1.5 L</span></div>
+            <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
+          </div>
+          <div class="cty-fees__row" data-row-inr="60000">
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><div class="cty-fees__name"><b>Personal, travel &amp; books</b><span><span data-inr-range="4000-6000">&#8377;4k&ndash;6k</span> a month</span></div><span class="cty-fees__val" data-inr="60000">&#8377;60k</span></div>
+            <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
+          </div>
+          <div class="cty-fees__row" data-row-inr="20000">
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-passport"></use></svg></span><div class="cty-fees__name"><b>Visa, residence card &amp; insurance</b><span>Student visa, temporary residence card and a yearly health policy</span></div><span class="cty-fees__val" data-inr="20000">&#8377;20k</span></div>
+            <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
+          </div>
+        </div>
+
+        <div class="cty-fees__extras">
+          <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg><span><b>Flights:</b> Chennai to Ho Chi Minh City from &#8377;24,349 one-way (Oct 2026)</span></div>
+          <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg><span><b>One-time:</b> application fee, document attestation and pre-departure costs</span></div>
+          <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg><span><b>Always:</b> pay the university directly, against an official receipt</span></div>
+        </div>
+      </div>
+      <p class="cty-asof"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><span>Indicative averages as of Oct 2026, built from published ranges; <span data-rate-label>1 USD = &#8377;95 (as of 26 Oct 2026)</span>. Every university sets its own fees, and first-year fees can be higher &mdash; confirm the exact figures with your counsellor.</span></p>
+    </div>
+  </section>
+
+  <!-- ============ 9. ELIGIBILITY ============ -->
+  <section class="section section--wash" id="eligibility">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Eligibility</span><h2>Can you apply? The NMC checklist</h2><p>Every point below must be true for your degree to count in India.</p></div>
+      <div class="cty-elig">
+        <ul class="card cty-checks reveal">
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>NEET-UG qualified</b><span>Required for every Indian student studying medicine abroad. The result stays valid for three years.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>50% in Physics, Chemistry and Biology</b><span>In Class 12, with English as a subject. 40% for SC, ST and OBC candidates.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>17 years old by 31 December</b><span>Of the year you join.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>Good English</b><span>Some universities ask for IELTS or hold an interview. We help you prepare.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>A course that meets FMGL 2021</b><span>At least 54 months of study, taught in English, with a 12-month internship at the same university.</span></div></li>
+          <li class="cty-check"><span class="cty-check__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><b>A plan for Vietnamese</b><span>Needed on the wards and for Vietnam&rsquo;s licence &mdash; see <a href="#recognition">NMC status</a>. We check how your university teaches it.</span></div></li>
+        </ul>
+        <aside class="cty-elig__tool reveal">
+          <svg class="cty-elig__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+          <span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-check-square"></use></svg></span>
+          <h3>Not sure where you stand?</h3>
+          <p>Enter your NEET score and Class 12 marks in the MBBS Planner and get an instant answer &mdash; free, in about ten seconds.</p>
+          <a href="mbbs-abroad-planner.html#eligibility" class="btn btn--ondark">Check my eligibility <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10. ADMISSION STEPS ============ -->
+  <section class="section has-grid" id="admission">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><span class="eyebrow">Admission</span><h2>Your path to a Vietnamese medical university</h2><p>One counsellor, from your first call to your first lecture &mdash; and after.</p></div>
+      <ol class="cty-steps" data-stagger>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Free counselling</h3><p>Your NEET score, budget and goals, in one honest conversation.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Shortlist &amp; verify</h3><p>English medium, internship and Vietnamese classes checked; fees put in writing.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Apply &amp; interview</h3><p>We prepare your application and any English test or interview.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Offer &amp; visa</h3><p>Your admission letter, then a student visa supported by the university.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Fly &amp; settle in</h3><p>Airport pickup, hostel check-in and your temporary residence card.</p></div></li>
+        <li class="cty-step reveal"><span class="cty-step__num" aria-hidden="true"></span><div><h3>Study &amp; FMGE prep</h3><p>We stay with you through all six years and the exam back home.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ 11a. WHERE YOU'LL LIVE (.cty-cities — optional block, see country.css)
+       IMAGES 5-7: assets/images/countries/vietnam/city-{name}.webp — 1200 x 900 px (4:3). Keep the bottom third simple and
+       fairly dark: the city name sits there in white.
+       5 city-hanoi: Hoan Kiem Lake and the Old Quarter at dusk, warm street lights.
+       6 city-hcmc: Ho Chi Minh City skyline over the Saigon River at blue hour.
+       7 city-danang: the Dragon Bridge over the Han River, or My Khe beach in morning sun. ============ -->
+  <section class="section" id="cities">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Where you&rsquo;ll live</span><h2>Three very different cities</h2><p>Vietnam is long and narrow, so your city shapes your weather, your hospitals and your weekends. Here is how the three compare.</p></div>
+      <div class="snap-row cty-cities" data-stagger>
+
+        <article class="card cty-city reveal">
+          <div class="cty-city__media">
+            <div class="img-slot" data-spec="countries/vietnam/city-hanoi.webp · 1200×900 px"><img src="assets/images/countries/vietnam/city-hanoi.webp" width="1200" height="900" alt="Hoan Kiem Lake and the Old Quarter of Hanoi at dusk" loading="lazy"></div>
+            <div class="cty-city__name"><small>The capital &middot; north</small><h3>Hanoi</h3></div>
+          </div>
+          <div class="cty-city__body">
+            <p>A thousand-year-old capital of lakes, tree-lined boulevards and the Old Quarter&rsquo;s street food. The only one of the three with a real winter.</p>
+            <ul class="cty-city__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-sun"></use></svg>Cool winter (~14&ndash;20&deg;C in January); hot, humid summer</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Home to Dai Nam University</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card cty-city reveal">
+          <div class="cty-city__media">
+            <div class="img-slot" data-spec="countries/vietnam/city-hcmc.webp · 1200×900 px"><img src="assets/images/countries/vietnam/city-hcmc.webp" width="1200" height="900" alt="Ho Chi Minh City skyline over the Saigon River at blue hour" loading="lazy"></div>
+            <div class="cty-city__name"><small>The biggest city &middot; south</small><h3>Ho Chi Minh City</h3></div>
+          </div>
+          <div class="cty-city__body">
+            <p>Vietnam&rsquo;s busiest, most energetic city and its business centre, with some of the country&rsquo;s largest hospitals and a lively international crowd.</p>
+            <ul class="cty-city__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-sun"></use></svg>Tropical all year, 31&ndash;34&deg;C; rains May&ndash;November</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Home to Hong Bang International University</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card cty-city reveal">
+          <div class="cty-city__media">
+            <div class="img-slot" data-spec="countries/vietnam/city-danang.webp · 1200×900 px"><img src="assets/images/countries/vietnam/city-danang.webp" width="1200" height="900" alt="The Dragon Bridge over the Han River in Da Nang" loading="lazy"></div>
+            <div class="cty-city__name"><small>The coast &middot; centre</small><h3>Da Nang</h3></div>
+          </div>
+          <div class="cty-city__body">
+            <p>A calmer, cleaner seaside city between the mountains and the beach, with the old town of Hoi An a short drive away.</p>
+            <ul class="cty-city__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Long sandy beaches right in the city</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Home to Phan Chau Trinh University</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 11. STUDENT LIFE.  IMAGE 8: assets/images/countries/vietnam/life.webp — 1400 x 1470 px
+       Indian students laughing over bowls of noodle soup at a street-side stall, paper lanterns overhead (Hoi An or Hanoi), warm evening light. ============ -->
+  <section class="section section--wash" id="life">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Student life</span><h2>Life in Vietnam, day to day</h2><p>Warm weather, busy streets, great food and a growing Indian student community.</p></div>
+      <div class="cty-life">
+        <div class="cty-life__photo reveal">
+          <div class="img-slot" data-spec="countries/vietnam/life.webp · 1400×1470 px"><img src="assets/images/countries/vietnam/life.webp" width="1400" height="1470" alt="Indian students sharing noodle soup at a lantern-lit street stall in Vietnam" loading="lazy"></div>
+          <div class="cty-seasons" aria-label="Weather in Hanoi and Ho Chi Minh City">
+            <div class="cty-season"><small>Hanoi &middot; Dec&ndash;Feb</small><b>Cool</b><span>~14&ndash;20&deg;C</span></div>
+            <div class="cty-season"><small>Hanoi &middot; Jun&ndash;Aug</small><b>Hot &amp; humid</b><span>Up to ~33&deg;C</span></div>
+            <div class="cty-season"><small>HCMC &middot; all year</small><b>Tropical</b><span>31&ndash;34&deg;C</span></div>
+          </div>
+          <p class="cty-life__note">Averages. Ho Chi Minh City&rsquo;s rainy season runs May&ndash;November; pack a light jacket for a Hanoi winter.</p>
+        </div>
+        <div class="cty-tiles" data-stagger>
+          <div class="card cty-tile cty-tile--wide reveal"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><h3>Monthly living cost</h3><p>About &#8377;14,000&ndash;21,000 a month, including hostel, food, transport and books (indicative, Oct 2026).</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-utensils"></use></svg></span><h3>Food</h3><p>Rice and noodle dishes with plenty of vegetables. Ask us which hostels offer an Indian mess or a kitchen.</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg></span><h3>Language</h3><p>Vietnamese is spoken everywhere. Start early: you will need it on the wards.</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></span><h3>Time zone</h3><p>One and a half hours ahead of India: easy evening calls home.</p></div>
+          <div class="card cty-tile reveal"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span><h3>Staying safe</h3><p>Carry your passport and residence card, and save the Embassy of India, Hanoi and Consulate, Ho Chi Minh City contacts.</p></div>
+          <div class="card cty-tile cty-tile--wide reveal"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><h3>Getting there</h3><p>About 8 hours from Chennai with one stop, usually via Bangkok, Kuala Lumpur or Singapore. Non-stop from Bengaluru, Hyderabad and Kochi.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 12. DOCUMENTS ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Documents</span><h2>What to keep ready</h2><p>Start gathering these early. Your counsellor gives you the exact list for your university, including any attestation needed.</p></div>
+      <ul class="cty-docs" data-stagger>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-passport"></use></svg><span>Valid passport<small>Six months&rsquo; validity and blank pages</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg><span>NEET-UG scorecard<small>Within its three-year validity</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg><span>Class 10 &amp; 12 mark sheets<small>Plus pass certificates</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg><span>English proficiency<small>IELTS or interview, if your university asks</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-eye"></use></svg><span>Passport-size photographs<small>Recent, white background</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg><span>Medical fitness certificate<small>From a registered doctor</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg><span>Bank statements<small>Proof of funds for the visa</small></span></li>
+        <li class="cty-doc reveal"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg><span>Admission letter<small>We arrange this with the university</small></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 13. FAQs — keep these in step with the FAQPage block in <head> ============ -->
+  <section class="section section--wash" id="faqs">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><span class="eyebrow">FAQs</span><h2>Questions parents ask us most</h2><p>Straight answers. Anything else, just ask a counsellor.</p></div>
+      <div class="cty-faq">
+        <details><summary>Is an MBBS from Vietnam valid in India?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>It can be, if the course meets every NMC FMGL 2021 condition: at least 54 months of study, taught in English, a 12-month internship at the same university, and eligibility for a medical licence in Vietnam. The Embassy of India in Hanoi asks every student to check these points with the university before enrolling. You then clear FMGE or NExT to practise in India.</div></details>
+        <details><summary>Is it taught in English?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Some Vietnamese universities run English-medium programmes for international students, including Indian students. Patients on the wards speak Vietnamese, so the Embassy of India advises that students also need good Vietnamese for clinical training. Choose a university that teaches Vietnamese as part of the course.</div></details>
+        <details><summary>What is the new licensing exam?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>According to the Embassy of India in Hanoi (5 June 2026), graduates who want to practise in Vietnam must complete 12 months of hospital practice and, from 2027, pass a central government licensing exam that is likely to be held in Vietnamese. NMC rules expect you to be eligible for a licence in the country where you studied &mdash; see <a href="#recognition">NMC status</a> above.</div></details>
+        <details><summary>How long is the course?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Six years. Programmes usually begin with about two years of basic medical sciences, followed by clinical training in partner hospitals. Make sure the course includes a 12-month internship at the same university, as NMC requires.</div></details>
+        <details><summary>How much does a year cost?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>An average year costs about &#8377;6.1 lakh all-in: roughly &#8377;3.8 lakh tuition, &#8377;1.5 lakh hostel and meals, and about &#8377;80,000 for personal costs, visa and insurance (indicative, Oct 2026). Tuition for the full six years typically comes to &#8377;18&ndash;28 lakh. See the <a href="#fees">fee breakdown</a>.</div></details>
+        <details><summary>Do I need NEET?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Yes. NMC requires every Indian student who studies medicine abroad to qualify NEET-UG, and the result stays valid for three years. Some universities also check your English, through IELTS or an interview.</div></details>
+        <details><summary>How far is Vietnam from India?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>There is no non-stop flight from Chennai as of 2026; one-stop flights reach Ho Chi Minh City in about 8 hours and Hanoi in about 7. Non-stop flights of around 4&ndash;5 hours run from Bengaluru, Hyderabad, Kochi, Delhi, Mumbai and Kolkata. Vietnam is one and a half hours ahead of India.</div></details>
+        <details><summary>What is the weather like?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>It depends on the city. Ho Chi Minh City is tropical all year, with highs of 31&ndash;34&deg;C and a rainy season from May to November. Hanoi has a cool winter, with January days around 14&ndash;20&deg;C, and a hot, humid summer of about 33&deg;C.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 14. CLOSING CTA (same card as Home and About) ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="cta reveal">
+        <svg class="cta__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+        <div><h2>Planning MBBS in Vietnam?</h2><p>One conversation: your NEET score, your budget, the right university &mdash; and the latest Embassy advisory, in writing.</p></div>
+        <div class="btn-row">
+          <a href="apply.html" class="btn btn--ondark">Get free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <a href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, I'd like to know more about MBBS in Vietnam." class="btn btn--outline-light"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg> WhatsApp us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{% include footer.html %}
+{% include bottom-nav.html %}
+{% include scripts.html %}
+<script src="js/pages/country.js"></script>
+</body>
+</html>
