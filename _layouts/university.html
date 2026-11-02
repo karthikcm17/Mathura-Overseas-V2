@@ -1,0 +1,261 @@
+---
+# ============ UNIVERSITY PAGE LAYOUT (_layouts/university.html) ============
+# Every university page (mbbs-in-{country}-{university}.html) uses this ONE design.
+# The page file holds only its own facts in its front matter, between the --- lines; nothing is typed here.
+# To add a university page: copy an existing one (e.g. mbbs-in-philippines-uv-gullas-college-of-medicine.html),
+# rename it, change the values, then add its file name as "page:" in _data/universities.yml so every card links to it.
+# Never name a front-matter field path, url, layout, permalink, date or content: Jekyll reserves those words.
+# Styles: css/pages/university.css   ·   Script: js/pages/university.js (WhatsApp links + the fee-sheet form)
+---
+{%- assign c = site.data.countries | where: "slug", page.country | first -%}
+{%- assign cin = c.in_name | default: c.name -%}
+{%- assign me = site.data.universities | where: "name", page.uni_name | first -%}
+{%- comment %} The photo comes from _data/universities.yml ("image:"), the same card.webp the cards use. {% endcomment -%}
+{%- assign url = page.url | remove_first: "/" -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{ page.title }}</title>
+<meta name="description" content="{{ page.description | escape }}">
+<link rel="canonical" href="https://mathuraoverseas.com/{{ url }}">
+<meta property="og:title" content="{{ page.title | escape }}">
+<meta property="og:description" content="{{ page.description | escape }}">
+<meta property="og:url" content="https://mathuraoverseas.com/{{ url }}">
+<meta property="og:image" content="https://mathuraoverseas.com/{{ me.image }}">
+{% include head.html %}
+<link rel="stylesheet" href="css/pages/university.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mathuraoverseas.com/index.html" },
+    { "@type": "ListItem", "position": 2, "name": "Countries", "item": "https://mathuraoverseas.com/destinations.html" },
+    { "@type": "ListItem", "position": 3, "name": {{ cin | prepend: "MBBS in " | jsonify }}, "item": {{ c.page | prepend: "https://mathuraoverseas.com/" | jsonify }} },
+    { "@type": "ListItem", "position": 4, "name": {{ page.uni_name | jsonify }}, "item": {{ url | prepend: "https://mathuraoverseas.com/" | jsonify }} }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollegeOrUniversity",
+  "name": {{ page.uni_name | jsonify }},
+  "foundingDate": {{ page.founded | jsonify }},
+  "address": { "@type": "PostalAddress", "addressLocality": {{ page.city | jsonify }}, "addressCountry": {{ c.name | jsonify }} },
+  "url": {{ url | prepend: "https://mathuraoverseas.com/" | jsonify }}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+{%- for f in page.faqs %}
+    { "@type": "Question", "name": {{ f.q | jsonify }}, "acceptedAnswer": { "@type": "Answer", "text": {{ f.a | strip_html | jsonify }} } }{% unless forloop.last %},{% endunless %}
+{%- endfor %}
+  ]
+}
+</script>
+</head>
+<body>
+
+{% include icons.html %}
+{% include announcement.html %}
+{% include header.html %}
+
+<main id="main">
+
+  <!-- ============ 1. HERO. The photo is the university's card.webp from _data/universities.yml (1200 x 750 px), so each photo is uploaded once.
+       The white card on the photo shows the yearly tuition and the full-course figure. ============ -->
+  <section class="uni-hero">
+    <svg class="uni-hero__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+    <div class="container uni-hero__grid">
+      <div class="uni-hero__copy">
+        <nav class="uni-crumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+          <a href="destinations.html">Countries</a><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+          <a href="{{ c.page }}">{{ c.name }}</a><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+          <span aria-current="page">{{ page.short_name }}</span>
+        </nav>
+        <span class="pill"><span class="pill__dot"></span>{{ page.badge }} &middot; 2026&ndash;27 intake</span>
+        <h1>MBBS at <em>{{ page.uni_name }}</em></h1>
+        <p class="uni-hero__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>{{ page.city }}, {{ c.name }}</p>
+        <p class="uni-hero__lead">{{ page.lead }}</p>
+        <ul class="uni-hero__chips">
+{%- for chip in page.chips %}
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>{{ chip }}</li>
+{%- endfor %}
+        </ul>
+        <!-- ASK BAR — the hero's only action. It looks like a message box: a question types itself in, and the round green
+             send button opens WhatsApp with that question ready to send. Three questions take turns (js/pages/university.js);
+             with no script, the first one shows. Edit the questions here: data-q is the message, the text is what shows. -->
+        <div class="uni-ask">
+          <span class="uni-ask__label"><span class="uni-ask__dot" aria-hidden="true"></span>Ask a counsellor</span>
+          <a class="uni-ask__bar" id="uniAsk" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the full year-by-year fee sheet for {{ page.uni_name }} ({{ c.name }}). [from its university page]">
+            <span class="uni-ask__qs">
+              <span class="uni-ask__q is-on" data-q="Hi Mathura Overseas, please send me the full year-by-year fee sheet for {{ page.uni_name }} ({{ c.name }}). [from its university page]">Send me the {{ page.short_name }} fee sheet</span>
+              <span class="uni-ask__q" data-q="Hi Mathura Overseas, is my NEET score enough for {{ page.uni_name }}? My score is: ">Is my NEET score enough?</span>
+              <span class="uni-ask__q" data-q="Hi Mathura Overseas, can you tell me about the hostel and food at {{ page.uni_name }}?">How are the hostel and food?</span>
+            </span>
+            <span class="uni-ask__send" aria-hidden="true"><svg class="icon icon--fill"><use href="#i-whatsapp"></use></svg></span>
+          </a>
+        </div>
+      </div>
+      <div class="uni-hero__media">
+        <div class="img-slot" data-spec="{{ me.image | remove: 'assets/images/' }} · 1200×750 px"><img src="{{ me.image }}" width="1200" height="750" alt="Campus of {{ page.uni_name | escape }}, {{ page.city | escape }}" fetchpriority="high"></div>
+        <a class="uni-hero__fee" href="#fees">
+          <span class="uni-hero__fee-col"><span class="uni-hero__fee-kicker">Tuition</span><span class="uni-hero__fee-num">{{ page.fee_from }}<small>/ year</small></span><span class="uni-hero__fee-note">{{ page.fee_from_note }}</span></span>
+          <span class="uni-hero__fee-col"><span class="uni-hero__fee-kicker">Full course</span><span class="uni-hero__fee-num">{{ page.course_total }}</span><span class="uni-hero__fee-note">approx., all-in</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. KEY FACTS (floats over the hero's bottom edge) ============ -->
+  <div class="uni-stats">
+    <div class="container">
+      <ul class="card uni-stats__card">
+{%- for s in page.stats %}
+        <li class="uni-stat"><span class="icon-badge icon-badge--{{ s.color }} icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-{{ s.icon }}"></use></svg></span><div><b>{{ s.num }}</b><span>{{ s.label }}</span></div></li>
+{%- endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============ 3. WHY THIS UNIVERSITY (three reasons, from the page's "why" list) ============ -->
+  <section class="section has-dots" id="overview">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Why {{ page.short_name }}</span><h2>{{ page.why_title }}</h2></div>
+      <div class="uni-why" data-stagger>
+{%- for w in page.why %}
+        <article class="card uni-why__item reveal">
+          <span class="icon-badge icon-badge--{{ w.color }}"><svg class="icon" aria-hidden="true"><use href="#i-{{ w.icon }}"></use></svg></span>
+          <div><h3>{{ w.title }}</h3><p>{{ w.text }}</p></div>
+        </article>
+{%- endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. FEES + THE FEE-SHEET FORM. The overview shows a few headline figures; the full year-by-year
+       sheet is sent on WhatsApp after the form (that is how a visitor becomes a lead). ============ -->
+  <section class="section section--wash" id="fees">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Fees</span><h2>What it costs at {{ page.short_name }}</h2><p>The headline figures, so you can plan. For the exact year-by-year sheet &mdash; pre-med, MD, hostel and one-time costs &mdash; leave your number and we send it on WhatsApp.</p></div>
+      <div class="uni-fees">
+        <div class="card uni-fees__card reveal">
+          <div class="uni-fees__total"><span>Full course, approx.<small>tuition, hostel, mess and processing</small></span><b>{{ page.course_total }}</b></div>
+          <ul class="uni-fees__rows">
+{%- for r in page.fees %}
+            <li class="uni-fee">
+              <span class="icon-badge icon-badge--{{ r.color }} icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-{{ r.icon }}"></use></svg></span>
+              <div class="uni-fee__name"><b>{{ r.name }}</b><span>{{ r.note }}</span></div>
+              <span class="uni-fee__val">{{ r.value }}{% if r.per %}<small>{{ r.per }}</small>{% endif %}</span>
+            </li>
+{%- endfor %}
+            <li class="uni-fee uni-fee--locked">
+              <span class="uni-fee__lock"><svg class="icon" aria-hidden="true"><use href="#i-lock"></use></svg></span>
+              <div class="uni-fee__name"><b>Year-by-year fee sheet</b><span>Pre-med, every MD year, hostel and one-time costs</span></div>
+              <span class="uni-fee__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+            </li>
+          </ul>
+          <p class="uni-fees__asof"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><span>{{ page.fee_source }}</span></p>
+        </div>
+
+        <!-- The form: name + mobile. Saved to the Google Sheet through LEAD_ENDPOINT in js/tools.js,
+             the same link the Apply page uses; then a WhatsApp button carries the request. -->
+        <div class="uni-lead reveal" id="fee-sheet">
+          <svg class="uni-lead__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+          <form class="uni-lead__form" id="uniLead" novalidate data-uni="{{ page.uni_name | escape }}" data-country="{{ c.name | escape }}">
+            <span class="eyebrow eyebrow--light">Free &middot; no obligation</span>
+            <h3>Get the full fee sheet</h3>
+            <p>Year-by-year fees for {{ page.short_name }} on WhatsApp, plus a call from a counsellor if you want one.</p>
+            <div class="uni-lead__field">
+              <label for="leadName">Student&rsquo;s name</label>
+              <input type="text" id="leadName" name="name" autocomplete="name" placeholder="e.g. Priya Kumar" required>
+              <small class="uni-lead__err" id="leadNameErr" aria-live="polite"></small>
+            </div>
+            <div class="uni-lead__field">
+              <label for="leadPhone">Mobile number</label>
+              <div class="uni-lead__phone"><span>+91</span><input type="tel" id="leadPhone" name="phone" autocomplete="tel-national" inputmode="numeric" placeholder="98765 43210" required></div>
+              <small class="uni-lead__err" id="leadPhoneErr" aria-live="polite"></small>
+            </div>
+            <input type="text" id="leadCompany" name="company" class="uni-lead__trap" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <button type="submit" class="btn btn--ondark btn--block" id="leadSubmit">Send me the fee sheet <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
+            <p class="uni-lead__note"><svg class="icon" aria-hidden="true"><use href="#i-lock"></use></svg>Used only to send your fee sheet. <a href="privacy-policy.html">Privacy</a></p>
+          </form>
+          <div class="uni-lead__done" id="uniLeadDone" hidden>
+            <span class="uni-lead__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>
+            <h3 id="uniLeadTitle" tabindex="-1">Thank you!</h3>
+            <p id="uniLeadText">Tap below to get your fee sheet on WhatsApp now.</p>
+            <a class="btn btn--ondark btn--block" id="uniLeadWa" href="https://wa.me/919360859919" target="_blank" rel="noopener"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get it on WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. IS IT RIGHT FOR YOU? An honest fit check from the page's "fit" (a strong fit if…) and "know" (good to know) lists.
+       The course itself is explained on the country guide, so it is not repeated here. ============ -->
+  <section class="section" id="fit">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Honest fit check</span><h2>Is {{ page.short_name }} right for you?</h2><p>What makes it a strong choice, and what to know before you decide &mdash; the same things we tell families on the phone.</p></div>
+      <div class="uni-fit">
+        <div class="uni-fit__col uni-fit__col--yes reveal">
+          <div class="uni-fit__head"><span class="icon-badge icon-badge--teal icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><div><small>Choose it if</small><h3>A strong fit for you</h3></div></div>
+          <ul class="uni-fit__list">
+{%- for f in page.fit %}
+            <li><span class="uni-fit__mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span>{{ f }}</span></li>
+{%- endfor %}
+          </ul>
+        </div>
+        <div class="uni-fit__col reveal">
+          <div class="uni-fit__head"><span class="icon-badge icon-badge--orange icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg></span><div><small>Good to know</small><h3>Before you decide</h3></div></div>
+          <ul class="uni-fit__list">
+{%- for f in page.know %}
+            <li><span class="uni-fit__mark"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg></span><span>{{ f }}</span></li>
+{%- endfor %}
+          </ul>
+          <a class="uni-fit__guide" href="{{ c.page }}">Course, NMC rules and student life: the MBBS in {{ cin }} guide <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. FAQs — the same questions also feed the FAQPage block in <head> automatically ============ -->
+  <section class="section" id="faqs">
+    <div class="container">
+      <div class="section-head section-head--center reveal"><span class="eyebrow">FAQs</span><h2>Questions families ask about {{ page.short_name }}</h2></div>
+      <div class="uni-faq">
+{%- for f in page.faqs %}
+        <details><summary>{{ f.q }}<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>{{ f.a }}</div></details>
+{%- endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. CLOSING CTA (same card as every page) ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="cta reveal">
+        <svg class="cta__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+        <div><h2>Thinking about {{ page.short_name }}?</h2><p>One free conversation: your NEET score, your budget and whether {{ page.short_name }} is the right fit &mdash; with every NMC check in writing.</p></div>
+        <div class="btn-row">
+          <a href="apply.html?country={{ c.slug }}" class="btn btn--ondark">Get free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <a href="tel:+919360859919" class="btn btn--outline-light"><svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg> +91 93608 59919</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{% include footer.html %}
+{% include bottom-nav.html %}
+{% include scripts.html %}
+<script src="js/tools.js"></script>
+<script src="js/pages/university.js"></script>
+</body>
+</html>

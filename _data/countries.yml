@@ -7,6 +7,7 @@
 #   slug        short id, lowercase. Every university in _data/universities.yml points to one of these.
 #   name        shown on the site
 #   page        the country page
+#   in_name     OPTIONAL. How to say "in …" when it needs "the" (in_name: the Philippines). Used on university pages.
 #   planner     OPTIONAL. The country's id in the MBBS Planner, only if it differs from slug (Timor-Leste = timor).
 #               Write  planner: false  if the Planner doesn't have the country yet: the "Compare" link then hides.
 #   year_cost   the "average year, all-in" figure from the country page, as text
@@ -32,10 +33,11 @@
 
 - slug: philippines
   name: Philippines
+  in_name: the Philippines
   page: mbbs-in-philippines.html
-  year_cost: "₹8.1 L"
-  year_inr: 806000
-  duration: "~7 yrs incl. pre-med"
+  year_cost: "₹8 L"
+  year_inr: 796000
+  duration: "~6–7 yrs incl. pre-med"
   airport: MNL
   city: Manila
   hours: "~10"

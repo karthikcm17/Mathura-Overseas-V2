@@ -1,0 +1,101 @@
+/* ==========================================================================
+   HOME PAGE ADDITIONS — 2 Nov 2026
+   HOW TO USE: copy EVERYTHING in this file and paste it at the very END of css/pages/home.css, then delete this file.
+   (Your current home.css is not in the Project, so these rules are delivered as a block to add, not a replacement.)
+
+   What it styles (all new class names, so nothing in your existing home.css is changed):
+     .hm-dest    destination cards: a short photo, then course facts (cost, course length, flight) — "programme card" look
+     .hm-unis    "Where our students study": the spotlight university (.hm-spot) + four university cards (.hm-uni)
+     .hm-link    the "Every university we recommend" link: top-right on computers, full-width button under the cards on phones
+   ========================================================================== */
+
+/* ---------- Section heading with a link on the right (computers) ---------- */
+.hm-head { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--sp-4); }
+.hm-head .section-head { margin-bottom: 0; }
+.hm-link--top { display: none; }
+.hm-link--bottom { display: flex; width: 100%; margin-top: var(--sp-4); }
+.hm-head + * { margin-top: var(--sp-5); }
+
+/* ================= DESTINATION CARDS (.hm-dest) =================
+   An education card, not a travel poster: a short photo strip, then the three numbers families compare first. */
+.hm-dests > * { flex-basis: 82%; }
+.hm-dest { overflow: hidden; display: flex; flex-direction: column; transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease); }
+.hm-dest__media { position: relative; }
+.hm-dest__media .img-slot { --ratio: 16 / 9; border-radius: 0; }
+.hm-dest__media .img-slot img { transition: transform .6s var(--ease); }
+.hm-dest__media::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to top, rgba(12,29,78,.7) 0%, transparent 60%); }
+.hm-dest__name { position: absolute; left: var(--sp-4); right: var(--sp-4); bottom: var(--sp-3); z-index: 1; display: flex; align-items: flex-end; justify-content: space-between; gap: var(--sp-2); }
+.hm-dest__name h3 { color: #fff; font-size: 1.35rem; line-height: 1.1; letter-spacing: -.02em; }
+.hm-dest__tag { flex-shrink: 0; padding: .25rem .6rem; border-radius: 999px; background: rgba(255,255,255,.96); color: var(--color-primary); font-size: .62rem; font-weight: 800; }
+.hm-dest__body { display: flex; flex-direction: column; flex: 1; padding: var(--sp-4); }
+.hm-dest__body > p { font-size: var(--fs-sm); line-height: 1.5; color: var(--color-text-muted); }
+.hm-dest__facts { display: grid; grid-template-columns: repeat(3, 1fr); margin: var(--sp-4) 0; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-bg); overflow: hidden; }
+.hm-dest__facts > div { min-width: 0; padding: .6rem .65rem; }
+.hm-dest__facts > div + div { border-left: 1px solid var(--color-border); }
+.hm-dest__facts dt { font-size: .58rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--color-text-muted); }
+.hm-dest__facts dd { margin-top: .15rem; font-size: .9rem; font-weight: 800; line-height: 1.2; color: var(--color-primary); font-variant-numeric: tabular-nums; }
+.hm-dest__go { display: inline-flex; align-items: center; gap: .35rem; margin-top: auto; font-size: var(--fs-xs); font-weight: 800; color: var(--color-primary); }
+.hm-dest__go .icon { width: 14px; height: 14px; stroke-width: 2.6; transition: transform var(--speed) var(--ease); }
+@media (hover: hover) {
+  .hm-dest:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .hm-dest:hover .hm-dest__media img { transform: scale(1.05); }
+  .hm-dest:hover .hm-dest__go .icon { transform: translateX(4px); }
+}
+
+/* ================= SPOTLIGHT UNIVERSITY (.hm-spot) ================= */
+.hm-spot { overflow: hidden; display: grid; margin-bottom: var(--sp-4); box-shadow: var(--shadow-md); }
+.hm-spot .img-slot { --ratio: 16 / 10; border-radius: 0; }
+.hm-spot__body { display: flex; flex-direction: column; gap: var(--sp-3); padding: var(--sp-5) var(--sp-4); }
+.hm-spot__kicker { display: inline-flex; align-items: center; gap: .4rem; font-size: .66rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--color-blue-light); }
+.hm-spot__kicker .icon { width: 14px; height: 14px; }
+.hm-spot h3 { font-size: clamp(1.25rem, 1.05rem + 1vw, 1.7rem); line-height: 1.18; letter-spacing: -.02em; }
+.hm-spot__lead { font-size: var(--fs-sm); line-height: 1.65; color: var(--color-text-muted); }
+.hm-spot__chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+.hm-spot__chips li { display: inline-flex; align-items: center; gap: .3rem; padding: .28rem .65rem; border-radius: 999px; background: var(--color-wash); font-size: .7rem; font-weight: 700; color: var(--color-primary); }
+.hm-spot__chips .icon { width: 13px; height: 13px; stroke-width: 2.6; }
+.hm-spot__stats { display: grid; grid-template-columns: repeat(3, 1fr); overflow: hidden; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-bg); }
+.hm-spot__stats > div { min-width: 0; padding: var(--sp-3); }
+.hm-spot__stats > div + div { border-left: 1px solid var(--color-border); }
+.hm-spot__stats b { display: block; font-size: 1.05rem; font-weight: 800; line-height: 1.15; letter-spacing: -.02em; color: var(--color-primary); font-variant-numeric: tabular-nums; }
+.hm-spot__stats span { display: block; margin-top: .2rem; font-size: .64rem; line-height: 1.35; color: var(--color-text-muted); }
+
+/* Two buttons used on the spotlight and on every university card: fees on WhatsApp + the guide (or the university's own page) */
+.hm-acts { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-2); }
+.hm-acts .btn { min-width: 0; padding: 0 .6rem; }
+.hm-acts .icon--fill { width: 17px; height: 17px; }
+.btn:hover .icon--fill { transform: none; }
+
+/* ================= UNIVERSITY CARDS (.hm-uni) ================= */
+.hm-unis > * { flex-basis: 82%; }
+.hm-uni { overflow: hidden; display: flex; flex-direction: column; }
+.hm-uni .img-slot { --ratio: 16 / 10; border-radius: 0; }
+.hm-uni__body { display: flex; flex-direction: column; flex: 1; padding: var(--sp-4); }
+.hm-uni__place { display: flex; align-items: center; gap: .3rem; font-size: .7rem; font-weight: 700; color: var(--color-text-muted); }
+.hm-uni__place .icon { width: 13px; height: 13px; color: var(--color-blue-light); }
+.hm-uni h3 { margin-top: .3rem; font-size: 1.02rem; line-height: 1.25; }
+.hm-uni__fact { margin-top: .4rem; font-size: var(--fs-xs); line-height: 1.5; color: var(--color-text-muted); }
+.hm-uni__fee { margin-top: var(--sp-3); font-size: .68rem; line-height: 1.4; color: var(--color-text-muted); }
+.hm-uni__fee small { font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+.hm-uni__fee b { font-size: 1rem; font-weight: 800; color: var(--color-primary); }
+.hm-uni .hm-acts { margin-top: auto; padding-top: var(--sp-4); }
+
+/* ================= TABLET & DESKTOP ================= */
+@media (min-width: 768px) {
+  .hm-link--top { display: inline-flex; flex-shrink: 0; }
+  .hm-link--bottom { display: none; }
+  .hm-dests > *, .hm-unis > * { flex-basis: auto; }
+  .hm-spot { grid-template-columns: 1fr 1.1fr; }
+  .hm-spot .img-slot { --ratio: auto; height: 100%; min-height: 320px; }
+  .hm-spot__body { padding: var(--sp-5); }
+  .hm-spot .hm-acts { max-width: 400px; }
+}
+@media (min-width: 1024px) {
+  .hm-dests, .hm-unis { gap: var(--sp-4); }
+  .hm-spot { margin-bottom: var(--sp-5); grid-template-columns: 1.05fr 1fr; }
+  .hm-spot__body { padding: var(--sp-6); gap: var(--sp-4); }
+  .hm-spot__stats > div { padding: var(--sp-3) var(--sp-4); }
+  .hm-spot__stats b { font-size: 1.2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hm-dest, .hm-dest__media img, .hm-dest__go .icon { transition: none; }
+}

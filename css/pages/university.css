@@ -1,0 +1,212 @@
+/* ==========================================================================
+   university.css — ONE stylesheet for EVERY university page (mbbs-in-{country}-{university}.html).
+   The pages are built by _layouts/university.html. Only change this file for something every university page needs.
+
+   Section map (same order as the page):
+     1 .uni-hero    dark hero: name, place, chips, the ask bar (.uni-ask); photo with the fee card on it
+     2 .uni-stats   four key facts, floating over the hero's bottom edge
+     3 .uni-why     three reasons
+     4 .uni-fees    fee overview (with a locked "year-by-year sheet" row) + .uni-lead, the fee-sheet form
+     5 .uni-fit     honest fit check: "a strong fit if" + "good to know"
+     7 .uni-faq     FAQ accordion (native <details>, no script needed)
+   Mobile-first; tablet/desktop upgrades are at the bottom.
+   ========================================================================== */
+
+html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 16px); }
+.section--wash .eyebrow { background: var(--color-surface); }
+
+/* ================= 1. HERO ================= */
+.uni-hero { position: relative; overflow: hidden; color: var(--color-text-inverse); padding: var(--sp-5) 0 calc(var(--sp-7) + var(--sp-6)); border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  background: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1.6px) 0 0 / 22px 22px, var(--grad-hero); }
+.uni-hero__globe { position: absolute; width: 520px; height: 520px; right: -250px; top: -150px; color: rgba(255,255,255,.14); pointer-events: none; }
+.uni-hero__grid { position: relative; display: grid; gap: var(--sp-6); }
+.uni-hero__grid > * { min-width: 0; }   /* lets the fee bar shrink to the phone width instead of stretching the page */
+.uni-crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem; margin-bottom: var(--sp-4); font-size: var(--fs-xs); font-weight: 600; color: var(--color-text-inverse-muted); }
+.uni-crumbs a { color: var(--color-text-inverse-muted); transition: color var(--speed) var(--ease); }
+.uni-crumbs a:hover { color: #fff; }
+.uni-crumbs .icon { width: 12px; height: 12px; opacity: .6; }
+.uni-crumbs [aria-current] { color: #fff; }
+.uni-hero h1 { margin-top: var(--sp-4); color: var(--color-blue-pale); font-size: clamp(1.85rem, 1.25rem + 2.8vw, 3.1rem); line-height: 1.1; letter-spacing: -.03em; text-wrap: balance; }
+.uni-hero h1 em { display: block; font-style: normal; color: #fff; }   /* "MBBS at" in pale blue (below), the name in white */
+.uni-hero__place { display: flex; align-items: center; gap: .35rem; margin-top: var(--sp-3); font-size: var(--fs-sm); font-weight: 700; color: #fff; }
+.uni-hero__place .icon { width: 16px; height: 16px; color: var(--color-blue-pale); }
+.uni-hero__lead { margin-top: var(--sp-3); max-width: 52ch; font-size: var(--fs-base); line-height: 1.7; color: var(--color-text-inverse-muted); }
+.uni-hero__chips { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: var(--sp-4); }
+.uni-hero__chips li { display: inline-flex; align-items: center; gap: .35rem; padding: .32rem .7rem; border-radius: 999px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.22); font-size: .72rem; font-weight: 700; color: #fff; }
+.uni-hero__chips .icon { width: 13px; height: 13px; stroke-width: 2.6; color: var(--color-blue-pale); }
+
+/* Photo + the fee card that sits on it */
+.uni-hero__media { position: relative; }
+.uni-hero__media .img-slot { --ratio: 16 / 10; border-radius: var(--radius-xl); box-shadow: 0 24px 50px rgba(7,18,52,.4), 0 0 0 1px rgba(255,255,255,.18); }
+.uni-hero__fee { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; margin: -2.6rem var(--sp-3) 0; padding: var(--sp-3) var(--sp-4); border-radius: var(--radius-lg); background: var(--color-surface); color: var(--color-text); box-shadow: 0 16px 34px rgba(7,18,52,.3); transition: transform var(--speed) var(--ease); }
+.uni-hero__fee:hover { transform: translateY(-2px); }
+.uni-hero__fee-col { display: grid; gap: .1rem; min-width: 0; }
+.uni-hero__fee-col + .uni-hero__fee-col { padding-left: var(--sp-4); margin-left: var(--sp-4); border-left: 1px solid var(--color-border); }
+.uni-hero__fee-kicker { font-size: .66rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--color-blue-light); }
+.uni-hero__fee-num { font-size: 1.6rem; white-space: nowrap; font-weight: 800; line-height: 1.05; letter-spacing: -.03em; color: var(--color-primary); font-variant-numeric: tabular-nums; }
+.uni-hero__fee-num small { margin-left: .2rem; font-size: .8rem; font-weight: 700; letter-spacing: 0; color: var(--color-text-muted); }
+.uni-hero__fee-note { font-size: .72rem; font-weight: 600; color: var(--color-text-muted); }
+
+/* ================= 2. KEY FACTS ================= */
+.uni-stats { position: relative; z-index: 3; margin-top: calc(-1 * var(--sp-7)); }
+.uni-stats__card { display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border: 0; box-shadow: 0 16px 36px rgba(11,31,77,.16); }
+.uni-stat { display: flex; align-items: center; gap: .6rem; padding: var(--sp-3); min-width: 0; }
+.uni-stat:nth-child(odd) { border-right: 1px solid var(--color-border); }
+.uni-stat:nth-child(-n+2) { border-bottom: 1px solid var(--color-border); }
+.uni-stat b { display: block; font-size: 1.05rem; font-weight: 800; line-height: 1.1; letter-spacing: -.02em; color: var(--color-primary); font-variant-numeric: tabular-nums; }
+.uni-stat span:not(.icon-badge) { display: block; margin-top: .1rem; font-size: .68rem; line-height: 1.35; color: var(--color-text-muted); }
+
+/* ================= 3. WHY ================= */
+.uni-why { display: grid; gap: var(--sp-3); }
+.uni-why__item { display: flex; gap: var(--sp-3); align-items: flex-start; padding: var(--sp-4); }
+.uni-why__item .icon-badge { width: 42px; height: 42px; }
+.uni-why__item h3 { font-size: 1rem; }
+.uni-why__item p { margin-top: .2rem; font-size: var(--fs-sm); line-height: 1.6; color: var(--color-text-muted); }
+
+/* ================= 4. FEES + FORM ================= */
+.uni-fees { display: grid; gap: var(--sp-4); }
+.uni-fees__card { overflow: hidden; padding: 0 var(--sp-4) var(--sp-4); }
+/* Full-course band across the top of the fee card */
+.uni-fees__total { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); margin: 0 calc(-1 * var(--sp-4)) var(--sp-1); padding: var(--sp-4); color: #fff; background: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1.6px) 0 0 / 18px 18px, var(--grad-hero); }
+.uni-fees__total span { font-size: var(--fs-sm); font-weight: 800; }
+.uni-fees__total small { display: block; font-size: .68rem; font-weight: 600; color: var(--color-text-inverse-muted); }
+.uni-fees__total b { flex-shrink: 0; font-size: 1.6rem; font-weight: 800; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.uni-fee { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-4) 0; }
+.uni-fee + .uni-fee { border-top: 1px solid var(--color-border); }
+.uni-fee__name { flex: 1; min-width: 0; }
+.uni-fee__name b { display: block; font-size: var(--fs-sm); font-weight: 800; color: var(--color-text); }
+.uni-fee__name span { display: block; font-size: .7rem; line-height: 1.4; color: var(--color-text-muted); }
+.uni-fee__val { flex-shrink: 0; text-align: right; font-size: 1.15rem; font-weight: 800; line-height: 1.1; color: var(--color-primary); font-variant-numeric: tabular-nums; }
+.uni-fee__val small { display: block; font-size: .64rem; font-weight: 700; color: var(--color-text-muted); }
+/* Locked row: the year-by-year sheet, sent on WhatsApp */
+.uni-fee--locked { margin-top: var(--sp-1); padding: var(--sp-3); border: 1.5px dashed var(--color-blue-pale) !important; border-radius: var(--radius-md); background: var(--color-wash); }
+.uni-fee__lock { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--color-primary); color: #fff; }
+.uni-fee__lock .icon { width: 16px; height: 16px; }
+.uni-fee__bars { flex-shrink: 0; display: grid; gap: 5px; width: 54px; }
+.uni-fee__bars i { display: block; height: 7px; border-radius: 4px; background: var(--color-wash-deep); }
+.uni-fee__bars i:nth-child(2) { width: 75%; justify-self: end; }
+.uni-fee__bars i:nth-child(3) { width: 55%; justify-self: end; }
+.uni-fees__asof { display: flex; gap: .45rem; align-items: flex-start; margin-top: var(--sp-4); font-size: .7rem; line-height: 1.55; color: var(--color-text-muted); }
+.uni-fees__asof .icon { width: 14px; height: 14px; margin-top: .12rem; }
+.uni-fees__asof a { color: var(--color-primary); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+
+/* The fee-sheet form (navy card) */
+.uni-lead { position: relative; overflow: hidden; padding: var(--sp-5) var(--sp-4); border-radius: var(--radius-xl); color: var(--color-text-inverse); box-shadow: var(--shadow-lg);
+  background: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1.6px) 0 0 / 20px 20px, var(--grad-night); }
+.uni-lead__globe { position: absolute; right: -110px; bottom: -130px; width: 300px; height: 300px; color: rgba(255,255,255,.09); pointer-events: none; }
+.uni-lead__form, .uni-lead__done { position: relative; display: grid; gap: var(--sp-3); }
+.uni-lead h3 { font-size: 1.35rem; line-height: 1.2; color: var(--color-text-inverse); }
+.uni-lead p { font-size: var(--fs-sm); line-height: 1.6; color: var(--color-text-inverse-muted); }
+.section--wash .uni-lead .eyebrow { justify-self: start; margin: 0; background: rgba(255,255,255,.14); color: var(--color-blue-pale); }
+.uni-lead__field { display: grid; gap: .3rem; }
+.uni-lead__field label { font-size: var(--fs-xs); font-weight: 700; color: #fff; }
+.uni-lead__field label em { font-style: normal; font-weight: 600; color: var(--color-text-inverse-muted); }
+.uni-lead__field input, .uni-lead__phone { width: 100%; min-height: 48px; padding: 0 .9rem; border: 1.5px solid rgba(255,255,255,.25); border-radius: var(--radius-sm); background: rgba(255,255,255,.08); font: inherit; font-size: var(--fs-base); color: #fff; transition: border-color var(--speed) var(--ease), background var(--speed) var(--ease); }
+.uni-lead__field input::placeholder { color: rgba(201,214,245,.6); }
+.uni-lead__field input:focus, .uni-lead__phone:focus-within { outline: none; border-color: #fff; background: rgba(255,255,255,.14); }
+.uni-lead__phone { display: flex; align-items: center; gap: .55rem; padding: 0 0 0 .9rem; }
+.uni-lead__phone span { font-weight: 700; color: var(--color-text-inverse-muted); }
+.uni-lead__phone input { flex: 1; min-width: 0; min-height: 44px; padding: 0 .9rem 0 0; border: 0; background: none; }
+.uni-lead__phone input:focus { background: none; }
+.uni-lead__field.is-invalid input, .uni-lead__field.is-invalid .uni-lead__phone { border-color: var(--icon-pink-a); }
+.uni-lead__err { min-height: 0; font-size: .7rem; font-weight: 600; color: #FFC9D1; }
+.uni-lead__err:empty { display: none; }
+.uni-lead__trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.uni-lead .btn--block { margin-top: var(--sp-1); }
+.uni-lead .btn.is-loading { opacity: .75; pointer-events: none; }
+.uni-lead__note { display: flex; align-items: center; gap: .4rem; font-size: .68rem !important; }
+.uni-lead__note .icon { width: 13px; height: 13px; }
+.uni-lead__note a { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
+.uni-lead__done { justify-items: start; }
+.uni-lead__done[hidden] { display: none; }
+.uni-lead__tick { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: var(--color-surface); color: var(--color-primary); }
+.uni-lead__tick .icon { width: 24px; height: 24px; stroke-width: 3; }
+.uni-lead__done h3:focus { outline: none; }
+.uni-lead__done .icon--fill { width: 18px; height: 18px; color: var(--color-whatsapp); }
+
+
+
+/* ================= 7. FAQ ================= */
+.uni-faq { display: grid; gap: var(--sp-2); max-width: 820px; margin-inline: auto; }
+.uni-faq details { border-radius: var(--radius-md); background: var(--color-surface); border: 1px solid var(--color-border); transition: box-shadow var(--speed) var(--ease), border-color var(--speed) var(--ease); }
+.uni-faq details[open] { border-color: var(--color-blue-pale); box-shadow: var(--shadow-md); }
+.uni-faq summary { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); min-height: 56px; padding: var(--sp-3) var(--sp-4); font-size: var(--fs-sm); font-weight: 800; color: var(--color-text); cursor: pointer; list-style: none; }
+.uni-faq summary::-webkit-details-marker { display: none; }
+.uni-faq summary .icon { width: 18px; height: 18px; color: var(--color-primary); transition: transform var(--speed) var(--ease); }
+.uni-faq details[open] summary .icon { transform: rotate(180deg); }
+.uni-faq details > div { padding: 0 var(--sp-4) var(--sp-4); font-size: var(--fs-sm); line-height: 1.7; color: var(--color-text-muted); }
+
+/* ================= 1b. HERO ASK BAR (.uni-ask) =================
+   Looks like a message box: a question sits in it and a round green send button (the WhatsApp icon) sits on the right.
+   The questions fade from one to the next (js/pages/university.js); a tap anywhere on the bar opens WhatsApp. */
+.uni-ask { margin-top: var(--sp-5); max-width: 440px; }
+.uni-ask__label { display: inline-flex; align-items: center; gap: .45rem; margin-bottom: .55rem; font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--color-blue-pale); }
+.uni-ask__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--color-whatsapp); box-shadow: 0 0 0 3px rgba(37,211,102,.25); }
+.uni-ask__bar { display: flex; align-items: center; gap: var(--sp-3); min-height: 60px; padding: 6px 6px 6px 1.15rem; border-radius: 18px; background: var(--color-surface); box-shadow: 0 16px 34px rgba(7,18,52,.32), 0 0 0 4px rgba(255,255,255,.12); transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease); }
+.uni-ask__bar:hover { transform: translateY(-2px); box-shadow: 0 20px 40px rgba(7,18,52,.38), 0 0 0 4px rgba(255,255,255,.2); }
+.uni-ask__bar:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.uni-ask__qs { position: relative; flex: 1; min-width: 0; height: 1.5em; font-size: var(--fs-base); font-weight: 700; color: var(--color-text); }
+.uni-ask__q { position: absolute; inset: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; opacity: 0; transform: translateY(8px); transition: opacity .4s var(--ease), transform .4s var(--ease); }
+.uni-ask__q.is-on { opacity: 1; transform: none; }
+.uni-ask__send { flex-shrink: 0; width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: var(--color-whatsapp); color: #fff; box-shadow: 0 6px 14px rgba(37,211,102,.4); transition: transform var(--speed) var(--ease); }
+.uni-ask__send .icon { width: 26px; height: 26px; }
+.uni-ask__bar:hover .uni-ask__send { transform: scale(1.06); }
+
+/* ================= 5. FIT CHECK (.uni-fit) ================= */
+.uni-fit { display: grid; gap: var(--sp-3); }
+.uni-fit__col { display: flex; flex-direction: column; gap: var(--sp-4); padding: var(--sp-5) var(--sp-4); border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
+.uni-fit__head { display: flex; align-items: center; gap: var(--sp-3); }
+.uni-fit__head small { display: block; font-size: .64rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-muted); }
+.uni-fit__head h3 { font-size: 1.05rem; line-height: 1.25; }
+.uni-fit__list { display: grid; gap: var(--sp-3); }
+.uni-fit__list li { display: flex; gap: var(--sp-3); align-items: flex-start; font-size: var(--fs-sm); line-height: 1.55; color: var(--color-text-muted); }
+.uni-fit__mark { flex-shrink: 0; width: 24px; height: 24px; margin-top: .05rem; border-radius: 50%; display: grid; place-items: center; background: var(--color-wash); color: var(--color-primary); }
+.uni-fit__mark .icon { width: 13px; height: 13px; stroke-width: 3; }
+.uni-fit__guide { display: inline-flex; align-items: center; gap: .4rem; margin-top: auto; padding-top: var(--sp-3); border-top: 1px solid var(--color-border); font-size: var(--fs-xs); font-weight: 800; line-height: 1.4; color: var(--color-primary); }
+.uni-fit__guide .icon { flex-shrink: 0; width: 14px; height: 14px; stroke-width: 2.6; }
+/* Navy "strong fit" column */
+.uni-fit__col--yes { border: 0; color: var(--color-text-inverse); box-shadow: var(--shadow-md); background: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1.6px) 0 0 / 20px 20px, var(--grad-night); }
+.uni-fit__col--yes h3 { color: #fff; }
+.uni-fit__col--yes .uni-fit__head small { color: var(--color-blue-pale); }
+.uni-fit__col--yes .uni-fit__list li { color: var(--color-text-inverse-muted); }
+.uni-fit__col--yes .uni-fit__mark { background: var(--color-surface); }
+
+@media (min-width: 768px) {
+  .uni-fit { grid-template-columns: 1fr 1fr; align-items: stretch; gap: var(--sp-4); }
+  .uni-fit__col { padding: var(--sp-6) var(--sp-5); }
+}
+@media (min-width: 1024px) {
+}
+
+/* ================= TABLET ================= */
+@media (min-width: 768px) {
+  .uni-hero__fee { position: absolute; left: var(--sp-4); bottom: var(--sp-4); margin: 0; width: 330px; }
+  .uni-stats__card { grid-template-columns: repeat(4, 1fr); }
+  .uni-stat { flex-direction: column; align-items: flex-start; gap: .5rem; padding: var(--sp-4); border-bottom: 0 !important; border-right: 1px solid var(--color-border); }
+  .uni-stat:last-child { border-right: 0; }
+  .uni-why { grid-template-columns: repeat(3, 1fr); }
+  .uni-why__item { flex-direction: column; gap: var(--sp-4); padding: var(--sp-5); }
+  .uni-lead { padding: var(--sp-6); }
+}
+
+/* ================= DESKTOP ================= */
+@media (min-width: 1024px) {
+  html { scroll-padding-top: calc(var(--announce-h) + var(--header-h-lg) + 16px); }
+  .uni-hero { padding: var(--sp-7) 0 calc(var(--sp-8) + var(--sp-6)); }
+  .uni-hero__grid { grid-template-columns: 1.05fr .95fr; align-items: center; gap: var(--sp-7); }
+  .uni-hero__fee { left: calc(-1 * var(--sp-6)); bottom: var(--sp-6); }
+  .uni-stat { flex-direction: row; align-items: center; padding: var(--sp-5); }
+  .uni-stat b { font-size: 1.3rem; }
+  .uni-stat span:not(.icon-badge) { font-size: .72rem; }
+  .uni-why { gap: var(--sp-4); }
+  .uni-why__item { transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease); }
+  .uni-why__item:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .uni-fees { grid-template-columns: 1.15fr .85fr; align-items: stretch; gap: var(--sp-5); }   /* fee card and form stand the same height */
+  .uni-fees__card { padding: 0 var(--sp-5) var(--sp-5); }
+  .uni-fees__total { margin-inline: calc(-1 * var(--sp-5)); padding: var(--sp-4) var(--sp-5); }
+  .uni-fee__val { font-size: 1.3rem; }
+  .uni-lead { display: flex; flex-direction: column; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+}

@@ -18,6 +18,8 @@
 #   aka        other names and short forms people search for (KSMA, Akhunbaev…). Not shown on the page.
 #
 # Everything below is copied from the country pages (as of Oct 2026). Fees use 1 USD = ₹95 (26 Oct 2026).
+# Philippine fees: Mathura Overseas' own indicative fees for the current intake, at ₱1 ≈ ₹1.5 (Sep 2026) and US$1 = ₹95.
+# A university page's file name is mbbs-in-{country}-{full-university-name}.html (better for Google searches).
 
 # ---------------- PHILIPPINES ----------------
 - name: UV Gullas College of Medicine
@@ -27,7 +29,9 @@
   facts:
     - Founded in 1977, part of the University of the Visayas
     - Ten affiliated hospitals across Cebu and Bohol
-  page: mbbs-in-philippines-uv-gullas.html
+  fee: "₹3.8 L"
+  fee_note: tuition a year (₱1.25 L a semester)
+  page: mbbs-in-philippines-uv-gullas-college-of-medicine.html
   image: assets/images/universities/uv-gullas/card.webp
   aka: UV Gullas, UVGCM, University of the Visayas, Cebu
 
@@ -38,6 +42,9 @@
   facts:
     - Founded in 1976, the first medical school in Mindanao
     - Its own teaching hospital, opened in 2003
+  fee: "₹5.2 L"
+  fee_note: tuition a year (US$2,750 a semester)
+  page: mbbs-in-philippines-davao-medical-school-foundation.html
   image: assets/images/universities/dmsf/card.webp
   aka: DMSF, Davao
 
@@ -48,8 +55,37 @@
   facts:
     - College of Medicine recognised since 1984
     - Clinical training at Region 1 Medical Center
+  fee: "₹2.8 L"
+  fee_note: tuition a year (₹1.4 L a semester)
+  page: mbbs-in-philippines-lyceum-northwestern-university.html
   image: assets/images/universities/lyceum-northwestern/card.webp
   aka: LNU, Lyceum, Dagupan
+
+- name: Southwestern University PHINMA
+  country: philippines
+  city: Cebu City
+  badge: Private
+  facts:
+    - Established in 1946; students from 34 countries
+    - Its own teaching hospital on campus
+  fee: "₹3.6 L"
+  fee_note: tuition a year (₹1.8 L a semester)
+  page: mbbs-in-philippines-southwestern-university-phinma.html
+  image: assets/images/universities/southwestern-phinma/card.webp
+  aka: SWU, PHINMA, Southwestern, Cebu
+
+- name: Brokenshire College of Medicine
+  country: philippines
+  city: Davao City, Mindanao
+  badge: Private
+  facts:
+    - Established in 1954, with a United Church of Christ heritage
+    - An affiliated 200-bed teaching hospital
+  fee: "₹3.3 L"
+  fee_note: tuition a year (₱1.1 L a semester)
+  page: mbbs-in-philippines-brokenshire-college-of-medicine.html
+  image: assets/images/universities/brokenshire/card.webp
+  aka: Brokenshire, BCM, Davao
 
 # ---------------- TIMOR-LESTE ----------------
 - name: Universidade Católica Timorense (UCT)
@@ -112,6 +148,8 @@
   facts:
     - Set up in 2020 from the Fergana branch of Tashkent Medical Academy
     - A focus on public health and disease prevention
+  fee: "₹3 L"
+  fee_note: tuition a year (US$3,200–4,250)
   image: assets/images/universities/fergana-mi/card.webp
   aka: FMIPH, Fergana
 

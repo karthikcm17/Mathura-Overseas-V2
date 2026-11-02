@@ -1,6 +1,6 @@
 ---
 # Shared parts (announcement bar, header, footer, tab bar, icons) live in the _includes folder.
-# The destination-card fees and the "Where our students study" cards read _data/countries.yml and _data/universities.yml,
+# The destination cards and the university section read _data/countries.yml and _data/universities.yml,
 # so they always match the Countries page. Update those two files, not this page.
 active: home   # highlighted menu item: home, countries, planner, updates, guide, about, privacy
 ---
@@ -17,6 +17,7 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
 <meta property="og:image" content="https://mathuraoverseas.com/assets/images/og/home.jpg">
 {% include head.html font="async" %}
 <link rel="stylesheet" href="css/pages/home.css">
+<link rel="stylesheet" href="css/pages/home-sections.css">   <!-- destination cards + universities (the hm- classes) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -146,8 +147,8 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
     <div class="container">
       <div class="card proof__card">
         <div class="proof__item"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span><div><div class="proof__num proof__num--text">NMC &middot; WHO</div><div class="proof__label">Recognised universities</div></div></div>
-        <div class="proof__item"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg></span><div><div class="proof__num proof__num--text">Zero fees</div><div class="proof__label">No donation or capitation</div></div></div>
-        <div class="proof__item"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span><div><div class="proof__num" data-count="200" data-suffix="+">200+</div><div class="proof__label">Students guided</div></div></div>
+        <div class="proof__item"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg></span><div><div class="proof__num proof__num--text">Start to finish</div><div class="proof__label">Support until you graduate</div></div></div>
+        <div class="proof__item"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span><div><div class="proof__num" data-count="500" data-suffix="+">500+</div><div class="proof__label">Students guided</div></div></div>
         <div class="proof__item"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div><div class="proof__num" data-count="10" data-suffix="+">10+</div><div class="proof__label">Years of guidance</div></div></div>
       </div>
     </div>
@@ -186,72 +187,123 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
     </div>
   </section>
 
-  <!-- ============ TOP DESTINATIONS (swipe on mobile). Detailed travel info lives on the Countries page.
-       The fee line on each card is read from _data/countries.yml ("an average year, all-in"), the same figure the Countries page shows.
-       IMAGES 2-5: tall cards (4:5), best size 1000 x 1250 px; 1200 x 800 files still work (centre-cropped, keep the subject in the middle).
-       Philippines: heritage stone church beside modern towers, blue sky. Timor-Leste: Dili waterfront, palms, calm sea, morning light.
-       Uzbekistan: blue-tiled Registan madrasas at golden hour, students in foreground. Vietnam: Hanoi lake skyline at dusk, warm lights. -->
-{%- assign c_ph = site.data.countries | where: "slug", "philippines" | first %}
-{%- assign c_tl = site.data.countries | where: "slug", "timor-leste" | first %}
-{%- assign c_uz = site.data.countries | where: "slug", "uzbekistan" | first %}
-{%- assign c_vn = site.data.countries | where: "slug", "vietnam" | first %}
+  <!-- ============ TOP DESTINATIONS — "programme cards": a short photo, then the two numbers families compare first.
+       Swipe row on phones, four columns on computers. Cost and flight time are read from _data/countries.yml,
+       the same figures the Countries page shows. To show a different country, change the slug in the list just below.
+       IMAGES: assets/images/destinations/{country}.jpg — shown 16:9 (best 1200 x 675 px; your existing photos still work,
+       centre-cropped). Philippines: heritage church beside modern towers. Timor-Leste: Dili waterfront in morning light.
+       Uzbekistan: Registan madrasas at golden hour. Vietnam: Hanoi lake skyline at dusk. -->
+{%- assign home_countries = "philippines|timor-leste|uzbekistan|vietnam" | split: "|" %}
+{%- assign home_tags = "US-style MD|Indian curriculum|Government universities|Big-city hospitals" | split: "|" %}
+{%- assign home_lines = "English in class, on the ward and around town|Taught on India's own CBME framework, in English|Silk Road cities, long-established state universities|English programmes built for Indian students" | split: "|" %}
   <section class="section section--wash">
     <div class="container">
-      <div class="section-head reveal"><span class="eyebrow">Destinations</span><h2>Explore top destinations</h2><p>World-class education. Modern infrastructure. Global exposure.</p></div>
-      <div class="snap-row snap-row--4">
-        <a href="{{ c_ph.page }}" class="dest-tall reveal">
-          <div class="img-slot" data-spec="philippines.jpg · 1000×1250 px"><img src="assets/images/destinations/philippines.jpg" width="1000" height="1250" alt="Skyline of a Philippine city with a heritage church and modern towers" loading="lazy"></div>
-          <span class="tag tag--abs">US-style MD</span>
-          <div class="dest-tall__body"><h3>{{ c_ph.name }}</h3><p>English in class, on the ward and around town</p><div class="dest-tall__foot"><span class="dest-tall__fee"><b>{{ c_ph.year_cost }}</b> a year, all-in</span><span class="dest-tall__go">Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></div></div>
+      <div class="section-head reveal"><span class="eyebrow">Destinations</span><h2>Explore top destinations</h2><p>What a year costs and how far it is from Chennai &mdash; at a glance.</p></div>
+      <div class="snap-row snap-row--4 hm-dests">
+{%- for slug in home_countries %}
+{%- assign c = site.data.countries | where: "slug", slug | first %}
+{%- assign n = forloop.index0 %}
+        <a href="{{ c.page }}" class="card hm-dest reveal">
+          <div class="hm-dest__media">
+            <div class="img-slot" data-spec="destinations/{{ slug }}.jpg · 1200×675 px"><img src="assets/images/destinations/{{ slug }}.jpg" width="1200" height="675" alt="{{ c.city | escape }}, {{ c.name | escape }}" loading="lazy"></div>
+            <span class="hm-dest__tag">{{ home_tags[n] }}</span>
+            <h3 class="hm-dest__name">{{ c.name }}</h3>
+          </div>
+          <div class="hm-dest__body">
+            <p>{{ home_lines[n] }}</p>
+            <ul class="hm-dest__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg><span>A year, all-in</span><b>{{ c.year_cost }}</b></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg><span>From Chennai</span><b>{{ c.hours }} {{ c.hours_unit | default: "hrs" }}</b></li>
+            </ul>
+            <span class="hm-dest__go">MBBS in {{ c.in_name | default: c.name }} <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+          </div>
         </a>
-        <a href="{{ c_tl.page }}" class="dest-tall reveal">
-          <div class="img-slot" data-spec="timor-leste.jpg · 1000×1250 px"><img src="assets/images/destinations/timor-leste.jpg" width="1000" height="1250" alt="Waterfront and university campus in Dili, Timor-Leste" loading="lazy"></div>
-          <span class="tag tag--abs">Indian Curriculum</span>
-          <div class="dest-tall__body"><h3>{{ c_tl.name }}</h3><p>Taught on India&rsquo;s own CBME framework, in English</p><div class="dest-tall__foot"><span class="dest-tall__fee"><b>{{ c_tl.year_cost }}</b> a year, all-in</span><span class="dest-tall__go">Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></div></div>
-        </a>
-        <a href="{{ c_uz.page }}" class="dest-tall reveal">
-          <div class="img-slot" data-spec="uzbekistan.jpg · 1000×1250 px"><img src="assets/images/destinations/uzbekistan.jpg" width="1000" height="1250" alt="Blue-tiled historic madrasa in Samarkand, Uzbekistan" loading="lazy"></div>
-          <span class="tag tag--abs">Government Universities</span>
-          <div class="dest-tall__body"><h3>{{ c_uz.name }}</h3><p>Silk Road cities, long-established state universities</p><div class="dest-tall__foot"><span class="dest-tall__fee"><b>{{ c_uz.year_cost }}</b> a year, all-in</span><span class="dest-tall__go">Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></div></div>
-        </a>
-        <a href="{{ c_vn.page }}" class="dest-tall reveal">
-          <div class="img-slot" data-spec="vietnam.jpg · 1000×1250 px"><img src="assets/images/destinations/vietnam.jpg" width="1000" height="1250" alt="Hanoi skyline at sunset with a modern city centre" loading="lazy"></div>
-          <span class="tag tag--abs">Big-City Hospitals</span>
-          <div class="dest-tall__body"><h3>{{ c_vn.name }}</h3><p>English programmes built for Indian students</p><div class="dest-tall__foot"><span class="dest-tall__fee"><b>{{ c_vn.year_cost }}</b> a year, all-in</span><span class="dest-tall__go">Explore <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></div></div>
-        </a>
+{%- endfor %}
       </div>
       <div class="section__more"><a href="destinations.html" class="btn btn--primary">Explore all countries <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></div>
     </div>
   </section>
 
-  <!-- ============ WHERE OUR STUDENTS STUDY — built from _data/universities.yml: every university whose badge is
-       "Mathura students here" (first four). Card photo = the same file the Countries page uses (1200 x 750 px). ============ -->
-{%- assign ours = site.data.universities | where: "badge", "Mathura students here" %}
-{%- if ours.size > 0 %}
+  <!-- ============ WHERE OUR STUDENTS STUDY — one SPOTLIGHT university + four cards from different countries.
+       Everything is read from _data/universities.yml. To change them, edit the names below (they must match "name:" exactly).
+       • spot + spot_lead: one university, shown wide with its key numbers, and its one-sentence introduction
+       • home_unis: four universities, ideally from four different countries
+       Each card has two buttons: "Get fees" (WhatsApp) and "Guide" (the country page) — or "Details" if the
+       university has its own page ("page:" in universities.yml).
+       IMAGES: the university's own card.webp from universities.yml (1200 x 750 px), the same photo as everywhere else. -->
+{%- assign spot = site.data.universities | where: "name", "Fergana Medical Institute of Public Health" | first %}
+{%- capture spot_lead %}A government institute in the Fergana Valley, set up in 2020 from the Fergana branch of Tashkent Medical Academy &mdash; one of the most budget-friendly options in Uzbekistan, with a calmer, less urban student life.{% endcapture %}   {%- comment %} change this line too when you change the spotlight {% endcomment %}
+{%- assign home_unis = "Kazan State Medical University|UV Gullas College of Medicine|Dai Nam University|Universidade Católica Timorense (UCT)" | split: "|" %}
   <section class="section">
     <div class="container">
-      <div class="section-head section-head--split reveal">
-        <div><span class="eyebrow">Universities</span><h2>Where our students study</h2><p>Universities with Mathura Overseas students on campus today.</p></div>
-        <a href="destinations.html#universities" class="btn btn--outline btn--sm section-head__link">Every university we recommend <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+      <div class="hm-head reveal">
+        <div class="section-head"><span class="eyebrow">Universities</span><h2>Where our students study</h2><p>Recommended universities across our destinations, each checked against the NMC rules.</p></div>
+        <a href="destinations.html#universities" class="btn btn--outline btn--sm hm-link--top">Every university we recommend <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
       </div>
-      <div class="snap-row snap-row--4 uni-row">
-{%- for u in ours limit: 4 %}
-{%- assign uc = site.data.countries | where: "slug", u.country | first %}
-        <a href="{% if u.page and u.page != "" %}{{ u.page }}{% else %}{{ uc.page }}{% endif %}" class="card card--link uni-card reveal">
-          <div class="img-slot uni-card__img" data-spec="{{ u.image | remove: 'assets/images/' }} · 1200×750 px"><img src="{{ u.image }}" width="1200" height="750" alt="Campus of {{ u.name | escape }}, {{ u.city | escape }}" loading="lazy"></div>
-          <div class="uni-card__body">
-            <span class="uni-card__country">{{ uc.name | escape }}</span>
-            <h3>{{ u.name | escape }}</h3>
-            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>{{ u.city | escape }}</span>
-            <p>{{ u.facts.first | escape }}</p>
-            <span class="uni-card__go">{% if u.page and u.page != "" %}Fees &amp; details{% else %}MBBS in {{ uc.name | escape }}{% endif %} <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+
+{%- if spot %}
+{%- assign sc = site.data.countries | where: "slug", spot.country | first %}
+      <article class="card hm-spot reveal">
+        <div class="img-slot" data-spec="{{ spot.image | remove: 'assets/images/' }} · 1200×750 px"><img src="{{ spot.image }}" width="1200" height="750" alt="Campus of {{ spot.name | escape }}, {{ spot.city | escape }}" loading="lazy"></div>
+        <span class="tag tag--abs">Spotlight</span>
+        <div class="hm-spot__body">
+          <span class="hm-spot__kicker"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>{{ spot.city }}</span>
+          <h3>{{ spot.name }}</h3>
+          <p class="hm-spot__lead">{{ spot_lead }}</p>
+          <ul class="hm-spot__chips">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>{{ spot.badge }}</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Public-health focus</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>{{ sc.duration }}</li>
+          </ul>
+          <div class="hm-spot__stats">
+            <div><b>{{ spot.fee }}</b><span>{{ spot.fee_note }}</span></div>
+            <div><b>{{ sc.year_cost }}</b><span>A year in {{ sc.name }}, all-in</span></div>
+            <div><b>{{ sc.hours }} {{ sc.hours_unit | default: "hrs" }}</b><span>From Chennai, {{ sc.stops }}</span></div>
           </div>
-        </a>
+{%- capture spot_msg %}Hi Mathura Overseas, please send me the fee sheet for {{ spot.name }} ({{ sc.name }}). [from the home page]{% endcapture %}
+          <div class="hm-acts">
+            <a class="btn btn--primary btn--sm" href="https://wa.me/919360859919?text={{ spot_msg | url_encode | replace: "+", "%20" }}" target="_blank" rel="noopener"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get fees<span class="sr-only"> for {{ spot.name }} on WhatsApp</span></a>
+            <a class="btn btn--outline btn--sm" href="{% if spot.page and spot.page != "" %}{{ spot.page }}{% else %}{{ sc.page }}#universities{% endif %}">{% if spot.page and spot.page != "" %}Details{% else %}{{ sc.name }} guide{% endif %} <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          </div>
+        </div>
+      </article>
+{%- endif %}
+
+      <div class="snap-row snap-row--4 hm-unis">
+{%- for un in home_unis %}
+{%- assign u = site.data.universities | where: "name", un | first %}
+{%- if u %}
+{%- assign uc = site.data.countries | where: "slug", u.country | first %}
+{%- assign has_page = false %}{% if u.page and u.page != "" %}{% assign has_page = true %}{% endif %}
+{%- capture msg %}Hi Mathura Overseas, please send me the fee sheet for {{ u.name }} ({{ uc.name }}). [from the home page]{% endcapture %}
+        <article class="card hm-uni reveal">
+          <div class="img-slot" data-spec="{{ u.image | remove: 'assets/images/' }} · 1200×750 px"><img src="{{ u.image }}" width="1200" height="750" alt="Campus of {{ u.name | escape }}, {{ u.city | escape }}" loading="lazy"></div>
+          <span class="tag tag--abs">{{ uc.name }}</span>
+          <div class="hm-uni__body">
+            <span class="hm-uni__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>{{ u.city }}</span>
+            <h3>{{ u.name }}</h3>
+            <p class="hm-uni__fact">{{ u.facts | first }}</p>
+{%- if u.fee and u.fee != "" %}
+            <p class="hm-uni__fee"><small>Tuition from</small><b>{{ u.fee }}</b><span>{{ u.fee_note | remove: "tuition a year, " | remove: "tuition a year " }}</span></p>
+{%- else %}
+            <p class="hm-uni__fee"><small>Tuition</small><b>On request</b><span>year-by-year sheet on WhatsApp</span></p>
+{%- endif %}
+            <div class="hm-acts">
+              <a class="btn btn--primary btn--sm" href="https://wa.me/919360859919?text={{ msg | url_encode | replace: "+", "%20" }}" target="_blank" rel="noopener"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get fees<span class="sr-only"> for {{ u.name }} on WhatsApp</span></a>
+{%- if has_page %}
+              <a class="btn btn--outline btn--sm" href="{{ u.page }}">Details<span class="sr-only"> about {{ u.name }}</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+{%- else %}
+              <a class="btn btn--outline btn--sm" href="{{ uc.page }}#universities">Guide<span class="sr-only">: MBBS in {{ uc.name }}</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+{%- endif %}
+            </div>
+          </div>
+        </article>
+{%- endif %}
 {%- endfor %}
       </div>
+      <a href="destinations.html#universities" class="btn btn--outline hm-link--bottom">Every university we recommend <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
     </div>
   </section>
-{%- endif %}
 
   <!-- ============ WHY FAMILIES TRUST US: photo behind navy
        IMAGE 6: assets/images/home/counsellor-family.webp — 1600 x 900 px (16:9). A counsellor guiding a student and her parents
