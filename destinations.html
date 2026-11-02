@@ -165,7 +165,7 @@ active: countries   # highlighted menu item: home, countries, planner, updates, 
   <!-- ============ 3. UNIVERSITIES. The wrapper keeps the filter bar sticky only while the universities are on screen. ============ -->
   <div class="udir-wrap" id="universities">
   <div class="container udir-intro">
-    <div class="section-head udir-head reveal"><span class="eyebrow">Universities</span><h2>Every university we recommend</h2><p>Grouped by country. Search above or tap a country. Universities with their own fee page show a navy &ldquo;Fees &amp; details&rdquo; button.</p></div>
+    <div class="section-head udir-head reveal"><span class="eyebrow">Universities</span><h2>Every university we recommend</h2><p>Grouped by country. Search above or tap a country. Tap &ldquo;Get fees&rdquo; and we send that university&rsquo;s year-by-year fee sheet on WhatsApp.</p></div>
   </div>
 
   <!-- ============ 3a. STICKY FILTER BAR: one chip per country that has universities in _data/universities.yml ============ -->
@@ -215,20 +215,20 @@ active: countries   # highlighted menu item: home, countries, planner, updates, 
                 <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>{{ f | escape }}</li>
 {%- endfor %}
               </ul>
-              <div class="udir-card__foot">
 {%- if u.fee and u.fee != "" %}
-                <span class="udir-card__fee"><b>{{ u.fee }}</b>{{ u.fee_note | escape }}</span>
+              <p class="udir-card__fee"><small>From</small> <b>{{ u.fee }}</b> {{ u.fee_note | escape }}</p>
 {%- endif %}
-{%- if has_page %}
-                <span class="udir-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
-{%- else %}
-                <a class="udir-card__go udir-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for {{ u.name | escape }}."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet</a>
-{%- endif %}
-              </div>
             </div>
+            <!-- Two actions on every card: the fee sheet on WhatsApp (the full year-by-year fees are shared there, not on the site),
+                 and the country guide — or, for a university with its own page (the "page:" line in _data/universities.yml), that page. -->
+            <div class="udir-card__acts">
+              <a class="btn btn--primary btn--sm udir-card__wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for {{ u.name | escape }} ({{ c.name | escape }}). [from the Countries page]"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get fees<span class="sr-only"> for {{ u.name | escape }} on WhatsApp</span></a>
 {%- if has_page %}
-            <a class="udir-card__cover" href="{{ u.page }}" aria-label="View fees and details for {{ u.name | escape }}"></a>
+              <a class="btn btn--outline btn--sm" href="{{ u.page }}">Details<span class="sr-only"> about {{ u.name | escape }}</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+{%- else %}
+              <a class="btn btn--outline btn--sm" href="{{ c.page }}#universities">Guide<span class="sr-only">: MBBS in {{ c.name | escape }}</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
 {%- endif %}
+            </div>
           </article>
 {%- endfor %}
         </div>

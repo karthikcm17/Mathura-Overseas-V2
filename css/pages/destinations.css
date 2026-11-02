@@ -89,8 +89,10 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
 
 .udir-grid { display: grid; gap: var(--sp-3); }
 
-/* University card — phone: photo on the left, text on the right */
-.udir-card { overflow: hidden; display: grid; grid-template-columns: 104px 1fr; }
+/* University card — phone: photo on the left, text on the right, and the two buttons across the full width underneath.
+   Every card has the same two actions (.udir-card__acts): "Get fees" on WhatsApp, and "Guide" (the country page)
+   or "Details" (the university's own page, when it has one). */
+.udir-card { overflow: hidden; display: grid; grid-template-columns: 104px 1fr; grid-template-rows: 1fr auto; }
 .udir-card__img { --ratio: auto; height: 100%; min-height: 100%; border-radius: 0; }
 .udir-card__img.is-empty::after { padding: var(--sp-2); font-size: .5rem; letter-spacing: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
 .udir-card__body { display: flex; flex-direction: column; min-width: 0; padding: var(--sp-3) var(--sp-4) var(--sp-3) var(--sp-3); }
@@ -102,20 +104,17 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
 .udir-card__facts li { display: flex; gap: .4rem; align-items: flex-start; font-size: .72rem; line-height: 1.45; color: var(--color-text); }
 .udir-card__facts li:nth-child(n+2) { display: none; }   /* phones: first fact only */
 .udir-card__facts .icon { width: 13px; height: 13px; margin-top: .12rem; stroke-width: 2.8; color: var(--color-primary); }
-.udir-card__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .35rem var(--sp-3); margin-top: auto; padding-top: var(--sp-3); }
-.udir-card__fee { display: flex; flex-direction: column; font-size: .64rem; line-height: 1.3; color: var(--color-text-muted); }
-.udir-card__fee b { font-size: 1rem; font-weight: 800; color: var(--color-primary); font-variant-numeric: tabular-nums; }
-.udir-card__go { display: inline-flex; align-items: center; gap: .35rem; font-size: var(--fs-xs); font-weight: 800; color: var(--color-primary); }
-.udir-card__go .icon { width: 14px; height: 14px; stroke-width: 2.6; transition: transform var(--speed) var(--ease); }
-.udir-card__go--wa { position: relative; z-index: 2; min-height: 32px; }
-.udir-card__go--wa > .icon--fill { width: 16px; height: 16px; color: var(--color-whatsapp); }
-/* Cards with their own fee page: the whole card is the link */
-.udir-card--page { border-color: var(--color-blue-pale); transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease); }
-.udir-card--page .udir-card__go { padding: .35rem .75rem; border-radius: var(--radius-sm); background: var(--color-primary); color: var(--color-text-inverse); }
-.udir-card--page:hover .udir-card__go .icon { transform: translateX(3px); }
-.udir-card__cover { position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
-.udir-card__cover:focus-visible { outline-offset: -3px; }
-.udir-card--page:active { transform: scale(.985); }
+/* "From ₹X" — only for universities with a confirmed fee in _data/universities.yml */
+.udir-card__fee { margin-top: var(--sp-2); font-size: .68rem; line-height: 1.4; color: var(--color-text-muted); }
+.udir-card__fee small { font-size: .62rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+.udir-card__fee b { font-size: .98rem; font-weight: 800; color: var(--color-primary); font-variant-numeric: tabular-nums; }
+/* The two buttons: equal halves, big enough to tap */
+.udir-card__acts { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-2); padding: var(--sp-3); border-top: 1px solid var(--color-border); }
+.udir-card__acts .btn { min-width: 0; padding: 0 .6rem; }
+.udir-card__wa .icon--fill { width: 17px; height: 17px; }
+.udir-card__wa:hover .icon--fill { transform: none; }
+/* A university with its own page gets a pale-blue outline */
+.udir-card--page { border-color: var(--color-blue-pale); }
 
 /* Long countries open with three universities and a "Show all" button (the script adds .is-collapsed;
    without the script, or while searching / filtering, every card shows) */
@@ -152,27 +151,25 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
 /* ================= TABLET ================= */
 @media (min-width: 640px) {
   .udir-grid { grid-template-columns: repeat(2, 1fr); gap: var(--sp-4); }
-  .udir-card { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+  .udir-card { grid-template-columns: 1fr; grid-template-rows: auto 1fr auto; }
   .udir-card__img { --ratio: 16 / 10; height: auto; min-height: 0; }
   .udir-card__img.is-empty::after { font-size: var(--fs-xs); letter-spacing: .03em; }
   .udir-card__body { padding: var(--sp-4); }
   .udir-card h3 { font-size: 1.08rem; }
   .udir-card__facts li:nth-child(n+2) { display: flex; }
   .udir-card__facts li { font-size: var(--fs-xs); }
-  .udir-card__foot { margin-top: auto; padding-top: var(--sp-4); border-top: 1px solid var(--color-border); }
-  .udir-card__body > .udir-card__facts { margin-bottom: var(--sp-4); }
+  .udir-card__fee { margin-top: var(--sp-3); }
+  .udir-card__acts { padding: var(--sp-3) var(--sp-4) var(--sp-4); }
   /* A country with just one university: the card lies across the row (photo left) instead of leaving a gap */
-  .udir-card:only-child { grid-column: 1 / -1; grid-template-columns: minmax(240px, 38%) 1fr; grid-template-rows: auto; }
-  .udir-card:only-child .udir-card__img { --ratio: auto; height: 100%; min-height: 220px; }
+  .udir-card:only-child { grid-column: 1 / -1; grid-template-columns: minmax(240px, 38%) 1fr; grid-template-rows: 1fr auto; }
+  .udir-card:only-child .udir-card__img { --ratio: auto; height: 100%; min-height: 220px; grid-row: 1 / -1; }
+  .udir-card:only-child .udir-card__acts { grid-column: 2; max-width: 360px; border-top: 0; padding-top: 0; }
   .udir-ask { grid-template-columns: auto 1fr auto; align-items: center; gap: var(--sp-4); padding: var(--sp-5); }
   .udir-ask .btn { justify-self: auto; }
 }
 @media (min-width: 768px) {
   .udir-hero .udir-search { max-width: 560px; }
   .udir-bar__track { flex-wrap: wrap; justify-content: center; overflow: visible; }
-}
-@media (hover: hover) {
-  .udir-card--page:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
 }
 
 /* ================= DESKTOP ================= */
