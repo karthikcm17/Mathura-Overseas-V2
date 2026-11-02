@@ -1,276 +1,255 @@
-// destinations.js — the Countries page (destinations.html) only. Two parts:
-//   A. "Fly the route from Chennai": the country explorer. Its data is written into the page from
-//      _data/countries.yml (the <script id="countryData"> block), so there is NOTHING to edit in this file
-//      when a country, fare or exchange rate changes. Edit _data/countries.yml instead.
-//   B. The universities: the search box and the country chips filter the cards
-//      built from _data/universities.yml. Countries with more than three universities open with three
-//      and a "Show all" button. The address bar remembers the filter, so a link like
-//      destinations.html?country=russia  or  destinations.html?q=kazan  opens the page already filtered.
-// Comparing countries side by side lives in ONE place: the MBBS Planner (mbbs-abroad-planner.html#compare).
+// destinations.js — the Countries page (destinations.html) only.
+// The page works in two steps, like an app:
+//   Step 1  the country tiles.  Tapping one opens…
+//   Step 2  that country's universities (destinations.html#russia).
+// Each step has its own address, so the phone's Back button returns from a country to the tiles,
+// and a link such as  destinations.html#vietnam  opens Vietnam straight away.
+// Typing in the hero search box shows matching universities from every country.
+// There is NOTHING to edit here when a country or university changes: edit _data/countries.yml
+// and _data/universities.yml — the page is built from them.
+// Older links still work:  ?country=georgia  opens Georgia,  ?q=kazan  starts a search.
 
-/* ======================= A. FLY THE ROUTE ======================= */
-document.addEventListener('DOMContentLoaded', function () {
-  var route = document.getElementById('route');
-  var dataEl = document.getElementById('countryData');
-  if (!route || !dataEl) return;
-  var COUNTRIES = [];
-  try { COUNTRIES = JSON.parse(dataEl.textContent); } catch (e) { return; }
-  var bySlug = {};
-  COUNTRIES.forEach(function (c) { bySlug[c.slug] = c; });
-
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function each(list, fn) { Array.prototype.forEach.call(list, fn); }
-  function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
-  var chips = route.querySelectorAll('.route-chip');
-  var motion = document.getElementById('routeMotion'), plane = document.getElementById('routePlane');
-  var meter = document.getElementById('routeMeter'), timeEl = document.getElementById('routeTime');
-  var current = COUNTRIES.length ? COUNTRIES[0].slug : null, tick = null;
-  var DAY = 24;   // the bar shows the flight as a share of a 24-hour day
-
-  // The flight time counts up: "~10" → 0…10, "9–10" → both numbers together
-  function countUp(text) {
-    if (tick) cancelAnimationFrame(tick);
-    var nums = String(text).match(/\d+(\.\d+)?/g);
-    if (reduce || !nums) { timeEl.textContent = text; return; }
-    var t0 = null;
-    function step(ts) {
-      if (t0 === null) t0 = ts;
-      var p = Math.min((ts - t0) / 900, 1), e = 1 - Math.pow(1 - p, 3), i = 0;
-      timeEl.textContent = String(text).replace(/\d+(\.\d+)?/g, function (n) {
-        var v = parseFloat(nums[i++]) * e; return n.indexOf('.') > -1 ? v.toFixed(1) : Math.round(v);
-      });
-      if (p < 1) tick = requestAnimationFrame(step);
-    }
-    tick = requestAnimationFrame(step);
-  }
-
-  function show(slug, animate) {
-    var c = bySlug[slug]; if (!c) return;
-    current = slug;
-    each(chips, function (b) { b.setAttribute('aria-pressed', b.dataset.dest === slug ? 'true' : 'false'); });
-    each(route.querySelectorAll('[data-r]'), function (el) { if (el.id !== 'routeTime') el.textContent = c[el.dataset.r] == null ? '' : c[el.dataset.r]; });
-    // Optional values: a country without a single flight time (the Caribbean) hides the bar, etc.
-    document.getElementById('routeUnit').textContent = c.hours_unit == null ? 'hrs' : c.hours_unit;
-    document.getElementById('routeMeterWrap').classList.toggle('is-off', !c.hours_num);
-    if (c.hours_num) meter.style.setProperty('--fill', Math.max(6, Math.min(100, Math.round(+c.hours_num / DAY * 100))));
-    document.getElementById('routeFareDate').hidden = !c.fare_as_of;
-    document.getElementById('routeFareLabel').textContent = c.fare_label || 'Lowest fare, one-way';
-    document.getElementById('routeWhy').innerHTML = (c.why || []).map(function (w) {
-      return '<li><span class="route__tick"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span>' + esc(w) + '</span></li>';
-    }).join('');
-    document.getElementById('routeGo').href = c.page;
-    var cmp = document.getElementById('routeCmp');
-    cmp.hidden = c.planner === false;                  // planner: false → the Planner doesn't have this country yet
-    if (c.planner !== false) cmp.href = 'mbbs-abroad-planner.html?cmp=' + encodeURIComponent(c.planner || c.slug) + '#compare';
-    if (animate === false) { timeEl.textContent = c.hours; return; }
-    countUp(c.hours);
-    route.classList.remove('is-swap'); void route.offsetWidth; route.classList.add('is-swap');
-    if (!reduce && motion && motion.beginElement) { plane.setAttribute('opacity', '1'); motion.beginElement(); }
-  }
-
-  each(chips, function (b) { b.addEventListener('click', function () { show(b.dataset.dest); }); });
-
-  // "Its universities": filter the list below to this country and scroll to it
-  var unis = document.getElementById('routeUnis');
-  //  A country with no universities in _data/universities.yml (e.g. the Caribbean, whose page keeps its own school list)
-  //  goes to its country page instead.
-  if (unis) unis.addEventListener('click', function () {
-    if (document.querySelector('[data-udir-group="' + current + '"]') && window.MO_showUniversities) window.MO_showUniversities(current);
-    else location.href = bySlug[current].page + '#universities';
-  });
-
-  // Phones: the chips are a swipe row. Keep the tapped chip in view, hide the "Swipe" hint after the first swipe,
-  // and nudge the row once when the card first appears, so visitors see that it moves.
-  var chipRow = document.getElementById('routeChips'), chipWrap = document.getElementById('routeChipsWrap'), nudging = false;
-  function isPhone() { return chipRow && chipRow.scrollWidth > chipRow.clientWidth + 4; }
-  if (chipRow) {
-    chipRow.addEventListener('scroll', function () { if (!nudging && chipRow.scrollLeft > 8) chipWrap.classList.add('is-swiped'); }, { passive: true });
-    each(chips, function (b) {
-      b.addEventListener('click', function () {
-        if (!isPhone()) return;
-        chipRow.scrollTo({ left: Math.max(0, b.offsetLeft - (chipRow.clientWidth - b.offsetWidth) / 2), behavior: 'smooth' });
-      });
-    });
-  }
-  function nudge() {
-    if (reduce || !isPhone() || chipWrap.classList.contains('is-swiped')) return;
-    nudging = true;
-    chipRow.scrollTo({ left: 70, behavior: 'smooth' });
-    setTimeout(function () { chipRow.scrollTo({ left: 0, behavior: 'smooth' }); setTimeout(function () { nudging = false; }, 500); }, 650);
-  }
-
-  // Hero cost chart: tap a country to fly its route
-  each(document.querySelectorAll('[data-route-set]'), function (b) {
-    b.addEventListener('click', function () {
-      show(b.dataset.routeSet);
-      document.getElementById('route-sec').scrollIntoView({ behavior: 'smooth' });
-    });
-  });
-
-  // Set the first country's bar without animation, then play it when the card scrolls into view
-  show(current, false);
-  var started = false;
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (en) {
-      if (en[0].isIntersecting && !started) { started = true; io.disconnect(); show(current); setTimeout(nudge, 500); }
-    }, { threshold: 0.3 });
-    io.observe(route);
-  }
-});
-
-/* ======================= B. UNIVERSITIES ======================= */
 document.addEventListener('DOMContentLoaded', function () {
   var WA_NUMBER = '919360859919';
+  var root = document.querySelector('.dx');
+  if (!root) return;
+
   function each(list, fn) { Array.prototype.forEach.call(list, fn); }
-  function $(sel) { return document.querySelector(sel); }
+  function $(id) { return document.getElementById(id); }
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var cards = document.querySelectorAll('.udir-card');
-  var groups = document.querySelectorAll('[data-udir-group]');
-  var countryBtns = document.querySelectorAll('[data-udir-country]');
-  var input = $('#udirQ');
-  var clearQ = $('#udirClearQ');
-  var empty = $('#udirEmpty');
-  var status = $('#udirStatus');
-  var results = $('#results');
-  var bar = $('.udir-bar');
-  if (!cards.length) return;
+  var countries = {};                       // slug -> its <section class="dx-country">
+  each(root.querySelectorAll('.dx-country'), function (s) { countries[s.dataset.country] = s; });
+  var stepCountries = $('dxCountries'), stepUnis = $('dxUnis');
+  var input = $('dxQ'), clearQ = $('dxClearQ'), status = $('dxStatus'), empty = $('dxEmpty');
+  var back = $('dxBack'), barTitle = $('dxBarTitle'), step1 = $('dxStep1'), step2 = $('dxStep2');
+  var rows = root.querySelectorAll('.dx-uni');
 
-  var names = {};   // country slug -> display name (read from the chips)
-  each(countryBtns, function (b) { names[b.dataset.udirCountry] = b.textContent.trim(); });
+  // From here on the steps hide and show (without the script everything stays visible)
+  root.classList.add('js-steps');
 
-  var state = { country: 'all', q: '' };
+  var state = { view: 'countries', country: null, q: '' };
+  var openedFromTiles = false;              // true when this visit tapped a tile (so "Countries" can simply go back)
+  var lastTile = null;                      // the tile to return to
 
-  // Lower-case and strip accents, so "catolica" finds "Católica"
-  function norm(s) {
+  /* ---------- small helpers ---------- */
+  function nameOf(slug) {
+    var h = countries[slug] && countries[slug].querySelector('.dx-country__open');
+    return h ? h.textContent.trim() : '';
+  }
+  // A country always opens at its top. Going back to the tiles only scrolls if the visitor is below them.
+  function scrollToStep(el) {
+    var top = root.getBoundingClientRect().top + window.pageYOffset - headerBottom();
+    if (el === stepUnis || window.pageYOffset > top) window.scrollTo({ top: top, behavior: reduce ? 'auto' : 'smooth' });
+  }
+  // How much of the screen the header (and, on computers, the announcement bar) covers right now
+  function headerBottom() {
+    var h = document.querySelector('.app-header');
+    return h ? Math.max(0, h.getBoundingClientRect().bottom) : 0;
+  }
+  function jumpToSteps() {
+    window.scrollTo(0, root.getBoundingClientRect().top + window.pageYOffset - headerBottom());
+  }
+  function enter(el) {
+    if (reduce) return;
+    el.classList.remove('is-enter'); void el.offsetWidth; el.classList.add('is-enter');
+  }
+  function norm(s) {                        // lower-case, no accents: "catolica" finds "Católica"
     s = (s || '').toLowerCase();
     if (s.normalize) s = s.normalize('NFD').replace(/[̀-ͯ]/g, '');
     return s.replace(/\s+/g, ' ').trim();
   }
-  each(cards, function (c) { c._hay = norm(c.dataset.search); });
+  each(rows, function (r) { r._hay = norm(r.dataset.search); });
 
-  function apply(fromUser) {
-    var words = norm(state.q).split(' ').filter(Boolean);
-    var any = false;
-
-    each(cards, function (c) {
-      var ok = (state.country === 'all' || c.dataset.country === state.country) &&
-               words.every(function (w) { return c._hay.indexOf(w) !== -1; });
-      c.hidden = !ok;
-      if (ok) any = true;
-    });
-    each(groups, function (g) { g.hidden = !g.querySelector('.udir-card:not([hidden])'); });
-
-    // Long countries open with three cards + "Show all"; while searching or filtering, every match shows
-    var filtering = state.country !== 'all' || !!state.q;
-    each(groups, function (g) {
-      g.classList.toggle('is-collapsed', !!g.querySelector('[data-udir-more]') && !filtering && !g._open);
-    });
-    if (empty) empty.hidden = any;
-    var askStrip = $('.udir-ask');            // the empty box already asks, so don't repeat it
-    if (askStrip) askStrip.hidden = !any;
-
-    each(countryBtns, function (b) { b.setAttribute('aria-pressed', b.dataset.udirCountry === state.country ? 'true' : 'false'); });
-    if (clearQ) clearQ.hidden = !state.q;
-
-    // The empty-state WhatsApp button carries what the visitor typed
-    var ask = $('#udirAskEmpty');
-    if (ask) ask.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent('Hi Mathura Overseas, can you check a university for me? The university is: ' + state.q);
-
-    // Status line in words (never a count)
-    if (status) {
-      var parts = [];
-      if (state.country !== 'all') parts.push('in ' + names[state.country]);
-      if (state.q) parts.push('matching “' + state.q + '”');
-      status.textContent = !any ? 'No matches yet.'
-        : parts.length ? 'Showing universities ' + parts.join(', ') + '.'
-        : 'Showing every university, grouped by country.';
+  /* ---------- the flight card: count the hours up, draw the line, fly the plane ---------- */
+  var tick = null;
+  function playFlight(section) {
+    var fly = section.querySelector('.dx-fly');
+    if (!fly) return;
+    var num = fly.querySelector('.dx-fly__num'), text = num.dataset.hours;
+    fly.classList.remove('is-play'); void fly.offsetWidth; fly.classList.add('is-play');
+    if (reduce) return;
+    var motion = fly.querySelector('animateMotion'), plane = fly.querySelector('.dx-fly__plane');
+    if (motion && motion.beginElement) { plane.setAttribute('opacity', '1'); motion.beginElement(); }
+    var nums = String(text).match(/\d+(\.\d+)?/g);
+    if (!nums) return;
+    if (tick) cancelAnimationFrame(tick);
+    var t0 = null;
+    function step(ts) {                     // "~10" counts 0…10; "9–10" counts both numbers together
+      if (t0 === null) t0 = ts;
+      var p = Math.min((ts - t0) / 900, 1), e = 1 - Math.pow(1 - p, 3), i = 0;
+      num.textContent = String(text).replace(/\d+(\.\d+)?/g, function (n) {
+        var v = parseFloat(nums[i++]) * e; return n.indexOf('.') > -1 ? v.toFixed(1) : Math.round(v);
+      });
+      if (p < 1) tick = requestAnimationFrame(step); else num.textContent = text;
     }
+    tick = requestAnimationFrame(step);
+  }
 
-    // Keep the filter in the address bar (no page reload)
-    if (window.history && history.replaceState) {
-      var p = new URLSearchParams();
-      if (state.country !== 'all') p.set('country', state.country);
-      if (state.q) p.set('q', state.q);
-      var qs = p.toString();
-      history.replaceState(null, '', location.pathname + (qs ? '?' + qs : '') + location.hash);
-    }
+  /* ---------- draw the current state ---------- */
+  function render(how) {
+    var v = state.view;
+    root.classList.toggle('is-step1', v === 'countries');
+    root.classList.toggle('is-step2', v === 'country');
+    root.classList.toggle('is-search', v === 'search');
 
-    // After tapping a chip low on the page, bring the top of the results back into view
-    if (fromUser === 'chip' && results && bar) {
-      var top = results.getBoundingClientRect().top + window.pageYOffset - bar.offsetHeight - 70;
-      if (window.pageYOffset > top) window.scrollTo({ top: top, behavior: 'smooth' });
+    // Step bar
+    back.hidden = v === 'countries';
+    back.querySelector('span').textContent = v === 'search' ? 'Clear' : 'Countries';
+    barTitle.textContent = v === 'country' ? nameOf(state.country)
+                         : v === 'search' ? 'Search results' : 'Choose a country';
+    step1.classList.toggle('is-on', v === 'countries');
+    step1.classList.toggle('is-done', v !== 'countries');
+    step2.classList.toggle('is-on', v !== 'countries');
+
+    if (v === 'country') {
+      each(root.querySelectorAll('.dx-country'), function (s) { s.classList.toggle('is-active', s.dataset.country === state.country); });
+      each(rows, function (r) { r.hidden = false; });
+      status.hidden = true; empty.hidden = true;
+      document.title = 'MBBS in ' + nameOf(state.country) + ': Universities | Mathura Overseas';
+      if (how !== 'quiet') { enter(stepUnis); scrollToStep(stepUnis); playFlight(countries[state.country]); }
+    } else if (v === 'search') {
+      search();
+    } else {
+      status.hidden = true; empty.hidden = true;
+      document.title = 'MBBS Abroad Countries & Universities | Mathura Overseas';
+      if (how !== 'quiet') {
+        enter(stepCountries);
+        // Back from a country: return to its tile instead of the top of the page
+        if (lastTile && how === 'back') {
+          var r = lastTile.getBoundingClientRect();
+          window.scrollBy({ top: r.top - window.innerHeight / 3, behavior: 'auto' });
+          lastTile.focus({ preventScroll: true });
+        } else if (how === 'user') { scrollToStep(stepCountries); }
+      }
     }
   }
 
-  // Country chips
-  each(countryBtns, function (b) {
-    b.addEventListener('click', function () { state.country = b.dataset.udirCountry; apply('chip'); });
-  });
+  /* ---------- search across every country ---------- */
+  function search() {
+    var words = norm(state.q).split(' ').filter(Boolean), any = false;
+    each(rows, function (r) {
+      var ok = words.every(function (w) { return r._hay.indexOf(w) !== -1; });
+      r.hidden = !ok; if (ok) any = true;
+    });
+    each(root.querySelectorAll('.dx-country'), function (s) {
+      s.classList.toggle('is-match', !!s.querySelector('.dx-uni:not([hidden])'));
+      s.classList.remove('is-active');
+    });
+    status.hidden = !any;
+    status.textContent = 'Universities matching “' + state.q + '”';
+    empty.hidden = any;
+    $('dxAskEmpty').href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent('Hi Mathura Overseas, can you check a university for me? The university is: ' + state.q);
+  }
 
-  // Search box (filters as you type)
-  var t;
+  /* ---------- the address bar is the single source of truth ---------- */
+  function readHash() {
+    var h = decodeURIComponent(location.hash.replace('#', ''));
+    return countries[h] ? h : null;
+  }
+  function fromHash(how) {
+    var slug = readHash();
+    if (state.view === 'search' && !slug) return;          // typing a search doesn't change the hash
+    state.country = slug;
+    state.view = slug ? 'country' : 'countries';
+    if (slug) state.q = '';
+    if (input && slug) { input.value = ''; clearQ.hidden = true; }
+    render(how);
+  }
+  window.addEventListener('hashchange', function () { fromHash(state.view === 'country' && !readHash() ? 'back' : 'user'); });
+
+  function openCountry(slug, tile) {
+    lastTile = tile || lastTile;
+    openedFromTiles = !!tile;
+    before = null;
+    state.q = ''; if (input) { input.value = ''; clearQ.hidden = true; }
+    if (location.hash === '#' + slug) { state.view = 'country'; state.country = slug; render('user'); }
+    else location.hash = slug;                               // adds a history step → Back returns to the tiles
+  }
+  function showCountries() {
+    if (openedFromTiles && state.view === 'country') { history.back(); return; }
+    openedFromTiles = false;
+    state.view = 'countries'; state.q = '';
+    if (input) { input.value = ''; clearQ.hidden = true; }
+    if (location.hash) history.pushState(null, '', location.pathname + location.search);
+    render('back');
+  }
+
+  // Tiles and "open this country" links (also the slim headings in search results)
+  each(root.querySelectorAll('[data-open]'), function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      openCountry(a.dataset.open, a.classList.contains('dx-tile') ? a : null);
+    });
+  });
+  back.addEventListener('click', function () {
+    if (state.view === 'search') { clearSearch(); return; }
+    showCountries();
+  });
+  each(root.querySelectorAll('[data-dx-reset]'), function (b) { b.addEventListener('click', clearSearch); });
+
+  /* ---------- search box ---------- */
+  var before = null, t;                    // where the visitor was before searching, to return there
+  function clearSearch() {
+    if (input) input.value = '';
+    clearQ.hidden = true; state.q = '';
+    var go = before || { view: 'countries', country: null }; before = null;
+    state.view = go.view; state.country = go.country;
+    render('quiet');
+  }
   if (input) {
     input.addEventListener('input', function () {
       clearTimeout(t);
-      t = setTimeout(function () { state.q = input.value.trim(); apply(); }, 120);
+      t = setTimeout(function () {
+        var q = input.value.trim();
+        clearQ.hidden = !q;
+        if (!q) { clearSearch(); return; }
+        if (state.view !== 'search') before = { view: state.view, country: state.country };
+        state.q = q; state.view = 'search';
+        render('quiet');
+      }, 140);
     });
     input.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') { e.preventDefault(); input.blur(); if (results) results.scrollIntoView({ behavior: 'smooth' }); }
+      if (e.key === 'Enter') { e.preventDefault(); input.blur(); scrollToStep(stepUnis); }
     });
   }
-  if (clearQ) clearQ.addEventListener('click', function () { input.value = ''; state.q = ''; apply(); input.focus(); });
+  clearQ.addEventListener('click', function () { clearSearch(); input.focus(); });
 
-  // "Try: Cebu, Samarkand…" shortcuts under the search box
-  each(document.querySelectorAll('[data-udir-q]'), function (b) {
+  /* ---------- sort the tiles ---------- */
+  var tilesBox = $('dxTiles');
+  var tiles = Array.prototype.slice.call(tilesBox.querySelectorAll('.dx-tile'));
+  each(root.querySelectorAll('[data-sort]'), function (b) {
     b.addEventListener('click', function () {
-      input.value = b.dataset.udirQ; state.q = input.value; state.country = 'all'; apply();
-      if (results) results.scrollIntoView({ behavior: 'smooth' });
+      var key = b.dataset.sort;
+      tiles.slice().sort(function (x, y) { return (+x.dataset[key]) - (+y.dataset[key]) || (+x.dataset.order) - (+y.dataset.order); })
+        .forEach(function (el) { tilesBox.appendChild(el); });
+      each(root.querySelectorAll('[data-sort]'), function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+      enter(tilesBox);
     });
   });
 
-  // "Show all universities in Russia" under a long country
-  each(document.querySelectorAll('[data-udir-more]'), function (b) {
-    b.addEventListener('click', function () {
-      var g = b.closest('[data-udir-group]'); g._open = true; g.classList.remove('is-collapsed');
-      var fourth = g.querySelectorAll('.udir-card')[3];
-      if (fourth) { var a = fourth.querySelector('a'); if (a) a.focus({ preventScroll: true }); }
-    });
-  });
-
-  // "Show all universities" in the empty box
-  each(document.querySelectorAll('[data-udir-reset]'), function (b) {
-    b.addEventListener('click', function () {
-      state = { country: 'all', q: '' }; if (input) input.value = ''; apply('chip');
-    });
-  });
-
-  // Used by the flight explorer's "Its universities" button
-  window.MO_showUniversities = function (slug) {
-    state = { country: names[slug] ? slug : 'all', q: '' };
-    if (input) input.value = '';
-    apply();
-    var wrap = document.getElementById('universities');
-    if (wrap) wrap.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  // Start from the address bar, e.g. ?country=georgia or ?q=ksma
-  var params = new URLSearchParams(location.search);
-  if (params.get('country') && names[params.get('country')]) state.country = params.get('country');
-  if (params.get('q')) { state.q = params.get('q'); if (input) input.value = state.q; }
-  apply();
-
-  // Hero cost bars: width = this country's yearly cost as a share of the dearest one
-  var barEls = document.querySelectorAll('[data-bar-inr]');
-  var max = 0;
-  each(barEls, function (el) { max = Math.max(max, +el.dataset.barInr || 0); });
-  each(barEls, function (el) { if (max) el.style.setProperty('--w', Math.max(8, Math.round(+el.dataset.barInr / max * 100))); });
-
-  // WhatsApp buttons with a ready-made message
+  /* ---------- WhatsApp buttons with a ready-made message ---------- */
   each(document.querySelectorAll('[data-wa]'), function (a) {
-    if (a.id === 'udirAskEmpty') return;   // set by apply() so it includes the search text
     a.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(a.dataset.wa);
     a.target = '_blank'; a.rel = 'noopener';
   });
-  var askEmpty = $('#udirAskEmpty');
-  if (askEmpty) { askEmpty.target = '_blank'; askEmpty.rel = 'noopener'; }
+  var askEmpty = $('dxAskEmpty'); askEmpty.target = '_blank'; askEmpty.rel = 'noopener';
+
+  /* ---------- start ---------- */
+  var params = new URLSearchParams(location.search);
+  var pc = params.get('country');
+  if (pc && countries[pc] && !readHash()) history.replaceState(null, '', location.pathname + '#' + pc);
+  if (params.get('q') && input) {
+    input.value = params.get('q'); clearQ.hidden = false;
+    state.q = input.value; state.view = 'search'; render('quiet');
+  } else {
+    fromHash('quiet');
+    if (state.view === 'country') {
+      // Arriving on a country link: bring its block into view and play the flight once it is on screen
+      jumpToSteps();
+      playFlight(countries[state.country]);
+    } else if (location.hash === '#universities') {
+      jumpToSteps();
+    }
+  }
 });

@@ -1,11 +1,12 @@
 # ============ UNIVERSITIES — ONE LIST FOR THE WHOLE SITE (_data/universities.yml) ============
 # Every university we recommend lives here ONCE. The Universities page (mbbs-universities.html) builds its
 # cards, search and filters from this list automatically, so a new university needs no HTML at all.
+# University pages (mbbs-in-{country}-{university}.html) also read their photo from here ("image:").
 #
 # TO ADD A UNIVERSITY: copy one entry (from "- name:" down to its "aka:" line), paste it under the same
 # country, and change the values. Keep the two spaces at the start of each line exactly as they are.
 #
-#   name       full name, as on the country page
+#   name       full name, as on the country page. A university page's "uni_name" must match it exactly.
 #   country    must match a "slug" in _data/countries.yml (e.g. philippines, russia)
 #   city       shown under the name
 #   badge      the short label on the card (e.g. Government, Private, Mathura students here)
@@ -17,11 +18,9 @@
 #   image      the photo. Same file the country page uses, so you only upload it once.
 #   aka        other names and short forms people search for (KSMA, Akhunbaev…). Not shown on the page.
 #
-# Everything below is copied from the country pages (as of Oct 2026). Fees use 1 USD = ₹95 (26 Oct 2026).
-# Philippine fees: Mathura Overseas' own indicative fees for the current intake, at ₱1 ≈ ₹1.5 (Sep 2026) and US$1 = ₹95.
-# A university page's file name is mbbs-in-{country}-{full-university-name}.html (better for Google searches).
+# Copied from the country and university pages (as of Nov 2026). Fees use 1 USD = ₹95 (26 Oct 2026), ₱1 ≈ ₹1.5.
 
-# ---------------- PHILIPPINES ----------------
+# ---------------- PHILIPPINES (every university has its own page) ----------------
 - name: UV Gullas College of Medicine
   country: philippines
   city: Mandaue City, Cebu
@@ -30,7 +29,7 @@
     - Founded in 1977, part of the University of the Visayas
     - Ten affiliated hospitals across Cebu and Bohol
   fee: "₹3.8 L"
-  fee_note: tuition a year (₱1.25 L a semester)
+  fee_note: tuition a year (₱1.25 lakh a semester)
   page: mbbs-in-philippines-uv-gullas-college-of-medicine.html
   image: assets/images/universities/uv-gullas/card.webp
   aka: UV Gullas, UVGCM, University of the Visayas, Cebu
@@ -56,10 +55,10 @@
     - College of Medicine recognised since 1984
     - Clinical training at Region 1 Medical Center
   fee: "₹2.8 L"
-  fee_note: tuition a year (₹1.4 L a semester)
+  fee_note: tuition a year (₹1.4 lakh a semester)
   page: mbbs-in-philippines-lyceum-northwestern-university.html
   image: assets/images/universities/lyceum-northwestern/card.webp
-  aka: LNU, Lyceum, Dagupan
+  aka: LNU, Lyceum, Dagupan, Francisco Q. Duque
 
 - name: Southwestern University PHINMA
   country: philippines
@@ -69,10 +68,10 @@
     - Established in 1946; students from 34 countries
     - Its own teaching hospital on campus
   fee: "₹3.6 L"
-  fee_note: tuition a year (₹1.8 L a semester)
+  fee_note: tuition a year (₹1.8 lakh a semester)
   page: mbbs-in-philippines-southwestern-university-phinma.html
   image: assets/images/universities/southwestern-phinma/card.webp
-  aka: SWU, PHINMA, Southwestern, Cebu
+  aka: SWU, Southwestern, PHINMA, Cebu
 
 - name: Brokenshire College of Medicine
   country: philippines
@@ -82,7 +81,7 @@
     - Established in 1954, with a United Church of Christ heritage
     - An affiliated 200-bed teaching hospital
   fee: "₹3.3 L"
-  fee_note: tuition a year (₱1.1 L a semester)
+  fee_note: tuition a year (₱1.1 lakh a semester)
   page: mbbs-in-philippines-brokenshire-college-of-medicine.html
   image: assets/images/universities/brokenshire/card.webp
   aka: Brokenshire, BCM, Davao
@@ -148,8 +147,6 @@
   facts:
     - Set up in 2020 from the Fergana branch of Tashkent Medical Academy
     - A focus on public health and disease prevention
-  fee: "₹3 L"
-  fee_note: tuition a year (US$3,200–4,250)
   image: assets/images/universities/fergana-mi/card.webp
   aka: FMIPH, Fergana
 
@@ -411,7 +408,8 @@
   image: assets/images/universities/asian-international/card.webp
   aka: AIU, Asian Medical Institute, AMI, Tentishev, Kant
 
-# ---------------- VIETNAM ----------------
+# ---------------- VIETNAM (every university has its own page) ----------------
+# Fees = first-year tuition, 2026–27, checked Nov 2026.
 - name: Dai Nam University
   country: vietnam
   city: Hanoi
@@ -419,8 +417,9 @@
   facts:
     - An English-taught medical programme for students from India, opened in 2025–26
     - Clinical training in major Hanoi hospitals
-  fee: "₹4.8 L"
-  fee_note: tuition a year (about US$5,000, per the university)
+  fee: "₹3.9 L"
+  fee_note: tuition a year (US$4,100, the same every year)
+  page: mbbs-in-vietnam-dai-nam-university.html
   image: assets/images/universities/dai-nam/spotlight.webp
   aka: DNU, Hanoi
 
@@ -430,7 +429,10 @@
   badge: Private
   facts:
     - Founded in 1997; part of Nguyen Hoang Group
-    - Clinical training at Cho Ray, Thong Nhat and FV hospitals
+    - Rotations at FV, Cho Ray and Thong Nhat hospitals
+  fee: "₹5.4 L"
+  fee_note: tuition a year (US$5,700)
+  page: mbbs-in-vietnam-hong-bang-international-university.html
   image: assets/images/universities/hong-bang/card.webp
   aka: HIU, HCMC, Saigon
 
@@ -441,8 +443,76 @@
   facts:
     - Founded in 2007; medicine approved in December 2017
     - Its own university hospital, plus Tam Tri hospitals
+  fee: "₹4.9 L"
+  fee_note: tuition a year (US$5,200, the same every year)
+  page: mbbs-in-vietnam-phan-chau-trinh-university.html
   image: assets/images/universities/phan-chau-trinh/card.webp
   aka: PCTU, Danang
+
+- name: Can Tho University of Medicine and Pharmacy
+  country: vietnam
+  city: Can Tho, Mekong Delta
+  badge: Government
+  facts:
+    - Medical faculty since 1979; independent university since 2002
+    - Affiliated hospitals across the Mekong Delta
+  fee: "₹4.8 L"
+  fee_note: tuition in year 1 (US$5,010), rising about 10% a year
+  page: mbbs-in-vietnam-can-tho-university-of-medicine-and-pharmacy.html
+  image: assets/images/universities/can-tho-ump/card.webp
+  aka: CTUMP, Can Tho
+
+- name: University of Health Sciences, VNU-HCM
+  country: vietnam
+  city: Ho Chi Minh City (VNU campus)
+  badge: Government
+  facts:
+    - Part of Vietnam National University, Ho Chi Minh City
+    - School of Medicine since 2009; a university since 2024
+  fee: "₹4.8 L"
+  fee_note: tuition in year 1 (US$5,100), rising about 10% a year
+  page: mbbs-in-vietnam-university-of-health-sciences-vnu-hcm.html
+  image: assets/images/universities/uhs-vnu-hcm/card.webp
+  aka: UHS, VNU-HCM, VNUHCM School of Medicine, Vietnam National University
+
+- name: Buon Ma Thuot Medical University
+  country: vietnam
+  city: Buon Ma Thuot, Central Highlands
+  badge: Private
+  facts:
+    - Founded in 2014
+    - Its own hospital on campus, expanding to 1,100 beds
+  fee: "₹4.8 L"
+  fee_note: tuition a year (US$5,000, the same every year)
+  page: mbbs-in-vietnam-buon-ma-thuot-medical-university.html
+  image: assets/images/universities/buon-ma-thuot/card.webp
+  aka: BMTU, Buon Me Thuot, Ban Me Thuot, Dak Lak
+
+- name: Dong A University
+  country: vietnam
+  city: Da Nang, central coast
+  badge: Private
+  facts:
+    - Founded in 2002; a university since 2009
+    - Flat tuition of US$4,500, with no yearly rise
+  fee: "₹4.3 L"
+  fee_note: tuition a year (US$4,500, the same every year)
+  page: mbbs-in-vietnam-dong-a-university.html
+  image: assets/images/universities/dong-a/card.webp
+  aka: DAU, Danang
+
+- name: Mekong University
+  country: vietnam
+  city: Vinh Long, Mekong Delta
+  badge: Private
+  facts:
+    - Founded in 2000; also called Cuu Long University
+    - More than ten affiliated hospitals
+  fee: "₹4.3 L"
+  fee_note: tuition a year (US$4,500, the same every year)
+  page: mbbs-in-vietnam-mekong-university.html
+  image: assets/images/universities/mekong/card.webp
+  aka: Cuu Long University, CLU, MKU, Vinh Long
 
 # ---------------- NEPAL ----------------
 - name: Kathmandu Medical College (KMC)

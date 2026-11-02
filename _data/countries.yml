@@ -29,7 +29,7 @@
 #   why         exactly three short reasons, from the country page
 #
 # Every value below is copied from that country's own page (flight panel, "at a glance" band, fees and
-# "why" cards), as of Sep–Oct 2026. When you update a country page, update its entry here too.
+# "why" cards), as of Sep–Nov 2026. When you update a country page, update its entry here too.
 
 - slug: philippines
   name: Philippines
@@ -197,8 +197,8 @@
 - slug: vietnam
   name: Vietnam
   page: mbbs-in-vietnam.html
-  year_cost: "₹6.1 L"
-  year_inr: 610000
+  year_cost: "₹7.1 L"
+  year_inr: 710000
   duration: "6 yrs"
   airport: SGN
   city: Ho Chi Minh City

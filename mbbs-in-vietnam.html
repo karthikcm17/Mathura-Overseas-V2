@@ -41,7 +41,7 @@ active: countries
     { "@type": "Question", "name": "How long is MBBS in Vietnam?",
       "acceptedAnswer": { "@type": "Answer", "text": "Six years. Programmes usually begin with about two years of basic medical sciences, followed by clinical training in partner hospitals. Make sure the course includes a 12-month internship at the same university, as NMC requires." } },
     { "@type": "Question", "name": "How much does a year in Vietnam cost?",
-      "acceptedAnswer": { "@type": "Answer", "text": "An average year costs about 6.1 lakh rupees all-in: roughly 3.8 lakh tuition, 1.5 lakh hostel and meals, and about 80,000 for personal costs, visa and insurance (indicative, October 2026). Tuition for the full six years typically comes to 18 to 28 lakh rupees." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "A typical year costs about 7.1 lakh rupees all-in: roughly 4.8 lakh tuition, 1.5 lakh hostel and meals, and about 80,000 for personal costs, visa and insurance (indicative, November 2026). Tuition for the full six years ranges from about 23 to 37 lakh rupees, depending on the university." } },
     { "@type": "Question", "name": "Do I need NEET to study MBBS in Vietnam?",
       "acceptedAnswer": { "@type": "Answer", "text": "Yes. NMC requires every Indian student who studies medicine abroad to qualify NEET-UG, and the result stays valid for three years. Some universities also check your English, through IELTS or an interview." } },
     { "@type": "Question", "name": "How far is Vietnam from India?",
@@ -107,7 +107,7 @@ active: countries
       <div class="card cty-glance__card">
         <div class="cty-glance__item"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div><div class="cty-glance__num">6 years</div><div class="cty-glance__label">Medical sciences, then hospital training</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span><div><div class="cty-glance__num">English</div><div class="cty-glance__label">In programmes for international students</div></div></div>
-        <div class="cty-glance__item"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><div><div class="cty-glance__num">&#8377;2.9&ndash;4.8 L</div><div class="cty-glance__label">Tuition per year (indicative)</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><div><div class="cty-glance__num">&#8377;3.9&ndash;5.4 L</div><div class="cty-glance__label">First-year tuition, by university</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><div><div class="cty-glance__num">~8 hrs</div><div class="cty-glance__label">Chennai to Ho Chi Minh City, one stop</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-sun"></use></svg></span><div><div class="cty-glance__num">Tropical</div><div class="cty-glance__label">Warm south; cool winters in Hanoi</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg></span><div><div class="cty-glance__num">271 dong</div><div class="cty-glance__label">Per &#8377;1 &middot; Vietnamese dong, Oct 2026</div></div></div>
@@ -145,7 +145,7 @@ active: countries
         </article>
         <article class="cty-feature reveal">
           <span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span>
-          <div><h3>A budget families can plan</h3><p>Tuition at most universities sits around US$3,000&ndash;5,000 a year, and day-to-day living in Vietnamese cities is modest. Your family can plan all six years with confidence.</p></div>
+          <div><h3>A budget families can plan</h3><p>First-year tuition at the universities we work with runs from US$4,100 to US$5,700, and several charge the same fee every year. Day-to-day living in Vietnamese cities is modest.</p></div>
         </article>
         <article class="cty-feature reveal">
           <span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span>
@@ -223,16 +223,14 @@ active: countries
   </section>
 
   <!-- ============ 7. UNIVERSITIES
-       7a. SPOTLIGHT (.uni-spot) — the university this page leads with. When its own fee page is built
-           (e.g. mbbs-in-vietnam-dai-nam.html):
-             1. replace the WhatsApp footer with:  <span class="uni-card__go">View the full fee structure <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
-             2. add before </article>:            <a class="uni-card__cover" href="mbbs-in-vietnam-dai-nam.html" aria-label="View the full fee structure for Dai Nam University"></a>
-           The same two steps turn any ordinary .uni-card below into a link to its own page.
+       Every university here has its own page with fees (mbbs-in-vietnam-{university}.html): the whole card links to it.
+       7a. SPOTLIGHT (.uni-spot) — Dai Nam, the university this page leads with; its cover link opens its fee page.
+       A university WITHOUT a page: give it the WhatsApp footer used on the other country pages and leave out its .uni-card__cover line.
        IMAGE 2: assets/images/universities/dai-nam/spotlight.webp — 1400 x 1000 px, Dai Nam University's main building in Hanoi, bright daylight.
-       IMAGES 3-4: assets/images/universities/{name}/card.webp — 1200 x 750 px (16:10), the main campus building in daylight. ============ -->
+       IMAGES 3-9: assets/images/universities/{name}/card.webp — 1200 x 750 px (16:10), the main campus building in daylight. ============ -->
   <section class="section section--wash" id="universities">
     <div class="container">
-      <div class="section-head reveal"><span class="eyebrow">Universities</span><h2>English-medium medicine in Vietnam</h2><p>Universities that run six-year medical programmes in English for Indian students &mdash; each checked against the NMC conditions before we recommend it. Ask for any university&rsquo;s year-by-year fee sheet.</p></div>
+      <div class="section-head reveal"><span class="eyebrow">Universities</span><h2>English-medium medicine in Vietnam</h2><p>Universities that run six-year medical programmes in English for Indian students &mdash; each checked against the NMC conditions before we recommend it. Open a university for its fees, hospitals and full fee sheet.</p></div>
 
       <article class="card uni-spot reveal">
         <div class="img-slot" data-spec="universities/dai-nam/spotlight.webp · 1400×1000 px"><img src="assets/images/universities/dai-nam/spotlight.webp" width="1400" height="1000" alt="Main building of Dai Nam University in Hanoi" loading="lazy"></div>
@@ -244,17 +242,18 @@ active: countries
           <div class="uni-spot__chips">
             <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Private university</span>
             <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Taught fully in English</span>
-            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>NEET-qualified intake</span>
+            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Same fee every year</span>
           </div>
           <div class="uni-spot__stats">
-            <div class="uni-spot__stat"><b data-inr="475000">&#8377;4.8 L</b><span>Tuition a year (about US$5,000, per the university)</span></div>
+            <div class="uni-spot__stat"><b data-inr="389500">&#8377;3.9 L</b><span>Tuition a year (US$4,100, 2026&ndash;27)</span></div>
             <div class="uni-spot__stat"><b>2 + 4</b><span>Years of theory, then clinical practice</span></div>
             <div class="uni-spot__stat"><b>208</b><span>Indian students in the first batch, 2025</span></div>
           </div>
           <div class="uni-card__foot">
-            <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the full fee sheet for Dai Nam University, Hanoi."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the full fee sheet on WhatsApp</a>
+            <span class="uni-card__go">View the full fee structure <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
           </div>
         </div>
+        <a class="uni-card__cover" href="mbbs-in-vietnam-dai-nam-university.html" aria-label="View the full fee structure for Dai Nam University"></a>
       </article>
 
       <div class="snap-row uni-row">
@@ -267,12 +266,13 @@ active: countries
             <h3>Hong Bang International University</h3>
             <ul class="uni-card__facts">
               <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Founded in 1997; part of Nguyen Hoang Group</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Clinical training at Cho Ray, Thong Nhat and FV hospitals</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Rotations at FV, Cho Ray and Thong Nhat hospitals</li>
             </ul>
             <div class="uni-card__foot">
-              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Hong Bang International University, Ho Chi Minh City."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
             </div>
           </div>
+          <a class="uni-card__cover" href="mbbs-in-vietnam-hong-bang-international-university.html" aria-label="Fees and details for Hong Bang International University"></a>
         </article>
 
         <article class="card uni-card reveal">
@@ -286,9 +286,95 @@ active: countries
               <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Its own university hospital, plus Tam Tri hospitals</li>
             </ul>
             <div class="uni-card__foot">
-              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Phan Chau Trinh University, Da Nang."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
             </div>
           </div>
+          <a class="uni-card__cover" href="mbbs-in-vietnam-phan-chau-trinh-university.html" aria-label="Fees and details for Phan Chau Trinh University"></a>
+        </article>
+
+        <article class="card uni-card reveal">
+          <div class="img-slot" data-spec="universities/can-tho-ump/card.webp · 1200×750 px"><img src="assets/images/universities/can-tho-ump/card.webp" width="1200" height="750" alt="Campus of Can Tho University of Medicine and Pharmacy" loading="lazy"></div>
+          <span class="tag tag--abs">Government</span>
+          <div class="uni-card__body">
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Can Tho, Mekong Delta</span>
+            <h3>Can Tho University of Medicine and Pharmacy</h3>
+            <ul class="uni-card__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Medical faculty since 1979; independent since 2002</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Affiliated hospitals across the Mekong Delta</li>
+            </ul>
+            <div class="uni-card__foot">
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+            </div>
+          </div>
+          <a class="uni-card__cover" href="mbbs-in-vietnam-can-tho-university-of-medicine-and-pharmacy.html" aria-label="Fees and details for Can Tho University of Medicine and Pharmacy"></a>
+        </article>
+
+        <article class="card uni-card reveal">
+          <div class="img-slot" data-spec="universities/uhs-vnu-hcm/card.webp · 1200×750 px"><img src="assets/images/universities/uhs-vnu-hcm/card.webp" width="1200" height="750" alt="University of Health Sciences building on the Vietnam National University campus, Ho Chi Minh City" loading="lazy"></div>
+          <span class="tag tag--abs">Government</span>
+          <div class="uni-card__body">
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Ho Chi Minh City (VNU campus)</span>
+            <h3>University of Health Sciences, VNU-HCM</h3>
+            <ul class="uni-card__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>School of Medicine since 2009; a university since 2024</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Part of Vietnam National University, Ho Chi Minh City</li>
+            </ul>
+            <div class="uni-card__foot">
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+            </div>
+          </div>
+          <a class="uni-card__cover" href="mbbs-in-vietnam-university-of-health-sciences-vnu-hcm.html" aria-label="Fees and details for University of Health Sciences, VNU-HCM"></a>
+        </article>
+
+        <article class="card uni-card reveal">
+          <div class="img-slot" data-spec="universities/buon-ma-thuot/card.webp · 1200×750 px"><img src="assets/images/universities/buon-ma-thuot/card.webp" width="1200" height="750" alt="Buon Ma Thuot Medical University and its hospital" loading="lazy"></div>
+          <span class="tag tag--abs">Private</span>
+          <div class="uni-card__body">
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Buon Ma Thuot, Central Highlands</span>
+            <h3>Buon Ma Thuot Medical University</h3>
+            <ul class="uni-card__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Founded in 2014</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Its own hospital on campus, expanding to 1,100 beds</li>
+            </ul>
+            <div class="uni-card__foot">
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+            </div>
+          </div>
+          <a class="uni-card__cover" href="mbbs-in-vietnam-buon-ma-thuot-medical-university.html" aria-label="Fees and details for Buon Ma Thuot Medical University"></a>
+        </article>
+
+        <article class="card uni-card reveal">
+          <div class="img-slot" data-spec="universities/dong-a/card.webp · 1200×750 px"><img src="assets/images/universities/dong-a/card.webp" width="1200" height="750" alt="Campus of Dong A University in Da Nang" loading="lazy"></div>
+          <span class="tag tag--abs">Private</span>
+          <div class="uni-card__body">
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Da Nang, central coast</span>
+            <h3>Dong A University</h3>
+            <ul class="uni-card__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Founded in 2002; a university since 2009</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Flat tuition of US$4,500, with no yearly rise</li>
+            </ul>
+            <div class="uni-card__foot">
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+            </div>
+          </div>
+          <a class="uni-card__cover" href="mbbs-in-vietnam-dong-a-university.html" aria-label="Fees and details for Dong A University"></a>
+        </article>
+
+        <article class="card uni-card reveal">
+          <div class="img-slot" data-spec="universities/mekong/card.webp · 1200×750 px"><img src="assets/images/universities/mekong/card.webp" width="1200" height="750" alt="Campus of Mekong University in Vinh Long" loading="lazy"></div>
+          <span class="tag tag--abs">Private</span>
+          <div class="uni-card__body">
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Vinh Long, Mekong Delta</span>
+            <h3>Mekong University</h3>
+            <ul class="uni-card__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Founded in 2000; also called Cuu Long University</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>More than ten affiliated hospitals</li>
+            </ul>
+            <div class="uni-card__foot">
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+            </div>
+          </div>
+          <a class="uni-card__cover" href="mbbs-in-vietnam-mekong-university.html" aria-label="Fees and details for Mekong University"></a>
         </article>
 
         <article class="card uni-card uni-card--ask reveal">
@@ -304,10 +390,11 @@ active: countries
 
   <!-- ============ 8. FEES — an AVERAGE year. To change a figure, edit its data-inr number (in rupees, per year).
        data-row-inr on each row must match the number inside it; the total's data-inr must equal their sum.
-       Tuition average = about US$4,000 a year; range = US$3,000–5,000 from published figures. ============ -->
+       Tuition = the middle (median) of the yearly tuition at the universities above, about US$5,100 (Nov 2026);
+       range = their first-year fees, US$4,100 (Dai Nam) to US$5,700 (Hong Bang). ============ -->
   <section class="section" id="fees">
     <div class="container">
-      <div class="section-head reveal"><span class="eyebrow">Fees</span><h2>What a year in Vietnam really costs</h2><p>An average, all-in budget &mdash; not the highest quote you will find online. Exact fees vary by university; ask us for any university&rsquo;s own sheet.</p></div>
+      <div class="section-head reveal"><span class="eyebrow">Fees</span><h2>What a year in Vietnam really costs</h2><p>A typical, all-in budget &mdash; not the highest quote you will find online. Exact fees vary by university; open a university above for its own fees.</p></div>
       <div class="cty-fees reveal">
         <div class="cty-fees__total">
           <div class="cty-fees__switch" role="group" aria-label="Show amounts in">
@@ -315,16 +402,16 @@ active: countries
             <button type="button" data-currency="usd" aria-pressed="false">$ USD</button>
           </div>
           <div>
-            <span class="cty-fees__kicker">An average year, all-in</span>
-            <span class="cty-fees__big"><span id="feeTotal" data-inr="610000">&#8377;6.1 L</span> <small>/ year</small></span>
+            <span class="cty-fees__kicker">A typical year, all-in</span>
+            <span class="cty-fees__big"><span id="feeTotal" data-inr="710000">&#8377;7.1 L</span> <small>/ year</small></span>
           </div>
-          <p>Tuition, hostel with meals, day-to-day spending, visa and insurance added together, using the middle of published ranges.</p>
-          <div class="cty-fees__course"><span>Full six-year tuition, typically</span><b><span data-inr-range="1800000-2800000">&#8377;18&ndash;28 L</span></b></div>
+          <p>Tuition, hostel with meals, day-to-day spending, visa and insurance added together, using the middle of our universities&rsquo; fees.</p>
+          <div class="cty-fees__course"><span>Full six-year tuition, typically</span><b><span data-inr-range="2300000-3700000">&#8377;23&ndash;37 L</span></b></div>
         </div>
 
         <div class="card cty-fees__rows">
-          <div class="cty-fees__row" data-row-inr="380000">
-            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div class="cty-fees__name"><b>Tuition</b><span>Range <span data-inr-range="285000-475000">&#8377;2.9&ndash;4.8 L</span> a year</span></div><span class="cty-fees__val" data-inr="380000">&#8377;3.8 L</span></div>
+          <div class="cty-fees__row" data-row-inr="480000">
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div class="cty-fees__name"><b>Tuition</b><span>Range <span data-inr-range="390000-540000">&#8377;3.9&ndash;5.4 L</span> in year 1</span></div><span class="cty-fees__val" data-inr="480000">&#8377;4.8 L</span></div>
             <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
           </div>
           <div class="cty-fees__row" data-row-inr="150000">
@@ -347,7 +434,7 @@ active: countries
           <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg><span><b>Always:</b> pay the university directly, against an official receipt</span></div>
         </div>
       </div>
-      <p class="cty-asof"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><span>Indicative averages as of Oct 2026, built from published ranges; <span data-rate-label>1 USD = &#8377;95 (as of 26 Oct 2026)</span>. Every university sets its own fees, and first-year fees can be higher &mdash; confirm the exact figures with your counsellor.</span></p>
+      <p class="cty-asof"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><span>Indicative. Tuition is the middle of the universities we recommend in Vietnam (2026&ndash;27 fees, checked Nov 2026); living costs as of Oct 2026; <span data-rate-label>1 USD = &#8377;95 (as of 26 Oct 2026)</span>. Some universities raise tuition each year &mdash; open a university above for its own figures.</span></p>
     </div>
   </section>
 
@@ -398,7 +485,7 @@ active: countries
        7 city-danang: the Dragon Bridge over the Han River, or My Khe beach in morning sun. ============ -->
   <section class="section" id="cities">
     <div class="container">
-      <div class="section-head reveal"><span class="eyebrow">Where you&rsquo;ll live</span><h2>Three very different cities</h2><p>Vietnam is long and narrow, so your city shapes your weather, your hospitals and your weekends. Here is how the three compare.</p></div>
+      <div class="section-head reveal"><span class="eyebrow">Where you&rsquo;ll live</span><h2>Three very different cities</h2><p>Vietnam is long and narrow, so your city shapes your weather, your hospitals and your weekends. Here is how the three biggest compare; Can Tho, Vinh Long and Buon Ma Thuot are quieter regional cities.</p></div>
       <div class="snap-row cty-cities" data-stagger>
 
         <article class="card cty-city reveal">
@@ -424,7 +511,7 @@ active: countries
             <p>Vietnam&rsquo;s busiest, most energetic city and its business centre, with some of the country&rsquo;s largest hospitals and a lively international crowd.</p>
             <ul class="cty-city__facts">
               <li><svg class="icon" aria-hidden="true"><use href="#i-sun"></use></svg>Tropical all year, 31&ndash;34&deg;C; rains May&ndash;November</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Home to Hong Bang International University</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Home to Hong Bang and UHS (VNU-HCM)</li>
             </ul>
           </div>
         </article>
@@ -438,7 +525,7 @@ active: countries
             <p>A calmer, cleaner seaside city between the mountains and the beach, with the old town of Hoi An a short drive away.</p>
             <ul class="cty-city__facts">
               <li><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Long sandy beaches right in the city</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Home to Phan Chau Trinh University</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Home to Phan Chau Trinh and Dong A</li>
             </ul>
           </div>
         </article>
@@ -500,7 +587,7 @@ active: countries
         <details><summary>Is it taught in English?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Some Vietnamese universities run English-medium programmes for international students, including Indian students. Patients on the wards speak Vietnamese, so the Embassy of India advises that students also need good Vietnamese for clinical training. Choose a university that teaches Vietnamese as part of the course.</div></details>
         <details><summary>What is the new licensing exam?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>According to the Embassy of India in Hanoi (5 June 2026), graduates who want to practise in Vietnam must complete 12 months of hospital practice and, from 2027, pass a central government licensing exam that is likely to be held in Vietnamese. NMC rules expect you to be eligible for a licence in the country where you studied &mdash; see <a href="#recognition">NMC status</a> above.</div></details>
         <details><summary>How long is the course?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Six years. Programmes usually begin with about two years of basic medical sciences, followed by clinical training in partner hospitals. Make sure the course includes a 12-month internship at the same university, as NMC requires.</div></details>
-        <details><summary>How much does a year cost?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>An average year costs about &#8377;6.1 lakh all-in: roughly &#8377;3.8 lakh tuition, &#8377;1.5 lakh hostel and meals, and about &#8377;80,000 for personal costs, visa and insurance (indicative, Oct 2026). Tuition for the full six years typically comes to &#8377;18&ndash;28 lakh. See the <a href="#fees">fee breakdown</a>.</div></details>
+        <details><summary>How much does a year cost?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>A typical year costs about &#8377;7.1 lakh all-in: roughly &#8377;4.8 lakh tuition, &#8377;1.5 lakh hostel and meals, and about &#8377;80,000 for personal costs, visa and insurance (indicative, Nov 2026). Tuition for the full six years ranges from about &#8377;23 to 37 lakh, depending on the university. See the <a href="#fees">fee breakdown</a>, or open a university above for its own fees.</div></details>
         <details><summary>Do I need NEET?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Yes. NMC requires every Indian student who studies medicine abroad to qualify NEET-UG, and the result stays valid for three years. Some universities also check your English, through IELTS or an interview.</div></details>
         <details><summary>How far is Vietnam from India?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>There is no non-stop flight from Chennai as of 2026; one-stop flights reach Ho Chi Minh City in about 8 hours and Hanoi in about 7. Non-stop flights of around 4&ndash;5 hours run from Bengaluru, Hyderabad, Kochi, Delhi, Mumbai and Kolkata. Vietnam is one and a half hours ahead of India.</div></details>
         <details><summary>What is the weather like?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>It depends on the city. Ho Chi Minh City is tropical all year, with highs of 31&ndash;34&deg;C and a rainy season from May to November. Hanoi has a cool winter, with January days around 14&ndash;20&deg;C, and a hot, humid summer of about 33&deg;C.</div></details>
