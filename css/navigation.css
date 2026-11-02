@@ -77,6 +77,15 @@
   .site-nav__link[aria-current="page"]::after { content: ""; position: absolute; top: 12px; right: 12px; width: 8px; height: 8px; border-radius: 50%; background: var(--color-active); }
   .site-nav__link[aria-current="page"] .site-nav__label { color: var(--color-primary); }
 
+  /* Ask Mathura: the first, full-width tile (navy, so it reads as a feature, not a page) */
+  .site-nav__ask { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: var(--sp-3); min-height: 0; padding: var(--sp-3) var(--sp-4); border: 0; text-align: left; color: var(--color-text-inverse); background: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1.6px) 0 0 / 16px 16px, var(--grad-hero); box-shadow: 0 8px 20px rgba(30,58,138,.25); }
+  .site-nav__ask-ico { width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.16); }
+  .site-nav__ask-ico .icon { width: 20px; height: 20px; }
+  .site-nav__ask .site-nav__text { flex: 1; }
+  .site-nav__ask .site-nav__label { color: var(--color-text-inverse); }
+  .site-nav__ask .site-nav__sub { color: var(--color-text-inverse-muted); }
+  .site-nav__ask-go { width: 18px; height: 18px; stroke-width: 2.6; }
+
   .site-nav__cta { display: none; }
 
   /* Drawer bottom: counselling card, quick contacts, place + socials */
@@ -107,6 +116,7 @@
   .site-nav.is-open .site-nav__link:nth-child(4) { transition-delay: .20s; }
   .site-nav.is-open .site-nav__link:nth-child(5) { transition-delay: .24s; }
   .site-nav.is-open .site-nav__link:nth-child(6) { transition-delay: .28s; }
+  .site-nav.is-open .site-nav__link:nth-child(7) { transition-delay: .32s; }
   .site-nav.is-open .site-nav__extra > :nth-child(1) { transition-delay: .32s; }
   .site-nav.is-open .site-nav__extra > :nth-child(2) { transition-delay: .36s; }
   .site-nav.is-open .site-nav__extra > :nth-child(3) { transition-delay: .40s; }

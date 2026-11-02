@@ -214,46 +214,4 @@ document.addEventListener('DOMContentLoaded', function () {
       MO.submitLead(ctaPhone, $('ctaMsg'), { source: 'home-cta', message: 'Hi Mathura Overseas, I would like free counselling for MBBS abroad.' });
     });
   }
-
-  /* ================= AI chat widget (desktop only; CSS hides it on mobile) ================= */
-  var WORKER_URL = 'https://mathura-ai-chat.mathuraoverseas.workers.dev/';
-  var bubble = $('aiChatBubble');
-  if (!bubble) return;
-  var panel = $('aiChatPanel'), msgs = $('aiChatMsgs'), form = $('aiChatForm'), input = $('aiChatInput'), chips = $('aiChatChips');
-  var waLink = typeof MO !== 'undefined' ? MO.wa('Hi Mathura Overseas, I have a question about MBBS abroad.') : 'https://wa.me/919360859919';
-  function toggle() {
-    var open = panel.classList.toggle('is-open');
-    bubble.classList.toggle('is-hidden', open);
-    bubble.setAttribute('aria-expanded', open ? 'true' : 'false');
-    if (open) input.focus(); else bubble.focus();
-  }
-  function add(text, kind) {
-    var d = document.createElement('div');
-    d.className = 'ai-msg ai-msg--' + kind;
-    d.textContent = text;
-    msgs.appendChild(d);
-    msgs.scrollTop = msgs.scrollHeight;
-    return d;
-  }
-  function addFallback(text) {
-    var d = add(text + ' ', 'bot'), a = document.createElement('a');
-    a.href = waLink; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'Message us on WhatsApp';
-    d.appendChild(a);
-  }
-  function send(text) {
-    if (!text || !text.trim()) return;
-    if (chips) chips.hidden = true;
-    add(text, 'user');
-    input.value = '';
-    var typing = add('Typing…', 'bot ai-msg--typing');
-    fetch(WORKER_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: text }) })
-      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(function (d) { typing.remove(); if (d.reply) add(d.reply, 'bot'); else addFallback("Sorry, I couldn't answer that."); })
-      .catch(function () { typing.remove(); addFallback('The assistant is not available right now.'); });
-  }
-  bubble.addEventListener('click', toggle);
-  $('aiChatClose').addEventListener('click', toggle);
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && panel.classList.contains('is-open')) toggle(); });
-  form.addEventListener('submit', function (e) { e.preventDefault(); send(input.value); });
-  if (chips) chips.querySelectorAll('button').forEach(function (b) { b.addEventListener('click', function () { send(b.textContent); }); });
 });

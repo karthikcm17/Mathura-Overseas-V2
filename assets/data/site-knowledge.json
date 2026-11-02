@@ -1,0 +1,7 @@
+---
+# Built automatically from _data/countries.yml and _data/universities.yml every time the site is published.
+# Used by "Ask Mathura" (js/assistant.js) and its AI Worker. Never edit this file — edit those two data files.
+layout: null
+sitemap: false
+---
+{"countries": {{ site.data.countries | jsonify }}, "universities": {{ site.data.universities | jsonify }}}

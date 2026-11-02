@@ -1,0 +1,45 @@
+<!-- ============ ASK MATHURA — the AI assistant (_includes/assistant.html). Every page gets it through bottom-nav.html.
+     Computers: a round button at the bottom-right (above WhatsApp) opens the chat.
+     Phones: the "Ask Mathura" tile at the top of the menu drawer opens it (_includes/header.html).
+     Any link or button can open it too: add  data-ask-open  — or  data-ask-open="Your question"  to ask that question straight away.
+     Turn it off on one page with  assistant: false  in that page's top block.
+     The three suggested questions below can be changed freely (keep each one short). -->
+{%- unless page.assistant == false %}
+<button type="button" class="ask-launch" id="askLaunch" data-ask-open aria-controls="askPanel" aria-expanded="false" aria-label="Open Ask Mathura">
+  <svg class="icon" aria-hidden="true"><use href="#i-sparkle"></use></svg>
+  <span class="ask-launch__tip" aria-hidden="true">Ask Mathura</span>
+</button>
+
+<div class="ask" id="askPanel" role="dialog" aria-labelledby="askTitle">
+  <div class="ask__head">
+    <span class="ask__grab" aria-hidden="true"></span>
+    <span class="ask__avatar" aria-hidden="true"><svg class="icon"><use href="#i-sparkle"></use></svg></span>
+    <b class="ask__title" id="askTitle">Ask Mathura</b>
+    <button type="button" class="ask__iconbtn" id="askReset" aria-label="New chat" title="New chat"><svg class="icon" aria-hidden="true"><use href="#i-edit"></use></svg></button>
+    <button type="button" class="ask__iconbtn" id="askClose" aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
+  </div>
+
+  <div class="ask__body" id="askBody">
+    <div class="ask__empty" id="askEmpty">
+      <span class="ask__orb" aria-hidden="true"><svg class="icon"><use href="#i-sparkle"></use></svg></span>
+      <p class="ask__hello">How can I help?</p>
+      <div class="ask__suggest" role="group" aria-label="Suggested questions">
+        <button type="button" data-q="Am I eligible for MBBS abroad?">Am I eligible for MBBS abroad?<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
+        <button type="button" data-q="Which country is cheapest for MBBS?">Which country is cheapest for MBBS?<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
+        <button type="button" data-q="Is an MBBS from abroad valid in India?">Is an MBBS from abroad valid in India?<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
+      </div>
+    </div>
+    <div class="ask__msgs" id="askMsgs" aria-live="polite"></div>
+  </div>
+
+  <form class="ask__form" id="askForm" autocomplete="off">
+    <div class="ask__field">
+      <label class="sr-only" for="askInput">Your question</label>
+      <input type="text" id="askInput" placeholder="Ask anything about MBBS abroad" maxlength="400" enterkeyhint="send">
+      <button type="submit" class="ask__send" id="askSend" aria-label="Send" disabled><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
+    </div>
+    <p class="ask__note">AI can make mistakes, and fees are indicative.</p>
+  </form>
+</div>
+<div class="ask-scrim" id="askScrim"></div>
+{%- endunless %}

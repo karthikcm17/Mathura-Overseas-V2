@@ -26,6 +26,8 @@ exclude:
   - COUNTRY_PAGES_PLAN.md
   - GO_LIVE_CHECKLIST.md
   - google-sheets-lead-script.gs
+  - worker                      # the Ask Mathura AI Worker runs on Cloudflare, not on the website
+  - ASK_MATHURA_SETUP.md
   - claude
   - Gemfile
   - Gemfile.lock

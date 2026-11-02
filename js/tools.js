@@ -87,13 +87,19 @@ var WHATSAPP_NUMBER = '919360859919';
 // "Call me back" boxes on the home page and the MBBS Planner all save to the sheet through this link.
 // Paste your Apps Script "Web app" link between the quotes. It must END IN /exec
 // (set-up steps: google-sheets-lead-script.gs). While it is empty, every form falls back to WhatsApp, so no lead is lost.
-var LEAD_ENDPOINT = '';
+var LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbz7j9y2ZN7-7iMd4fkVMFB5XU6gUl_OIi-qj7plUjvUDxU7FMPALdUSWphp5ldNwOSwCA/exec';
 // Safety check: a link ending in /dev only works for the script's owner while signed in to Google, so every
 // visitor's lead would be lost without any error. Such a link is ignored (WhatsApp fallback) until the /exec link is pasted.
 if (/\/dev\/?$/.test(LEAD_ENDPOINT)) {
   if (window.console) console.warn('LEAD_ENDPOINT ends in /dev and is ignored. Paste the Web app link that ends in /exec.');
   LEAD_ENDPOINT = '';
 }
+
+/* ======================= ASK MATHURA (the website assistant) ======================= */
+// AI ANSWERS LINK — paste your Cloudflare Worker link between the quotes (set-up: ASK_MATHURA_SETUP.md),
+// e.g. 'https://ask-mathura.yourname.workers.dev'. While it is empty, the assistant still gives every instant answer
+// (eligibility, fees, countries, universities, news) and hands other questions to a counsellor on WhatsApp.
+var ASSISTANT_URL = 'https://ask-mathura.mathuraoverseas.workers.dev/';
 
 /* ======================= helpers (no need to edit below this line) ======================= */
 var MO = {
