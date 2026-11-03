@@ -253,11 +253,9 @@ active: countries
 
   <!-- ============ 7. UNIVERSITIES
        7b. CITY CHIPS filter the spotlight and cards: each button's data-uni-filter must match a card's data-city.
-       7a. SPOTLIGHT (.uni-spot) — the university this page leads with. When its own fee page is built
-           (e.g. mbbs-in-russia-kazan-smu.html):
-             1. replace the WhatsApp footer with:  <span class="uni-card__go">View the full fee structure <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
-             2. add before </article>:            <a class="uni-card__cover" href="mbbs-in-russia-kazan-smu.html" aria-label="View the full fee structure for Kazan State Medical University"></a>
-           The same two steps turn any ordinary .uni-card below into a link to its own page.
+       • Every university below has its own page (mbbs-in-russia-{university}.html): the footer says "Fees & details"
+         (the spotlight: "View the full fee structure") and the invisible .uni-card__cover link makes the whole card clickable.
+       • A NEW university without a page yet: use a WhatsApp footer ("Get the fee sheet") until its page exists.
        IMAGE 2: assets/images/universities/kazan-smu/spotlight.webp — 1400 x 1000 px, Kazan State Medical University's
                 historic main building on a bright autumn day, students on the steps.
        IMAGES 3-8: assets/images/universities/{name}/card.webp — 1200 x 750 px (16:10), the main campus building in daylight. ============ -->
@@ -294,9 +292,10 @@ active: countries
             <div class="uni-spot__stat"><b>~60,000</b><span>Specialists trained</span></div>
           </div>
           <div class="uni-card__foot">
-            <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the full fee sheet for Kazan State Medical University."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the full fee sheet on WhatsApp</a>
+            <span class="uni-card__go">View the full fee structure <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
           </div>
         </div>
+        <a class="uni-card__cover" href="mbbs-in-russia-kazan-state-medical-university.html" aria-label="View the full fee structure for Kazan State Medical University"></a>
       </article>
 
       <div class="snap-row uni-row">
@@ -312,9 +311,10 @@ active: countries
               <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Its own University Clinic as the clinical base</li>
             </ul>
             <div class="uni-card__foot">
-              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Kazan Federal University (General Medicine)."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
             </div>
           </div>
+          <a class="uni-card__cover" href="mbbs-in-russia-kazan-federal-university.html" aria-label="Fees and details for Kazan Federal University"></a>
         </article>
 
         <article class="card uni-card reveal" data-city="kursk">
@@ -328,9 +328,10 @@ active: countries
               <li><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg>More than 30% of students come from abroad</li>
             </ul>
             <div class="uni-card__foot">
-              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Kursk State Medical University."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
             </div>
           </div>
+          <a class="uni-card__cover" href="mbbs-in-russia-kursk-state-medical-university.html" aria-label="Fees and details for Kursk State Medical University"></a>
         </article>
 
         <article class="card uni-card reveal" data-city="volgograd">
@@ -344,9 +345,10 @@ active: countries
               <li><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg>About 12,000 students, over 2,000 of them international</li>
             </ul>
             <div class="uni-card__foot">
-              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Volgograd State Medical University."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
             </div>
           </div>
+          <a class="uni-card__cover" href="mbbs-in-russia-volgograd-state-medical-university.html" aria-label="Fees and details for Volgograd State Medical University"></a>
         </article>
 
         <article class="card uni-card reveal" data-city="ufa">
@@ -360,9 +362,10 @@ active: countries
               <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Its own 755-bed university hospital</li>
             </ul>
             <div class="uni-card__foot">
-              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Bashkir State Medical University."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
             </div>
           </div>
+          <a class="uni-card__cover" href="mbbs-in-russia-bashkir-state-medical-university.html" aria-label="Fees and details for Bashkir State Medical University"></a>
         </article>
 
         <article class="card uni-card reveal" data-city="orenburg">
@@ -376,9 +379,10 @@ active: countries
               <li><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg>A smaller campus of about 3,000 students</li>
             </ul>
             <div class="uni-card__foot">
-              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Orenburg State Medical University."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
             </div>
           </div>
+          <a class="uni-card__cover" href="mbbs-in-russia-orenburg-state-medical-university.html" aria-label="Fees and details for Orenburg State Medical University"></a>
         </article>
 
         <article class="card uni-card reveal" data-city="rostov">
@@ -392,9 +396,10 @@ active: countries
               <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>An 860-bed university clinic</li>
             </ul>
             <div class="uni-card__foot">
-              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Rostov State Medical University."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
             </div>
           </div>
+          <a class="uni-card__cover" href="mbbs-in-russia-rostov-state-medical-university.html" aria-label="Fees and details for Rostov State Medical University"></a>
         </article>
 
         <article class="card uni-card uni-card--ask reveal">

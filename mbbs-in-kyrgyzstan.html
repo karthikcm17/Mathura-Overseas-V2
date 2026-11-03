@@ -109,7 +109,7 @@ active: countries
       <div class="card cty-glance__card">
         <div class="cty-glance__item"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div><div class="cty-glance__num">6 years</div><div class="cty-glance__label">Five years of study plus a 12-month internship</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span><div><div class="cty-glance__num">English</div><div class="cty-glance__label">For international programmes</div></div></div>
-        <div class="cty-glance__item"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><div><div class="cty-glance__num">&#8377;2.9&ndash;4.8 L</div><div class="cty-glance__label">Tuition per year (indicative)</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><div><div class="cty-glance__num">&#8377;2.9&ndash;5.7 L</div><div class="cty-glance__label">Tuition per year (indicative)</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><div><div class="cty-glance__num">9&ndash;10 hrs</div><div class="cty-glance__label">Chennai to Bishkek, one stop</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-sun"></use></svg></span><div><div class="cty-glance__num">4 seasons</div><div class="cty-glance__label">Warm summers; snowy winters</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg></span><div><div class="cty-glance__num">0.92 som</div><div class="cty-glance__label">Per &#8377;1 &middot; Kyrgyz som, Oct 2026</div></div></div>
@@ -296,11 +296,9 @@ active: countries
   </section>
 
   <!-- ============ 7. UNIVERSITIES
-       7a. SPOTLIGHT (.uni-spot) — the university this page leads with. When its own fee page is built
-           (e.g. mbbs-in-kyrgyzstan-ksma.html):
-             1. replace the WhatsApp footer with:  <span class="uni-card__go">View the full fee structure <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
-             2. add before </article>:            <a class="uni-card__cover" href="mbbs-in-kyrgyzstan-ksma.html" aria-label="View the full fee structure for Kyrgyz State Medical Academy"></a>
-           The same two steps turn any ordinary .uni-card below into a link to its own page.
+       Every university below has its own page (mbbs-in-kyrgyzstan-{university}.html): the footer says "Fees & details"
+       and the invisible .uni-card__cover link makes the whole card clickable (same as the Uzbekistan page).
+       A NEW university without a page yet: use a WhatsApp footer ("Get the fee sheet") until its page exists.
        IMAGE 2: assets/images/universities/ksma/spotlight.webp — 1400 x 1000 px, KSMA's main building on a sunny autumn day.
        IMAGES 3-6: assets/images/universities/{name}/card.webp — 1200 x 750 px (16:10), the main campus building in daylight. ============ -->
   <section class="section section--wash" id="universities">
@@ -320,14 +318,15 @@ active: countries
             <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Internationally accredited</span>
           </div>
           <div class="uni-spot__stats">
-            <div class="uni-spot__stat"><b data-inr="332500">&#8377;3.3 L</b><span>Minimum tuition a year (US$3,500)</span></div>
+            <div class="uni-spot__stat"><b data-inr="399000">&#8377;4 L</b><span>Tuition a year (US$4,200), years 2&ndash;5</span></div>
             <div class="uni-spot__stat"><b>1939</b><span>Founded in Bishkek</span></div>
             <div class="uni-spot__stat"><b>6 years</b><span>General Medicine</span></div>
           </div>
           <div class="uni-card__foot">
-            <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the full fee sheet for the Kyrgyz State Medical Academy (KSMA)."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the full fee sheet on WhatsApp</a>
+            <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
           </div>
         </div>
+        <a class="uni-card__cover" href="mbbs-in-kyrgyzstan-kyrgyz-state-medical-academy.html" aria-label="Fees and details for Kyrgyz State Medical Academy"></a>
       </article>
 
       <div class="snap-row uni-row">
@@ -343,9 +342,10 @@ active: countries
               <li><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg>Teaches in English, Russian and Kyrgyz</li>
             </ul>
             <div class="uni-card__foot">
-              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Osh State University."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
             </div>
           </div>
+          <a class="uni-card__cover" href="mbbs-in-kyrgyzstan-osh-state-university.html" aria-label="Fees and details for Osh State University"></a>
         </article>
 
         <article class="card uni-card reveal">
@@ -355,13 +355,14 @@ active: countries
             <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Bishkek</span>
             <h3>International Higher School of Medicine</h3>
             <ul class="uni-card__facts">
-              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Founded in 2003, part of the International University of Kyrgyzstan</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Founded in 2003; publishes its own fees</li>
               <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Its own clinics in Bishkek and on Lake Issyk-Kul</li>
             </ul>
             <div class="uni-card__foot">
-              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for the International Higher School of Medicine (IHSM)."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
             </div>
           </div>
+          <a class="uni-card__cover" href="mbbs-in-kyrgyzstan-international-higher-school-of-medicine.html" aria-label="Fees and details for the International Higher School of Medicine"></a>
         </article>
 
         <article class="card uni-card reveal">
@@ -375,9 +376,10 @@ active: countries
               <li><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg>San Francisco State University was among its founders</li>
             </ul>
             <div class="uni-card__foot">
-              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for the International University of Kyrgyzstan."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
             </div>
           </div>
+          <a class="uni-card__cover" href="mbbs-in-kyrgyzstan-international-university-of-kyrgyzstan.html" aria-label="Fees and details for the International University of Kyrgyzstan"></a>
         </article>
 
         <article class="card uni-card reveal">
@@ -391,9 +393,10 @@ active: countries
               <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Its own polyclinic with a simulation centre</li>
             </ul>
             <div class="uni-card__foot">
-              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Asian International University (Asian Medical Institute), Kant."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
             </div>
           </div>
+          <a class="uni-card__cover" href="mbbs-in-kyrgyzstan-asian-international-university.html" aria-label="Fees and details for Asian International University"></a>
         </article>
 
         <article class="card uni-card uni-card--ask reveal">
@@ -409,7 +412,7 @@ active: countries
 
   <!-- ============ 8. FEES — an AVERAGE year. To change a figure, edit its data-inr number (in rupees, per year).
        data-row-inr on each row must match the number inside it; the total's data-inr must equal their sum.
-       Tuition average = about US$4,200 a year; range = the government minimum (US$3,000) to US$5,000. ============ -->
+       Tuition average = about US$4,200 a year; range = the government minimum (US$3,000) to IHSM (US$6,000, years 2-6). ============ -->
   <section class="section" id="fees">
     <div class="container">
       <div class="section-head reveal"><span class="eyebrow">Fees</span><h2>What a year in Kyrgyzstan really costs</h2><p>An average, all-in budget &mdash; not the highest quote you will find online. Exact fees vary by university; ask us for any university&rsquo;s own sheet.</p></div>
@@ -429,7 +432,7 @@ active: countries
 
         <div class="card cty-fees__rows">
           <div class="cty-fees__row" data-row-inr="400000">
-            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div class="cty-fees__name"><b>Tuition</b><span>Range <span data-inr-range="285000-475000">&#8377;2.9&ndash;4.8 L</span> a year</span></div><span class="cty-fees__val" data-inr="400000">&#8377;4 L</span></div>
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div class="cty-fees__name"><b>Tuition</b><span>Range <span data-inr-range="285000-570000">&#8377;2.9&ndash;5.7 L</span> a year</span></div><span class="cty-fees__val" data-inr="400000">&#8377;4 L</span></div>
             <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
           </div>
           <div class="cty-fees__row" data-row-inr="144000">
