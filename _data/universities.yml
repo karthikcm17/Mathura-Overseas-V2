@@ -99,7 +99,8 @@
   image: assets/images/universities/uct/spotlight.webp
   aka: UCT, Universidade Catolica Timorense, Catholic University, Dili, East Timor
 
-# ---------------- UZBEKISTAN ----------------
+# ---------------- UZBEKISTAN (every university has its own page) ----------------
+# Fees = yearly tuition, 2026–27, compared across published fee tables, checked Nov 2026.
 - name: Samarkand State Medical University
   country: uzbekistan
   city: Samarkand
@@ -107,6 +108,9 @@
   facts:
     - Founded in 1930, one of the oldest in Central Asia
     - Two university clinics with 375 and 200 beds
+  fee: "₹3.7 L"
+  fee_note: tuition a year (US$3,850, the same every year)
+  page: mbbs-in-uzbekistan-samarkand-state-medical-university.html
   image: assets/images/universities/samarkand-smu/card.webp
   aka: SamSMU, Samarkand
 
@@ -117,6 +121,9 @@
   facts:
     - Formed in 2025 from Tashkent Medical Academy and two partner institutes
     - Medicine, paediatrics and dentistry under one roof
+  fee: "₹3.3 L"
+  fee_note: tuition a year (US$3,500; year 1 is US$4,500)
+  page: mbbs-in-uzbekistan-tashkent-state-medical-university.html
   image: assets/images/universities/tashkent-smu/card.webp
   aka: TSMU, Tashkent Medical Academy
 
@@ -127,6 +134,9 @@
   facts:
     - Founded in 1990, named after Abu Ali ibn Sino (Avicenna)
     - In a UNESCO World Heritage city
+  fee: "₹3.3 L"
+  fee_note: tuition a year (US$3,200–3,500)
+  page: mbbs-in-uzbekistan-bukhara-state-medical-institute.html
   image: assets/images/universities/bukhara-smi/card.webp
   aka: BSMI, Avicenna, Ibn Sina
 
@@ -137,6 +147,9 @@
   facts:
     - Founded in 1955; university status since 2025
     - Most departments sit inside its own campus clinic
+  fee: "₹3.3 L"
+  fee_note: tuition a year (US$3,500); year 1 costs more
+  page: mbbs-in-uzbekistan-andijan-state-medical-university.html
   image: assets/images/universities/andijan-smu/card.webp
   aka: ASMU, Andijan
 
@@ -147,6 +160,9 @@
   facts:
     - Set up in 2020 from the Fergana branch of Tashkent Medical Academy
     - A focus on public health and disease prevention
+  fee: "₹3.3 L"
+  fee_note: tuition a year (US$3,500, the same every year)
+  page: mbbs-in-uzbekistan-fergana-medical-institute-of-public-health.html
   image: assets/images/universities/fergana-mi/card.webp
   aka: FMIPH, Fergana
 
@@ -157,6 +173,9 @@
   facts:
     - A private university, founded in 2022
     - Its own university clinic in Tashkent
+  fee: "₹3.3 L"
+  fee_note: tuition a year (about US$3,500)
+  page: mbbs-in-uzbekistan-alfraganus-university.html
   image: assets/images/universities/alfraganus/card.webp
   aka: Alfraganus
 
