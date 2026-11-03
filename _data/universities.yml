@@ -686,3 +686,163 @@
     - A 500-bed hospital with heart surgery and a cancer centre
   image: assets/images/universities/khwaja-yunus-ali/card.webp
   aka: KYAMC, Sirajganj
+
+# ---------------- CARIBBEAN (USMLE-focused; a reference list, NOT partners — every school has its own page) ----------------
+# Only schools whose accreditor is WFME-recognised (CAAM-HP, ACCM or Grenada's GMDC), checked Nov 2026.
+# Fees = average MD year (official tuition + compulsory school fees ÷ 4; Texila per semester × 2, Saint James ÷ 5).
+# Ordered from the lowest full-course cost to the highest. US$1 = ₹95 (26 Oct 2026).
+- name: Texila American University
+  country: caribbean
+  city: "Georgetown, Guyana"
+  badge: "Lower fees · ACCM & CAAM-HP"
+  facts:
+    - "94% USMLE Step 1 pass rate"
+    - "Tuition about ₹0.9–1.2 Cr (US$99,000–126,000)"
+  fee: "₹17 L"
+  fee_note: "a year, averaged (US$9,000 a semester, two a year)"
+  page: mbbs-in-caribbean-texila-american-university.html
+  image: assets/images/universities/texila/card.webp
+  aka: "Texila, Guyana, USMLE, Caribbean"
+
+- name: Avalon University School of Medicine
+  country: caribbean
+  city: "Willemstad, Curaçao"
+  badge: "Lower fees · ACCM & CAAM-HP"
+  facts:
+    - "92% first-time residency match"
+    - "MD tuition & fees about ₹1.4 Cr (US$144,945)"
+  fee: "₹34 L"
+  fee_note: "a year, averaged over the MD"
+  page: mbbs-in-caribbean-avalon-university-school-of-medicine.html
+  image: assets/images/universities/avalon/card.webp
+  aka: "Avalon, Curaçao, USMLE, Caribbean"
+
+- name: Saint James School of Medicine
+  country: caribbean
+  city: "Arnos Vale, St Vincent, St Vincent & the Grenadines"
+  badge: "Lower fees · ACCM to 2028"
+  facts:
+    - "~35% first-time Step 1 pass rate, per the FTC"
+    - "MD tuition & fees about ₹1.5 Cr (US$153,600)"
+  fee: "₹29 L"
+  fee_note: "a year, averaged over the MD"
+  page: mbbs-in-caribbean-saint-james-school-of-medicine.html
+  image: assets/images/universities/saint-james/card.webp
+  aka: "Saint James, St Vincent & the Grenadines, USMLE, Caribbean"
+
+- name: Trinity School of Medicine
+  country: caribbean
+  city: "St Vincent, St Vincent & the Grenadines"
+  badge: "Mid-range fees · CAAM-HP"
+  facts:
+    - "96% residency placement"
+    - "MD tuition & fees about ₹1.9 Cr (US$195,950)"
+  fee: "₹47 L"
+  fee_note: "a year, averaged over the MD"
+  page: mbbs-in-caribbean-trinity-school-of-medicine.html
+  image: assets/images/universities/trinity/card.webp
+  aka: "Trinity, St Vincent & the Grenadines, USMLE, Caribbean"
+
+- name: Medical University of the Americas
+  country: caribbean
+  city: "Nevis, St Kitts & Nevis"
+  badge: "Mid-range fees · ACCM to 2032"
+  facts:
+    - "85% USMLE Step 1, first-time pass"
+    - "MD tuition & fees about ₹1.9 Cr (US$200,250)"
+  fee: "₹48 L"
+  fee_note: "a year, averaged over the MD"
+  page: mbbs-in-caribbean-medical-university-of-the-americas.html
+  image: assets/images/universities/mua/card.webp
+  aka: "MUA, St Kitts & Nevis, USMLE, Caribbean"
+
+- name: University of Medicine and Health Sciences
+  country: caribbean
+  city: "Basseterre, St Kitts, St Kitts & Nevis"
+  badge: "Mid-range fees · ACCM to 2031"
+  facts:
+    - "87% USMLE Step 1 pass rate"
+    - "MD tuition & fees about ₹2 Cr (US$207,204)"
+  fee: "₹49 L"
+  fee_note: "a year, averaged over the MD"
+  page: mbbs-in-caribbean-university-of-medicine-and-health-sciences.html
+  image: assets/images/universities/umhs/card.webp
+  aka: "UMHS, St Kitts & Nevis, USMLE, Caribbean"
+
+- name: Xavier University School of Medicine
+  country: caribbean
+  city: "Oranjestad, Aruba"
+  badge: "Mid-range fees · ACCM accredited"
+  facts:
+    - "95% USMLE Step 1, first-time pass"
+    - "MD tuition & fees about ₹2 Cr (US$209,450)"
+  fee: "₹50 L"
+  fee_note: "a year, averaged over the MD"
+  page: mbbs-in-caribbean-xavier-university-school-of-medicine.html
+  image: assets/images/universities/xavier/card.webp
+  aka: "Xavier, Aruba, USMLE, Caribbean"
+
+- name: St Matthew's University
+  country: caribbean
+  city: "Grand Cayman, Cayman Islands"
+  badge: "Higher fees · ACCM to 2031"
+  facts:
+    - "90% USMLE Step 1, first-time pass"
+    - "MD tuition & fees about ₹2.7 Cr (US$279,860)"
+  fee: "₹66 L"
+  fee_note: "a year, averaged over the MD"
+  page: mbbs-in-caribbean-st-matthews-university.html
+  image: assets/images/universities/st-matthews/card.webp
+  aka: "St Matthew's, Cayman Islands, USMLE, Caribbean"
+
+- name: American University of Antigua
+  country: caribbean
+  city: "St John's, Antigua, Antigua & Barbuda"
+  badge: "Higher fees · CAAM-HP · Manipal group"
+  facts:
+    - "91.3% USMLE Step 1, first-time pass"
+    - "MD tuition & fees about ₹2.8 Cr (US$295,000)"
+  fee: "₹70 L"
+  fee_note: "a year, averaged over the MD"
+  page: mbbs-in-caribbean-american-university-of-antigua.html
+  image: assets/images/universities/aua/card.webp
+  aka: "AUA, Antigua & Barbuda, USMLE, Caribbean"
+
+- name: American University of the Caribbean
+  country: caribbean
+  city: "Cupecoy, Sint Maarten"
+  badge: "Higher fees · ACCM since 1995"
+  facts:
+    - "79% USMLE Step 1, first-time pass"
+    - "MD tuition & fees about ₹3.1 Cr (US$322,912)"
+  fee: "₹77 L"
+  fee_note: "a year, averaged over the MD"
+  page: mbbs-in-caribbean-american-university-of-the-caribbean.html
+  image: assets/images/universities/auc/card.webp
+  aka: "AUC, Sint Maarten, USMLE, Caribbean"
+
+- name: Ross University School of Medicine
+  country: caribbean
+  city: "St Michael, Barbados"
+  badge: "Higher fees · since 1978"
+  facts:
+    - "82% USMLE Step 1, first-time pass"
+    - "MD tuition & fees about ₹3.3 Cr (US$345,643)"
+  fee: "₹82 L"
+  fee_note: "a year, averaged over the MD"
+  page: mbbs-in-caribbean-ross-university-school-of-medicine.html
+  image: assets/images/universities/ross/card.webp
+  aka: "Ross, Barbados, USMLE, Caribbean"
+
+- name: St George's University
+  country: caribbean
+  city: "True Blue, Grenada"
+  badge: "Higher fees · since 1976"
+  facts:
+    - "83% USMLE Step 1, first-time pass"
+    - "MD tuition & fees about ₹3.7 Cr (US$389,987)"
+  fee: "₹93 L"
+  fee_note: "a year, averaged over the MD"
+  page: mbbs-in-caribbean-st-georges-university.html
+  image: assets/images/universities/sgu/card.webp
+  aka: "SGU, Grenada, USMLE, Caribbean"

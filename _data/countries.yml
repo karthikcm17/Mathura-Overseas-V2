@@ -264,15 +264,45 @@
     - The highest FMGE pass rate of the major destinations in 2023 (NBEMS)
     - A direct flight from Chennai in about 2 hours 40 minutes
 
+# Mauritius: values from mbbs-in-mauritius.html (Nov 2026). Not in the MBBS Planner yet, so planner: false.
+# Fare = cheapest NON-STOP one-way (Air Mauritius, Skyscanner, 3 Nov 2026); one-stop fares start lower (~₹18,300).
+- slug: mauritius
+  name: Mauritius
+  page: mbbs-in-mauritius.html
+  planner: false
+  year_cost: "₹12.3 L"
+  year_inr: 1225000
+  duration: "6 yrs incl. internship"
+  airport: MRU
+  city: Mauritius
+  hours: "5h 50m"
+  hours_unit: ""
+  hours_num: 5.8
+  stops: "non-stop"
+  fare: "₹34,779"
+  fare_as_of: "Nov 2026"
+  time: "1h 30m behind"
+  money: "1 Mauritian rupee ≈ ₹2.03"
+  money_as_of: "Nov 2026"
+  language: "English, French & Creole; classes in English"
+  climate: "Tropical; 24–30°C all year"
+  why:
+    - FMGE pass rates well above the national average (NBEMS)
+    - A non-stop flight from Chennai in under six hours
+    - Most families share Indian roots; Diwali is a public holiday
+
 # The Caribbean is a REGION page for USMLE aspirants. No single airport or fare: routes take 2–3 stops,
-# often through the USA. Its schools are a reference list on the page, NOT in _data/universities.yml.
+# often through the USA. Each of its schools has its own page and an entry in _data/universities.yml.
+# year_cost = a typical MD year: ₹48 L median tuition & school fees (12 schools, official 2026 fee pages)
+# + ₹11 L living + ₹2 L insurance and visas = ₹61 L (checked 3 Nov 2026).
 - slug: caribbean
   name: Caribbean
+  in_name: the Caribbean
   page: mbbs-in-caribbean.html
   planner: false
-  year_cost: "₹35 L"
-  year_inr: 3500000
-  duration: "5.5–6 yrs incl. pre-med"
+  year_cost: "₹61 L"
+  year_inr: 6100000
+  duration: "4 yrs MD; 5.5–6 incl. pre-med"
   airport: CARIB
   city: Island campuses
   hours: "2–3"
@@ -287,6 +317,6 @@
   language: "English on most islands"
   climate: "Tropical; storms Jun–Nov"
   why:
-    - A US-style MD, taught around the USMLE
+    - US-style MD, taught around the USMLE
     - Clinical rotations often in US hospitals
     - Accreditors the US accepts, such as CAAM-HP and ACCM

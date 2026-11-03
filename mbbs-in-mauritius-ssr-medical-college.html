@@ -1,0 +1,72 @@
+---
+# ============ UNIVERSITY PAGE: SSR Medical College (Sir Seewoosagur Ramgoolam Medical College) ============
+# The design lives in _layouts/university.html; the photo comes from _data/universities.yml ("image:").
+# This file holds ONLY this college's facts. Keep two spaces before each line inside a list.
+# Never use these words as a field name: path, url, layout, permalink, date, content (Jekyll reserves them).
+# Sources (checked Nov 2026):
+#   History, affiliation, hospitals, course structure, internship letters, 60% eligibility: SSR's own site
+#     (ssrmedicalcollege.com, "about" and "course" pages): IOMIT trust 1996, inaugurated 18 Sep 1999, University of Mauritius
+#     degree, Victoria Hospital (800 beds) + JLN Hospital (600 beds), 10 semesters + 1-year rotating internship.
+#   Fees: US$8,000 a year tuition x 5 years; one-time registration US$5,000 and hostel registration US$2,000; hostel US$100/month
+#     twin (US$200 single); mess ~US$170/month — future-mbbs.com guide (31 Jul 2026), citing SSR's fee page. Tuition also
+#     US$8,000 on Moksh and Education Vibes. Insurance ~US$200/year (Education Vibes). Exam fee US$100 per subject (SSR course page).
+#   FMGE (NBEMS, via future-mbbs.com): 58.74% (2023), 66.03% (2024), 40.63% (Jun 2025), 56.16% (Dec 2025).
+#   US$1 = ₹95 (26 Oct 2026).
+#   Course total = 40,000 tuition + 7,000 one-time + 6 years x (1,200 hostel + 2,040 mess + 200 insurance) = US$67,640 ≈ ₹64 L.
+layout: university
+active: countries
+title: "MBBS at SSR Medical College Mauritius 2026 | Fees & Admission | Mathura Overseas"
+description: "MBBS at SSR Medical College, Mauritius: 2026–27 fees (US$8,000 a year), University of Mauritius degree, internship in government hospitals and FMGE results."
+country: mauritius                  # must match a slug in _data/countries.yml
+uni_name: "SSR Medical College"     # must match the name in _data/universities.yml
+short_name: "SSR"
+city: "Belle Rive"
+founded: "1999"
+badge: "Since 1999 · University of Mauritius"
+lead: "Mauritius's first medical college, named after Sir Seewoosagur Ramgoolam and inaugurated in 1999. Its MBBS degree is awarded by the University of Mauritius, and students train in Victoria and Jawaharlal Nehru hospitals."
+chips:
+  - "University of Mauritius degree"
+  - "Internship in government hospitals"
+  - "Intakes in August and February"
+# ---- fees: the hero card and the fee section. Update these when the fees change. ----
+fee_from: "₹7.6 L"
+fee_from_note: "US$8,000 a year, the same for all five years"
+course_total: "₹64 L"
+fees:
+  - { icon: cap, color: navy, name: "Tuition", note: "US$8,000 a year, years 1–5. No tuition in the internship year", value: "₹7.6 L", per: "/ year" }
+  - { icon: wallet, color: purple, name: "Tuition, all five years", note: "US$40,000 in total", value: "₹38 L", per: "5 years" }
+  - { icon: file, color: orange, name: "Registration fee", note: "US$5,000, paid once when you join", value: "₹4.8 L", per: "one-time" }
+  - { icon: home, color: teal, name: "Hostel registration", note: "US$2,000, paid once", value: "₹1.9 L", per: "one-time" }
+  - { icon: building, color: blue, name: "Hostel room", note: "Twin-sharing US$100 a month (single room US$200), paid yearly in advance", value: "₹1.1 L", per: "/ year" }
+  - { icon: utensils, color: pink, name: "Mess", note: "About US$170 a month", value: "₹1.9 L", per: "/ year" }
+  - { icon: shield-check, color: teal, name: "Health insurance", note: "About US$200, every year", value: "₹19k", per: "/ year" }
+  - { icon: check-square, color: navy, name: "University exam fee", note: "US$100 per subject, regular or resit", value: "₹9.5k", per: "/ subject" }
+fee_source: "Tuition, registration, hostel and mess: SSR Medical College's published fees, as compiled in July 2026; exam fee from its course page. Insurance is a typical figure. The course total covers five years of tuition, one-time fees and six years of hostel, mess and insurance; personal spending, flights and the visa are extra. US$1 = ₹95 (26 Oct 2026). Your counsellor confirms the exact figures for your intake."
+stats:
+  - { num: "1999", label: "Inaugurated, the island's first", icon: building, color: navy }
+  - { num: "56%", label: "FMGE pass rate, Dec 2025", icon: check-square, color: teal }
+  - { num: "US$8,000", label: "Tuition a year", icon: wallet, color: purple }
+  - { num: "1,400 beds", label: "Victoria and JLN hospitals", icon: heart, color: pink }
+why_title: "Three reasons families choose SSR"
+why:
+  - { icon: shield-check, color: teal, title: "An internship that counts", text: "SSR says the Ministry of Health agreed in 2022 to place Indian interns in government hospitals, and the Medical Council Act was amended in 2023 to allow it — the condition NMC cares about most." }
+  - { icon: check-square, color: navy, title: "A strong FMGE record", text: "Its graduates passed FMGE at 56.16% in December 2025 and 66.03% in 2024, more than twice the national rate each time (NBEMS figures)." }
+  - { icon: building, color: purple, title: "Big government hospitals", text: "Clinical training in Victoria Hospital (800 beds) and Jawaharlal Nehru Hospital (600 beds), two of the island's main hospitals." }
+fit:
+  - "You want the college with the longest track record and FMGE results in Mauritius."
+  - "You want a University of Mauritius degree and an internship arranged in government hospitals."
+  - "Your Class 12 science marks are 60% or more."
+know:
+  - "SSR asks for 60% in Class 12 science, above NMC's 50% minimum."
+  - "One-time charges are high: US$5,000 registration plus US$2,000 hostel registration in the first year. Plan for about ₹17.5 L in year 1."
+  - "Hostel rooms are allotted first come, first served, and cover most but not all students. Apply for a room at admission."
+faqs:
+  - q: "What are the fees at SSR Medical College?"
+    a: "Tuition is US$8,000 a year (about ₹7.6 lakh) for five years, about ₹38 lakh in all. Add a one-time US$5,000 registration fee, US$2,000 hostel registration, and about ₹3 lakh a year for hostel, mess and insurance. Plan for roughly ₹64 lakh for the full course, all-in (indicative, Nov 2026)."
+  - q: "Does SSR Medical College offer an internship to Indian students?"
+    a: "SSR says the Mauritian Ministry of Health and Wellness agreed in May 2022 to arrange internships for Indian students in government hospitals, and that the Medical Council of Mauritius amended its Act in 2023 to allow it. We confirm the arrangement in writing for every student."
+  - q: "Which university awards the SSR degree?"
+    a: "The University of Mauritius. The college is approved by the Higher Education Commission of Mauritius."
+  - q: "Do I need NEET for SSR Medical College?"
+    a: "Yes. NMC requires every Indian student who studies medicine abroad to qualify NEET-UG. SSR also asks for 60% in Physics, Chemistry and Biology in Class 12."
+---
