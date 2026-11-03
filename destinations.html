@@ -4,6 +4,8 @@
 #   Step 1  every country as a photo tile          → built from _data/countries.yml
 #   Step 2  tap a tile: that country's universities → built from _data/universities.yml
 # Nothing about a country or a university is typed on this page. To add or change one, edit those two files.
+# The HERO changes with the step: on arrival a plane flies from Chennai to each country in turn; when a
+# country is opened, the hero becomes that country's (its flight, a free-shortlist chat button and its guide link).
 # Each country has its own address (destinations.html#russia), so the phone's Back button returns to the
 # country tiles, and a link can open one country straight away.
 active: countries   # highlighted menu item: home, countries, planner, updates, guide, about, privacy
@@ -52,22 +54,75 @@ active: countries   # highlighted menu item: home, countries, planner, updates, 
 
 <main id="main">
 
-  <!-- ============ 1. HERO — short on purpose: a heading and one search box. Typing in it searches every
-       university in every country (name, city, country or short form such as KSMA). ============ -->
-  <section class="dx-hero">
+  <!-- ============ 1. HERO — it has two faces:
+       • On arrival: the heading, and an animated route map. A plane flies from Chennai to one country at a time;
+         the names, airport codes and flight times are read from _data/countries.yml (no typing here).
+       • When a country is opened (step 2): it turns into THAT country's hero — its own flight from Chennai,
+         its cost and course length, a "free shortlist" chat button and the link to the full country guide.
+       Plain navy on both faces (no photo), so it loads instantly. ============ -->
+  <section class="dx-hero" id="dxHero">
     <svg class="dx-hero__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
     <div class="container dx-hero__inner">
       <nav class="dx-crumbs" aria-label="Breadcrumb">
         <a href="index.html">Home</a><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
         <span aria-current="page">Countries</span>
       </nav>
-      <span class="pill"><span class="pill__dot"></span>Countries &amp; universities &middot; 2026&ndash;27 intake</span>
-      <h1>Choose your country, <em>then your university</em></h1>
-      <p class="dx-hero__lead">Every university we recommend is checked against the NMC rules, and every fee comes to you in writing.</p>
-      <div class="dx-search" role="search">
-        <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
-        <input type="search" id="dxQ" placeholder="Search a university, city or country" aria-label="Search universities by name, city or country" autocomplete="off" enterkeyhint="search">
-        <button type="button" class="dx-search__clear" id="dxClearQ" aria-label="Clear search" hidden><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
+
+      <!-- Face 1: on arrival -->
+      <div class="dx-hero__grid dx-hero__home" id="dxHeroHome">
+        <div class="dx-hero__copy">
+          <span class="pill"><span class="pill__dot"></span>Countries &amp; universities &middot; 2026&ndash;27 intake</span>
+          <h1>Choose your country, <em>then your university</em></h1>
+          <p class="dx-hero__lead">Every university we recommend is checked against the NMC rules, and every fee comes to you in writing.</p>
+        </div>
+        <!-- Route map: the script draws one arc per country and flies the plane along them in turn -->
+        <div class="dx-tour" aria-hidden="true">
+          <svg class="dx-tour__map" id="dxTourMap" viewBox="0 0 520 210">
+            <g id="dxTourArcs"></g>
+            <path class="dx-tour__live" id="dxTourLive" pathLength="1" d=""/>
+            <circle class="dx-tour__origin-ring" cx="40" cy="178" r="13"/>
+            <circle class="dx-tour__origin" cx="40" cy="178" r="7"/>
+            <g class="dx-plane" id="dxTourPlane" opacity="0"><g transform="rotate(90)"><use href="#i-airplane" x="-12" y="-12" width="24" height="24"></use></g></g>
+          </svg>
+          <div class="dx-tour__ticket">
+            <span class="dx-tour__from"><b>MAA</b> Chennai</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+            <span class="dx-tour__to" id="dxTourTo"><b>&nbsp;</b>&nbsp;</span>
+            <span class="dx-tour__hrs" id="dxTourHrs">&nbsp;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Face 2: one country (filled in by the script from _data/countries.yml) -->
+      <div class="dx-hero__grid dx-hero__country" id="dxHeroCountry" hidden>
+        <div class="dx-hero__copy">
+          <span class="pill"><span class="pill__dot"></span>Step 2 &middot; choose a university</span>
+          <p class="dx-hero__title">MBBS in <span data-h="in_name"></span></p>
+          <p class="dx-hero__lead" data-h="why0"></p>
+          <ul class="dx-hero__facts">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg><span><b data-h="year_cost"></b> a year, all-in</span></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg><span data-h="duration"></span></li>
+          </ul>
+        </div>
+        <!-- This country's flight: the line draws and the plane flies each time it opens -->
+        <div class="dx-fly" id="dxFly">
+          <svg class="dx-fly__map" viewBox="0 0 400 110" aria-hidden="true">
+            <path class="dx-fly__base" d="M20,92 C110,0 290,0 380,80"/>
+            <path class="dx-fly__draw" id="dxFlyPath" pathLength="1" d="M20,92 C110,0 290,0 380,80"/>
+            <circle class="dx-fly__dot" cx="20" cy="92" r="6"/>
+            <circle class="dx-fly__dot dx-fly__dot--end" cx="380" cy="80" r="7"/>
+            <g class="dx-plane" id="dxFlyPlane" opacity="0"><g transform="rotate(90)"><use href="#i-airplane" x="-12" y="-12" width="24" height="24"></use></g></g>
+          </svg>
+          <div class="dx-fly__ends"><span><b>MAA</b> Chennai</span><span><b data-h="airport"></b> <span data-h="city"></span></span></div>
+          <p class="dx-fly__time"><span class="dx-fly__num" id="dxFlyNum"></span> <span id="dxFlyUnit">hrs</span> <span class="dx-fly__stop" data-h="stops"></span></p>
+          <p class="dx-fly__fare"><span id="dxFareLabel">Lowest fare seen, one-way</span>: <b data-h="fare"></b> <span id="dxFareDate"></span></p>
+        </div>
+        <!-- Two actions. The main (white) one starts a chat — that is a real enquiry; the outline one opens the country guide.
+             The chat opens with a ready-made message, e.g. "please send me a free shortlist of universities in Vietnam". -->
+        <div class="btn-row dx-hero__acts">
+          <a class="btn btn--ondark dx-hero__chat" id="dxAsk" href="https://wa.me/919360859919" target="_blank" rel="noopener"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get my free shortlist<span class="sr-only"> (opens a WhatsApp chat)</span></a>
+          <a class="btn btn--outline-light" id="dxGuide" href="#"><span>Explore <span data-h="name"></span></span> <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        </div>
       </div>
     </div>
   </section>
@@ -137,29 +192,21 @@ active: countries   # highlighted menu item: home, countries, planner, updates, 
     </section>
 
     <!-- ============ STEP 2 — one block per country with universities. Only the chosen one shows.
-         Each block: a photo header, the universities as short rows, and a side panel
-         (flight from Chennai, why students pick it, the country guide). ============ -->
+         Each block: the universities as short rows, and a side panel with why students pick it.
+         The country's flight, chat button and guide link sit in the hero at the top (see 1. HERO). ============ -->
     <div class="dx-step dx-step--unis" id="dxUnis">
       <div class="container">
-        <p class="dx-status" id="dxStatus" aria-live="polite" hidden></p>
 {%- for c in site.data.countries %}
 {%- assign list = site.data.universities | where: "country", c.slug %}
 {%- if list.size > 0 %}
 {%- assign in_name = c.in_name | default: c.name %}
 
         <section class="dx-country" id="{{ c.slug }}" data-country="{{ c.slug }}" aria-labelledby="t-{{ c.slug }}">
+          <!-- The animated hero shows this country's name, flight and guide link. This heading is for Google,
+               screen readers and the rare visitor without JavaScript (then it shows, with a link to the guide). -->
           <header class="dx-country__head">
-            <div class="img-slot dx-country__img" data-spec="destinations/{{ c.slug }}.jpg · 1200×675 px"><img src="assets/images/destinations/{{ c.slug }}.jpg" width="1200" height="675" alt="{{ c.city | escape }}, {{ c.name | escape }}" loading="lazy"></div>
-            <div class="dx-country__intro">
-              <h2 id="t-{{ c.slug }}">MBBS in {{ in_name | escape }}</h2>
-              <p>{{ c.why | first | escape }}</p>
-              <ul class="dx-facts">
-                <li><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg><span><b>{{ c.year_cost }}</b> a year, all-in</span></li>
-                <li><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg>{{ c.duration | escape }}</li>
-              </ul>
-            </div>
-            <!-- Shown only while searching: a slim heading with a way into the full country view -->
-            <a class="dx-country__open" href="#{{ c.slug }}" data-open="{{ c.slug }}">{{ c.name | escape }} <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+            <h2 id="t-{{ c.slug }}">MBBS in {{ in_name | escape }}</h2>
+            <a class="dx-country__guide" href="{{ c.page }}">Country guide <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
           </header>
 
           <div class="dx-country__grid">
@@ -169,9 +216,8 @@ active: countries   # highlighted menu item: home, countries, planner, updates, 
                    or, if it has none yet, the country guide. "Fees" sends the fee-sheet request on WhatsApp.
                    PHOTO: the university's own card.webp from universities.yml (1200 x 750 px), shown as a small square. -->
 {%- for u in list %}
-{%- capture hay %}{{ u.name }} {{ u.aka }} {{ u.city }} {{ c.name }} {{ u.badge }}{% endcapture %}
 {%- capture link %}{% if u.page and u.page != "" %}{{ u.page }}{% else %}{{ c.page }}#universities{% endif %}{% endcapture %}
-              <article class="dx-uni" data-search="{{ hay | downcase | escape }}">
+              <article class="dx-uni">
                 <div class="img-slot dx-uni__img" data-spec="{{ u.image | remove: 'assets/images/universities/' }}"><img src="{{ u.image }}" width="1200" height="750" alt="" loading="lazy"></div>
                 <div class="dx-uni__text">
                   <span class="dx-uni__badge">{{ u.badge | escape }}</span>
@@ -197,21 +243,6 @@ active: countries   # highlighted menu item: home, countries, planner, updates, 
             </div>
 
             <aside class="dx-side" aria-label="About {{ c.name | escape }}">
-              <!-- Flight from Chennai: the line draws and the plane flies each time this country opens -->
-              <div class="dx-fly">
-                <svg class="dx-fly__map" viewBox="0 0 400 110" aria-hidden="true">
-                  <path class="dx-fly__base" d="M20,92 C110,0 290,0 380,80"/>
-                  <path class="dx-fly__draw" pathLength="1" d="M20,92 C110,0 290,0 380,80"/>
-                  <circle class="dx-fly__dot" cx="20" cy="92" r="6"/>
-                  <circle class="dx-fly__dot dx-fly__dot--end" cx="380" cy="80" r="7"/>
-                  <g class="dx-fly__plane" opacity="0"><g transform="rotate(90)"><use href="#i-airplane" x="-13" y="-13" width="26" height="26"></use></g>
-                    <animateMotion dur="1.4s" begin="indefinite" fill="freeze" rotate="auto" calcMode="spline" keyTimes="0;1" keySplines=".4 0 .2 1" path="M20,92 C110,0 290,0 380,80"/></g>
-                </svg>
-                <div class="dx-fly__ends"><span><b>MAA</b> Chennai</span><span><b>{{ c.airport }}</b> {{ c.city | escape }}</span></div>
-                <p class="dx-fly__time"><span class="dx-fly__num" data-hours="{{ c.hours }}">{{ c.hours }}</span> {% if c.hours_unit != nil %}{{ c.hours_unit }}{% else %}hrs{% endif %} <span class="dx-fly__stop">{{ c.stops | escape }}</span></p>
-                <p class="dx-fly__fare">{% if c.fare_label %}{{ c.fare_label }}{% else %}Lowest fare seen, one-way{% endif %}: <b>{{ c.fare }}</b>{% if c.fare_as_of != "" %} &middot; {{ c.fare_as_of }}{% endif %}</p>
-              </div>
-
               <div class="dx-why">
                 <h3>Why students pick {{ in_name | escape }}</h3>
                 <ul>
@@ -220,7 +251,6 @@ active: countries   # highlighted menu item: home, countries, planner, updates, 
 {%- endfor %}
                 </ul>
                 <div class="dx-why__acts">
-                  <a href="{{ c.page }}" class="btn btn--primary btn--block">The full {{ c.name | escape }} guide <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
 {%- if c.planner != false %}
                   <a class="dx-why__cmp" href="mbbs-abroad-planner.html?cmp={% if c.planner %}{{ c.planner }}{% else %}{{ c.slug }}{% endif %}#compare"><svg class="icon" aria-hidden="true"><use href="#i-columns"></use></svg>Compare it with other countries</a>
 {%- endif %}
@@ -232,16 +262,6 @@ active: countries   # highlighted menu item: home, countries, planner, updates, 
 {%- endif %}
 {%- endfor %}
 
-        <!-- Shown only when a search matches nothing -->
-        <div class="dx-empty" id="dxEmpty" hidden>
-          <span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg></span>
-          <h2>No university here matches that yet</h2>
-          <p>It may be one we haven&rsquo;t listed, or a different spelling. Send us the name and we will check it against the NMC conditions &mdash; free, and in writing.</p>
-          <div class="btn-row">
-            <a class="btn btn--primary btn--sm" id="dxAskEmpty" href="https://wa.me/919360859919"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Ask us to check it</a>
-            <button type="button" class="btn btn--outline btn--sm" data-dx-reset>Back to countries</button>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -290,6 +310,9 @@ active: countries   # highlighted menu item: home, countries, planner, updates, 
   </section>
 
 </main>
+
+<!-- Country data for the hero, written from _data/countries.yml when the site is built -->
+<script type="application/json" id="countryData">{{ site.data.countries | jsonify }}</script>
 
 {% include footer.html %}
 {% include bottom-nav.html %}

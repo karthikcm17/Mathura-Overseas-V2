@@ -142,12 +142,13 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
   </section>
   <div class="tool-scrim" id="toolScrim"></div>
 
-  <!-- ============ HIGHLIGHT STRIP — the proof points (numbers live here only) ============ -->
+  <!-- ============ HIGHLIGHT STRIP — the proof points (numbers live here only).
+       Keep each big line SHORT (about 10 letters): on phones two items share a row, and the big line does not wrap. ============ -->
   <div class="proof">
     <div class="container">
       <div class="card proof__card">
         <div class="proof__item"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span><div><div class="proof__num proof__num--text">NMC &middot; WHO</div><div class="proof__label">Recognised universities</div></div></div>
-        <div class="proof__item"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg></span><div><div class="proof__num proof__num--text">Start to finish</div><div class="proof__label">Support until you graduate</div></div></div>
+        <div class="proof__item"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg></span><div><div class="proof__num proof__num--text">A to Z</div><div class="proof__label">Till you graduate</div></div></div>
         <div class="proof__item"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span><div><div class="proof__num" data-count="500" data-suffix="+">500+</div><div class="proof__label">Students guided</div></div></div>
         <div class="proof__item"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div><div class="proof__num" data-count="10" data-suffix="+">10+</div><div class="proof__label">Years of guidance</div></div></div>
       </div>
@@ -255,8 +256,14 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
             <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Public-health focus</li>
             <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>{{ sc.duration }}</li>
           </ul>
+          <!-- First box: the university's own tuition if universities.yml has a "fee:" line for it;
+               if not (no confirmed figure yet), it says the fee is shared on request instead of staying empty. -->
           <div class="hm-spot__stats">
+{%- if spot.fee and spot.fee != "" %}
             <div><b>{{ spot.fee }}</b><span>{{ spot.fee_note }}</span></div>
+{%- else %}
+            <div><b>On request</b><span>Year-by-year tuition, sent free</span></div>
+{%- endif %}
             <div><b>{{ sc.year_cost }}</b><span>A year in {{ sc.name }}, all-in</span></div>
             <div><b>{{ sc.hours }} {{ sc.hours_unit | default: "hrs" }}</b><span>From Chennai, {{ sc.stops }}</span></div>
           </div>
