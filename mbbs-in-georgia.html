@@ -226,16 +226,16 @@ active: countries
   </section>
 
   <!-- ============ 7. UNIVERSITIES
-       7a. SPOTLIGHT (.uni-spot) — the university this page leads with. When its own fee page is built
-           (e.g. mbbs-in-georgia-tma.html):
+       7a. SPOTLIGHT (.uni-spot) — the university this page leads with. Every Georgian university below now has its own fee page
+           (mbbs-in-georgia-{university}.html), so each card ends in a "Fees & details" link. Pattern, for a new one:
              1. replace the WhatsApp footer with:  <span class="uni-card__go">View the full fee structure <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
-             2. add before </article>:            <a class="uni-card__cover" href="mbbs-in-georgia-tma.html" aria-label="View the full fee structure for Tbilisi Medical Academy"></a>
+             2. add before </article>:            <a class="uni-card__cover" href="mbbs-in-georgia-{university}.html" aria-label="Fees and details for {University}"></a>
            The same two steps turn any ordinary .uni-card below into a link to its own page.
        IMAGE 2: assets/images/universities/tma/spotlight.webp — 1400 x 1000 px, Tbilisi Medical Academy's main building on a bright day.
        IMAGES 3-6: assets/images/universities/{name}/card.webp — 1200 x 750 px (16:10), the main campus building in daylight. ============ -->
   <section class="section section--wash" id="universities">
     <div class="container">
-      <div class="section-head reveal"><span class="eyebrow">Universities</span><h2>Where we place students in Georgia</h2><p>Private medical universities in Tbilisi that admit international students in 2026 &mdash; each checked against the NMC conditions. Ask for any university&rsquo;s year-by-year fee sheet.</p></div>
+      <div class="section-head reveal"><span class="eyebrow">Universities</span><h2>Where we place students in Georgia</h2><p>Private medical universities in Tbilisi that admit international students in 2026 &mdash; each checked against the NMC conditions. Tap any university for its fees and details.</p></div>
 
       <article class="card uni-spot reveal">
         <div class="img-slot" data-spec="universities/tma/spotlight.webp · 1400×1000 px"><img src="assets/images/universities/tma/spotlight.webp" width="1400" height="1000" alt="Main building of Petre Shotadze Tbilisi Medical Academy" loading="lazy"></div>
@@ -255,9 +255,10 @@ active: countries
             <div class="uni-spot__stat"><b>6 years</b><span>MD in English</span></div>
           </div>
           <div class="uni-card__foot">
-            <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the full fee sheet for Petre Shotadze Tbilisi Medical Academy (TMA)."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the full fee sheet on WhatsApp</a>
+            <span class="uni-card__go">View the full fee structure <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
           </div>
         </div>
+        <a class="uni-card__cover" href="mbbs-in-georgia-tbilisi-medical-academy.html" aria-label="Fees and details for Tbilisi Medical Academy"></a>
       </article>
 
       <div class="snap-row uni-row">
@@ -273,9 +274,10 @@ active: countries
               <li><svg class="icon" aria-hidden="true"><use href="#i-target"></use></svg>A curriculum built around the US licensing exam (USMLE)</li>
             </ul>
             <div class="uni-card__foot">
-              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for David Tvildiani Medical University (DTMU)."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
             </div>
           </div>
+          <a class="uni-card__cover" href="mbbs-in-georgia-david-tvildiani-medical-university.html" aria-label="Fees and details for David Tvildiani Medical University"></a>
         </article>
 
         <article class="card uni-card reveal">
@@ -289,9 +291,10 @@ active: countries
               <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Schools of medicine and dentistry on one campus</li>
             </ul>
             <div class="uni-card__foot">
-              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for New Vision University, Tbilisi."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
             </div>
           </div>
+          <a class="uni-card__cover" href="mbbs-in-georgia-new-vision-university.html" aria-label="Fees and details for New Vision University"></a>
         </article>
 
         <article class="card uni-card reveal">
@@ -305,9 +308,10 @@ active: countries
               <li><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg>Its School of Medicine runs an English-medium MD</li>
             </ul>
             <div class="uni-card__foot">
-              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Georgian American University (GAU)."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
             </div>
           </div>
+          <a class="uni-card__cover" href="mbbs-in-georgia-georgian-american-university.html" aria-label="Fees and details for Georgian American University"></a>
         </article>
 
         <article class="card uni-card reveal">
@@ -321,9 +325,10 @@ active: countries
               <li><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg>An English medical programme in its School of Health Sciences</li>
             </ul>
             <div class="uni-card__foot">
-              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for the University of Georgia, Tbilisi."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
             </div>
           </div>
+          <a class="uni-card__cover" href="mbbs-in-georgia-university-of-georgia.html" aria-label="Fees and details for the University of Georgia"></a>
         </article>
 
         <article class="card uni-card uni-card--ask reveal">

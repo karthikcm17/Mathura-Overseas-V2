@@ -250,7 +250,9 @@
   image: assets/images/universities/rostov-smu/card.webp
   aka: RostSMU, Rostov
 
-# ---------------- GEORGIA ----------------
+# ---------------- GEORGIA (every university has its own page) ----------------
+# Fees = tuition a year, 2026–27, checked Nov 2026 across several published fee tables;
+# TMA and GAU are the universities' own published fees.
 - name: Petre Shotadze Tbilisi Medical Academy (TMA)
   country: georgia
   city: Tbilisi
@@ -259,7 +261,8 @@
     - Founded in 1992 by the paediatric surgeon Petre Shotadze
     - A six-year MD taught in English
   fee: "₹6.7 L"
-  fee_note: tuition a year (US$7,000)
+  fee_note: tuition a year (US$7,000, published by TMA)
+  page: mbbs-in-georgia-tbilisi-medical-academy.html
   image: assets/images/universities/tma/spotlight.webp
   aka: TMA, Shotadze, Tbilisi Medical Academy
 
@@ -270,6 +273,9 @@
   facts:
     - Began as AIETI Medical School; its MD is accredited by NCEQE until 2028
     - A curriculum built around the US licensing exam (USMLE)
+  fee: "₹5.7 L"
+  fee_note: tuition a year (about US$6,000)
+  page: mbbs-in-georgia-david-tvildiani-medical-university.html
   image: assets/images/universities/dtmu/card.webp
   aka: DTMU, AIETI, Tvildiani
 
@@ -279,7 +285,10 @@
   badge: Private
   facts:
     - A non-profit private university, founded in 2013
-    - Schools of medicine and dentistry on one campus
+    - Runs its own university hospital in Tbilisi
+  fee: "₹6.7 L"
+  fee_note: tuition a year (about US$7,000)
+  page: mbbs-in-georgia-new-vision-university.html
   image: assets/images/universities/new-vision/card.webp
   aka: NVU
 
@@ -290,6 +299,9 @@
   facts:
     - A private university, founded in 2005
     - Its School of Medicine runs an English-medium MD
+  fee: "₹6.2 L"
+  fee_note: tuition a year (US$6,480, published by GAU)
+  page: mbbs-in-georgia-georgian-american-university.html
   image: assets/images/universities/gau/card.webp
   aka: GAU
 
@@ -300,6 +312,9 @@
   facts:
     - Founded in 2004; one of Georgia's larger private universities
     - An English medical programme in its School of Health Sciences
+  fee: "₹6.2 L"
+  fee_note: tuition a year (about US$6,500)
+  page: mbbs-in-georgia-university-of-georgia.html
   image: assets/images/universities/ug/card.webp
   aka: UG, UoG
 
