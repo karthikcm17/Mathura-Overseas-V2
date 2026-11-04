@@ -273,37 +273,58 @@ active: countries
   <!-- ============ 7. COLLEGES
        Each college has its own page (mbbs-in-mauritius-{college}.html): the footer says "Fees & details" and the invisible
        .uni-card__cover link makes the whole card clickable.
-       IMAGE 2: assets/images/universities/ssr-mauritius/spotlight.webp — 1400 x 1000 px, SSR Medical College's main building in sunshine.
-       IMAGE 3: assets/images/universities/jss-mauritius/card.webp — 1200 x 750 px (16:10), the Bonne Terre campus in daylight. ============ -->
+       SPOTLIGHT: Anna Medical College (since Nov 2026). When you change the spotlight, also swap the two colleges' "image:"
+       lines in _data/universities.yml (spotlight.webp / card.webp) and move the spotlight to the top of Mauritius there.
+       IMAGE 2: assets/images/universities/anna-mauritius/spotlight.webp — 1400 x 1000 px, Anna Medical College's building in
+                Montagne Blanche in sunshine, green hills behind it.
+       IMAGE 3: assets/images/universities/ssr-mauritius/card.webp — 1200 x 750 px (16:10), SSR Medical College's main building, daylight.
+       IMAGE 4: assets/images/universities/jss-mauritius/card.webp — 1200 x 750 px (16:10), the Bonne Terre campus in daylight. ============ -->
   <section class="section section--wash" id="universities">
     <div class="container">
       <div class="section-head reveal"><span class="eyebrow">Colleges</span><h2>Where we place students in Mauritius</h2><p>Every college here is checked against the NMC conditions, internship first. Each page shows the full fee breakdown.</p></div>
 
       <article class="card uni-spot reveal">
-        <div class="img-slot" data-spec="universities/ssr-mauritius/spotlight.webp · 1400×1000 px"><img src="assets/images/universities/ssr-mauritius/spotlight.webp" width="1400" height="1000" alt="Main building of SSR Medical College in Belle Rive, Mauritius" loading="lazy"></div>
-        <span class="tag tag--abs">Since 1999</span>
+        <div class="img-slot" data-spec="universities/anna-mauritius/spotlight.webp · 1400×1000 px"><img src="assets/images/universities/anna-mauritius/spotlight.webp" width="1400" height="1000" alt="Anna Medical College building in Montagne Blanche, Mauritius" loading="lazy"></div>
+        <span class="tag tag--abs">Since 2012</span>
         <div class="uni-spot__body">
-          <span class="uni-spot__kicker"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Belle Rive &middot; the first medical college in Mauritius</span>
-          <h3>SSR Medical College</h3>
-          <p class="uni-spot__lead">Named after Sir Seewoosagur Ramgoolam, the nation&rsquo;s founding prime minister, and inaugurated in 1999. Its degree is awarded by the University of Mauritius, and clinical training runs in Victoria and Jawaharlal Nehru hospitals.</p>
+          <span class="uni-spot__kicker"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Montagne Blanche &middot; clinical years at Flacq</span>
+          <h3>Anna Medical College</h3>
+          <p class="uni-spot__lead">Teaching MBBS since 2012, with its degree awarded by the University of Technology, Mauritius. Pre-clinical years are on the Montagne Blanche campus, clinical years at Flacq Hospital in the east. Its graduates passed FMGE at 34.48% in December 2025, against 23.94% of all candidates.</p>
           <div class="uni-spot__chips">
-            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>University of Mauritius degree</span>
-            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Internship in govt hospitals</span>
-            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>56% FMGE pass, Dec 2025</span>
+            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>University of Technology, Mauritius degree</span>
+            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>FMGE above the national rate</span>
+            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Internship plan checked in writing</span>
           </div>
           <div class="uni-spot__stats">
-            <div class="uni-spot__stat"><b data-inr="760000">&#8377;7.6 L</b><span>Tuition a year (US$8,000)</span></div>
-            <div class="uni-spot__stat"><b>1999</b><span>Inaugurated</span></div>
-            <div class="uni-spot__stat"><b>5 + 1 years</b><span>MBBS + internship</span></div>
+            <div class="uni-spot__stat"><b data-inr="760000">&#8377;7.6 L</b><span>Tuition a year (about US$8,000)</span></div>
+            <div class="uni-spot__stat"><b>2012</b><span>Teaching MBBS since</span></div>
+            <div class="uni-spot__stat"><b>34%</b><span>FMGE pass rate, Dec 2025</span></div>
           </div>
           <div class="uni-card__foot">
             <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
           </div>
         </div>
-        <a class="uni-card__cover" href="mbbs-in-mauritius-ssr-medical-college.html" aria-label="Fees and details for SSR Medical College"></a>
+        <a class="uni-card__cover" href="mbbs-in-mauritius-anna-medical-college.html" aria-label="Fees and details for Anna Medical College"></a>
       </article>
 
       <div class="snap-row uni-row">
+
+        <article class="card uni-card reveal">
+          <div class="img-slot" data-spec="universities/ssr-mauritius/card.webp · 1200×750 px"><img src="assets/images/universities/ssr-mauritius/card.webp" width="1200" height="750" alt="Main building of SSR Medical College in Belle Rive, Mauritius" loading="lazy"></div>
+          <span class="tag tag--abs">Since 1999</span>
+          <div class="uni-card__body">
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Belle Rive</span>
+            <h3>SSR Medical College</h3>
+            <ul class="uni-card__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>The first medical college in Mauritius; University of Mauritius degree</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Internship arranged in government hospitals; 56% FMGE pass in Dec 2025</li>
+            </ul>
+            <div class="uni-card__foot">
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+            </div>
+          </div>
+          <a class="uni-card__cover" href="mbbs-in-mauritius-ssr-medical-college.html" aria-label="Fees and details for SSR Medical College"></a>
+        </article>
 
         <article class="card uni-card reveal">
           <div class="img-slot" data-spec="universities/jss-mauritius/card.webp · 1200×750 px"><img src="assets/images/universities/jss-mauritius/card.webp" width="1200" height="750" alt="Campus of JSS Academy of Higher Education and Research in Vacoas, Mauritius" loading="lazy"></div>
@@ -320,24 +341,6 @@ active: countries
             </div>
           </div>
           <a class="uni-card__cover" href="mbbs-in-mauritius-jss-academy-of-higher-education-and-research.html" aria-label="Fees and details for JSS Academy of Higher Education and Research, Mauritius"></a>
-        </article>
-
-        <!-- IMAGE 4: assets/images/universities/anna-mauritius/card.webp — 1200 x 750 px (16:10), Anna Medical College's building in Montagne Blanche, daylight. -->
-        <article class="card uni-card reveal">
-          <div class="img-slot" data-spec="universities/anna-mauritius/card.webp · 1200×750 px"><img src="assets/images/universities/anna-mauritius/card.webp" width="1200" height="750" alt="Anna Medical College building in Montagne Blanche, Mauritius" loading="lazy"></div>
-          <span class="tag tag--abs">Since 2012</span>
-          <div class="uni-card__body">
-            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Montagne Blanche</span>
-            <h3>Anna Medical College</h3>
-            <ul class="uni-card__facts">
-              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Teaching MBBS since 2012; University of Technology, Mauritius degree</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Clinical years at Flacq Hospital in the east</li>
-            </ul>
-            <div class="uni-card__foot">
-              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
-            </div>
-          </div>
-          <a class="uni-card__cover" href="mbbs-in-mauritius-anna-medical-college.html" aria-label="Fees and details for Anna Medical College"></a>
         </article>
 
         <article class="card uni-card uni-card--ask reveal">
@@ -437,7 +440,7 @@ active: countries
     </div>
   </section>
 
-  <!-- ============ 11. STUDENT LIFE.  IMAGE 4: assets/images/countries/mauritius/life.webp — 1400 x 1470 px
+  <!-- ============ 11. STUDENT LIFE.  IMAGE 5: assets/images/countries/mauritius/life.webp — 1400 x 1470 px
        Indian students laughing on a white-sand beach at sunset, casuarina trees and a calm lagoon behind them.
        (Alternative: students at the Ganga Talao (Grand Bassin) lake temple during Maha Shivaratri.)
        Climate: UK Met Office averages. Living costs: SSR hostel US$100/month twin; mess ~US$170/month (future-mbbs, Jul 2026). ============ -->

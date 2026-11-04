@@ -22,6 +22,7 @@ var RATE_AS_OF   = '26 Oct 2026';  // the date you checked the rate
 //      (the bar's row needs data-row-inr="…"; a row that costs nothing uses .cty-fees__row--zero and has no bar)
 // WhatsApp buttons:  <a data-wa="Hi, please send the DMSF fee sheet" href="https://wa.me/919360859919">
 // Course roadmap:    <li class="cty-path__stage" data-months="54"> (sets the width of that stage)
+// Percent bars:      <span data-pct="32.4"></span> (results card and fee-split bar; width = that percentage)
 // City filter:       <button data-uni-filter="almaty">  +  <article class="uni-card" data-city="almaty"> (or class="uni-spot")
 //                    A city card's link with data-uni-filter-set="almaty" jumps to the list already filtered.
 //
@@ -77,6 +78,9 @@ document.addEventListener('DOMContentLoaded', function () {
     var pct = Math.max(3, Math.round(+row.dataset.rowInr / +total.dataset.inr * 100));
     bar.style.setProperty('--w', pct);
   });
+
+  // Percent bars (results card, "how the fees are paid" split): width comes from data-pct
+  each(document.querySelectorAll('[data-pct]'), function (el) { el.style.setProperty('--w', +el.dataset.pct); });
 
   /* ---------- 2. Course roadmap: to-scale bar widths (from each stage's data-months) ---------- */
   each(document.querySelectorAll('.cty-path__wrap'), function (wrap) {

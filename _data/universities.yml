@@ -16,8 +16,11 @@
 #   page       OPTIONAL. The university's own fee page. Leave the line out until that page exists;
 #              the card then offers "Get the fee sheet" on WhatsApp instead.
 #   image      the photo. Same file the country page uses, so you only upload it once.
+#              The university in a country page's SPOTLIGHT uses spotlight.webp (1400 x 1000 px);
+#              every other university uses card.webp (1200 x 750 px).
 #   aka        other names and short forms people search for (KSMA, Akhunbaev…). Not shown on the page.
 #
+# Within each country, the SPOTLIGHT university comes first, so it also leads that country on the Countries page.
 # Copied from the country and university pages (as of Nov 2026). Fees use 1 USD = ₹95 (26 Oct 2026), ₱1 ≈ ₹1.5.
 
 # ---------------- PHILIPPINES (every university has its own page) ----------------
@@ -274,6 +277,20 @@
 
 # ---------------- GEORGIA (every university has its own page) ----------------
 # Fees = yearly tuition, 2026–27, from each university page (checked Nov 2026).
+# Spotlight on mbbs-in-georgia.html: The University of Georgia (Nov 2026).
+- name: The University of Georgia
+  country: georgia
+  city: Tbilisi
+  badge: Private
+  facts:
+    - Founded in 2004; one of Georgia's larger private universities
+    - An English medical programme in its School of Health Sciences
+  fee: "₹6.2 L"
+  fee_note: tuition a year (about US$6,500)
+  page: mbbs-in-georgia-university-of-georgia.html
+  image: assets/images/universities/ug/spotlight.webp
+  aka: UG, UoG
+
 - name: Petre Shotadze Tbilisi Medical Academy (TMA)
   country: georgia
   city: Tbilisi
@@ -284,7 +301,7 @@
   fee: "₹6.7 L"
   fee_note: tuition a year (US$7,000)
   page: mbbs-in-georgia-tbilisi-medical-academy.html
-  image: assets/images/universities/tma/spotlight.webp
+  image: assets/images/universities/tma/card.webp
   aka: TMA, Shotadze, Tbilisi Medical Academy
 
 - name: David Tvildiani Medical University
@@ -326,92 +343,28 @@
   image: assets/images/universities/gau/card.webp
   aka: GAU
 
-- name: The University of Georgia
-  country: georgia
-  city: Tbilisi
-  badge: Private
-  facts:
-    - Founded in 2004; one of Georgia's larger private universities
-    - An English medical programme in its School of Health Sciences
-  fee: "₹6.2 L"
-  fee_note: tuition a year (about US$6,500)
-  page: mbbs-in-georgia-university-of-georgia.html
-  image: assets/images/universities/ug/card.webp
-  aka: UG, UoG
-
 # ---------------- KAZAKHSTAN ----------------
-- name: Asfendiyarov Kazakh National Medical University (KazNMU)
-  country: kazakhstan
-  city: Almaty
-  badge: National university
-  facts:
-    - Founded in 1930; national university status since 2001
-    - Around 11,000 students
-  image: assets/images/universities/kaznmu/spotlight.webp
-  aka: KazNMU, Asfendiyarov, Almaty
-
-- name: Astana Medical University
-  country: kazakhstan
-  city: Astana, the capital
-  badge: Government
-  facts:
-    - Founded in 1964 as the Tselinograd State Medical Institute
-    - More than 30,000 doctors and pharmacists trained
-  image: assets/images/universities/astana-mu/card.webp
-  aka: AMU, Astana
-
-- name: Karaganda Medical University
-  country: kazakhstan
-  city: Karaganda, central Kazakhstan
-  badge: Government
-  facts:
-    - Opened on 1 September 1950
-    - Over 47,000 graduates and 127 foreign partners
-  image: assets/images/universities/karaganda-mu/card.webp
-  aka: KMU, Karaganda
-
-- name: Semey Medical University
-  country: kazakhstan
-  city: Semey, on the Irtysh River
-  badge: Government
-  facts:
-    - Took its first students in 1953
-    - Its own university hospital, with heart surgery since 2013
-  image: assets/images/universities/semey-mu/card.webp
-  aka: Semey, Semipalatinsk
-
-- name: South Kazakhstan Medical Academy
-  country: kazakhstan
-  city: Shymkent, the warm south
-  badge: Government
-  facts:
-    - Founded in 1979
-    - In the country's mildest region, with shorter winters
-  image: assets/images/universities/skma/card.webp
-  aka: SKMA, Shymkent
-
-- name: West Kazakhstan Marat Ospanov Medical University
-  country: kazakhstan
-  city: Aktobe, western Kazakhstan
-  badge: Government
-  facts:
-    - Founded in 1957
-    - The medical university of western Kazakhstan
-  image: assets/images/universities/wkmu/card.webp
-  aka: WKMU, Ospanov, Aktobe
-
-- name: Kazakh-Russian Medical University
-  country: kazakhstan
-  city: Almaty
-  badge: Private
-  facts:
-    - A private medical university, founded in 1992
-    - Listed by the Embassy of India among Kazakhstan's medical universities
-  image: assets/images/universities/krmu/card.webp
-  aka: KRMU
+# No universities listed (Nov 2026): Kazakhstan moved to a seven-year course from the 2026 intake.
+# mbbs-in-kazakhstan.html stays as an information guide (old vs new rules). With no universities here,
+# the Kazakhstan tile on the Countries page opens that guide directly. To list universities again,
+# add them back under this heading with  country: kazakhstan
 
 # ---------------- KYRGYZSTAN (only universities with full 6-year accreditation or state status; every one has its own page) ----------------
 # Fees = yearly tuition, 2026–27, compared across published fee tables, checked Nov 2026.
+# Spotlight on mbbs-in-kyrgyzstan.html: International Higher School of Medicine (Nov 2026).
+- name: International Higher School of Medicine
+  country: kyrgyzstan
+  city: Bishkek
+  badge: 6-year accreditation
+  facts:
+    - Founded in 2003, with its own Vedanta clinics
+    - Hostels in Bishkek and on Lake Issyk-Kul
+  fee: "₹5.7 L"
+  fee_note: tuition a year (US$6,000; year 1 is US$7,500)
+  page: mbbs-in-kyrgyzstan-international-higher-school-of-medicine.html
+  image: assets/images/universities/ihsm/spotlight.webp
+  aka: IHSM, ISM
+
 - name: Kyrgyz State Medical Academy (KSMA)
   country: kyrgyzstan
   city: Bishkek
@@ -422,7 +375,7 @@
   fee: "₹4 L"
   fee_note: tuition a year (US$4,200; year 1 is about US$8,500)
   page: mbbs-in-kyrgyzstan-kyrgyz-state-medical-academy.html
-  image: assets/images/universities/ksma/spotlight.webp
+  image: assets/images/universities/ksma/card.webp
   aka: KSMA, Akhunbaev, Kyrgyz State Medical
 
 - name: Osh State University
@@ -437,19 +390,6 @@
   page: mbbs-in-kyrgyzstan-osh-state-university.html
   image: assets/images/universities/osh-state/card.webp
   aka: OshSU, Osh
-
-- name: International Higher School of Medicine
-  country: kyrgyzstan
-  city: Bishkek
-  badge: 6-year accreditation
-  facts:
-    - Founded in 2003, with its own Vedanta clinics
-    - Hostels in Bishkek and on Lake Issyk-Kul
-  fee: "₹5.7 L"
-  fee_note: tuition a year (US$6,000; year 1 is US$7,500)
-  page: mbbs-in-kyrgyzstan-international-higher-school-of-medicine.html
-  image: assets/images/universities/ihsm/card.webp
-  aka: IHSM, ISM
 
 - name: International University of Kyrgyzstan
   country: kyrgyzstan
@@ -688,19 +628,7 @@
   aka: KYAMC, Sirajganj
 
 # ---------------- MAURITIUS (every college has its own page). Fees = yearly tuition, checked Nov 2026. ----------------
-- name: SSR Medical College
-  country: mauritius
-  city: Belle Rive
-  badge: Since 1999
-  facts:
-    - The first medical college in Mauritius; University of Mauritius degree
-    - Internship arranged in government hospitals; 56% FMGE pass in Dec 2025
-  fee: "₹7.6 L"
-  fee_note: tuition a year (US$8,000, the same every year)
-  page: mbbs-in-mauritius-ssr-medical-college.html
-  image: assets/images/universities/ssr-mauritius/spotlight.webp
-  aka: SSR, SSRMC, Sir Seewoosagur Ramgoolam Medical College, Belle Rive, IOMIT
-
+# Spotlight on mbbs-in-mauritius.html: Anna Medical College (Nov 2026).
 - name: Anna Medical College
   country: mauritius
   city: Montagne Blanche
@@ -711,8 +639,21 @@
   fee: "₹7.6 L"
   fee_note: tuition a year (about US$8,000; quotes vary)
   page: mbbs-in-mauritius-anna-medical-college.html
-  image: assets/images/universities/anna-mauritius/card.webp
+  image: assets/images/universities/anna-mauritius/spotlight.webp
   aka: Anna, AMC, Anna Medical College Mauritius, Montagne Blanche, Flacq, UTM
+
+- name: SSR Medical College
+  country: mauritius
+  city: Belle Rive
+  badge: Since 1999
+  facts:
+    - The first medical college in Mauritius; University of Mauritius degree
+    - Internship arranged in government hospitals; 56% FMGE pass in Dec 2025
+  fee: "₹7.6 L"
+  fee_note: tuition a year (US$8,000, the same every year)
+  page: mbbs-in-mauritius-ssr-medical-college.html
+  image: assets/images/universities/ssr-mauritius/card.webp
+  aka: SSR, SSRMC, Sir Seewoosagur Ramgoolam Medical College, Belle Rive, IOMIT
 
 - name: JSS Academy of Higher Education & Research, Mauritius
   country: mauritius

@@ -35,7 +35,7 @@ active: countries
     { "@type": "Question", "name": "Is an MBBS from Bangladesh valid in India?",
       "acceptedAnswer": { "@type": "Answer", "text": "Yes, if the course meets every NMC FMGL 2021 condition: at least 54 months of study, taught in English, a 12-month internship at the same institution, and eligibility for a medical licence in Bangladesh. Bangladesh's five-year MBBS with a one-year internship in the college hospital fits this pattern. You then clear FMGE or NExT to practise in India." } },
     { "@type": "Question", "name": "How much does MBBS in Bangladesh cost?",
-      "acceptedAnswer": { "@type": "Answer", "text": "An average year costs about 8.9 lakh rupees all-in: roughly 6.8 lakh tuition, 1.4 lakh hostel and meals and about 60,000 for personal costs, visa and insurance (indicative, October 2026). Most private colleges quote one package for the whole course, typically 30,000 to 42,000 US dollars (about 28 to 40 lakh rupees), and collect a large part of it at admission." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "An average year costs about 8.9 lakh rupees all-in: roughly 6.8 lakh tuition, 1.4 lakh hostel and meals and about 60,000 for personal costs, visa and insurance (indicative, October 2026). Most private colleges quote one package for the whole course, typically 30,000 to 47,000 US dollars (about 28 to 45 lakh rupees), and collect a large part of it at admission." } },
     { "@type": "Question", "name": "How do Bangladesh graduates do in FMGE?",
       "acceptedAnswer": { "@type": "Answer", "text": "According to NBEMS figures, 26.79 percent of Bangladesh graduates passed FMGE in 2023, the highest among the major MBBS destinations that year, and 32.39 percent passed in 2024 (914 of 2,822). Results depend on the student's own preparation." } },
     { "@type": "Question", "name": "Is MBBS in Bangladesh taught in English?",
@@ -109,7 +109,7 @@ active: countries
       <div class="card cty-glance__card">
         <div class="cty-glance__item"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div><div class="cty-glance__num">5 + 1 years</div><div class="cty-glance__label">Five years of study plus a 12-month internship</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg></span><div><div class="cty-glance__num">English</div><div class="cty-glance__label">Textbooks and exams</div></div></div>
-        <div class="cty-glance__item"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><div><div class="cty-glance__num">&#8377;5.7&ndash;8 L</div><div class="cty-glance__label">Tuition per year, averaged (indicative)</div></div></div>
+        <div class="cty-glance__item"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><div><div class="cty-glance__num">&#8377;5.7&ndash;8.9 L</div><div class="cty-glance__label">Tuition per year, averaged (indicative)</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><div><div class="cty-glance__num">2 h 40 m</div><div class="cty-glance__label">Chennai to Dhaka, direct</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-sun"></use></svg></span><div><div class="cty-glance__num">Tropical</div><div class="cty-glance__label">Like Chennai or Kolkata; monsoon May&ndash;Sep</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg></span><div><div class="cty-glance__num">1.30 taka</div><div class="cty-glance__label">Per &#8377;1 &middot; Bangladeshi taka, 29 Oct 2026</div></div></div>
@@ -270,11 +270,10 @@ active: countries
   </section>
 
   <!-- ============ 7. COLLEGES
-       7a. SPOTLIGHT (.uni-spot) — the college this page leads with. When its own fee page is built
-           (e.g. mbbs-in-bangladesh-holy-family.html):
-             1. replace the WhatsApp footer with:  <span class="uni-card__go">View the full fee structure <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
-             2. add before </article>:            <a class="uni-card__cover" href="mbbs-in-bangladesh-holy-family.html" aria-label="View the full fee structure for Holy Family Red Crescent Medical College"></a>
-           The same two steps turn any ordinary .uni-card below into a link to its own page.
+       Every college below has its own page (mbbs-in-bangladesh-{college}.html): the footer says "Fees & details"
+       and the invisible .uni-card__cover link makes the whole card clickable (same as the Kyrgyzstan page).
+       A NEW college without a page yet: use a WhatsApp footer ("Get the fee sheet") until its page exists.
+       The "from" figures = each college's whole-course package ÷ 5 study years (see its page for sources).
        IMAGE 2: assets/images/universities/holy-family/spotlight.webp — 1400 x 1000 px, the hospital's main building in Dhaka on a bright day.
        IMAGES 3-6: assets/images/universities/{name}/card.webp — 1200 x 750 px (16:10), the main college building in daylight. ============ -->
   <section class="section" id="universities">
@@ -296,12 +295,13 @@ active: countries
           <div class="uni-spot__stats">
             <div class="uni-spot__stat"><b>750</b><span>Beds in its teaching hospital</span></div>
             <div class="uni-spot__stat"><b>2000</b><span>College founded</span></div>
-            <div class="uni-spot__stat"><b>5 + 1</b><span>Years, internship included</span></div>
+            <div class="uni-spot__stat"><b data-inr="893000">&#8377;8.9 L</b><span>A year, averaged (US$47,000 course)</span></div>
           </div>
           <div class="uni-card__foot">
-            <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the full fee sheet for Holy Family Red Crescent Medical College, Dhaka."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the full fee sheet on WhatsApp</a>
+            <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
           </div>
         </div>
+        <a class="uni-card__cover" href="mbbs-in-bangladesh-holy-family-red-crescent-medical-college.html" aria-label="Fees and details for Holy Family Red Crescent Medical College"></a>
       </article>
 
       <div class="snap-row uni-row">
@@ -317,9 +317,10 @@ active: countries
               <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>A 500-bed teaching hospital; University of Dhaka degree</li>
             </ul>
             <div class="uni-card__foot">
-              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Bangladesh Medical College, Dhaka."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
             </div>
           </div>
+          <a class="uni-card__cover" href="mbbs-in-bangladesh-bangladesh-medical-college.html" aria-label="Fees and details for Bangladesh Medical College"></a>
         </article>
 
         <article class="card uni-card reveal">
@@ -333,9 +334,10 @@ active: countries
               <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>A 390-bed hospital on a green 52-acre campus</li>
             </ul>
             <div class="uni-card__foot">
-              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Jahurul Islam Medical College."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
             </div>
           </div>
+          <a class="uni-card__cover" href="mbbs-in-bangladesh-jahurul-islam-medical-college.html" aria-label="Fees and details for Jahurul Islam Medical College"></a>
         </article>
 
         <article class="card uni-card reveal">
@@ -349,9 +351,10 @@ active: countries
               <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>A 600-bed teaching hospital</li>
             </ul>
             <div class="uni-card__foot">
-              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Eastern Medical College, Cumilla."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
             </div>
           </div>
+          <a class="uni-card__cover" href="mbbs-in-bangladesh-eastern-medical-college.html" aria-label="Fees and details for Eastern Medical College"></a>
         </article>
 
         <article class="card uni-card reveal">
@@ -365,9 +368,10 @@ active: countries
               <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>A 500-bed hospital with heart surgery and a cancer centre</li>
             </ul>
             <div class="uni-card__foot">
-              <a class="uni-card__go uni-card__go--wa" href="https://wa.me/919360859919" data-wa="Hi Mathura Overseas, please send me the fee sheet for Khwaja Yunus Ali Medical College."><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>Get the fee sheet on WhatsApp</a>
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
             </div>
           </div>
+          <a class="uni-card__cover" href="mbbs-in-bangladesh-khwaja-yunus-ali-medical-college.html" aria-label="Fees and details for Khwaja Yunus Ali Medical College"></a>
         </article>
 
         <article class="card uni-card uni-card--ask reveal">
@@ -383,8 +387,9 @@ active: countries
 
   <!-- ============ 8. FEES — an AVERAGE year. To change a figure, edit its data-inr number (in rupees, per year).
        data-row-inr on each row must match the number inside it; the total's data-inr must equal their sum.
-       Tuition = a typical whole-course package of US$30,000–42,000 (average about US$36,000), spread over the five study years.
-       A few Dhaka colleges charge more; this page shows the common middle, not the top. ============ -->
+       Tuition = a typical whole-course package of US$30,000–47,000 (average about US$36,000), spread over the five study years.
+       Many private colleges charge US$31,000–35,000 (Moksh, 2026-27); the well-known colleges on this page charge US$42,000–47,000.
+       This page shows the common middle, not the top. ============ -->
   <section class="section section--wash" id="fees">
     <div class="container">
       <div class="section-head reveal"><span class="eyebrow">Fees</span><h2>What a year in Bangladesh really costs</h2><p>An average, all-in budget &mdash; not the highest quote you will find online. Exact fees vary by college; ask us for any college&rsquo;s own sheet.</p></div>
@@ -399,12 +404,12 @@ active: countries
             <span class="cty-fees__big"><span id="feeTotal" data-inr="888000">&#8377;8.9 L</span> <small>/ year</small></span>
           </div>
           <p>The college package spread evenly over the five study years, plus hostel with meals, day-to-day spending, visa and insurance.</p>
-          <div class="cty-fees__course"><span>Whole-course college package, typically</span><b><span data-inr-range="2800000-4000000">&#8377;28&ndash;40 L</span></b></div>
+          <div class="cty-fees__course"><span>Whole-course college package, typically</span><b><span data-inr-range="2800000-4500000">&#8377;28&ndash;45 L</span></b></div>
         </div>
 
         <div class="card cty-fees__rows">
           <div class="cty-fees__row" data-row-inr="684000">
-            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div class="cty-fees__name"><b>Tuition &amp; admission</b><span>Range <span data-inr-range="570000-800000">&#8377;5.7&ndash;8 L</span> a year, averaged</span></div><span class="cty-fees__val" data-inr="684000">&#8377;6.8 L</span></div>
+            <div class="cty-fees__row-top"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div class="cty-fees__name"><b>Tuition &amp; admission</b><span>Range <span data-inr-range="570000-893000">&#8377;5.7&ndash;8.9 L</span> a year, averaged</span></div><span class="cty-fees__val" data-inr="684000">&#8377;6.8 L</span></div>
             <div class="cty-fees__meter"><span data-share-of="feeTotal"></span></div>
           </div>
           <div class="cty-fees__row" data-row-inr="144000">
@@ -428,21 +433,22 @@ active: countries
         </div>
       </div>
 
-      <!-- 8a. HOW THE FEES ARE PAID — split based on published college fee sheets (e.g. admission US$21,500 of a US$38,400 package).
+      <!-- 8b. HOW THE FEES ARE PAID — split based on published 2026 fee sheets: the first-year payment is 32–61% of the package
+           (KYAMC US$15,000 of 47,000; Eastern 16,500 of 39,000; Jahurul Islam 20,200 of 45,000; Holy Family 28,250 of 46,250).
            Keep the three data-pct numbers adding up to 100. -->
       <div class="card cty-pay reveal">
         <div class="cty-pay__head">
           <span class="icon-badge icon-badge--blue icon-badge--sm"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg></span>
           <div><small>Plan your cash flow</small><h3>How colleges in Bangladesh collect the fee</h3></div>
         </div>
-        <div class="cty-pay__bar" aria-hidden="true"><span data-pct="56"></span><span data-pct="39"></span><span data-pct="5"></span></div>
+        <div class="cty-pay__bar" aria-hidden="true"><span data-pct="45"></span><span data-pct="50"></span><span data-pct="5"></span></div>
         <div class="cty-pay__steps">
-          <div class="cty-pay__step"><span class="cty-pay__dot" aria-hidden="true"></span><b><small>At admission</small>About half or more</b><p>Most colleges collect the admission fee up front &mdash; usually half to two-thirds of the whole package.</p></div>
-          <div class="cty-pay__step"><span class="cty-pay__dot" aria-hidden="true"></span><b><small>During the course</small>The rest, in parts</b><p>The remaining tuition is paid monthly or yearly through the five study years.</p></div>
-          <div class="cty-pay__step"><span class="cty-pay__dot" aria-hidden="true"></span><b><small>Internship year</small>A small internship fee</b><p>Paid before the internship starts. Hostel is usually billed separately.</p></div>
+          <div class="cty-pay__step"><span class="cty-pay__dot" aria-hidden="true"></span><b><small>First year</small>A third to two-thirds</b><p>Colleges collect the admission fee and first-year charges up front &mdash; from about a third to nearly two-thirds of the package.</p></div>
+          <div class="cty-pay__step"><span class="cty-pay__dot" aria-hidden="true"></span><b><small>Years 2 to 5</small>The rest, in parts</b><p>The remainder is paid yearly or monthly. At most colleges the hostel room is in the package; food is extra.</p></div>
+          <div class="cty-pay__step"><span class="cty-pay__dot" aria-hidden="true"></span><b><small>Internship year</small>Little or nothing</b><p>Some packages already include the internship fee; others charge a small one. We show you which.</p></div>
         </div>
       </div>
-      <p class="cty-asof"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><span>Indicative averages as of Oct 2026, built from colleges&rsquo; published fee sheets for foreign students; <span data-rate-label>1 USD = &#8377;95 (as of 26 Oct 2026)</span>. Every college sets its own package, and a few charge more &mdash; confirm the exact figures with your counsellor.</span></p>
+      <p class="cty-asof"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><span>Indicative averages as of Oct 2026, built from colleges&rsquo; published fee sheets for foreign students; <span data-rate-label>1 USD = &#8377;95 (as of 26 Oct 2026)</span>. Every college sets its own package: the well-known colleges below charge US$42,000&ndash;47,000 for the course &mdash; see each college&rsquo;s page, and confirm the exact figures with your counsellor.</span></p>
     </div>
   </section>
 
@@ -537,7 +543,7 @@ active: countries
       <div class="section-head section-head--center reveal"><span class="eyebrow">FAQs</span><h2>Questions parents ask us most</h2><p>Straight answers. Anything else, just ask a counsellor.</p></div>
       <div class="cty-faq">
         <details><summary>Is an MBBS from Bangladesh valid in India?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Yes, if the course meets every NMC FMGL 2021 condition: at least 54 months of study, taught in English, a 12-month internship at the same institution, and eligibility for a medical licence in Bangladesh. Bangladesh&rsquo;s five-year MBBS with a one-year internship in the college hospital fits this pattern. You then clear FMGE or NExT to practise in India.</div></details>
-        <details><summary>How much does it cost?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>An average year costs about &#8377;8.9 lakh all-in: roughly &#8377;6.8 lakh tuition, &#8377;1.4 lakh hostel and meals and about &#8377;60,000 for personal costs, visa and insurance (indicative, Oct 2026). Most private colleges quote one package for the whole course, typically US$30,000&ndash;42,000 (about &#8377;28&ndash;40 lakh), and collect a large part of it at admission. See the <a href="#fees">fee breakdown</a>.</div></details>
+        <details><summary>How much does it cost?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>An average year costs about &#8377;8.9 lakh all-in: roughly &#8377;6.8 lakh tuition, &#8377;1.4 lakh hostel and meals and about &#8377;60,000 for personal costs, visa and insurance (indicative, Oct 2026). Most private colleges quote one package for the whole course, typically US$30,000&ndash;47,000 (about &#8377;28&ndash;45 lakh), and collect a large part of it at admission. See the <a href="#fees">fee breakdown</a>.</div></details>
         <details><summary>How do Bangladesh graduates do in FMGE?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>According to NBEMS figures, 26.79% of Bangladesh graduates passed FMGE in 2023 &mdash; the highest among the major MBBS destinations that year &mdash; and 32.39% passed in 2024 (914 of 2,822). Results depend on your own preparation, and we guide you on FMGE coaching from the early years.</div></details>
         <details><summary>Is it taught in English?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Textbooks and examinations are in English. Some teachers explain in Bangla, and patients speak Bangla, so you pick up the language for the wards. NMC requires English-medium teaching, so we confirm it in writing for your college.</div></details>
         <details><summary>Is Bangladesh safe for Indian students now?<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>Indian students have continued to study in Bangladesh through recent unrest, in August 2024 and again in December 2025, when students were advised to move in groups and avoid going out late. Things have been calmer since the February 2026 election, and Bangladesh resumed visa services for Indian nationals on 20 February 2026. We share the latest advisory before you travel and stay in touch throughout the course. See <a href="#recognition">NMC status</a> above.</div></details>

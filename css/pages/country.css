@@ -29,6 +29,10 @@
     11a .cty-cities   "where you'll live" city cards with a photo                         (Vietnam)
      9b .cty-routes   two admission routes side by side, with an "or" between            (Nepal)
      8a .cty-fees__row--zero  a fee row that costs nothing (e.g. "Visa — ₹0")            (Nepal)
+     4a .cty-vs       "studying here vs studying in India", row by row                  (Bangladesh)
+     4b .cty-proof    navy results card with percentage bars (e.g. FMGE pass rates)     (Bangladesh)
+     8b .cty-pay      "how the fees are paid": split bar + three steps                  (Bangladesh)
+     5  .cty-path     now takes 4 OR 5 stages on desktop (Bangladesh uses 5)
 
    Mobile-first; tablet/desktop upgrades are at the bottom of each part.
    ========================================================================== */
@@ -38,6 +42,7 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
 
 /* Eyebrow on a pale-blue section: white pill so it stays visible */
 .section--wash .eyebrow { background: var(--color-surface); }
+.section--wash .eyebrow--light { background: rgba(255,255,255,.14); }   /* …but not on the navy cards inside it */
 
 /* ================= 1. HERO ================= */
 .cty-hero { position: relative; overflow: hidden; color: var(--color-text-inverse);
@@ -338,8 +343,9 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
   .cty-path__seg--core span { background: var(--color-primary); }
   .cty-path__seg:nth-child(2) span { transition-delay: .25s; }
   .cty-path__seg:nth-child(3) span { transition-delay: .5s; }
+  .cty-path__seg:nth-child(n+4) span { transition-delay: .75s; }
   .cty-path__wrap.is-in .cty-path__seg span { transform: scaleX(1); }
-  .cty-path { grid-template-columns: repeat(4, 1fr); gap: var(--sp-3); }
+  .cty-path { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: var(--sp-3); }   /* 4 or 5 stages, equal columns */
   .cty-path__stage { grid-template-columns: 1fr; align-content: start; padding: var(--sp-4); }
   .cty-path__stage--home { background: var(--color-wash); border-style: dashed; box-shadow: none; }
 
@@ -693,4 +699,89 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
   .cty-route { padding: var(--sp-6); gap: var(--sp-4); }
   .cty-route__facts li { padding: .7rem var(--sp-4); font-size: var(--fs-sm); }
   .cty-routes__or { width: 48px; height: 48px; margin: 0 calc(-1 * var(--sp-5)); }
+}
+
+/* ==========================================================================
+   OPTIONAL BLOCKS — added with the Bangladesh page. Any country page can use them.
+   ========================================================================== */
+
+/* ================= 4a. "HERE vs INDIA" COMPARISON (.cty-vs) =================
+   Use for countries whose big selling point is being close to studying at home.
+   One .cty-vs__row per topic: a topic label, then the India cell, then the country cell (--here).
+   Phone: each row is a mini card (topic on top, the two answers side by side; data-label names each column).
+   Desktop: a clean three-column table with a header row. */
+.cty-compare { display: grid; gap: var(--sp-4); }
+.cty-vs { padding: var(--sp-2) var(--sp-4); }
+.cty-vs__head { display: none; }
+.cty-vs__row { display: grid; grid-template-columns: 1fr 1fr; gap: .45rem var(--sp-2); padding: var(--sp-3) 0; }
+.cty-vs__row + .cty-vs__row { border-top: 1px solid var(--color-border); }
+.cty-vs__topic { grid-column: 1 / -1; display: flex; align-items: center; gap: .5rem; font-size: .68rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-muted); }
+.cty-vs__topic .icon { width: 15px; height: 15px; color: var(--color-primary); }
+.cty-vs__cell { padding: .55rem .7rem; border-radius: var(--radius-sm); background: var(--color-bg); font-size: var(--fs-xs); line-height: 1.45; color: var(--color-text); }
+.cty-vs__cell::before { content: attr(data-label); display: block; margin-bottom: .15rem; font-size: .6rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--color-text-muted); }
+.cty-vs__cell--here { background: var(--color-wash); color: var(--color-primary); font-weight: 700; }
+.cty-vs__cell--here::before { color: var(--color-blue-light); }
+
+/* ================= 4b. RESULTS CARD (.cty-proof) =================
+   A navy card with one big percentage per row and a bar under it.
+   Bar width = data-pct on the <span> (country.js turns it into --w); the bar is out of 100, so it is honest at a glance. */
+.cty-proof { position: relative; overflow: hidden; display: flex; flex-direction: column; gap: var(--sp-4); padding: var(--sp-5); border-radius: var(--radius-xl); color: var(--color-text-inverse); box-shadow: var(--shadow-lg);
+  background: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1.6px) 0 0 / 20px 20px, var(--grad-night); }
+.cty-proof__globe { position: absolute; right: -90px; top: -110px; width: 280px; height: 280px; color: rgba(255,255,255,.08); pointer-events: none; }
+.cty-proof > *:not(.cty-proof__globe) { position: relative; }
+.cty-proof .eyebrow { align-self: flex-start; }
+.cty-proof h3 { font-size: 1.25rem; line-height: 1.25; color: var(--color-text-inverse); }
+.cty-proof__intro { font-size: var(--fs-sm); line-height: 1.6; color: var(--color-text-inverse-muted); }
+.cty-proof__stats { display: grid; gap: var(--sp-3); }
+.cty-proof__stat { padding: var(--sp-3) var(--sp-4); border-radius: var(--radius-md); background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.13); }
+.cty-proof__top { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-3); }
+.cty-proof__top small { font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--color-blue-pale); }
+.cty-proof__pct { font-size: 2rem; font-weight: 800; line-height: 1; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.cty-proof__meter { height: 8px; margin-top: var(--sp-2); border-radius: 8px; background: rgba(255,255,255,.14); overflow: hidden; }
+.cty-proof__meter span { display: block; height: 100%; width: calc(var(--w, 0) * 1%); border-radius: 8px; background: var(--color-surface); transform-origin: left; transform: scaleX(0); transition: transform 1s var(--ease); }
+.cty-proof.is-in .cty-proof__meter span { transform: scaleX(1); }
+.cty-proof__stat:nth-child(2) .cty-proof__meter span { transition-delay: .2s; }
+.cty-proof__note { margin-top: .45rem; font-size: .7rem; line-height: 1.45; color: var(--color-text-inverse-muted); }
+.cty-proof__src { font-size: .68rem; line-height: 1.55; color: var(--color-text-inverse-muted); }
+.cty-proof__src a { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
+
+/* ================= 8b. HOW THE FEES ARE PAID (.cty-pay) =================
+   For countries (or universities) where most of the fee is paid up front.
+   The split bar's segments take their width from data-pct (country.js → --w); keep the three numbers adding up to 100.
+   Sits inside the #fees section, after .cty-fees. */
+.cty-pay { margin-top: var(--sp-4); padding: var(--sp-5) var(--sp-4); }
+.cty-pay__head { display: flex; align-items: center; gap: var(--sp-3); }
+.cty-pay__head h3 { font-size: 1.05rem; line-height: 1.25; }
+.cty-pay__head small { display: block; font-size: .64rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-muted); }
+.cty-pay__bar { display: flex; gap: 4px; margin-top: var(--sp-4); }
+.cty-pay__bar span { flex: var(--w, 1) 1 0; min-width: 0; height: 12px; border-radius: 6px; background: var(--color-primary); transform-origin: left; transform: scaleX(0); transition: transform .9s var(--ease); }
+.cty-pay__bar span:nth-child(2) { background: var(--color-blue-light); transition-delay: .2s; }
+.cty-pay__bar span:nth-child(3) { background: var(--color-blue-pale); transition-delay: .4s; }
+.cty-pay.is-in .cty-pay__bar span { transform: scaleX(1); }
+.cty-pay__steps { display: grid; gap: var(--sp-2); margin-top: var(--sp-4); }
+.cty-pay__step { display: grid; grid-template-columns: auto 1fr; gap: .2rem var(--sp-3); align-items: start; padding: var(--sp-3) var(--sp-4); border-radius: var(--radius-md); background: var(--color-bg); border: 1px solid var(--color-border); }
+.cty-pay__dot { grid-row: span 2; width: 14px; height: 14px; margin-top: .25rem; border-radius: 50%; background: var(--color-primary); }
+.cty-pay__step:nth-child(2) .cty-pay__dot { background: var(--color-blue-light); }
+.cty-pay__step:nth-child(3) .cty-pay__dot { background: var(--color-blue-pale); }
+.cty-pay__step b { font-size: var(--fs-sm); font-weight: 800; color: var(--color-text); }
+.cty-pay__step b small { display: block; font-size: .64rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-muted); }
+.cty-pay__step p { font-size: var(--fs-xs); line-height: 1.5; color: var(--color-text-muted); }
+
+@media (min-width: 768px) {
+  .cty-pay { padding: var(--sp-5); }
+  .cty-pay__steps { grid-template-columns: repeat(3, 1fr); gap: var(--sp-3); }
+}
+@media (min-width: 1024px) {
+  .cty-compare { grid-template-columns: 1.45fr 1fr; align-items: stretch; gap: var(--sp-5); }
+  .cty-vs { padding: var(--sp-2) var(--sp-5) var(--sp-3); }
+  .cty-vs__head, .cty-vs__row { grid-template-columns: 1.05fr 1fr 1fr; align-items: center; gap: var(--sp-3); }
+  .cty-vs__head { display: grid; padding: var(--sp-4) 0 var(--sp-3); border-bottom: 2px solid var(--color-border); font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-muted); }
+  .cty-vs__head span:last-child { color: var(--color-primary); }
+  .cty-vs__head + .cty-vs__row { border-top: 0; }
+  .cty-vs__topic { grid-column: auto; font-size: var(--fs-sm); letter-spacing: 0; text-transform: none; color: var(--color-text); font-weight: 800; }
+  .cty-vs__topic .icon { width: 17px; height: 17px; }
+  .cty-vs__cell { padding: .6rem .8rem; font-size: var(--fs-sm); }
+  .cty-vs__cell::before { display: none; }
+  .cty-proof { padding: var(--sp-6); }
+  .cty-pay { padding: var(--sp-5) var(--sp-6) var(--sp-6); }
 }

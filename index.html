@@ -229,12 +229,13 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
        Everything is read from _data/universities.yml. To change them, edit the names below (they must match "name:" exactly).
        • spot + spot_lead: one university, shown wide with its key numbers, and its one-sentence introduction
        • home_unis: four universities, ideally from four different countries
+         (now: Kyrgyzstan · Philippines · Vietnam · Timor-Leste — IHSM replaced Kazan State Medical University, Nov 2026)
        Each card has two buttons: "Get fees" (WhatsApp) and "Guide" (the country page) — or "Details" if the
        university has its own page ("page:" in universities.yml).
-       IMAGES: the university's own card.webp from universities.yml (1200 x 750 px), the same photo as everywhere else. -->
+       IMAGES: the university's own photo from universities.yml ("image:"), the same photo as everywhere else. -->
 {%- assign spot = site.data.universities | where: "name", "Fergana Medical Institute of Public Health" | first %}
 {%- capture spot_lead %}A government institute in the Fergana Valley, set up in 2020 from the Fergana branch of Tashkent Medical Academy &mdash; one of the most budget-friendly options in Uzbekistan, with a calmer, less urban student life.{% endcapture %}   {%- comment %} change this line too when you change the spotlight {% endcomment %}
-{%- assign home_unis = "Kazan State Medical University|UV Gullas College of Medicine|Dai Nam University|Universidade Católica Timorense (UCT)" | split: "|" %}
+{%- assign home_unis = "International Higher School of Medicine|UV Gullas College of Medicine|Dai Nam University|Universidade Católica Timorense (UCT)" | split: "|" %}
   <section class="section">
     <div class="container">
       <div class="hm-head reveal">

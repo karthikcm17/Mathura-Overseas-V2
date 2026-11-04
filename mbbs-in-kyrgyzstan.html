@@ -299,37 +299,59 @@ active: countries
        Every university below has its own page (mbbs-in-kyrgyzstan-{university}.html): the footer says "Fees & details"
        and the invisible .uni-card__cover link makes the whole card clickable (same as the Uzbekistan page).
        A NEW university without a page yet: use a WhatsApp footer ("Get the fee sheet") until its page exists.
-       IMAGE 2: assets/images/universities/ksma/spotlight.webp — 1400 x 1000 px, KSMA's main building on a sunny autumn day.
-       IMAGES 3-6: assets/images/universities/{name}/card.webp — 1200 x 750 px (16:10), the main campus building in daylight. ============ -->
+       SPOTLIGHT: International Higher School of Medicine (since Nov 2026). When you change the spotlight, also swap the two
+       universities' "image:" lines in _data/universities.yml (spotlight.webp / card.webp) and move the spotlight to the top
+       of Kyrgyzstan there.
+       IMAGE 2: assets/images/universities/ihsm/spotlight.webp — 1400 x 1000 px, IHSM's main building in Bishkek on a bright
+                autumn day, with students in white coats at the entrance.
+       IMAGES 3-6: assets/images/universities/{name}/card.webp — 1200 x 750 px (16:10), the main campus building in daylight.
+                (ksma/card.webp is new: KSMA's main building in Bishkek, daylight.) ============ -->
   <section class="section section--wash" id="universities">
     <div class="container">
       <div class="section-head reveal"><span class="eyebrow">Universities</span><h2>Where we place students in Kyrgyzstan</h2><p>Only universities with full six-year accreditation or state status &mdash; each also checked against the NMC conditions. Ask for any university&rsquo;s year-by-year fee sheet.</p></div>
 
       <article class="card uni-spot reveal">
-        <div class="img-slot" data-spec="universities/ksma/spotlight.webp · 1400×1000 px"><img src="assets/images/universities/ksma/spotlight.webp" width="1400" height="1000" alt="Main building of the Kyrgyz State Medical Academy in Bishkek" loading="lazy"></div>
-        <span class="tag tag--abs">State academy</span>
+        <div class="img-slot" data-spec="universities/ihsm/spotlight.webp · 1400×1000 px"><img src="assets/images/universities/ihsm/spotlight.webp" width="1400" height="1000" alt="Main building of the International Higher School of Medicine in Bishkek" loading="lazy"></div>
+        <span class="tag tag--abs">6-year accreditation</span>
         <div class="uni-spot__body">
-          <span class="uni-spot__kicker"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Bishkek &middot; the country&rsquo;s oldest medical school</span>
-          <h3>Kyrgyz State Medical Academy (KSMA)</h3>
-          <p class="uni-spot__lead">Named after I. K. Akhunbaev, KSMA has trained doctors since 1939 and taught a six-year course since 1948. In 2026 the government made it the lead state institution for medical training &mdash; private universities must now partner with it.</p>
+          <span class="uni-spot__kicker"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Bishkek &middot; with its own clinics</span>
+          <h3>International Higher School of Medicine (IHSM)</h3>
+          <p class="uni-spot__lead">Founded in 2003, IHSM runs its own Vedanta clinics in Bishkek and a medical centre in Cholpon-Ata on Lake Issyk-Kul. In June 2026 it won full six-year state accreditation &mdash; one of only four universities to do so &mdash; and it publishes its fees for international students itself.</p>
           <div class="uni-spot__chips">
-            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Government</span>
-            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>English-medium faculty</span>
-            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Internationally accredited</span>
+            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Six-year accreditation, 2026</span>
+            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Its own clinics</span>
+            <span class="uni-spot__chip"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Fees published by IHSM</span>
           </div>
           <div class="uni-spot__stats">
-            <div class="uni-spot__stat"><b data-inr="399000">&#8377;4 L</b><span>Tuition a year (US$4,200), years 2&ndash;5</span></div>
-            <div class="uni-spot__stat"><b>1939</b><span>Founded in Bishkek</span></div>
-            <div class="uni-spot__stat"><b>6 years</b><span>General Medicine</span></div>
+            <div class="uni-spot__stat"><b data-inr="570000">&#8377;5.7 L</b><span>Tuition a year (US$6,000), years 2&ndash;6</span></div>
+            <div class="uni-spot__stat"><b>2003</b><span>Founded in Bishkek</span></div>
+            <div class="uni-spot__stat"><b>6 years</b><span>State accreditation, from June 2026</span></div>
           </div>
           <div class="uni-card__foot">
             <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
           </div>
         </div>
-        <a class="uni-card__cover" href="mbbs-in-kyrgyzstan-kyrgyz-state-medical-academy.html" aria-label="Fees and details for Kyrgyz State Medical Academy"></a>
+        <a class="uni-card__cover" href="mbbs-in-kyrgyzstan-international-higher-school-of-medicine.html" aria-label="Fees and details for the International Higher School of Medicine"></a>
       </article>
 
       <div class="snap-row uni-row">
+
+        <article class="card uni-card reveal">
+          <div class="img-slot" data-spec="universities/ksma/card.webp · 1200×750 px"><img src="assets/images/universities/ksma/card.webp" width="1200" height="750" alt="Main building of the Kyrgyz State Medical Academy in Bishkek" loading="lazy"></div>
+          <span class="tag tag--abs">State academy</span>
+          <div class="uni-card__body">
+            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Bishkek</span>
+            <h3>Kyrgyz State Medical Academy (KSMA)</h3>
+            <ul class="uni-card__facts">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Training doctors since 1939; a six-year course since 1948</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Named the lead state institution for medical training in 2026</li>
+            </ul>
+            <div class="uni-card__foot">
+              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+            </div>
+          </div>
+          <a class="uni-card__cover" href="mbbs-in-kyrgyzstan-kyrgyz-state-medical-academy.html" aria-label="Fees and details for Kyrgyz State Medical Academy"></a>
+        </article>
 
         <article class="card uni-card reveal">
           <div class="img-slot" data-spec="universities/osh-state/card.webp · 1200×750 px"><img src="assets/images/universities/osh-state/card.webp" width="1200" height="750" alt="Main building of Osh State University in Osh" loading="lazy"></div>
@@ -346,23 +368,6 @@ active: countries
             </div>
           </div>
           <a class="uni-card__cover" href="mbbs-in-kyrgyzstan-osh-state-university.html" aria-label="Fees and details for Osh State University"></a>
-        </article>
-
-        <article class="card uni-card reveal">
-          <div class="img-slot" data-spec="universities/ihsm/card.webp · 1200×750 px"><img src="assets/images/universities/ihsm/card.webp" width="1200" height="750" alt="Campus of the International Higher School of Medicine in Bishkek" loading="lazy"></div>
-          <span class="tag tag--abs">6-year accreditation</span>
-          <div class="uni-card__body">
-            <span class="uni-card__place"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Bishkek</span>
-            <h3>International Higher School of Medicine</h3>
-            <ul class="uni-card__facts">
-              <li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Founded in 2003; publishes its own fees</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg>Its own clinics in Bishkek and on Lake Issyk-Kul</li>
-            </ul>
-            <div class="uni-card__foot">
-              <span class="uni-card__go">Fees &amp; details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
-            </div>
-          </div>
-          <a class="uni-card__cover" href="mbbs-in-kyrgyzstan-international-higher-school-of-medicine.html" aria-label="Fees and details for the International Higher School of Medicine"></a>
         </article>
 
         <article class="card uni-card reveal">
