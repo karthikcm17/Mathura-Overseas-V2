@@ -687,6 +687,46 @@
   image: assets/images/universities/khwaja-yunus-ali/card.webp
   aka: KYAMC, Sirajganj
 
+# ---------------- MAURITIUS (every college has its own page). Fees = yearly tuition, checked Nov 2026. ----------------
+- name: SSR Medical College
+  country: mauritius
+  city: Belle Rive
+  badge: Since 1999
+  facts:
+    - The first medical college in Mauritius; University of Mauritius degree
+    - Internship arranged in government hospitals; 56% FMGE pass in Dec 2025
+  fee: "₹7.6 L"
+  fee_note: tuition a year (US$8,000, the same every year)
+  page: mbbs-in-mauritius-ssr-medical-college.html
+  image: assets/images/universities/ssr-mauritius/spotlight.webp
+  aka: SSR, SSRMC, Sir Seewoosagur Ramgoolam Medical College, Belle Rive, IOMIT
+
+- name: Anna Medical College
+  country: mauritius
+  city: Montagne Blanche
+  badge: Since 2012
+  facts:
+    - Teaching MBBS since 2012; University of Technology, Mauritius degree
+    - Clinical years at Flacq Hospital; internship plan confirmed in writing
+  fee: "₹7.6 L"
+  fee_note: tuition a year (about US$8,000; quotes vary)
+  page: mbbs-in-mauritius-anna-medical-college.html
+  image: assets/images/universities/anna-mauritius/card.webp
+  aka: Anna, AMC, Anna Medical College Mauritius, Montagne Blanche, Flacq, UTM
+
+- name: JSS Academy of Higher Education & Research, Mauritius
+  country: mauritius
+  city: Bonne Terre, Vacoas
+  badge: New · 2026
+  facts:
+    - The JSS group's Mauritius campus; first MBBS students in February 2026
+    - Training at SSRN Hospital and five regional hospitals
+  fee: "₹11.4 L"
+  fee_note: tuition a year (US$12,000, official fee table)
+  page: mbbs-in-mauritius-jss-academy-of-higher-education-and-research.html
+  image: assets/images/universities/jss-mauritius/card.webp
+  aka: JSS, JSSAHERM, JSS Mauritius, JSS School of Medicine, Vacoas
+
 # ---------------- CARIBBEAN (USMLE-focused; a reference list, NOT partners — every school has its own page) ----------------
 # Only schools whose accreditor is WFME-recognised (CAAM-HP, ACCM or Grenada's GMDC), checked Nov 2026.
 # Fees = average MD year (official tuition + compulsory school fees ÷ 4; Texila per semester × 2, Saint James ÷ 5).

@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
       items[i].classList.remove('is-active');
       i = (i + 1) % items.length;
       items[i].classList.add('is-active');
-    }, 4500);
+    }, 2000);
   }
 
   // ---- Menu drawer (phones / tablets) ----
