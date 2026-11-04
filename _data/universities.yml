@@ -523,7 +523,10 @@
   image: assets/images/universities/mekong/card.webp
   aka: Cuu Long University, CLU, MKU, Vinh Long
 
-# ---------------- NEPAL ----------------
+# ---------------- NEPAL (every college has its own page) ----------------
+# Nepal colleges charge ONE course fee for the whole MBBS (paid in instalments), not a yearly tuition,
+# so "fee" here is the FULL-COURSE fee for Indian students. Checked Nov 2026: KMC from its own published sheet;
+# the others = the band most 2026–27 fee tables agree on, showing its lower end. Details in each page's notes.
 - name: Kathmandu Medical College (KMC)
   country: nepal
   city: Sinamangal, Kathmandu
@@ -532,9 +535,10 @@
     - Teaching MBBS since 1997, with its own teaching hospital
     - Publishes its fee sheet for Indian students openly
   fee: "₹57 L"
-  fee_note: full course, pre-booked (2025–26)
+  fee_note: full course (official 2025–26 fee, Indian students)
+  page: mbbs-in-nepal-kathmandu-medical-college.html
   image: assets/images/universities/kmc-nepal/spotlight.webp
-  aka: KMC, Kathmandu
+  aka: KMC, Kathmandu, KMCTH, Sinamangal, Duwakot
 
 - name: Manipal College of Medical Sciences
   country: nepal
@@ -543,8 +547,11 @@
   facts:
     - Founded in 1994; run by the Manipal Education and Medical Group
     - Its own 700-bed Manipal Teaching Hospital
+  fee: "₹70 L"
+  fee_note: full course (₹70–75 lakh quoted, 2026–27)
+  page: mbbs-in-nepal-manipal-college-of-medical-sciences.html
   image: assets/images/universities/manipal-pokhara/card.webp
-  aka: MCOMS, Manipal, Pokhara
+  aka: MCOMS, Manipal, Pokhara, Manipal Teaching Hospital
 
 - name: Nepal Medical College
   country: nepal
@@ -552,9 +559,12 @@
   badge: Kathmandu University
   facts:
     - Teaching MBBS since 1997
-    - Its own teaching hospital in the valley
+    - Its own 700-bed teaching hospital in the valley
+  fee: "₹60 L"
+  fee_note: full course (about ₹59.5–61.5 lakh, 2026–27)
+  page: mbbs-in-nepal-nepal-medical-college.html
   image: assets/images/universities/nepal-medical-college/card.webp
-  aka: NMCTH, Jorpati
+  aka: NMCTH, Jorpati, Attarkhel, Kathmandu
 
 - name: Universal College of Medical Sciences
   country: nepal
@@ -563,8 +573,11 @@
   facts:
     - Founded in 1998, affiliated to Tribhuvan University
     - A short road trip from Uttar Pradesh
+  fee: "₹55 L"
+  fee_note: full course (paid in full; about ₹60 lakh in instalments)
+  page: mbbs-in-nepal-universal-college-of-medical-sciences.html
   image: assets/images/universities/ucms-bhairahawa/card.webp
-  aka: UCMS, Bhairahawa
+  aka: UCMS, Bhairahawa, Siddharthanagar, Sonauli
 
 - name: Nepalgunj Medical College
   country: nepal
@@ -572,11 +585,17 @@
   badge: Kathmandu University
   facts:
     - Founded in 1996, affiliated to Kathmandu University
-    - Accepts NEET or MECEE-BL, per its own eligibility page
+    - Two teaching hospitals, in Kohalpur and Nepalgunj
+  fee: "₹60 L"
+  fee_note: full course (₹60–65 lakh quoted, 2026–27)
+  page: mbbs-in-nepal-nepalgunj-medical-college.html
   image: assets/images/universities/nepalgunj-mc/card.webp
-  aka: NGMC, Kohalpur
+  aka: NGMC, Kohalpur, Nepalgunj, Rupaidiha
 
-# ---------------- BANGLADESH ----------------
+# ---------------- BANGLADESH (every college has its own page) ----------------
+# Bangladesh colleges charge ONE package for the whole MBBS, mostly paid in the first year.
+# "fee" here = that package ÷ 5 study years, so it compares with yearly tuition elsewhere; the package is in fee_note.
+# Each package = the middle of 3–5 published 2026–27 quotes, checked Nov 2026. Sources are in each college page's notes.
 - name: Holy Family Red Crescent Medical College
   country: bangladesh
   city: Eskaton, central Dhaka
@@ -584,6 +603,9 @@
   facts:
     - A hospital since 1953; the college opened in 2000
     - A 750-bed teaching hospital; University of Dhaka degree
+  fee: "₹8.9 L"
+  fee_note: a year, averaged (about US$47,000 for the course)
+  page: mbbs-in-bangladesh-holy-family-red-crescent-medical-college.html
   image: assets/images/universities/holy-family/spotlight.webp
   aka: Holy Family, HFRCMC, Red Crescent, Dhaka
 
@@ -594,6 +616,9 @@
   facts:
     - Founded in 1986, the country's first private medical college
     - A 500-bed teaching hospital; University of Dhaka degree
+  fee: "₹8.9 L"
+  fee_note: a year, averaged (about US$47,000 for the course)
+  page: mbbs-in-bangladesh-bangladesh-medical-college.html
   image: assets/images/universities/bangladesh-medical-college/card.webp
   aka: BMC, Dhanmondi
 
@@ -604,6 +629,9 @@
   facts:
     - Founded in 1992, the second-oldest private medical college
     - A 390-bed hospital on a green 52-acre campus
+  fee: "₹8 L"
+  fee_note: a year, averaged (about US$42,000 with hostel)
+  page: mbbs-in-bangladesh-jahurul-islam-medical-college.html
   image: assets/images/universities/jahurul-islam/card.webp
   aka: JIMC, Bajitpur
 
@@ -614,6 +642,9 @@
   facts:
     - Founded in 2005; degree from Chittagong Medical University
     - A 600-bed teaching hospital
+  fee: "₹8.2 L"
+  fee_note: a year, averaged (about US$43,000 with hostel)
+  page: mbbs-in-bangladesh-eastern-medical-college.html
   image: assets/images/universities/eastern-medical-college/card.webp
   aka: EMC, Comilla, Cumilla
 
@@ -624,6 +655,9 @@
   facts:
     - Founded in 2005; degree from Rajshahi University
     - A 500-bed hospital with heart surgery and a cancer centre
+  fee: "₹8.9 L"
+  fee_note: a year, averaged (about US$47,000 with hostel)
+  page: mbbs-in-bangladesh-khwaja-yunus-ali-medical-college.html
   image: assets/images/universities/khwaja-yunus-ali/card.webp
   aka: KYAMC, Sirajganj
 

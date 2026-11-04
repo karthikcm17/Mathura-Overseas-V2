@@ -13,6 +13,9 @@
        .dx-step--unis        step 2: one .dx-country per country
      3 .dx-check   "how we choose" cards (swipe row on phones)
 
+   THE COUNTRY TILES (.dx-tiles / .dx-tile) live in css/components.css (Nov 2026), because the Home page uses
+   the same tiles. Only their page-specific entrance animation (.dx-tiles.is-enter) stays here.
+
    How the steps switch: destinations.js adds .js-steps to .dx, then .is-step1 or .is-step2,
    and .is-country to the hero in step 2. Without the script (or for Google) nothing is hidden.
    Mobile-first; tablet / desktop upgrades are at the bottom.
@@ -123,7 +126,7 @@
 
 .dx-step { padding-block: var(--sp-5) var(--sp-4); }
 
-/* ================= STEP 1 — COUNTRY TILES ================= */
+/* ================= STEP 1 — COUNTRY TILES (the tiles themselves are in components.css) ================= */
 .dx-head { display: grid; gap: var(--sp-3); margin-bottom: var(--sp-4); }
 .dx-head h2 { font-size: clamp(1.35rem, 1.1rem + 1.2vw, 2rem); }
 .dx-head p { margin-top: var(--sp-1); font-size: var(--fs-sm); color: var(--color-text-muted); }
@@ -134,32 +137,8 @@
 .dx-sort button:hover { border-color: var(--color-blue-pale); color: var(--color-primary); }
 .dx-sort button[aria-pressed="true"] { background: var(--color-primary); border-color: var(--color-primary); color: var(--color-text-inverse); }
 
-.dx-tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-3); }
+/* The tiles slide in again when the visitor returns from step 2 (destinations.js adds .is-enter) */
 .dx-tiles.is-enter { animation: dx-in .38s var(--ease) both; }
-
-/* Tile: the photo fills it, the name and yearly cost sit on a dark fade at the bottom */
-.dx-tile { position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: flex-end; aspect-ratio: 1 / 1; overflow: hidden; border-radius: var(--radius-lg); color: var(--color-text-inverse); box-shadow: var(--shadow-sm); transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease); }
-.dx-tile__img { position: absolute; inset: 0; z-index: -2; aspect-ratio: auto; border-radius: 0; }
-.dx-tile__img img { transition: transform .6s var(--ease); }
-.dx-tile__img.is-empty::after { align-items: flex-start; padding: var(--sp-3); font-size: .55rem; letter-spacing: 0; white-space: pre-wrap; overflow-wrap: anywhere; border: 0; }
-.dx-tile::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(to top, rgba(12,29,78,.92) 0%, rgba(12,29,78,.45) 45%, rgba(12,29,78,0) 75%); }
-.dx-tile__body { padding: var(--sp-3); }
-.dx-tile h3 { color: var(--color-text-inverse); font-size: 1.02rem; line-height: 1.2; }
-.dx-tile__why { display: none; }
-.dx-tile__foot { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); margin-top: .25rem; }
-.dx-tile__cost { font-size: .72rem; font-weight: 600; color: var(--color-text-inverse-muted); }
-.dx-tile__cost b { font-size: .86rem; font-weight: 800; color: var(--color-text-inverse); }
-.dx-tile__go { width: 28px; height: 28px; flex-shrink: 0; display: grid; place-items: center; border-radius: 50%; background: var(--color-surface); color: var(--color-primary); transition: transform var(--speed) var(--ease); }
-.dx-tile__go .icon { width: 14px; height: 14px; stroke-width: 2.6; }
-/* Phones (2 columns): a tile left alone on the last row stretches across it instead of leaving a hole */
-@media (max-width: 639px) { .dx-tile:last-child:nth-child(odd) { grid-column: 1 / -1; aspect-ratio: 2 / 1; } }
-.dx-tile:active { transform: scale(.98); }
-.dx-tile:focus-visible { outline: 3px solid var(--color-blue-light); outline-offset: 3px; }
-@media (hover: hover) {
-  .dx-tile:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-  .dx-tile:hover .dx-tile__img img { transform: scale(1.06); }
-  .dx-tile:hover .dx-tile__go { transform: translateX(3px); }
-}
 
 /* "Compare in the Planner" strip under the tiles */
 .dx-compare { display: flex; align-items: center; gap: var(--sp-3); margin-top: var(--sp-4); padding: var(--sp-3) var(--sp-4); border-radius: var(--radius-md); border: 1px solid var(--color-border); background: var(--color-surface); font-size: var(--fs-sm); line-height: 1.45; color: var(--color-text-muted); transition: border-color var(--speed) var(--ease); }
@@ -254,12 +233,6 @@
   .dx-steps__item + .dx-steps__item::before { width: 22px; }
   .dx-hero__country .dx-hero__lead { display: block; }
   .dx-hero__acts .btn { flex: 0 0 auto; }
-  .dx-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .dx-tile { aspect-ratio: 4 / 5; }
-  .dx-tile__body { padding: var(--sp-4); }
-  .dx-tile h3 { font-size: 1.2rem; }
-  .dx-tile__why { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; min-height: 2.9em; /* two lines, so every name lines up */ margin-top: .2rem; font-size: var(--fs-xs); line-height: 1.45; color: var(--color-text-inverse-muted); }
-  .dx-tile__foot { margin-top: var(--sp-3); padding-top: var(--sp-2); border-top: 1px solid rgba(255,255,255,.22); }
   .dx-uni { grid-template-columns: 92px minmax(0, 1fr) 16px; }
   .dx-uni__fact { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; margin-top: .3rem; font-size: .72rem; line-height: 1.45; color: var(--color-text); }
 }
@@ -291,8 +264,6 @@
   .app-header.is-hidden ~ main .dx-bar { top: calc(var(--announce-h) + var(--header-h-lg)); }
   .dx-bar__inner { min-height: 58px; }
 
-  .dx-tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-4); }
-  .dx-tile { aspect-ratio: 5 / 6; }
   .dx-compare { max-width: 640px; margin-inline: auto; margin-top: var(--sp-5); }
 
   .dx-country__grid { grid-template-columns: minmax(0, 1fr) 320px; gap: var(--sp-6); }

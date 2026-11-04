@@ -148,29 +148,6 @@
     - English from the lecture hall to the ward
     - A large Indian student community in Tbilisi
 
-- slug: kazakhstan
-  name: Kazakhstan
-  page: mbbs-in-kazakhstan.html
-  year_cost: "₹6.3 L"
-  year_inr: 630000
-  duration: "7 yrs from 2026"
-  airport: ALA
-  city: Almaty
-  hours: "~9"
-  hours_num: 9
-  stops: "1 stop"
-  fare: "₹28,600"
-  fare_as_of: "Oct 2026"
-  time: "30m behind"
-  money: "₹1 ≈ 4.8 tenge"
-  money_as_of: "Oct 2026"
-  language: "Kazakh & Russian"
-  climate: "4 seasons; snowy winters"
-  why:
-    - State medical universities since 1930
-    - A full year on the wards as an intern-doctor
-    - Direct Almaty–Delhi flights of about 3.5 hours
-
 - slug: kyrgyzstan
   name: Kyrgyzstan
   page: mbbs-in-kyrgyzstan.html
@@ -317,6 +294,29 @@
   language: "English on most islands"
   climate: "Tropical; storms Jun–Nov"
   why:
-    - A US-style MD, taught around the USMLE
+    - US-style MD, taught around the USMLE
     - Clinical rotations often in US hospitals
     - Accreditors the US accepts, such as CAAM-HP and ACCM
+
+- slug: kazakhstan
+  name: Kazakhstan
+  page: mbbs-in-kazakhstan.html
+  year_cost: "₹6.3 L"
+  year_inr: 630000
+  duration: "7 yrs from 2026"
+  airport: ALA
+  city: Almaty
+  hours: "~9"
+  hours_num: 9
+  stops: "1 stop"
+  fare: "₹28,600"
+  fare_as_of: "Oct 2026"
+  time: "30m behind"
+  money: "₹1 ≈ 4.8 tenge"
+  money_as_of: "Oct 2026"
+  language: "Kazakh & Russian"
+  climate: "4 seasons; snowy winters"
+  why:
+    - State medical universities since 1930
+    - A full year on the wards as an intern-doctor
+    - Direct Almaty–Delhi flights of about 3.5 hours

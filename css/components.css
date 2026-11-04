@@ -139,3 +139,52 @@
   .cta .btn-row { justify-content: flex-end; }
   .cta .btn-row .btn { flex: 0 0 auto; }
 }
+
+/* ---- Country tile: the photo fills it; the name, one line and the yearly cost sit on a dark fade at the bottom.
+        Markup: <a class="dx-tile" href="…"><div class="img-slot dx-tile__img"><img …></div>
+                <div class="dx-tile__body"><h3>…</h3><p class="dx-tile__why">…</p>
+                <div class="dx-tile__foot"><span class="dx-tile__cost"><b>₹8 L</b> a year</span><span class="dx-tile__go">→</span></div></div></a>
+        Phones: 2 per row, square, name + cost only. Tablets: 3 per row, the line appears. Computers: 4 per row. ---- */
+.dx-tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-3); }
+.dx-tile { position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: flex-end; aspect-ratio: 1 / 1; overflow: hidden; border-radius: var(--radius-lg); color: var(--color-text-inverse); box-shadow: var(--shadow-sm); transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease); }
+.dx-tile__img { position: absolute; inset: 0; z-index: -2; aspect-ratio: auto; border-radius: 0; }
+.dx-tile__img img { transition: transform .6s var(--ease); }
+.dx-tile__img.is-empty::after { align-items: flex-start; padding: var(--sp-3); font-size: .55rem; letter-spacing: 0; white-space: pre-wrap; overflow-wrap: anywhere; border: 0; }
+.dx-tile::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(to top, rgba(12,29,78,.92) 0%, rgba(12,29,78,.45) 45%, rgba(12,29,78,0) 75%); }
+.dx-tile__body { padding: var(--sp-3); }
+.dx-tile h3 { color: var(--color-text-inverse); font-size: 1.02rem; line-height: 1.2; }
+.dx-tile__why { display: none; }
+.dx-tile__foot { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); margin-top: .25rem; }
+.dx-tile__cost { font-size: .72rem; font-weight: 600; color: var(--color-text-inverse-muted); }
+.dx-tile__cost b { font-size: .86rem; font-weight: 800; color: var(--color-text-inverse); }
+.dx-tile__go { width: 28px; height: 28px; flex-shrink: 0; display: grid; place-items: center; border-radius: 50%; background: var(--color-surface); color: var(--color-primary); transition: transform var(--speed) var(--ease); }
+.dx-tile__go .icon { width: 14px; height: 14px; stroke-width: 2.6; }
+/* Phones (2 columns): a tile left alone on the last row stretches across it instead of leaving a hole */
+@media (max-width: 639px) { .dx-tile:last-child:nth-child(odd) { grid-column: 1 / -1; aspect-ratio: 2 / 1; } }
+.dx-tile:active { transform: scale(.98); }
+.dx-tile:focus-visible { outline: 3px solid var(--color-blue-light); outline-offset: 3px; }
+@media (hover: hover) {
+  .dx-tile:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .dx-tile:hover .dx-tile__img img { transform: scale(1.06); }
+  .dx-tile:hover .dx-tile__go { transform: translateX(3px); }
+}
+@media (min-width: 640px) {
+  .dx-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .dx-tile { aspect-ratio: 4 / 5; }
+  .dx-tile__body { padding: var(--sp-4); }
+  .dx-tile h3 { font-size: 1.2rem; }
+  .dx-tile__why { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; min-height: 2.9em; /* two lines, so every name lines up */ margin-top: .2rem; font-size: var(--fs-xs); line-height: 1.45; color: var(--color-text-inverse-muted); }
+  .dx-tile__foot { margin-top: var(--sp-3); padding-top: var(--sp-2); border-top: 1px solid rgba(255,255,255,.22); }
+}
+@media (min-width: 1024px) {
+  .dx-tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-4); }
+  .dx-tile { aspect-ratio: 5 / 6; }
+}
+/* --four: exactly four tiles (Home). Tablets get two wide tiles per row instead of three-plus-one. */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .dx-tiles--four { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-4); }
+  .dx-tiles--four .dx-tile { aspect-ratio: 16 / 10; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dx-tile, .dx-tile__img img, .dx-tile__go { transition: none; }
+}

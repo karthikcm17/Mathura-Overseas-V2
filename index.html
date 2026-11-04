@@ -17,7 +17,7 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
 <meta property="og:image" content="https://mathuraoverseas.com/assets/images/og/home.jpg">
 {% include head.html font="async" %}
 <link rel="stylesheet" href="css/pages/home.css">
-<link rel="stylesheet" href="css/pages/home-sections.css">   <!-- destination cards + universities (the hm- classes) -->
+<link rel="stylesheet" href="css/pages/home-sections.css">   <!-- universities section (the hm- classes); destination tiles are in components.css -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -188,35 +188,38 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
     </div>
   </section>
 
-  <!-- ============ TOP DESTINATIONS — "programme cards": a short photo, then the two numbers families compare first.
-       Swipe row on phones, four columns on computers. Cost and flight time are read from _data/countries.yml,
-       the same figures the Countries page shows. To show a different country, change the slug in the list just below.
-       IMAGES: assets/images/destinations/{country}.jpg — shown 16:9 (best 1200 x 675 px; your existing photos still work,
-       centre-cropped). Philippines: heritage church beside modern towers. Timor-Leste: Dili waterfront in morning light.
-       Uzbekistan: Registan madrasas at golden hour. Vietnam: Hanoi lake skyline at dusk. -->
+  <!-- ============ TOP DESTINATIONS — the SAME photo tiles as the Countries page (.dx-tile, shared in css/components.css):
+       the photo fills the tile; on top sit the country name, one line (computers and tablets), the yearly cost and an arrow.
+       Name, line and cost are read from _data/countries.yml (the line is the country's first "why"), so the home page and the
+       Countries page always match. To show a different country, change the slug in the list just below. Keep it to FOUR:
+       phones show a 2 x 2 grid, tablets 2 x 2 wide tiles, computers one row of four.
+       IMAGES: assets/images/destinations/{country}.jpg — 1200 x 675 px, the same photo the Countries page uses (upload once).
+       The tile crops it to a SQUARE on phones and a tall 5:6 on computers, so keep the subject in the CENTRE THIRD and the
+       bottom third simple and darker (the name and cost sit there in white).
+       • Philippines — Cebu City at blue hour from the water: the cable-stayed Cebu–Cordova Link Expressway bridge lit up in the
+         centre, glass towers of the city behind, their lights reflected in the calm sea. Clean, modern, cinematic.
+         (Alternative: Bonifacio Global City, Manila, at dusk — a wide tree-lined avenue running into the centre between
+         lit glass towers, soft light trails, a young professional crowd crossing.)
+       • Timor-Leste — a drone shot at golden hour over Dili's bay: turquoise water, a curve of white beach and palms, and the
+         Cristo Rei statue on its green headland in the centre, the city's low skyline along the shore.
+         (Alternative: Dili's seafront promenade at dusk — palms, warm street lamps and the calm bay, a modern, quiet evening.)
+       • Uzbekistan — Registan madrasas, Samarkand, at golden hour.   • Vietnam — Hanoi lake skyline at dusk. -->
 {%- assign home_countries = "philippines|timor-leste|uzbekistan|vietnam" | split: "|" %}
-{%- assign home_tags = "US-style MD|Indian curriculum|Government universities|Big-city hospitals" | split: "|" %}
-{%- assign home_lines = "English in class, on the ward and around town|Taught on India's own CBME framework, in English|Silk Road cities, long-established state universities|English programmes built for Indian students" | split: "|" %}
   <section class="section section--wash">
     <div class="container">
-      <div class="section-head reveal"><span class="eyebrow">Destinations</span><h2>Explore top destinations</h2><p>What a year costs and how far it is from Chennai &mdash; at a glance.</p></div>
-      <div class="snap-row snap-row--4 hm-dests">
+      <div class="section-head reveal"><span class="eyebrow">Destinations</span><h2>Explore top destinations</h2><p>An average year, all-in. Tap a country for its full guide.</p></div>
+      <div class="dx-tiles dx-tiles--four" data-stagger>
 {%- for slug in home_countries %}
 {%- assign c = site.data.countries | where: "slug", slug | first %}
-{%- assign n = forloop.index0 %}
-        <a href="{{ c.page }}" class="card hm-dest reveal">
-          <div class="hm-dest__media">
-            <div class="img-slot" data-spec="destinations/{{ slug }}.jpg · 1200×675 px"><img src="assets/images/destinations/{{ slug }}.jpg" width="1200" height="675" alt="{{ c.city | escape }}, {{ c.name | escape }}" loading="lazy"></div>
-            <span class="hm-dest__tag">{{ home_tags[n] }}</span>
-            <h3 class="hm-dest__name">{{ c.name }}</h3>
-          </div>
-          <div class="hm-dest__body">
-            <p>{{ home_lines[n] }}</p>
-            <ul class="hm-dest__facts">
-              <li><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg><span>A year, all-in</span><b>{{ c.year_cost }}</b></li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg><span>From Chennai</span><b>{{ c.hours }} {{ c.hours_unit | default: "hrs" }}</b></li>
-            </ul>
-            <span class="hm-dest__go">MBBS in {{ c.in_name | default: c.name }} <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+        <a class="dx-tile reveal" href="{{ c.page }}">
+          <div class="img-slot dx-tile__img" data-spec="destinations/{{ slug }}.jpg · 1200×675 px"><img src="assets/images/destinations/{{ slug }}.jpg" width="1200" height="675" alt="" loading="lazy"></div>
+          <div class="dx-tile__body">
+            <h3>{{ c.name | escape }}</h3>
+            <p class="dx-tile__why">{{ c.why | first | escape }}</p>
+            <div class="dx-tile__foot">
+              <span class="dx-tile__cost"><b>{{ c.year_cost }}</b> a year</span>
+              <span class="dx-tile__go" aria-hidden="true"><svg class="icon"><use href="#i-arrow-right"></use></svg></span>
+            </div>
           </div>
         </a>
 {%- endfor %}
