@@ -173,7 +173,7 @@
   .dx-tile { aspect-ratio: 4 / 5; }
   .dx-tile__body { padding: var(--sp-4); }
   .dx-tile h3 { font-size: 1.2rem; }
-  .dx-tile__why { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; min-height: 2.9em; /* two lines, so every name lines up */ margin-top: .2rem; font-size: var(--fs-xs); line-height: 1.45; color: var(--color-text-inverse-muted); }
+  .dx-tile__why { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; min-height: 2.9em; /* two lines, so every name lines up */ margin-top: .2rem; font-size: var(--fs-xs); line-height: 1.45; color: var(--color-text-inverse-muted); }
   .dx-tile__foot { margin-top: var(--sp-3); padding-top: var(--sp-2); border-top: 1px solid rgba(255,255,255,.22); }
 }
 @media (min-width: 1024px) {
