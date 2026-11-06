@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ================= QUICK PLANNER (hero tool) =================
      Each tab gives an instant answer, then its button carries the visitor's input to
      mbbs-abroad-planner.html (e.g. ?score=250&cat=general#eligibility), where the full tool picks it up.
-     Fees are AVERAGES (the middle of each range in tools.js) — the same figures the MBBS Planner shows. */
+     Fees are STARTING figures (the lowest fee we list in each country, from tools.js) — the same figures the MBBS Planner shows. */
   var tool = $('heroTool');
   if (tool && typeof MO !== 'undefined') {
     var MOBILE = function () { return window.innerWidth < 768; };
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var next = tabs[(i + d + tabs.length) % tabs.length]; next.focus(); next.click();
       });
     });
-    $('toolNote').textContent = 'Averages as of ' + FEES_AS_OF + ' · a counsellor confirms exact fees';
+    $('toolNote').textContent = 'Starting fees as of ' + FEES_AS_OF + ' · a counsellor confirms exact fees';
     selectPanel('toolElig');
 
     // ---- mobile bottom sheet: opens from the hero button, closes with ×, the backdrop, Esc or a swipe down ----
@@ -113,44 +113,39 @@ document.addEventListener('DOMContentLoaded', function () {
     tool.querySelectorAll('input[name="qCat"]').forEach(function (el) { el.addEventListener('change', renderElig); });
     renderElig();
 
-    // ---- 2. Budget: slider; a destination lights up when its AVERAGE tuition (full course) fits the budget ----
+    // ---- 2. Budget: slider; a country lights up when its STARTING tuition (full course) fits the budget ----
     var budget = $('qBudget'), fits = $('qFits');
-    var budgetKeys = Object.keys(DESTINATIONS).sort(function (a, b) { return MO.avgTuition(DESTINATIONS[a]) - MO.avgTuition(DESTINATIONS[b]); });
+    var budgetKeys = Object.keys(DESTINATIONS).sort(function (a, b) { return MO.tuition(DESTINATIONS[a]) - MO.tuition(DESTINATIONS[b]); });
     fits.innerHTML = budgetKeys.map(function (k) { return '<span class="qb__pill" data-key="' + k + '">' + MO.icon('check') + DESTINATIONS[k].label + '</span>'; }).join('');
     var renderBudget = function () {
       var v = parseInt(budget.value, 10), max = parseInt(budget.max, 10), min = parseInt(budget.min, 10), any = false, top = v >= max;
       $('qBudgetOut').textContent = '₹' + v + 'L' + (top ? '+' : '');
       budget.style.setProperty('--fill', ((v - min) / (max - min) * 100).toFixed(1) + '%');
       fits.querySelectorAll('.qb__pill').forEach(function (pill) {
-        var on = top || MO.avgTuition(DESTINATIONS[pill.dataset.key]) <= v; pill.classList.toggle('is-in', on); if (on) any = true;
+        var on = top || MO.tuition(DESTINATIONS[pill.dataset.key]) <= v; pill.classList.toggle('is-in', on); if (on) any = true;
       });
-      $('qCostStatus').innerHTML = any ? 'Highlighted: average tuition <strong>fits within ₹' + v + 'L' + (top ? '+' : '') + '</strong>. Living costs are extra — see the full plan.'
-        : 'Average tuition starts a little higher than this — slide right to see options.';
+      $('qCostStatus').innerHTML = any ? 'Highlighted: tuition <strong>starts within ₹' + v + 'L' + (top ? '+' : '') + '</strong>. Hostel and meals are extra — see the full plan.'
+        : 'Tuition starts a little higher than this — slide right to see options.';
       $('qCostGo').href = 'mbbs-abroad-planner.html?budget=' + v + '#cost';
     };
     budget.addEventListener('input', renderBudget);
     renderBudget();
 
-    // ---- 3. Compare: every country the MBBS Planner knows, grouped; three averages each ----
+    // ---- 3. Compare: every country the MBBS Planner knows; two starting figures each ----
     var ALL = MO.allDestinations();
     var selA = $('qCmpA'), selB = $('qCmpB');
-    var group = function (label, obj) {
-      return '<optgroup label="' + label + '">' + Object.keys(obj).map(function (k) { return '<option value="' + k + '">' + obj[k].label + '</option>'; }).join('') + '</optgroup>';
-    };
-    var opts = group('Popular', DESTINATIONS) + (typeof MORE_DESTINATIONS !== 'undefined' ? group('More countries', MORE_DESTINATIONS) : '');
+    var opts = Object.keys(ALL).map(function (k) { return '<option value="' + k + '">' + ALL[k].label + '</option>'; }).join('');
     selA.innerHTML = opts; selB.innerHTML = opts; selA.value = 'philippines'; selB.value = 'uzbekistan';
     var renderCompare = function () {
       var a = selA.value, b = selB.value;
       $('qCmpGo').href = 'mbbs-abroad-planner.html?cmp=' + a + (a !== b ? ',' + b : '') + '#compare';
       if (a === b) { $('qCmp').innerHTML = '<p class="qx__same">Pick two different destinations.</p>'; return; }
-      var A = ALL[a], B = ALL[b], ta = MO.avgTuition(A), tb = MO.avgTuition(B);
-      var cheaper = ta === tb ? null : (ta < tb ? a : b);
-      var card = function (k, d) {
-        return '<div class="qx__card"><div class="qx__top"><em class="qx__tag' + (k === cheaper ? '' : ' qx__tag--ghost') + '">Lower fees</em><small>' + MO.years(d) + '</small></div>' +
-          '<div><b>' + MO.aboutL(MO.avgTuition(d)) + '</b><span>Tuition, course</span></div>' +
-          '<div><b>' + MO.aboutK(MO.avgLiving(d)) + '</b><span>Living / month</span></div></div>';
+      var card = function (d) {
+        return '<div class="qx__card"><div class="qx__top"><small>' + d.length + '</small></div>' +
+          '<div><b>' + MO.fromL(d.course != null ? d.course : d.fee) + '</b><span>' + (d.course != null ? 'Tuition, full course' : 'Tuition / year') + '</span></div>' +
+          '<div><b>' + MO.aboutL(MO.total(d)) + '</b><span>Full course, from</span></div></div>';
       };
-      $('qCmp').innerHTML = card(a, A) + card(b, B);
+      $('qCmp').innerHTML = card(ALL[a]) + card(ALL[b]);
     };
     selA.addEventListener('change', renderCompare);
     selB.addEventListener('change', renderCompare);

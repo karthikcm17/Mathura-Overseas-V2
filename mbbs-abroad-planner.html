@@ -6,13 +6,13 @@ active: planner   # highlighted menu item: home, countries, planner, updates, gu
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>MBBS Planner | Eligibility, Full Cost &amp; Compare Countries | Mathura Overseas</title>
-<meta name="description" content="Check your MBBS abroad eligibility, see the average full course cost and compare countries side by side. Free tools with NEET cutoffs and NMC rules explained.">
-<meta property="og:title" content="MBBS Planner | Eligibility, Full Cost &amp; Compare Countries | Mathura Overseas">
-<meta property="og:description" content="Check your MBBS abroad eligibility, see the average full course cost and compare countries side by side. Free tools with NEET cutoffs and NMC rules explained.">
+<title>MBBS Planner | Eligibility, Starting Fees &amp; Compare Countries | Mathura Overseas</title>
+<meta name="description" content="Check your MBBS abroad eligibility, see starting fees for the full course and compare countries side by side. Free tools with NEET cutoffs and NMC rules explained.">
+<meta property="og:title" content="MBBS Planner | Eligibility, Starting Fees &amp; Compare Countries | Mathura Overseas">
+<meta property="og:description" content="Check your MBBS abroad eligibility, see starting fees for the full course and compare countries side by side. Free tools with NEET cutoffs and NMC rules explained.">
 <meta property="og:image" content="assets/images/og/home.jpg">
 {% include head.html %}
-<link rel="stylesheet" href="css/pages/planner.css">
+<link rel="stylesheet" href="css/pages/planner.css?v=20261104">
 <link rel="canonical" href="https://mathuraoverseas.com/mbbs-abroad-planner.html">
 </head>
 <body>
@@ -29,7 +29,7 @@ active: planner   # highlighted menu item: home, countries, planner, updates, gu
     <div class="container pl-hero__inner">
       <span class="eyebrow eyebrow--light">MBBS Planner &middot; free</span>
       <h1>Plan your MBBS abroad <em>with real numbers</em></h1>
-      <p class="pl-hero__lead">Check your eligibility, see the full cost of the course and compare destinations side by side &mdash; using the same figures our counsellors work with.</p>
+      <p class="pl-hero__lead">Check your eligibility, see what the full course starts from and compare countries side by side &mdash; using the fees of the universities we actually recommend.</p>
     </div>
   </section>
 
@@ -92,11 +92,11 @@ active: planner   # highlighted menu item: home, countries, planner, updates, gu
           </div>
         </div>
 
-        <!-- ---------- 2. COST ---------- -->
+        <!-- ---------- 2. COST (starting figures: the lowest fee we list in each country) ---------- -->
         <div class="pl-panel" id="cost" role="tabpanel" aria-labelledby="tab-cost" hidden>
           <div class="pl-io">
             <div class="pl-in">
-              <div class="pl-head"><h2>Plan the full cost</h2><p>Average tuition and living, for the whole course.</p></div>
+              <div class="pl-head"><h2>Plan the full cost</h2><p>What the whole course starts from: tuition plus hostel and meals.</p></div>
               <div class="field pl-select"><label for="costDest">Country</label><select id="costDest"></select></div>
               <div class="pl-budget">
                 <div class="pl-budget__top"><label class="pl-label" for="costBudget">Your total budget</label><output id="costBudgetOut" for="costBudget">&#8377;40L</output></div>
@@ -108,17 +108,17 @@ active: planner   # highlighted menu item: home, countries, planner, updates, gu
           </div>
         </div>
 
-        <!-- ---------- 3. COMPARE ---------- -->
+        <!-- ---------- 3. COMPARE (starting figures, side by side) ---------- -->
         <div class="pl-panel" id="compare" role="tabpanel" aria-labelledby="tab-compare" hidden>
           <div class="pl-io pl-io--cmp">
             <div class="pl-in">
-              <div class="pl-head"><h2>Compare countries</h2><p>The best value in each row is highlighted.</p></div>
+              <div class="pl-head"><h2>Compare countries</h2><p>Starting fees side by side. The full fee sheet comes on WhatsApp.</p></div>
               <div class="pl-selects" id="cmpPick">
                 <div class="field pl-select"><label for="cmpA">Country 1</label><select id="cmpA"></select></div>
                 <div class="field pl-select"><label for="cmpB">Country 2</label><select id="cmpB"></select></div>
                 <div class="field pl-select"><label for="cmpC">Country 3 <span class="field__hint">optional</span></label><select id="cmpC"></select></div>
               </div>
-                          </div>
+            </div>
             <div class="pl-out pl-out--cmp">
               <div class="pl-cmp-wrap" id="cmpWrap"><table class="pl-cmp" id="cmpTable"></table></div>
               <div class="pl-cmp__foot">
@@ -177,9 +177,9 @@ active: planner   # highlighted menu item: home, countries, planner, updates, gu
         <details class="fyu-q"><summary>Why is the cutoff lower for some categories?</summary><p>The qualifying score is lower for OBC, SC and ST candidates. For NEET <span data-fill="year">2026</span> it is <span data-fill="cut-general">213</span> for General and <span data-fill="cut-other">177</span> for OBC / SC / ST.</p></details>
         <details class="fyu-q"><summary>What Class 12 marks do I need?</summary><p>At least <span data-fill="pcb-general">50%</span> in Physics, Chemistry and Biology together for General, and <span data-fill="pcb-other">40%</span> for OBC / SC / ST.</p></details>
         <details class="fyu-q"><summary>Is there a minimum age?</summary><p>Yes &mdash; you must be at least <span data-fill="age-num">17</span> on 31 December of the year you take admission.</p></details>
-        <details class="fyu-q"><summary>Do the fees include hostel and food?</summary><p>Tuition covers tuition only. The cost planner adds average living costs for the whole course; flights, visa and insurance are extra.</p></details>
+        <details class="fyu-q"><summary>Do the fees include hostel and food?</summary><p>Tuition covers tuition only. The cost planner adds hostel and meals for the whole course, from the lower end of each country&rsquo;s range; flights, visa and insurance are extra.</p></details>
         <details class="fyu-q"><summary>Can I do my internship in India instead?</summary><p>No. NMC requires a 12-month internship at the same foreign university. After you return, you also complete a 12-month supervised internship in India.</p></details>
-        <details class="fyu-q"><summary>How accurate are these figures?</summary><p>They are averages from our MBBS Abroad Handbook 2026&ndash;27 and published 2026 fee guides, as of <span data-fill="asof">Oct 2026</span>. Fees differ by university and intake, so a counsellor confirms the exact figure before you decide.</p></details>
+        <details class="fyu-q"><summary>How accurate are these figures?</summary><p>They are starting figures: the lowest 2026&ndash;27 fee among the universities we list in each country, as of <span data-fill="asof">Nov 2026</span>. Most universities charge more, and first-year fees can be higher, so a counsellor sends you the exact fee sheet before you decide.</p></details>
       </div>
     </div>
   </section>
@@ -211,7 +211,7 @@ active: planner   # highlighted menu item: home, countries, planner, updates, gu
 {% include footer.html %}
 {% include bottom-nav.html %}
 {% include scripts.html %}
-<script src="js/tools.js"></script>
-<script src="js/pages/planner.js"></script>
+<script src="js/tools.js?v=20261104"></script>
+<script src="js/pages/planner.js?v=20261104"></script>
 </body>
 </html>

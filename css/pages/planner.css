@@ -139,13 +139,17 @@
 .pl-status { display: flex; align-items: flex-start; gap: .5rem; font-size: var(--fs-sm); font-weight: 700; line-height: 1.4; color: var(--color-primary); }
 .pl-status .icon { width: 18px; height: 18px; margin-top: .05rem; }
 .pl-status.is-short { color: var(--icon-pink-b); }
+/* "what the fee sheet adds" — the reason to ask a counsellor */
+.pl-lock { display: flex; align-items: flex-start; gap: .6rem; padding: .7rem .85rem; border: 1.5px dashed var(--color-blue-pale); border-radius: var(--radius-md); background: var(--color-surface); font-size: var(--fs-xs); line-height: 1.45; color: var(--color-text-muted); }
+.pl-lock .icon { flex-shrink: 0; width: 18px; height: 18px; margin-top: .05rem; color: var(--color-primary); }
+.pl-lock b { color: var(--color-primary); }
 
 /* legend swatches (cost split key) */
 .pl-legend__t, .pl-legend__l { display: inline-block; width: 14px; height: 8px; border-radius: 4px; }
 .pl-legend__t { background: var(--color-primary); }
 .pl-legend__l { background: var(--color-blue-pale); }
 
-/* ---------- 3. Compare ---------- */
+/* ---------- 3. Compare (plain side-by-side: no "best" highlight or badges) ---------- */
 .pl-hint { font-size: var(--fs-xs); font-weight: 600; color: var(--color-text-muted); }
 .pl-cmp-wrap { overflow: hidden; border-radius: var(--radius-lg); background: var(--color-surface); box-shadow: var(--shadow-sm); }
 .pl-cmp { --n: 2; display: block; width: 100%; border-collapse: collapse; font-size: var(--fs-xs); }
@@ -160,14 +164,10 @@
 .pl-cmp tbody th[scope="row"] { grid-column: 1 / -1; padding-bottom: 0; font-size: .7rem; font-weight: 700; color: var(--color-text-muted); }
 .pl-cmp td { font-weight: 700; color: var(--color-text); font-variant-numeric: tabular-nums; }
 .pl-cmp td small { display: block; font-size: .7rem; font-weight: 600; color: var(--color-text-muted); }
-.pl-cmp td.is-best { margin: .2rem 0; padding-inline: .45rem; border-radius: 8px; background: var(--color-wash); color: var(--color-primary); }
-.pl-cmp td em { display: table; margin-top: .3rem; padding: .08rem .45rem; border-radius: 999px; background: var(--color-primary); color: var(--color-text-inverse); font-size: .58rem; font-style: normal; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
-.pl-cmp__group { border-bottom: 0 !important; background: var(--color-bg); }
-.pl-cmp__group th { grid-column: 1 / -1; padding-block: .5rem; font-size: .64rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--color-blue-light); }
-.pl-cmp__why td { font-weight: 500; }
-.pl-cmp__why ul { display: grid; gap: .35rem; }
-.pl-cmp__why li { position: relative; padding-left: .85rem; line-height: 1.45; }
-.pl-cmp__why li::before { content: ""; position: absolute; left: 0; top: .5em; width: 5px; height: 5px; border-radius: 50%; background: var(--color-blue-light); }
+.pl-cmp__why td { font-weight: 500; line-height: 1.45; }
+.pl-cmp__ask { display: inline-flex; align-items: center; gap: .35rem; min-height: 32px; padding: 0 .7rem; border: 1.5px solid var(--color-wash-deep); border-radius: 999px; font-size: var(--fs-xs); font-weight: 800; color: var(--color-primary); transition: border-color var(--speed) var(--ease), background var(--speed) var(--ease); }
+.pl-cmp__ask .icon { width: 14px; height: 14px; }
+.pl-cmp__ask:hover { border-color: var(--color-primary); background: var(--color-wash); }
 .pl-cmp tr:last-child { border-bottom: 0; }
 .pl-cmp.is-empty tr { display: block; }
 .pl-cmp__empty { display: flex !important; flex-direction: column; align-items: center; gap: var(--sp-2); padding: var(--sp-7) var(--sp-4) !important; text-align: center !important; font-size: var(--fs-sm); font-weight: 600 !important; color: var(--color-text-muted) !important; }
@@ -276,8 +276,6 @@
   .pl-cmp thead a .icon { display: block; }
   .pl-cmp tbody th[scope="row"] { width: 128px; padding-bottom: .7rem; font-size: var(--fs-xs); }
   .pl-cmp td small { font-size: var(--fs-xs); }
-  .pl-cmp td.is-best { margin: 0; border-radius: 0; }
-  .pl-cmp__group th { padding: .9rem .8rem .5rem; border-bottom: 0; }
   .pl-cmp.is-empty tr, .pl-cmp.is-empty td { display: block; }
 }
 

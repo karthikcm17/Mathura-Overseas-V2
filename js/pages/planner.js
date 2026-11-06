@@ -1,5 +1,7 @@
 // planner.js — the MBBS Planner page (mbbs-abroad-planner.html). Needs js/tools.js loaded first: ALL numbers live there.
 // This file only does the maths and the drawing.
+// Cost and Compare show STARTING figures (the lowest fee we list in each country), not every detail:
+// the exact university-by-university fees are what a counsellor sends on WhatsApp.
 // The home-page quick planner links here with what the visitor already typed, e.g.
 //   ?score=250&cat=general#eligibility   ?budget=25#cost   ?cmp=philippines,uzbekistan#compare
 document.addEventListener('DOMContentLoaded', function () {
@@ -119,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
   ['inNeetScore', 'inPcb', 'inAge', 'inNeetYear'].forEach(function (id) { $(id).addEventListener('input', renderElig); });
   all('input[name="category"]', form).forEach(function (r) { r.addEventListener('change', renderElig); });
 
-  /* ================= 2. COST (average figures) ================= */
+  /* ================= 2. COST (starting figures) ================= */
   var ALL = MO.allDestinations(), allKeys = Object.keys(ALL);
   function options(selected, withNone) {
     return (withNone ? '<option value="">None</option>' : '') + allKeys.map(function (k) {
@@ -127,59 +129,61 @@ document.addEventListener('DOMContentLoaded', function () {
     }).join('');
   }
   var costDest = $('costDest'), budget = $('costBudget'), costOut = $('costOut');
-  costDest.innerHTML = options('philippines');
-  var SCALE = Math.ceil(Math.max.apply(null, allKeys.map(function (k) { return MO.avgTotal(ALL[k]); })) / 10) * 10;   // slider end, next ₹10L
+  var startCost = ALL[params.get('country')] ? params.get('country') : 'philippines';
+  costDest.innerHTML = options(startCost);
+  var SCALE = Math.ceil(Math.max.apply(null, allKeys.map(function (k) { return MO.total(ALL[k]); })) / 10) * 10;   // slider end, next ₹10L
   budget.max = SCALE;
   $('costBudgetMax').textContent = '₹' + SCALE + 'L+';
   if (params.get('budget')) {
     // the home page sends a TUITION budget; here the budget covers tuition + living, so start a little higher
     var b = parseInt(params.get('budget'), 10);
-    if (!isNaN(b)) budget.value = Math.min(SCALE, Math.max(10, Math.round(b * 1.5)));
+    if (!isNaN(b)) budget.value = Math.min(SCALE, Math.max(10, Math.round(b * 1.4)));
   }
   function renderCost() {
     var d = ALL[costDest.value], v = parseInt(budget.value, 10), max = parseInt(budget.max, 10);
-    var t = MO.avgTuition(d), l = MO.avgLivingTotal(d), tot = t + l, share = Math.round(t / tot * 100);
+    var t = MO.tuition(d), l = MO.livingTotal(d), tot = t + l, share = Math.round(t / tot * 100);
     $('costBudgetOut').textContent = '₹' + v + 'L' + (v >= max ? '+' : '');
     setVar(budget, '--fill', ((v - 10) / (max - 10) * 100).toFixed(1) + '%');
     var gap = Math.round(v - tot);
-    var verdict = gap >= 0 ? ['is-ok', 'check', 'Fits your ₹' + v + 'L budget' + (gap > 0 ? ', with about ₹' + gap + 'L to spare.' : '.')]
-                           : ['is-short', 'info', 'About ₹' + (-gap) + 'L above your ₹' + v + 'L budget.'];
-    var msg = 'Hi Mathura Overseas, please share the exact fee structure for MBBS in ' + d.label + '. My total budget is about ₹' + v + 'L' + (profile ? ' (' + profile + ')' : '') + '.';
+    var verdict = gap >= 0 ? ['is-ok', 'check', 'Your ₹' + v + 'L budget covers the starting cost. Ask which universities fit it.']
+                           : ['is-short', 'info', 'Starts about ₹' + (-gap) + 'L above your ₹' + v + 'L budget. A counsellor can suggest options that fit.'];
+    var msg = 'Hi Mathura Overseas, please send me the university-wise fee sheet for MBBS in ' + d.label + '. My total budget is about ₹' + v + 'L' + (profile ? ' (' + profile + ')' : '') + '.';
     costOut.innerHTML =
       '<div class="pl-total">' +
-        '<span class="pl-label">Average full course &middot; ' + (d.page ? '<a href="' + d.page + '">' + d.label + MO.icon('arrow-right') + '</a>' : d.label) + '</span>' +
+        '<span class="pl-label">Full course, starting from &middot; ' + (d.page ? '<a href="' + d.page + '">' + d.label + MO.icon('arrow-right') + '</a>' : d.label) + '</span>' +
         '<b>' + MO.aboutL(tot) + '</b>' +
         '<div class="pl-split" aria-hidden="true"><i data-w="' + share + '%"></i></div>' +
-        '<div class="pl-split__key"><span><i class="pl-legend__t"></i>Tuition ' + share + '%</span><span><i class="pl-legend__l"></i>Living ' + (100 - share) + '%</span></div>' +
+        '<div class="pl-split__key"><span><i class="pl-legend__t"></i>Tuition</span><span><i class="pl-legend__l"></i>Hostel &amp; meals</span></div>' +
       '</div>' +
       '<dl class="pl-rows">' +
-        '<div><dt>' + MO.icon('cap') + 'Tuition</dt><dd>' + MO.aboutL(t) + '</dd></div>' +
-        '<div><dt>' + MO.icon('home') + 'Living <small>' + MO.aboutK(MO.avgLiving(d)) + '/month &times; ' + MO.avgYears(d) + ' yrs</small></dt><dd>' + MO.aboutL(l) + '</dd></div>' +
+        '<div><dt>' + MO.icon('cap') + 'Tuition <small>' + (d.course != null ? 'one course fee, from ' + MO.lakh(d.course) : 'from ' + MO.lakh(d.fee) + ' a year') + '</small></dt><dd>' + MO.aboutL(t) + '</dd></div>' +
+        '<div><dt>' + MO.icon('home') + 'Hostel &amp; meals <small>' + d.length + '</small></dt><dd>' + MO.aboutL(l) + '</dd></div>' +
       '</dl>' +
       '<p class="pl-status ' + verdict[0] + '">' + MO.icon(verdict[1]) + '<span>' + verdict[2] + '</span></p>' +
-      '<a class="btn btn--primary btn--block" href="' + MO.wa(msg) + '" target="_blank" rel="noopener">' + MO.icon('whatsapp', true) + 'Get exact fees for ' + d.label + '</a>' +
-      '<p class="pl-note">Averages as of ' + FEES_AS_OF + '. Flights, visa and insurance are extra.</p>';
+      '<div class="pl-lock">' + MO.icon('file') + '<span><b>University-wise fees, seats and the exact year-by-year plan</b> are on our fee sheet for ' + d.label + '.</span></div>' +
+      '<a class="btn btn--primary btn--block" href="' + MO.wa(msg) + '" target="_blank" rel="noopener">' + MO.icon('whatsapp', true) + 'Get the ' + d.label + ' fee sheet</a>' +
+      '<p class="pl-note">Starting figures as of ' + FEES_AS_OF + ': the lowest fee among the universities we list. Flights, visa and insurance are extra.</p>';
     var split = costOut.querySelector('.pl-split i'); setVar(split, '--w', split.dataset.w);
   }
   costDest.addEventListener('change', renderCost);
   budget.addEventListener('input', renderCost);
 
-  /* ================= 3. COMPARE (2 or 3 countries, average figures) ================= */
+  /* ================= 3. COMPARE (2 or 3 countries, starting figures, no "winner" badges) ================= */
   var table = $('cmpTable'), selA = $('cmpA'), selB = $('cmpB'), selC = $('cmpC');
   var start = (params.get('cmp') || 'philippines,uzbekistan').split(',').filter(function (k) { return ALL[k]; });
   selA.innerHTML = options(start[0] || 'philippines');
   selB.innerHTML = options(start[1] && start[1] !== start[0] ? start[1] : (start[0] === 'uzbekistan' ? 'philippines' : 'uzbekistan'));
   selC.innerHTML = options(start[2] || '', true);
 
-  // [label, value, number used to find the best (lowest), badge text]
+  // [label, value]
   var ROWS = [
-    ['Tuition', function (d) { return MO.aboutL(MO.avgTuition(d)); }, function (d) { return MO.avgTuition(d); }, 'Lowest'],
-    ['Living', function (d) { return MO.aboutK(MO.avgLiving(d)) + '<small>per month</small>'; }, function (d) { return MO.avgLiving(d); }, 'Lowest'],
-    ['Total course', function (d) { return MO.aboutL(MO.avgTotal(d)); }, function (d) { return MO.avgTotal(d); }, 'Lowest'],
-    ['Course length', function (d) { return MO.years(d); }],
-    ['Local language', function (d) { return d.lang; }],
-    ['Climate', function (d) { return d.climate; }],
-    ['Why students go', function (d) { return '<ul>' + d.why.slice(0, 2).map(function (w) { return '<li>' + w + '</li>'; }).join('') + '</ul>'; }]
+    ['Tuition', function (d) { return d.course != null ? MO.fromL(d.course) + '<small>one fee, full course</small>' : MO.fromL(d.fee) + '<small>a year</small>'; }],
+    ['Full course', function (d) { return MO.aboutL(MO.total(d)) + '<small>tuition + hostel &amp; meals</small>'; }],
+    ['Course length', function (d) { return d.length; }],
+    ['Why students go', function (d) { return d.why; }],
+    ['Fee sheet', function (d) {
+      return '<a class="pl-cmp__ask" href="' + MO.wa('Hi Mathura Overseas, please send me the university-wise fee sheet for MBBS in ' + d.label + (profile ? ' (' + profile + ')' : '') + '.') + '" target="_blank" rel="noopener">' + MO.icon('whatsapp', true) + 'Get it</a>';
+    }]
   ];
   function renderCompare() {
     var chosen = [selA.value, selB.value, selC.value].filter(function (k, i, arr) { return k && arr.indexOf(k) === i; });
@@ -194,21 +198,15 @@ document.addEventListener('DOMContentLoaded', function () {
       return '<th scope="col">' + (d.page ? '<a href="' + d.page + '">' + d.label + MO.icon('arrow-right') + '</a>' : '<span>' + d.label + '</span>') + '</th>';
     }).join('') + '</tr></thead><tbody>';
     ROWS.forEach(function (row) {
-      var best = null;
-      if (row[2]) {
-        var nums = D.map(row[2]), m = Math.min.apply(null, nums);
-        if (nums.filter(function (n) { return n === m; }).length === 1) best = m;
-      }
       html += '<tr' + (row[0] === 'Why students go' ? ' class="pl-cmp__why"' : '') + '><th scope="row">' + row[0] + '</th>' + D.map(function (d) {
-        var isBest = best !== null && row[2](d) === best;
-        return '<td' + (isBest ? ' class="is-best"' : '') + '>' + row[1](d) + (isBest ? '<em>' + row[3] + '</em>' : '') + '</td>';
+        return '<td>' + row[1](d) + '</td>';
       }).join('') + '</tr>';
     });
     table.innerHTML = html + '</tbody>';
     var names = D.map(function (d) { return d.label; });
     $('cmpAsk').href = MO.wa('Hi Mathura Overseas, I’m comparing ' + names.join(', ').replace(/, ([^,]*)$/, ' and $1') + (profile ? ' (' + profile + ')' : '') + '. Which would suit me?');
   }
-  $('cmpAsOf').textContent = 'Averages as of ' + FEES_AS_OF + '. A counsellor confirms exact fees.';
+  $('cmpAsOf').textContent = 'Starting figures as of ' + FEES_AS_OF + '. A counsellor confirms exact fees.';
   [selA, selB, selC].forEach(function (s) { s.addEventListener('change', renderCompare); });
 
   /* ================= NMC CHECKLIST ================= */

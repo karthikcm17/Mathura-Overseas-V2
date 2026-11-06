@@ -241,12 +241,11 @@
     - The highest FMGE pass rate of the major destinations in 2023 (NBEMS)
     - A direct flight from Chennai in about 2 hours 40 minutes
 
-# Mauritius: values from mbbs-in-mauritius.html (Nov 2026). Not in the MBBS Planner yet, so planner: false.
+# Mauritius: values from mbbs-in-mauritius.html (Nov 2026). In the MBBS Planner since 4 Nov 2026 (id: mauritius).
 # Fare = cheapest NON-STOP one-way (Air Mauritius, Skyscanner, 3 Nov 2026); one-stop fares start lower (~₹18,300).
 - slug: mauritius
   name: Mauritius
   page: mbbs-in-mauritius.html
-  planner: false
   year_cost: "₹12.3 L"
   year_inr: 1225000
   duration: "6 yrs incl. internship"
@@ -272,6 +271,7 @@
 # often through the USA. Each of its schools has its own page and an entry in _data/universities.yml.
 # year_cost = a typical MD year: ₹48 L median tuition & school fees (12 schools, official 2026 fee pages)
 # + ₹11 L living + ₹2 L insurance and visas = ₹61 L (checked 3 Nov 2026).
+# Not in the MBBS Planner: it is a US-licensing route, so its fees would not compare fairly with MBBS countries.
 - slug: caribbean
   name: Caribbean
   in_name: the Caribbean
@@ -298,9 +298,11 @@
     - Clinical rotations often in US hospitals
     - Accreditors the US accepts, such as CAAM-HP and ACCM
 
+# Kazakhstan: an information guide only (no universities listed since the seven-year course), so it is not in the MBBS Planner.
 - slug: kazakhstan
   name: Kazakhstan
   page: mbbs-in-kazakhstan.html
+  planner: false
   year_cost: "₹6.3 L"
   year_inr: 630000
   duration: "7 yrs from 2026"

@@ -3,7 +3,7 @@
    The pages are built by _layouts/university.html. Only change this file for something every university page needs.
 
    Section map (same order as the page):
-     1 .uni-hero    dark hero: name, place, chips, the ask bar (.uni-ask); photo with the fee card on it
+     1 .uni-hero    dark hero: name, place, chips, the ask bar (.uni-ask); photo with the fee card under it
      2 .uni-stats   four key facts, floating over the hero's bottom edge
      3 .uni-why     three reasons
      4 .uni-fees    fee overview (with a locked "year-by-year sheet" row) + .uni-lead, the fee-sheet form
@@ -38,7 +38,7 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 16px); }
 /* Photo + the fee card that sits on it */
 .uni-hero__media { position: relative; }
 .uni-hero__media .img-slot { --ratio: 16 / 10; border-radius: var(--radius-xl); box-shadow: 0 24px 50px rgba(7,18,52,.4), 0 0 0 1px rgba(255,255,255,.18); }
-.uni-hero__fee { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; margin: -2.6rem var(--sp-3) 0; padding: var(--sp-3) var(--sp-4); border-radius: var(--radius-lg); background: var(--color-surface); color: var(--color-text); box-shadow: 0 16px 34px rgba(7,18,52,.3); transition: transform var(--speed) var(--ease); }
+.uni-hero__fee { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; margin: -2.6rem var(--sp-3) 0; padding: var(--sp-3) var(--sp-4); border-radius: var(--radius-lg); background: var(--color-surface); color: var(--color-text); box-shadow: 0 16px 34px rgba(7,18,52,.3); transition: transform var(--speed) var(--ease); }
 .uni-hero__fee:hover { transform: translateY(-2px); }
 .uni-hero__fee-col { display: grid; gap: .1rem; min-width: 0; }
 .uni-hero__fee-col + .uni-hero__fee-col { padding-left: var(--sp-4); margin-left: var(--sp-4); border-left: 1px solid var(--color-border); }
@@ -180,7 +180,12 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 16px); }
 
 /* ================= TABLET ================= */
 @media (min-width: 768px) {
-  .uni-hero__fee { position: absolute; left: var(--sp-4); bottom: var(--sp-4); margin: 0; width: 330px; }
+  /* Hero photo: a thin outline frame offset up-right behind the photo, for depth (static, no animation). */
+  .uni-hero__media .img-slot { position: relative; z-index: 1; }
+  .uni-hero__media::before { content: ""; position: absolute; top: -14px; right: -14px; width: 100%; aspect-ratio: 16 / 10; border: 1.5px solid rgba(255,255,255,.24); border-radius: var(--radius-xl); pointer-events: none; }
+  /* Fee card docks UNDER the photo and overlaps only its bottom lip, so the campus stays fully visible.
+     It stays in normal flow (not absolute), so its height is always counted and it can never collide with the key-facts card. */
+  .uni-hero__fee { margin: -1.75rem var(--sp-6) 0; padding: var(--sp-4) var(--sp-5); box-shadow: inset 0 3px 0 var(--color-blue-light), 0 18px 38px rgba(7,18,52,.34); }   /* brand-blue top edge that follows the rounded corners */
   .uni-stats__card { grid-template-columns: repeat(4, 1fr); }
   .uni-stat { flex-direction: column; align-items: flex-start; gap: .5rem; padding: var(--sp-4); border-bottom: 0 !important; border-right: 1px solid var(--color-border); }
   .uni-stat:last-child { border-right: 0; }
@@ -193,8 +198,11 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 16px); }
 @media (min-width: 1024px) {
   html { scroll-padding-top: calc(var(--announce-h) + var(--header-h-lg) + 16px); }
   .uni-hero { padding: var(--sp-7) 0 calc(var(--sp-8) + var(--sp-6)); }
-  .uni-hero__grid { grid-template-columns: 1.05fr .95fr; align-items: center; gap: var(--sp-7); }
-  .uni-hero__fee { left: calc(-1 * var(--sp-6)); bottom: var(--sp-6); }
+  /* align-items: start (was center) lifts the photo to the top of the hero instead of floating mid-way down the copy;
+     the small top margin lines its top edge up with the badge under the breadcrumbs. */
+  .uni-hero__grid { grid-template-columns: 1.05fr .95fr; align-items: start; gap: var(--sp-7); }
+  .uni-hero__media { margin-top: var(--sp-5); }
+  .uni-hero__fee-num { font-size: 1.75rem; }
   .uni-stat { flex-direction: row; align-items: center; padding: var(--sp-5); }
   .uni-stat b { font-size: 1.3rem; }
   .uni-stat span:not(.icon-badge) { font-size: .72rem; }

@@ -21,65 +21,48 @@ var CATEGORIES = {
   scst:    { label: 'SC / ST', group: 'other' }
 };
 
-/* ======================= DESTINATIONS (home page + MBBS Planner) ======================= */
-// tuition: full course, in lakhs of rupees (excludes living)  · years: course length [shortest, longest]
-// living: per month, in thousands of rupees [low, high]        Source: MBBS Abroad Handbook 2026-27.
-// The MBBS Planner and the home page show the AVERAGE (middle) of each range, so families see a typical figure, not the extremes.
-// flight / fare / tz / lang / currency / rate / why: researched travel facts, the same ones used on the Countries page
-// (destinations.js). Fares and exchange rates are indicative — re-check them and update TRAVEL_AS_OF when you do.
-var TRAVEL_AS_OF = 'Sep 2026';
+/* ======================= COUNTRIES (home page + MBBS Planner) ======================= */
+// ONLY countries where we list universities with a confirmed fee (_data/universities.yml). Every figure is a
+// STARTING figure: the LOWEST fee among the universities we list, so families see "from ₹…" and ask us for the rest.
+//
+//   fee       lowest yearly tuition we list, in lakhs (the university it comes from is in the comment)
+//   feeYears  how many years that tuition is paid for (Timor-Leste charges 4.5 study years; Mauritius 5)
+//   course    OPTIONAL. Use instead of fee × feeYears when a country charges ONE full-course fee (Nepal)
+//   years     course length in the country, internship included (living is counted for these years)
+//   length    the course length as shown
+//   living    hostel & meals, per month, in thousands — the LOW end on that country's page
+//   why       one short reason, from the country page (_data/countries.yml)
+// Kazakhstan (no universities listed since the 7-year course) and the Caribbean (a US-licensing route, not for
+// practice in India) are left out on purpose. To add a country, copy one line and change the values.
+// Fees: universities.yml, checked Nov 2026 · living: each country page, Sep–Nov 2026 · US$1 = ₹95 (26 Oct 2026).
 var DESTINATIONS = {
-  philippines: { label: 'Philippines', page: 'mbbs-in-philippines.html', tuition: [18, 35], years: [5.5, 6.5], living: [20, 35], climate: 'Tropical',
-    flight: [10, 10], stops: '1 stop', fare: 13434, tz: '2h 30m ahead', lang: 'Filipino & English', currency: 'Philippine peso', rate: '1 INR ≈ 0.66 PHP',
-    why: ['American-style curriculum, taught in English', 'A large Indian student community', 'Strong clinical exposure'] },
-  uzbekistan:  { label: 'Uzbekistan',  page: 'mbbs-in-uzbekistan.html', tuition: [15, 25], years: [6, 6], living: [12, 20], climate: 'Continental',
-    flight: [8, 8], stops: '1 stop', fare: 20073, tz: '30m behind', lang: 'Uzbek', currency: 'Uzbek som', rate: '1 INR ≈ 124.5 UZS',
-    why: ['Silk Road cities like Tashkent and Samarkand', 'Modern campuses', 'Established Indian student communities'] },
-  russia:      { label: 'Russia',      page: 'mbbs-in-russia.html', tuition: [18, 32], years: [6, 6], living: [15, 25], climate: 'Cold',
-    flight: [12, 15], stops: '1 stop', fare: null, fareText: 'About ₹61,667 return', tz: '2h 30m behind', lang: 'Russian', currency: 'Russian rouble', rate: '1 INR ≈ 0.90 RUB',
-    why: ['Government universities with 60+ years of Indian students', 'Moscow is Russia’s capital and largest city', 'Long, cold winters — a real change from home'] },
-  kyrgyzstan:  { label: 'Kyrgyzstan',  page: 'mbbs-in-kyrgyzstan.html', tuition: [18, 33], years: [6, 6], living: [12, 20], climate: 'Cold winters',
-    flight: [9, 10], stops: '1 stop', fare: 34725, tz: '30m ahead', lang: 'Kyrgyz & Russian', currency: 'Kyrgyz som', rate: '1 INR ≈ 1.0 KGS',
-    why: ['Among the most affordable options', 'Bishkek sits at the foot of the Ala-Too mountains', 'Russian is widely used alongside Kyrgyz'] },
-  vietnam:     { label: 'Vietnam',     page: 'mbbs-in-vietnam.html', tuition: [28, 45], years: [6, 6], living: [18, 30], climate: 'Tropical',
-    flight: [7, 7], stops: '1 stop', fare: 12679, tz: '1h 30m ahead', lang: 'Vietnamese', currency: 'Vietnamese dong', rate: '1 INR ≈ 275.6 VND',
-    why: ['Modern, safe cities', 'Hanoi: lakes, an old quarter and famous street food', 'One of the shorter flights from South India'] },
-  timor:       { label: 'Timor-Leste', page: 'mbbs-in-timor-uct-timor.html', tuition: [15, 20], years: [5.5, 5.5], living: [15, 25], climate: 'Tropical',
-    flight: [20, 24], stops: 'via Singapore', fare: 35561, tz: '3h 30m ahead', lang: 'Tetum & Portuguese', currency: 'US dollar', rate: '1 INR ≈ 0.0114 USD',
-    why: ['Indian-aligned syllabus, taught in English', 'A tropical island setting', 'An emerging option — extra due diligence needed'] }
+  philippines: { label: 'Philippines', page: 'mbbs-in-philippines.html',    fee: 2.8, feeYears: 6,   years: 6,   length: '~6–7 yrs incl. pre-med', living: 18,
+    why: 'English in class, on the ward and at the corner shop' },                       // Lyceum-Northwestern
+  uzbekistan:  { label: 'Uzbekistan',  page: 'mbbs-in-uzbekistan.html',     fee: 3.3, feeYears: 6,   years: 6,   length: '6 yrs', living: 11,
+    why: 'Government universities with decades of teaching' },                          // Tashkent, Bukhara, Andijan, Fergana
+  russia:      { label: 'Russia',      page: 'mbbs-in-russia.html',         fee: 4.4, feeYears: 6,   years: 6,   length: '6 yrs', living: 12,
+    why: 'Large university teaching hospitals' },                                       // Rostov State Medical University
+  kyrgyzstan:  { label: 'Kyrgyzstan',  page: 'mbbs-in-kyrgyzstan.html',     fee: 3.3, feeYears: 6,   years: 6,   length: '6 yrs', living: 10,
+    why: 'Only universities that passed the 2026 accreditation' },                      // Asian International University
+  vietnam:     { label: 'Vietnam',     page: 'mbbs-in-vietnam.html',        fee: 3.9, feeYears: 6,   years: 6,   length: '6 yrs', living: 10,
+    why: 'English programmes built for Indian students' },                              // Dai Nam University
+  timor:       { label: 'Timor-Leste', page: 'mbbs-in-timor-uct-timor.html', fee: 2.5, feeYears: 4.5, years: 5.5, length: '5.5 yrs', living: 12.5,
+    why: 'Taught on India’s own CBME framework' }                                       // UCT (hostel & meals ₹1.5 L a year)
 };
 
-/* ======================= MORE DESTINATIONS (MBBS Planner Cost + Compare, and the home page's Compare tab) ======================= */
-// Other countries Indian students commonly choose. Same fields as above (tuition and living are ranges; the tools show the average).
-// page: the country page on this site, or null if there isn't one yet.
-// Sources (checked Oct 2026; fees change every year, so a counsellor confirms the exact figure):
-//   Tuition: Careers360 "Best country for MBBS abroad in 2026 with low fees" (13 May 2026) for Georgia, Kazakhstan, Nepal,
-//   Bangladesh, China and Armenia; Belarus: KaranGupta.com (3 May 2026) USD 3,800–5,200/yr × 6; Tajikistan: MedBound Times
-//   (2 May 2026) USD 3,000–5,000/yr; Egypt: Careers360 (12 Jun 2026). USD converted at about ₹95.
-//   Living: Careers360 (Nepal 23 Apr 2026, Bangladesh 13 May 2026), KaranGupta.com (Georgia, Kazakhstan, China 30 Apr 2026;
-//   Belarus 3 May 2026), Leap Scholar (Armenia 6 Apr 2026, Egypt 7 Apr 2026), MedBound Times (Tajikistan 2 May 2026).
+/* ======================= MORE COUNTRIES (MBBS Planner, and the home page's Compare tab) ======================= */
+// Same fields as above.
 var MORE_DESTINATIONS = {
-  georgia:    { label: 'Georgia',    page: 'mbbs-in-georgia.html',    tuition: [25, 40], years: [6, 6], living: [18, 33], climate: 'Mild, temperate',
-    lang: 'Georgian', why: ['Where Europe meets Asia', 'Tbilisi’s old town and mild climate'] },
-  kazakhstan: { label: 'Kazakhstan', page: 'mbbs-in-kazakhstan.html', tuition: [20, 35], years: [6, 6], living: [10, 19], climate: 'Continental, cold winters',
-    lang: 'Kazakh & Russian', why: ['Established state medical universities', 'Almaty sits beneath snow-capped mountains'] },
-  nepal:      { label: 'Nepal',      page: 'mbbs-in-nepal.html', tuition: [20, 30], years: [5.5, 5.5], living: [10, 15], climate: 'Mild in Kathmandu',
-    lang: 'Nepali', why: ['Right next door — similar food and culture', 'Patients and diseases much like India’s'] },
-  bangladesh: { label: 'Bangladesh', page: 'mbbs-in-bangladesh.html', tuition: [20, 35], years: [6, 6], living: [8, 17], climate: 'Tropical monsoon',
-    lang: 'Bengali', why: ['Curriculum close to India’s MBBS', 'Short distance from India'] },
-  china:      { label: 'China',      page: null, tuition: [20, 40], years: [6, 6], living: [15, 28], climate: 'Varies by region',
-    lang: 'Mandarin', why: ['Large, well-equipped university hospitals', 'Chinese (HSK) needed for clinical years'] },
-  armenia:    { label: 'Armenia',    page: null, tuition: [15, 27], years: [6, 6], living: [16, 32], climate: 'Cold winters, warm summers',
-    lang: 'Armenian', why: ['Classes in English in a compact, safe capital', 'Basic Armenian needed on hospital wards'] },
-  belarus:    { label: 'Belarus',    page: null, tuition: [22, 30], years: [6, 6], living: [19, 28], climate: 'Continental, cold winters',
-    lang: 'Russian & Belarusian', why: ['Long-established state universities', 'Russian needed for clinical rotations'] },
-  egypt:      { label: 'Egypt',      page: null, tuition: [25, 50], years: [7, 7], living: [17, 26], climate: 'Hot and dry',
-    lang: 'Arabic', why: ['Historic government universities in Cairo', 'Longer course: 5 years + 2-year internship'] },
-  tajikistan: { label: 'Tajikistan', page: null, tuition: [17, 28], years: [6, 6], living: [9, 14], climate: 'Continental',
-    lang: 'Tajik & Russian', why: ['Among the lowest living costs', 'English-medium at most universities'] }
+  georgia:    { label: 'Georgia',    page: 'mbbs-in-georgia.html',    fee: 5.7, feeYears: 6, years: 6,   length: '6 yrs', living: 23,
+    why: 'A European-style six-year MD' },                                              // David Tvildiani Medical University
+  nepal:      { label: 'Nepal',      page: 'mbbs-in-nepal.html',      course: 55,            years: 5.5, length: '5.5 yrs', living: 17,
+    why: 'No visa needed for Indian citizens' },                                        // UCMS: one full-course fee
+  bangladesh: { label: 'Bangladesh', page: 'mbbs-in-bangladesh.html', fee: 8,   feeYears: 5, years: 6,   length: '6 yrs incl. internship', living: 10,
+    why: 'A course built much like India’s' },                                          // Jahurul Islam: package ÷ 5 study years
+  mauritius:  { label: 'Mauritius',  page: 'mbbs-in-mauritius.html',  fee: 7.6, feeYears: 5, years: 6,   length: '6 yrs incl. internship', living: 17,
+    why: 'FMGE pass rates well above the national average' }                            // SSR and Anna, US$8,000 a year
 };
-var FEES_AS_OF = 'Oct 2026';
-var COST_SCALE_MAX = 50;   // right edge of the tuition chart, in lakhs. Raise it if any tuition goes above 50.
+var FEES_AS_OF = 'Nov 2026';
 
 /* ======================= LEADS ======================= */
 var WHATSAPP_NUMBER = '919360859919';
@@ -111,26 +94,16 @@ var MO = {
     return { neet: row[c.group], pcb: PCB_REQUIREMENT[c.group], age: MIN_AGE, label: c.label };
   },
   num: function (v) { return Math.round(v * 10) / 10; },
-  lakh: function (v) { return '₹' + MO.num(v) + 'L'; },
-  range: function (a, b) { return MO.num(a) === MO.num(b) ? MO.lakh(a) : MO.lakh(a) + '–' + MO.num(b) + 'L'; },
-  years: function (d) { return d.years[0] === d.years[1] ? d.years[0] + ' yrs' : d.years[0] + '–' + d.years[1] + ' yrs'; },
-  hours: function (d) { return '~' + d.flight[0] + (d.flight[1] !== d.flight[0] ? '–' + d.flight[1] : '') + ' hrs'; },
-  fare: function (d) { return d.fare ? 'From ₹' + d.fare.toLocaleString('en-IN') + ' one-way' : d.fareText; },
-  living: function (d) { return '₹' + d.living[0] + 'k–' + d.living[1] + 'k / month'; },
-  // living for the whole course, in lakhs: monthly (thousands) x months / 100
-  livingTotal: function (d) { return [d.living[0] * 12 * d.years[0] / 100, d.living[1] * 12 * d.years[1] / 100]; },
-  total: function (d) { var l = MO.livingTotal(d); return [d.tuition[0] + l[0], d.tuition[1] + l[1]]; },
-  pct: function (v, max) { return Math.max(0, Math.min(100, v / (max || COST_SCALE_MAX) * 100)).toFixed(2) + '%'; },
-  // ---- averages (used by the MBBS Planner and the home page) ----
-  mid: function (r) { return (r[0] + r[1]) / 2; },
-  avgTuition: function (d) { return MO.mid(d.tuition); },                       // lakhs
-  avgLiving: function (d) { return MO.mid(d.living); },                         // thousands per month
-  avgYears: function (d) { return MO.mid(d.years); },
-  avgLivingTotal: function (d) { return MO.avgLiving(d) * 12 * MO.avgYears(d) / 100; },   // lakhs
-  avgTotal: function (d) { return MO.avgTuition(d) + MO.avgLivingTotal(d); },   // lakhs
+  years: function (d) { return d.length; },
+  // ---- starting figures (used by the MBBS Planner and the home page) ----
+  tuition: function (d) { return d.course != null ? d.course : d.fee * d.feeYears; },          // lakhs, full course
+  yearFee: function (d) { return d.course != null ? d.course / d.years : d.fee; },             // lakhs a year
+  livingTotal: function (d) { return d.living * 12 * d.years / 100; },                         // lakhs, full course
+  total: function (d) { return MO.tuition(d) + MO.livingTotal(d); },                           // lakhs, full course
+  fromL: function (v) { return 'From ₹' + MO.num(v) + 'L'; },
   aboutL: function (v) { return '≈ ₹' + Math.round(v) + 'L'; },
-  aboutK: function (v) { return '≈ ₹' + Math.round(v) + 'k'; },
-  // every destination the Planner can show: the main list first, then the extra countries
+  lakh: function (v) { return '₹' + MO.num(v) + 'L'; },
+  // every country the Planner can show: the main list first, then the extra countries
   allDestinations: function () {
     var out = {}, k;
     for (k in DESTINATIONS) out[k] = DESTINATIONS[k];
