@@ -42,8 +42,8 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ---------- shared helpers ---------- */
   function cleanPhone(v) {
     var d = v.replace(/\D/g, '');
-    if (d.length > 10 && d.indexOf('91') === 0) d = d.slice(2);   // pasted +91 98765 43210
-    if (d.length === 11 && d.charAt(0) === '0') d = d.slice(1);   // pasted 098765 43210
+    if (d.length > 10 && d.indexOf('91') === 0) d = d.slice(2);   // pasted +91 Mobile Number
+    if (d.length === 11 && d.charAt(0) === '0') d = d.slice(1);   // pasted 0Mobile Number
     return d;
   }
   function phoneError(v) {
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (v.replace(/[^A-Za-z஀-௿]/g, '').length < 2 || /[0-9@#$%^&*_=+<>{}[\]\\/|~]/.test(v)) return 'Please enter a real name.';
     return '';
   }
-  function prettyPhone(input) {   // shows the number as 98765 43210 while typing
+  function prettyPhone(input) {   // shows the number as Mobile Number while typing
     input.addEventListener('input', function () {
       var d = cleanPhone(input.value).slice(0, 10);
       var nice = d.length > 5 ? d.slice(0, 5) + ' ' + d.slice(5) : d;

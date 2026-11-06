@@ -23,8 +23,8 @@
   // ---- rules for each detail: return '' when fine, or the message to show ----
   function cleanPhone(v) {
     var d = v.replace(/\D/g, '');
-    if (d.length > 10 && d.indexOf('91') === 0) d = d.slice(2);      // pasted +91 98765 43210
-    if (d.length === 11 && d.charAt(0) === '0') d = d.slice(1);      // pasted 098765 43210
+    if (d.length > 10 && d.indexOf('91') === 0) d = d.slice(2);      // pasted +91 Mobile Number
+    if (d.length === 11 && d.charAt(0) === '0') d = d.slice(1);      // pasted 0Mobile Number
     return d;
   }
   var RULES = {
@@ -100,7 +100,7 @@
 
   // ---- typing behaviour ----
   inputs.phone.addEventListener('input', function () {
-    // keep digits only and show them as 98765 43210 (the +91 is already printed in the box)
+    // keep digits only and show them as Mobile Number (the +91 is already printed in the box)
     var raw = inputs.phone.value, d = raw.replace(/\D/g, '');
     if (raw.indexOf('+') > -1) {
       if (d === '' || d === '9' || d === '91') return;                // still typing "+91" — don't fight them
