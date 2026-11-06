@@ -45,91 +45,95 @@
 /* ==========================================================================
    MENU DRAWER (phones + tablets). Everything inside this query exists only
    below 1024px, so the desktop row (responsive.css) never has to undo it.
+   Minimal: a slim top row, an "Ask Mathura" bar, one row per page with its
+   colour icon, then the counselling button and contacts at the bottom.
    ========================================================================== */
 @media (max-width: 1023.98px) {
-  .nav-scrim { position: fixed; inset: 0; z-index: var(--z-overlay); background: rgba(11,31,77,.55); opacity: 0; visibility: hidden; transition: opacity .3s var(--ease), visibility .3s; }
+  .nav-scrim { position: fixed; inset: 0; z-index: var(--z-overlay); background: rgba(11,31,77,.5); opacity: 0; visibility: hidden; transition: opacity .3s var(--ease), visibility .3s; }
   .nav-scrim.is-open { opacity: 1; visibility: visible; }
 
-  .site-nav { position: fixed; top: 0; right: 0; bottom: 0; z-index: var(--z-menu); width: min(92vw, 400px); display: flex; flex-direction: column; background: var(--color-bg); border-radius: var(--radius-xl) 0 0 var(--radius-xl); box-shadow: -16px 0 48px rgba(11,31,77,.28); transform: translateX(105%); visibility: hidden; transition: transform .38s cubic-bezier(.2, .8, .2, 1), visibility .38s; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+  .site-nav { position: fixed; top: 0; right: 0; bottom: 0; z-index: var(--z-menu); width: min(86vw, 360px); display: flex; flex-direction: column; padding: calc(var(--sp-3) + var(--safe-top)) var(--sp-4) calc(var(--sp-4) + var(--safe-bottom)); background: var(--color-surface); border-radius: 24px 0 0 24px; box-shadow: -16px 0 48px rgba(11,31,77,.22); transform: translateX(105%); visibility: hidden; transition: transform .38s cubic-bezier(.2, .8, .2, 1), visibility .38s; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
   .site-nav.is-open { transform: translateX(0); visibility: visible; }
 
-  /* Drawer top: brand band */
-  .site-nav__head { position: relative; overflow: hidden; flex-shrink: 0; padding: calc(var(--sp-3) + var(--safe-top)) var(--sp-5) var(--sp-5); color: var(--color-text-inverse); border-radius: var(--radius-xl) 0 0 0; background: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1.6px) 0 0 / 20px 20px, var(--grad-hero); }
-  .site-nav__globe { position: absolute; right: -70px; top: -50px; width: 230px; height: 230px; color: rgba(255,255,255,.14); pointer-events: none; }
-  .site-nav__bar { position: relative; display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); }
-  .site-nav__close { width: 42px; height: 42px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.14); color: #fff; transition: background var(--speed) var(--ease), transform var(--speed) var(--ease); }
-  .site-nav__close:active { background: rgba(255,255,255,.26); transform: scale(.94); }
+  /* Top row: "Menu" + close */
+  .site-nav__head { display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; min-height: 48px; padding-left: var(--sp-1); }
+  .site-nav__title { font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--color-text-muted); }
+  .site-nav__close { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: var(--color-wash); color: var(--color-primary); transition: background var(--speed) var(--ease), transform var(--speed) var(--ease); }
+  .site-nav__close:active { background: var(--color-wash-deep); transform: scale(.92); }
   .site-nav__close .icon { width: 20px; height: 20px; }
-  .site-nav__tagline { position: relative; margin-top: var(--sp-4); font-size: var(--fs-sm); color: var(--color-text-inverse-muted); }
-  .site-nav__pill { position: relative; display: inline-flex; align-items: center; gap: .5rem; margin-top: var(--sp-3); padding: .3rem .75rem; border-radius: 999px; border: 1px solid rgba(255,255,255,.3); background: rgba(255,255,255,.1); font-size: .7rem; font-weight: 700; }
 
-  /* Link tiles: two columns, icon + label + one short line */
-  .site-nav__links { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-2); padding: var(--sp-4) var(--sp-4) 0; }
-  .site-nav__link { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-2); min-height: 112px; padding: var(--sp-3); border: 1.5px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); box-shadow: var(--shadow-sm); transition: border-color var(--speed) var(--ease), transform var(--speed) var(--ease); }
-  .site-nav__link:active { transform: scale(.97); }
-  .site-nav__ico { width: 36px; height: 36px; }
-  .site-nav__ico .icon { width: 18px; height: 18px; }
-  .site-nav__text { display: flex; flex-direction: column; gap: .15rem; min-width: 0; }
-  .site-nav__label { font-size: .95rem; font-weight: 800; line-height: 1.2; color: var(--color-text); }
-  .site-nav__sub { font-size: .7rem; font-weight: 600; line-height: 1.35; color: var(--color-text-muted); }
-  /* Current page: teal outline + dot (teal is reserved for the active nav item) */
-  .site-nav__link[aria-current="page"] { border-color: var(--color-active); }
-  .site-nav__link[aria-current="page"]::after { content: ""; position: absolute; top: 12px; right: 12px; width: 8px; height: 8px; border-radius: 50%; background: var(--color-active); }
-  .site-nav__link[aria-current="page"] .site-nav__label { color: var(--color-primary); }
+  /* Ask Mathura: looks like a search field, so it reads as "ask a question", not "go to a page" */
+  .site-nav__links { display: flex; flex-direction: column; gap: 2px; margin-top: var(--sp-3); }
+  .site-nav__ask { display: flex; align-items: center; gap: var(--sp-3); width: 100%; margin-bottom: var(--sp-4); padding: 6px 6px 6px 8px; border: 1.5px solid var(--color-wash-deep); border-radius: 16px; background: var(--color-wash); text-align: left; transition: border-color var(--speed) var(--ease), transform var(--speed) var(--ease); }
+  .site-nav__ask:active { transform: scale(.98); border-color: var(--color-blue-pale); }
+  .site-nav__ask-ico { width: 38px; height: 38px; flex-shrink: 0; border-radius: 12px; display: grid; place-items: center; background: var(--grad-hero); color: var(--color-text-inverse); }
+  .site-nav__ask-ico .icon { width: 18px; height: 18px; }
+  .site-nav__ask-text { flex: 1; min-width: 0; font-size: .92rem; font-weight: 600; color: var(--color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .site-nav__ask-go { width: 38px; height: 38px; flex-shrink: 0; border-radius: 12px; display: grid; place-items: center; background: var(--color-surface); color: var(--color-primary); box-shadow: var(--shadow-sm); }
+  .site-nav__ask-go .icon { width: 17px; height: 17px; stroke-width: 2.6; }
 
-  /* Ask Mathura: the first, full-width tile (navy, so it reads as a feature, not a page) */
-  .site-nav__ask { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: var(--sp-3); min-height: 0; padding: var(--sp-3) var(--sp-4); border: 0; text-align: left; color: var(--color-text-inverse); background: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1.6px) 0 0 / 16px 16px, var(--grad-hero); box-shadow: 0 8px 20px rgba(30,58,138,.25); }
-  .site-nav__ask-ico { width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.16); }
-  .site-nav__ask-ico .icon { width: 20px; height: 20px; }
-  .site-nav__ask .site-nav__text { flex: 1; }
-  .site-nav__ask .site-nav__label { color: var(--color-text-inverse); }
-  .site-nav__ask .site-nav__sub { color: var(--color-text-inverse-muted); }
-  .site-nav__ask-go { width: 18px; height: 18px; stroke-width: 2.6; }
+  /* Page rows: colour icon · label · arrow */
+  .site-nav__link { position: relative; display: flex; align-items: center; gap: var(--sp-3); min-height: 54px; padding: 7px var(--sp-2) 7px 7px; border-radius: 14px; transition: background var(--speed) var(--ease), transform var(--speed) var(--ease); }
+  .site-nav__link:active { background: var(--color-wash); transform: scale(.98); }
+  .site-nav__ico { width: 40px; height: 40px; }
+  .site-nav__ico .icon { width: 19px; height: 19px; }
+  .site-nav__label { flex: 1; min-width: 0; font-size: 1rem; font-weight: 700; color: var(--color-text); }
+  .site-nav__go { width: 18px; height: 18px; flex-shrink: 0; color: var(--color-border); transition: transform var(--speed) var(--ease), color var(--speed) var(--ease); }
+  /* Current page: soft wash + a teal bar on the left (teal is reserved for the active nav item) */
+  .site-nav__link[aria-current="page"] { background: var(--color-wash); }
+  .site-nav__link[aria-current="page"]::before { content: ""; position: absolute; left: -16px; top: 14px; bottom: 14px; width: 4px; border-radius: 0 4px 4px 0; background: var(--color-active); }
+  .site-nav__link[aria-current="page"] .site-nav__label { color: var(--color-primary); font-weight: 800; }
+  .site-nav__link[aria-current="page"] .site-nav__go { color: var(--color-active); }
 
   .site-nav__cta { display: none; }
 
-  /* Drawer bottom: counselling card, quick contacts, place + socials */
-  .site-nav__extra { display: grid; gap: var(--sp-3); margin-top: auto; padding: var(--sp-4) var(--sp-4) calc(var(--sp-4) + var(--safe-bottom)); }
-  .site-nav__card { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: var(--sp-3); padding: var(--sp-4); border-radius: var(--radius-lg); background: var(--color-wash); }
-  .site-nav__card b { display: block; font-size: var(--fs-sm); font-weight: 800; color: var(--color-primary); }
-  .site-nav__card span { display: block; font-size: var(--fs-xs); color: var(--color-text-muted); }
-  .site-nav__card .btn { grid-column: 1 / -1; }
+  /* Bottom: one counselling button, three contact buttons, place + socials */
+  .site-nav__extra { display: grid; gap: var(--sp-3); margin-top: auto; padding-top: var(--sp-5); }
+  .site-nav__apply { min-height: 52px; border-radius: 14px; }
   .site-nav__quick { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-2); }
-  .site-nav__quick a { display: flex; flex-direction: column; align-items: center; gap: .35rem; padding: var(--sp-3) var(--sp-1); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); font-size: .72rem; font-weight: 700; color: var(--color-text); transition: transform var(--speed) var(--ease); }
-  .site-nav__quick a:active { transform: scale(.96); }
-  .site-nav__quick-ico { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--color-wash); color: var(--color-primary); }
-  .site-nav__quick-ico .icon { width: 17px; height: 17px; }
-  .site-nav__quick--wa .site-nav__quick-ico { background: var(--color-whatsapp); color: #fff; }
-  .site-nav__foot { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); padding-top: var(--sp-1); font-size: var(--fs-xs); color: var(--color-text-muted); }
-  .site-nav__foot > span:first-child { display: inline-flex; align-items: center; gap: .3rem; }
+  .site-nav__quick a { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; padding: 0 var(--sp-1); border: 1px solid var(--color-border); border-radius: 12px; font-size: .78rem; font-weight: 700; color: var(--color-primary); transition: background var(--speed) var(--ease), transform var(--speed) var(--ease); }
+  .site-nav__quick a:active { background: var(--color-wash); transform: scale(.96); }
+  .site-nav__quick .icon { width: 16px; height: 16px; flex-shrink: 0; }
+  .site-nav__quick--wa .icon { color: var(--color-whatsapp); }
+  .site-nav__foot { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); padding-top: var(--sp-3); border-top: 1px solid var(--color-border); font-size: var(--fs-xs); color: var(--color-text-muted); }
+  .site-nav__foot > span:first-child { display: block; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .site-nav__foot > span:first-child .icon { display: inline-block; margin-right: .3rem; vertical-align: -2px; }
   .site-nav__foot .icon { width: 14px; height: 14px; }
-  .site-nav__social { display: flex; gap: 6px; }
-  .site-nav__social a { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--color-border); color: var(--color-primary); }
-  .site-nav__social .icon { width: 15px; height: 15px; }
+  .site-nav__social { display: flex; gap: 4px; }
+  .site-nav__social a { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; color: var(--color-text-muted); transition: color var(--speed) var(--ease), background var(--speed) var(--ease); }
+  .site-nav__social a:active { background: var(--color-wash); color: var(--color-primary); }
+  .site-nav__social .icon { width: 16px; height: 16px; }
 
-  /* Entrance: tiles and cards rise in one after another (opacity + transform only) */
-  .site-nav__link, .site-nav__extra > * { opacity: 0; transform: translateY(12px); transition: opacity .3s var(--ease), transform .3s var(--ease), border-color var(--speed) var(--ease); }
-  .site-nav.is-open .site-nav__link, .site-nav.is-open .site-nav__extra > * { opacity: 1; transform: none; }
-  .site-nav.is-open .site-nav__link:nth-child(1) { transition-delay: .08s; }
-  .site-nav.is-open .site-nav__link:nth-child(2) { transition-delay: .12s; }
-  .site-nav.is-open .site-nav__link:nth-child(3) { transition-delay: .16s; }
-  .site-nav.is-open .site-nav__link:nth-child(4) { transition-delay: .20s; }
-  .site-nav.is-open .site-nav__link:nth-child(5) { transition-delay: .24s; }
-  .site-nav.is-open .site-nav__link:nth-child(6) { transition-delay: .28s; }
-  .site-nav.is-open .site-nav__link:nth-child(7) { transition-delay: .32s; }
-  .site-nav.is-open .site-nav__extra > :nth-child(1) { transition-delay: .32s; }
-  .site-nav.is-open .site-nav__extra > :nth-child(2) { transition-delay: .36s; }
-  .site-nav.is-open .site-nav__extra > :nth-child(3) { transition-delay: .40s; }
-  .site-nav.is-open .site-nav__link:active { transition-delay: 0s; }
+  /* Entrance: rows slide in one after another (opacity + transform only) */
+  .site-nav__ask, .site-nav__link, .site-nav__extra > * { opacity: 0; transform: translateX(18px); transition: opacity .3s var(--ease), transform .3s var(--ease), background var(--speed) var(--ease), border-color var(--speed) var(--ease); }
+  .site-nav.is-open .site-nav__ask, .site-nav.is-open .site-nav__link, .site-nav.is-open .site-nav__extra > * { opacity: 1; transform: none; }
+  .site-nav.is-open .site-nav__links > :nth-child(1) { transition-delay: .06s; }
+  .site-nav.is-open .site-nav__links > :nth-child(2) { transition-delay: .10s; }
+  .site-nav.is-open .site-nav__links > :nth-child(3) { transition-delay: .13s; }
+  .site-nav.is-open .site-nav__links > :nth-child(4) { transition-delay: .16s; }
+  .site-nav.is-open .site-nav__links > :nth-child(5) { transition-delay: .19s; }
+  .site-nav.is-open .site-nav__links > :nth-child(6) { transition-delay: .22s; }
+  .site-nav.is-open .site-nav__links > :nth-child(7) { transition-delay: .25s; }
+  .site-nav.is-open .site-nav__extra > :nth-child(1) { transition-delay: .28s; }
+  .site-nav.is-open .site-nav__extra > :nth-child(2) { transition-delay: .31s; }
+  .site-nav.is-open .site-nav__extra > :nth-child(3) { transition-delay: .34s; }
+  .site-nav.is-open .site-nav__links > :active { transition-delay: 0s; }
 
   body.nav-open { overflow: hidden; }
   body.nav-open .app-header { z-index: var(--z-menu); }
 }
 
-/* Very small phones (under 360px): one column of tiles so labels never squeeze */
-@media (max-width: 359.98px) {
-  .site-nav__links { grid-template-columns: 1fr; }
-  .site-nav__link { flex-direction: row; align-items: center; min-height: 0; }
+/* Narrow phones: the Ask bar says just "Ask Mathura…" so it never clips */
+@media (max-width: 379.98px) {
+  .site-nav__ask-more { display: none; }
+}
+
+/* Short phones (landscape, or under 640px tall): tighter rows so everything fits without scrolling */
+@media (max-width: 1023.98px) and (max-height: 640px) {
+  .site-nav__link { min-height: 46px; padding-block: 4px; }
+  .site-nav__ico { width: 34px; height: 34px; }
+  .site-nav__ask { margin-bottom: var(--sp-2); }
+  .site-nav__extra { padding-top: var(--sp-3); }
 }
 
 /* ---- Bottom tab bar (mobile app navigation; slides away on scroll down) ---- */

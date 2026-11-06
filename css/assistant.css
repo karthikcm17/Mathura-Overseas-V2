@@ -3,78 +3,80 @@
    Markup: _includes/assistant.html · Behaviour: js/assistant.js
    Phones + tablets: opens from the menu drawer as a near-full-screen sheet.
    Computers: a round button bottom-right (above WhatsApp); the chat opens as a card in that corner.
-   Look: white and quiet — slim header, a welcome screen with three suggested questions,
-   soft message bubbles, one input bar with the send button inside it.
+   Look: a brand-blue header band and a warm ivory chat area, so the window stands apart from the
+   white page; white reply bubbles; quick-question chips just above a roomy typing box with its own
+   square send button.
    ========================================================================== */
 body.ask-open { overflow: hidden; }
 
-/* ---- Launcher (computers only; phones use the drawer tile) ---- */
+/* ---- Launcher (computers only; phones use the drawer bar) ---- */
 .ask-launch { display: none; }
 
 /* ---- Window ---- */
 .ask-scrim { position: fixed; inset: 0; z-index: var(--z-overlay); background: rgba(11,31,77,.5); opacity: 0; visibility: hidden; transition: opacity .3s var(--ease), visibility .3s; }
 .ask.is-open + .ask-scrim { opacity: 1; visibility: visible; }
-.ask { position: fixed; left: 0; right: 0; bottom: 0; top: calc(var(--safe-top) + 4svh); z-index: var(--z-menu); display: flex; flex-direction: column; overflow: hidden; background: var(--color-surface); border-radius: 24px 24px 0 0; box-shadow: 0 -20px 50px rgba(7,18,52,.25); transform: translateY(105%); visibility: hidden; transition: transform .38s cubic-bezier(.2, .8, .2, 1), visibility .38s; }
+.ask { position: fixed; left: 0; right: 0; bottom: 0; top: calc(var(--safe-top) + 6svh); z-index: var(--z-menu); display: flex; flex-direction: column; overflow: hidden; background: var(--color-bg); border-radius: 24px 24px 0 0; box-shadow: 0 -20px 50px rgba(7,18,52,.28); transform: translateY(105%); visibility: hidden; transition: transform .38s cubic-bezier(.2, .8, .2, 1), visibility .38s; }
 .ask.is-open { transform: none; visibility: visible; }
 
-/* Header: avatar · name · new chat · close */
-.ask__head { position: relative; flex-shrink: 0; display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-5) var(--sp-3) var(--sp-3) var(--sp-4); border-bottom: 1px solid var(--color-border); }
-.ask__grab { position: absolute; top: 8px; left: 50%; width: 36px; height: 4px; margin-left: -18px; border-radius: 4px; background: var(--color-border); }
-.ask__avatar { width: 34px; height: 34px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center; color: #fff; background: var(--grad-hero); }
-.ask__avatar .icon { width: 17px; height: 17px; }
-.ask__title { flex: 1; min-width: 0; font-size: var(--fs-base); font-weight: 800; letter-spacing: -.01em; color: var(--color-primary); }
-.ask__iconbtn { width: 36px; height: 36px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center; color: var(--color-text-muted); transition: background var(--speed) var(--ease), color var(--speed) var(--ease); }
-.ask__iconbtn:hover { background: var(--color-wash); color: var(--color-primary); }
-.ask__iconbtn .icon { width: 18px; height: 18px; }
+/* ---- Header band: avatar · name + status · new chat · close ---- */
+.ask__head { position: relative; flex-shrink: 0; display: flex; align-items: center; gap: var(--sp-3); padding: calc(var(--sp-4) + 6px) var(--sp-3) var(--sp-4) var(--sp-4); color: var(--color-text-inverse); background: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1.6px) 0 0 / 18px 18px, var(--grad-hero); }
+.ask__grab { position: absolute; top: 8px; left: 50%; width: 36px; height: 4px; margin-left: -18px; border-radius: 4px; background: rgba(255,255,255,.4); }
+.ask__avatar { width: 42px; height: 42px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center; color: var(--color-text-inverse); background: rgba(255,255,255,.16); box-shadow: inset 0 0 0 1px rgba(255,255,255,.25); }
+.ask__avatar .icon { width: 20px; height: 20px; }
+.ask__who { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.ask__title { font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; line-height: 1.2; color: var(--color-text-inverse); }
+.ask__status { display: inline-flex; align-items: center; gap: 6px; font-size: .74rem; font-weight: 600; color: var(--color-text-inverse-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ask__status::before { content: ""; width: 7px; height: 7px; flex-shrink: 0; border-radius: 50%; background: var(--color-whatsapp); box-shadow: 0 0 0 3px rgba(37,211,102,.25); }
+.ask__iconbtn { width: 38px; height: 38px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center; color: var(--color-text-inverse); transition: background var(--speed) var(--ease); }
+.ask__iconbtn:hover { background: rgba(255,255,255,.14); }
+.ask__iconbtn:active { background: rgba(255,255,255,.24); }
+.ask__iconbtn .icon { width: 19px; height: 19px; }
 #askReset[hidden] { display: none; }
 
-/* Body: welcome screen first, then the conversation */
-.ask__body { position: relative; flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; background: linear-gradient(180deg, var(--color-wash) 0%, var(--color-surface) 220px); }
-.ask__empty { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100%; padding: var(--sp-6) var(--sp-5); text-align: center; }
+/* ---- Body: welcome first, then the conversation ---- */
+.ask__body { position: relative; flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; background: var(--color-bg); }
+/* Welcome: greeting at the top, quick questions pushed down to sit just above the typing box */
+.ask__empty { display: flex; flex-direction: column; justify-content: space-between; gap: var(--sp-5); min-height: 100%; padding: var(--sp-4); }
 .ask__empty[hidden] { display: none; }
-.ask__orb { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: var(--grad-hero); box-shadow: 0 10px 28px rgba(30,58,138,.3), 0 0 0 8px rgba(58,99,209,.08); animation: ask-float 4s ease-in-out infinite; }
-.ask__orb .icon { width: 26px; height: 26px; }
-.ask__hello { margin-top: var(--sp-4); font-size: 1.35rem; font-weight: 800; letter-spacing: -.02em; color: var(--color-primary); }
-.ask__suggest { display: grid; gap: var(--sp-2); width: 100%; max-width: 340px; margin-top: var(--sp-5); }
-.ask__suggest button { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); padding: .8rem .95rem; border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-surface); font-size: var(--fs-sm); font-weight: 600; color: var(--color-text); text-align: left; transition: border-color var(--speed) var(--ease), color var(--speed) var(--ease), transform var(--speed) var(--ease); }
-.ask__suggest button .icon { width: 15px; height: 15px; color: var(--color-text-muted); transition: transform var(--speed) var(--ease), color var(--speed) var(--ease); }
-.ask__suggest button:hover { border-color: var(--color-blue-pale); color: var(--color-primary); }
-.ask__suggest button:hover .icon { color: var(--color-primary); transform: translateX(3px); }
-.ask__suggest button:active { transform: scale(.98); }
+.ask__hello { max-width: 88%; }
+.ask__suggest { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.ask__suggest button { padding: .55rem .95rem; border: 1.5px solid var(--color-blue-pale); border-radius: 999px; background: var(--color-surface); font-size: .82rem; font-weight: 700; color: var(--color-primary); transition: background var(--speed) var(--ease), border-color var(--speed) var(--ease), transform var(--speed) var(--ease); }
+.ask__suggest button:hover { background: var(--color-wash); border-color: var(--color-primary); }
+.ask__suggest button:active { transform: scale(.96); }
 
+/* Messages */
 .ask__msgs { display: flex; flex-direction: column; gap: var(--sp-3); padding: var(--sp-4); }
 .ask__msgs:empty { display: none; }
 .ask-m { max-width: 86%; font-size: var(--fs-sm); line-height: 1.6; overflow-wrap: anywhere; animation: ask-in .3s var(--ease); }
-.ask-m--user { align-self: flex-end; padding: .6rem .95rem; border-radius: 18px 18px 4px 18px; background: var(--color-primary); color: var(--color-text-inverse); }
-.ask-m--bot { align-self: flex-start; padding: .7rem .95rem; border-radius: 18px 18px 18px 4px; background: var(--color-wash); color: var(--color-text); }
+.ask-m--user { align-self: flex-end; padding: .65rem 1rem; border-radius: 18px 18px 4px 18px; background: var(--grad-hero); color: var(--color-text-inverse); box-shadow: 0 6px 14px rgba(30,58,138,.18); }
+.ask-m--bot { align-self: flex-start; padding: .8rem 1rem; border-radius: 4px 18px 18px 18px; background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
 .ask-m p + p, .ask-m p + ul, .ask-m ul + p { margin-top: .5rem; }
 .ask-m ul { display: grid; gap: .3rem; margin-top: .3rem; }
 .ask-m li { position: relative; padding-left: 1rem; }
 .ask-m li::before { content: ""; position: absolute; left: .15rem; top: .68em; width: 5px; height: 5px; border-radius: 50%; background: var(--color-blue-light); }
 .ask-m--bot b { font-weight: 800; color: var(--color-primary); }
 .ask-m a { font-weight: 700; color: var(--color-primary); text-decoration: underline; text-decoration-color: var(--color-blue-pale); text-underline-offset: 3px; }
-.ask-m--typing { display: inline-flex; gap: 4px; padding: .9rem 1rem; }
+.ask-m--typing { display: inline-flex; gap: 4px; padding: .95rem 1.05rem; }
 .ask-m--typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--color-blue-light); animation: ask-dot 1s ease-in-out infinite; }
 .ask-m--typing i:nth-child(2) { animation-delay: .15s; }
 .ask-m--typing i:nth-child(3) { animation-delay: .3s; }
 
-/* Input bar: one rounded field, the send button sits inside it */
-.ask__form { flex-shrink: 0; padding: var(--sp-3) var(--sp-4) calc(var(--sp-2) + var(--safe-bottom)); background: var(--color-surface); }
-.ask__field { display: flex; align-items: center; gap: var(--sp-2); padding: 5px 5px 5px var(--sp-4); border: 1.5px solid var(--color-border); border-radius: 16px; background: var(--color-surface); transition: border-color var(--speed) var(--ease), box-shadow var(--speed) var(--ease); }
-.ask__field:focus-within { border-color: var(--color-primary); box-shadow: 0 0 0 4px rgba(30,58,138,.1); }
-.ask__field input { flex: 1; min-width: 0; height: 40px; border: 0; background: none; font-size: 16px; /* 16px stops iOS zoom-on-focus */ }
-.ask__field input:focus { outline: none; }
+/* ---- Typing box + a separate square send button ---- */
+.ask__form { flex-shrink: 0; padding: var(--sp-3) var(--sp-4) calc(var(--sp-2) + var(--safe-bottom)); background: var(--color-surface); border-top: 1px solid var(--color-border); }
+.ask__field { display: flex; align-items: center; gap: var(--sp-2); }
+.ask__field input { flex: 1; min-width: 0; height: 52px; padding: 0 var(--sp-4); border: 1.5px solid var(--color-border); border-radius: 14px; background: var(--color-surface); font-size: 16px; /* 16px stops iOS zoom-on-focus */ transition: border-color var(--speed) var(--ease), box-shadow var(--speed) var(--ease); }
+.ask__field input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 4px rgba(30,58,138,.1); }
 .ask__field input::placeholder { color: var(--color-text-muted); opacity: .8; }
-.ask__send { width: 40px; height: 40px; flex-shrink: 0; border-radius: 12px; display: grid; place-items: center; background: var(--color-primary); color: var(--color-text-inverse); transition: background var(--speed) var(--ease), opacity var(--speed) var(--ease), transform var(--speed) var(--ease); }
-.ask__send:hover { background: var(--color-primary-deep); }
+.ask__send { width: 52px; height: 52px; flex-shrink: 0; border-radius: 14px; display: grid; place-items: center; background: var(--grad-hero); color: var(--color-text-inverse); box-shadow: 0 6px 16px rgba(30,58,138,.28); transition: opacity var(--speed) var(--ease), transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease); }
+.ask__send:hover { box-shadow: 0 8px 20px rgba(30,58,138,.38); }
 .ask__send:active { transform: scale(.94); }
-.ask__send:disabled { opacity: .35; cursor: default; transform: none; }
-.ask__send .icon { width: 18px; height: 18px; stroke-width: 2.6; }
+.ask__send:disabled { opacity: .4; cursor: default; transform: none; box-shadow: none; }
+.ask__send .icon { width: 20px; height: 20px; stroke-width: 2.6; }
 .ask__note { margin-top: var(--sp-2); font-size: .68rem; color: var(--color-text-muted); text-align: center; }
 
 @keyframes ask-dot { 0%, 60%, 100% { transform: translateY(0); opacity: .45; } 30% { transform: translateY(-4px); opacity: 1; } }
 @keyframes ask-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-@keyframes ask-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes ask-ring { 0% { transform: scale(1); opacity: .5; } 70%, 100% { transform: scale(1.5); opacity: 0; } }
 
 /* Tablets: a readable width */
 @media (min-width: 768px) and (max-width: 1023.98px) {
@@ -83,16 +85,22 @@ body.ask-open { overflow: hidden; }
 
 /* Computers: round launcher above WhatsApp; the chat is a card in the bottom-right corner, no dimmed page */
 @media (min-width: 1024px) {
-  .ask-launch { position: fixed; right: var(--sp-4); bottom: 84px; z-index: var(--z-widget); display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50%; background: var(--grad-hero); color: #fff; box-shadow: 0 8px 22px rgba(30,58,138,.35); transition: transform var(--speed) var(--ease), opacity var(--speed) var(--ease), visibility var(--speed); }
-  .ask-launch .icon { width: 24px; height: 24px; }
+  .ask-launch { position: fixed; right: var(--sp-4); bottom: 84px; z-index: var(--z-widget); display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--grad-hero); color: var(--color-text-inverse); box-shadow: 0 10px 24px rgba(30,58,138,.38); transition: transform var(--speed) var(--ease), opacity var(--speed) var(--ease), visibility var(--speed); }
+  /* A soft ring that breathes outward every few seconds (transform + opacity only) */
+  .ask-launch::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--color-blue-light); z-index: -1; animation: ask-ring 3s ease-out infinite; }
+  .ask-launch .icon { width: 25px; height: 25px; }
   .ask-launch:hover { transform: scale(1.06); }
-  .ask-launch__tip { position: absolute; right: calc(100% + 10px); top: 50%; padding: .4rem .75rem; border-radius: var(--radius-sm); background: var(--color-primary-ink); color: #fff; font-size: var(--fs-xs); font-weight: 700; white-space: nowrap; opacity: 0; transform: translate(6px, -50%); pointer-events: none; transition: opacity var(--speed) var(--ease), transform var(--speed) var(--ease); }
+  .ask-launch__tip { position: absolute; right: calc(100% + 10px); top: 50%; padding: .4rem .75rem; border-radius: var(--radius-sm); background: var(--color-primary-ink); color: var(--color-text-inverse); font-size: var(--fs-xs); font-weight: 700; white-space: nowrap; opacity: 0; transform: translate(6px, -50%); pointer-events: none; transition: opacity var(--speed) var(--ease), transform var(--speed) var(--ease); }
   .ask-launch:hover .ask-launch__tip, .ask-launch:focus-visible .ask-launch__tip { opacity: 1; transform: translate(0, -50%); }
   body.ask-open .ask-launch { opacity: 0; visibility: hidden; }
   body.ask-open { overflow: visible; }
-  .ask { left: auto; top: auto; right: var(--sp-4); bottom: 84px; width: 390px; height: min(600px, calc(100vh - 200px)); border-radius: 22px; border: 1px solid var(--color-border); box-shadow: 0 24px 60px rgba(11,31,77,.22); opacity: 0; transform: translateY(16px) scale(.97); transform-origin: bottom right; transition: opacity .28s var(--ease), transform .28s var(--ease), visibility .28s; }
+  .ask { left: auto; top: auto; right: var(--sp-4); bottom: 84px; width: 384px; height: min(620px, calc(100vh - 140px)); border-radius: 22px; box-shadow: 0 0 0 1px rgba(30,58,138,.08), 0 28px 70px rgba(11,31,77,.28); opacity: 0; transform: translateY(16px) scale(.97); transform-origin: bottom right; transition: opacity .28s var(--ease), transform .28s var(--ease), visibility .28s; }
   .ask.is-open { opacity: 1; }
   .ask__grab, .ask-scrim { display: none; }
-  .ask__head { padding-top: var(--sp-3); }
+  .ask__head { padding-top: var(--sp-4); }
   .ask__form { padding-bottom: var(--sp-3); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ask-launch::before { animation: none; opacity: 0; }
 }

@@ -1,9 +1,10 @@
 <!-- ============ ASK MATHURA — the AI assistant (_includes/assistant.html). Every page gets it through bottom-nav.html.
      Computers: a round button at the bottom-right (above WhatsApp) opens the chat.
-     Phones: the "Ask Mathura" tile at the top of the menu drawer opens it (_includes/header.html).
+     Phones: the "Ask Mathura" bar at the top of the menu drawer opens it (_includes/header.html).
      Any link or button can open it too: add  data-ask-open  — or  data-ask-open="Your question"  to ask that question straight away.
      Turn it off on one page with  assistant: false  in that page's top block.
-     The three suggested questions below can be changed freely (keep each one short). -->
+     QUICK QUESTIONS: each chip shows short words and sends the full question written in data-q="…". Change both freely.
+     Keep every id="…" as it is: js/assistant.js uses them. -->
 {%- unless page.assistant == false %}
 <button type="button" class="ask-launch" id="askLaunch" data-ask-open aria-controls="askPanel" aria-expanded="false" aria-label="Open Ask Mathura">
   <svg class="icon" aria-hidden="true"><use href="#i-sparkle"></use></svg>
@@ -11,31 +12,40 @@
 </button>
 
 <div class="ask" id="askPanel" role="dialog" aria-labelledby="askTitle">
+  <!-- Header: a brand-blue band, so the chat stands apart from the white page -->
   <div class="ask__head">
     <span class="ask__grab" aria-hidden="true"></span>
     <span class="ask__avatar" aria-hidden="true"><svg class="icon"><use href="#i-sparkle"></use></svg></span>
-    <b class="ask__title" id="askTitle">Ask Mathura</b>
+    <span class="ask__who">
+      <b class="ask__title" id="askTitle">Ask Mathura</b>
+      <span class="ask__status">AI assistant &middot; replies instantly</span>
+    </span>
     <button type="button" class="ask__iconbtn" id="askReset" aria-label="New chat" title="New chat"><svg class="icon" aria-hidden="true"><use href="#i-edit"></use></svg></button>
     <button type="button" class="ask__iconbtn" id="askClose" aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
   </div>
 
   <div class="ask__body" id="askBody">
+    <!-- Welcome: a greeting bubble at the top, quick questions just above the typing box -->
     <div class="ask__empty" id="askEmpty">
-      <span class="ask__orb" aria-hidden="true"><svg class="icon"><use href="#i-sparkle"></use></svg></span>
-      <p class="ask__hello">How can I help?</p>
-      <div class="ask__suggest" role="group" aria-label="Suggested questions">
-        <button type="button" data-q="Am I eligible for MBBS abroad?">Am I eligible for MBBS abroad?<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
-        <button type="button" data-q="Which country is cheapest for MBBS?">Which country is cheapest for MBBS?<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
-        <button type="button" data-q="Is an MBBS from abroad valid in India?">Is an MBBS from abroad valid in India?<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
+      <div class="ask-m ask-m--bot ask__hello">
+        <p>Hi! I can answer questions about our universities, fees, eligibility and the application process.</p>
+        <p>What would you like to know?</p>
+      </div>
+      <div class="ask__suggest" role="group" aria-label="Quick questions">
+        <button type="button" data-q="Am I eligible for MBBS abroad?">Eligibility?</button>
+        <button type="button" data-q="Which country is cheapest for MBBS?">Cheapest option?</button>
+        <button type="button" data-q="Is an MBBS from abroad valid in India?">Valid in India?</button>
+        <button type="button" data-q="How do I apply through Mathura Overseas?">How to apply?</button>
       </div>
     </div>
     <div class="ask__msgs" id="askMsgs" aria-live="polite"></div>
   </div>
 
+  <!-- Typing box + a separate, square send button -->
   <form class="ask__form" id="askForm" autocomplete="off">
     <div class="ask__field">
       <label class="sr-only" for="askInput">Your question</label>
-      <input type="text" id="askInput" placeholder="Ask anything about MBBS abroad" maxlength="400" enterkeyhint="send">
+      <input type="text" id="askInput" placeholder="Type your question…" maxlength="400" enterkeyhint="send">
       <button type="submit" class="ask__send" id="askSend" aria-label="Send" disabled><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
     </div>
     <p class="ask__note">AI can make mistakes, and fees are indicative.</p>

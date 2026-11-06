@@ -22,9 +22,9 @@
   .app-header__inner { height: var(--header-h-lg); }
 
   /* ---- Top navigation: one row of plain links + the counselling button.
-          The drawer-only parts (top band, icons, small lines, Home, contact card) are hidden. ---- */
+          The drawer-only parts (top row, icons, arrows, Home, Ask bar, contacts) are hidden. ---- */
   .site-nav { display: flex; align-items: center; gap: var(--sp-6); }
-  .site-nav__head, .site-nav__extra, .site-nav__ico, .site-nav__sub, .site-nav__link--home, .site-nav__ask { display: none; }
+  .site-nav__head, .site-nav__extra, .site-nav__ico, .site-nav__go, .site-nav__link--home, .site-nav__ask { display: none; }
   .site-nav__links { display: flex; align-items: center; gap: var(--sp-6); }
   .site-nav__link { position: relative; padding: .4rem 0; font-size: var(--fs-sm); font-weight: 600; color: var(--color-text); transition: color var(--speed) var(--ease); }
   .site-nav__link::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; border-radius: 2px; background: var(--color-primary); transform: scaleX(0); transform-origin: left; transition: transform .25s var(--ease); }
