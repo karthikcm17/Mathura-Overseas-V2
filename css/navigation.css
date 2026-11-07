@@ -29,7 +29,7 @@
 .logo:hover .logo__cap { animation-duration: .8s, 1.2s; }
 .logo__text { font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; white-space: nowrap; color: var(--color-primary); }
 .logo__text span { color: var(--color-blue-light); margin-left: .28em; font-weight: 700; }
-/* Logo on a dark background (menu drawer) */
+/* Logo on a dark background */
 .logo--light .logo__badge { fill: rgba(255,255,255,.16); }
 .logo--light .logo__text, .logo--light .logo__text span { color: var(--color-text-inverse); }
 
@@ -45,55 +45,68 @@
 /* ==========================================================================
    MENU DRAWER (phones + tablets). Everything inside this query exists only
    below 1024px, so the desktop row (responsive.css) never has to undo it.
-   Minimal: a slim top row, an "Ask Mathura" bar, one row per page with its
-   colour icon, then the counselling button and contacts at the bottom.
+   Layout, top to bottom:
+     "Menu" + close · Ask Mathura bar · EXPLORE label ·
+     one row per page = colour icon tile · name + one light line · arrow ·
+     counselling button · Call / WhatsApp / Email tiles · place + socials
    ========================================================================== */
 @media (max-width: 1023.98px) {
   .nav-scrim { position: fixed; inset: 0; z-index: var(--z-overlay); background: rgba(11,31,77,.5); opacity: 0; visibility: hidden; transition: opacity .3s var(--ease), visibility .3s; }
   .nav-scrim.is-open { opacity: 1; visibility: visible; }
 
-  .site-nav { position: fixed; top: 0; right: 0; bottom: 0; z-index: var(--z-menu); width: min(86vw, 360px); display: flex; flex-direction: column; padding: calc(var(--sp-3) + var(--safe-top)) var(--sp-4) calc(var(--sp-4) + var(--safe-bottom)); background: var(--color-surface); border-radius: 24px 0 0 24px; box-shadow: -16px 0 48px rgba(11,31,77,.22); transform: translateX(105%); visibility: hidden; transition: transform .38s cubic-bezier(.2, .8, .2, 1), visibility .38s; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+  .site-nav { position: fixed; top: 0; right: 0; bottom: 0; z-index: var(--z-menu); width: min(88vw, 372px); display: flex; flex-direction: column; padding: calc(var(--sp-3) + var(--safe-top)) var(--sp-4) calc(var(--sp-4) + var(--safe-bottom)); background: var(--color-surface); border-radius: 24px 0 0 24px; box-shadow: -16px 0 48px rgba(11,31,77,.22); transform: translateX(105%); visibility: hidden; transition: transform .38s cubic-bezier(.2, .8, .2, 1), visibility .38s; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
   .site-nav.is-open { transform: translateX(0); visibility: visible; }
 
   /* Top row: "Menu" + close */
-  .site-nav__head { display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; min-height: 48px; padding-left: var(--sp-1); }
-  .site-nav__title { font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--color-text-muted); }
-  .site-nav__close { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: var(--color-wash); color: var(--color-primary); transition: background var(--speed) var(--ease), transform var(--speed) var(--ease); }
+  .site-nav__head { display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; min-height: 48px; padding-left: var(--sp-2); }
+  .site-nav__title { font-size: 1.15rem; font-weight: 800; letter-spacing: -.01em; color: var(--color-text); }
+  .site-nav__close { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--color-wash); color: var(--color-primary); transition: background var(--speed) var(--ease), transform var(--speed) var(--ease); }
   .site-nav__close:active { background: var(--color-wash-deep); transform: scale(.92); }
-  .site-nav__close .icon { width: 20px; height: 20px; }
+  .site-nav__close .icon { width: 19px; height: 19px; }
 
   /* Ask Mathura: looks like a search field, so it reads as "ask a question", not "go to a page" */
-  .site-nav__links { display: flex; flex-direction: column; gap: 2px; margin-top: var(--sp-3); }
-  .site-nav__ask { display: flex; align-items: center; gap: var(--sp-3); width: 100%; margin-bottom: var(--sp-4); padding: 6px 6px 6px 8px; border: 1.5px solid var(--color-wash-deep); border-radius: 16px; background: var(--color-wash); text-align: left; transition: border-color var(--speed) var(--ease), transform var(--speed) var(--ease); }
-  .site-nav__ask:active { transform: scale(.98); border-color: var(--color-blue-pale); }
+  .site-nav__ask { flex-shrink: 0; display: flex; align-items: center; gap: var(--sp-3); width: 100%; margin-top: var(--sp-3); padding: 6px 6px 6px 7px; border: 1.5px solid var(--color-wash-deep); border-radius: 16px; background: var(--color-wash); text-align: left; transition: border-color var(--speed) var(--ease), opacity .3s var(--ease), transform .3s var(--ease); }
+  .site-nav__ask:active { border-color: var(--color-blue-pale); }
   .site-nav__ask-ico { width: 38px; height: 38px; flex-shrink: 0; border-radius: 12px; display: grid; place-items: center; background: var(--grad-hero); color: var(--color-text-inverse); }
   .site-nav__ask-ico .icon { width: 18px; height: 18px; }
   .site-nav__ask-text { flex: 1; min-width: 0; font-size: .92rem; font-weight: 600; color: var(--color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .site-nav__ask-go { width: 38px; height: 38px; flex-shrink: 0; border-radius: 12px; display: grid; place-items: center; background: var(--color-surface); color: var(--color-primary); box-shadow: var(--shadow-sm); }
   .site-nav__ask-go .icon { width: 17px; height: 17px; stroke-width: 2.6; }
 
-  /* Page rows: colour icon · label · arrow */
-  .site-nav__link { position: relative; display: flex; align-items: center; gap: var(--sp-3); min-height: 54px; padding: 7px var(--sp-2) 7px 7px; border-radius: 14px; transition: background var(--speed) var(--ease), transform var(--speed) var(--ease); }
-  .site-nav__link:active { background: var(--color-wash); transform: scale(.98); }
-  .site-nav__ico { width: 40px; height: 40px; }
-  .site-nav__ico .icon { width: 19px; height: 19px; }
-  .site-nav__label { flex: 1; min-width: 0; font-size: 1rem; font-weight: 700; color: var(--color-text); }
-  .site-nav__go { width: 18px; height: 18px; flex-shrink: 0; color: var(--color-border); transition: transform var(--speed) var(--ease), color var(--speed) var(--ease); }
-  /* Current page: soft wash + a teal bar on the left (teal is reserved for the active nav item) */
+  /* Small label above the page rows */
+  .site-nav__group { display: block; margin: var(--sp-5) 0 var(--sp-2) var(--sp-2); font-size: .66rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--color-text-muted); }
+
+  /* Page rows: colour icon tile · name over a light line · arrow */
+  .site-nav__links { display: flex; flex-direction: column; gap: 2px; }
+  .site-nav__link { position: relative; display: grid; grid-template-columns: 44px minmax(0, 1fr) 18px; align-items: center; gap: 14px; min-height: 64px; padding: 10px 10px 10px 8px; border-radius: 16px; transition: background var(--speed) var(--ease), opacity .3s var(--ease), transform .3s var(--ease); }
+  .site-nav__link:active { background: var(--color-wash); }
+  /* Rounded-square tiles (not circles) read as app icons; a soft coloured shadow lifts them off the white */
+  .site-nav__ico { width: 44px; height: 44px; border-radius: 14px; box-shadow: 0 6px 14px -6px rgba(11,31,77,.45); }
+  .site-nav__ico .icon { width: 20px; height: 20px; }
+  .site-nav__text { display: grid; gap: 2px; min-width: 0; }
+  .site-nav__label { font-size: .98rem; font-weight: 700; line-height: 1.25; letter-spacing: -.005em; color: var(--color-text); }
+  .site-nav__desc { font-size: .78rem; font-weight: 500; line-height: 1.3; color: var(--color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .site-nav__go { width: 18px; height: 18px; color: var(--color-text-muted); opacity: .45; transition: transform var(--speed) var(--ease), opacity var(--speed) var(--ease), color var(--speed) var(--ease); }
+  @media (hover: hover) {
+    .site-nav__link:hover { background: var(--color-wash); }
+    .site-nav__link:hover .site-nav__go { opacity: 1; color: var(--color-primary); transform: translateX(2px); }
+  }
+  /* Current page: soft wash + a teal bar on the drawer edge (teal is reserved for the active nav item) */
   .site-nav__link[aria-current="page"] { background: var(--color-wash); }
-  .site-nav__link[aria-current="page"]::before { content: ""; position: absolute; left: -16px; top: 14px; bottom: 14px; width: 4px; border-radius: 0 4px 4px 0; background: var(--color-active); }
+  .site-nav__link[aria-current="page"]::before { content: ""; position: absolute; left: -16px; top: 16px; bottom: 16px; width: 4px; border-radius: 0 4px 4px 0; background: var(--color-active); }
   .site-nav__link[aria-current="page"] .site-nav__label { color: var(--color-primary); font-weight: 800; }
-  .site-nav__link[aria-current="page"] .site-nav__go { color: var(--color-active); }
+  .site-nav__link[aria-current="page"] .site-nav__go { opacity: 1; color: var(--color-active); }
 
   .site-nav__cta { display: none; }
 
-  /* Bottom: one counselling button, three contact buttons, place + socials */
+  /* Bottom: counselling button, three contact tiles, place + socials */
   .site-nav__extra { display: grid; gap: var(--sp-3); margin-top: auto; padding-top: var(--sp-5); }
   .site-nav__apply { min-height: 52px; border-radius: 14px; }
   .site-nav__quick { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-2); }
-  .site-nav__quick a { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; padding: 0 var(--sp-1); border: 1px solid var(--color-border); border-radius: 12px; font-size: .78rem; font-weight: 700; color: var(--color-primary); transition: background var(--speed) var(--ease), transform var(--speed) var(--ease); }
-  .site-nav__quick a:active { background: var(--color-wash); transform: scale(.96); }
-  .site-nav__quick .icon { width: 16px; height: 16px; flex-shrink: 0; }
+  .site-nav__quick a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 72px; padding: var(--sp-2) var(--sp-1); border-radius: 14px; background: var(--color-wash); font-size: .74rem; font-weight: 700; color: var(--color-primary); transition: background var(--speed) var(--ease), opacity .3s var(--ease), transform .3s var(--ease); }
+  .site-nav__quick a:active { background: var(--color-wash-deep); }
+  .site-nav__quick-ico { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--color-surface); box-shadow: var(--shadow-sm); }
+  .site-nav__quick .icon { width: 17px; height: 17px; }
   .site-nav__quick--wa .icon { color: var(--color-whatsapp); }
   .site-nav__foot { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); padding-top: var(--sp-3); border-top: 1px solid var(--color-border); font-size: var(--fs-xs); color: var(--color-text-muted); }
   .site-nav__foot > span:first-child { display: block; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -104,20 +117,22 @@
   .site-nav__social a:active { background: var(--color-wash); color: var(--color-primary); }
   .site-nav__social .icon { width: 16px; height: 16px; }
 
-  /* Entrance: rows slide in one after another (opacity + transform only) */
-  .site-nav__ask, .site-nav__link, .site-nav__extra > * { opacity: 0; transform: translateX(18px); transition: opacity .3s var(--ease), transform .3s var(--ease), background var(--speed) var(--ease), border-color var(--speed) var(--ease); }
-  .site-nav.is-open .site-nav__ask, .site-nav.is-open .site-nav__link, .site-nav.is-open .site-nav__extra > * { opacity: 1; transform: none; }
-  .site-nav.is-open .site-nav__links > :nth-child(1) { transition-delay: .06s; }
-  .site-nav.is-open .site-nav__links > :nth-child(2) { transition-delay: .10s; }
-  .site-nav.is-open .site-nav__links > :nth-child(3) { transition-delay: .13s; }
-  .site-nav.is-open .site-nav__links > :nth-child(4) { transition-delay: .16s; }
-  .site-nav.is-open .site-nav__links > :nth-child(5) { transition-delay: .19s; }
-  .site-nav.is-open .site-nav__links > :nth-child(6) { transition-delay: .22s; }
-  .site-nav.is-open .site-nav__links > :nth-child(7) { transition-delay: .25s; }
+  /* Entrance: rows slide in one after another (opacity + transform only — no layout work) */
+  .site-nav__ask, .site-nav__group, .site-nav__link, .site-nav__extra > * { opacity: 0; transform: translateX(18px); }
+  .site-nav__group, .site-nav__extra > * { transition: opacity .3s var(--ease), transform .3s var(--ease); }
+  .site-nav.is-open .site-nav__ask, .site-nav.is-open .site-nav__group, .site-nav.is-open .site-nav__link, .site-nav.is-open .site-nav__extra > * { opacity: 1; transform: none; }
+  .site-nav.is-open .site-nav__ask { transition-delay: .05s; }
+  .site-nav.is-open .site-nav__group { transition-delay: .08s; }
+  .site-nav.is-open .site-nav__links > :nth-child(1) { transition-delay: .10s; }
+  .site-nav.is-open .site-nav__links > :nth-child(2) { transition-delay: .13s; }
+  .site-nav.is-open .site-nav__links > :nth-child(3) { transition-delay: .16s; }
+  .site-nav.is-open .site-nav__links > :nth-child(4) { transition-delay: .19s; }
+  .site-nav.is-open .site-nav__links > :nth-child(5) { transition-delay: .22s; }
+  .site-nav.is-open .site-nav__links > :nth-child(6) { transition-delay: .25s; }
   .site-nav.is-open .site-nav__extra > :nth-child(1) { transition-delay: .28s; }
   .site-nav.is-open .site-nav__extra > :nth-child(2) { transition-delay: .31s; }
   .site-nav.is-open .site-nav__extra > :nth-child(3) { transition-delay: .34s; }
-  .site-nav.is-open .site-nav__links > :active { transition-delay: 0s; }
+  .site-nav.is-open .site-nav__links > :active { transition-delay: 0s; transform: scale(.98); }
 
   body.nav-open { overflow: hidden; }
   body.nav-open .app-header { z-index: var(--z-menu); }
@@ -126,14 +141,31 @@
 /* Narrow phones: the Ask bar says just "Ask Mathura…" so it never clips */
 @media (max-width: 379.98px) {
   .site-nav__ask-more { display: none; }
+  /* Light lines may take two lines here instead of being cut off with "…" */
+  .site-nav__desc { white-space: normal; }
 }
 
-/* Short phones (landscape, or under 640px tall): tighter rows so everything fits without scrolling */
-@media (max-width: 1023.98px) and (max-height: 640px) {
-  .site-nav__link { min-height: 46px; padding-block: 4px; }
-  .site-nav__ico { width: 34px; height: 34px; }
-  .site-nav__ask { margin-bottom: var(--sp-2); }
-  .site-nav__extra { padding-top: var(--sp-3); }
+/* Short phones (landscape, or under 700px tall): tighter rows so everything fits with little or no scrolling */
+@media (max-width: 1023.98px) and (max-height: 700px) {
+  .site-nav__link { min-height: 56px; padding-block: 7px; }
+  .site-nav__ico { width: 40px; height: 40px; border-radius: 12px; }
+  .site-nav__link { grid-template-columns: 40px minmax(0, 1fr) 18px; }
+  .site-nav__group { margin-top: var(--sp-4); }
+  .site-nav__extra { padding-top: var(--sp-4); }
+  .site-nav__quick a { flex-direction: row; min-height: 46px; }
+  .site-nav__quick-ico { width: auto; height: auto; background: none; box-shadow: none; }
+}
+/* Phones turned sideways only (under 460px tall): drop the light lines, keep the names.
+   Every phone held upright is taller than this, so the light lines always show there. */
+@media (max-width: 1023.98px) and (max-height: 459.98px) {
+  .site-nav__desc { display: none; }
+  .site-nav__link { min-height: 48px; }
+}
+
+/* Computers: the drawer-only extras added for phones stay hidden in the top row */
+@media (min-width: 1024px) {
+  .site-nav__group, .site-nav__desc { display: none; }
+  .site-nav__text { display: contents; }
 }
 
 /* ---- Bottom tab bar (mobile app navigation; slides away on scroll down) ---- */

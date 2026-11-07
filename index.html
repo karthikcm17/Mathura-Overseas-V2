@@ -44,7 +44,8 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
 
 <main id="main">
 
-  <!-- ============ HERO. Mobile: content + ONE button (opens the tool as a bottom sheet). Desktop: tool inline. ============ -->
+  <!-- ============ HERO. Mobile: content + ONE button (opens the tool as a bottom sheet) + a quiet text link.
+       Desktop: two buttons (counselling + WhatsApp) on the left, the tool inline on the right. ============ -->
   <section class="hero">
     <svg class="hero__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
     <svg class="hero__arc" viewBox="0 0 600 300" aria-hidden="true">
@@ -58,10 +59,15 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
         <span class="pill"><span class="pill__dot"></span>Admissions open &middot; 2026&ndash;27</span>
         <h1>Your Dream of Becoming a Doctor <em>Has No Borders</em></h1>
         <p class="hero__lead">Transparent guidance. Verified universities. Support from counselling to campus.</p>
-        <div class="btn-row">
+        <!-- HERO BUTTONS
+             Phones:    "Check my eligibility" (opens the quick planner) + a small "talk to a counsellor" link below it.
+             Computers: "Get free counselling" (white, main) + "WhatsApp a counsellor" (outline). The planner sits on the right. -->
+        <div class="btn-row hero__ctas">
           <button type="button" class="btn btn--ondark hero__mobile-only" data-open-tool="elig">Check my eligibility <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
-          <a href="apply.html" class="btn btn--outline-light hero__desktop-only">Talk to a Counsellor <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <a href="apply.html" class="btn btn--ondark hero__desktop-only">Get free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <a href="https://wa.me/919360859919?text=Hi%20Mathura%20Overseas%2C%20I%20want%20to%20talk%20to%20a%20counsellor%20about%20MBBS%20abroad.%20%5Bfrom%20the%20home%20page%5D" class="btn btn--outline-light btn--wa hero__desktop-only" target="_blank" rel="noopener"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>WhatsApp a counsellor</a>
         </div>
+        <a href="apply.html" class="hero__alt hero__mobile-only">or talk to a counsellor &mdash; it&rsquo;s free <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
         <ul class="hero__trust hero__desktop-only">
           <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Fees in writing</li>
           <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>No donation or capitation</li>
@@ -405,7 +411,7 @@ active: home   # highlighted menu item: home, countries, planner, updates, guide
         <form class="cta-call" id="ctaForm" novalidate>
           <label class="cta-call__label" for="ctaPhone">Your mobile number</label>
           <div class="cta-call__row">
-            <div class="cta-call__field"><span aria-hidden="true">+91</span><input type="tel" id="ctaPhone" name="phone" placeholder="Mobile Number" inputmode="numeric" autocomplete="tel-national" maxlength="14" required aria-describedby="ctaMsg"></div>
+            <div class="cta-call__field"><span aria-hidden="true">+91</span><input type="tel" id="ctaPhone" name="phone" placeholder="98765 43210" inputmode="numeric" autocomplete="tel-national" maxlength="14" required aria-describedby="ctaMsg"></div>
             <button type="submit" class="btn btn--ondark">Call me back <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
           </div>
           <p class="cta-call__msg" id="ctaMsg" aria-live="polite"></p>

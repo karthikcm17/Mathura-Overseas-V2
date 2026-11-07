@@ -2,7 +2,8 @@
    assistant.css — "Ask Mathura", the AI assistant (every page).
    Markup: _includes/assistant.html · Behaviour: js/assistant.js
    Phones + tablets: opens from the menu drawer as a near-full-screen sheet.
-   Computers: a round button bottom-right (above WhatsApp); the chat opens as a card in that corner.
+   Computers: a round button bottom-right, stacked exactly above the WhatsApp button (same size, same centre line);
+   the chat opens as a card in that corner, always BELOW the pinned header and ABOVE the WhatsApp button.
    Look: a brand-blue header band and a warm ivory chat area, so the window stands apart from the
    white page; white reply bubbles; quick-question chips just above a roomy typing box with its own
    square send button.
@@ -78,27 +79,47 @@ body.ask-open { overflow: hidden; }
 @keyframes ask-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 @keyframes ask-ring { 0% { transform: scale(1); opacity: .5; } 70%, 100% { transform: scale(1.5); opacity: 0; } }
 
-/* Tablets: a readable width */
+/* Tablets: a readable width, centred */
 @media (min-width: 768px) and (max-width: 1023.98px) {
   .ask { max-width: 600px; margin-inline: auto; top: calc(var(--safe-top) + 8svh); }
 }
 
-/* Computers: round launcher above WhatsApp; the chat is a card in the bottom-right corner, no dimmed page */
+/* ==========================================================================
+   COMPUTERS — the bottom-right "dock".
+   The WhatsApp button (components.css) is 54px, 16px from the right and bottom edges.
+   Everything here is measured from those same numbers, so the two buttons share one centre line
+   and the chat card's right edge lines up with both of them:
+     --fab        button size (matches .whatsapp-float)
+     --fab-edge   gap from the screen edge (matches .whatsapp-float)
+     --fab-gap    gap between the two buttons
+     --ask-bottom where the launcher and the chat card start = edge + WhatsApp + gap
+     --ask-top    the chat card never goes above this: pinned announcement bar + header + breathing room
+   ========================================================================== */
 @media (min-width: 1024px) {
-  .ask-launch { position: fixed; right: var(--sp-4); bottom: 84px; z-index: var(--z-widget); display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--grad-hero); color: var(--color-text-inverse); box-shadow: 0 10px 24px rgba(30,58,138,.38); transition: transform var(--speed) var(--ease), opacity var(--speed) var(--ease), visibility var(--speed); }
-  /* A soft ring that breathes outward every few seconds (transform + opacity only) */
+  :root { --fab: 54px; --fab-edge: var(--sp-4); --fab-gap: 12px; --ask-bottom: calc(var(--fab-edge) + var(--fab) + var(--fab-gap)); --ask-top: calc(var(--announce-h) + var(--header-h-lg) + var(--sp-4)); }
+
+  .ask-launch { position: fixed; right: var(--fab-edge); bottom: var(--ask-bottom); z-index: var(--z-widget); display: grid; place-items: center; width: var(--fab); height: var(--fab); border-radius: 50%; isolation: isolate; background: var(--grad-hero); color: var(--color-text-inverse); box-shadow: 0 8px 20px rgba(30,58,138,.36); transition: transform var(--speed) var(--ease), opacity var(--speed) var(--ease), visibility var(--speed); }
+  /* A soft ring that breathes outward every few seconds, BEHIND the button (transform + opacity only) */
   .ask-launch::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--color-blue-light); z-index: -1; animation: ask-ring 3s ease-out infinite; }
-  .ask-launch .icon { width: 25px; height: 25px; }
+  .ask-launch .icon { width: 24px; height: 24px; }
   .ask-launch:hover { transform: scale(1.06); }
-  .ask-launch__tip { position: absolute; right: calc(100% + 10px); top: 50%; padding: .4rem .75rem; border-radius: var(--radius-sm); background: var(--color-primary-ink); color: var(--color-text-inverse); font-size: var(--fs-xs); font-weight: 700; white-space: nowrap; opacity: 0; transform: translate(6px, -50%); pointer-events: none; transition: opacity var(--speed) var(--ease), transform var(--speed) var(--ease); }
+  /* Tooltip: to the left, vertically centred on the button */
+  .ask-launch__tip { position: absolute; right: calc(100% + 12px); top: 50%; padding: .45rem .8rem; border-radius: var(--radius-sm); background: var(--color-primary-ink); color: var(--color-text-inverse); font-size: var(--fs-xs); font-weight: 700; white-space: nowrap; box-shadow: var(--shadow-md); opacity: 0; transform: translate(6px, -50%); pointer-events: none; transition: opacity var(--speed) var(--ease), transform var(--speed) var(--ease); }
   .ask-launch:hover .ask-launch__tip, .ask-launch:focus-visible .ask-launch__tip { opacity: 1; transform: translate(0, -50%); }
   body.ask-open .ask-launch { opacity: 0; visibility: hidden; }
   body.ask-open { overflow: visible; }
-  .ask { left: auto; top: auto; right: var(--sp-4); bottom: 84px; width: 384px; height: min(620px, calc(100vh - 140px)); border-radius: 22px; box-shadow: 0 0 0 1px rgba(30,58,138,.08), 0 28px 70px rgba(11,31,77,.28); opacity: 0; transform: translateY(16px) scale(.97); transform-origin: bottom right; transition: opacity .28s var(--ease), transform .28s var(--ease), visibility .28s; }
+
+  /* The chat card: right edge on the button line, bottom just above WhatsApp, top never under the header */
+  .ask { left: auto; top: auto; right: var(--fab-edge); bottom: var(--ask-bottom); width: 380px; height: 600px; max-height: calc(100vh - var(--ask-top) - var(--ask-bottom)); max-height: calc(100dvh - var(--ask-top) - var(--ask-bottom)); min-height: 360px; border-radius: 22px; box-shadow: 0 0 0 1px rgba(30,58,138,.08), 0 28px 70px rgba(11,31,77,.28); opacity: 0; transform: translateY(16px) scale(.97); transform-origin: bottom right; transition: opacity .28s var(--ease), transform .28s var(--ease), visibility .28s; }
   .ask.is-open { opacity: 1; }
   .ask__grab, .ask-scrim { display: none; }
   .ask__head { padding-top: var(--sp-4); }
   .ask__form { padding-bottom: var(--sp-3); }
+}
+
+/* Short laptop screens (under ~620px tall): let the card start right under the header */
+@media (min-width: 1024px) and (max-height: 620px) {
+  .ask { min-height: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

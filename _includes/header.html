@@ -1,9 +1,10 @@
 <!-- ============ HEADER + MENU (_includes/header.html) — one file for every page.
      The highlighted (teal) menu item is chosen automatically from the "active:" line at the top of each page:
      home · countries · planner · updates · guide · about. You never add aria-current by hand.
-     Phones / tablets: the menu slides in from the right — a slim top row, an "Ask Mathura" bar, one row per page,
-     then the counselling button and one-tap contacts at the bottom.
-     Computers: the same links sit in one row; the drawer-only parts are hidden by css/responsive.css. -->
+     Phones / tablets: the menu slides in from the right — "Menu" + close, the "Ask Mathura" bar, one row per page
+     (colour icon · name · one light line saying what is on that page), then the counselling button and one-tap contacts.
+     To change a row's light line, edit the text inside <span class="site-nav__desc">…</span> (keep it to about 4 words).
+     Computers: the same links sit in one row; the icons, light lines and drawer-only parts are hidden automatically. -->
 <header class="app-header">
   <div class="container app-header__inner">
     <a href="index.html" class="logo" aria-label="Mathura Overseas home">
@@ -14,34 +15,37 @@
 
     <nav class="site-nav" id="siteNav" aria-label="Primary">
 
-      <!-- Drawer top (phones / tablets only): just a title and the close button -->
+      <!-- Drawer top (phones / tablets only): a title and the close button -->
       <div class="site-nav__head">
         <span class="site-nav__title">Menu</span>
         <button type="button" class="site-nav__close" aria-label="Close menu"><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
       </div>
 
-      <!-- The links. On computers only the label shows; phones also show the icon and the arrow. -->
+      <!-- Ask Mathura (phones / tablets only; computers use the round button at the bottom-right) -->
+      <button type="button" class="site-nav__ask" data-ask-open><span class="site-nav__ask-ico"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"></use></svg></span><span class="site-nav__ask-text">Ask Mathura<span class="site-nav__ask-more"> anything</span>&hellip;</span><span class="site-nav__ask-go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></button>
+
+      <span class="site-nav__group" aria-hidden="true">Explore</span>
+
+      <!-- The page links. Computers show only the name; phones also show the icon, the light line and the arrow. -->
       <div class="site-nav__links">
-        <!-- Ask Mathura (phones / tablets only; computers use the round button at the bottom-right) -->
-        <button type="button" class="site-nav__ask" data-ask-open><span class="site-nav__ask-ico"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"></use></svg></span><span class="site-nav__ask-text">Ask Mathura<span class="site-nav__ask-more"> anything</span>&hellip;</span><span class="site-nav__ask-go"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span></button>
-        <a href="index.html" class="site-nav__link site-nav__link--home"{% if page.active == "home" %} aria-current="page"{% endif %}><span class="site-nav__ico icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-home"></use></svg></span><span class="site-nav__label">Home</span><svg class="icon site-nav__go" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
-        <a href="destinations.html" class="site-nav__link"{% if page.active == "countries" %} aria-current="page"{% endif %}><span class="site-nav__ico icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><span class="site-nav__label">Countries</span><svg class="icon site-nav__go" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
-        <a href="mbbs-abroad-planner.html" class="site-nav__link"{% if page.active == "planner" %} aria-current="page"{% endif %}><span class="site-nav__ico icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-check-square"></use></svg></span><span class="site-nav__label">MBBS Planner</span><svg class="icon site-nav__go" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
-        <a href="neet-2026-updates.html" class="site-nav__link"{% if page.active == "updates" %} aria-current="page"{% endif %}><span class="site-nav__ico icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-news"></use></svg></span><span class="site-nav__label">Updates</span><svg class="icon site-nav__go" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
-        <a href="student-guide.html" class="site-nav__link"{% if page.active == "guide" %} aria-current="page"{% endif %}><span class="site-nav__ico icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg></span><span class="site-nav__label">Guide</span><svg class="icon site-nav__go" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
-        <a href="about-us.html" class="site-nav__link"{% if page.active == "about" %} aria-current="page"{% endif %}><span class="site-nav__ico icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span><span class="site-nav__label">About</span><svg class="icon site-nav__go" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+        <a href="index.html" class="site-nav__link site-nav__link--home"{% if page.active == "home" %} aria-current="page"{% endif %}><span class="site-nav__ico icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-home"></use></svg></span><span class="site-nav__text"><span class="site-nav__label">Home</span><span class="site-nav__desc">Overview &amp; quick planner</span></span><svg class="icon site-nav__go" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+        <a href="destinations.html" class="site-nav__link"{% if page.active == "countries" %} aria-current="page"{% endif %}><span class="site-nav__ico icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><span class="site-nav__text"><span class="site-nav__label">Countries</span><span class="site-nav__desc">Destinations &amp; universities</span></span><svg class="icon site-nav__go" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+        <a href="mbbs-abroad-planner.html" class="site-nav__link"{% if page.active == "planner" %} aria-current="page"{% endif %}><span class="site-nav__ico icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-check-square"></use></svg></span><span class="site-nav__text"><span class="site-nav__label">MBBS Planner</span><span class="site-nav__desc">Eligibility, budget &amp; compare</span></span><svg class="icon site-nav__go" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+        <a href="neet-2026-updates.html" class="site-nav__link"{% if page.active == "updates" %} aria-current="page"{% endif %}><span class="site-nav__ico icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-news"></use></svg></span><span class="site-nav__text"><span class="site-nav__label">Updates</span><span class="site-nav__desc">NEET &amp; counselling news</span></span><svg class="icon site-nav__go" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+        <a href="student-guide.html" class="site-nav__link"{% if page.active == "guide" %} aria-current="page"{% endif %}><span class="site-nav__ico icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg></span><span class="site-nav__text"><span class="site-nav__label">Guide</span><span class="site-nav__desc">The MBBS abroad handbook</span></span><svg class="icon site-nav__go" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
+        <a href="about-us.html" class="site-nav__link"{% if page.active == "about" %} aria-current="page"{% endif %}><span class="site-nav__ico icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span><span class="site-nav__text"><span class="site-nav__label">About</span><span class="site-nav__desc">Our story &amp; how we work</span></span><svg class="icon site-nav__go" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a>
       </div>
 
       <!-- Computers: the button at the end of the row -->
       <a href="apply.html" class="btn btn--primary btn--sm site-nav__cta">Get Free Counselling</a>
 
-      <!-- Drawer bottom (phones / tablets only): counselling button, one-tap contacts, socials -->
+      <!-- Drawer bottom (phones / tablets only): counselling button, one-tap contacts, place + socials -->
       <div class="site-nav__extra">
         <a href="apply.html" class="btn btn--primary btn--block site-nav__apply">Get free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
         <div class="site-nav__quick">
-          <a href="tel:+919360859919"><svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>Call</a>
-          <a href="https://wa.me/919360859919?text=Hi%2C%20I%20want%20to%20know%20about%20MBBS%20Abroad%20via%20Mathura%20Overseas" target="_blank" rel="noopener" class="site-nav__quick--wa"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>WhatsApp</a>
-          <a href="mailto:mathuraoverseas@gmail.com"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg>Email</a>
+          <a href="tel:+919360859919"><span class="site-nav__quick-ico"><svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg></span>Call</a>
+          <a href="https://wa.me/919360859919?text=Hi%2C%20I%20want%20to%20know%20about%20MBBS%20Abroad%20via%20Mathura%20Overseas" target="_blank" rel="noopener" class="site-nav__quick--wa"><span class="site-nav__quick-ico"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg></span>WhatsApp</a>
+          <a href="mailto:mathuraoverseas@gmail.com"><span class="site-nav__quick-ico"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg></span>Email</a>
         </div>
         <div class="site-nav__foot">
           <span><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>Tiruchirappalli, Tamil Nadu</span>
