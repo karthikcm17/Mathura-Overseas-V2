@@ -86,18 +86,21 @@ active: countries
           <a href="#fees" class="btn btn--outline-light cty-hero__desk">See average fees</a>
         </div>
       </div>
-      <div class="cty-hero__media">
+      <!-- Photo + the FEE CARD docked under it (same card as the university pages).
+           Keep these figures the SAME as the Fees section further down (section 8):
+           the first column = its yearly total, the second = its whole-course line.
+           The flight line = Chennai to the main airport: time, stops and the lowest fare found (with its month). -->
+      <div class="cty-hero__media cty-hero__media--fee">
         <div class="img-slot" data-spec="countries/nepal/hero.webp · 1200×1320 px">
           <img src="assets/images/countries/nepal/hero.webp" width="1200" height="1320" alt="Indian medical students in white coats on a terrace in the Kathmandu Valley with Himalayan peaks behind" fetchpriority="high">
         </div>
-        <div class="cty-ticket" aria-label="Flight from Chennai to Kathmandu: about 7 hours with one stop">
-          <div class="cty-ticket__route">
-            <div class="cty-ticket__port"><b>MAA</b><span>Chennai</span></div>
-            <div class="cty-ticket__line"><span class="cty-ticket__plane"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-airplane"></use></svg></span></div>
-            <div class="cty-ticket__port cty-ticket__port--to"><b>KTM</b><span>Kathmandu</span></div>
-          </div>
-          <div class="cty-ticket__meta"><span><b>~7 hrs</b> &middot; 1 stop</span><span>From <b>&#8377;19,622</b> one-way &middot; Oct 2026</span></div>
-        </div>
+        <a class="cty-fee" href="#fees">
+          <span class="cty-fee__cols">
+            <span class="cty-fee__col"><span class="cty-fee__kicker">An average year</span><span class="cty-fee__num">&#8377;13.1 L<small>/ year</small></span><span class="cty-fee__note">Tuition, hostel &amp; living</span></span>
+            <span class="cty-fee__col"><span class="cty-fee__kicker">Course fee</span><span class="cty-fee__num">&#8377;57 L</span><span class="cty-fee__note">Full course, from about</span></span>
+          </span>
+          <span class="cty-fee__fly"><span class="cty-fee__plane"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-airplane"></use></svg></span><span class="cty-fee__route"><b>Chennai</b> to <b>Kathmandu</b> &middot; ~7 hrs, 1 stop</span><span class="cty-fee__fare">from <b>&#8377;19,622</b> &middot; Oct 2026</span></span>
+        </a>
       </div>
     </div>
   </section>
@@ -108,8 +111,6 @@ active: countries
       <div class="card cty-glance__card">
         <div class="cty-glance__item"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div><div class="cty-glance__num">5.5 years</div><div class="cty-glance__label">4.5 years of study plus a 1-year internship</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-passport"></use></svg></span><div><div class="cty-glance__num">No visa</div><div class="cty-glance__label">For Indian citizens &middot; open border</div></div></div>
-        <div class="cty-glance__item"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><div><div class="cty-glance__num">&#8377;13 L</div><div class="cty-glance__label">An average year, all-in (indicative)</div></div></div>
-        <div class="cty-glance__item"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><div><div class="cty-glance__num">~7 hrs</div><div class="cty-glance__label">Chennai to Kathmandu, one stop</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></span><div><div class="cty-glance__num">+15 min</div><div class="cty-glance__label">Ahead of Indian time</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg></span><div><div class="cty-glance__num">1.6 NPR</div><div class="cty-glance__label">Per &#8377;1 &middot; fixed exchange rate</div></div></div>
       </div>
@@ -150,7 +151,7 @@ active: countries
         </article>
         <article class="cty-feature reveal">
           <span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span>
-          <div><h3>A licence on equal terms</h3><p>Since November 2024, foreign graduates of Nepali colleges can sit the Nepal Medical Council exam and get the same licence as Nepali doctors.</p></div>
+          <div><h3>A licence on equal terms</h3><p>Foreign graduates of Nepali colleges receive the same Nepal Medical Council licence as Nepali doctors &mdash; one of NMC&rsquo;s key conditions, explained under NMC status below.</p></div>
         </article>
       </div>
     </div>
@@ -380,7 +381,6 @@ active: countries
         </div>
 
         <div class="cty-fees__extras">
-          <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg><span><b>Flights:</b> Chennai to Kathmandu from &#8377;19,622 one-way (Oct 2026), or travel by road</span></div>
           <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg><span><b>One-time:</b> admission, university affiliation and registration fees &mdash; about &#8377;3.9 L at KMC (2025&ndash;26)</span></div>
           <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg><span><b>Always:</b> pay the college directly, against an official receipt</span></div>
         </div>
@@ -490,7 +490,7 @@ active: countries
           <div class="card cty-tile reveal"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg></span><h3>Language</h3><p>Classes are in English. Nepali uses the Devanagari script, and Hindi is widely understood.</p></div>
           <div class="card cty-tile reveal"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></span><h3>Time zone</h3><p>Just 15 minutes ahead of India: home is always on the same clock.</p></div>
           <div class="card cty-tile reveal"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg></span><h3>Money</h3><p>The Nepali rupee is fixed at 1.6 to &#8377;1, so your budget never moves with exchange rates.</p></div>
-          <div class="card cty-tile cty-tile--wide reveal"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><h3>Getting there</h3><p>About 7 hours from Chennai with one stop in Delhi or Kolkata. Colleges near the border, like Bhairahawa and Nepalgunj, are also a short road trip from Uttar Pradesh.</p></div>
+          <div class="card cty-tile cty-tile--wide reveal"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><h3>Getting there</h3><p>Flights from Chennai connect in Delhi or Kolkata. Colleges near the border, like Bhairahawa and Nepalgunj, are also a short road trip from Uttar Pradesh.</p></div>
         </div>
       </div>
     </div>

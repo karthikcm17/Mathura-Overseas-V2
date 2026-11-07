@@ -13,7 +13,7 @@ active: countries
 <meta property="og:title" content="MBBS in the Philippines 2026 | Mathura Overseas">
 <meta property="og:description" content="English-medium, US-pattern medicine in the Philippines: average fees, NMC status for 2026, universities and student life.">
 <meta property="og:url" content="https://mathuraoverseas.com/mbbs-in-philippines.html">
-<meta property="og:image" content="https://mathuraoverseas.com/assets/images/countries/philippines/hero.webp">
+<meta property="og:image" content="assets/images/countries/philippines/hero.webp">
 {% include head.html %}
 <link rel="stylesheet" href="css/pages/country.css">
 <script type="application/ld+json">
@@ -62,7 +62,7 @@ active: countries
 
   <!-- ============ 1. HERO.  IMAGE 1: assets/images/countries/philippines/hero.webp — 1200 x 1320 px
        Indian students in white coats walking through a sunlit Cebu campus, palm trees, warm morning light.
-       Keep faces in the middle third: phones crop the top and bottom. ============ -->
+       Keep faces in the middle third: phones crop the top and bottom, and the fee card overlaps the bottom edge. ============ -->
   <section class="cty-hero">
     <svg class="cty-hero__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
     <div class="container cty-hero__grid">
@@ -85,18 +85,21 @@ active: countries
           <a href="#fees" class="btn btn--outline-light cty-hero__desk">See average fees</a>
         </div>
       </div>
-      <div class="cty-hero__media">
+      <!-- Photo + the FEE CARD docked under it (same card as the university pages).
+           Keep these figures the SAME as the Fees section further down (section 8):
+           • An average year = the total there (₹8 L)   • Course tuition = its "Full-course tuition, typically" line (₹18–35 L)
+           • Flight line = Chennai → Manila time, stops and the lowest fare you found (with its month). -->
+      <div class="cty-hero__media cty-hero__media--fee">
         <div class="img-slot" data-spec="countries/philippines/hero.webp · 1200×1320 px">
           <img src="assets/images/countries/philippines/hero.webp" width="1200" height="1320" alt="Indian medical students in white coats walking across a sunny university campus in Cebu" fetchpriority="high">
         </div>
-        <div class="cty-ticket" aria-label="Flight from Chennai to Manila: about 10 hours with one stop">
-          <div class="cty-ticket__route">
-            <div class="cty-ticket__port"><b>MAA</b><span>Chennai</span></div>
-            <div class="cty-ticket__line"><span class="cty-ticket__plane"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-airplane"></use></svg></span></div>
-            <div class="cty-ticket__port cty-ticket__port--to"><b>MNL</b><span>Manila</span></div>
-          </div>
-          <div class="cty-ticket__meta"><span><b>~10 hrs</b> &middot; 1 stop</span><span>From <b>&#8377;13,434</b> one-way &middot; Sep 2026</span></div>
-        </div>
+        <a class="cty-fee" href="#fees">
+          <span class="cty-fee__cols">
+            <span class="cty-fee__col"><span class="cty-fee__kicker">An average year</span><span class="cty-fee__num">&#8377;8 L<small>/ year</small></span><span class="cty-fee__note">Tuition, hostel &amp; living</span></span>
+            <span class="cty-fee__col"><span class="cty-fee__kicker">Course tuition</span><span class="cty-fee__num">&#8377;18&ndash;35 L</span><span class="cty-fee__note">Full course, typical</span></span>
+          </span>
+          <span class="cty-fee__fly"><span class="cty-fee__plane"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-airplane"></use></svg></span><span class="cty-fee__route"><b>Chennai</b> to <b>Manila</b> &middot; ~10 hrs, 1 stop</span><span class="cty-fee__fare">from <b>&#8377;13,434</b> &middot; Sep 2026</span></span>
+        </a>
       </div>
     </div>
   </section>
@@ -108,7 +111,6 @@ active: countries
         <div class="cty-glance__item"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div><div class="cty-glance__num">54 months</div><div class="cty-glance__label">MD, plus a 12-month internship</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span><div><div class="cty-glance__num">English</div><div class="cty-glance__label">Taught in English, start to finish</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><div><div class="cty-glance__num">&#8377;2.8&ndash;5.2 L</div><div class="cty-glance__label">Tuition per year (indicative)</div></div></div>
-        <div class="cty-glance__item"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><div><div class="cty-glance__num">~10 hrs</div><div class="cty-glance__label">Chennai to Manila, one stop</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-sun"></use></svg></span><div><div class="cty-glance__num">25&ndash;32&deg;C</div><div class="cty-glance__label">Tropical, all year round</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg></span><div><div class="cty-glance__num">&#8369;1 &asymp; &#8377;1.5</div><div class="cty-glance__label">Philippine peso &middot; Sep 2026</div></div></div>
       </div>
@@ -141,7 +143,7 @@ active: countries
         </article>
         <article class="cty-feature reveal">
           <span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span>
-          <div><h3>Confirmed in writing</h3><p>In May 2025, the Philippines&rsquo; Commission on Higher Education (CHED) wrote to the Indian Embassy confirming that its MD meets India&rsquo;s FMGL requirements.</p></div>
+          <div><h3>Confirmed in writing</h3><p>The Philippines&rsquo; higher-education regulator, CHED, has confirmed to the Indian Embassy that its MD meets India&rsquo;s rules. Exactly what is confirmed, and what is still open, is set out below.</p></div>
         </article>
         <article class="cty-feature reveal">
           <span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span>
@@ -149,7 +151,7 @@ active: countries
         </article>
         <article class="cty-feature reveal">
           <span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></span>
-          <div><h3>Close to home</h3><p>Only two and a half hours ahead of India, with one-stop flights from Chennai. Calls home fit easily into your day, and a large Indian student community means you won&rsquo;t be the first from your town.</p></div>
+          <div><h3>A familiar community</h3><p>Cebu, Davao and Dagupan have hosted Indian medical students for years, so you won&rsquo;t be the first from your town.</p></div>
         </article>
       </div>
     </div>
@@ -328,7 +330,8 @@ active: countries
 
   <!-- ============ 8. FEES — an AVERAGE year. To change a figure, edit its data-inr number (in rupees, per year).
        data-row-inr on each row must match the number inside it; the total's data-inr must equal their sum.
-       Tuition = the average of the five universities' own fees (UV Gullas, DMSF, Lyceum-Northwestern, Southwestern, Brokenshire), Nov 2026. ============ -->
+       Tuition = the average of the five universities' own fees (UV Gullas, DMSF, Lyceum-Northwestern, Southwestern, Brokenshire), Nov 2026.
+       If you change the total or the full-course range here, change the fee card in the HERO (section 1) too. ============ -->
   <section class="section" id="fees">
     <div class="container">
       <div class="section-head reveal"><span class="eyebrow">Fees</span><h2>What a year in the Philippines really costs</h2><p>An average, all-in budget &mdash; not the highest quote you will find online. Exact fees vary by university; open a university above for its own sheet.</p></div>
@@ -366,7 +369,6 @@ active: countries
         </div>
 
         <div class="cty-fees__extras">
-          <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg><span><b>Flights:</b> Chennai to Manila from &#8377;13,434 one-way (Sep 2026)</span></div>
           <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg><span><b>One-time:</b> NMAT registration, document attestation and pre-departure costs</span></div>
           <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg><span><b>Always:</b> pay the university directly, against an official receipt</span></div>
         </div>
@@ -435,7 +437,7 @@ active: countries
           <div class="card cty-tile reveal"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg></span><h3>Language</h3><p>English works everywhere &mdash; shops, transport, banks and hospitals.</p></div>
           <div class="card cty-tile reveal"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></span><h3>Time zone</h3><p>Two and a half hours ahead of India: easy evening calls home.</p></div>
           <div class="card cty-tile reveal"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span><h3>Staying safe</h3><p>Keep your ACR I-Card and passport safe, and save the Embassy of India, Manila contacts.</p></div>
-          <div class="card cty-tile cty-tile--wide reveal"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><h3>Getting there</h3><p>About 10 hours to Manila with one stop. Cebu and Davao add a short connection.</p></div>
+          <div class="card cty-tile cty-tile--wide reveal"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><h3>Getting there</h3><p>Fly into Manila, then take a short connecting flight to Cebu or Davao.</p></div>
         </div>
       </div>
     </div>

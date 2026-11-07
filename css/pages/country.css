@@ -5,7 +5,7 @@
    Only change this file to add something EVERY country could use — never one country's special case.
 
    CORE BLOCKS (every country page has these, in this order):
-     1 .cty-hero      dark hero, split with photo + flight "ticket"
+     1 .cty-hero      dark hero, split: copy on the left, photo + the FEE CARD (.cty-fee) under it
      2 .cty-glance    floating "at a glance" stat card
      3 .cty-tabs      sticky section tabs
      4 .cty-feature   why-study cards
@@ -65,29 +65,37 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
 .cty-hero .btn-row .btn { flex: 1 1 100%; }
 .cty-hero__desk { display: none !important; }   /* phones keep ONE hero button, same rule as Home */
 
-/* Photo + the flight "ticket" that sits on it */
+/* Photo + the FEE CARD docked under it (the same card as the university pages):
+   two fee columns (an average year · the whole course) and one slim flight line.
+   The card sits in normal flow, overlapping only the photo's bottom edge, so it never covers the people
+   in the photo and can never collide with the "at a glance" card below.
+   Markup: <div class="cty-hero__media cty-hero__media--fee"> photo, then <a class="cty-fee" href="#fees">. */
 .cty-hero__media { position: relative; }
 .cty-hero__media .img-slot { --ratio: 16 / 10; border-radius: var(--radius-xl); background: rgba(255,255,255,.1); box-shadow: 0 24px 50px rgba(7,18,52,.4), 0 0 0 1px rgba(255,255,255,.18); }
 .cty-hero__media .img-slot.is-empty::after { border-color: rgba(255,255,255,.25); }
-.cty-ticket { position: absolute; left: var(--sp-3); right: var(--sp-3); bottom: var(--sp-3); display: grid; gap: .55rem; padding: var(--sp-3) var(--sp-4); border-radius: var(--radius-lg); background: var(--color-surface); color: var(--color-text); box-shadow: 0 16px 34px rgba(7,18,52,.3); }
-.cty-ticket__route { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--sp-3); }
-.cty-ticket__port b { display: block; font-size: 1.25rem; font-weight: 800; line-height: 1; letter-spacing: -.02em; color: var(--color-primary); }
-.cty-ticket__port span { display: block; margin-top: .2rem; font-size: .66rem; font-weight: 700; color: var(--color-text-muted); }
-.cty-ticket__port--to { text-align: right; }
-.cty-ticket__line { position: relative; height: 2px; background: repeating-linear-gradient(to right, var(--color-blue-pale) 0 5px, transparent 5px 10px); }
-.cty-ticket__plane { position: absolute; left: 50%; top: 50%; width: 26px; height: 26px; margin: -13px 0 0 -13px; display: grid; place-items: center; border-radius: 50%; background: var(--color-primary); color: #fff; }
-.cty-ticket__plane .icon { width: 14px; height: 14px; transform: rotate(90deg); }
-.cty-ticket__meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .2rem var(--sp-3); padding-top: .55rem; border-top: 1px dashed var(--color-border); font-size: .7rem; font-weight: 600; color: var(--color-text-muted); }
-.cty-ticket__meta b { color: var(--color-primary); font-weight: 800; }
-/* The fare always lines up on the right, under the destination — on the same line or, if it wraps, the next one */
-.cty-ticket__meta > span:last-child { margin-left: auto; text-align: right; }
+.cty-fee { position: relative; z-index: 2; display: grid; gap: var(--sp-3); margin: -2.6rem var(--sp-3) 0; padding: var(--sp-4); border-radius: var(--radius-lg); background: var(--color-surface); color: var(--color-text); box-shadow: inset 0 3px 0 var(--color-blue-light), 0 16px 34px rgba(7,18,52,.3); transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease); }
+.cty-fee:hover { transform: translateY(-2px); box-shadow: inset 0 3px 0 var(--color-blue-light), 0 20px 40px rgba(7,18,52,.36); }
+.cty-fee__cols { display: grid; grid-template-columns: 1fr 1fr; }
+.cty-fee__col { display: grid; align-content: start; gap: .15rem; min-width: 0; }
+.cty-fee__col + .cty-fee__col { padding-left: var(--sp-4); margin-left: var(--sp-4); border-left: 1px solid var(--color-border); }
+.cty-fee__kicker { font-size: .64rem; font-weight: 800; letter-spacing: .1em; line-height: 1.3; text-transform: uppercase; color: var(--color-blue-light); }
+.cty-fee__num { font-size: 1.45rem; font-weight: 800; line-height: 1.05; letter-spacing: -.03em; white-space: nowrap; color: var(--color-primary); font-variant-numeric: tabular-nums; }
+.cty-fee__num small { margin-left: .2rem; font-size: .75rem; font-weight: 700; letter-spacing: 0; color: var(--color-text-muted); }
+.cty-fee__note { font-size: .7rem; font-weight: 600; line-height: 1.35; color: var(--color-text-muted); }
+/* Slim flight line: plane · route + time · fare (the fare drops to its own line, right-aligned, on narrow phones) */
+.cty-fee__fly { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem .55rem; padding-top: var(--sp-3); border-top: 1px dashed var(--color-border); font-size: .72rem; font-weight: 600; line-height: 1.35; color: var(--color-text-muted); }
+.cty-fee__plane { flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--color-primary); color: #fff; }
+.cty-fee__plane .icon { width: 13px; height: 13px; transform: rotate(90deg); }
+.cty-fee__route b, .cty-fee__fare b { font-weight: 800; color: var(--color-primary); }
+.cty-fee__fare { margin-left: auto; white-space: nowrap; }
+@media (max-width: 379.98px) {
+  .cty-fee__num { font-size: 1.25rem; }
+  .cty-fee__col + .cty-fee__col { padding-left: var(--sp-3); margin-left: var(--sp-3); }
+}
 
-/* Phones: the hero photo is a portrait shot (1200×1320), so show it at 4:3 instead of a thin 16:10 strip,
-   and move the ticket OFF the photo — it now straddles the photo's bottom edge like a boarding pass tucked
-   underneath, so the students in the picture stay visible. Tablet/desktop keep the ticket floating on the photo. */
+/* Phones: the hero photo is a portrait shot (1200×1320), so show it at 4:3 instead of a thin 16:10 strip. */
 @media (max-width: 767px) {
   .cty-hero__media .img-slot { --ratio: 4 / 3; }
-  .cty-ticket { position: relative; left: auto; right: auto; bottom: auto; z-index: 1; margin: -2.75rem var(--sp-3) 0; }
 }
 
 /* ================= 2. AT A GLANCE (floats over the hero's bottom edge) ================= */
@@ -97,6 +105,9 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
 .cty-glance__item { display: flex; align-items: center; gap: .6rem; padding: var(--sp-3);  border-bottom: 1px solid var(--color-border); }
 .cty-glance__item:nth-child(odd) { border-right: 1px solid var(--color-border); }
 .cty-glance__item:nth-last-child(-n+2) { border-bottom: 0; }
+/* Pages show 4, 5 or 6 items. With an odd count the last item spans the full width, and the one above it keeps its line. */
+.cty-glance__item:nth-child(odd):last-child { grid-column: 1 / -1; border-right: 0; }
+.cty-glance__item:nth-child(even):nth-last-child(2) { border-bottom: 1px solid var(--color-border); }
 .cty-glance__item .icon-badge { width: 34px; height: 34px; }
 .cty-glance__item .icon-badge .icon { width: 16px; height: 16px; }
 .cty-glance__num { font-size: 1.05rem; font-weight: 800; line-height: 1.1; letter-spacing: -.02em; color: var(--color-primary); font-variant-numeric: tabular-nums; }
@@ -291,11 +302,12 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
   .cty-hero .btn-row .btn { flex: 0 0 auto; }
   .cty-hero__desk { display: inline-flex !important; }
   .cty-hero__media .img-slot { --ratio: 16 / 11; }
-  .cty-ticket { left: var(--sp-4); right: auto; width: 330px; bottom: var(--sp-4); }
-  .cty-glance__card { grid-template-columns: repeat(3, 1fr); }
-  .cty-glance__item, .cty-glance__item:nth-child(odd) { border-right: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
-  .cty-glance__item:nth-child(3n) { border-right: 0; }
-  .cty-glance__item:nth-last-child(-n+3) { border-bottom: 0; }
+  .cty-fee { margin: -1.75rem var(--sp-6) 0; padding: var(--sp-4) var(--sp-5); }
+  .cty-fee__num { font-size: 1.6rem; }
+  /* At a glance: one row, however many items — each takes an equal share */
+  .cty-glance__card { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
+  .cty-glance__item, .cty-glance__item:nth-child(odd), .cty-glance__item:nth-child(odd):last-child, .cty-glance__item:nth-child(even):nth-last-child(2) { grid-column: auto; flex-direction: column; align-items: flex-start; gap: .5rem; padding: var(--sp-4) var(--sp-3); border-bottom: 0; border-right: 1px solid var(--color-border); }
+  .cty-glance__item:last-child { border-right: 0; }
   .uni-row > * { flex-basis: auto; }
   .cty-docs { grid-template-columns: repeat(2, 1fr); }
   .cty-tiles { grid-template-columns: repeat(3, 1fr); }
@@ -310,13 +322,11 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
 
   .cty-hero { padding: var(--sp-7) 0 calc(var(--sp-8) + var(--sp-6)); }
   .cty-hero__grid { grid-template-columns: 1.08fr .92fr; align-items: center; gap: var(--sp-7); }
-  .cty-hero__media .img-slot { --ratio: 4 / 4.4; }
-  .cty-ticket { left: calc(-1 * var(--sp-6)); right: auto; bottom: var(--sp-6); width: 320px; }
+  .cty-hero__media .img-slot { --ratio: 1 / 1; }   /* square, so the photo + fee card fit the hero */
+  .cty-fee { margin-inline: var(--sp-5); }
+  .cty-fee__num { font-size: 1.7rem; }
 
-  .cty-glance__card { grid-template-columns: repeat(6, 1fr); }
-  .cty-glance__item, .cty-glance__item:nth-child(odd), .cty-glance__item:nth-child(3n) { border-bottom: 0; border-right: 1px solid var(--color-border); }
-  .cty-glance__item:last-child { border-right: 0; }
-  .cty-glance__item { flex-direction: column; align-items: flex-start; gap: .5rem; padding: var(--sp-5) var(--sp-4); }
+  .cty-glance__item, .cty-glance__item:nth-child(odd), .cty-glance__item:nth-child(odd):last-child, .cty-glance__item:nth-child(even):nth-last-child(2) { padding: var(--sp-5) var(--sp-4); }
   .cty-glance__item .icon-badge { width: 36px; height: 36px; }
   .cty-glance__num { font-size: 1.35rem; }
 
@@ -360,7 +370,7 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
   .cty-fees { grid-template-columns: .85fr 1.15fr; align-items: stretch; gap: var(--sp-5); }
   .cty-fees__total { padding: var(--sp-6); }
   .cty-fees__rows { padding: var(--sp-2) var(--sp-5); }
-  .cty-fees__extras { grid-column: 1 / -1; grid-template-columns: repeat(3, 1fr); gap: var(--sp-3); }
+  .cty-fees__extras { grid-column: 1 / -1; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: var(--sp-3); }   /* 2 or 3 extras, one row */
 
   .cty-elig { grid-template-columns: 1.4fr .9fr; align-items: start; gap: var(--sp-5); }
   .cty-checks { padding: var(--sp-2) var(--sp-5); }
@@ -784,4 +794,8 @@ html { scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 64px); }
   .cty-vs__cell::before { display: none; }
   .cty-proof { padding: var(--sp-6); }
   .cty-pay { padding: var(--sp-5) var(--sp-6) var(--sp-6); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cty-fee, .cty-fee:hover { transition: none; transform: none; }
 }

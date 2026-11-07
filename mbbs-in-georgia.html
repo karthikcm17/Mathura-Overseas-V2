@@ -88,18 +88,21 @@ active: countries
           <a href="#fees" class="btn btn--outline-light cty-hero__desk">See average fees</a>
         </div>
       </div>
-      <div class="cty-hero__media">
+      <!-- Photo + the FEE CARD docked under it (same card as the university pages).
+           Keep these figures the SAME as the Fees section further down (section 8):
+           the first column = its yearly total, the second = its whole-course line.
+           The flight line = Chennai to the main airport: time, stops and the lowest fare found (with its month). -->
+      <div class="cty-hero__media cty-hero__media--fee">
         <div class="img-slot" data-spec="countries/georgia/hero.webp · 1200×1320 px">
           <img src="assets/images/countries/georgia/hero.webp" width="1200" height="1320" alt="Indian medical students in white coats above Tbilisi's Old Town, with Narikala fortress behind them" fetchpriority="high">
         </div>
-        <div class="cty-ticket" aria-label="Flight from Chennai to Tbilisi: about 9 hours with one stop">
-          <div class="cty-ticket__route">
-            <div class="cty-ticket__port"><b>MAA</b><span>Chennai</span></div>
-            <div class="cty-ticket__line"><span class="cty-ticket__plane"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-airplane"></use></svg></span></div>
-            <div class="cty-ticket__port cty-ticket__port--to"><b>TBS</b><span>Tbilisi</span></div>
-          </div>
-          <div class="cty-ticket__meta"><span><b>~9 hrs</b> &middot; 1 stop</span><span>From <b>&#8377;34,895</b> one-way &middot; Oct 2026</span></div>
-        </div>
+        <a class="cty-fee" href="#fees">
+          <span class="cty-fee__cols">
+            <span class="cty-fee__col"><span class="cty-fee__kicker">An average year</span><span class="cty-fee__num">&#8377;9.8 L<small>/ year</small></span><span class="cty-fee__note">Tuition, hostel &amp; living</span></span>
+            <span class="cty-fee__col"><span class="cty-fee__kicker">Course tuition</span><span class="cty-fee__num">&#8377;31&ndash;40 L</span><span class="cty-fee__note">Six years, typical</span></span>
+          </span>
+          <span class="cty-fee__fly"><span class="cty-fee__plane"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-airplane"></use></svg></span><span class="cty-fee__route"><b>Chennai</b> to <b>Tbilisi</b> &middot; ~9 hrs, 1 stop</span><span class="cty-fee__fare">from <b>&#8377;34,895</b> &middot; Oct 2026</span></span>
+        </a>
       </div>
     </div>
   </section>
@@ -111,7 +114,6 @@ active: countries
         <div class="cty-glance__item"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div><div class="cty-glance__num">6 years</div><div class="cty-glance__label">MD, with a full internship year</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span><div><div class="cty-glance__num">English</div><div class="cty-glance__label">Including clinical training</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><div><div class="cty-glance__num">&#8377;5.2&ndash;6.7 L</div><div class="cty-glance__label">Tuition per year at most private universities</div></div></div>
-        <div class="cty-glance__item"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><div><div class="cty-glance__num">~9 hrs</div><div class="cty-glance__label">Chennai to Tbilisi, one stop</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-sun"></use></svg></span><div><div class="cty-glance__num">4 seasons</div><div class="cty-glance__label">Warm summers; cool, short winters</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg></span><div><div class="cty-glance__num">&#8377;36.9</div><div class="cty-glance__label">Per 1 Georgian lari (GEL), Oct 2026</div></div></div>
       </div>
@@ -148,11 +150,11 @@ active: countries
         </article>
         <article class="cty-feature reveal">
           <span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span>
-          <div><h3>A large Indian community</h3><p>An estimated 20,000&ndash;25,000 Indian students study medicine in Georgia, and India now has a resident embassy in Tbilisi. You will find seniors from your state in your first week.</p></div>
+          <div><h3>A large Indian community</h3><p>An estimated 20,000&ndash;25,000 Indian students study medicine in Georgia. You will find seniors from your state in your first week.</p></div>
         </article>
         <article class="cty-feature reveal">
           <span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></span>
-          <div><h3>Close to home, closer to Europe</h3><p>About nine hours from Chennai with one stop, and only one and a half hours behind Indian time. Calls home fit easily around lectures.</p></div>
+          <div><h3>Close to home, closer to Europe</h3><p>A short trip from India, on Europe&rsquo;s doorstep. Calls home fit easily around lectures.</p></div>
         </article>
       </div>
     </div>
@@ -387,7 +389,6 @@ active: countries
         </div>
 
         <div class="cty-fees__extras">
-          <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg><span><b>Flights:</b> Chennai to Tbilisi from &#8377;34,895 one-way (Oct 2026)</span></div>
           <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg><span><b>One-time:</b> registration and seat-reservation fees at some universities, MEA apostille and a winter wardrobe</span></div>
           <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg><span><b>Always:</b> pay the university directly, against an official receipt</span></div>
         </div>
@@ -457,7 +458,7 @@ active: countries
           <div class="card cty-tile reveal"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg></span><h3>Language</h3><p>Georgian has its own beautiful alphabet. Universities teach basic Georgian for the wards; many young people speak English.</p></div>
           <div class="card cty-tile reveal"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></span><h3>Time zone</h3><p>One and a half hours behind India: an evening call home is still evening there.</p></div>
           <div class="card cty-tile reveal"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span><h3>Staying safe</h3><p>Carry your residence card, keep your insurance valid, and save the contacts of the Embassy of India in Tbilisi.</p></div>
-          <div class="card cty-tile cty-tile--wide reveal"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><h3>Getting there</h3><p>About 9 hours from Chennai with one stop, most often in Abu Dhabi or Sharjah. Tbilisi airport is a short drive from the city.</p></div>
+          <div class="card cty-tile cty-tile--wide reveal"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><h3>Getting there</h3><p>Flights from Chennai most often connect in Abu Dhabi or Sharjah; there is no direct flight. Tbilisi airport is a short drive from the city.</p></div>
         </div>
       </div>
     </div>

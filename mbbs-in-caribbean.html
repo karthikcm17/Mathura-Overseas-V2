@@ -88,18 +88,21 @@ active: countries
           <a href="#fees" class="btn btn--outline-light cty-hero__desk">See average fees</a>
         </div>
       </div>
-      <div class="cty-hero__media">
+      <!-- Photo + the FEE CARD docked under it (same card as the university pages).
+           Keep these figures the SAME as the Fees section further down (section 8):
+           the first column = its yearly total, the second = its whole-course line.
+           The flight line = Chennai to the main airport: time, stops and the lowest fare found (with its month). -->
+      <div class="cty-hero__media cty-hero__media--fee">
         <div class="img-slot" data-spec="countries/caribbean/hero.webp · 1200×1320 px">
           <img src="assets/images/countries/caribbean/hero.webp" width="1200" height="1320" alt="Indian medical students in white coats on a palm-lined island campus by the Caribbean sea" fetchpriority="high">
         </div>
-        <div class="cty-ticket" aria-label="Flights from Chennai to the Caribbean: usually two to three stops, often through the USA">
-          <div class="cty-ticket__route">
-            <div class="cty-ticket__port"><b>MAA</b><span>Chennai</span></div>
-            <div class="cty-ticket__line"><span class="cty-ticket__plane"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-airplane"></use></svg></span></div>
-            <div class="cty-ticket__port cty-ticket__port--to"><b>CARIB</b><span>Island campuses</span></div>
-          </div>
-          <div class="cty-ticket__meta"><span><b>2&ndash;3 stops</b> &middot; long-haul</span><span>Often via the USA &middot; <b>US visa</b> needed</span></div>
-        </div>
+        <a class="cty-fee" href="#fees">
+          <span class="cty-fee__cols">
+            <span class="cty-fee__col"><span class="cty-fee__kicker">A typical MD year</span><span class="cty-fee__num">&#8377;61 L<small>/ year</small></span><span class="cty-fee__note">Tuition, fees &amp; living</span></span>
+            <span class="cty-fee__col"><span class="cty-fee__kicker">MD in total</span><span class="cty-fee__num">&#8377;1.9 Cr</span><span class="cty-fee__note">About US$200k, typical</span></span>
+          </span>
+          <span class="cty-fee__fly"><span class="cty-fee__plane"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-airplane"></use></svg></span><span class="cty-fee__route"><b>Chennai</b> to the islands &middot; 2&ndash;3 stops, often via the USA</span><span class="cty-fee__fare"><b>US visa</b> needed</span></span>
+        </a>
       </div>
     </div>
   </section>
@@ -111,7 +114,6 @@ active: countries
         <div class="cty-glance__item"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span><div><div class="cty-glance__num">5.5&ndash;6 yrs</div><div class="cty-glance__label">Pre-med plus a ~4-year MD</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span><div><div class="cty-glance__num">English</div><div class="cty-glance__label">In class and on most islands</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><div><div class="cty-glance__num">&#8377;17&ndash;93 L</div><div class="cty-glance__label">Tuition &amp; fees per MD year</div></div></div>
-        <div class="cty-glance__item"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><div><div class="cty-glance__num">2&ndash;3 stops</div><div class="cty-glance__label">From Chennai, often via the USA</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-sun"></use></svg></span><div><div class="cty-glance__num">Tropical</div><div class="cty-glance__label">Warm all year; storms Jun&ndash;Nov</div></div></div>
         <div class="cty-glance__item"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg></span><div><div class="cty-glance__num">US$</div><div class="cty-glance__label">Schools charge fees in US dollars</div></div></div>
       </div>
@@ -539,7 +541,6 @@ active: countries
         </div>
 
         <div class="cty-fees__extras">
-          <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg><span><b>Flights:</b> multi-stop from Chennai, often through the USA &mdash; budget for a US visa</span></div>
           <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg><span><b>One-time:</b> pre-med course, application fee, seat deposit and USMLE exam fees</span></div>
           <div class="cty-fees__extra"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg><span><b>Always:</b> pay the school directly, against an official receipt and a written refund policy</span></div>
         </div>
@@ -608,7 +609,7 @@ active: countries
           <div class="card cty-tile reveal"><span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg></span><h3>Language</h3><p>English is spoken on most islands and in Guyana. On the Dutch islands, English is widely used alongside Dutch and Papiamento.</p></div>
           <div class="card cty-tile reveal"><span class="icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></span><h3>Time zone</h3><p>About 9.5 to 10.5 hours behind India: your morning is your family&rsquo;s evening.</p></div>
           <div class="card cty-tile reveal"><span class="icon-badge icon-badge--navy"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span><h3>Staying safe</h3><p>Live where your school recommends, avoid isolated areas at night, and save your nearest Indian Embassy&rsquo;s contacts.</p></div>
-          <div class="card cty-tile cty-tile--wide reveal"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><h3>Getting there</h3><p>Usually two or three stops from Chennai, often through the USA. Indian passport holders need a US visa even to transit, so apply early.</p></div>
+          <div class="card cty-tile cty-tile--wide reveal"><span class="icon-badge icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-plane"></use></svg></span><h3>Getting there</h3><p>Indian passport holders need a US visa even to transit through the USA, so apply early.</p></div>
         </div>
       </div>
     </div>
