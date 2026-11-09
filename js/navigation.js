@@ -1,4 +1,4 @@
-// navigation.js — announcement bar, menu drawer, app-style header.
+// navigation.js — announcement bar, menu drawer, app-style header, bottom tab bar.
 document.addEventListener('DOMContentLoaded', function () {
 
   // ---- Announcement bar: rotate the messages (no close button — same on every page) ----
@@ -90,4 +90,41 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     lastY = y;
   }, { passive: true });
+
+  // ---- Bottom tab bar, 6th tab: WhatsApp and Ask AI take turns ----
+  // Markup: _includes/bottom-nav.html (#navSwap). Timing: data-every="4" there (seconds).
+  // It holds still whenever swapping would get in the way: the chat, the menu or a bottom sheet is open,
+  // the tab bar is tucked away, the browser tab isn't being looked at, or the tab has keyboard focus.
+  var swap = document.getElementById('navSwap');
+  if (swap) {
+    var faces = swap.querySelectorAll('.bottom-nav__face');
+    var every = (parseFloat(swap.getAttribute('data-every')) || 4) * 1000;
+    var on = 0;
+
+    // Keyboard focus only (:focus-visible). A finger tap also leaves focus on the button, and that must
+    // not freeze the swap after the visitor comes back from the chat or WhatsApp.
+    function keyboardOnIt() {
+      try { return !!swap.querySelector(':focus-visible'); } catch (e) { return false; }
+    }
+    function paused() {
+      var b = document.body.classList;
+      return keyboardOnIt() || document.hidden || window.innerWidth >= DESKTOP ||
+        b.contains('ask-open') || b.contains('nav-open') || b.contains('sheet-open') ||
+        (bottomNav && bottomNav.classList.contains('is-hidden'));
+    }
+    function turn() {
+      if (faces.length < 2 || paused()) return;
+      var out = faces[on];
+      on = (on + 1) % faces.length;
+      var next = faces[on];
+      out.classList.remove('is-on');
+      out.classList.add('is-out');                 // leaves upward
+      next.classList.add('is-snap');               // jump back below, unseen…
+      next.classList.remove('is-out');
+      void next.offsetWidth;                       // …let the browser register that position…
+      next.classList.remove('is-snap');
+      next.classList.add('is-on');                 // …then rise into place
+    }
+    setInterval(turn, every);
+  }
 });

@@ -1,7 +1,12 @@
 <!-- ============ BOTTOM TAB BAR + FLOATING WHATSAPP + ASK MATHURA (_includes/bottom-nav.html) — one file for every page.
      6 tabs on phones; hides on scroll down. The highlighted tab follows the page's "active:" line
      (home · countries · planner · updates · guide). A page can hide the tab bar with  hide_bottom_nav: true
-     Ask Mathura (_includes/assistant.html) is added here so every page gets it automatically. -->
+     Ask Mathura (_includes/assistant.html) is added here so every page gets it automatically.
+
+     6th TAB = WhatsApp and Ask AI TAKE TURNS. Both buttons are real; only one shows at a time and they swap
+     every few seconds (js/navigation.js). Change the timing with data-every="4" (seconds) on #navSwap.
+     The first one listed is the one showing when the page opens. On a page with  assistant: false
+     the AI side is left out and the tab is plain WhatsApp. -->
 {% unless page.hide_bottom_nav %}<nav class="bottom-nav" aria-label="Mobile primary">
   <div class="bottom-nav__inner">
       <a href="index.html" class="bottom-nav__item"{% if page.active == "home" %} aria-current="page"{% endif %}><svg class="icon" aria-hidden="true"><use href="#i-home"></use></svg>Home</a>
@@ -9,7 +14,16 @@
       <a href="mbbs-abroad-planner.html" class="bottom-nav__item"{% if page.active == "planner" %} aria-current="page"{% endif %}><svg class="icon" aria-hidden="true"><use href="#i-check-square"></use></svg>Planner</a>
       <a href="neet-2026-updates.html" class="bottom-nav__item"{% if page.active == "updates" %} aria-current="page"{% endif %}><svg class="icon" aria-hidden="true"><use href="#i-news"></use></svg>Updates</a>
       <a href="student-guide.html" class="bottom-nav__item"{% if page.active == "guide" %} aria-current="page"{% endif %}><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg>Guide</a>
+{%- if page.assistant == false %}
       <a href="https://wa.me/919360859919?text=Hi%2C%20I%20want%20to%20know%20about%20MBBS%20Abroad%20via%20Mathura%20Overseas" class="bottom-nav__item bottom-nav__item--whatsapp" target="_blank" rel="noopener"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>WhatsApp</a>
+{%- else %}
+      <div class="bottom-nav__swap" id="navSwap" data-every="4">
+        <a href="https://wa.me/919360859919?text=Hi%2C%20I%20want%20to%20know%20about%20MBBS%20Abroad%20via%20Mathura%20Overseas" class="bottom-nav__item bottom-nav__item--whatsapp bottom-nav__face is-on" target="_blank" rel="noopener"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>WhatsApp</a>
+        <button type="button" class="bottom-nav__item bottom-nav__item--ai bottom-nav__face" data-ask-open aria-controls="askPanel" aria-label="Ask Mathura, AI chat">
+          <!-- Same mark as the desktop chat button: a chat bubble with a spark inside -->
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path class="bottom-nav__ai-bubble" d="M6.5 3.5h11a3 3 0 0 1 3 3v7.5a3 3 0 0 1-3 3h-6.2l-4.6 3.7c-.6.5-1.5.1-1.5-.7v-3A3 3 0 0 1 3.5 14V6.5a3 3 0 0 1 3-3Z"/><path class="bottom-nav__ai-star" d="M12 6.2c.45 2.35 1.4 3.3 3.75 3.75-2.35.45-3.3 1.4-3.75 3.75-.45-2.35-1.4-3.3-3.75-3.75 2.35-.45 3.3-1.4 3.75-3.75Z"/></svg>Ask AI</button>
+      </div>
+{%- endif %}
   </div>
 </nav>
 {% endunless %}
