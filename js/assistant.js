@@ -144,7 +144,7 @@
   reset.addEventListener('click', function () {
     msgs.innerHTML = ''; history = [];
     try { sessionStorage.removeItem(STORE); } catch (e) {}
-    showConversation(false); input.focus({ preventScroll: true });
+    showConversation(false); body.scrollTop = 0; input.focus({ preventScroll: true });
   });
 
   /* ================= open / close ================= */
@@ -159,7 +159,8 @@
     if (launch) launch.setAttribute('aria-expanded', 'true');
     panel.setAttribute('aria-modal', phoneLayout.matches ? 'true' : 'false');
     loadSettings();
-    scrollDown();
+    // A conversation opens at its latest message; the welcome screen opens at its top (greeting in view)
+    if (empty.hidden) scrollDown(); else body.scrollTop = 0;
     if (question) ask(question);
     // Phones: don't pop the keyboard up over the welcome screen; computers: ready to type
     setTimeout(function () { if (!('ontouchstart' in window)) input.focus({ preventScroll: true }); }, reduce ? 0 : 350);

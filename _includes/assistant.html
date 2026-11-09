@@ -1,51 +1,70 @@
 <!-- ============ ASK MATHURA — the AI assistant (_includes/assistant.html). Every page gets it through bottom-nav.html.
-     Computers: a round button at the bottom-right (above WhatsApp) opens the chat.
+     Computers: the round chat button bottom-right (above WhatsApp) opens it. The open chat runs the full height
+     of the screen and covers the WhatsApp button, so WhatsApp is offered inside the chat instead.
      Phones: the "Ask Mathura" bar at the top of the menu drawer opens it (_includes/header.html).
      Any link or button can open it too: add  data-ask-open  — or  data-ask-open="Your question"  to ask that question straight away.
      Turn it off on one page with  assistant: false  in that page's top block.
-     QUICK QUESTIONS: each chip shows short words and sends the full question written in data-q="…". Change both freely.
-     Keep every id="…" as it is: js/assistant.js uses them. -->
+     POPULAR QUESTIONS: each row sends the question written in data-q="…" and shows the same words. Change both together.
+     Keep every id="…" and the class "ask__head" as they are: js/assistant.js uses them. -->
 {%- unless page.assistant == false %}
 <button type="button" class="ask-launch" id="askLaunch" data-ask-open aria-controls="askPanel" aria-expanded="false" aria-label="Open Ask Mathura">
-  <svg class="icon" aria-hidden="true"><use href="#i-sparkle"></use></svg>
+  <!-- Chat bubble with a spark inside: "chat" + "AI" in one mark -->
+  <svg class="ask-launch__icon" viewBox="0 0 24 24" aria-hidden="true"><path class="ask-launch__bubble" d="M6.5 3.5h11a3 3 0 0 1 3 3v7.5a3 3 0 0 1-3 3h-6.2l-4.6 3.7c-.6.5-1.5.1-1.5-.7v-3A3 3 0 0 1 3.5 14V6.5a3 3 0 0 1 3-3Z"/><path class="ask-launch__star" d="M12 6.2c.45 2.35 1.4 3.3 3.75 3.75-2.35.45-3.3 1.4-3.75 3.75-.45-2.35-1.4-3.3-3.75-3.75 2.35-.45 3.3-1.4 3.75-3.75Z"/></svg>
+  <span class="ask-launch__badge" aria-hidden="true">AI</span>
   <span class="ask-launch__tip" aria-hidden="true">Ask Mathura</span>
 </button>
 
 <div class="ask" id="askPanel" role="dialog" aria-labelledby="askTitle">
-  <!-- Header: a brand-blue band, so the chat stands apart from the white page -->
+
+  <!-- Header: the Mathura cap mark, name, and three buttons (WhatsApp a counsellor · new chat · close) -->
   <div class="ask__head">
     <span class="ask__grab" aria-hidden="true"></span>
-    <span class="ask__avatar" aria-hidden="true"><svg class="icon"><use href="#i-sparkle"></use></svg></span>
+    <span class="ask__avatar" aria-hidden="true">
+      <svg viewBox="0 0 40 40"><rect class="ask__avatar-tile" width="40" height="40" rx="12"/><path class="ask__avatar-cap" d="M20 9 7 15.5 20 22l13-6.5L20 9Z"/><path class="ask__avatar-cap" d="M12 19.2V24c0 2.2 3.6 4 8 4s8-1.8 8-4v-4.8L20 24.4l-8-5.2Z" opacity=".85"/></svg>
+    </span>
     <span class="ask__who">
       <b class="ask__title" id="askTitle">Ask Mathura</b>
-      <span class="ask__status">AI assistant &middot; replies instantly</span>
+      <span class="ask__status">AI &middot; replies instantly</span>
     </span>
+    <a class="ask__iconbtn ask__iconbtn--wa" href="https://wa.me/919360859919?text=Hi%2C%20I%20want%20to%20know%20about%20MBBS%20Abroad%20via%20Mathura%20Overseas" target="_blank" rel="noopener" aria-label="Talk to a counsellor on WhatsApp" title="Talk to a counsellor on WhatsApp"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg></a>
     <button type="button" class="ask__iconbtn" id="askReset" aria-label="New chat" title="New chat"><svg class="icon" aria-hidden="true"><use href="#i-edit"></use></svg></button>
-    <button type="button" class="ask__iconbtn" id="askClose" aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
+    <button type="button" class="ask__iconbtn" id="askClose" aria-label="Close" title="Close"><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
   </div>
 
   <div class="ask__body" id="askBody">
-    <!-- Welcome: a greeting bubble at the top, quick questions just above the typing box -->
+
+    <!-- Welcome screen: a blue greeting, a card of popular questions, and a counsellor shortcut -->
     <div class="ask__empty" id="askEmpty">
-      <div class="ask-m ask-m--bot ask__hello">
-        <p>Hi! I can answer questions about our universities, fees, eligibility and the application process.</p>
-        <p>What would you like to know?</p>
+      <div class="ask__hero">
+        <p class="ask__hi">Hi there</p>
+        <p class="ask__lead">How can we help with your MBBS abroad plans?</p>
       </div>
-      <div class="ask__suggest" role="group" aria-label="Quick questions">
-        <button type="button" data-q="Am I eligible for MBBS abroad?">Eligibility?</button>
-        <button type="button" data-q="Which country is cheapest for MBBS?">Cheapest option?</button>
-        <button type="button" data-q="Is an MBBS from abroad valid in India?">Valid in India?</button>
-        <button type="button" data-q="How do I apply through Mathura Overseas?">How to apply?</button>
+
+      <div class="ask__card">
+        <p class="ask__card-title">Popular questions</p>
+        <div class="ask__suggest" role="group" aria-label="Popular questions">
+          <button type="button" data-q="Am I eligible for MBBS abroad?"><span class="ask__q-ico icon-badge icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-check-square"></use></svg></span><span class="ask__q-text">Am I eligible for MBBS abroad?</span><svg class="icon ask__q-go" aria-hidden="true"><use href="#i-chevron-right"></use></svg></button>
+          <button type="button" data-q="Which country is cheapest for MBBS?"><span class="ask__q-ico icon-badge icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></span><span class="ask__q-text">Which country is cheapest for MBBS?</span><svg class="icon ask__q-go" aria-hidden="true"><use href="#i-chevron-right"></use></svg></button>
+          <button type="button" data-q="Is an MBBS from abroad valid in India?"><span class="ask__q-ico icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg></span><span class="ask__q-text">Is an MBBS from abroad valid in India?</span><svg class="icon ask__q-go" aria-hidden="true"><use href="#i-chevron-right"></use></svg></button>
+          <button type="button" data-q="How do I apply through Mathura Overseas?"><span class="ask__q-ico icon-badge icon-badge--purple"><svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg></span><span class="ask__q-text">How do I apply through Mathura Overseas?</span><svg class="icon ask__q-go" aria-hidden="true"><use href="#i-chevron-right"></use></svg></button>
+        </div>
       </div>
+
+      <a class="ask__human" href="https://wa.me/919360859919?text=Hi%2C%20I%20want%20to%20know%20about%20MBBS%20Abroad%20via%20Mathura%20Overseas" target="_blank" rel="noopener">
+        <span class="ask__human-ico"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg></span>
+        <span class="ask__human-text"><b>Talk to a counsellor</b><span>Chat with us on WhatsApp</span></span>
+        <svg class="icon ask__q-go" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+      </a>
     </div>
+
     <div class="ask__msgs" id="askMsgs" aria-live="polite"></div>
   </div>
 
-  <!-- Typing box + a separate, square send button -->
+  <!-- Typing box with the send button inside it -->
   <form class="ask__form" id="askForm" autocomplete="off">
     <div class="ask__field">
       <label class="sr-only" for="askInput">Your question</label>
-      <input type="text" id="askInput" placeholder="Type your question…" maxlength="400" enterkeyhint="send">
+      <input type="text" id="askInput" placeholder="Ask about fees, countries, eligibility…" maxlength="400" enterkeyhint="send">
       <button type="submit" class="ask__send" id="askSend" aria-label="Send" disabled><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
     </div>
     <p class="ask__note">AI can make mistakes, and fees are indicative.</p>

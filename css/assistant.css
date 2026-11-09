@@ -1,56 +1,85 @@
 /* ==========================================================================
    assistant.css — "Ask Mathura", the AI assistant (every page).
    Markup: _includes/assistant.html · Behaviour: js/assistant.js
-   Phones + tablets: opens from the menu drawer as a near-full-screen sheet.
-   Computers: a round button bottom-right, stacked exactly above the WhatsApp button (same size, same centre line);
-   the chat opens as a card in that corner, always BELOW the pinned header and ABOVE the WhatsApp button.
-   Look: a brand-blue header band and a warm ivory chat area, so the window stands apart from the
-   white page; white reply bubbles; quick-question chips just above a roomy typing box with its own
-   square send button.
+   Phones + tablets: opens from the menu drawer as a sheet that slides up.
+   Computers: a round chat button bottom-right, stacked above WhatsApp. The open chat is a tall card from
+   near the top of the screen down to the bottom edge; it covers both round buttons, and WhatsApp is
+   offered inside it (header button + "Talk to a counsellor").
+   Look: navy header that flows into a blue greeting; a white card of popular questions with colour icons;
+   chat bubbles on ivory; a rounded typing box with the send button inside it.
    ========================================================================== */
 body.ask-open { overflow: hidden; }
 
 /* ---- Launcher (computers only; phones use the drawer bar) ---- */
 .ask-launch { display: none; }
 
-/* ---- Window ---- */
+/* ---- Window (phones first: a sheet from the bottom) ---- */
 .ask-scrim { position: fixed; inset: 0; z-index: var(--z-overlay); background: rgba(11,31,77,.5); opacity: 0; visibility: hidden; transition: opacity .3s var(--ease), visibility .3s; }
 .ask.is-open + .ask-scrim { opacity: 1; visibility: visible; }
-.ask { position: fixed; left: 0; right: 0; bottom: 0; top: calc(var(--safe-top) + 6svh); z-index: var(--z-menu); display: flex; flex-direction: column; overflow: hidden; background: var(--color-bg); border-radius: 24px 24px 0 0; box-shadow: 0 -20px 50px rgba(7,18,52,.28); transform: translateY(105%); visibility: hidden; transition: transform .38s cubic-bezier(.2, .8, .2, 1), visibility .38s; }
+.ask { position: fixed; left: 0; right: 0; bottom: 0; top: calc(var(--safe-top) + 5svh); z-index: var(--z-menu); display: flex; flex-direction: column; overflow: hidden; background: var(--color-bg); border-radius: 26px 26px 0 0; box-shadow: 0 -20px 50px rgba(7,18,52,.28); transform: translateY(105%); visibility: hidden; transition: transform .4s cubic-bezier(.2, .8, .2, 1), visibility .4s; }
 .ask.is-open { transform: none; visibility: visible; }
 
-/* ---- Header band: avatar · name + status · new chat · close ---- */
-.ask__head { position: relative; flex-shrink: 0; display: flex; align-items: center; gap: var(--sp-3); padding: calc(var(--sp-4) + 6px) var(--sp-3) var(--sp-4) var(--sp-4); color: var(--color-text-inverse); background: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1.6px) 0 0 / 18px 18px, var(--grad-hero); }
-.ask__grab { position: absolute; top: 8px; left: 50%; width: 36px; height: 4px; margin-left: -18px; border-radius: 4px; background: rgba(255,255,255,.4); }
-.ask__avatar { width: 42px; height: 42px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center; color: var(--color-text-inverse); background: rgba(255,255,255,.16); box-shadow: inset 0 0 0 1px rgba(255,255,255,.25); }
-.ask__avatar .icon { width: 20px; height: 20px; }
-.ask__who { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
-.ask__title { font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; line-height: 1.2; color: var(--color-text-inverse); }
-.ask__status { display: inline-flex; align-items: center; gap: 6px; font-size: .74rem; font-weight: 600; color: var(--color-text-inverse-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.ask__status::before { content: ""; width: 7px; height: 7px; flex-shrink: 0; border-radius: 50%; background: var(--color-whatsapp); box-shadow: 0 0 0 3px rgba(37,211,102,.25); }
-.ask__iconbtn { width: 38px; height: 38px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center; color: var(--color-text-inverse); transition: background var(--speed) var(--ease); }
+/* ---- Header: cap mark · name + status · WhatsApp · new chat · close ---- */
+.ask__head { position: relative; flex-shrink: 0; display: flex; align-items: center; gap: var(--sp-3); padding: calc(var(--sp-4) + 6px) var(--sp-3) var(--sp-3) var(--sp-4); color: var(--color-text-inverse); background: linear-gradient(180deg, var(--color-primary-ink) 0%, var(--color-primary) 100%); }
+.ask__grab { position: absolute; top: 8px; left: 50%; width: 38px; height: 4px; margin-left: -19px; border-radius: 4px; background: rgba(255,255,255,.35); }
+.ask__avatar { position: relative; width: 36px; height: 36px; flex-shrink: 0; }
+.ask__avatar svg { display: block; width: 100%; height: 100%; }
+.ask__avatar-tile { fill: var(--color-surface); }
+.ask__avatar-cap { fill: var(--color-primary); }
+/* Online dot on the mark */
+.ask__avatar::after { content: ""; position: absolute; right: -2px; bottom: -2px; width: 11px; height: 11px; border-radius: 50%; background: var(--color-whatsapp); box-shadow: 0 0 0 2.5px var(--color-primary); }
+.ask__who { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.ask__title { font-size: .95rem; font-weight: 800; letter-spacing: -.01em; line-height: 1.25; color: var(--color-text-inverse); }
+.ask__status { font-size: .7rem; font-weight: 600; color: var(--color-text-inverse-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ask__iconbtn { width: 34px; height: 34px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center; color: var(--color-text-inverse); transition: background var(--speed) var(--ease), transform var(--speed) var(--ease); }
 .ask__iconbtn:hover { background: rgba(255,255,255,.14); }
-.ask__iconbtn:active { background: rgba(255,255,255,.24); }
-.ask__iconbtn .icon { width: 19px; height: 19px; }
+.ask__iconbtn:active { background: rgba(255,255,255,.24); transform: scale(.92); }
+.ask__iconbtn .icon { width: 17px; height: 17px; }
+.ask__iconbtn--wa .icon { width: 18px; height: 18px; }
 #askReset[hidden] { display: none; }
 
-/* ---- Body: welcome first, then the conversation ---- */
-.ask__body { position: relative; flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; background: var(--color-bg); }
-/* Welcome: greeting at the top, quick questions pushed down to sit just above the typing box */
-.ask__empty { display: flex; flex-direction: column; justify-content: space-between; gap: var(--sp-5); min-height: 100%; padding: var(--sp-4); }
-.ask__empty[hidden] { display: none; }
-.ask__hello { max-width: 88%; }
-.ask__suggest { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
-.ask__suggest button { padding: .55rem .95rem; border: 1.5px solid var(--color-blue-pale); border-radius: 999px; background: var(--color-surface); font-size: .82rem; font-weight: 700; color: var(--color-primary); transition: background var(--speed) var(--ease), border-color var(--speed) var(--ease), transform var(--speed) var(--ease); }
-.ask__suggest button:hover { background: var(--color-wash); border-color: var(--color-primary); }
-.ask__suggest button:active { transform: scale(.96); }
+/* ---- Body ---- */
+.ask__body { position: relative; flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; background: var(--color-bg); scrollbar-width: thin; scrollbar-color: var(--color-blue-pale) transparent; }
+.ask__body::-webkit-scrollbar { width: 6px; }
+.ask__body::-webkit-scrollbar-thumb { border-radius: 6px; background: var(--color-blue-pale); }
 
-/* Messages */
-.ask__msgs { display: flex; flex-direction: column; gap: var(--sp-3); padding: var(--sp-4); }
+/* Welcome: blue greeting that continues the header, then a card that overlaps it */
+.ask__empty { padding-bottom: var(--sp-4); }
+.ask__empty[hidden] { display: none; }
+.ask__hero { padding: var(--sp-1) var(--sp-5) 46px; color: var(--color-text-inverse); background: radial-gradient(circle at 92% 0%, rgba(255,255,255,.16), transparent 46%), linear-gradient(180deg, var(--color-primary) 0%, var(--color-blue) 100%); }
+.ask__hi { font-size: .8rem; font-weight: 600; color: var(--color-text-inverse-muted); }
+.ask__lead { margin-top: 2px; max-width: 18em; font-size: 1.08rem; font-weight: 700; line-height: 1.35; letter-spacing: -.02em; color: var(--color-text-inverse); }
+
+.ask__card { position: relative; margin: -30px var(--sp-4) 0; padding: var(--sp-1) var(--sp-2) var(--sp-2); border-radius: 16px; background: var(--color-surface); box-shadow: 0 1px 2px rgba(11,31,77,.06), 0 14px 32px rgba(30,58,138,.14); }
+.ask__card-title { padding: var(--sp-2) var(--sp-2) var(--sp-1); font-size: .64rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--color-text-muted); }
+.ask__suggest { display: grid; }
+.ask__suggest button, .ask__human { display: flex; align-items: center; gap: var(--sp-3); width: 100%; padding: 10px var(--sp-2); border-radius: 10px; text-align: left; transition: background var(--speed) var(--ease), transform var(--speed) var(--ease); }
+/* Straight hairline between questions; it hides beside the row under the pointer */
+.ask__suggest button { position: relative; }
+.ask__suggest button + button::before { content: ""; position: absolute; left: var(--sp-2); right: var(--sp-2); top: 0; height: 1px; background: var(--color-border); transition: opacity var(--speed) var(--ease); }
+.ask__suggest button:hover::before, .ask__suggest button:hover + button::before { opacity: 0; }
+.ask__suggest button:hover, .ask__human:hover { background: var(--color-wash); }
+.ask__suggest button:active, .ask__human:active { transform: scale(.98); }
+.ask__q-ico.icon-badge { width: 30px; height: 30px; border-radius: 9px; }
+.ask__q-ico .icon { width: 15px; height: 15px; }
+.ask__q-text { flex: 1; min-width: 0; font-size: .84rem; font-weight: 600; line-height: 1.35; color: var(--color-text); }
+.ask__q-go { width: 14px; height: 14px; flex-shrink: 0; color: var(--color-text-muted); opacity: .6; transition: transform var(--speed) var(--ease), opacity var(--speed) var(--ease); }
+.ask__suggest button:hover .ask__q-go, .ask__human:hover .ask__q-go { transform: translateX(3px); opacity: 1; }
+
+/* Counsellor shortcut, below the card */
+.ask__human { margin: var(--sp-3) var(--sp-4) 0; width: auto; padding: 9px var(--sp-3) 9px 9px; border-radius: 14px; border: 1px solid var(--color-border); background: var(--color-surface); }
+.ask__human-ico { width: 32px; height: 32px; flex-shrink: 0; border-radius: 9px; display: grid; place-items: center; background: var(--color-whatsapp); color: var(--color-text-inverse); }
+.ask__human-ico .icon { width: 18px; height: 18px; }
+.ask__human-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.ask__human-text b { font-size: .84rem; font-weight: 800; color: var(--color-text); }
+.ask__human-text span { font-size: .72rem; color: var(--color-text-muted); }
+
+/* ---- Messages ---- */
+.ask__msgs { display: flex; flex-direction: column; gap: var(--sp-3); padding: var(--sp-5) var(--sp-4) var(--sp-4); }
 .ask__msgs:empty { display: none; }
-.ask-m { max-width: 86%; font-size: var(--fs-sm); line-height: 1.6; overflow-wrap: anywhere; animation: ask-in .3s var(--ease); }
-.ask-m--user { align-self: flex-end; padding: .65rem 1rem; border-radius: 18px 18px 4px 18px; background: var(--grad-hero); color: var(--color-text-inverse); box-shadow: 0 6px 14px rgba(30,58,138,.18); }
-.ask-m--bot { align-self: flex-start; padding: .8rem 1rem; border-radius: 4px 18px 18px 18px; background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
+.ask-m { max-width: 86%; font-size: .85rem; line-height: 1.55; overflow-wrap: anywhere; animation: ask-in .3s var(--ease); }
+.ask-m--user { align-self: flex-end; padding: .55rem .9rem; border-radius: 16px 16px 4px 16px; background: var(--grad-hero); color: var(--color-text-inverse); box-shadow: 0 6px 14px rgba(30,58,138,.18); }
+.ask-m--bot { align-self: flex-start; padding: .7rem .9rem; border-radius: 4px 16px 16px 16px; background: var(--color-surface); color: var(--color-text); box-shadow: 0 1px 2px rgba(11,31,77,.06), 0 6px 16px rgba(30,58,138,.08); }
 .ask-m p + p, .ask-m p + ul, .ask-m ul + p { margin-top: .5rem; }
 .ask-m ul { display: grid; gap: .3rem; margin-top: .3rem; }
 .ask-m li { position: relative; padding-left: 1rem; }
@@ -62,66 +91,77 @@ body.ask-open { overflow: hidden; }
 .ask-m--typing i:nth-child(2) { animation-delay: .15s; }
 .ask-m--typing i:nth-child(3) { animation-delay: .3s; }
 
-/* ---- Typing box + a separate square send button ---- */
-.ask__form { flex-shrink: 0; padding: var(--sp-3) var(--sp-4) calc(var(--sp-2) + var(--safe-bottom)); background: var(--color-surface); border-top: 1px solid var(--color-border); }
-.ask__field { display: flex; align-items: center; gap: var(--sp-2); }
-.ask__field input { flex: 1; min-width: 0; height: 52px; padding: 0 var(--sp-4); border: 1.5px solid var(--color-border); border-radius: 14px; background: var(--color-surface); font-size: 16px; /* 16px stops iOS zoom-on-focus */ transition: border-color var(--speed) var(--ease), box-shadow var(--speed) var(--ease); }
-.ask__field input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 4px rgba(30,58,138,.1); }
-.ask__field input::placeholder { color: var(--color-text-muted); opacity: .8; }
-.ask__send { width: 52px; height: 52px; flex-shrink: 0; border-radius: 14px; display: grid; place-items: center; background: var(--grad-hero); color: var(--color-text-inverse); box-shadow: 0 6px 16px rgba(30,58,138,.28); transition: opacity var(--speed) var(--ease), transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease); }
-.ask__send:hover { box-shadow: 0 8px 20px rgba(30,58,138,.38); }
-.ask__send:active { transform: scale(.94); }
-.ask__send:disabled { opacity: .4; cursor: default; transform: none; box-shadow: none; }
-.ask__send .icon { width: 20px; height: 20px; stroke-width: 2.6; }
-.ask__note { margin-top: var(--sp-2); font-size: .68rem; color: var(--color-text-muted); text-align: center; }
+/* ---- Typing box: one rounded field, send button inside ---- */
+.ask__form { flex-shrink: 0; padding: var(--sp-3) var(--sp-4) calc(var(--sp-2) + var(--safe-bottom)); background: var(--color-bg); }
+.ask__field { display: flex; align-items: center; gap: var(--sp-2); padding: 5px 5px 5px var(--sp-3); border: 1.5px solid var(--color-border); border-radius: 14px; background: var(--color-surface); box-shadow: var(--shadow-sm); transition: border-color var(--speed) var(--ease), box-shadow var(--speed) var(--ease); }
+.ask__field:focus-within { border-color: var(--color-primary); box-shadow: 0 0 0 4px rgba(30,58,138,.1); }
+.ask__field input { flex: 1; min-width: 0; height: 38px; border: 0; background: transparent; font-size: 16px; /* 16px stops iOS zoom-on-focus */ color: var(--color-text); }
+.ask__field input:focus { outline: none; }
+.ask__field input::placeholder { color: var(--color-text-muted); opacity: .75; }
+.ask__send { width: 38px; height: 38px; flex-shrink: 0; border-radius: 10px; display: grid; place-items: center; background: var(--grad-hero); color: var(--color-text-inverse); box-shadow: 0 6px 14px rgba(30,58,138,.3); transition: background var(--speed) var(--ease), color var(--speed) var(--ease), box-shadow var(--speed) var(--ease), transform var(--speed) var(--ease); }
+.ask__send .icon { width: 17px; height: 17px; stroke-width: 2.6; transform: rotate(-90deg); }
+.ask__send:hover { box-shadow: 0 8px 18px rgba(30,58,138,.4); }
+.ask__send:active { transform: scale(.92); }
+.ask__send:disabled { background: var(--color-wash-deep); color: var(--color-blue-light); box-shadow: none; cursor: default; transform: none; }
+.ask__note { margin-top: 6px; font-size: .66rem; color: var(--color-text-muted); text-align: center; }
 
 @keyframes ask-dot { 0%, 60%, 100% { transform: translateY(0); opacity: .45; } 30% { transform: translateY(-4px); opacity: 1; } }
 @keyframes ask-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-@keyframes ask-ring { 0% { transform: scale(1); opacity: .5; } 70%, 100% { transform: scale(1.5); opacity: 0; } }
+@keyframes ask-spin { to { transform: rotate(360deg); } }
+@keyframes ask-twinkle { 0%, 82%, 100% { transform: scale(1) rotate(0); } 88% { transform: scale(1.3) rotate(45deg); } 94% { transform: scale(.9) rotate(90deg); } }
 
 /* Tablets: a readable width, centred */
 @media (min-width: 768px) and (max-width: 1023.98px) {
-  .ask { max-width: 600px; margin-inline: auto; top: calc(var(--safe-top) + 8svh); }
+  .ask { max-width: 560px; margin-inline: auto; top: calc(var(--safe-top) + 8svh); }
 }
 
 /* ==========================================================================
-   COMPUTERS — the bottom-right "dock".
-   The WhatsApp button (components.css) is 54px, 16px from the right and bottom edges.
-   Everything here is measured from those same numbers, so the two buttons share one centre line
-   and the chat card's right edge lines up with both of them:
-     --fab        button size (matches .whatsapp-float)
+   COMPUTERS — the bottom-right dock.
+   Closed: the chat button sits exactly above WhatsApp (same 54px size, same centre line).
+   Open: the card starts just below the navigation bar (never covers it) and ends at the bottom edge,
+   covering both round buttons; they fade out while it's open and come back when it closes.
+     --fab        button size (matches .whatsapp-float in components.css)
      --fab-edge   gap from the screen edge (matches .whatsapp-float)
      --fab-gap    gap between the two buttons
-     --ask-bottom where the launcher and the chat card start = edge + WhatsApp + gap
-     --ask-top    the chat card never goes above this: pinned announcement bar + header + breathing room
+     --ask-top    the card never goes above this: announcement bar + header + 12px
    ========================================================================== */
 @media (min-width: 1024px) {
-  :root { --fab: 54px; --fab-edge: var(--sp-4); --fab-gap: 12px; --ask-bottom: calc(var(--fab-edge) + var(--fab) + var(--fab-gap)); --ask-top: calc(var(--announce-h) + var(--header-h-lg) + var(--sp-4)); }
+  :root { --fab: 54px; --fab-edge: var(--sp-4); --fab-gap: 12px; --ask-top: calc(var(--announce-h) + var(--header-h-lg) + 12px); }
 
-  .ask-launch { position: fixed; right: var(--fab-edge); bottom: var(--ask-bottom); z-index: var(--z-widget); display: grid; place-items: center; width: var(--fab); height: var(--fab); border-radius: 50%; isolation: isolate; background: var(--grad-hero); color: var(--color-text-inverse); box-shadow: 0 8px 20px rgba(30,58,138,.36); transition: transform var(--speed) var(--ease), opacity var(--speed) var(--ease), visibility var(--speed); }
-  /* A soft ring that breathes outward every few seconds, BEHIND the button (transform + opacity only) */
-  .ask-launch::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--color-blue-light); z-index: -1; animation: ask-ring 3s ease-out infinite; }
-  .ask-launch .icon { width: 24px; height: 24px; }
-  .ask-launch:hover { transform: scale(1.06); }
-  /* Tooltip: to the left, vertically centred on the button */
+  /* Launcher: navy button + a slowly turning light ring (both layers sit under the icon) */
+  .ask-launch { position: fixed; right: var(--fab-edge); bottom: calc(var(--fab-edge) + var(--fab) + var(--fab-gap)); z-index: var(--z-widget); display: grid; place-items: center; width: var(--fab); height: var(--fab); border-radius: 50%; isolation: isolate; color: var(--color-text-inverse); box-shadow: 0 10px 24px rgba(30,58,138,.38); transition: transform .25s var(--ease), opacity .25s var(--ease), visibility .25s; }
+  .ask-launch::before, .ask-launch::after { content: ""; position: absolute; border-radius: 50%; z-index: -1; }
+  .ask-launch::before { inset: -3px; background: conic-gradient(var(--color-blue-light), var(--color-surface), var(--color-blue-pale), var(--color-blue), var(--color-blue-light)); animation: ask-spin 5s linear infinite; }
+  .ask-launch::after { inset: 0; background: var(--grad-hero); }
+  .ask-launch__icon { width: 27px; height: 27px; overflow: visible; }
+  .ask-launch__bubble { fill: var(--color-surface); }
+  .ask-launch__star { fill: var(--color-primary); transform-box: fill-box; transform-origin: center; animation: ask-twinkle 4.5s ease-in-out infinite; }
+  .ask-launch__badge { position: absolute; top: -5px; right: -7px; padding: 2px 6px; border-radius: 999px; background: var(--color-surface); color: var(--color-primary); font-size: .62rem; font-weight: 800; letter-spacing: .04em; line-height: 1.35; box-shadow: var(--shadow-sm); }
+  .ask-launch:hover { transform: scale(1.07); }
   .ask-launch__tip { position: absolute; right: calc(100% + 12px); top: 50%; padding: .45rem .8rem; border-radius: var(--radius-sm); background: var(--color-primary-ink); color: var(--color-text-inverse); font-size: var(--fs-xs); font-weight: 700; white-space: nowrap; box-shadow: var(--shadow-md); opacity: 0; transform: translate(6px, -50%); pointer-events: none; transition: opacity var(--speed) var(--ease), transform var(--speed) var(--ease); }
   .ask-launch:hover .ask-launch__tip, .ask-launch:focus-visible .ask-launch__tip { opacity: 1; transform: translate(0, -50%); }
-  body.ask-open .ask-launch { opacity: 0; visibility: hidden; }
+
+  /* While the chat is open, both round buttons step aside */
+  body.ask-open .ask-launch, body.ask-open .whatsapp-float { opacity: 0; visibility: hidden; transform: scale(.6); pointer-events: none; animation: none; }
+  .whatsapp-float { transition: opacity .25s var(--ease), transform .25s var(--ease), visibility .25s; }
   body.ask-open { overflow: visible; }
 
-  /* The chat card: right edge on the button line, bottom just above WhatsApp, top never under the header */
-  .ask { left: auto; top: auto; right: var(--fab-edge); bottom: var(--ask-bottom); width: 380px; height: 600px; max-height: calc(100vh - var(--ask-top) - var(--ask-bottom)); max-height: calc(100dvh - var(--ask-top) - var(--ask-bottom)); min-height: 360px; border-radius: 22px; box-shadow: 0 0 0 1px rgba(30,58,138,.08), 0 28px 70px rgba(11,31,77,.28); opacity: 0; transform: translateY(16px) scale(.97); transform-origin: bottom right; transition: opacity .28s var(--ease), transform .28s var(--ease), visibility .28s; }
+  /* The chat card: right and bottom edges on the button line, up to 600px tall, top always below the navigation bar */
+  .ask { left: auto; top: auto; right: var(--fab-edge); bottom: var(--fab-edge); width: 372px; border-radius: 20px; height: min(600px, calc(100vh - var(--ask-top) - var(--fab-edge))); height: min(600px, calc(100dvh - var(--ask-top) - var(--fab-edge))); box-shadow: 0 0 0 1px rgba(30,58,138,.08), 0 24px 60px rgba(11,31,77,.26); opacity: 0; transform: translateY(18px) scale(.96); transform-origin: bottom right; transition: opacity .3s var(--ease), transform .3s cubic-bezier(.2, .8, .2, 1), visibility .3s; }
   .ask.is-open { opacity: 1; }
   .ask__grab, .ask-scrim { display: none; }
-  .ask__head { padding-top: var(--sp-4); }
+  .ask__head { padding: var(--sp-3) var(--sp-2) var(--sp-3) var(--sp-4); }
+  .ask__field input { font-size: .9rem; }
   .ask__form { padding-bottom: var(--sp-3); }
 }
 
-/* Short laptop screens (under ~620px tall): let the card start right under the header */
-@media (min-width: 1024px) and (max-height: 620px) {
-  .ask { min-height: 0; }
+/* Short laptop screens: a tighter greeting so the questions stay in view */
+@media (min-width: 1024px) and (max-height: 700px) {
+  .ask__hero { padding-bottom: 40px; }
+  .ask__lead { font-size: 1rem; }
+  .ask__suggest button { padding-block: 7px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ask-launch::before { animation: none; opacity: 0; }
+  .ask-launch::before, .ask-launch__star { animation: none; }
 }
