@@ -1,4 +1,4 @@
-/* BUILD 20261030-2 */
+/* BUILD 20261108-1 */
 // student-guide.js — turns every <article class="sg-page"> in #sgSource into a page of a 3D page-turn book,
 // sizes the book to the screen (no page scrolling), keeps ONE text size across the whole book, and runs the PDF download gate.
 // This script is loaded first on the page and starts straight away (it does not wait for the shared site scripts).
@@ -35,7 +35,8 @@
   var pages = [].slice.call(src.querySelectorAll('.sg-page')), N = pages.length;
   var label = document.getElementById('sgLabel'), ring = document.getElementById('sgRing'), numEl = document.getElementById('sgNum'), ofEl = document.getElementById('sgOf');
   var btnPrev = document.getElementById('sgPrev'), btnNext = document.getElementById('sgNext');
-  var leaves = [], state = 0, spread = false, timer = null, faces = [], fitted = [], dims = '', gfs = 14, guard = 0;
+  var TURN_MS = 900;           // how long one page turn takes (keep in step with --turn in student-guide.css)
+  var leaves = [], state = 0, spread = false, faces = [], fitted = [], dims = '', gfs = 14, guard = 0, busyUntil = 0, pending = null;
 
   // ---------- build ----------
   function makeFace(p, side, i) {
@@ -56,7 +57,7 @@
 
   function build(idx) {
     pages.forEach(function (p) { src.appendChild(p); });
-    book.innerHTML = ''; leaves = []; faces = []; fitted = []; guard = 0;
+    book.innerHTML = ''; leaves = []; faces = []; fitted = []; guard = 0; busyUntil = 0; pending = null;
     book.classList.toggle('is-spread', spread);
     if (spread) { ['left', 'right'].forEach(function (s) { var b = document.createElement('div'); b.className = 'sg-board sg-board--' + s; book.appendChild(b); }); }
     var step = spread ? 2 : 1;
@@ -164,14 +165,36 @@
     book.classList.toggle('is-end', spread && state === leaves.length);
   }
   function turn(leaf) {
+    if (!leaf) return;
     if (leaf.classList.contains('is-flat')) {   // put a flat (already turned) page back into its 3D position, without animating
       leaf.style.transition = 'none';
       leaf.classList.remove('is-flat');
       void leaf.offsetWidth;
       leaf.style.transition = '';
     }
+    clearTimeout(leaf._t);
     leaf.classList.add('is-turning'); leaf.style.zIndex = 500;
-    setTimeout(function () { leaf.classList.remove('is-turning'); paint(); }, 900);
+    leaf._t = setTimeout(function () { leaf.classList.remove('is-turning'); paint(); }, TURN_MS + 40);
+  }
+  // a soft shadow on the page underneath: it lifts off a page being uncovered, and falls on a page being covered
+  function shade(leaf, cls) {
+    if (!leaf) return;
+    clearTimeout(leaf['_' + cls]);
+    leaf.classList.remove(cls); void leaf.offsetWidth; leaf.classList.add(cls);
+    leaf['_' + cls] = setTimeout(function () { leaf.classList.remove(cls); }, TURN_MS + 60);
+  }
+  // JUMPS (Contents, the page dial, chapter links): only ONE page turns, however far the jump. On a two-page spread
+  // the turning page briefly shows a copy of the page you are leaving, so the turn starts from exactly what is on screen.
+  function ghost(leaf, side, idx) {
+    var f = faces[idx]; if (!leaf || !f) return null;
+    var orig = leaf.querySelector('.sg-face--' + side + ':not(.sg-face--ghost)');
+    var c = f.cloneNode(true);
+    c.removeAttribute('id'); [].forEach.call(c.querySelectorAll('[id]'), function (n) { n.removeAttribute('id'); });
+    c.className = f.className.replace(/sg-face--(left|right)/, 'sg-face--' + side) + ' sg-face--ghost';
+    c.inert = true;
+    if (orig) orig.classList.add('is-ghosted');
+    leaf.appendChild(c);
+    return { orig: orig, clone: c };
   }
   function visible() {
     if (!spread) return [state];
@@ -191,15 +214,40 @@
     btnNext.classList.toggle('is-hint', right === 0);
     fitVisible();
   }
+  // One rule for every move, one page or ten: a single page turns.
+  //  forward:  the page you are reading turns away (phone) / the last page before the target turns over (spread)
+  //  backward: the target page turns back in over the page you are reading
+  // Pages in between are moved instantly, out of sight, while that one page turns.
   function go(t) {
-    t = clamp(t); clearTimeout(timer);
-    (function step() {
-      if (state === t) { ui(); return; }
-      var d = t > state ? 1 : -1;
-      turn(leaves[d > 0 ? state : state - 1]);
-      state += d; paint(); ui(); setTimeout(verify, 950);
-      if (state !== t) timer = setTimeout(step, 140);
-    })();
+    t = clamp(t);
+    if (t === state) { ui(); return; }
+    if (Date.now() < busyUntil) { pending = t; return; }   // a jump is still landing: do this right after
+    var s = state, fwd = t > s, far = Math.abs(t - s) > 1;
+    var anim = fwd ? leaves[spread ? t - 1 : s] : leaves[t];
+    var skip = [], keep = [], gh = null;
+    if (far) {
+      for (var i = Math.min(s, t); i < Math.max(s, t); i++) if (leaves[i] && leaves[i] !== anim) skip.push(leaves[i]);
+      skip.forEach(function (l) { l.style.transition = 'none'; l.classList.add('is-skip'); });
+      // the page(s) on screen now stay drawn under the turning page until it lands (normally far-away pages are not drawn)
+      keep = [leaves[s - 1], leaves[s]].filter(function (l) { return l && skip.indexOf(l) < 0; });
+      keep.forEach(function (l) { l.classList.add('is-keep'); });
+      if (spread) gh = fwd ? ghost(anim, 'right', 2 * s) : ghost(anim, 'left', 2 * s - 1);
+      busyUntil = Date.now() + TURN_MS + 60;
+    }
+    turn(anim);
+    if (fwd) shade(leaves[t], 'is-reveal');
+    else { shade(leaves[s], 'is-covered'); if (spread) shade(leaves[t - 1], 'is-reveal'); }
+    state = t; paint(); ui();
+    if (far) {
+      setTimeout(function () {
+        skip.forEach(function (l) { l.classList.remove('is-skip'); l.style.transition = ''; });
+        keep.forEach(function (l) { l.classList.remove('is-keep'); });
+        if (gh) { gh.clone.remove(); if (gh.orig) gh.orig.classList.remove('is-ghosted'); }
+        paint();
+        if (pending !== null) { var p = pending; pending = null; go(p); }
+      }, TURN_MS + 60);
+    }
+    setTimeout(verify, TURN_MS + 100);
   }
   function pageIndex(id) { for (var i = 0; i < N; i++) if (pages[i].id === id) return i; return -1; }
   function goTo(id) { var i = pageIndex(id); if (i >= 0) go(spread ? Math.ceil(i / 2) : i); }
@@ -266,7 +314,12 @@
   // ---------- events ----------
   document.addEventListener('click', function (e) {
     var t = e.target.closest('[data-sg],[data-goto]');
-    if (t && t.dataset.goto) { e.preventDefault(); goTo(t.dataset.goto); return; }
+    if (t && t.dataset.goto) {
+      e.preventDefault();
+      // the page dial: first tap opens Contents; tapping it again while Contents is open goes straight to the cover
+      if (t.classList.contains('sg-ring') && visible().indexOf(pageIndex('contents')) >= 0) { go(0); return; }
+      goTo(t.dataset.goto); return;
+    }
     if (t) {
       var a = t.dataset.sg;
       if (a === 'next') go(state + 1);
@@ -337,7 +390,7 @@
         'app-h ' + document.documentElement.style.getPropertyValue('--app-h'), 'body ' + r(document.body), 'main ' + r(main),
         'stage ' + r(stage), 'book ' + r(book), 'pg ' + (pgs ? pgs.clientHeight + '/' + pgs.scrollHeight : '-'),
         'safe-bottom ' + getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'),
-        'font ' + (document.fonts && document.fonts.check('16px "Plus Jakarta Sans"')), 'build 20261030-2'].join('\n');
+        'font ' + (document.fonts && document.fonts.check('16px "Plus Jakarta Sans"')), 'build 20261108-1'].join('\n');
       setTimeout(paintDbg, 700);
     })();
   }
