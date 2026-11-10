@@ -189,30 +189,25 @@
 /* Used for one frame so the next face jumps back below without being seen sliding there */
 .bottom-nav__face.is-snap { transition: none; }
 
-/* ---- Ask AI: the same look as the desktop Ask Mathura button, shrunk to an app icon ----
-   The tile is 28px but takes only the 20px of a normal tab icon (negative margins, lifted slightly), so all six labels line up.
-   A navy-to-blue gradient tile with the site's white sparkle mark. A light runs slowly round its edge
-   (a conic gradient turning behind the tile, clipped to the rounded shape), the small spark twinkles,
-   and the tile gives one small pop each time it swaps in. Brand blues only: no new colours. */
+/* ---- Ask AI: the same 20px size and pulsing ring as the WhatsApp tab, so the two faces match ----
+   A navy-to-blue chat bubble with the site's white sparkle inside (the same mark as the menu's Ask bar).
+   The small spark twinkles and the icon gives one small pop each time it swaps in. Brand blues only. */
 .bottom-nav__item--ai { padding: 0; border: 0; background: none; font-family: inherit; color: var(--color-primary); cursor: pointer; }
-.bottom-nav__ai-tile { position: relative; display: grid; place-items: center; width: 28px; height: 28px; margin: -6px 0 -2px; border-radius: 9px; overflow: hidden; isolation: isolate; box-shadow: 0 5px 12px -3px rgba(30,58,138,.55); }
-/* The moving light: a large conic layer that spins; the tile's rounded corners clip it to a 1.5px edge */
-.bottom-nav__ai-tile::before { content: ""; position: absolute; inset: -50%; z-index: -2; background: conic-gradient(var(--color-blue-pale), var(--color-blue-light) 25%, var(--color-primary) 50%, var(--color-blue-light) 75%, var(--color-blue-pale)); animation: ai-tab-spin 4s linear infinite; }
-.bottom-nav__ai-tile::after { content: ""; position: absolute; inset: 1.5px; z-index: -1; border-radius: 7.5px; background: var(--grad-hero); }
-.bottom-nav__ai-spark { width: 18px; height: 18px; overflow: visible; fill: var(--color-surface); }
-.bottom-nav__ai-big { transform-box: fill-box; transform-origin: center; animation: ai-tab-breathe 3s ease-in-out infinite; }
-.bottom-nav__ai-small { transform-box: fill-box; transform-origin: center; animation: ai-tab-twinkle 3s ease-in-out infinite; }
-.bottom-nav__item--ai:active .bottom-nav__ai-tile { transform: scale(.9); }
-.bottom-nav__face.is-on .bottom-nav__ai-tile { animation: ai-tab-pop .55s var(--ease); }
+.bottom-nav__item--ai::after { content: ""; position: absolute; top: 6px; left: 50%; width: 28px; height: 28px; margin-left: -14px; border-radius: 50%; background: rgba(58,99,209,.32); animation: wa-ring 2.6s ease-out infinite; }
+.bottom-nav__ai-icon { position: relative; z-index: 1; overflow: visible; }
+.bottom-nav__ai-stop1 { stop-color: var(--color-primary); }
+.bottom-nav__ai-stop2 { stop-color: var(--color-blue-light); }
+.bottom-nav__ai-bubble { fill: url(#aiTabGrad); stroke: none; }
+.bottom-nav__ai-big, .bottom-nav__ai-small { fill: var(--color-surface); stroke: none; transform-box: fill-box; transform-origin: center; }
+.bottom-nav__ai-small { animation: ai-tab-twinkle 3s ease-in-out infinite; }
+.bottom-nav__face.is-on .bottom-nav__ai-icon { animation: ai-tab-pop .5s var(--ease); }
 .bottom-nav__item--ai:focus-visible { outline: 2px solid var(--color-primary); outline-offset: -4px; border-radius: 12px; }
 
-@keyframes ai-tab-spin { to { transform: rotate(360deg); } }
-@keyframes ai-tab-breathe { 0%, 100% { transform: none; } 50% { transform: scale(.88); } }
-@keyframes ai-tab-twinkle { 0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; } 50% { transform: scale(.35) rotate(90deg); opacity: .55; } }
-@keyframes ai-tab-pop { 0% { transform: scale(.6) rotate(-8deg); } 60% { transform: scale(1.12) rotate(3deg); } 100% { transform: none; } }
+@keyframes ai-tab-twinkle { 0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; } 50% { transform: scale(.4) rotate(90deg); opacity: .6; } }
+@keyframes ai-tab-pop { 0% { transform: scale(.6); } 60% { transform: scale(1.15); } 100% { transform: none; } }
 
 @media (prefers-reduced-motion: reduce) {
-  /* Still swaps (the AI must stay reachable), but as a plain fade: no movement, spin, twinkle or pop */
+  /* Still swaps (the AI must stay reachable), but as a plain fade: no movement, ring, twinkle or pop */
   .bottom-nav__face, .bottom-nav__face.is-out { transform: none; }
-  .bottom-nav__ai-tile, .bottom-nav__face.is-on .bottom-nav__ai-tile, .bottom-nav__ai-tile::before, .bottom-nav__ai-big, .bottom-nav__ai-small { animation: none; }
+  .bottom-nav__face.is-on .bottom-nav__ai-icon, .bottom-nav__ai-small, .bottom-nav__item--ai::after { animation: none; }
 }
