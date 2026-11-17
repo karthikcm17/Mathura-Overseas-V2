@@ -1,0 +1,25 @@
+/* offline.css — styling unique to offline.html (shown in the app when there is no internet).
+   Same blue hero language as 404.html. The list of saved pages is filled in by js/pages/offline.js. */
+.offline { position: relative; overflow: hidden; padding: var(--sp-7) 0; color: var(--color-text-inverse); text-align: center; border-radius: 0 0 var(--radius-xl) var(--radius-xl); background: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1.6px) 0 0 / 22px 22px, var(--grad-hero); }
+.offline__globe { position: absolute; width: 520px; height: 520px; left: 50%; top: -120px; margin-left: -260px; color: rgba(255,255,255,.12); pointer-events: none; }
+.offline__inner { position: relative; display: grid; justify-items: center; }
+.offline__badge { display: grid; place-items: center; width: 76px; height: 76px; border-radius: 50%; background: rgba(255,255,255,.14); }
+.offline__badge .icon { width: 34px; height: 34px; transform: rotate(45deg); animation: offline-hover 3.6s ease-in-out infinite; }
+@keyframes offline-hover { 0%, 100% { transform: rotate(45deg) translateY(0); } 50% { transform: rotate(45deg) translateY(-5px); } }
+.offline h1 { margin-top: var(--sp-4); color: var(--color-text-inverse); text-wrap: balance; }
+.offline__lead { margin: var(--sp-3) auto 0; max-width: 46ch; color: var(--color-text-inverse-muted); }
+.offline__actions { justify-content: center; margin-top: var(--sp-5); }
+.offline__note { margin-top: var(--sp-3); font-size: var(--fs-xs); color: var(--color-text-inverse-muted); }
+
+/* Saved pages: one tappable row each (icon · page title · arrow) */
+.offline__list { display: grid; gap: var(--sp-2); max-width: 640px; margin-inline: auto; list-style: none; padding: 0; }
+.offline__item a { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-3) var(--sp-4); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); box-shadow: var(--shadow-sm); font-size: var(--fs-sm); font-weight: 700; color: var(--color-primary); transition: border-color var(--speed) var(--ease), transform var(--speed) var(--ease); }
+.offline__item a:hover { border-color: var(--color-primary); }
+.offline__item a:active { transform: scale(.98); }
+.offline__item-ico { display: grid; place-items: center; width: 36px; height: 36px; flex-shrink: 0; border-radius: 50%; background: var(--color-wash); }
+.offline__item-ico .icon { width: 17px; height: 17px; }
+.offline__item-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.offline__item-go { color: var(--color-text-muted); }
+.offline__empty { max-width: 46ch; margin: 0 auto; text-align: center; font-size: var(--fs-sm); color: var(--color-text-muted); }
+
+@media (prefers-reduced-motion: reduce) { .offline__badge .icon { animation: none; } }

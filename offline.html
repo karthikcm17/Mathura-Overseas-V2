@@ -1,0 +1,55 @@
+---
+# The "You're offline" page. The app shows it when there is no internet and the page asked for
+# hasn't been opened before. Visitors never reach it by a link.
+# noindex keeps it out of Google; sitemap: false keeps it out of sitemap.xml;
+# assistant: false because the AI chat needs the internet.
+active: none
+noindex: true
+sitemap: false
+assistant: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>You're offline | Mathura Overseas</title>
+<meta name="description" content="No internet connection. Pages you opened recently still work in the Mathura Overseas app.">
+{% include head.html %}
+<link rel="stylesheet" href="css/pages/offline.css">
+</head>
+<body>
+
+{% include icons.html %}
+{% include announcement.html %}
+{% include header.html %}
+
+<main id="main">
+  <section class="offline">
+    <svg class="offline__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+    <div class="container offline__inner">
+      <span class="offline__badge" aria-hidden="true"><svg class="icon icon--fill"><use href="#i-airplane"></use></svg></span>
+      <h1>You&rsquo;re offline</h1>
+      <p class="offline__lead">Your phone isn&rsquo;t connected to the internet right now. Fees and NEET updates need a connection, but the pages you opened recently still work below.</p>
+      <div class="btn-row offline__actions">
+        <button type="button" class="btn btn--ondark" id="offlineRetry"><svg class="icon" aria-hidden="true"><use href="#i-refresh"></use></svg>Try again</button>
+        <a href="tel:+919360859919" class="btn btn--outline-light"><svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>Call us</a>
+      </div>
+      <p class="offline__note">Calling works without mobile data.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head section-head--center"><span class="eyebrow">Still available</span><h2>Pages you opened recently</h2></div>
+      <ul class="offline__list" id="offlineList" aria-live="polite"></ul>
+      <p class="offline__empty" id="offlineEmpty" hidden>Nothing saved yet. Once you&rsquo;re back online, every page you open is kept here for the next time you&rsquo;re offline.</p>
+    </div>
+  </section>
+</main>
+
+{% include footer.html %}
+{% include bottom-nav.html %}
+{% include scripts.html %}
+<script src="js/pages/offline.js"></script>
+</body>
+</html>
