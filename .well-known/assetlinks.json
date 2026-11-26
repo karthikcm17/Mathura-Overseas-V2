@@ -1,13 +1,8 @@
-[
-  {
-    "relation": ["delegate_permission/common.handle_all_urls"],
-    "target": {
-      "namespace": "android_app",
-      "package_name": "com.mathuraoverseas.app",
-      "sha256_cert_fingerprints": [
-        "REPLACE_WITH_UPLOAD_KEY_SHA256_FROM_PWABUILDER",
-        "REPLACE_WITH_APP_SIGNING_KEY_SHA256_FROM_PLAY_CONSOLE"
-      ]
-    }
-  }
-]
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.mathuraoverseas.app",
+        "sha256_cert_fingerprints": ["E7:B0:4A:65:94:57:47:E4:D7:E7:1E:C9:7F:52:F9:FE:26:70:40:7C:70:2A:2A:63:17:A3:C2:67:1A:3C:A1:FE"]
+      }
+    }]
