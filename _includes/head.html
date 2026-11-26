@@ -4,6 +4,9 @@
      A page that must stay out of Google (e.g. 404.html) adds   noindex: true   to its top block. -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#1E3A8A">
+<!-- App launch animation: decided here, before anything is drawn, so the page never flashes first.
+     Runs once per app opening (not on every page); js/pwa.js ends it. The 4 s timer is only a safety net. -->
+<script>(function(){try{var h=document.documentElement,a=location.search.indexOf('source=app')>-1||matchMedia('(display-mode: standalone)').matches;if(a&&!sessionStorage.getItem('mo-launched')){sessionStorage.setItem('mo-launched','1');h.classList.add('app-launch');setTimeout(function(){h.classList.remove('app-launch')},4000)}}catch(e){}})();</script>
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Mathura Overseas">

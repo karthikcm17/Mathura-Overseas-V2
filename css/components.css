@@ -262,9 +262,9 @@ body.has-welcome { overflow: hidden; }
 .app-welcome__dot { fill: var(--color-blue-pale); }
 .app-welcome__dot--soft { fill: rgba(255,255,255,.55); }
 @keyframes group-orbit { to { transform: rotate(360deg); } }
-.app-welcome__logo { position: absolute; inset: 0; margin: auto; width: 84px; height: 84px; display: grid; place-items: center; border-radius: 24px;
+.app-welcome__logo { position: absolute; inset: 0; margin: auto; width: 56%; height: 56%; display: grid; place-items: center; border-radius: 28%;
   color: var(--color-primary); background: var(--color-surface); box-shadow: 0 12px 34px rgba(7,18,52,.5); }
-.app-welcome__logo svg { width: 52px; height: 52px; fill: currentColor; }
+.app-welcome__logo svg { width: 62%; height: 62%; fill: currentColor; }
 .app-welcome__hello { font-size: var(--fs-sm); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--color-blue-pale); }
 .app-welcome__title { margin-top: 2px; font-size: 2rem; line-height: 1.1; color: var(--color-text-inverse); }
 .app-welcome__lead { margin-top: var(--sp-2); color: var(--color-text-inverse-muted); }
@@ -275,8 +275,40 @@ body.has-welcome { overflow: hidden; }
 .app-welcome__actions { width: 100%; display: grid; gap: 6px; margin-top: var(--sp-6); }
 .app-welcome__allow { min-height: 54px; border-radius: 14px; font-size: 1rem; }
 .app-welcome__skip { padding: 12px; font-size: var(--fs-sm); font-weight: 700; color: var(--color-text-inverse-muted); }
-@media (max-height: 680px) { .app-welcome__mark { width: 110px; height: 110px; margin-bottom: var(--sp-3); } .app-welcome__list { margin-top: var(--sp-4); } .app-welcome__actions { margin-top: var(--sp-4); } }
+@media (max-height: 680px) { .app-welcome__mark { width: 116px; height: 116px; margin-bottom: var(--sp-3); } .app-welcome__list { margin-top: var(--sp-4); } .app-welcome__actions { margin-top: var(--sp-4); } }
+/* Installed on a computer: a roomier card in the middle of the window */
+@media (min-width: 900px) and (min-height: 880px) {
+  .app-welcome__inner { max-width: 460px; padding: var(--sp-7) var(--sp-6); border-radius: var(--radius-xl); background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); box-shadow: 0 30px 80px rgba(4,12,40,.45); }
+  .app-welcome__mark { width: 160px; height: 160px; }
+  .app-welcome__title { font-size: 2.4rem; }
+}
+/* ---- App launch animation (each time the app opens; _includes/app-welcome.html) ----
+   While <html> has "app-launch": the page waits invisibly underneath; then the splash fades and the page rises in. */
+.app-splash { display: none; }
+html.app-launch body { overflow: hidden; }
+html.app-launch body > :not(.app-splash) { opacity: 0; }
+html.app-launch .app-splash { position: fixed; inset: 0; z-index: 400; display: grid; place-content: center; justify-items: center; gap: 18px;
+  background: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1.6px) 0 0 / 22px 22px, var(--grad-night); color: var(--color-text-inverse); }
+html.app-launch--out .app-splash { animation: splash-out .45s var(--ease) forwards; }
+html.app-launch--out body > :not(.app-splash) { animation: page-in .5s var(--ease) both; }
+@keyframes splash-out { to { opacity: 0; transform: scale(1.06); } }
+@keyframes page-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.app-splash__mark { position: relative; width: 150px; height: 150px; }
+.app-splash__orbit { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; animation: group-orbit 2.4s cubic-bezier(.5,.1,.3,1) both; }
+.app-splash__orbit circle:first-child { fill: none; stroke: rgba(255,255,255,.28); stroke-width: 1.2; stroke-dasharray: 3 6; }
+.app-splash__dot { fill: var(--color-blue-pale); }
+.app-splash__logo { position: absolute; inset: 0; margin: auto; width: 56%; height: 56%; display: grid; place-items: center; border-radius: 28%;
+  color: var(--color-primary); background: var(--color-surface); box-shadow: 0 12px 34px rgba(7,18,52,.5); animation: splash-pop .6s cubic-bezier(.2,.9,.3,1.25) both; }
+.app-splash__logo svg { width: 62%; height: 62%; fill: currentColor; overflow: visible; }
+.app-splash__cap { transform-box: fill-box; transform-origin: 50% 80%; animation: cap-drop .7s .25s var(--ease) both; }
+@keyframes splash-pop { from { opacity: 0; transform: scale(.6); } }
+.app-splash__name { margin: 0; font-size: 1.15rem; font-weight: 800; letter-spacing: .04em; animation: page-in .5s .35s var(--ease) both; }
+.app-splash__name span { margin-left: .3em; color: var(--color-blue-pale); font-weight: 700; }
+.app-splash__bar { width: 120px; height: 3px; border-radius: 3px; background: rgba(255,255,255,.14); overflow: hidden; animation: page-in .4s .45s var(--ease) both; }
+.app-splash__bar i { display: block; height: 100%; width: 40%; border-radius: 3px; background: var(--color-blue-pale); animation: splash-load 1s .5s ease-in-out infinite; }
+@keyframes splash-load { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+
 @media (prefers-reduced-motion: reduce) {
   .push-prompt, .app-welcome, .app-welcome__inner > * { transition: none; }
-  .push-prompt__ico .icon, .app-welcome__orbit { animation: none; }
+  .push-prompt__ico .icon, .app-welcome__orbit, .app-splash *, html.app-launch--out body > :not(.app-splash) { animation: none; }
 }

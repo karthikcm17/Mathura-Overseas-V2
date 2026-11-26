@@ -9,6 +9,10 @@ const now = JSON.parse(readFileSync(FILE, 'utf8'));
 const old = previousJson(FILE);
 if (!old) { console.log('No earlier version to compare with. Nothing sent.'); process.exit(0); }
 
+// Every post needs its own id. A copied post that kept an old id is not "new", so warn about it here.
+const seen = new Set(), dupes = new Set();
+for (const p of now) { if (seen.has(p.id)) dupes.add(p.id); seen.add(p.id); }
+if (dupes.size) console.log('::warning::These ids are used by more than one post: ' + [...dupes].join(', ') + '. Give each post its own id, or no alert is sent for it.');
 const oldIds = new Set(old.map((p) => p.id));
 const added = now.filter((p) => p.id && !oldIds.has(p.id));
 if (!added.length) { console.log('No new posts (only edits). Nothing sent.'); process.exit(0); }

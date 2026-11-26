@@ -3,9 +3,11 @@
 // _includes/push-prompt.html (website card) and _includes/app-welcome.html (first-open screen in the app).
 //
 // Where students can turn alerts on:
-//   · In the app: the welcome screen the first time the app opens.
-//   · On the website: a small card from the 3rd page they read (never on Apply, never with the app banner),
-//     "Not now" hides it for 14 days.
+//   · In the app: the welcome screen the first time the app opens (after the launch animation).
+//   · A small "Never miss a counselling date" card — on the website from the 2nd page, in the app from
+//     the next time it opens — and right away when a student opens a post's "Key details" (a moment of
+//     real interest). Never on Apply, never together with the install banner.
+//     "Not now" hides it for 3 days, then 7, then 30. "Allow" ends the asking for good.
 //   · Anytime: the bell button on the NEET updates page (it also turns alerts off).
 // iPhones only allow alerts for sites added to the Home Screen, so plain Safari visitors never see a prompt.
 (function () {
@@ -17,10 +19,9 @@
   var supported = !!API && 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window && (!ios || standalone);
 
   var isApp = function () { return html.classList.contains('is-app'); };
-  var store = {
-    get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
-    set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
-  };
+  var MO = window.MO || {};                                    // shared helpers from js/pwa.js
+  var store = MO.store || { get: function () { return null; }, set: function () {} };
+  var launched = MO.launched || Promise.resolve();
   var DAY = 86400000;
 
   // Without alerts (switched off, or a phone that can't receive them) the app still says hello once.
@@ -123,25 +124,32 @@
   }
 
   // ---- First-open welcome screen (inside the app only) ----
-  if (showWelcome(true)) return;   // never stack the website card on top of the welcome screen
+  if (showWelcome(true)) return;   // never stack the alerts card on top of the welcome screen
 
-  // ---- Website card ("Never miss a counselling date") ----
+  // ---- "Never miss a counselling date" card ----
   var card = document.getElementById('pushPrompt');
-  if (!card || isApp() || Notification.permission !== 'default') return;
-  var views = (parseInt(store.get('mo-views-all'), 10) || 0) + 1;
-  store.set('mo-views-all', String(views));
-  var dismissed = parseInt(store.get('mo-push-later'), 10) || 0;
-  if (views < 3 || Date.now() - dismissed < 14 * DAY) return;
-
-  setTimeout(function () {
-    var banner = document.getElementById('appBanner');
-    if (banner && !banner.hidden) return;            // the app banner has this page; ask another time
-    var close = function () { card.classList.remove('is-in'); setTimeout(function () { card.hidden = true; }, 300); };
+  var cardShown = false;
+  function canAsk() {
+    return card && !cardShown && Notification.permission === 'default' && !MO.snoozed('alerts') && !MO.prompting &&
+      (isApp() ? !!store.get('mo-welcome') && !welcomeThisVisit() : true);
+  }
+  function welcomeThisVisit() { try { return !!sessionStorage.getItem('mo-welcome-now'); } catch (e) { return false; } }
+  function showCard() {
+    if (!canAsk()) return;
+    cardShown = true; MO.prompting = true;
+    var close = function () { card.classList.remove('is-in'); setTimeout(function () { card.hidden = true; MO.prompting = false; }, 300); };
     card.querySelector('[data-push-allow]').addEventListener('click', function () { enable(); close(); });
-    card.querySelector('[data-push-later]').addEventListener('click', function () { store.set('mo-push-later', String(Date.now())); close(); });
+    card.querySelector('[data-push-later]').addEventListener('click', function () { MO.snooze('alerts'); close(); });
     card.hidden = false;
     requestAnimationFrame(function () { card.classList.add('is-in'); });
-  }, 4000);
+  }
+  // A moment of interest: the student opens a post's "Key details" on the NEET updates page.
+  document.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('.upd-card__toggle[aria-expanded="true"]')) setTimeout(showCard, 600);
+  });
+  // Otherwise: from the 2nd page on the website, or any page in the app after the first launch.
+  if (isApp() || (MO.views || 0) >= 2) launched.then(function () { setTimeout(showCard, 4000); });
+
   // Shows the welcome screen the first time the app opens. Returns true when it is showing.
   function showWelcome(canPush) {
     var welcome = document.getElementById('appWelcome');
@@ -163,9 +171,12 @@
       allow.addEventListener('click', function () { allow.disabled = true; enable().then(finish); });
     }
     welcome.querySelector('[data-welcome-skip]').addEventListener('click', finish);
-    welcome.hidden = false;
-    document.body.classList.add('has-welcome');
-    requestAnimationFrame(function () { welcome.classList.add('is-in'); });
+    try { sessionStorage.setItem('mo-welcome-now', '1'); } catch (e) {}   // no alerts card in the same visit
+    launched.then(function () {
+      welcome.hidden = false;
+      document.body.classList.add('has-welcome');
+      requestAnimationFrame(function () { welcome.classList.add('is-in'); });
+    });
     return true;
   }
 })();
