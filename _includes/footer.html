@@ -15,6 +15,13 @@
           <a href="https://www.youtube.com/@mathuraoverseas" target="_blank" rel="noopener" aria-label="Mathura Overseas on YouTube"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-youtube"></use></svg></a>
           <a href="https://wa.me/919360859919" target="_blank" rel="noopener" aria-label="Chat with Mathura Overseas on WhatsApp"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg></a>
         </div>
+{%- if site.play_store_url contains "play.google.com" %}
+        <!-- Get the app: computers only (phones get the menu link and the install banner). Google's official badge, unaltered. -->
+        <div class="site-footer__app">
+          <span class="site-footer__app-label">Get the app</span>
+          <a href="{{ site.play_store_url }}&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dfooter" target="_blank" rel="noopener"><img src="assets/images/app/google-play-badge.svg" width="564" height="168" alt="Get it on Google Play" loading="lazy"></a>
+        </div>
+{%- endif %}
       </div>
 
       <nav class="site-footer__col site-footer__col--countries" aria-label="MBBS abroad countries">
@@ -54,3 +61,4 @@
     </div>
   </div>
 </footer>
+{% include app-banner.html %}

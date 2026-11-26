@@ -7,6 +7,17 @@ title: Mathura Overseas
 # The live address. Used by sitemap.xml so Google gets full links. No slash at the end.
 url: "https://mathuraoverseas.com"
 
+# ANDROID APP — the "Get the app" links (footer badge on computers, phone menu, Android install banner).
+# Leave it EMPTY ("") until Google approves the app for production: everything stays hidden
+# (the links only appear when this holds a real play.google.com address).
+# On approval day:
+#   1. Paste the Play Store link between the quotes (exactly this form, with ?id=):
+#        play_store_url: "https://play.google.com/store/apps/details?id=com.mathuraoverseas.app"
+#   2. Download Google's official badge (play.google.com/intl/en_us/badges → the SVG with no padding)
+#      and save it as  assets/images/app/google-play-badge.svg  (Google requires its badge unaltered).
+#   3. Stop and restart "jekyll serve" (this file is only read at start), then commit and push.
+play_store_url: ""
+
 # Pages are plain HTML documents: never wrap them in a theme layout.
 defaults:
   - scope:

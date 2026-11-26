@@ -43,3 +43,15 @@
 .site-footer__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--sp-2) var(--sp-4); padding-top: var(--sp-4); border-top: 1px solid rgba(255,255,255,.14); font-size: var(--fs-xs); }
 .site-footer__bottom a { color: #fff; }
 .site-footer__note { order: 3; flex-basis: 100%; font-size: .7rem; opacity: .75; }
+
+/* "Get the app" badge (only once play_store_url is set in _config.yml). Computers only: phones get the menu link
+   and the install banner instead, and it never shows inside the app. Google's official badge file, unaltered. */
+.site-footer__app { display: none; }
+@media (min-width: 1024px) {
+  .site-footer__app { display: grid; justify-items: start; gap: var(--sp-2); margin-top: var(--sp-5); }
+  .site-footer__app-label { font-size: .68rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #fff; }
+  .site-footer__app a { display: block; border-radius: 8px; transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease); }
+  .site-footer__app a:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,0,0,.3); }
+  .site-footer__app img { display: block; width: auto; height: 46px; }
+}
+.is-app .site-footer__app { display: none; }

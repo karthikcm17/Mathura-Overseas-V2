@@ -188,3 +188,22 @@
 @media (prefers-reduced-motion: reduce) {
   .dx-tile, .dx-tile__img img, .dx-tile__go { transition: none; }
 }
+
+/* ---- App install banner (_includes/app-banner.html; shown by js/pwa.js on Android phones only) ----
+   A white card floating just above the bottom tab bar; slides up, closes with the X. */
+.app-banner { position: fixed; left: 12px; right: 12px; bottom: calc(var(--bottom-nav-h) + var(--safe-bottom) + 12px); z-index: calc(var(--z-bottom-nav) + 1);
+  display: flex; align-items: center; gap: 12px; padding: 10px; border-radius: 18px; background: var(--color-surface); border: 1px solid var(--color-border);
+  box-shadow: 0 14px 34px rgba(11,31,77,.22); opacity: 0; transform: translateY(24px); transition: opacity .35s var(--ease), transform .45s cubic-bezier(.2,.8,.2,1); }
+.app-banner.is-in { opacity: 1; transform: none; }
+.app-banner[hidden] { display: none; }
+.app-banner__icon { width: 46px; height: 46px; flex-shrink: 0; border-radius: 12px; box-shadow: 0 4px 10px rgba(30,58,138,.25); }
+.app-banner__text { flex: 1; min-width: 0; display: grid; line-height: 1.25; }
+.app-banner__text b { font-size: .92rem; font-weight: 800; color: var(--color-primary-ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.app-banner__text span { font-size: var(--fs-xs); color: var(--color-text-muted); }
+.app-banner__btn { display: inline-flex; align-items: center; height: 40px; padding: 0 18px; border-radius: var(--radius-sm); background: var(--color-primary); color: var(--color-text-inverse); font-size: var(--fs-sm); font-weight: 800; }
+.app-banner__btn:active { background: var(--color-primary-deep); }
+.app-banner__close { position: absolute; top: -9px; right: -5px; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--color-primary-ink); color: var(--color-text-inverse); border: 2px solid var(--color-surface); }
+.app-banner__close .icon { width: 12px; height: 12px; stroke-width: 3; }
+.is-app .app-banner { display: none; }
+@media (min-width: 1024px) { .app-banner { display: none; } }
+@media (prefers-reduced-motion: reduce) { .app-banner { transition: none; } }

@@ -1,0 +1,17 @@
+<!-- ============ APP INSTALL BANNER (_includes/app-banner.html) — included by footer.html on every page.
+     Shown ONLY when all of these are true (js/pwa.js decides):
+       · play_store_url is filled in _config.yml          · the visitor is on an Android phone
+       · it is their 2nd page view or later                · they are not already inside the app
+       · they haven't closed it in the last 30 days
+     Never on: Apply (nothing may sit in front of the enquiry form), the offline page, or pages without the tab bar.
+     To change the words, edit the two lines inside <span class="app-banner__text">. -->
+{%- if site.play_store_url contains "play.google.com" %}
+{%- unless page.path == "apply.html" or page.path == "offline.html" or page.hide_bottom_nav %}
+<aside class="app-banner" id="appBanner" aria-label="Get the Mathura Overseas app" hidden>
+  <img class="app-banner__icon" src="assets/images/app/icon-192.png" width="192" height="192" alt="">
+  <span class="app-banner__text"><b>Mathura Overseas app</b><span>Free &middot; works offline</span></span>
+  <a class="app-banner__btn" href="{{ site.play_store_url }}&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dbanner" target="_blank" rel="noopener">Install</a>
+  <button type="button" class="app-banner__close" aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
+</aside>
+{%- endunless %}
+{%- endif %}
