@@ -219,10 +219,30 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Links from other pages: neet-2026-updates.html#ug  #pg  #mds  #mcc  #tn  #counselling ...  or  #2027 for a year
+  // A notification link opens  neet-2026-updates.html#u-<id>  : that post is shown, opened and highlighted.
+  var target = null;
   function fromHash() {
     var h = location.hash.replace('#', '');
+    if (h.indexOf('u-') === 0) {
+      target = items.filter(function (it) { return it.id === h.slice(2); })[0] || null;
+      if (target) state.cycle = target._cycle;
+      return;
+    }
     if (cycles.indexOf(h) !== -1) state.cycle = h;
     else if (GROUPS.some(function (g) { return g.chips.some(function (c) { return c[0] === h; }); })) state.filter = h;
+  }
+
+  function showTarget() {
+    if (!target) return;
+    var idx = pool().indexOf(target);
+    if (idx === -1) return;
+    if (idx >= state.shown) { state.shown = Math.ceil((idx + 1) / PAGE_SIZE) * PAGE_SIZE; render(false); }
+    var card = document.getElementById('u-' + target.id);
+    if (!card) return;
+    var toggle = card.querySelector('.upd-card__toggle');
+    if (toggle && toggle.getAttribute('aria-expanded') === 'false') toggle.click();
+    card.classList.add('is-target');
+    setTimeout(function () { card.scrollIntoView({ behavior: 'smooth', block: 'center' }); card.focus({ preventScroll: true }); }, 150);
   }
 
   // ---- Load ----
@@ -237,6 +257,7 @@ document.addEventListener('DOMContentLoaded', function () {
       state.cycle = cycles[0] || String(new Date().getFullYear());
       fromHash();
       buildYears(); buildGroups(); headerLine(); renderTracker(); render(false);
+      showTarget();
     })
     .catch(function () {
       statusEl.textContent = ''; $('updLast').textContent = 'unavailable'; listEl.innerHTML = '';

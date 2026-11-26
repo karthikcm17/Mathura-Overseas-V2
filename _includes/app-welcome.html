@@ -1,0 +1,25 @@
+<!-- ============ APP WELCOME SCREEN (_includes/app-welcome.html) — included by footer.html on every page.
+     Shown ONCE, the first time the Android app opens (js/push.js), whichever page it opens on.
+     Never on the website. The button asks for alerts when alerts are switched on (js/push-config.js);
+     otherwise it simply says "Get started". Edit the three rows' words freely. -->
+<div class="app-welcome" id="appWelcome" role="dialog" aria-modal="true" aria-labelledby="appWelcomeTitle" hidden>
+  <div class="app-welcome__glow" aria-hidden="true"></div>
+  <div class="app-welcome__inner">
+    <div class="app-welcome__mark" aria-hidden="true">
+      <svg class="app-welcome__orbit" viewBox="0 0 200 200"><circle cx="100" cy="100" r="92"/><circle class="app-welcome__dot" cx="100" cy="8" r="5"/><circle class="app-welcome__dot app-welcome__dot--soft" cx="100" cy="192" r="3.5"/></svg>
+      <span class="app-welcome__logo"><svg viewBox="0 0 40 40"><path d="M20 9 7 15.5 20 22l13-6.5L20 9Z"/><path d="M12 19.2V24c0 2.2 3.6 4 8 4s8-1.8 8-4v-4.8L20 24.4l-8-5.2Z" opacity=".92"/><path d="M33 16v7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="33" cy="25" r="1.9"/></svg></span>
+    </div>
+    <p class="app-welcome__hello">Welcome to</p>
+    <h2 class="app-welcome__title" id="appWelcomeTitle">Mathura Overseas</h2>
+    <p class="app-welcome__lead">Your MBBS abroad journey, in your pocket.</p>
+    <ul class="app-welcome__list">
+      <li><span class="icon-badge icon-badge--sm icon-badge--orange"><svg class="icon" aria-hidden="true"><use href="#i-bell"></use></svg></span><span><b>Instant alerts</b>NEET updates &amp; counselling dates</span></li>
+      <li><span class="icon-badge icon-badge--sm icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-check-square"></use></svg></span><span><b>MBBS Planner</b>Eligibility, budget &amp; compare</span></li>
+      <li><span class="icon-badge icon-badge--sm icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span><span><b>Real counsellors</b>Free guidance, one tap away</span></li>
+    </ul>
+    <div class="app-welcome__actions">
+      <button type="button" class="btn btn--ondark btn--block app-welcome__allow" data-welcome-allow><svg class="icon" aria-hidden="true"><use href="#i-bell"></use></svg><span>Turn on alerts</span></button>
+      <button type="button" class="app-welcome__skip" data-welcome-skip>Maybe later</button>
+    </div>
+  </div>
+</div>

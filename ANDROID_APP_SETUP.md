@@ -64,6 +64,7 @@ HTTPS must be on (GitHub → Settings → Pages → **Enforce HTTPS**). The app 
    | Host | `mathuraoverseas.com` | |
    | Start URL | `/index.html?source=app` | |
    | Signing key | **Create new** | |
+   | Notification delegation | **On** | push alerts show as the app, with Android's own permission dialog (PUSH_SETUP.md) |
    | Other settings | leave as filled in | they are read from manifest.json |
 
 3. Download the zip. Inside are the app file (**.aab** — this is what goes to Google), a test **.apk**,

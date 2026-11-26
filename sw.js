@@ -17,13 +17,20 @@
    - Never touched:  forms, WhatsApp/phone links, the Ask Mathura AI, PDFs,
                      and anything on another website.
 
+   Push alerts: the push/notification-click part at the bottom shows NEET updates, deadline reminders and
+   announcements. Its on/off switch and worker address live in js/push-config.js, not here.
+
    The only time to edit: if you ADD a shared CSS/JS file to _includes/head.html
    or _includes/scripts.html, add it to SHELL below and raise VERSION by one
    (v1 → v2). Forgetting is harmless — it is still saved the first time it is
    used; SHELL only makes the offline page look right on a phone's first visit.
    ========================================================================== */
 
-const VERSION = 'v1';
+// Push alerts: reads MO_PUSH_API from js/push-config.js (the same file the pages use). If it can't load,
+// the offline helper still works and alerts simply stay off.
+try { importScripts('js/push-config.js'); } catch (e) { self.MO_PUSH_API = ''; }
+
+const VERSION = 'v2';
 const SHELL_CACHE = 'mo-shell-' + VERSION;   // offline page + shared design files
 const PAGES_CACHE = 'mo-pages';              // pages the visitor has opened
 const ASSETS_CACHE = 'mo-assets';            // css / js / json
@@ -43,6 +50,7 @@ const SHELL = [
   'css/assistant.css', 'css/animations.css', 'css/responsive.css',
   'css/pages/offline.css',
   'js/main.js', 'js/navigation.js', 'js/animations.js', 'js/assistant.js', 'js/pwa.js',
+  'js/push-config.js', 'js/push.js',
   'js/pages/offline.js',
   'assets/images/app/icon-192.png'
 ];
@@ -180,3 +188,84 @@ async function trim(cacheName) {
   const keys = await cache.keys();
   for (let i = 0; i < keys.length - max; i++) await cache.delete(keys[i]);
 }
+
+/* ==========================================================================
+   PUSH ALERTS — a wake-up arrives with no text; we fetch the newest messages from the push
+   worker and show the ones this phone hasn't shown yet (max 3), newest last.
+   ========================================================================== */
+const PUSH_STATE = '/__push-state';
+const ICON = 'assets/images/app/icon-192.png';
+const BADGE = 'assets/images/app/badge-96.png';   // small white mark in the Android status bar
+
+self.addEventListener('push', (event) => { event.waitUntil(showPush()); });
+
+async function showPush() {
+  const api = String(self.MO_PUSH_API || '').replace(/\/+$/, '');
+  const box = await caches.open('mo-push');
+  const sinceRes = await box.match('/__push-since');
+  const since = sinceRes ? Number(await sinceRes.text()) || 0 : 0;
+  const stateRes = await box.match(PUSH_STATE);
+  const shown = stateRes ? await stateRes.json() : [];
+
+  let messages = null;
+  if (api) {
+    try {
+      const res = await fetch(api + '/latest', { cache: 'no-store' });
+      if (res.ok) messages = (await res.json()).messages || [];
+    } catch (e) { /* offline or worker down: fall back below */ }
+  }
+
+  if (!messages || !messages.length) {
+    // Chrome requires a visible notification for every wake-up; keep it useful.
+    return self.registration.showNotification('Mathura Overseas', {
+      body: 'New NEET and counselling updates are waiting for you.',
+      icon: ICON, badge: BADGE, tag: 'mo-generic', data: { url: 'neet-2026-updates.html' }
+    });
+  }
+
+  let fresh = messages.filter((m) => m.created >= since - 60000 && !shown.includes(m.id)).slice(0, 3).reverse();
+  if (!fresh.length) fresh = [messages[0]];   // a repeat wake-up: refresh the newest one quietly
+
+  for (const m of fresh) {
+    await self.registration.showNotification(m.title, {
+      body: m.body, icon: ICON, badge: BADGE, image: m.image || undefined,
+      tag: 'mo-' + m.id, renotify: false, timestamp: m.created,
+      data: { url: m.url }
+    });
+  }
+  const keep = shown.concat(fresh.map((m) => m.id)).filter((v, i, a) => a.indexOf(v) === i).slice(-50);
+  await box.put(PUSH_STATE, new Response(JSON.stringify(keep), { headers: { 'Content-Type': 'application/json' } }));
+}
+
+// Tap on a notification: open that page in the app (or the open tab), never a second copy.
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  const target = new URL((event.notification.data && event.notification.data.url) || './', self.location.href);
+  if (target.origin === self.location.origin) target.searchParams.set('source', 'push');
+  event.waitUntil((async () => {
+    const wins = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+    for (const w of wins) {
+      if (new URL(w.url).origin === target.origin && 'navigate' in w) {
+        try { await w.focus(); return await w.navigate(target.href); } catch (e) { break; }
+      }
+    }
+    return self.clients.openWindow(target.href);
+  })());
+});
+
+// The phone's push address can change (rare). Re-subscribe quietly and tell the worker.
+self.addEventListener('pushsubscriptionchange', (event) => {
+  const api = String(self.MO_PUSH_API || '').replace(/\/+$/, '');
+  if (!api) return;
+  event.waitUntil((async () => {
+    const key = (await (await fetch(api + '/vapid')).json()).key;
+    const raw = atob(key.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((key.length + 3) % 4));
+    const sub = await self.registration.pushManager.subscribe({
+      userVisibleOnly: true, applicationServerKey: Uint8Array.from(raw, (c) => c.charCodeAt(0))
+    });
+    await fetch(api + '/subscribe', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ subscription: sub.toJSON(), source: 'app' })
+    });
+  })());
+});

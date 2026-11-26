@@ -172,3 +172,11 @@
   .upd-cta .btn-row { justify-content: flex-end; }
 }
 @media (prefers-reduced-motion: reduce) { .upd-pill__dot, .upd-skel, .upd-card, .upd-arrow--next .icon { animation: none; } .upd-tracker__row { scroll-behavior: auto; } }
+
+/* A post opened from a notification (neet-2026-updates.html#u-<id>): a soft blue ring that pulses twice */
+.upd-card.is-target { border-color: var(--color-blue-light); box-shadow: 0 0 0 3px var(--color-wash-deep), var(--shadow-md); animation: upd-target 1.4s var(--ease) 2; }
+@keyframes upd-target { 50% { box-shadow: 0 0 0 7px var(--color-wash-deep), var(--shadow-md); } }
+@media (prefers-reduced-motion: reduce) { .upd-card.is-target { animation: none; } }
+
+/* "Get alerts" bell in the hero (shown only when alerts are switched on in js/push-config.js) */
+.upd-hero .push-toggle { margin-top: var(--sp-4); }

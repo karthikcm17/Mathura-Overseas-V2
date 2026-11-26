@@ -1,0 +1,14 @@
+<!-- ============ ALERTS CARD (_includes/push-prompt.html) — included by footer.html on every page.
+     js/push.js shows it on the website (not in the app) from the 3rd page a visitor reads, once alerts are
+     switched on in js/push-config.js. Never on Apply, the offline page, or the full-screen guide reader.
+     To change the words, edit the two lines inside <span class="push-prompt__text">. -->
+{%- unless page.path == "apply.html" or page.path == "offline.html" or page.hide_bottom_nav %}
+<aside class="push-prompt" id="pushPrompt" aria-label="Turn on alerts" hidden>
+  <span class="push-prompt__ico" aria-hidden="true"><svg class="icon"><use href="#i-bell"></use></svg></span>
+  <span class="push-prompt__text"><b>Never miss a counselling date</b><span>Alerts for NEET updates &amp; counselling dates</span></span>
+  <span class="push-prompt__actions">
+    <button type="button" class="push-prompt__later" data-push-later>Not now</button>
+    <button type="button" class="push-prompt__allow" data-push-allow>Allow</button>
+  </span>
+</aside>
+{%- endunless %}

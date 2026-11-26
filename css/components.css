@@ -207,3 +207,76 @@
 .is-app .app-banner { display: none; }
 @media (min-width: 1024px) { .app-banner { display: none; } }
 @media (prefers-reduced-motion: reduce) { .app-banner { transition: none; } }
+
+/* ---- Alerts card (_includes/push-prompt.html; shown by js/push.js on the website only) ----
+   Phones: floats above the tab bar, like the app banner. Computers: a card at the bottom-left. */
+.push-prompt { position: fixed; left: 12px; right: 12px; bottom: calc(var(--bottom-nav-h) + var(--safe-bottom) + 12px); z-index: calc(var(--z-bottom-nav) + 1);
+  display: grid; grid-template-columns: auto 1fr; gap: 10px 12px; align-items: center; padding: 12px; border-radius: 18px;
+  background: var(--color-surface); border: 1px solid var(--color-border); box-shadow: 0 14px 34px rgba(11,31,77,.22);
+  opacity: 0; transform: translateY(24px); transition: opacity .35s var(--ease), transform .45s cubic-bezier(.2,.8,.2,1); }
+.push-prompt.is-in { opacity: 1; transform: none; }
+.push-prompt[hidden] { display: none; }
+.push-prompt__ico { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 14px; color: #fff;
+  background: linear-gradient(135deg, var(--icon-orange-a), var(--icon-orange-b)); }
+.push-prompt__ico .icon { width: 21px; height: 21px; animation: push-ring 2.4s ease-in-out 1s 2; transform-origin: 50% 10%; }
+@keyframes push-ring { 0%, 60%, 100% { transform: rotate(0); } 10%, 30%, 50% { transform: rotate(14deg); } 20%, 40% { transform: rotate(-14deg); } }
+.push-prompt__text { display: grid; line-height: 1.3; min-width: 0; }
+.push-prompt__text b { font-size: .92rem; font-weight: 800; color: var(--color-primary-ink); }
+.push-prompt__text span { font-size: var(--fs-xs); color: var(--color-text-muted); }
+.push-prompt__actions { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.push-prompt__actions button { height: 40px; border-radius: var(--radius-sm); font-size: var(--fs-sm); font-weight: 800; }
+.push-prompt__later { background: var(--color-wash); color: var(--color-primary); }
+.push-prompt__allow { background: var(--color-primary); color: var(--color-text-inverse); }
+@media (min-width: 1024px) {
+  .push-prompt { left: 24px; right: auto; bottom: 24px; width: 380px; }
+}
+
+/* ---- Alerts bell button (NEET updates page) ---- */
+.push-toggle[hidden] { display: none; }
+.push-toggle .icon { transition: transform var(--speed) var(--ease); }
+.push-toggle:hover .icon { transform: rotate(-12deg); }
+.push-toggle.is-on { background: rgba(255,255,255,.12); color: var(--color-text-inverse); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.55); }
+.push-toggle:disabled { opacity: .75; cursor: default; }
+
+/* ---- App welcome screen (_includes/app-welcome.html; first open of the Android app only) ---- */
+.app-welcome { position: fixed; inset: 0; z-index: 300; display: grid; place-items: center; overflow: hidden;
+  padding: calc(var(--safe-top) + 24px) 24px calc(var(--safe-bottom) + 24px); color: var(--color-text-inverse);
+  background: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1.6px) 0 0 / 22px 22px, var(--grad-night);
+  opacity: 0; transition: opacity .35s var(--ease); }
+.app-welcome.is-in { opacity: 1; }
+.app-welcome[hidden] { display: none; }
+body.has-welcome { overflow: hidden; }
+.app-welcome__glow { position: absolute; width: 520px; height: 520px; left: 50%; top: -180px; margin-left: -260px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(58,99,209,.55), transparent); pointer-events: none; }
+.app-welcome__inner { position: relative; width: 100%; max-width: 400px; display: grid; justify-items: center; text-align: center; }
+.app-welcome__inner > * { opacity: 0; transform: translateY(14px); transition: opacity .5s var(--ease), transform .6s cubic-bezier(.2,.8,.2,1); }
+.app-welcome.is-in .app-welcome__inner > * { opacity: 1; transform: none; }
+.app-welcome.is-in .app-welcome__inner > :nth-child(2) { transition-delay: .12s; }
+.app-welcome.is-in .app-welcome__inner > :nth-child(3) { transition-delay: .18s; }
+.app-welcome.is-in .app-welcome__inner > :nth-child(4) { transition-delay: .24s; }
+.app-welcome.is-in .app-welcome__inner > :nth-child(5) { transition-delay: .32s; }
+.app-welcome.is-in .app-welcome__inner > :nth-child(6) { transition-delay: .42s; }
+.app-welcome__mark { position: relative; width: 150px; height: 150px; margin-bottom: var(--sp-5); }
+.app-welcome__orbit { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; animation: group-orbit 24s linear infinite; }
+.app-welcome__orbit circle:first-child { fill: none; stroke: rgba(255,255,255,.25); stroke-width: 1.2; stroke-dasharray: 3 6; }
+.app-welcome__dot { fill: var(--color-blue-pale); }
+.app-welcome__dot--soft { fill: rgba(255,255,255,.55); }
+@keyframes group-orbit { to { transform: rotate(360deg); } }
+.app-welcome__logo { position: absolute; inset: 0; margin: auto; width: 84px; height: 84px; display: grid; place-items: center; border-radius: 24px;
+  color: var(--color-primary); background: var(--color-surface); box-shadow: 0 12px 34px rgba(7,18,52,.5); }
+.app-welcome__logo svg { width: 52px; height: 52px; fill: currentColor; }
+.app-welcome__hello { font-size: var(--fs-sm); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--color-blue-pale); }
+.app-welcome__title { margin-top: 2px; font-size: 2rem; line-height: 1.1; color: var(--color-text-inverse); }
+.app-welcome__lead { margin-top: var(--sp-2); color: var(--color-text-inverse-muted); }
+.app-welcome__list { width: 100%; display: grid; gap: 10px; margin: var(--sp-5) 0 0; padding: 0; list-style: none; text-align: left; }
+.app-welcome__list li { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 16px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); }
+.app-welcome__list b { display: block; font-size: .95rem; color: var(--color-text-inverse); }
+.app-welcome__list li > span:last-child { font-size: var(--fs-xs); color: var(--color-text-inverse-muted); line-height: 1.35; }
+.app-welcome__actions { width: 100%; display: grid; gap: 6px; margin-top: var(--sp-6); }
+.app-welcome__allow { min-height: 54px; border-radius: 14px; font-size: 1rem; }
+.app-welcome__skip { padding: 12px; font-size: var(--fs-sm); font-weight: 700; color: var(--color-text-inverse-muted); }
+@media (max-height: 680px) { .app-welcome__mark { width: 110px; height: 110px; margin-bottom: var(--sp-3); } .app-welcome__list { margin-top: var(--sp-4); } .app-welcome__actions { margin-top: var(--sp-4); } }
+@media (prefers-reduced-motion: reduce) {
+  .push-prompt, .app-welcome, .app-welcome__inner > * { transition: none; }
+  .push-prompt__ico .icon, .app-welcome__orbit { animation: none; }
+}

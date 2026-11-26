@@ -1,0 +1,30 @@
+# Sends a push alert ONLY when you publish something:
+#   · a new post in assets/data/latest-updates.json      → the post (or "3 new updates")
+#   · new or changed round dates in counselling-tracker.json → "MCC PG · Round 3: dates announced"
+# Nothing runs on a schedule. Does nothing until the PUSH_API and PUSH_ADMIN_KEY secrets exist (PUSH_SETUP.md, step 6).
+name: Push alerts
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'assets/data/latest-updates.json'
+      - 'assets/data/counselling-tracker.json'
+permissions:
+  contents: read
+concurrency: push-alerts
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      PUSH_API: ${{ secrets.PUSH_API }}
+      PUSH_ADMIN_KEY: ${{ secrets.PUSH_ADMIN_KEY }}
+      BEFORE: ${{ github.event.before }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: New NEET / counselling posts
+        run: node .github/scripts/push-new-updates.mjs
+      - name: Counselling tracker dates
+        run: node .github/scripts/push-tracker-changes.mjs
