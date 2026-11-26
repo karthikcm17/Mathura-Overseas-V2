@@ -13,9 +13,9 @@
      Inside the app only (phone or computer), never on the website. js/push.js chooses the version:
        · FIRST opening ever: what the app offers + "Turn on alerts" / "Not now" (no timer: it's a real choice).
        · Every later opening from the app icon: a greeting, the LATEST UPDATE and the NEXT COUNSELLING DATE
-         (read live from your two data files), and a "Continue" button whose ring drains for 2 seconds,
-         then the app opens. Touching a row stops the timer. Skipped when the app is opened from a
-         notification or a long-press shortcut (the student is going somewhere specific).
+         (read live from your two data files), the "Start my journey" button (opens the app at once), and
+         under it a small "Opening in 5s" countdown that opens the app by itself. Touching a row stops it.
+         Skipped when the app is opened from a notification or a long-press shortcut: straight to that page.
      The three FIRST-opening rows can be edited freely. -->
 <div class="app-welcome" id="appWelcome" role="dialog" aria-modal="true" aria-labelledby="appWelcomeTitle" hidden>
   <div class="app-welcome__glow" aria-hidden="true"></div>
@@ -35,9 +35,9 @@
     <ul class="app-welcome__list app-welcome__live" data-welcome-live hidden></ul>
     <div class="app-welcome__actions">
       <button type="button" class="btn btn--ondark btn--block app-welcome__allow" data-welcome-allow><svg class="icon" aria-hidden="true"><use href="#i-bell"></use></svg><span>Turn on alerts</span></button>
-      <button type="button" class="btn btn--ondark btn--block app-welcome__go" data-welcome-go hidden><span>Continue</span><span class="app-welcome__ring" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg></span></button>
+      <button type="button" class="btn btn--ondark btn--block app-welcome__go" data-welcome-go hidden><span>Start my journey</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
       <button type="button" class="app-welcome__skip" data-welcome-skip>Not now</button>
-      <button type="button" class="app-welcome__chip" data-welcome-alerts hidden><svg class="icon" aria-hidden="true"><use href="#i-bell"></use></svg><span>Turn on alerts</span></button>
+      <button type="button" class="app-welcome__auto" data-welcome-auto hidden><span class="app-welcome__auto-bar" aria-hidden="true"><i></i></span><span data-welcome-count>Opening in 5s</span></button>
     </div>
   </div>
 </div>

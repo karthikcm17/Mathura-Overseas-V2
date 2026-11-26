@@ -152,7 +152,7 @@
 
   // The app's opening screen (_includes/app-welcome.html). Returns true when it is showing.
   //   First opening ever → what the app offers + "Turn on alerts" / "Not now".
-  //   Later openings from the app icon → greeting, latest update, next counselling date, 2-second "Continue".
+  //   Later openings from the app icon → greeting, latest update, next counselling date, "Start my journey" + 5 s auto-open.
   function showWelcome(canPush) {
     var welcome = document.getElementById('appWelcome');
     if (!welcome || !isApp()) return false;
@@ -160,7 +160,7 @@
     var launch = html.classList.contains('app-launch');      // a fresh opening from the app icon
     if (!first && !launch) return false;
     var $ = function (sel) { return welcome.querySelector(sel); };
-    var allow = $('[data-welcome-allow]'), go = $('[data-welcome-go]'), skip = $('[data-welcome-skip]'), chip = $('[data-welcome-alerts]');
+    var allow = $('[data-welcome-allow]'), go = $('[data-welcome-go]'), skip = $('[data-welcome-skip]');
     var timer = null;
     var finish = function () {
       clearTimeout(timer);
@@ -183,28 +183,29 @@
       }
       skip.addEventListener('click', finish);
     } else {
-      // ---- Every later opening: a live, useful screen that opens the app by itself after 2 seconds ----
-      var DURATION = 2000;
+      // ---- Every later opening: a live screen. "Start my journey" enters at once; otherwise it opens by itself in 5 s ----
+      var SECONDS = 5;
+      var auto = $('[data-welcome-auto]'), count = $('[data-welcome-count]');
       welcome.classList.add('is-launch');
-      allow.hidden = true; skip.hidden = true; go.hidden = false;
+      allow.hidden = true; skip.hidden = true; go.hidden = false; auto.hidden = false;
       $('[data-welcome-first]').hidden = true;
       var h = new Date().getHours();
       $('[data-welcome-hello]').textContent = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
       $('[data-welcome-lead]').textContent = 'Here’s what’s new today.';
-      var stop = function () { clearTimeout(timer); welcome.classList.add('is-paused'); };
+      var left = SECONDS;
+      var tick = function () {
+        count.textContent = 'Opening in ' + left + 's';
+        if (left <= 0) { finish(); return; }
+        left--; timer = setTimeout(tick, 1000);
+      };
+      var stop = function () { clearTimeout(timer); welcome.classList.add('is-paused'); count.textContent = 'Tap to continue'; };
       go.addEventListener('click', finish);
+      auto.addEventListener('click', finish);
       var live = $('[data-welcome-live]');
       live.addEventListener('pointerdown', stop);
       live.addEventListener('focusin', stop);
-      if (canPush && Notification.permission === 'default') {
-        chip.hidden = false;
-        chip.addEventListener('click', function () {
-          stop(); chip.disabled = true;
-          enable().then(function (on) { chip.querySelector('span').textContent = on ? 'Alerts on' : 'Alerts not allowed'; if (on) chip.querySelector('use').setAttribute('href', '#i-check'); });
-        });
-      }
       fillLive(live);
-      timer = setTimeout(finish, DURATION + 450);   // + the time the screen takes to appear
+      timer = setTimeout(tick, 450);   // starts once the screen has appeared
     }
 
     try { sessionStorage.setItem('mo-welcome-now', '1'); } catch (e) {}   // no alerts card in the same visit
