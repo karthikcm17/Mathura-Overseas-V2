@@ -5,7 +5,7 @@
 //    location (js/pwa.js → ../sw.js), so it is always the site root.
 // 2. Adds the class "is-app" to <html> when the site is opened as the app (Play Store app, or installed
 //    from Chrome on a phone or computer), so CSS can show or hide things only inside the app.
-// 3. Plays the launch animation each time the app is opened (_includes/app-welcome.html).
+// 3. Plays the opening animation when the app is opened from its icon (_includes/app-welcome.html).
 // 4. Shows the "Get the app" links and the Android install banner (once play_store_url is set in _config.yml).
 //    Never to people who already have the app.
 //
@@ -51,10 +51,11 @@
   // ---- 3. Launch animation (the class "app-launch" is set by a tiny script in _includes/head.html) ----
   // Plays about 1.3 s from the moment the app opens, then the page fades in. Then js/push.js may show
   // the welcome screen (first launch only).
+  MO.endSplash = function () {};
   MO.launched = new Promise(function (resolve) {
     if (!html.classList.contains('app-launch')) { resolve(); return; }
     var done = false;
-    var end = function () {
+    var end = MO.endSplash = function () {    // js/push.js calls this to hand over to the launch screen at once
       if (done) return; done = true;
       html.classList.add('app-launch--out');
       setTimeout(function () { html.classList.remove('app-launch', 'app-launch--out'); resolve(); }, 450);

@@ -275,6 +275,30 @@ body.has-welcome { overflow: hidden; }
 .app-welcome__actions { width: 100%; display: grid; gap: 6px; margin-top: var(--sp-6); }
 .app-welcome__allow { min-height: 54px; border-radius: 14px; font-size: 1rem; }
 .app-welcome__skip { padding: 12px; font-size: var(--fs-sm); font-weight: 700; color: var(--color-text-inverse-muted); }
+.app-welcome__skip[hidden], .app-welcome__allow[hidden], .app-welcome__go[hidden], .app-welcome__chip[hidden], .app-welcome__list[hidden] { display: none; }
+.app-welcome__cap { transform-box: fill-box; transform-origin: 50% 80%; }
+.app-welcome.is-in .app-welcome__cap { animation: cap-drop .7s .2s var(--ease) both; }
+
+/* Every later opening: live rows you can tap, and a "Continue" button whose ring drains for 2 seconds */
+.app-welcome__live li { padding: 0; }
+.app-welcome__live a { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px; border-radius: inherit; color: inherit; text-align: left; transition: background var(--speed) var(--ease); }
+.app-welcome__live a:active { background: rgba(255,255,255,.08); }
+.app-welcome__live a > span:nth-child(2) { flex: 1; min-width: 0; font-size: var(--fs-xs); color: var(--color-text-inverse-muted); line-height: 1.35;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.app-welcome__live b { display: block; font-size: .72rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--color-blue-pale); margin-bottom: 2px; }
+.app-welcome__live li:first-child a > span:nth-child(2) { font-size: .92rem; font-weight: 700; color: var(--color-text-inverse); }
+.app-welcome__go-row { width: 16px; height: 16px; flex-shrink: 0; color: var(--color-text-inverse-muted); }
+.app-welcome.is-launch .app-welcome__list { animation: page-in .45s .25s var(--ease) both; }
+.app-welcome__go { position: relative; min-height: 54px; border-radius: 14px; font-size: 1rem; gap: 10px; }
+.app-welcome__ring { display: grid; width: 24px; height: 24px; }
+.app-welcome__ring svg { width: 24px; height: 24px; transform: rotate(-90deg); }
+.app-welcome__ring circle { fill: none; stroke: var(--color-primary); stroke-width: 2.6; stroke-linecap: round; stroke-dasharray: 56.55; stroke-dashoffset: 0; }
+.app-welcome.is-in .app-welcome__ring circle { animation: welcome-ring 2s .45s linear forwards; }
+.app-welcome.is-paused .app-welcome__ring { visibility: hidden; }
+@keyframes welcome-ring { to { stroke-dashoffset: 56.55; } }
+.app-welcome__chip { justify-self: center; display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; padding: 8px 14px; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.08); color: var(--color-text-inverse); font-size: var(--fs-xs); font-weight: 800; }
+.app-welcome__chip .icon { width: 14px; height: 14px; }
 @media (max-height: 680px) { .app-welcome__mark { width: 116px; height: 116px; margin-bottom: var(--sp-3); } .app-welcome__list { margin-top: var(--sp-4); } .app-welcome__actions { margin-top: var(--sp-4); } }
 /* Installed on a computer: a roomier card in the middle of the window */
 @media (min-width: 900px) and (min-height: 880px) {
@@ -286,11 +310,11 @@ body.has-welcome { overflow: hidden; }
    While <html> has "app-launch": the page waits invisibly underneath; then the splash fades and the page rises in. */
 .app-splash { display: none; }
 html.app-launch body { overflow: hidden; }
-html.app-launch body > :not(.app-splash) { opacity: 0; }
+html.app-launch body > :not(.app-splash):not(.app-welcome) { opacity: 0; }
 html.app-launch .app-splash { position: fixed; inset: 0; z-index: 400; display: grid; place-content: center; justify-items: center; gap: 18px;
   background: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1.6px) 0 0 / 22px 22px, var(--grad-night); color: var(--color-text-inverse); }
 html.app-launch--out .app-splash { animation: splash-out .45s var(--ease) forwards; }
-html.app-launch--out body > :not(.app-splash) { animation: page-in .5s var(--ease) both; }
+html.app-launch--out body > :not(.app-splash):not(.app-welcome) { animation: page-in .5s var(--ease) both; }
 @keyframes splash-out { to { opacity: 0; transform: scale(1.06); } }
 @keyframes page-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 .app-splash__mark { position: relative; width: 150px; height: 150px; }
@@ -310,5 +334,5 @@ html.app-launch--out body > :not(.app-splash) { animation: page-in .5s var(--eas
 
 @media (prefers-reduced-motion: reduce) {
   .push-prompt, .app-welcome, .app-welcome__inner > * { transition: none; }
-  .push-prompt__ico .icon, .app-welcome__orbit, .app-splash *, html.app-launch--out body > :not(.app-splash) { animation: none; }
+  .push-prompt__ico .icon, .app-welcome__orbit, .app-welcome__cap, .app-welcome__list, .app-splash *, html.app-launch--out body > :not(.app-splash):not(.app-welcome) { animation: none !important; }
 }

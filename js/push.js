@@ -150,33 +150,108 @@
   // Otherwise: from the 2nd page on the website, or any page in the app after the first launch.
   if (isApp() || (MO.views || 0) >= 2) launched.then(function () { setTimeout(showCard, 4000); });
 
-  // Shows the welcome screen the first time the app opens. Returns true when it is showing.
+  // The app's opening screen (_includes/app-welcome.html). Returns true when it is showing.
+  //   First opening ever → what the app offers + "Turn on alerts" / "Not now".
+  //   Later openings from the app icon → greeting, latest update, next counselling date, 2-second "Continue".
   function showWelcome(canPush) {
     var welcome = document.getElementById('appWelcome');
-    if (!welcome || !isApp() || store.get('mo-welcome')) return false;
-    var allow = welcome.querySelector('[data-welcome-allow]');
+    if (!welcome || !isApp()) return false;
+    var first = !store.get('mo-welcome');
+    var launch = html.classList.contains('app-launch');      // a fresh opening from the app icon
+    if (!first && !launch) return false;
+    var $ = function (sel) { return welcome.querySelector(sel); };
+    var allow = $('[data-welcome-allow]'), go = $('[data-welcome-go]'), skip = $('[data-welcome-skip]'), chip = $('[data-welcome-alerts]');
+    var timer = null;
     var finish = function () {
-      store.set('mo-welcome', '1');
+      clearTimeout(timer);
+      if (first) store.set('mo-welcome', '1');
       welcome.classList.remove('is-in');
       document.body.classList.remove('has-welcome');
       setTimeout(function () { welcome.hidden = true; }, 350);
     };
-    if (!canPush || Notification.permission !== 'default') {
-      // No alerts to ask for, or already decided (e.g. allowed while installing): just say hello.
-      allow.querySelector('span').textContent = 'Get started';
-      allow.querySelector('use').setAttribute('href', '#i-arrow-right');
-      if (canPush && Notification.permission === 'granted') enable();
-      allow.addEventListener('click', finish);
+
+    if (first) {
+      if (!canPush || Notification.permission !== 'default') {
+        // No alerts to ask for, or already decided (e.g. allowed while installing): just say hello.
+        allow.querySelector('span').textContent = 'Get started';
+        allow.querySelector('use').setAttribute('href', '#i-arrow-right');
+        skip.hidden = true;
+        if (canPush && Notification.permission === 'granted') enable();
+        allow.addEventListener('click', finish);
+      } else {
+        allow.addEventListener('click', function () { allow.disabled = true; enable().then(finish); });
+      }
+      skip.addEventListener('click', finish);
     } else {
-      allow.addEventListener('click', function () { allow.disabled = true; enable().then(finish); });
+      // ---- Every later opening: a live, useful screen that opens the app by itself after 2 seconds ----
+      var DURATION = 2000;
+      welcome.classList.add('is-launch');
+      allow.hidden = true; skip.hidden = true; go.hidden = false;
+      $('[data-welcome-first]').hidden = true;
+      var h = new Date().getHours();
+      $('[data-welcome-hello]').textContent = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+      $('[data-welcome-lead]').textContent = 'Here’s what’s new today.';
+      var stop = function () { clearTimeout(timer); welcome.classList.add('is-paused'); };
+      go.addEventListener('click', finish);
+      var live = $('[data-welcome-live]');
+      live.addEventListener('pointerdown', stop);
+      live.addEventListener('focusin', stop);
+      if (canPush && Notification.permission === 'default') {
+        chip.hidden = false;
+        chip.addEventListener('click', function () {
+          stop(); chip.disabled = true;
+          enable().then(function (on) { chip.querySelector('span').textContent = on ? 'Alerts on' : 'Alerts not allowed'; if (on) chip.querySelector('use').setAttribute('href', '#i-check'); });
+        });
+      }
+      fillLive(live);
+      timer = setTimeout(finish, DURATION + 450);   // + the time the screen takes to appear
     }
-    welcome.querySelector('[data-welcome-skip]').addEventListener('click', finish);
+
     try { sessionStorage.setItem('mo-welcome-now', '1'); } catch (e) {}   // no alerts card in the same visit
-    launched.then(function () {
-      welcome.hidden = false;
-      document.body.classList.add('has-welcome');
-      requestAnimationFrame(function () { welcome.classList.add('is-in'); });
-    });
+    if (MO.endSplash) MO.endSplash();                                      // the screen takes over from the animation
+    welcome.hidden = false;
+    document.body.classList.add('has-welcome');
+    requestAnimationFrame(function () { requestAnimationFrame(function () { welcome.classList.add('is-in'); }); });
     return true;
+  }
+
+  // Latest update + next counselling date, read from the same files the NEET updates page uses
+  // (the offline helper keeps a copy, so this works without internet too).
+  function fillLive(list) {
+    var MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+    var toDate = function (s) {
+      var m = String(s || '').match(/^(\d{1,2})\s+([A-Za-z]{3})[a-z]*\s+(\d{4})$/);
+      return m && MONTHS.indexOf(m[2].toLowerCase()) > -1 ? new Date(+m[3], MONTHS.indexOf(m[2].toLowerCase()), +m[1]) : null;
+    };
+    var short = function (s) { return String(s).replace(/\s+\d{4}$/, ''); };
+    var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    var row = function (href, colour, icon, label, text) {
+      return '<li><a href="' + href + '"><span class="icon-badge icon-badge--sm icon-badge--' + colour + '"><svg class="icon" aria-hidden="true"><use href="#i-' + icon + '"></use></svg></span>' +
+        '<span><b>' + label + '</b>' + esc(text) + '</span><svg class="icon app-welcome__go-row" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a></li>';
+    };
+    var get = function (u) { return fetch(u).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); };
+    Promise.all([get('assets/data/latest-updates.json'), get('assets/data/counselling-tracker.json')]).then(function (d) {
+      var rows = [], posts = d[0], tracker = d[1];
+      if (posts && posts.length) {
+        var latest = posts.slice().sort(function (a, b) { return (toDate(b.date) || 0) - (toDate(a.date) || 0); })[0];
+        rows.push(row('neet-2026-updates.html#u-' + encodeURIComponent(latest.id), 'orange', 'news', 'Latest update', latest.title));
+      }
+      if (tracker && tracker.tracks) {
+        var today = new Date(); today.setHours(0, 0, 0, 0);
+        var next = null;
+        tracker.tracks.forEach(function (t) {
+          (t.steps || []).forEach(function (s) {
+            [[s[1], 'starts'], [s[2], 'closes']].forEach(function (x) {
+              var dt = toDate(x[0]);
+              if (dt && dt >= today && (!next || dt < next.dt)) next = { dt: dt, text: t.name + ' · ' + s[0] + ' ' + x[1] + ' ' + (dt.getTime() === today.getTime() ? 'today' : short(x[0])) };
+            });
+          });
+        });
+        if (next) rows.push(row('neet-2026-updates.html', 'blue', 'calendar', 'Next counselling date', next.text));
+      }
+      rows.push(row('mbbs-abroad-planner.html', 'teal', 'check-square', 'MBBS Planner', 'Check your eligibility in 30 seconds'));
+      list.innerHTML = rows.join('');
+      list.hidden = false;
+    });
   }
 })();

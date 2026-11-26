@@ -105,7 +105,14 @@ export default {
           const recent = await env.DB.prepare(
             'SELECT id, created, topic, title, body, url, total, sent, failed FROM messages ORDER BY id DESC LIMIT 12'
           ).all();
-          return json({ subscribers: { total: t.total || 0, app: t.app || 0, web: t.web || 0 }, recent: recent.results || [] });
+          const newest = await env.DB.prepare(
+            'SELECT source, created, seen, endpoint FROM subscribers ORDER BY id DESC LIMIT 8'
+          ).all();
+          const devices = (newest.results || []).map((s) => ({
+            source: s.source, created: s.created, seen: s.seen,
+            service: /fcm|android\.googleapis/.test(s.endpoint) ? 'Android / Chrome' : /mozilla/.test(s.endpoint) ? 'Firefox' : /windows/.test(s.endpoint) ? 'Edge' : /apple/.test(s.endpoint) ? 'Safari' : 'Other'
+          }));
+          return json({ subscribers: { total: t.total || 0, app: t.app || 0, web: t.web || 0 }, recent: recent.results || [], devices });
         }
 
         if (path === '/api/send' && request.method === 'POST') {
@@ -346,6 +353,7 @@ table{width:100%;border-collapse:collapse;font-size:13px}td,th{text-align:left;p
  </div>
  <div class="grid" style="grid-template-columns:1fr;align-content:start">
   <section class="card"><h2 style="margin:0 0 12px;font-size:18px;color:var(--ink)">Preview on Android</h2><div class="phone"><div class="note"><img src="SITE/assets/images/app/icon-192.png" alt=""><div style="flex:1;min-width:0"><div class="app">Mathura Overseas · now</div><div class="t" id="pT">Your title</div><div class="b" id="pB">Your message</div><img class="pic" id="pI" alt=""></div></div></div></section>
+  <section class="card"><h2 style="margin:0 0 6px;font-size:18px;color:var(--ink)">Newest subscribers</h2><p style="margin:0 0 8px;color:var(--muted);font-size:13px">Turned on alerts on your own phone? It should appear at the top within seconds.</p><table><thead><tr><th>Joined</th><th>From</th><th>Push service</th></tr></thead><tbody id="devices"></tbody></table></section>
   <section class="card"><div class="row"><h2 style="margin:0;font-size:18px;color:var(--ink)">Recently sent</h2><button class="ghost" id="refresh">Refresh</button></div><table><thead><tr><th>When</th><th>Notification</th><th>Delivered</th></tr></thead><tbody id="recent"></tbody></table></section>
  </div>
 </div>
@@ -358,7 +366,8 @@ function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return
 var NAMES={news:'Announcement',updates:'Update',deadlines:'Dates'};
 function load(){return api('/api/stats').then(function(d){$('login').hidden=true;$('app').hidden=false;$('logout').hidden=false;
  $('sTotal').textContent=d.subscribers.total;$('sApp').textContent=d.subscribers.app;$('sWeb').textContent=d.subscribers.web;
- $('recent').innerHTML=d.recent.map(function(m){return '<tr><td>'+new Date(m.created).toLocaleString('en-IN',{day:'numeric',month:'short',hour:'numeric',minute:'2-digit'})+'</td><td><span class="tag">'+NAMES[m.topic]+'</span> <b>'+esc(m.title)+'</b></td><td>'+m.sent+' / '+m.total+'</td></tr>'}).join('')||'<tr><td colspan="3">Nothing sent yet.</td></tr>';})}
+ $('recent').innerHTML=d.recent.map(function(m){return '<tr><td>'+new Date(m.created).toLocaleString('en-IN',{day:'numeric',month:'short',hour:'numeric',minute:'2-digit'})+'</td><td><span class="tag">'+NAMES[m.topic]+'</span> <b>'+esc(m.title)+'</b></td><td>'+m.sent+' / '+m.total+'</td></tr>'}).join('')||'<tr><td colspan="3">Nothing sent yet.</td></tr>';
+ $('devices').innerHTML=(d.devices||[]).map(function(s){return '<tr><td>'+new Date(s.created).toLocaleString('en-IN',{day:'numeric',month:'short',hour:'numeric',minute:'2-digit'})+'</td><td><span class="tag">'+(s.source==='app'?'App':'Website')+'</span></td><td>'+esc(s.service)+'</td></tr>'}).join('')||'<tr><td colspan="3">No subscribers yet.</td></tr>';})}
 function enter(){K=$('key').value.trim();load().then(function(){localStorage.setItem('mo-push-admin',K)}).catch(function(e){$('loginMsg').textContent=e.message})}
 $('enter').onclick=enter;$('key').onkeydown=function(e){if(e.key==='Enter')enter()};
 $('logout').onclick=function(){localStorage.removeItem('mo-push-admin');location.reload()};$('refresh').onclick=load;
