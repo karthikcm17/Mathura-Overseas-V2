@@ -1,5 +1,229 @@
 [
   {
+    "id": "tn-pg-round2-result",
+    "date": "24 Nov 2026",
+    "cycle": "2026",
+    "cats": [
+      "pg",
+      "counselling",
+      "state",
+      "tn"
+    ],
+    "title": "Tamil Nadu PG Round 2 result out: join by 30 November",
+    "summary": "The Selection Committee published the Round 2 provisional allotment lists for PG Government Quota, Management Quota and DNB Broad Speciality on 24 November.",
+    "points": [
+      "Download the allotment order: 25–30 Nov, till 3:00 PM (after paying the tuition fee online)",
+      "Last date of joining: 30 Nov, 5:00 PM",
+      "A notice of 16 Nov added 214 PG MD/MS seats in Government Medical Colleges for Round 2 (109 Open, 105 Service)",
+      "Mop-up and Stray round dates are not announced yet"
+    ],
+    "source": "https://www.tnmedicalselection.net",
+    "via": "TN Selection Committee website and MedAdmit",
+    "important": true
+  },
+  {
+    "id": "tn-ug-bds-stray2",
+    "date": "23 Nov 2026",
+    "cycle": "2026",
+    "cats": [
+      "ug",
+      "counselling",
+      "state",
+      "tn"
+    ],
+    "title": "Tamil Nadu publishes BDS Special Stray Round II allotment lists",
+    "summary": "The Selection Committee posted the 23 November provisional allotment lists for BDS Government Quota (92.5%) and Management Quota.",
+    "points": [
+      "This is the BDS Special Stray Round II. MBBS seats were closed in the 11 Nov special stray round",
+      "Check the allotment order and joining date on the official site"
+    ],
+    "source": "https://www.tnmedicalselection.net",
+    "via": "TN Selection Committee website"
+  },
+  {
+    "id": "tn-pg-round2-extended",
+    "date": "21 Nov 2026",
+    "cycle": "2026",
+    "cats": [
+      "pg",
+      "counselling",
+      "state",
+      "tn"
+    ],
+    "title": "Tamil Nadu PG Round 2 resumes with an extended schedule",
+    "summary": "Tamil Nadu held Round 2 after MCC's result delay, then released a new schedule on 21 November. Result was due on 24 November.",
+    "points": [
+      "Original plan: register 17–18 Nov, result 23 Nov, join by 30 Nov",
+      "Registration and payment: 21 Nov, 11:00 AM to 8:00 PM",
+      "Choice filling and locking: 21 Nov 10:00 PM to 23 Nov 12:00 noon",
+      "Result: 24 Nov (afternoon); download order 25–30 Nov; last date of joining 30 Nov, 5:00 PM",
+      "The schedule is tentative. Confirm on tnmedicalselection.net"
+    ],
+    "source": "https://www.tnmedicalselection.net",
+    "via": "Admission Duniya and MedAdmit"
+  },
+  {
+    "id": "mcc-ug-round6-result",
+    "date": "20 Nov 2026",
+    "cycle": "2026",
+    "cats": [
+      "ug",
+      "counselling",
+      "mcc"
+    ],
+    "title": "MCC Round 6 result for BDS and B.Sc Nursing: 71 seats allotted",
+    "summary": "MCC released the provisional Round 6 result on 19–20 November. It covers BDS and B.Sc Nursing only, and reporting runs from 21 to 28 November.",
+    "points": [
+      "71 candidates allotted: 53 BDS and 18 B.Sc Nursing",
+      "The list is indicative and subject to change. Wait for the final result before you approach a college",
+      "Reporting at the allotted college: 21–28 Nov, till 5:00 PM",
+      "Discrepancy window closed at 11:30 PM on 19 Nov"
+    ],
+    "source": "https://mcc.nic.in",
+    "via": "Medical Dialogues and Careers360"
+  },
+  {
+    "id": "mcc-pg-round2-result",
+    "date": "20 Nov 2026",
+    "cycle": "2026",
+    "cats": [
+      "pg",
+      "counselling",
+      "mcc"
+    ],
+    "title": "MCC PG Round 2 final result out after a three-day hold",
+    "summary": "MCC released the final Round 2 allotment on 20 November. The result had been put on hold on 17 November.",
+    "points": [
+      "Round 2 reporting dates were revised after the delay. Check the MCC notice for the last date of joining",
+      "Round 3 is scheduled to start on 26 Nov (see the schedule notice of 16 Nov). It may move because of the Round 2 delay"
+    ],
+    "source": "https://mcc.nic.in",
+    "via": "MCC notices and WhiteCoatGuru",
+    "important": true
+  },
+  {
+    "id": "mcc-pg-round2-hold",
+    "date": "17 Nov 2026",
+    "cycle": "2026",
+    "cats": [
+      "pg",
+      "counselling",
+      "mcc"
+    ],
+    "title": "MCC puts PG Round 2 result on hold",
+    "summary": "MCC held the NEET PG Round 2 result on 17 November. Reports link this to a Madras High Court order, and Tamil Nadu's PG Round 2 was paused with it.",
+    "points": [
+      "Round 2 choice filling was also suspended briefly on 13 Nov while seats were added and removed",
+      "As reported, the court later clarified (19 Nov) that its stay covers only one deemed university",
+      "The final result followed on 20 Nov"
+    ],
+    "source": "https://mcc.nic.in",
+    "via": "WhiteCoatGuru and MedAdmit"
+  },
+  {
+    "id": "mcc-pg-round3-stray-schedule",
+    "date": "16 Nov 2026",
+    "cycle": "2026",
+    "cats": [
+      "pg",
+      "counselling",
+      "mcc",
+      "state"
+    ],
+    "title": "MCC PG Round 3 and Stray Round schedule released",
+    "summary": "MCC's All India and state PG schedule gives Round 3 from 26 November and the Stray Vacancy Round in the third week of December.",
+    "points": [
+      "Round 3 (All India): 26 Nov – 4 Dec; last date of joining 12 Dec",
+      "State PG Round 3: 4–12 Dec; last date of joining 18 Dec",
+      "Stray Vacancy Round (All India): 16–24 Dec; state stray 22–25 Dec; last date of joining 31 Dec",
+      "PG session began on 20 Nov. Dates may shift after the Round 2 delay"
+    ],
+    "source": "https://mcc.nic.in",
+    "via": "MedAdmit and NEET PG Exam"
+  },
+  {
+    "id": "tn-ug-special-stray-result",
+    "date": "11 Nov 2026",
+    "cycle": "2026",
+    "cats": [
+      "ug",
+      "counselling",
+      "state",
+      "tn"
+    ],
+    "title": "Tamil Nadu Special Stray Round result: join by 16 November",
+    "summary": "Allotment for the Tamil Nadu MBBS and BDS Special Stray Round was released on 11 November. Download your order and report by 16 November.",
+    "points": [
+      "Includes the 7.5% Government School quota, Government Quota (92.5%) and Management Quota",
+      "Download the allotment order: 12–16 Nov",
+      "Report to the college before 5:00 PM on 16 Nov. No extension was reported",
+      "This was the last MBBS round in the state this year"
+    ],
+    "source": "https://www.tnmedicalselection.net",
+    "via": "MedAdmit and TN Selection Committee website"
+  },
+  {
+    "id": "mcc-ug-special-stray-result",
+    "date": "07 Nov 2026",
+    "cycle": "2026",
+    "cats": [
+      "ug",
+      "counselling",
+      "mcc"
+    ],
+    "title": "MCC Special Stray Round result out for MBBS, BDS and B.Sc Nursing",
+    "summary": "MCC released the Special Stray Vacancy Round result on 6–7 November. This was the last MBBS round of the year, and reporting closed on 16 November.",
+    "points": [
+      "One report puts the allotments at 811: 537 MBBS, 208 BDS and 66 B.Sc Nursing. Confirm on mcc.nic.in",
+      "Reporting at the allotted college: 7–16 Nov, till 5:00 PM",
+      "MCC revised the seat matrix on 4 Nov, before the result"
+    ],
+    "source": "https://mcc.nic.in",
+    "via": "Shiksha and FirstJob24",
+    "important": true
+  },
+  {
+    "id": "tn-pg-round1-result",
+    "date": "05 Nov 2026",
+    "cycle": "2026",
+    "cats": [
+      "pg",
+      "counselling",
+      "state",
+      "tn"
+    ],
+    "title": "Tamil Nadu PG Round 1 result out: join by 10 November",
+    "summary": "The Selection Committee published the Round 1 provisional allotment lists for PG Government Quota, Management Quota and DNB on 5 November.",
+    "points": [
+      "Registration, payment and choice filling: 31 Oct to 3 Nov, 5:00 PM",
+      "Download the allotment order: 5–10 Nov, till 3:00 PM, after paying the tuition fee",
+      "Last date of joining: 10 Nov, 5:00 PM (tentative)",
+      "Provisional rank lists were published on 28 Oct"
+    ],
+    "source": "https://www.tnmedicalselection.net",
+    "via": "TN Selection Committee website and MedAdmit"
+  },
+  {
+    "id": "tn-ug-special-stray-schedule",
+    "date": "04 Nov 2026",
+    "cycle": "2026",
+    "cats": [
+      "ug",
+      "counselling",
+      "state",
+      "tn"
+    ],
+    "title": "Tamil Nadu Special Stray Round for MBBS and BDS: 4–10 November",
+    "summary": "Tamil Nadu opened a special stray round for vacant MBBS and BDS seats on 4 November. Registration and choice filling closed on 10 November.",
+    "points": [
+      "Registration, payment, choice filling and locking: 4–10 Nov",
+      "Result: 11 Nov; last date to report: 16 Nov",
+      "Tentative vacancy position published on 3–4 Nov (a small number of MBBS seats, mostly in private universities)"
+    ],
+    "source": "https://www.tnmedicalselection.net",
+    "via": "Shiksha and MedAdmit"
+  },
+  {
     "id": "mcc-ug-special-stray",
     "date": "30 Oct 2026",
     "cycle": "2026",

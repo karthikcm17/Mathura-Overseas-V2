@@ -162,3 +162,45 @@
   .cta .btn-row { justify-content: flex-end; }
   .cta .btn-row .btn { flex: 0 0 auto; }
 }
+
+/* ================= OUR COMPANY (Mathura One Global) =================
+   A navy card: slow orbiting rings around the logo cap (the group around Mathura Overseas),
+   then the short company note and three facts. Only transform animates, so it stays smooth on phones. */
+.about-group__card { position: relative; overflow: hidden; display: grid; gap: var(--sp-5); justify-items: center; text-align: center;
+  padding: var(--sp-6) var(--sp-5); border-radius: var(--radius-xl); color: var(--color-text-inverse);
+  background: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1.6px) 0 0 / 20px 20px, var(--grad-night); box-shadow: var(--shadow-lg); }
+.about-group__card::after { content: ""; position: absolute; width: 420px; height: 420px; right: -160px; bottom: -220px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(58,99,209,.45), transparent); pointer-events: none; }
+
+.about-group__art { position: relative; width: 168px; height: 168px; flex-shrink: 0; }
+.about-group__orbits { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.about-group__ring { transform-box: view-box; transform-origin: 50% 50%; }
+.about-group__ring circle:first-child { fill: none; stroke: rgba(255,255,255,.22); stroke-width: 1.2; stroke-dasharray: 3 6; }
+.about-group__ring--outer { animation: group-spin 28s linear infinite; }
+.about-group__ring--inner { animation: group-spin 18s linear infinite reverse; }
+.about-group__ring--inner circle:first-child { stroke: rgba(255,255,255,.32); stroke-dasharray: none; }
+.about-group__dot { fill: var(--color-blue-pale); }
+.about-group__dot--soft { fill: rgba(255,255,255,.55); }
+.about-group__core { position: absolute; inset: 0; margin: auto; width: 76px; height: 76px; display: grid; place-items: center;
+  border-radius: 22px; color: var(--color-primary); background: var(--color-surface); box-shadow: 0 10px 30px rgba(7,18,52,.45); }
+.about-group__core svg { width: 46px; height: 46px; fill: currentColor; }
+@keyframes group-spin { to { transform: rotate(360deg); } }
+
+.about-group__text { position: relative; z-index: 1; display: grid; justify-items: center; }
+.about-group__text h2 { color: var(--color-text-inverse); text-wrap: balance; }
+.about-group__text p { margin-top: var(--sp-3); max-width: 52ch; color: var(--color-text-inverse-muted); }
+.about-group__facts { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--sp-2); margin-top: var(--sp-5); padding: 0; list-style: none; }
+.about-group__facts li { display: inline-flex; align-items: center; gap: .5rem; padding: .45rem .9rem .45rem .45rem; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.07); font-size: var(--fs-sm); font-weight: 700; }
+.about-group__ico { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,.14); }
+.about-group__ico .icon { width: 15px; height: 15px; }
+
+@media (min-width: 768px) {
+  .about-group__card { grid-template-columns: 220px 1fr; justify-items: start; text-align: left; gap: var(--sp-6); padding: var(--sp-7) var(--sp-7); }
+  .about-group__art { width: 220px; height: 220px; }
+  .about-group__core { width: 96px; height: 96px; border-radius: 26px; }
+  .about-group__core svg { width: 58px; height: 58px; }
+  .about-group__text { justify-items: start; }
+  .about-group__facts { justify-content: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) { .about-group__ring--outer, .about-group__ring--inner { animation: none; } }
