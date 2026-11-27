@@ -3,6 +3,11 @@
       "target": {
         "namespace": "android_app",
         "package_name": "com.mathuraoverseas.app",
-        "sha256_cert_fingerprints": ["E7:B0:4A:65:94:57:47:E4:D7:E7:1E:C9:7F:52:F9:FE:26:70:40:7C:70:2A:2A:63:17:A3:C2:67:1A:3C:A1:FE"]
+        "sha256_cert_fingerprints": [
+          "E7:B0:4A:65:94:57:47:E4:D7:E7:1E:C9:7F:52:F9:FE:26:70:40:7C:70:2A:2A:63:17:A3:C2:67:1A:3C:A1:FE",
+          "40:52:65:49:D6:8A:BC:9B:62:63:28:26:B7:55:19:31:A7:BF:0B:5D:A9:3A:B9:81:41:65:5F:88:29:D8:DF:9D",
+          "33:E0:DC:C5:DE:C5:F1:D3:5E:4F:86:9A:D1:09:DB:9F:03:A9:F9:09:28:3E:96:C2:4D:8A:C1:58:D5:A3:5D:7B",
+          "48:63:6D:6D:DB:E2:41:71:7E:E4:7B:A8:D3:E7:61:5E:9B:63:60:0F:9F:80:C0:B6:6E:C5:90:DB:7D:9D:3F:76"
+        ]
       }
     }]
