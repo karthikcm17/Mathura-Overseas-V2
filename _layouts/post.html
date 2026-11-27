@@ -1,0 +1,190 @@
+---
+# ============ BLOG POST LAYOUT (_layouts/post.html) ============
+# Every blog post in _posts/ uses this ONE design automatically (set in _config.yml), so a post file holds
+# only its top block (title, description, image…) and the article text in Markdown. How-to: BLOG_GUIDE.md.
+# Styles: css/pages/blog.css   ·   Script: js/pages/blog.js (contents list, reading bar, share buttons)
+---
+{%- assign url = page.url | remove_first: "/" -%}
+{%- assign full_url = url | prepend: "https://mathuraoverseas.com/" -%}
+{%- assign cover = page.image | default: "assets/images/og/home.jpg" -%}
+{%- assign words = content | number_of_words -%}
+{%- assign minutes = words | divided_by: 200 | plus: 1 -%}
+{%- assign updated = page.updated | default: page.date -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{ page.seo_title | default: page.title }} | Mathura Overseas</title>
+<meta name="description" content="{{ page.description | strip_html | escape }}">
+<link rel="canonical" href="{{ full_url }}">
+<meta property="og:title" content="{{ page.title | escape }}">
+<meta property="og:description" content="{{ page.description | strip_html | escape }}">
+<meta property="og:url" content="{{ full_url }}">
+<meta property="og:image" content="https://mathuraoverseas.com/{{ cover }}">
+<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+<meta property="article:modified_time" content="{{ updated | date_to_xmlschema }}">
+{% include head.html og_type="article" %}
+<link rel="stylesheet" href="css/pages/blog.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {{ full_url | jsonify }},
+  "headline": {{ page.title | jsonify }},
+  "description": {{ page.description | strip_html | jsonify }},
+  "image": {{ cover | prepend: "https://mathuraoverseas.com/" | jsonify }},
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ updated | date_to_xmlschema }}",
+  "wordCount": {{ words }},
+  "articleSection": {{ page.category | default: "MBBS abroad" | jsonify }},
+  "inLanguage": "en-IN",
+  "author": { "@type": "Organization", "name": "Mathura Overseas", "url": "https://mathuraoverseas.com/" },
+  "publisher": { "@type": "Organization", "name": "Mathura Overseas", "logo": { "@type": "ImageObject", "url": "https://mathuraoverseas.com/assets/images/app/icon-192.png" } }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mathuraoverseas.com/index.html" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://mathuraoverseas.com/blog.html" },
+    { "@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }}, "item": {{ full_url | jsonify }} }
+  ]
+}
+</script>
+{%- if page.faqs %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+{%- for f in page.faqs %}
+    { "@type": "Question", "name": {{ f.q | jsonify }}, "acceptedAnswer": { "@type": "Answer", "text": {{ f.a | strip_html | jsonify }} } }{% unless forloop.last %},{% endunless %}
+{%- endfor %}
+  ]
+}
+</script>
+{%- endif %}
+</head>
+<body>
+
+{% include icons.html %}
+{% include announcement.html %}
+{% include header.html %}
+
+<!-- Reading bar: a thin line under the header that fills as you read (js/pages/blog.js) -->
+<div class="post-progress" aria-hidden="true"><span class="post-progress__bar" id="postProgress"></span></div>
+
+<main id="main">
+
+  <!-- ============ 1. HERO — category, title, the description as the lead, date and reading time ============ -->
+  <section class="post-hero">
+    <svg class="post-hero__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+    <div class="container post-hero__inner">
+      <nav class="post-crumbs" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+        <a href="blog.html">Blog</a><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+        <span aria-current="page">{{ page.category | default: "Article" }}</span>
+      </nav>
+      {%- if page.category %}
+      <a class="post-cat" href="blog.html#{{ page.category | slugify }}">{{ page.category }}</a>
+      {%- endif %}
+      <h1>{{ page.title }}</h1>
+      <p class="post-hero__lead">{{ page.description }}</p>
+      <div class="post-meta">
+        <span class="post-meta__by"><span class="post-meta__mark" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-cap"></use></svg></span>Mathura Overseas counselling team</span>
+        <span class="post-meta__item"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg><time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: "%-d %b %Y" }}</time></span>
+        <span class="post-meta__item"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg>{{ minutes }} min read</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. COVER PHOTO — floats over the hero's bottom edge. 1200 x 630 px (the same picture is the link preview and the push alert image) ============ -->
+  <div class="post-cover">
+    <div class="container">
+      <figure class="post-cover__frame">
+        <img src="{{ cover }}" width="1200" height="630" alt="{{ page.image_alt | default: page.title | escape }}" fetchpriority="high">
+      </figure>
+    </div>
+  </div>
+
+  <!-- ============ 3. ARTICLE — contents list (side panel on computers, fold-out on phones) + the Markdown text ============ -->
+  <section class="section post-body">
+    <div class="container post-layout">
+
+      <aside class="post-aside">
+        <details class="post-toc" id="postToc" hidden>
+          <summary><svg class="icon" aria-hidden="true"><use href="#i-list"></use></svg>In this article<svg class="icon post-toc__chev" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary>
+          <ol class="post-toc__list" id="postTocList"></ol>
+        </details>
+        <div class="post-share" aria-label="Share this article">
+          <span class="post-share__label">Share</span>
+          <a class="post-share__btn post-share__btn--wa" href="https://wa.me/?text={{ page.title | append: ' — ' | append: full_url | url_encode }}" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg></a>
+          <button type="button" class="post-share__btn" data-copy-link="{{ full_url }}" aria-label="Copy link"><svg class="icon" aria-hidden="true"><use href="#i-link"></use></svg></button>
+          <button type="button" class="post-share__btn" data-native-share hidden aria-label="More ways to share"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
+          <span class="post-share__msg" role="status" aria-live="polite"></span>
+        </div>
+      </aside>
+
+      <article class="prose" id="postArticle">
+{{ content }}
+        <p class="post-updated">Last reviewed on <time datetime="{{ updated | date: '%Y-%m-%d' }}">{{ updated | date: "%-d %B %Y" }}</time>. Fees, rules and dates change every year &mdash; confirm the latest with your counsellor.</p>
+      </article>
+
+    </div>
+  </section>
+
+{%- if page.faqs %}
+  <!-- ============ 4. FAQ (only when the post has "faqs:" in its top block). Native <details>, no script. ============ -->
+  <section class="section section--wash post-faq">
+    <div class="container post-faq__inner">
+      <h2>Frequently asked questions</h2>
+      <div class="post-faq__list">
+{%- for f in page.faqs %}
+        <details><summary>{{ f.q }}<svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></summary><div>{{ f.a }}</div></details>
+{%- endfor %}
+      </div>
+    </div>
+  </section>
+{%- endif %}
+
+  <!-- ============ 5. KEEP READING — same category first, then the newest. Builds itself. ============ -->
+{%- assign same = site.posts | where: "category", page.category | where_exp: "p", "p.url != page.url" -%}
+{%- assign others = site.posts | where_exp: "p", "p.url != page.url" | where_exp: "p", "p.category != page.category" -%}
+{%- assign related = same | concat: others -%}
+{%- if related.size > 0 %}
+  <section class="section post-more">
+    <div class="container">
+      <div class="post-more__head"><h2>Keep reading</h2><a class="btn btn--link" href="blog.html">All articles <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></div>
+      <div class="blog-grid" data-stagger>
+{%- for p in related limit: 3 %}
+        {% include blog-card.html post=p %}
+{%- endfor %}
+      </div>
+    </div>
+  </section>
+{%- endif %}
+
+  <!-- ============ 6. CLOSING CTA (same card as every page) ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="cta reveal">
+        <svg class="cta__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+        <div><h2>Have a question about your own case?</h2><p>One free conversation: your NEET score, your budget and the countries that fit &mdash; with every NMC check in writing.</p></div>
+        <div class="btn-row">
+          <a href="apply.html" class="btn btn--ondark">Get free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <a href="https://wa.me/919360859919?text={{ 'Hi, I read your article: ' | append: page.title | url_encode }}" class="btn btn--outline-light" target="_blank" rel="noopener"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg> Ask on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{% include footer.html %}
+{% include bottom-nav.html %}
+{% include scripts.html %}
+<script src="js/pages/blog.js"></script>
+</body>
+</html>

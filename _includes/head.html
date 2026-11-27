@@ -13,7 +13,7 @@
 <meta name="apple-mobile-web-app-title" content="Mathura Overseas">
 <meta name="format-detection" content="telephone=no">
 {% if page.noindex %}<meta name="robots" content="noindex, follow">
-{% endif %}<meta property="og:type" content="website">
+{% endif %}<meta property="og:type" content="{{ include.og_type | default: 'website' }}">
 <meta property="og:site_name" content="Mathura Overseas">
 <meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary_large_image">

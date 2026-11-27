@@ -11,4 +11,10 @@ sitemap: false
   <url><loc>{{ site.url }}{{ p.url | replace: "/index.html", "/" }}</loc></url>
 {%- endunless %}
 {%- endfor %}
+{%- comment %} Blog posts (_posts/) are not "pages" to Jekyll, so they are listed here, each with its last-reviewed date. {% endcomment %}
+{%- for p in site.posts %}
+{%- unless p.sitemap == false %}
+  <url><loc>{{ site.url }}{{ p.url }}</loc><lastmod>{{ p.updated | default: p.date | date: "%Y-%m-%d" }}</lastmod></url>
+{%- endunless %}
+{%- endfor %}
 </urlset>

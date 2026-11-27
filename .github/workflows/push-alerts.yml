@@ -1,6 +1,7 @@
 # Sends a push alert ONLY when you publish something:
 #   · a new post in assets/data/latest-updates.json      → the post (or "3 new updates")
 #   · new or changed round dates in counselling-tracker.json → "MCC PG · Round 3: dates announced"
+#   · a new blog post in _posts/                         → the post's title, description and cover photo
 # Nothing runs on a schedule. Does nothing until the PUSH_API and PUSH_ADMIN_KEY secrets exist (PUSH_SETUP.md, step 6).
 name: Push alerts
 on:
@@ -9,6 +10,7 @@ on:
     paths:
       - 'assets/data/latest-updates.json'
       - 'assets/data/counselling-tracker.json'
+      - '_posts/**'
 permissions:
   contents: read
 concurrency: push-alerts
@@ -28,3 +30,5 @@ jobs:
         run: node .github/scripts/push-new-updates.mjs
       - name: Counselling tracker dates
         run: node .github/scripts/push-tracker-changes.mjs
+      - name: New blog posts
+        run: node .github/scripts/push-new-posts.mjs

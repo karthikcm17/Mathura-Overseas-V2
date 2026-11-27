@@ -1,0 +1,13 @@
+<!-- ============ BLOG CARD (_includes/blog-card.html) — one article card. Used on blog.html and under every post ("Keep reading").
+     Everything comes from the post's top block: image, category, title, description, date. Styles: css/pages/blog.css -->
+{%- assign bc = include.post -%}
+{%- assign bc_min = bc.content | number_of_words | divided_by: 200 | plus: 1 -%}
+<a class="card card--link blog-card reveal{% if include.featured %} blog-card--featured{% endif %}" href="{{ bc.url | remove_first: '/' }}" data-cat="{{ bc.category | slugify }}">
+  <span class="blog-card__img"><img src="{{ bc.image | default: 'assets/images/og/home.jpg' }}" width="1200" height="630" alt="" loading="{% if include.featured %}eager{% else %}lazy{% endif %}"></span>
+  <span class="blog-card__body">
+    {%- if bc.category %}<span class="blog-card__cat">{{ bc.category }}</span>{% endif %}
+    <span class="blog-card__title">{{ bc.title }}</span>
+    <span class="blog-card__desc">{{ bc.description | strip_html | truncate: 150 }}</span>
+    <span class="blog-card__meta"><time datetime="{{ bc.date | date: '%Y-%m-%d' }}">{{ bc.date | date: "%-d %b %Y" }}</time><span aria-hidden="true">&middot;</span>{{ bc_min }} min read<svg class="icon blog-card__go" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+  </span>
+</a>

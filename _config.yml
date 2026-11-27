@@ -24,6 +24,17 @@ defaults:
       path: ""
     values:
       layout: null
+  # BLOG POSTS (_posts/YYYY-MM-DD-your-title.md) — see BLOG_GUIDE.md.
+  # Every post uses _layouts/post.html and sits at the top level of the site, like the country pages:
+  #   _posts/2026-12-01-mbbs-in-uzbekistan-fees-2027.md  →  mathuraoverseas.com/mbbs-in-uzbekistan-fees-2027.html
+  # (Top level on purpose: every page links its CSS and images as "css/…", which would break inside a /blog/ folder.)
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      permalink: /:title.html
+      active: blog
 
 # Folders Jekyll would skip because their name starts with a dot, but that MUST be published.
 # .well-known/assetlinks.json proves to Android that the Play Store app and this website belong together.
@@ -47,6 +58,7 @@ exclude:
   - google-sheets-lead-script.gs
   - worker                      # the Ask Mathura AI Worker runs on Cloudflare, not on the website
   - ASK_MATHURA_SETUP.md
+  - BLOG_GUIDE.md
   - claude
   - Gemfile
   - Gemfile.lock

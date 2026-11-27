@@ -1,0 +1,115 @@
+---
+# ============ BLOG (blog.html) — the list of every article. It builds itself from the _posts folder:
+# add a post (BLOG_GUIDE.md) and it appears here, newest first, with its category button.
+# Styles: css/pages/blog.css · Script: js/pages/blog.js (category buttons)
+active: blog
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MBBS Abroad Blog: Guides, Fees &amp; NMC Rules | Mathura Overseas</title>
+<meta name="description" content="Plain-language guides on studying MBBS abroad: choosing a country, real fees, NMC rules, NEET and life as an Indian medical student overseas.">
+<link rel="canonical" href="https://mathuraoverseas.com/blog.html">
+<meta property="og:title" content="MBBS Abroad Blog | Mathura Overseas">
+<meta property="og:description" content="Plain-language guides on studying MBBS abroad: choosing a country, real fees, NMC rules, NEET and life as an Indian medical student overseas.">
+<meta property="og:url" content="https://mathuraoverseas.com/blog.html">
+<meta property="og:image" content="https://mathuraoverseas.com/{{ site.posts.first.image | default: 'assets/images/og/home.jpg' }}">
+{% include head.html %}
+<link rel="stylesheet" href="css/pages/blog.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Mathura Overseas Blog",
+  "url": "https://mathuraoverseas.com/blog.html",
+  "publisher": { "@type": "Organization", "name": "Mathura Overseas", "url": "https://mathuraoverseas.com/" },
+  "blogPost": [
+{%- for p in site.posts limit: 20 %}
+    { "@type": "BlogPosting", "headline": {{ p.title | jsonify }}, "url": {{ p.url | prepend: "https://mathuraoverseas.com" | jsonify }}, "datePublished": "{{ p.date | date_to_xmlschema }}" }{% unless forloop.last %},{% endunless %}
+{%- endfor %}
+  ]
+}
+</script>
+</head>
+<body>
+
+{% include icons.html %}
+{% include announcement.html %}
+{% include header.html %}
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="blog-hero">
+    <svg class="blog-hero__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+    <svg class="blog-hero__arc" viewBox="0 0 600 300" aria-hidden="true"><path class="blog-hero__arc-path" d="M0,275 C190,275 380,225 600,28"/></svg>
+    <div class="container blog-hero__inner">
+      <span class="eyebrow eyebrow--light">The Mathura Overseas blog</span>
+      <h1>MBBS abroad, explained honestly</h1>
+      <p class="blog-hero__lead">Countries, real fees, NMC rules and student life &mdash; written by the counsellors who answer these questions every day.</p>
+      <!-- Alerts switch: the same one as the Updates page. New articles arrive as a notification with the cover photo. -->
+      <button type="button" class="btn btn--ondark btn--sm push-toggle" data-push-toggle hidden><svg class="icon" aria-hidden="true"><use href="#i-bell"></use></svg><span data-push-label>Get alerts for new updates</span></button>
+    </div>
+  </section>
+
+  <section class="section has-dots blog-body">
+    <div class="container">
+{%- if site.posts.size > 0 %}
+  {%- assign cats = site.posts | map: "category" | compact | uniq | sort %}
+  {%- if cats.size > 1 %}
+      <!-- Category buttons: made from each post's "category:" line. Phones: one swipeable row. -->
+      <div class="blog-chips" id="blogChips" role="group" aria-label="Show articles about">
+        <button type="button" class="blog-chip is-active" data-cat="all" aria-pressed="true">All</button>
+    {%- for c in cats %}
+        <button type="button" class="blog-chip" data-cat="{{ c | slugify }}" aria-pressed="false">{{ c }}</button>
+    {%- endfor %}
+      </div>
+  {%- endif %}
+
+      <!-- Newest article: the big card -->
+      <div class="blog-lead" id="blogLead">
+        {% include blog-card.html post=site.posts.first featured=true %}
+      </div>
+
+      <!-- Every other article, newest first -->
+      <div class="blog-grid" id="blogGrid" data-stagger>
+  {%- for p in site.posts offset: 1 %}
+        {% include blog-card.html post=p %}
+  {%- endfor %}
+      </div>
+      <p class="blog-none" id="blogNone" hidden>No articles in this category yet.</p>
+{%- else %}
+      <!-- Shown only until the first post is published -->
+      <div class="blog-empty">
+        <span class="icon-badge icon-badge--blue"><svg class="icon" aria-hidden="true"><use href="#i-edit"></use></svg></span>
+        <h2>First articles are on the way</h2>
+        <p>Until then, the latest NEET and counselling news is on our Updates page.</p>
+        <a href="neet-2026-updates.html" class="btn btn--primary btn--sm">See NEET updates <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+      </div>
+{%- endif %}
+    </div>
+  </section>
+
+  <!-- ============ CLOSING CTA (same card as every page) ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="cta reveal">
+        <svg class="cta__globe globe-art" aria-hidden="true"><use href="#i-globe-art"></use></svg>
+        <div><h2>Rather ask than read?</h2><p>Tell us your NEET score and budget, and a counsellor will walk you through the options that fit &mdash; free, with no obligation.</p></div>
+        <div class="btn-row">
+          <a href="apply.html" class="btn btn--ondark">Get free counselling <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <a href="mbbs-abroad-planner.html#eligibility" class="btn btn--outline-light">Check my eligibility</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{% include footer.html %}
+{% include bottom-nav.html %}
+{% include scripts.html %}
+<script src="js/pages/blog.js"></script>
+</body>
+</html>
