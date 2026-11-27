@@ -1,14 +1,3 @@
-<!-- ============ APP LAUNCH ANIMATION — plays each time the app is opened (phone or computer), about 1.3 s.
-     Shown only while <html> has the class "app-launch" (set in _includes/head.html, ended by js/pwa.js). -->
-<div class="app-splash" aria-hidden="true">
-  <div class="app-splash__mark">
-    <svg class="app-splash__orbit" viewBox="0 0 200 200"><circle cx="100" cy="100" r="92"/><circle class="app-splash__dot" cx="100" cy="8" r="5"/></svg>
-    <span class="app-splash__logo"><svg viewBox="0 0 40 40"><g class="app-splash__cap"><path d="M20 9 7 15.5 20 22l13-6.5L20 9Z"/><path d="M12 19.2V24c0 2.2 3.6 4 8 4s8-1.8 8-4v-4.8L20 24.4l-8-5.2Z" opacity=".92"/></g><path d="M33 16v7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="33" cy="25" r="1.9"/></svg></span>
-  </div>
-  <p class="app-splash__name">MATHURA<span>OVERSEAS</span></p>
-  <span class="app-splash__bar"><i></i></span>
-</div>
-
 <!-- ============ APP WELCOME / LAUNCH SCREEN (_includes/app-welcome.html) — included by footer.html on every page.
      Inside the app only (phone or computer), never on the website. js/push.js chooses the version:
        · FIRST opening ever: what the app offers + "Turn on alerts" / "Not now" (no timer: it's a real choice).
@@ -32,7 +21,7 @@
       <li><span class="icon-badge icon-badge--sm icon-badge--teal"><svg class="icon" aria-hidden="true"><use href="#i-check-square"></use></svg></span><span><b>MBBS Planner</b>Eligibility, budget &amp; compare</span></li>
       <li><span class="icon-badge icon-badge--sm icon-badge--pink"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span><span><b>Real counsellors</b>Free guidance, one tap away</span></li>
     </ul>
-    <ul class="app-welcome__list app-welcome__live" data-welcome-live hidden></ul>
+    <ul class="app-welcome__list app-welcome__live" data-welcome-live hidden><li class="is-skeleton"></li><li class="is-skeleton"></li><li class="is-skeleton"></li></ul>
     <div class="app-welcome__actions">
       <button type="button" class="btn btn--ondark btn--block app-welcome__allow" data-welcome-allow><svg class="icon" aria-hidden="true"><use href="#i-bell"></use></svg><span>Turn on alerts</span></button>
       <button type="button" class="btn btn--ondark btn--block app-welcome__go" data-welcome-go hidden><span>Start my journey</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
@@ -41,3 +30,5 @@
     </div>
   </div>
 </div>
+<!-- Chooses the version before the screen is drawn (no flash of the wrong words). js/push.js does the rest. -->
+<script>(function(){var h=document.documentElement,w=document.getElementById('appWelcome');if(!w||!h.classList.contains('app-launch'))return;var first=true;try{first=!localStorage.getItem('mo-welcome')}catch(e){}if(first)return;w.classList.add('is-launch');var r=new Date().getHours();w.querySelector('[data-welcome-hello]').textContent=r<12?'Good morning':r<17?'Good afternoon':'Good evening';w.querySelector('[data-welcome-lead]').textContent='Here\u2019s what\u2019s new today.'})();</script>

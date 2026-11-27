@@ -165,6 +165,7 @@
     var finish = function () {
       clearTimeout(timer);
       if (first) store.set('mo-welcome', '1');
+      if (MO.endLaunch) MO.endLaunch();          // the home page is already loaded underneath
       welcome.classList.remove('is-in');
       document.body.classList.remove('has-welcome');
       setTimeout(function () { welcome.hidden = true; }, 350);
@@ -189,9 +190,11 @@
       welcome.classList.add('is-launch');
       allow.hidden = true; skip.hidden = true; go.hidden = false; auto.hidden = false;
       $('[data-welcome-first]').hidden = true;
-      var h = new Date().getHours();
-      $('[data-welcome-hello]').textContent = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
-      $('[data-welcome-lead]').textContent = 'Here’s what’s new today.';
+      if (!welcome.classList.contains('is-launch')) {   // normally already done in _includes/app-welcome.html
+        var h = new Date().getHours();
+        $('[data-welcome-hello]').textContent = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+        $('[data-welcome-lead]').textContent = 'Here’s what’s new today.';
+      }
       var left = SECONDS;
       var tick = function () {
         count.textContent = 'Opening in ' + left + 's';
@@ -209,7 +212,6 @@
     }
 
     try { sessionStorage.setItem('mo-welcome-now', '1'); } catch (e) {}   // no alerts card in the same visit
-    if (MO.endSplash) MO.endSplash();                                      // the screen takes over from the animation
     welcome.hidden = false;
     document.body.classList.add('has-welcome');
     requestAnimationFrame(function () { requestAnimationFrame(function () { welcome.classList.add('is-in'); }); });

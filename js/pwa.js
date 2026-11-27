@@ -5,7 +5,7 @@
 //    location (js/pwa.js → ../sw.js), so it is always the site root.
 // 2. Adds the class "is-app" to <html> when the site is opened as the app (Play Store app, or installed
 //    from Chrome on a phone or computer), so CSS can show or hide things only inside the app.
-// 3. Plays the opening animation when the app is opened from its icon (_includes/app-welcome.html).
+// 3. Holds the page under the opening screen when the app is opened from its icon (_includes/app-welcome.html).
 // 4. Shows the "Get the app" links and the Android install banner (once play_store_url is set in _config.yml).
 //    Never to people who already have the app.
 //
@@ -48,22 +48,14 @@
     if (inApp || sessionStorage.getItem('mo-app') === '1') html.classList.add('is-app');
   } catch (e) { /* private mode: sessionStorage may be blocked — harmless */ }
 
-  // ---- 3. Launch animation (the class "app-launch" is set by a tiny script in _includes/head.html) ----
-  // Plays about 1.3 s from the moment the app opens, then the page fades in. Then js/push.js may show
-  // the welcome screen (first launch only).
-  MO.endSplash = function () {};
-  MO.launched = new Promise(function (resolve) {
-    if (!html.classList.contains('app-launch')) { resolve(); return; }
-    var done = false;
-    var end = MO.endSplash = function () {    // js/push.js calls this to hand over to the launch screen at once
-      if (done) return; done = true;
-      html.classList.add('app-launch--out');
-      setTimeout(function () { html.classList.remove('app-launch', 'app-launch--out'); resolve(); }, 450);
-    };
-    var go = function () { setTimeout(end, Math.max(0, 1300 - performance.now())); };
-    if (document.readyState === 'complete') go(); else window.addEventListener('load', go);
-    setTimeout(end, 2600);      // never longer than this, even on a slow network
-  });
+  // ---- 3. Opening screen (the class "app-launch" is set by a tiny script in _includes/head.html) ----
+  // While it is set, the page waits invisibly under the opening screen. js/push.js calls MO.endLaunch()
+  // the moment the student enters, and the page is simply there — nothing plays in between.
+  var endLaunch;
+  MO.launched = new Promise(function (resolve) { endLaunch = resolve; });
+  MO.endLaunch = function () { html.classList.remove('app-launch'); endLaunch(); };
+  if (!html.classList.contains('app-launch')) endLaunch();
+  else document.addEventListener('DOMContentLoaded', function () { if (!document.getElementById('appWelcome')) MO.endLaunch(); });
 
   // ---- 4. "Get the app" ----
   var isAndroid = /Android/i.test(navigator.userAgent);
